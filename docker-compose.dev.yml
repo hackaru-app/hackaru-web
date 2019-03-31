@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    command: yarn dev
+    env_file: .env.development
+    volumes:
+      - ./assets:/hackaru/assets
+      - ./components:/hackaru/components
+      - ./layouts:/hackaru/layouts
+      - ./middleware:/hackaru/middleware
+      - ./pages:/hackaru/pages
+      - ./plugins:/hackaru/plugins
+      - ./static:/hackaru/static
+      - ./store:/hackaru/store
+      - ./nuxt.config.js:/hackaru/nuxt.config.js

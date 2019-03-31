@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index render correctly 1`] = `
+<section>
+  <content-header-stub>
+    <heading-stub>
+      title
+    </heading-stub>
+     
+    <btn-stub
+      aria-label="ariaLabels.add"
+      class="add-button has-icon"
+      type="button"
+    >
+      <icon-stub
+        class="is-primary"
+        name="plus-icon"
+      />
+    </btn-stub>
+  </content-header-stub>
+    
+  <p
+    class="empty"
+  >
+    
+    empty
+  
+  </p>
+</section>
+`;

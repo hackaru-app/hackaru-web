@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Edit render correctly 1`] = `
+<section>
+  <heading-stub
+    class="is-large"
+  >
+    
+    title
+  
+  </heading-stub>
+   
+  <form>
+    <text-field-stub
+      aria-label="password"
+      class="has-underline"
+      placeholder="password"
+      required=""
+      type="password"
+      value=""
+    />
+     
+    <text-field-stub
+      aria-label="passwordConfirmation"
+      class="has-underline"
+      placeholder="passwordConfirmation"
+      required=""
+      type="password"
+      value=""
+    />
+     
+    <btn-stub
+      class="button is-rounded is-primary"
+      type="submit"
+    >
+      
+      reset
+    
+    </btn-stub>
+  </form>
+</section>
+`;

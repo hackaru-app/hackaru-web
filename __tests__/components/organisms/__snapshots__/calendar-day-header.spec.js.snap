@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalendarDayHeader render correctly 1`] = `
+<header
+  class=""
+>
+  <button>
+    <h1>
+      01
+    </h1>
+     
+    <small>
+      Tu
+    </small>
+  </button>
+</header>
+`;

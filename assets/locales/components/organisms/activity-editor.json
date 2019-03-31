@@ -1,0 +1,44 @@
+{
+  "en": {
+    "titles": {
+      "update": "Update Activity",
+      "start": "Start Timer"
+    },
+    "ariaLabels": {
+      "delete": "Delete"
+    },
+    "project": "Project",
+    "description": "Description",
+    "startedAt": "Started At",
+    "stoppedAt": "Stopped At",
+    "update": "Update",
+    "start": "Start",
+    "saved": "Activity saved",
+    "started": "Timer started",
+    "deleted": "Activity deleted",
+    "confirms": {
+      "delete":  "Are you sure you want to delete the activity?"
+    }
+  },
+  "ja": {
+    "titles": {
+      "update": "記録を更新",
+      "start": "計測を開始"
+    },
+    "ariaLabels": {
+      "delete": "削除"
+    },
+    "project": "プロジェクト",
+    "description": "備考",
+    "startedAt": "開始時間",
+    "stoppedAt": "終了時間",
+    "update": "更新",
+    "start": "開始",
+    "saved": "保存しました",
+    "started": "開始しました",
+    "deleted": "削除しました",
+    "confirms": {
+      "delete":  "記録を削除しますか？"
+    }
+  }
+}

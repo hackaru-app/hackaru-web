@@ -1,0 +1,48 @@
+{
+  "en": {
+    "ariaLabels": {
+      "previous": "Previous",
+      "next": "Next",
+      "selectPeriod": "Select Period"
+    },
+    "day": {
+      "label": "Day",
+      "format": "DD/MM/YYYY"
+    },
+    "week": {
+      "label": "Week",
+      "format": "MM/YYYY"
+    },
+    "month": {
+      "label": "Month",
+      "format": "MM/YYYY"
+    },
+    "year": {
+      "label": "Year",
+      "format": "YYYY"
+    }
+  },
+  "ja": {
+    "ariaLabels": {
+      "previous": "前へ",
+      "next": "次へ",
+      "selectPeriod": "期間を選択"
+    },
+    "day": {
+      "label": "日",
+      "format": "YYYY/MM/DD"
+    },
+    "week": {
+      "label": "週",
+      "format": "YYYY/MM"
+    },
+    "month": {
+      "label": "月",
+      "format": "YYYY/MM"
+    },
+    "year": {
+      "label": "年",
+      "format": "YYYY"
+    }
+  }
+}

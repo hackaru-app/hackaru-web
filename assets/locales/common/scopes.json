@@ -1,0 +1,18 @@
+{
+  "en": {
+    "scopes": {
+      "activities:read": "Read your activities",
+      "activities:write": "Update your activities",
+      "projects:read": "Read your projects",
+      "projects:write": "Update your projects"
+    }
+  },
+  "ja": {
+    "scopes": {
+      "activities:read": "アクティビティの読み取り",
+      "activities:write": "アクティビティの変更",
+      "projects:read": "プロジェクトの読み取り",
+      "projects:write": "プロジェクトの変更"
+    }
+  }
+}

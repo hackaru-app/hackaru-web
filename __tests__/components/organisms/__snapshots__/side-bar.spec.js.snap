@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideBar render correctly 1`] = `
+<section
+  class="menu"
+>
+  <h1>
+    <a
+      aria-label="ariaLabels.index"
+    >
+      <img
+        class="logo-icon"
+        src="@/assets/logo.svg"
+      />
+    </a>
+  </h1>
+   
+  <ul>
+    <li
+      class=""
+    >
+      <a
+        aria-label="ariaLabels.index"
+      >
+        <icon-stub
+          class="icon is-small"
+          name="home-icon"
+        />
+      </a>
+    </li>
+    <li
+      class=""
+    >
+      <a
+        aria-label="ariaLabels.calendar"
+      >
+        <icon-stub
+          class="icon is-small"
+          name="calendar-icon"
+        />
+      </a>
+    </li>
+    <li
+      class=""
+    >
+      <a
+        aria-label="ariaLabels.reports"
+      >
+        <icon-stub
+          class="icon is-small"
+          name="bar-chart-icon"
+        />
+      </a>
+    </li>
+    <li
+      class=""
+    >
+      <a
+        aria-label="ariaLabels.settings"
+      >
+        <icon-stub
+          class="icon is-small"
+          name="settings-icon"
+        />
+      </a>
+    </li>
+  </ul>
+   
+  <button
+    aria-label="ariaLabels.addActivity"
+    class="add-button"
+    type="button"
+  >
+    <icon-stub
+      class="is-primary"
+      name="clock-icon"
+    />
+  </button>
+</section>
+`;

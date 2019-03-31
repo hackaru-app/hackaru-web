@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfiniteSlider render correctly 1`] = `
+<section>
+  <p>
+    Content
+  </p>
+</section>
+`;

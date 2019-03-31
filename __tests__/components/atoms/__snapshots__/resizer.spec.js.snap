@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Resizer render correctly 1`] = `
+<div
+  style="height: 0px;"
+>
+  <p>
+    resizable
+  </p>
+   
+  <span
+    class="handler"
+  >
+    <span />
+  </span>
+</div>
+`;

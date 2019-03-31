@@ -1,0 +1,14 @@
+{
+  "en": {
+    "account": "Account",
+    "webhooks": "Webhooks",
+    "applications": "Authorized Apps",
+    "licenses": "Licenses"
+  },
+  "ja": {
+    "account": "アカウント設定",
+    "webhooks": "Webhooks",
+    "applications": "認証済みアプリ",
+    "licenses": "謝辞"
+  }
+}

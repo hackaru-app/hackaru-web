@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivityEditor render correctly 1`] = `
+<section>
+  <modal-header-stub>
+    <h1>
+      titles.update
+    </h1>
+  </modal-header-stub>
+   
+  <form>
+    <modal-item-stub>
+      <modal-label-stub>
+        
+        project
+      
+      </modal-label-stub>
+       
+      <button
+        class="project-button"
+        type="button"
+      >
+        <project-name-stub
+          color="#ff0"
+          name="Development"
+        />
+      </button>
+    </modal-item-stub>
+     
+    <modal-item-stub>
+      <modal-label-stub>
+        
+        description
+      
+      </modal-label-stub>
+       
+      <input
+        class="input inline"
+        placeholder="description"
+        type="text"
+      />
+    </modal-item-stub>
+     
+    <modal-item-stub>
+      <modal-label-stub>
+        
+        startedAt
+      
+      </modal-label-stub>
+       
+      <datetime-picker-stub
+        value="2019-01-01T00:12:34"
+      />
+    </modal-item-stub>
+     
+    <modal-item-stub>
+      <modal-label-stub>
+        
+        stoppedAt
+      
+      </modal-label-stub>
+       
+      <datetime-picker-stub
+        value="2019-01-02T00:12:34"
+      />
+    </modal-item-stub>
+     
+    <modal-footer-stub>
+      <btn-stub
+        class="is-rounded is-primary"
+        type="submit"
+      >
+        
+        update
+      
+      </btn-stub>
+       
+      <btn-stub
+        aria-label="ariaLabels.delete"
+        class="delete-button has-icon"
+        type="button"
+      >
+        <icon-stub
+          class="is-danger"
+          name="trash-icon"
+        />
+      </btn-stub>
+    </modal-footer-stub>
+  </form>
+</section>
+`;

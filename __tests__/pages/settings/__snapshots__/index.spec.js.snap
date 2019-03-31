@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index render correctly 1`] = `
+<section>
+  <modal-wrapper-stub
+    height="auto"
+    name="deleteAccount"
+  >
+    <form
+      class="delete-account"
+    >
+      <modal-header-stub>
+        <h1>
+          deleteAccountModal.title
+        </h1>
+      </modal-header-stub>
+       
+      <modal-item-stub>
+        <icon-stub
+          class="icon alert-icon"
+          name="alert-triangle-icon"
+        />
+        
+        deleteAccountModal.warning
+      
+      </modal-item-stub>
+       
+      <modal-item-stub>
+        <input
+          aria-label="deleteAccountModal.currentPassword"
+          class="input inline"
+          placeholder="deleteAccountModal.currentPassword"
+          required="required"
+          type="password"
+        />
+      </modal-item-stub>
+       
+      <modal-footer-stub>
+        <btn-stub
+          class="is-rounded is-danger"
+          type="submit"
+        >
+          
+          deleteAccountModal.delete
+        
+        </btn-stub>
+      </modal-footer-stub>
+    </form>
+  </modal-wrapper-stub>
+   
+  <article>
+    <heading-stub
+      class="is-small"
+    >
+      <icon-stub
+        class="icon"
+        name="mail-icon"
+      />
+      
+      titles.email
+    
+    </heading-stub>
+     
+    <form
+      class="email"
+    >
+      <text-field-stub
+        aria-label="email"
+        class="has-border"
+        placeholder="email"
+        required=""
+        type="email"
+        value="example@example.com"
+      />
+       
+      <text-field-stub
+        aria-label="password"
+        class="has-border"
+        placeholder="password"
+        required=""
+        type="password"
+        value=""
+      />
+       
+      <btn-stub
+        class="is-rounded is-primary"
+        type="submit"
+      >
+        update
+      </btn-stub>
+    </form>
+  </article>
+   
+  <article>
+    <heading-stub
+      class="is-small"
+    >
+      <icon-stub
+        class="icon"
+        name="lock-icon"
+      />
+      
+      titles.password
+    
+    </heading-stub>
+     
+    <form
+      class="password"
+    >
+      <text-field-stub
+        aria-label="password"
+        class="has-border"
+        placeholder="password"
+        required=""
+        size="1"
+        type="password"
+        value=""
+      />
+       
+      <text-field-stub
+        aria-label="newPassword"
+        class="has-border"
+        placeholder="newPassword"
+        required=""
+        size="1"
+        type="password"
+        value=""
+      />
+       
+      <text-field-stub
+        aria-label="confirmNewPassword"
+        class="has-border"
+        placeholder="confirmNewPassword"
+        required=""
+        size="1"
+        type="password"
+        value=""
+      />
+       
+      <btn-stub
+        class="is-rounded is-primary"
+        type="submit"
+      >
+        update
+      </btn-stub>
+    </form>
+  </article>
+   
+  <article>
+    <heading-stub
+      class="is-small"
+    >
+      <icon-stub
+        class="icon"
+        name="globe-icon"
+      />
+      
+      titles.language
+    
+    </heading-stub>
+     
+    <locale-select-stub />
+  </article>
+   
+  <article>
+    <heading-stub
+      class="is-small"
+    >
+      <icon-stub
+        class="icon"
+        name="log-out-icon"
+      />
+      
+      titles.logout
+    
+    </heading-stub>
+     
+    <btn-stub
+      class="is-rounded logout-button is-primary"
+      type="button"
+    >
+      
+      Logout
+    
+    </btn-stub>
+  </article>
+   
+  <article>
+    <heading-stub
+      class="is-small"
+    >
+      <icon-stub
+        class="icon"
+        name="user-x-icon"
+      />
+      
+      titles.deleteAccount
+    
+    </heading-stub>
+     
+    <btn-stub
+      class="is-rounded delete-account-button is-danger"
+      type="button"
+    >
+      
+      deleteAccount
+    
+    </btn-stub>
+  </article>
+</section>
+`;

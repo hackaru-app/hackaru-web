@@ -1,0 +1,30 @@
+{
+  "en": {
+    "title": "Apps",
+    "confirms": {
+      "delete": "Are you sure you want to delete the application?"
+    },
+    "ariaLabels": {
+      "delete": "Delete"
+    },
+    "labels": {
+      "scopes": "This application can"
+    },
+    "deleted": "Application deleted",
+    "empty": "Applications are not exists."
+  },
+  "ja": {
+    "title": "認証済みアプリ",
+    "ariaLabels": {
+      "delete": "削除"
+    },
+    "confirms": {
+      "delete": "アプリケーションの認証を取り消しますか？"
+    },
+    "labels": {
+      "scopes": "使用可能な操作"
+    },
+    "deleted": "削除しました",
+    "empty": "認証済みのアプリはありません。"
+  }
+}

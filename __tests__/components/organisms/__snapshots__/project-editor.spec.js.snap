@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectEditor render correctly 1`] = `
+<section>
+  <modal-header-stub>
+    <btn-stub
+      aria-label="ariaLabels.back"
+      class="has-icon"
+      type="button"
+    >
+      <icon-stub
+        class="is-large"
+        name="chevron-left-icon"
+      />
+    </btn-stub>
+     
+    <h1>
+      titles.add
+    </h1>
+  </modal-header-stub>
+   
+  <form>
+    <modal-item-stub>
+      <modal-label-stub>
+        
+        name
+      
+      </modal-label-stub>
+       
+      <input
+        class="input inline"
+        placeholder="name"
+        type="text"
+      />
+    </modal-item-stub>
+     
+    <modal-item-stub>
+      <modal-label-stub>
+        
+        color
+      
+      </modal-label-stub>
+       
+      <color-select-stub
+        colors="#4ab8b8,#7da87b,#a1c45a,#7a4579,#f95959,#ea8a8a,#ff9f68,#facf5a,#616161,#8ea6b4"
+        value="#cccfd9"
+      />
+    </modal-item-stub>
+     
+    <modal-footer-stub>
+      <btn-stub
+        class="is-rounded is-primary"
+        type="submit"
+      >
+        
+        add
+      
+      </btn-stub>
+       
+      <!---->
+    </modal-footer-stub>
+  </form>
+</section>
+`;

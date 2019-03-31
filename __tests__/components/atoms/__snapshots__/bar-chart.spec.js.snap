@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BarChart render correctly 1`] = `
+<div
+  class=""
+>
+  <div
+    class="chartjs-render-monitor"
+    height="400"
+    id="bar-chart"
+    style="display: block;"
+    width="400"
+  />
+</div>
+`;

@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportContainer render correctly 1`] = `
+<article
+  class="report-container"
+>
+  <div
+    class="bar-chart-wrapper"
+  >
+    <bar-chart-stub
+      chartdata="[object Object]"
+      class="bar-chart"
+      options="[object Object]"
+    />
+  </div>
+   
+  <div
+    class="content"
+  >
+    <div
+      class="doughnut-chart-wrapper"
+    >
+      <!---->
+       
+      <doughnut-chart-stub
+        chartdata="[object Object]"
+        class="doughnut-chart"
+        options="[object Object]"
+      />
+    </div>
+     
+    <ul
+      class="projects"
+    >
+      <li>
+        <project-name-stub
+          color="#ff0"
+          name="Development"
+        />
+         
+        <time
+          class="duration"
+        >
+          
+          00:01:40
+        
+        </time>
+      </li>
+      <li>
+        <project-name-stub
+          color="#f00"
+          name="Review"
+        />
+         
+        <time
+          class="duration"
+        >
+          
+          00:00:50
+        
+        </time>
+      </li>
+    </ul>
+  </div>
+</article>
+`;

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocaleSelect render correctly 1`] = `
+<marshmallow-select-stub
+  arialabel="Locales"
+  value="English"
+>
+  <option
+    value="en"
+  >
+    
+    English
+  
+  </option>
+  <option
+    value="ja"
+  >
+    
+    日本語
+  
+  </option>
+</marshmallow-select-stub>
+`;

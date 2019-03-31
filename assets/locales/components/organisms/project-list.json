@@ -1,0 +1,18 @@
+{
+  "en": {
+    "ariaLabels": {
+      "back": "Back",
+      "add": "Add project",
+      "edit": "Edit project"
+    },
+    "title": "Select Project"
+  },
+  "ja": {
+    "ariaLabels": {
+      "back": "戻る",
+      "add": "プロジェクトを追加",
+      "edit": "プロジェクトを編集"
+    },
+    "title": "プロジェクトを選択"
+  }
+}

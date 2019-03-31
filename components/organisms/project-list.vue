@@ -1,0 +1,135 @@
+<i18n src="@/assets/locales/components/organisms/project-list.json" />
+
+<template>
+  <section>
+    <modal-header>
+      <btn
+        :aria-label="$t('ariaLabels.back')"
+        class="left-arrow-button has-icon"
+        type="button"
+        @click="pop"
+      >
+        <icon name="chevron-left-icon" class="is-large" />
+      </btn>
+      <h1>{{ $t('title') }}</h1>
+      <btn
+        :aria-label="$t('ariaLabels.add')"
+        class="add-button has-icon"
+        type="button"
+        @click="createProject"
+      >
+        <icon name="plus-icon" />
+      </btn>
+    </modal-header>
+
+    <div v-for="project in projects" :key="project.id" class="list-item">
+      <div class="project-content" @click="selectProject(project)">
+        <project-name :name="project.name" :color="project.color" />
+        <icon
+          v-if="params.selected === project.id"
+          name="check-icon"
+          class="check-icon"
+        />
+      </div>
+      <btn
+        v-if="project.id"
+        :aria-label="$t('ariaLabels.edit')"
+        class="has-icon edit-button"
+        type="button"
+        @click="project.id && editProject(project)"
+      >
+        <icon name="edit-3-icon" class="is-primary" />
+      </btn>
+    </div>
+  </section>
+</template>
+
+<script>
+import ModalItem from '@/components/molecules/modal-item';
+import ModalHeader from '@/components/molecules/modal-header';
+import ProjectName from '@/components/molecules/project-name';
+import Icon from '@/components/atoms/icon';
+import Btn from '@/components/atoms/btn';
+import ActivityEditor from '@/components/organisms/activity-editor';
+import ProjectEditor from '@/components/organisms/project-editor';
+
+export default {
+  components: {
+    Icon,
+    ModalHeader,
+    ModalItem,
+    ProjectName,
+    Btn
+  },
+  props: {
+    params: {
+      type: Object,
+      default: () => ({
+        selected: null
+      })
+    }
+  },
+  computed: {
+    projects() {
+      return [
+        { id: null, name: 'No Project', color: '#cccfd9' },
+        ...this.$store.getters['projects/getProjects']
+      ];
+    }
+  },
+  methods: {
+    pop() {
+      this.$emit('pop', { component: ActivityEditor });
+    },
+    createProject() {
+      this.$emit('push', { component: ProjectEditor });
+    },
+    editProject(project) {
+      this.$emit('push', {
+        component: ProjectEditor,
+        params: project
+      });
+    },
+    selectProject(project) {
+      this.$emit('pop', {
+        component: ActivityEditor,
+        params: {
+          project
+        }
+      });
+    }
+  }
+};
+</script>
+
+<style scoped lang="scss">
+.list-item {
+  padding: 0 30px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px $border solid;
+  &:hover {
+    background: $grey-fdfdfd;
+  }
+}
+.project-content {
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  &:active {
+    transform: scale(0.9);
+  }
+}
+.check-icon {
+  color: $grey-999;
+}
+button.edit-button {
+  margin-left: 0;
+}
+</style>

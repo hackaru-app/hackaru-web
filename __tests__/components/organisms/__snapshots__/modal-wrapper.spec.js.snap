@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalWrapper render correctly 1`] = `
+<modal-stub
+  adaptive="true"
+  height="auto"
+  max-width="500"
+  name="example"
+  pivot-y="0.5"
+  transition="fade"
+  width="95%"
+>
+  <div
+    class="modal-content"
+  >
+    <p>
+      Content
+    </p>
+  </div>
+</modal-stub>
+`;

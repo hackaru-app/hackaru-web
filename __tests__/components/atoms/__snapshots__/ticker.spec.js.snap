@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ticker render correctly 1`] = `
+<time>
+  00:00:00
+</time>
+`;

@@ -1,0 +1,42 @@
+{
+  "en": {
+    "titles": {
+      "update": "Edit Project",
+      "add": "Create Project"
+    },
+    "ariaLabels": {
+      "back": "Back",
+      "delete": "Delete"
+    },
+    "name": "Name",
+    "color": "Color",
+    "add": "Add",
+    "update": "Update",
+    "confirms": {
+      "delete": "Are you sure you want to delete the project?"
+    },
+    "added": "Project created",
+    "updated": "Project updated",
+    "deleted": "Project deleted"
+  },
+  "ja": {
+    "titles": {
+      "update": "プロジェクトを編集",
+      "add": "プロジェクトを追加"
+    },
+    "ariaLabels": {
+      "back": "戻る",
+      "delete": "削除"
+    },
+    "name": "名前",
+    "color": "色",
+    "add": "追加",
+    "update": "更新",
+    "confirms": {
+      "delete": "プロジェクトを削除しますか？"
+    },
+    "added": "追加しました",
+    "updated": "更新しました",
+    "deleted": "削除しました"
+  }
+}

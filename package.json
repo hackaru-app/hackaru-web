@@ -1,0 +1,130 @@
+{
+  "name": "Hackaru",
+  "version": "0.1.0",
+  "description": "Simple and open source time tracking app.",
+  "author": "ktmouk <ktmouk@gmail.com>",
+  "private": true,
+  "scripts": {
+    "license-third-party": "npm-license-crawler --onlyDirectDependencies --omitVersion --json assets/licenses.json",
+    "dev": "nuxt",
+    "production": "nuxt build && nuxt start",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore",
+    "test": "jest",
+    "postinstall": "yarn license-third-party"
+  },
+  "dependencies": {
+    "@nuxtjs/pwa": "^2.6.0",
+    "@nuxtjs/toast": "^3.0.2",
+    "axios": "^0.18.0",
+    "camelcase-keys": "^4.2.0",
+    "chart.js": "^2.7.2",
+    "color": "^3.1.0",
+    "date-fns": "^1.29.0",
+    "hh-mm-ss": "^1.2.0",
+    "jwt-decode": "^2.2.0",
+    "lodash.get": "^4.4.2",
+    "lodash.merge": "^4.6.1",
+    "lodash.union": "^4.6.0",
+    "lodash.uniq": "^4.5.0",
+    "mezr": "^0.6.2",
+    "node-sass": "^4.11.0",
+    "normalize.css": "^8.0.1",
+    "normalizr": "^3.2.4",
+    "nuxt": "^2.3.4",
+    "nuxt-env": "^0.1.0",
+    "nuxt-i18n": "^5.4.4",
+    "nuxt-sass-resources-loader": "^2.0.5",
+    "sass-loader": "^7.1.0",
+    "snakecase-keys": "^1.2.0",
+    "style-loader": "^0.23.1",
+    "v-calendar": "^0.9.7",
+    "vue-analytics": "^5.16.4",
+    "vue-chartjs": "^3.4.0",
+    "vue-feather-icons": "^4.7.1",
+    "vue-js-modal": "^1.3.27",
+    "vue-timers": "^1.10.0",
+    "vue2-animate": "^2.1.0",
+    "vuex-persistedstate": "^2.5.4"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "yarn lint --fix",
+      "git add"
+    ]
+  },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3333"
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@vue/test-utils": "^1.0.0-beta.28",
+    "axios-mock-adapter": "^1.16.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^8.2.1",
+    "babel-jest": "^24.0.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^4.15.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-config-vue": "^2.0.2",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "husky": "^1.3.1",
+    "jest": "^24.0.0",
+    "jest-canvas-mock": "^1.1.1-beta.1",
+    "jest-localstorage-mock": "^2.4.0",
+    "jest-serializer-vue": "^2.0.2",
+    "jsonwebtoken": "^8.5.0",
+    "lint-staged": "^8.1.1",
+    "mockdate": "^2.0.2",
+    "npm-license-crawler": "mwittig/npm-license-crawler#master",
+    "prettier": "^1.16.1",
+    "vue-jest": "^3.0.2",
+    "vue-meta": "^1.5.8",
+    "vuex-mock-store": "^0.0.6"
+  },
+  "jest": {
+    "setupFiles": [
+      "jest-canvas-mock",
+      "jest-localstorage-mock"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "testPathIgnorePatterns": [
+      "/__tests__/__setups__/",
+      "/node_modules/"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.vue$": "vue-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,vue}",
+      "!nuxt.config.js",
+      "!static/sw.js",
+      "!coverage/**",
+      "!plugins/*",
+      "!**/node_modules/**",
+      "!**/__tests__/__setups__/**"
+    ],
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "clearMocks": true
+  }
+}

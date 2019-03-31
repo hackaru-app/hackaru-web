@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reports render correctly 1`] = `
+<section>
+  <date-header-stub
+    date="Thu Jan 31 2019 01:23:45 GMT+0900 (GMT+09:00)"
+    periodindex="0"
+    periods="[object Object],[object Object],[object Object],[object Object]"
+  />
+   
+  <!---->
+</section>
+`;

@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalendarRuler render correctly 1`] = `<!---->`;
+
+exports[`CalendarRuler when has top render correctly 1`] = `
+<section
+  class="ruler"
+  name="fade"
+  style="margin-top: 50px;"
+>
+  <span
+    class="line"
+    style="background: rgb(255, 255, 0);"
+  />
+   
+  <!---->
+</section>
+`;
+
+exports[`CalendarRuler when showTime is true render correctly 1`] = `
+<section
+  class="ruler"
+  name="fade"
+  style="margin-top: 50px;"
+>
+  <span
+    class="line"
+    style="background: rgb(255, 255, 0);"
+  />
+   
+  <time
+    style="background: rgb(255, 255, 0);"
+  >
+    
+      01:15
+    
+  </time>
+</section>
+`;

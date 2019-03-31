@@ -1,0 +1,22 @@
+{
+  "en": {
+    "deleted": "Activity deleted",
+    "archived": "Activty archived!",
+    "ariaLabels": {
+      "stop": "Stop"
+    },
+    "confirms": {
+      "delete": "Are you sure you want to delete the timer?"
+    }
+  },
+  "ja": {
+    "deleted": "削除しました",
+    "archived": "記録しました！",
+    "ariaLabels": {
+      "stop": "停止"
+    },
+    "confirms": {
+      "delete": "削除しますか？"
+    }
+  }
+}

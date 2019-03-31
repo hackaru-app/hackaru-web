@@ -1,0 +1,16 @@
+{
+  "en": {
+    "title": "Reset your password",
+    "password": "New password",
+    "passwordConfirmation": "Confirm new password",
+    "reset": "Reset",
+    "success": "Password reset successfully"
+  },
+  "ja": {
+    "title": "パスワードを再設定",
+    "password": "新しいパスワードを入力",
+    "passwordConfirmation": "新しいパスワードを再入力",
+    "reset": "再設定",
+    "success": "パスワードの再設定が完了しました"
+  }
+}

@@ -1,0 +1,172 @@
+<i18n src="@/assets/locales/common/scopes.json" />
+<i18n src="@/assets/locales/pages/settings/applications.json" />
+
+<template>
+  <div class="settings">
+    <modal-wrapper name="application">
+      <form>
+        <modal-header>
+          <h1>{{ selected.name }}</h1>
+        </modal-header>
+        <modal-item class="is-vertical">
+          <modal-label class="is-vertical">
+            {{ $t('labels.scopes') }}
+          </modal-label>
+          <highlight>
+            <ul>
+              <li v-for="scope in selected.scopes" :key="scope">
+                {{ $t(`scopes.${scope}`) }}
+              </li>
+            </ul>
+          </highlight>
+        </modal-item>
+      </form>
+    </modal-wrapper>
+
+    <section class="content">
+      <header class="header">
+        <heading class="is-small">
+          <icon name="box-icon" />
+          {{ $t('title') }}
+        </heading>
+      </header>
+
+      <div
+        v-for="application in applications"
+        :key="application.id"
+        class="list-item"
+      >
+        <h1 @click="showModal(application)">{{ application.name }}</h1>
+        <btn
+          :aria-label="$t('ariaLabels.delete')"
+          class="delete-button has-icon"
+          @click="deleteApplication(application.id)"
+        >
+          <icon name="x-icon" class="is-danger" />
+        </btn>
+      </div>
+
+      <p v-if="applications.length <= 0" class="empty">
+        {{ $t('empty') }}
+      </p>
+    </section>
+  </div>
+</template>
+
+<script>
+import ContentHeader from '@/components/organisms/content-header';
+import Btn from '@/components/atoms/btn';
+import Icon from '@/components/atoms/icon';
+import Heading from '@/components/atoms/heading';
+import ModalItem from '@/components/molecules/modal-item';
+import ModalLabel from '@/components/molecules/modal-label';
+import ModalHeader from '@/components/molecules/modal-header';
+import ModalFooter from '@/components/molecules/modal-footer';
+import ModalWrapper from '@/components/organisms/modal-wrapper';
+import Highlight from '@/components/atoms/highlight';
+import { mapGetters } from 'vuex';
+
+export default {
+  components: {
+    ContentHeader,
+    Btn,
+    Icon,
+    Heading,
+    ModalWrapper,
+    ModalHeader,
+    ModalItem,
+    ModalFooter,
+    ModalLabel,
+    Highlight
+  },
+  data() {
+    return {
+      selected: {}
+    };
+  },
+  computed: {
+    ...mapGetters({
+      applications: 'applications/getApplications'
+    })
+  },
+  async mounted() {
+    await this.$store.dispatch('applications/getApplications');
+  },
+  methods: {
+    deleteApplication(id) {
+      if (!window.confirm(this.$t('confirms.delete'))) return;
+      this.$store.dispatch('applications/deleteApplication', id);
+      this.$ga.event('oauth', 'deleteApplication');
+      this.$toast.success(this.$t('deleted'));
+    },
+    showModal(application) {
+      this.selected = application;
+      this.$modal.show('application');
+    }
+  }
+};
+</script>
+
+<style scoped lang="scss">
+.content {
+  padding: 0 40px;
+  padding-bottom: 50px;
+  background-color: $white;
+}
+.list-item h1 {
+  cursor: pointer;
+  flex: 1;
+  font-size: $font-size;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  &:active {
+    transform: scale(0.97);
+  }
+}
+.header {
+  display: flex;
+  border-bottom: 1px $border solid;
+  h1 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    margin: 0;
+    margin-top: 5px;
+    height: 90px;
+  }
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-position: inside;
+}
+.list-item {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px $border solid;
+  &:hover {
+    background: $grey-fdfdfd;
+  }
+}
+.empty {
+  padding: 15px 0;
+  color: $text-light;
+}
+@include mq(small) {
+  .content {
+    padding: 0 30px;
+  }
+  .empty {
+    text-align: center;
+    width: 100%;
+  }
+}
+</style>

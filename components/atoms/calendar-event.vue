@@ -1,0 +1,97 @@
+<template>
+  <article
+    :style="{
+      borderColor: color,
+      backgroundColor: backgroundColor,
+      color: textColor
+    }"
+  >
+    <h1>{{ title }}</h1>
+    <p>{{ duration }}</p>
+  </article>
+</template>
+
+<script>
+import Color from 'color';
+import { distanceInWordsStrict } from 'date-fns';
+
+export default {
+  props: {
+    color: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    startedAt: {
+      type: String,
+      default: undefined
+    },
+    stoppedAt: {
+      type: String,
+      default: undefined
+    }
+  },
+  computed: {
+    duration() {
+      return (
+        this.startedAt &&
+        this.stoppedAt &&
+        distanceInWordsStrict(this.startedAt, this.stoppedAt)
+      );
+    },
+    backgroundColor() {
+      return Color(this.color).fade(0.666);
+    },
+    textColor() {
+      return Color(this.color).darken(0.6);
+    }
+  }
+};
+</script>
+
+<style scoped lang="scss">
+article {
+  flex: 1;
+  flex-direction: row;
+  position: relative;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  padding: 0;
+  padding-left: 10px;
+  height: 100%;
+  border-left-width: 2px;
+  border-left-style: solid;
+  overflow: hidden;
+}
+h1 {
+  flex-shrink: 1;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+p {
+  flex-shrink: 9999;
+  font-size: 12px;
+  opacity: 0.6;
+  margin: 0;
+  margin-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@include mq(small) {
+  p {
+    font-size: 10px;
+    margin-left: 5px;
+  }
+}
+</style>

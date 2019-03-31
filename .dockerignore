@@ -1,0 +1,11 @@
+# Nuxtjs
+.nuxt
+node_modules
+coverage
+yarn-error.log
+
+# Dotenv
+.env*
+
+# PWA
+sw.*

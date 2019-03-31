@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    build: .
+    image: ktmouk/hackaru-web:latest
+    env_file: .env.production
+    ports:
+      - 3333:3333

@@ -1,0 +1,76 @@
+<i18n src="@/assets/locales/pages/index.json" />
+
+<template>
+  <section>
+    <content-header>
+      <heading>{{ $t('title') }}</heading>
+      <btn
+        :aria-label="$t('ariaLabels.add')"
+        type="button"
+        class="add-button has-icon"
+        @click="showModal"
+      >
+        <icon name="plus-icon" class="is-primary" />
+      </btn>
+    </content-header>
+    <activity
+      v-for="activity in activities"
+      :key="activity.id"
+      v-bind="activity"
+    />
+    <p v-if="activities.length <= 0" class="empty">
+      {{ $t('empty') }}
+    </p>
+  </section>
+</template>
+
+<script>
+import ContentHeader from '@/components/organisms/content-header';
+import Heading from '@/components/atoms/heading';
+import Btn from '@/components/atoms/btn';
+import Icon from '@/components/atoms/icon';
+import Activity from '@/components/organisms/activity';
+import { mapGetters } from 'vuex';
+
+export default {
+  components: {
+    ContentHeader,
+    Heading,
+    Icon,
+    Btn,
+    Activity
+  },
+  head: {
+    title: 'Timers'
+  },
+  computed: {
+    ...mapGetters({
+      activities: 'activities/getWorkingActivities'
+    })
+  },
+  async mounted() {
+    await this.$store.dispatch('activities/getWorkingActivities');
+  },
+  methods: {
+    showModal() {
+      this.$modal.show('activity');
+    }
+  }
+};
+</script>
+
+<style scoped lang="scss">
+.empty {
+  display: flex;
+  padding: 20px 40px;
+  color: $text-light;
+}
+@include mq(small) {
+  .empty {
+    flex: 1;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+  }
+}
+</style>

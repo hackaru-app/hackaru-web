@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalendarDay render correctly 1`] = `
+<section>
+  <div
+    class="events"
+  >
+    <div
+      class="row"
+    >
+      <!---->
+    </div>
+     
+    <div
+      class="row"
+    >
+      <calendar-activity-stub
+        day="Tue Jan 01 2019 00:00:00 GMT+0900 (GMT+09:00)"
+        description="Create a database."
+        duration="3600"
+        getoverlapday="() => {}"
+        id="1"
+        minheight="20"
+        project="[object Object]"
+        startedat="2019-01-01T01:00:00"
+        stoppedat="2019-01-01T02:00:00"
+        updateguideline="function mockConstructor() {
+        return fn.apply(this, arguments);
+      }"
+      />
+      <calendar-activity-stub
+        day="Tue Jan 01 2019 00:00:00 GMT+0900 (GMT+09:00)"
+        description=""
+        duration="3600"
+        getoverlapday="() => {}"
+        id="2"
+        minheight="20"
+        startedat="2019-01-01T01:30:00"
+        stoppedat="2019-01-01T02:30:00"
+        updateguideline="function mockConstructor() {
+        return fn.apply(this, arguments);
+      }"
+      />
+    </div>
+    <div
+      class="row"
+    >
+      <calendar-activity-stub
+        day="Tue Jan 01 2019 00:00:00 GMT+0900 (GMT+09:00)"
+        description="Create a test."
+        duration="3600"
+        getoverlapday="() => {}"
+        id="3"
+        minheight="20"
+        project="[object Object]"
+        startedat="2019-01-01T01:00:00"
+        stoppedat="2019-01-01T02:00:00"
+        updateguideline="function mockConstructor() {
+        return fn.apply(this, arguments);
+      }"
+      />
+    </div>
+  </div>
+</section>
+`;

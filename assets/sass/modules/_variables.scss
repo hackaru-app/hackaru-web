@@ -1,0 +1,53 @@
+// Color
+$grey-333: #3f4961;
+$grey-666: #68757d;
+$grey-999: #9aa5ab;
+$grey-ccc: #cdd0d1;
+$grey-eee: #eeeeee;
+$grey-f0f0f0: #f0f1f2;
+$grey-f5f5f5: #f5f6f7;
+$grey-fafafa: #fafafc;
+$grey-fdfdfd: #fdfdfd;
+$cyan: #2daec4;
+$yellow: #ffd96a;
+$red: #eb4f34;
+$white: #fff;
+
+// Text
+$text: $grey-333;
+$text-light: $grey-666;
+$text-lighter: $grey-999;
+
+// Font
+$font-size: 15px;
+$font-family: -apple-system, sans-serif;
+$font-family-duration: 'Arial', sans-serif;
+$line-height: 1.5;
+
+// Border
+$border: $grey-f0f0f0;
+
+// background
+$background: $white;
+$background-dark: $grey-333;
+
+// Animation
+$animation-duration: .4s;
+
+// Mediaqueries
+$breakpoints: (
+  'small': 640px
+);
+
+// ZIndex
+$z:
+  calendar-ruler,
+  calendar-day-header,
+  pwa-ballon,
+  modal,
+  side-bar,
+;
+
+// Sidebar
+$side-bar-min-width: 80px;
+$side-bar-min-height: 56px;

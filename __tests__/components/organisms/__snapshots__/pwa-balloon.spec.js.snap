@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PwaBalloon when platform is iPad render correctly 1`] = `
+<div
+  appear=""
+  class="balloon"
+  enter-active-class="fadeInUp"
+  leave-active-class="fadeOutDown"
+>
+  <div
+    class="content"
+  >
+    <btn-stub
+      aria-label="ariaLabels.close"
+      class="has-icon close-button"
+      type="button"
+    >
+      <icon-stub
+        name="x-icon"
+      />
+    </btn-stub>
+     
+    <section
+      class="logo"
+    >
+      <img
+        src="@/assets/logo.svg"
+      />
+    </section>
+     
+    <section
+      class="about"
+    >
+      <h1>
+        title
+      </h1>
+       
+      <i18n-stub
+        path="about"
+        tag="p"
+      >
+        <icon-stub
+          class="share-icon"
+          name="share-icon"
+        />
+      </i18n-stub>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`PwaBalloon when platform is iPhone render correctly 1`] = `
+<div
+  appear=""
+  class="balloon"
+  enter-active-class="fadeInUp"
+  leave-active-class="fadeOutDown"
+>
+  <div
+    class="content"
+  >
+    <btn-stub
+      aria-label="ariaLabels.close"
+      class="has-icon close-button"
+      type="button"
+    >
+      <icon-stub
+        name="x-icon"
+      />
+    </btn-stub>
+     
+    <section
+      class="logo"
+    >
+      <img
+        src="@/assets/logo.svg"
+      />
+    </section>
+     
+    <section
+      class="about"
+    >
+      <h1>
+        title
+      </h1>
+       
+      <i18n-stub
+        path="about"
+        tag="p"
+      >
+        <icon-stub
+          class="share-icon"
+          name="share-icon"
+        />
+      </i18n-stub>
+    </section>
+  </div>
+</div>
+`;

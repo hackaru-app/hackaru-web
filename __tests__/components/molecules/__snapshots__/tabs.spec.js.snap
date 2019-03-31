@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs render correctly 1`] = `
+<ul>
+  <li
+    class="selected"
+  >
+    
+    Home
+  
+  </li>
+  <li
+    class=""
+  >
+    
+    Reports
+  
+  </li>
+  <li
+    class=""
+  >
+    
+    Calendar
+  
+  </li>
+</ul>
+`;

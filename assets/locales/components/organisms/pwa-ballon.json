@@ -1,0 +1,16 @@
+{
+  "en": {
+    "title": "PWA Ready",
+    "ariaLabels": {
+      "close": "Close"
+    },
+    "about": "Tap {0} then 'Add to Home Screen.'"
+  },
+  "ja": {
+    "title": "PWA を体験してみよう。",
+    "ariaLabels": {
+      "close": "閉じる"
+    },
+    "about": "{0} から \"ホーム画面に追加\" をタップ"
+  }
+}

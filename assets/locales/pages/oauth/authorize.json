@@ -1,0 +1,18 @@
+{
+  "en": {
+    "title": "Authorize {name}",
+    "logged-in": "Your account is {email}.",
+    "decide": "Authorize {name} to use your account?",
+    "empty-scope": "This application has no required controls.",
+    "allow": "Accept",
+    "deny": "Cencel"
+  },
+  "ja": {
+    "title": "{name} の許可",
+    "logged-in": "{email} のアカウントでログイン中です。",
+    "decide": "{name} に以下の操作を許可しますか？",
+    "empty-scope": "このアプリが必要としている操作はありません。",
+    "allow": "許可",
+    "deny": "拒否"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "en": {
+    "modalTitle": "Add Webhook",
+    "title": "Webhooks",
+    "event": "When",
+    "targetUrl": "Send to",
+    "add": "Add",
+    "confirms": {
+      "delete": "Are you sure you want to delete the webhook?"
+    },
+    "ariaLabels": {
+      "delete": "Delete",
+      "add": "Add Webhook"
+    },
+    "events": {
+      "activity:created": "Created Activity",
+      "activity:stopped": "Stopped Activity",
+      "activity:updated": "Updated Activity",
+      "activity:deleted": "Deleted Activity",
+      "project:created": "Created Project",
+      "project:updated": "Updated Project",
+      "project:deleted": "Deleted Project"
+    },
+    "added": "Webhook created",
+    "deleted": "Webhook deleted",
+    "empty": "Webhooks are not exists."
+  },
+  "ja": {
+    "modalTitle": "Webhookを追加",
+    "title": "Webhooks",
+    "event": "イベント",
+    "targetUrl": "送信先URL",
+    "add": "追加",
+    "confirms": {
+      "delete": "Webhookを削除しますか？"
+    },
+    "ariaLabels": {
+      "delete": "削除",
+      "add": "Webhookを追加"
+    },
+    "events": {
+      "activity:created": "タイマー開始時",
+      "activity:stopped": "タイマー停止時",
+      "activity:updated": "タイマー更新時",
+      "activity:deleted": "タイマー削除時",
+      "project:created": "プロジェクト作成時",
+      "project:updated": "プロジェクト更新時",
+      "project:deleted": "プロジェクト削除時"
+    },
+    "added": "追加しました",
+    "deleted": "削除しました",
+    "empty": "Webhookはまだ作成していません。"
+  }
+}

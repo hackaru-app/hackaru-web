@@ -1,0 +1,484 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Licenses render correctly 1`] = `
+<div
+  class="settings"
+>
+  <article>
+    <heading-stub
+      class="is-small"
+    >
+      <icon-stub
+        class="icon"
+        name="gift-icon"
+      />
+      title
+    </heading-stub>
+     
+    <ul>
+      <li>
+        <a
+          href="https://github.com/nuxt-community/analytics-module/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          @nuxtjs/google-analytics
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/nuxt-community/pwa-module/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          @nuxtjs/pwa
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/nuxt/modules/raw/master/LICENSE.md"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          @nuxtjs/toast
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/axios/axios/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          axios
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/sindresorhus/camelcase-keys/raw/master/license"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          camelcase-keys
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/chartjs/Chart.js/raw/master/LICENSE.md"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          chart.js
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/Qix-/color/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          color
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/date-fns/date-fns/raw/master/LICENSE.md"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          date-fns
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/Goldob/hh-mm-ss/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          hh-mm-ss
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/auth0/jwt-decode/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          jwt-decode
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/lodash/lodash/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          lodash.get
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/lodash/lodash/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          lodash.merge
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/lodash/lodash/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          lodash.union
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/lodash/lodash/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          lodash.uniq
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/niklasramo/mezr/raw/master/LICENSE.md"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          mezr
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/sass/node-sass/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          node-sass
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/necolas/normalize.css/raw/master/LICENSE.md"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          normalize.css
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/paularmstrong/normalizr/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          normalizr
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/samtgarson/nuxt-env"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          nuxt-env
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/nuxt-community/nuxt-i18n/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          nuxt-i18n
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/anteriovieira/nuxt-sass-resources-loader"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          nuxt-sass-resources-loader
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/nuxt/nuxt.js/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          nuxt
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/webpack-contrib/sass-loader/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          sass-loader
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/bendrucker/snakecase-keys/raw/master/license"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          snakecase-keys
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/webpack-contrib/style-loader/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          style-loader
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/nathanreyes/v-calendar/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          v-calendar
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/MatteoGabriele/vue-analytics/raw/master/LICENCE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          vue-analytics
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com:apertureless/vue-chartjs/raw/master/LICENSE.txt"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          vue-chartjs
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/egoist/vue-feather-icons/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          vue-feather-icons
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/euvl/vue-js-modal/raw/master/LICENSE.md"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          vue-js-modal
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/kelin2025/vue-timers/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          vue-timers
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/asika32764/vue2-animate/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          vue2-animate
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/robinvdvleuten/vuex-persistedstate/raw/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          
+          vuex-persistedstate
+          
+          <span>
+             - MIT
+          </span>
+        </a>
+      </li>
+    </ul>
+  </article>
+</div>
+`;
