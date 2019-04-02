@@ -12,56 +12,56 @@ exports[`CalendarContainer render correctly 1`] = `
    
   <calendar-day-stub
     class=""
-    data-day="Tue Jan 01 2019 00:00:00 GMT+0900 (GMT+09:00)"
-    day="Tue Jan 01 2019 00:00:00 GMT+0900 (GMT+09:00)"
+    data-day="2019-01-01"
+    day="2019-01-01"
     getoverlapday="function () { [native code] }"
     minheight="20"
     updateguideline="function () { [native code] }"
   />
   <calendar-day-stub
     class=""
-    data-day="Wed Jan 02 2019 00:00:00 GMT+0900 (GMT+09:00)"
-    day="Wed Jan 02 2019 00:00:00 GMT+0900 (GMT+09:00)"
+    data-day="2019-01-02"
+    day="2019-01-02"
     getoverlapday="function () { [native code] }"
     minheight="20"
     updateguideline="function () { [native code] }"
   />
   <calendar-day-stub
     class=""
-    data-day="Thu Jan 03 2019 00:00:00 GMT+0900 (GMT+09:00)"
-    day="Thu Jan 03 2019 00:00:00 GMT+0900 (GMT+09:00)"
+    data-day="2019-01-03"
+    day="2019-01-03"
     getoverlapday="function () { [native code] }"
     minheight="20"
     updateguideline="function () { [native code] }"
   />
   <calendar-day-stub
     class=""
-    data-day="Fri Jan 04 2019 00:00:00 GMT+0900 (GMT+09:00)"
-    day="Fri Jan 04 2019 00:00:00 GMT+0900 (GMT+09:00)"
+    data-day="2019-01-04"
+    day="2019-01-04"
     getoverlapday="function () { [native code] }"
     minheight="20"
     updateguideline="function () { [native code] }"
   />
   <calendar-day-stub
     class=""
-    data-day="Sat Jan 05 2019 00:00:00 GMT+0900 (GMT+09:00)"
-    day="Sat Jan 05 2019 00:00:00 GMT+0900 (GMT+09:00)"
+    data-day="2019-01-05"
+    day="2019-01-05"
     getoverlapday="function () { [native code] }"
     minheight="20"
     updateguideline="function () { [native code] }"
   />
   <calendar-day-stub
     class=""
-    data-day="Sun Jan 06 2019 00:00:00 GMT+0900 (GMT+09:00)"
-    day="Sun Jan 06 2019 00:00:00 GMT+0900 (GMT+09:00)"
+    data-day="2019-01-06"
+    day="2019-01-06"
     getoverlapday="function () { [native code] }"
     minheight="20"
     updateguideline="function () { [native code] }"
   />
   <calendar-day-stub
     class=""
-    data-day="Mon Jan 07 2019 00:00:00 GMT+0900 (GMT+09:00)"
-    day="Mon Jan 07 2019 00:00:00 GMT+0900 (GMT+09:00)"
+    data-day="2019-01-07"
+    day="2019-01-07"
     getoverlapday="function () { [native code] }"
     minheight="20"
     updateguideline="function () { [native code] }"

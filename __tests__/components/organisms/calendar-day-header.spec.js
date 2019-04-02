@@ -1,6 +1,5 @@
 import Factory from '@/__tests__/__setups__/factory';
 import CalendarDayHeader from '@/components/organisms/calendar-day-header';
-import { parse } from 'date-fns';
 import enLocale from 'date-fns/locale/en';
 
 describe('CalendarDayHeader', () => {
@@ -10,7 +9,7 @@ describe('CalendarDayHeader', () => {
   beforeEach(() => {
     factory = new Factory(CalendarDayHeader, {
       propsData: {
-        day: parse('2019-01-01T00:00:00'),
+        day: '2019-01-01',
         locale: enLocale
       }
     });

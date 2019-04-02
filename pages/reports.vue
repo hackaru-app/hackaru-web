@@ -50,7 +50,7 @@
 import InfiniteSlider from '@/components/organisms/infinite-slider';
 import DateHeader, { periods } from '@/components/organisms/date-header';
 import ReportContainer from '@/components/organisms/report-container';
-import { parse } from 'date-fns';
+import { format } from 'date-fns';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -64,7 +64,7 @@ export default {
   },
   data() {
     return {
-      date: parse(Date.now()),
+      date: format(new Date(), 'YYYY-MM-DD'),
       index: 0,
       periods: [
         {
@@ -123,10 +123,16 @@ export default {
       this.$refs.slider.slideRight();
     },
     prev() {
-      this.date = this.period.add(this.period.startOf(this.date), -1);
+      this.date = format(
+        this.period.add(this.period.startOf(this.date), -1),
+        'YYYY-MM-DD'
+      );
     },
     next() {
-      this.date = this.period.add(this.period.startOf(this.date), 1);
+      this.date = format(
+        this.period.add(this.period.startOf(this.date), 1),
+        'YYYY-MM-DD'
+      );
     }
   }
 };

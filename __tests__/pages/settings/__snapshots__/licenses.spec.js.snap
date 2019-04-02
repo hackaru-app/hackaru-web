@@ -18,20 +18,6 @@ exports[`Licenses render correctly 1`] = `
     <ul>
       <li>
         <a
-          href="https://github.com/nuxt-community/analytics-module/raw/master/LICENSE"
-          rel="noopener"
-          target="_blank"
-        >
-          
-          @nuxtjs/google-analytics
-          
-          <span>
-             - MIT
-          </span>
-        </a>
-      </li>
-      <li>
-        <a
           href="https://github.com/nuxt-community/pwa-module/raw/master/LICENSE"
           rel="noopener"
           target="_blank"

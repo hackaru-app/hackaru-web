@@ -75,19 +75,7 @@ exports[`Auth when click toggle button render correctly 1`] = `
       class="locale-select"
     />
      
-    <i18n
-      class="ga-description"
-      path="googleAnalytics"
-      tag="p"
-    >
-      <a
-        href="https://policies.google.com/technologies/partner-sites"
-        rel="noopener"
-        target="_blank"
-      >
-        GoogleAnalytics (Cookie)
-      </a>
-    </i18n>
+    <!---->
   </footer>
 </section>
 `;
@@ -166,19 +154,7 @@ exports[`Auth when user does not logged in render correctly 1`] = `
       class="locale-select"
     />
      
-    <i18n
-      class="ga-description"
-      path="googleAnalytics"
-      tag="p"
-    >
-      <a
-        href="https://policies.google.com/technologies/partner-sites"
-        rel="noopener"
-        target="_blank"
-      >
-        GoogleAnalytics (Cookie)
-      </a>
-    </i18n>
+    <!---->
   </footer>
 </section>
 `;

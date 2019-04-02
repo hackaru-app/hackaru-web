@@ -34,7 +34,7 @@ describe('CalendarGhostActivity', () => {
         }
       },
       propsData: {
-        day: parse('2019-01-01T00:00:00'),
+        day: '2019-01-01',
         updateGuideLine: jest.fn()
       }
     });

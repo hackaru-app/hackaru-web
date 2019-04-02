@@ -18,12 +18,12 @@
     <calendar-day
       v-for="day in days"
       ref="days"
-      :data-day="day"
+      :data-day="format(day, 'YYYY-MM-DD')"
       :class="{ overlapped: isSameDay(overlapDay, day) }"
       :update-guide-line="updateGuideLine"
       :get-overlap-day="getOverlapDay"
-      :key="day.toString()"
-      :day="day"
+      :key="format(day, 'YYYY-MM-DD')"
+      :day="format(day, 'YYYY-MM-DD')"
       @ghost-drag="ghostDrag"
       @ghost-dragging="ghostDragging"
       @ghost-drop="ghostDrop"
@@ -37,6 +37,7 @@ import CalendarRuler from '@/components/organisms/calendar-ruler';
 import CalendarDay from '@/components/organisms/calendar-day';
 import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
 import { isSameDay, isToday, getHours, getMinutes, parse } from 'date-fns';
+import { format } from 'date-fns';
 
 export default {
   components: {
@@ -60,6 +61,7 @@ export default {
   },
   data() {
     return {
+      format,
       isSameDay,
       guideTop: undefined,
       overlapDay: undefined,

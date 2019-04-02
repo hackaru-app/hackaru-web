@@ -33,6 +33,7 @@
 import CalendarActivity from '@/components/organisms/calendar-activity';
 import CalendarGhostActivity from '@/components/organisms/calendar-ghost-activity';
 import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
+import { format } from 'date-fns';
 
 export default {
   components: {
@@ -42,7 +43,7 @@ export default {
   mixins: [PxMinConvertable],
   props: {
     day: {
-      type: Date,
+      type: String,
       required: true
     },
     minHeight: {
@@ -60,6 +61,7 @@ export default {
   },
   data() {
     return {
+      format,
       dragdrop: {
         drag: this.ghostDrag,
         dragging: this.ghostDragging,

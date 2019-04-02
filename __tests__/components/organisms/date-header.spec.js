@@ -13,7 +13,7 @@ describe('DateHeader', () => {
     factory = new Factory(DateHeader, {
       stubs: ['v-date-picker', 'no-ssr'],
       propsData: {
-        date: parse('2018-01-01T00:00:00'),
+        date: '2018-01-01',
         periods: [periods.day, periods.week, periods.month, periods.year]
       }
     });

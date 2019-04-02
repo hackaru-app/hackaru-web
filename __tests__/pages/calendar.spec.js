@@ -48,7 +48,7 @@ describe('Calendar', () => {
     });
 
     it('has days correctly', () => {
-      expect(wrapper.vm.days).toEqual([parse('2019-01-31T00:00:00')]);
+      expect(wrapper.vm.days).toEqual(['2019-01-31']);
     });
   });
 
@@ -60,13 +60,13 @@ describe('Calendar', () => {
 
     it('has days correctly', () => {
       expect(wrapper.vm.days).toEqual([
-        parse('2019-01-27T00:00:00'),
-        parse('2019-01-28T00:00:00'),
-        parse('2019-01-29T00:00:00'),
-        parse('2019-01-30T00:00:00'),
-        parse('2019-01-31T00:00:00'),
-        parse('2019-02-01T00:00:00'),
-        parse('2019-02-02T00:00:00')
+        '2019-01-27',
+        '2019-01-28',
+        '2019-01-29',
+        '2019-01-30',
+        '2019-01-31',
+        '2019-02-01',
+        '2019-02-02'
       ]);
     });
   });
@@ -75,7 +75,7 @@ describe('Calendar', () => {
     beforeEach(() => {
       wrapper = factory.shallow();
       wrapper.setData({ index: 1 });
-      wrapper.vm.togglePeriod(parse('2019-01-27T00:00:00'));
+      wrapper.vm.togglePeriod('2019-01-27');
     });
 
     it('toggle period', () => {
@@ -83,7 +83,7 @@ describe('Calendar', () => {
     });
 
     it('set date', () => {
-      expect(wrapper.vm.date).toEqual(parse('2019-01-27T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2019-01-27');
     });
   });
 
@@ -95,7 +95,7 @@ describe('Calendar', () => {
     });
 
     it('set previous date', () => {
-      expect(wrapper.vm.date).toEqual(parse('2019-01-30T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2019-01-30');
     });
   });
 
@@ -107,7 +107,7 @@ describe('Calendar', () => {
     });
 
     it('set previous week', () => {
-      expect(wrapper.vm.date).toEqual(parse('2019-01-20T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2019-01-20');
     });
   });
 
@@ -119,7 +119,7 @@ describe('Calendar', () => {
     });
 
     it('set next date', () => {
-      expect(wrapper.vm.date).toEqual(parse('2019-02-01T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2019-02-01');
     });
   });
 
@@ -131,7 +131,7 @@ describe('Calendar', () => {
     });
 
     it('set next week', () => {
-      expect(wrapper.vm.date).toEqual(parse('2019-02-03T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2019-02-03');
     });
   });
 
