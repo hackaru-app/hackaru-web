@@ -51,7 +51,7 @@ describe('Reports', () => {
   describe('when date change to daily', () => {
     beforeEach(() => {
       wrapper = factory.shallow();
-      wrapper.setData({ date: parse('2018-02-01T00:00:00') });
+      wrapper.setData({ date: '2018-02-01' });
     });
 
     it('dispatch reports/getReports', () => {
@@ -116,7 +116,7 @@ describe('Reports', () => {
     });
 
     it('set previous date', () => {
-      expect(wrapper.vm.date).toEqual(parse('2019-01-30T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2019-01-30');
     });
   });
 
@@ -128,7 +128,7 @@ describe('Reports', () => {
     });
 
     it('set previous week', () => {
-      expect(wrapper.vm.date).toEqual(parse('2019-01-20T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2019-01-20');
     });
   });
 
@@ -140,7 +140,7 @@ describe('Reports', () => {
     });
 
     it('set previous month', () => {
-      expect(wrapper.vm.date).toEqual(parse('2018-12-01T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2018-12-01');
     });
   });
 
@@ -152,7 +152,7 @@ describe('Reports', () => {
     });
 
     it('set previous year', () => {
-      expect(wrapper.vm.date).toEqual(parse('2018-01-01T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2018-01-01');
     });
   });
 
@@ -164,7 +164,7 @@ describe('Reports', () => {
     });
 
     it('set next date', () => {
-      expect(wrapper.vm.date).toEqual(parse('2019-02-01T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2019-02-01');
     });
   });
 
@@ -176,7 +176,7 @@ describe('Reports', () => {
     });
 
     it('set next week', () => {
-      expect(wrapper.vm.date).toEqual(parse('2019-02-03T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2019-02-03');
     });
   });
 
@@ -188,7 +188,7 @@ describe('Reports', () => {
     });
 
     it('set next month', () => {
-      expect(wrapper.vm.date).toEqual(parse('2019-02-01T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2019-02-01');
     });
   });
 
@@ -200,7 +200,7 @@ describe('Reports', () => {
     });
 
     it('set next year', () => {
-      expect(wrapper.vm.date).toEqual(parse('2020-01-01T00:00:00'));
+      expect(wrapper.vm.date).toEqual('2020-01-01');
     });
   });
 

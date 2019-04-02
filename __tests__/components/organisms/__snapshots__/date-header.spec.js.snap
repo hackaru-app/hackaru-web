@@ -19,7 +19,7 @@ exports[`DateHeader render correctly 1`] = `
       <v-date-picker-stub
         formats="[object Object]"
         show-caps=""
-        value="Mon Jan 01 2018 00:00:00 GMT+0900 (JST)"
+        value="2018-01-01"
       />
     </no-ssr-stub>
      

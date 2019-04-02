@@ -22,9 +22,9 @@
             <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
               <calendar-day-header
                 v-for="day in getDays(period.add(date, page))"
-                :day="day"
+                :day="format(day, 'YYYY-MM-DD')"
                 :locale="locales[$i18n.locale]"
-                :key="day.toString()"
+                :key="format(day, 'YYYY-MM-DD')"
                 @click="togglePeriod"
               />
             </div>
@@ -53,7 +53,7 @@ import DateHeader, { periods } from '@/components/organisms/date-header';
 import InfiniteSlider from '@/components/organisms/infinite-slider';
 import CalendarContainer from '@/components/organisms/calendar-container';
 import CalendarDayHeader from '@/components/organisms/calendar-day-header';
-import { isToday, format, addDays, eachDay, parse } from 'date-fns';
+import { isToday, format, addDays, eachDay } from 'date-fns';
 
 export default {
   provide: {
@@ -75,7 +75,7 @@ export default {
       isToday,
       index: 1,
       sliderDisabled: false,
-      date: parse(Date.now()),
+      date: format(new Date(), 'YYYY-MM-DD'),
       periods: [periods.day, periods.week],
       locales: {
         en: require('date-fns/locale/en'),
@@ -85,7 +85,7 @@ export default {
   },
   computed: {
     days() {
-      return this.getDays(this.date);
+      return this.getDays(this.date).map(date => format(date, 'YYYY-MM-DD'));
     },
     period() {
       return this.periods[this.index];
@@ -116,14 +116,20 @@ export default {
       this.$refs.slider.slideRight();
     },
     prev() {
-      this.date = this.period.add(this.period.startOf(this.date), -1);
+      this.date = format(
+        this.period.add(this.period.startOf(this.date), -1),
+        'YYYY-MM-DD'
+      );
     },
     next() {
-      this.date = this.period.add(this.period.startOf(this.date), 1);
+      this.date = format(
+        this.period.add(this.period.startOf(this.date), 1),
+        'YYYY-MM-DD'
+      );
     },
     togglePeriod(date) {
       this.index = (this.index + 1) % this.periods.length;
-      this.date = date;
+      this.date = format(date, 'YYYY-MM-DD');
     }
   }
 };

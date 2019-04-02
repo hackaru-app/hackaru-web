@@ -2,7 +2,6 @@ import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import Factory from '@/__tests__/__setups__/factory';
 import CalendarContainer from '@/components/organisms/calendar-container';
-import { parse } from 'date-fns';
 
 describe('CalendarContainer', () => {
   let wrapper;
@@ -33,13 +32,13 @@ describe('CalendarContainer', () => {
       },
       propsData: {
         days: [
-          parse('2019-01-01T00:00:00'),
-          parse('2019-01-02T00:00:00'),
-          parse('2019-01-03T00:00:00'),
-          parse('2019-01-04T00:00:00'),
-          parse('2019-01-05T00:00:00'),
-          parse('2019-01-06T00:00:00'),
-          parse('2019-01-07T00:00:00')
+          '2019-01-01',
+          '2019-01-02',
+          '2019-01-03',
+          '2019-01-04',
+          '2019-01-05',
+          '2019-01-06',
+          '2019-01-07'
         ]
       }
     });
@@ -72,7 +71,7 @@ describe('CalendarContainer', () => {
   describe('when has today', () => {
     beforeEach(() => {
       wrapper = factory.shallow();
-      wrapper.setProps({ days: [new Date()] });
+      wrapper.setProps({ days: ['2019-01-31'] });
     });
 
     it('show today ruler', () => {
@@ -83,7 +82,7 @@ describe('CalendarContainer', () => {
   describe('when does not have today', () => {
     beforeEach(() => {
       wrapper = factory.shallow();
-      wrapper.setProps({ days: ['1999-01-01T01:23:45'] });
+      wrapper.setProps({ days: ['1999-01-01'] });
     });
 
     it('hide today ruler', () => {

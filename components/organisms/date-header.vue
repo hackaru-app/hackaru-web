@@ -124,7 +124,7 @@ export default {
   },
   props: {
     date: {
-      type: Date,
+      type: String,
       required: true
     },
     periodIndex: {
