@@ -11,5 +11,6 @@ cache:
 install:
   - yarn
 script:
-  - yarn lint
+  - yarn lint .
+  - yarn test
   - yarn coveralls
