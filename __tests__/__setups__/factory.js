@@ -39,7 +39,8 @@ const defaults = {
   },
   stubs: {
     NuxtLink: RouterLinkStub,
-    NuxtChild: { render: () => {} }
+    NuxtChild: { render: () => {} },
+    I18n: { render: h => h }
   }
 };
 
