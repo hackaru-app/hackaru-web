@@ -2,7 +2,6 @@ import { Store } from 'vuex-mock-store';
 import Factory from '@/__tests__/__setups__/factory';
 import dragdrop from '@/plugins/directives/v-dragdrop';
 import CalendarDay from '@/components/organisms/calendar-day';
-import { parse } from 'date-fns';
 
 const $store = new Store({
   getters: {
@@ -69,7 +68,7 @@ describe('CalendarDay', () => {
       },
       mocks: { $store },
       propsData: {
-        day: parse('2019-01-01T00:00:00'),
+        day: '2019-01-01',
         updateGuideLine: jest.fn(),
         getOverlapDay: () => {}
       }

@@ -24,7 +24,7 @@ export default {
   mixins: [PxMinConvertable],
   props: {
     day: {
-      type: Date,
+      type: String,
       required: true
     },
     updateGuideLine: {

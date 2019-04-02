@@ -15,7 +15,7 @@ exports[`CalendarDay render correctly 1`] = `
       class="row"
     >
       <calendar-activity-stub
-        day="Tue Jan 01 2019 00:00:00 GMT+0900 (JST)"
+        day="2019-01-01"
         description="Create a database."
         duration="3600"
         getoverlapday="() => {}"
@@ -29,7 +29,7 @@ exports[`CalendarDay render correctly 1`] = `
       }"
       />
       <calendar-activity-stub
-        day="Tue Jan 01 2019 00:00:00 GMT+0900 (JST)"
+        day="2019-01-01"
         description=""
         duration="3600"
         getoverlapday="() => {}"
@@ -46,7 +46,7 @@ exports[`CalendarDay render correctly 1`] = `
       class="row"
     >
       <calendar-activity-stub
-        day="Tue Jan 01 2019 00:00:00 GMT+0900 (JST)"
+        day="2019-01-01"
         description="Create a test."
         duration="3600"
         getoverlapday="() => {}"
