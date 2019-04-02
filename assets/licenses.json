@@ -1,10 +1,4 @@
 {
-    "@nuxtjs/google-analytics": {
-        "licenses": "MIT",
-        "repository": "https://github.com/nuxt-community/analytics-module",
-        "licenseUrl": "https://github.com/nuxt-community/analytics-module/raw/master/LICENSE",
-        "parents": "Hackaru"
-    },
     "@nuxtjs/pwa": {
         "licenses": "MIT",
         "repository": "https://github.com/nuxt-community/pwa-module",
