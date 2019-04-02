@@ -3,7 +3,7 @@
 exports[`Calendar render correctly 1`] = `
 <section>
   <date-header-stub
-    date="Thu Jan 31 2019 01:23:45 GMT+0900 (GMT+09:00)"
+    date="Thu Jan 31 2019 01:23:45 GMT+0900 (JST)"
     periodindex="1"
     periods="[object Object],[object Object]"
   />
@@ -21,63 +21,31 @@ exports[`Calendar render correctly 1`] = `
           class="headers"
         >
           <calendar-day-header-stub
-            day="Sun Jan 20 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Sun Jan 20 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Mon Jan 21 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Mon Jan 21 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Tue Jan 22 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Tue Jan 22 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Wed Jan 23 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Wed Jan 23 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Thu Jan 24 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Thu Jan 24 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Fri Jan 25 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Fri Jan 25 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Sat Jan 26 2019 00:00:00 GMT+0900 (GMT+09:00)"
-            locale="[object Object]"
-          />
-        </div>
-        <div
-          class="headers"
-        >
-          <calendar-day-header-stub
-            day="Sun Jan 27 2019 00:00:00 GMT+0900 (GMT+09:00)"
-            locale="[object Object]"
-          />
-          <calendar-day-header-stub
-            day="Mon Jan 28 2019 00:00:00 GMT+0900 (GMT+09:00)"
-            locale="[object Object]"
-          />
-          <calendar-day-header-stub
-            day="Tue Jan 29 2019 00:00:00 GMT+0900 (GMT+09:00)"
-            locale="[object Object]"
-          />
-          <calendar-day-header-stub
-            day="Wed Jan 30 2019 00:00:00 GMT+0900 (GMT+09:00)"
-            locale="[object Object]"
-          />
-          <calendar-day-header-stub
-            day="Thu Jan 31 2019 00:00:00 GMT+0900 (GMT+09:00)"
-            locale="[object Object]"
-          />
-          <calendar-day-header-stub
-            day="Fri Feb 01 2019 00:00:00 GMT+0900 (GMT+09:00)"
-            locale="[object Object]"
-          />
-          <calendar-day-header-stub
-            day="Sat Feb 02 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Sat Jan 26 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
         </div>
@@ -85,31 +53,63 @@ exports[`Calendar render correctly 1`] = `
           class="headers"
         >
           <calendar-day-header-stub
-            day="Sun Feb 03 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Sun Jan 27 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Mon Feb 04 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Mon Jan 28 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Tue Feb 05 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Tue Jan 29 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Wed Feb 06 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Wed Jan 30 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Thu Feb 07 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Thu Jan 31 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Fri Feb 08 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Fri Feb 01 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
           <calendar-day-header-stub
-            day="Sat Feb 09 2019 00:00:00 GMT+0900 (GMT+09:00)"
+            day="Sat Feb 02 2019 00:00:00 GMT+0900 (JST)"
+            locale="[object Object]"
+          />
+        </div>
+        <div
+          class="headers"
+        >
+          <calendar-day-header-stub
+            day="Sun Feb 03 2019 00:00:00 GMT+0900 (JST)"
+            locale="[object Object]"
+          />
+          <calendar-day-header-stub
+            day="Mon Feb 04 2019 00:00:00 GMT+0900 (JST)"
+            locale="[object Object]"
+          />
+          <calendar-day-header-stub
+            day="Tue Feb 05 2019 00:00:00 GMT+0900 (JST)"
+            locale="[object Object]"
+          />
+          <calendar-day-header-stub
+            day="Wed Feb 06 2019 00:00:00 GMT+0900 (JST)"
+            locale="[object Object]"
+          />
+          <calendar-day-header-stub
+            day="Thu Feb 07 2019 00:00:00 GMT+0900 (JST)"
+            locale="[object Object]"
+          />
+          <calendar-day-header-stub
+            day="Fri Feb 08 2019 00:00:00 GMT+0900 (JST)"
+            locale="[object Object]"
+          />
+          <calendar-day-header-stub
+            day="Sat Feb 09 2019 00:00:00 GMT+0900 (JST)"
             locale="[object Object]"
           />
         </div>
@@ -129,7 +129,7 @@ exports[`Calendar render correctly 1`] = `
          
         <calendar-container-stub
           class="slider-item"
-          days="Sun Jan 27 2019 00:00:00 GMT+0900 (GMT+09:00),Mon Jan 28 2019 00:00:00 GMT+0900 (GMT+09:00),Tue Jan 29 2019 00:00:00 GMT+0900 (GMT+09:00),Wed Jan 30 2019 00:00:00 GMT+0900 (GMT+09:00),Thu Jan 31 2019 00:00:00 GMT+0900 (GMT+09:00),Fri Feb 01 2019 00:00:00 GMT+0900 (GMT+09:00),Sat Feb 02 2019 00:00:00 GMT+0900 (GMT+09:00)"
+          days="Sun Jan 27 2019 00:00:00 GMT+0900 (JST),Mon Jan 28 2019 00:00:00 GMT+0900 (JST),Tue Jan 29 2019 00:00:00 GMT+0900 (JST),Wed Jan 30 2019 00:00:00 GMT+0900 (JST),Thu Jan 31 2019 00:00:00 GMT+0900 (JST),Fri Feb 01 2019 00:00:00 GMT+0900 (JST),Sat Feb 02 2019 00:00:00 GMT+0900 (JST)"
         />
          
         <calendar-container-stub
