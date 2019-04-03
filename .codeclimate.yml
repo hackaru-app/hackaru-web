@@ -1,3 +1,10 @@
+checks:
+  file-lines:
+    enabled: false
+  similar-code:
+    enabled: false
+  method-lines:
+    enabled: false
 plugins:
   eslint:
     enabled: true
