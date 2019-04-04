@@ -12,7 +12,7 @@
             href="https://github.com/ktmouk/hackaru"
             target="_blank"
             rel="noopener"
-            >https://github.com/ktmouk/hackaru</a
+            >ktmouk/hackaru</a
           >
           -
           <a
