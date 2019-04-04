@@ -1,4 +1,3 @@
-import { isAfter } from 'date-fns';
 import decodeJwt from 'jwt-decode';
 
 const SET_USER = 'SET_USER';
@@ -267,10 +266,7 @@ export const getters = {
   validateToken: (state, getters) => () => {
     if (!state.accessToken) return false;
     try {
-      return isAfter(
-        new Date(decodeJwt(state.accessToken).exp * 1000),
-        new Date()
-      );
+      return Date.now().valueOf() / 1000 < decodeJwt(state.accessToken).exp;
     } catch (e) {
       return false;
     }
