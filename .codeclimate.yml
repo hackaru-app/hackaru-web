@@ -1,9 +1,12 @@
-eslint:
- enabled: true
- config:
-   extensions:
-     - .js
-     - .vue
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - javascript
+      extensions:
+        - .js
+        - .vue
 ratings:
   paths:
     - "**.js"
