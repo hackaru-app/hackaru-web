@@ -1,3 +1,13 @@
+eslint:
+ enabled: true
+ config:
+   extensions:
+     - .js
+     - .vue
+ratings:
+  paths:
+    - "**.js"
+    - "**.vue"
 checks:
   file-lines:
     enabled: false
