@@ -22,7 +22,7 @@ exports[`Licenses render correctly 1`] = `
           rel="noopener"
           target="_blank"
         >
-          https://github.com/ktmouk/hackaru
+          ktmouk/hackaru
         </a>
         
         -
