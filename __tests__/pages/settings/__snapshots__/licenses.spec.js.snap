@@ -10,6 +10,42 @@ exports[`Licenses render correctly 1`] = `
     >
       <icon-stub
         class="icon"
+        name="zap-icon"
+      />
+      Hackaru
+    </heading-stub>
+     
+    <ul>
+      <li>
+        <a
+          href="https://github.com/ktmouk/hackaru"
+          rel="noopener"
+          target="_blank"
+        >
+          https://github.com/ktmouk/hackaru
+        </a>
+        
+        -
+        
+        <a
+          href="https://raw.githubusercontent.com/ktmouk/hackaru/master/LICENSE"
+          rel="noopener"
+          target="_blank"
+        >
+          <span>
+            MIT
+          </span>
+        </a>
+      </li>
+    </ul>
+  </article>
+   
+  <article>
+    <heading-stub
+      class="is-small"
+    >
+      <icon-stub
+        class="icon"
         name="gift-icon"
       />
       title

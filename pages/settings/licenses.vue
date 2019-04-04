@@ -4,6 +4,28 @@
   <div class="settings">
     <article>
       <heading class="is-small"
+        ><icon name="zap-icon" class="icon" />Hackaru</heading
+      >
+      <ul>
+        <li>
+          <a
+            href="https://github.com/ktmouk/hackaru"
+            target="_blank"
+            rel="noopener"
+            >https://github.com/ktmouk/hackaru</a
+          >
+          -
+          <a
+            href="https://raw.githubusercontent.com/ktmouk/hackaru/master/LICENSE"
+            target="_blank"
+            rel="noopener"
+            ><span>MIT</span></a
+          >
+        </li>
+      </ul>
+    </article>
+    <article>
+      <heading class="is-small"
         ><icon name="gift-icon" class="icon" />{{ $t('title') }}</heading
       >
       <ul>
