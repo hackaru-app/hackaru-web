@@ -203,7 +203,6 @@ form input.password {
     margin-right: 5px;
   }
   a {
-    margin: 0 5px;
     color: $text;
   }
 }
