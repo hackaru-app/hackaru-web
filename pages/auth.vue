@@ -213,7 +213,7 @@ form input.password {
   flex: 1;
   margin-bottom: 30px;
   input {
-    margin-right: 5px;
+    margin-right: 10px;
   }
   a {
     color: $text;
