@@ -41,7 +41,12 @@
         </transition>
         <div v-if="isShowAgreement" class="agreement">
           <label for="agreement">
-            <input id="agreement" type="checkbox" />
+            <input
+              id="agreement"
+              v-model="agreement"
+              type="checkbox"
+              required="required"
+            />
             <i18n path="agreement">
               <a
                 :href="$env.HACKARU_TOS_AND_PRIVACY_URL"
@@ -53,7 +58,11 @@
           </label>
         </div>
         <div class="buttons">
-          <btn type="submit" class="submit-button is-rounded is-primary">
+          <btn
+            :disabled="!hasAccount && !isAgreed"
+            type="submit"
+            class="submit-button is-rounded is-primary"
+          >
             {{ $t(hasAccount ? 'login' : 'signUp') }}
           </btn>
           <button
@@ -110,12 +119,16 @@ export default {
       email: '',
       password: '',
       passwordConfirmation: '',
+      agreement: false,
       hasAccount: true
     };
   },
   computed: {
     isShowAgreement() {
       return !this.hasAccount && this.$env.HACKARU_TOS_AND_PRIVACY_URL;
+    },
+    isAgreed() {
+      return !this.$env.HACKARU_TOS_AND_PRIVACY_URL || this.agreement;
     }
   },
   mounted() {
