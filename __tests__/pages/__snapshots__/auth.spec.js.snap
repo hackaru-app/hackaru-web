@@ -27,7 +27,7 @@ exports[`Auth when click toggle button render correctly 1`] = `
      
     <text-field-stub
       aria-label="password"
-      class="has-underline"
+      class="password has-underline"
       placeholder="password"
       required=""
       type="password"
@@ -45,26 +45,32 @@ exports[`Auth when click toggle button render correctly 1`] = `
     <footer>
       <!---->
        
-      <btn-stub
-        class="submit-button is-rounded is-primary"
-        type="submit"
-      >
-        
-        signUp
-      
-      </btn-stub>
+      <!---->
        
-      <button
-        class="toggle-button"
-        type="button"
+      <div
+        class="buttons"
       >
-        <span>
-          or
-        </span>
+        <btn-stub
+          class="submit-button is-rounded is-primary"
+          type="submit"
+        >
+          
+          signUp
         
-        or.login
-      
-      </button>
+        </btn-stub>
+         
+        <button
+          class="toggle-button"
+          type="button"
+        >
+          <span>
+            or
+          </span>
+          
+          or.login
+        
+        </button>
+      </div>
     </footer>
   </form>
    
@@ -105,7 +111,7 @@ exports[`Auth when user does not logged in render correctly 1`] = `
      
     <text-field-stub
       aria-label="password"
-      class="has-underline"
+      class="password has-underline"
       placeholder="password"
       required=""
       type="password"
@@ -124,26 +130,32 @@ exports[`Auth when user does not logged in render correctly 1`] = `
         
       </a>
        
-      <btn-stub
-        class="submit-button is-rounded is-primary"
-        type="submit"
-      >
-        
-        login
-      
-      </btn-stub>
+      <!---->
        
-      <button
-        class="toggle-button"
-        type="button"
+      <div
+        class="buttons"
       >
-        <span>
-          or
-        </span>
+        <btn-stub
+          class="submit-button is-rounded is-primary"
+          type="submit"
+        >
+          
+          login
         
-        or.signUp
-      
-      </button>
+        </btn-stub>
+         
+        <button
+          class="toggle-button"
+          type="button"
+        >
+          <span>
+            or
+          </span>
+          
+          or.signUp
+        
+        </button>
+      </div>
     </footer>
   </form>
    
