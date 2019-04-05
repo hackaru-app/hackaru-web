@@ -142,6 +142,7 @@ module.exports = {
       {
         keys: [
           { key: 'HACKARU_API_URL' },
+          { key: 'HACKARU_TOS_AND_PRIVACY_URL' },
           { key: 'GOOGLE_ANALYTICS_TRACKING_ID' }
         ]
       }

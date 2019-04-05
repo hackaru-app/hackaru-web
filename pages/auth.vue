@@ -22,7 +22,7 @@
         :placeholder="$t('password')"
         :aria-label="$t('password')"
         type="password"
-        class="has-underline"
+        class="password has-underline"
         required
       />
       <text-field
@@ -39,17 +39,32 @@
             {{ $t('forgot') }}
           </nuxt-link>
         </transition>
-        <btn type="submit" class="submit-button is-rounded is-primary">
-          {{ $t(hasAccount ? 'login' : 'signUp') }}
-        </btn>
-        <button
-          type="button"
-          class="toggle-button"
-          @click="hasAccount = !hasAccount"
-        >
-          <span>or</span>
-          {{ $t(hasAccount ? 'or.signUp' : 'or.login') }}
-        </button>
+        <div v-if="isShowAgreement" class="agreement">
+          <label for="agreement">
+            <input id="agreement" type="checkbox" />
+            <i18n path="agreement">
+              <a
+                :href="$env.HACKARU_TOS_AND_PRIVACY_URL"
+                target="_blank"
+                rel="noopener"
+                >{{ $t('termOfServiceAndPrivacyPolicy') }}</a
+              >
+            </i18n>
+          </label>
+        </div>
+        <div class="buttons">
+          <btn type="submit" class="submit-button is-rounded is-primary">
+            {{ $t(hasAccount ? 'login' : 'signUp') }}
+          </btn>
+          <button
+            type="button"
+            class="toggle-button"
+            @click="hasAccount = !hasAccount"
+          >
+            <span>or</span>
+            {{ $t(hasAccount ? 'or.signUp' : 'or.login') }}
+          </button>
+        </div>
       </footer>
     </form>
     <footer class="auth-footer">
@@ -97,6 +112,11 @@ export default {
       passwordConfirmation: '',
       hasAccount: true
     };
+  },
+  computed: {
+    isShowAgreement() {
+      return !this.hasAccount && this.$env.HACKARU_TOS_AND_PRIVACY_URL;
+    }
   },
   mounted() {
     if (this.$store.getters['auth/isLoggedIn']) {
@@ -153,20 +173,39 @@ form {
 form footer {
   position: relative;
   display: flex;
-  align-items: center;
-  margin-top: 18px;
+  flex-direction: column;
+  margin-top: 20px;
+}
+form footer .buttons {
+  display: flex;
+  flex: 1;
+}
+form input.password {
+  padding-right: 80px;
 }
 .forgot {
-  color: $text-light;
-  text-align: right;
-  text-decoration: none;
   position: absolute;
-  top: -58px;
+  top: 0;
   right: 0;
-  padding: 0 10px;
-  padding-bottom: 10px;
-  height: 16px;
+  margin-top: -65px;
+  margin-bottom: 25px;
+  text-align: right;
+  color: $text-light;
+  text-decoration: none;
+  display: flex;
   animation-duration: 0.3s;
+}
+.agreement {
+  display: flex;
+  flex: 1;
+  margin-bottom: 30px;
+  input {
+    margin-right: 5px;
+  }
+  a {
+    margin: 0 5px;
+    color: $text;
+  }
 }
 .submit-button {
   width: 100px;

@@ -96,6 +96,30 @@ describe('Auth', () => {
     });
   });
 
+  describe('when it has term of service and privacy', () => {
+    beforeEach(() => {
+      factory.options.mocks.$env.HACKARU_TOS_AND_PRIVACY_URL = 'example.com';
+      wrapper = factory.shallow();
+      wrapper.find('.toggle-button').trigger('click');
+    });
+
+    it('show agreement of checkbox', () => {
+      expect(wrapper.find('#agreement').exists()).toBe(true);
+    });
+  });
+
+  describe('when it does not have term of service and privacy', () => {
+    beforeEach(() => {
+      factory.options.mocks.$env.HACKARU_TOS_AND_PRIVACY_URL = undefined;
+      wrapper = factory.shallow();
+      wrapper.find('.toggle-button').trigger('click');
+    });
+
+    it('hide agreement of checkbox', () => {
+      expect(wrapper.find('#agreement').exists()).toBe(false);
+    });
+  });
+
   describe('when click login button', () => {
     beforeEach(() => {
       sessionStorage.setItem('previousPath', '/previous');
