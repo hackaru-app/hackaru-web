@@ -26,7 +26,7 @@ describe('LocaleSelect', () => {
     beforeEach(() => {
       wrapper = factory.mount();
       wrapper.findAll('option').at(1).element.selected = true;
-      wrapper.find('select').trigger('input');
+      wrapper.find('select').trigger('change');
     });
 
     it('change locale page', () => {

@@ -37,7 +37,6 @@ input.has-border {
     border-color: $yellow;
   }
   &:invalid {
-    border-color: $red;
     box-shadow: 0 3px 3px #00000005 inset;
   }
   &:placeholder-shown {
@@ -65,7 +64,6 @@ input.has-underline {
     border-color: $yellow;
   }
   &:invalid {
-    border-color: $red;
     box-shadow: none;
   }
   &:placeholder-shown {

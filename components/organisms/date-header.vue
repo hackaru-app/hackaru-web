@@ -49,7 +49,7 @@
         ref="period-select"
         :value="$t(`${period.key}.label`)"
         :aria-label="$t('ariaLabels.selectPeriod')"
-        @input="changePeriod"
+        @change="changePeriod"
       >
         <option
           v-for="(period, index) in periods"

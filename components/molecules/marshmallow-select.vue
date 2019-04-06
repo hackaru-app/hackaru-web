@@ -3,7 +3,7 @@
     <btn class="has-dropshadow">
       {{ value }}
     </btn>
-    <select :aria-label="ariaLabel" @input="input">
+    <select ref="select" :aria-label="ariaLabel" @change="change">
       <slot />
     </select>
   </div>
@@ -27,8 +27,8 @@ export default {
     }
   },
   methods: {
-    input(e) {
-      this.$emit('input', e.target.value);
+    change(e) {
+      this.$emit('change', e.target.value);
     }
   }
 };

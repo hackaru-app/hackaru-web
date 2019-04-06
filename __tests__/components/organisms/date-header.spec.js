@@ -81,7 +81,7 @@ describe('DateHeader', () => {
   describe('when change selected period', () => {
     beforeEach(() => {
       wrapper = factory.shallow();
-      wrapper.find({ ref: 'period-select' }).vm.$emit('input', '1');
+      wrapper.find({ ref: 'period-select' }).vm.$emit('change', '1');
     });
 
     it('emit update:periodIndex', () => {
