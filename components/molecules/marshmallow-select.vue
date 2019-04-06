@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     change(e) {
-      this.$emit('input', e.target.value);
+      this.$emit('change', e.target.value);
     }
   }
 };

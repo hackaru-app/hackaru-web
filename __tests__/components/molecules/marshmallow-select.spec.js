@@ -32,8 +32,8 @@ describe('MarshmallowSelect', () => {
       wrapper.find('select').trigger('change');
     });
 
-    it('emit input', () => {
-      expect(wrapper.emitted('input')[0]).toEqual(['orange']);
+    it('emit change', () => {
+      expect(wrapper.emitted('change')[0]).toEqual(['orange']);
     });
   });
 });

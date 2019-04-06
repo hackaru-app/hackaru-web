@@ -3,7 +3,7 @@
     ref="select"
     :value="locales[$i18n.locale]"
     aria-label="Locales"
-    @input="change"
+    @change="change"
   >
     <option
       v-for="(locale, key) in locales"
