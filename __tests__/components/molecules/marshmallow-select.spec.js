@@ -29,7 +29,7 @@ describe('MarshmallowSelect', () => {
     beforeEach(() => {
       wrapper = factory.shallow();
       wrapper.findAll('option').at(1).element.selected = true;
-      wrapper.find('select').trigger('input');
+      wrapper.find('select').trigger('change');
     });
 
     it('emit input', () => {
