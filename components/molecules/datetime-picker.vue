@@ -60,6 +60,7 @@ input {
   margin-right: 10px;
   border: 0;
   width: 100%;
+  max-width: 160px;
   height: 46px;
   border-radius: 0;
   background: none;
