@@ -3,7 +3,7 @@
     <btn class="has-dropshadow">
       {{ value }}
     </btn>
-    <select :aria-label="ariaLabel" @input="input">
+    <select :aria-label="ariaLabel" @change="input">
       <slot />
     </select>
   </div>
