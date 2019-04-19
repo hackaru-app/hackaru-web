@@ -21,10 +21,12 @@ export default {
 <style scoped lang="scss">
 input.has-border {
   display: flex;
+  align-items: center;
   border-radius: 3px;
-  padding: 12px 15px;
+  padding: 0 15px;
+  height: 45px;
   font-size: $font-size;
-  line-height: 1.2rem;
+  line-height: 1;
   border: 1px $grey-eee solid;
   transition: border-color 0.3s;
   box-shadow: 0 3px 3px #00000005 inset;
