@@ -13,7 +13,7 @@
         :placeholder="$t('email')"
         :aria-label="$t('email')"
         type="email"
-        class="has-underline"
+        class="has-border"
         autofocus
         required
       />
@@ -22,7 +22,7 @@
         :placeholder="$t('password')"
         :aria-label="$t('password')"
         type="password"
-        class="password has-underline"
+        class="password has-border"
         required
       />
       <text-field
@@ -30,7 +30,7 @@
         v-model="passwordConfirmation"
         :placeholder="$t('passwordConfirmation')"
         :aria-label="$t('passwordConfirmation')"
-        class="has-underline"
+        class="has-border"
         type="password"
       />
       <footer>

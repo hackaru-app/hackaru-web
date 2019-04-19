@@ -46,31 +46,4 @@ input.has-border {
     border-color: $yellow;
   }
 }
-input.has-underline {
-  display: flex;
-  padding: 12px 0;
-  font-size: 15px;
-  transition: border-color 0.3s;
-  border-radius: 0;
-  border: 0;
-  border-bottom: 1px $grey-eee solid;
-  margin-bottom: 10px;
-  &::placeholder {
-    color: $grey-ccc;
-    opacity: 1;
-    padding-top: 1px;
-  }
-  &:focus {
-    border-color: $yellow;
-  }
-  &:invalid {
-    box-shadow: none;
-  }
-  &:placeholder-shown {
-    border-color: $grey-eee;
-  }
-  &:placeholder-shown:focus {
-    border-color: $yellow;
-  }
-}
 </style>
