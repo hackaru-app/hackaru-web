@@ -40,7 +40,7 @@ input.has-border {
     box-shadow: 0 3px 3px #00000005 inset;
   }
   &:placeholder-shown {
-    border-color: $grey-eee;
+    color: $grey-ccc;
   }
   &:placeholder-shown:focus {
     border-color: $yellow;
