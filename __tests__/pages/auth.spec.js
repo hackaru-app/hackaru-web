@@ -136,8 +136,10 @@ describe('Auth', () => {
 
   describe('when click login button', () => {
     beforeEach(() => {
+      factory.options.mocks.$route.query['sign-up'] = false;
       sessionStorage.setItem('previousPath', '/previous');
       $store.dispatch.mockReturnValue(true);
+      $store.getters['auth/getUserId'] = 1;
       wrapper = factory.shallow();
       wrapper.setData({
         email: 'example@example.com',
@@ -152,6 +154,10 @@ describe('Auth', () => {
         email: 'example@example.com',
         password: 'password'
       });
+    });
+
+    it('set user id', () => {
+      expect(factory.options.mocks.$ga.set).toHaveBeenCalledWith('userId', 1);
     });
 
     it('send ga event', () => {
@@ -170,6 +176,7 @@ describe('Auth', () => {
 
   describe('when click login button but login failed', () => {
     beforeEach(() => {
+      factory.options.mocks.$route.query['sign-up'] = false;
       $store.dispatch.mockReturnValue(false);
       wrapper = factory.shallow();
       wrapper.find('form').trigger('submit.prevent');
@@ -184,6 +191,7 @@ describe('Auth', () => {
     beforeEach(() => {
       sessionStorage.setItem('previousPath', '/previous');
       $store.dispatch.mockReturnValue(true);
+      $store.getters['auth/getUserId'] = 1;
       wrapper = factory.shallow();
       wrapper.setData({
         email: 'example@example.com',
@@ -200,6 +208,10 @@ describe('Auth', () => {
         password: 'password',
         passwordConfirmation: 'passwordConfirmation'
       });
+    });
+
+    it('set user id', () => {
+      expect(factory.options.mocks.$ga.set).toHaveBeenCalledWith('userId', 1);
     });
 
     it('send ga event', () => {
