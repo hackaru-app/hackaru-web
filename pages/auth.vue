@@ -35,11 +35,6 @@
           type="password"
         />
         <footer>
-          <transition name="fade">
-            <nuxt-link v-if="hasAccount" class="forgot" to="password-reset">
-              {{ $t('forgot') }}
-            </nuxt-link>
-          </transition>
           <div v-if="isShowAgreement" class="agreement">
             <label for="agreement">
               <input
@@ -75,6 +70,11 @@
               {{ $t(hasAccount ? 'or.signUp' : 'or.login') }}
             </button>
           </div>
+          <transition name="fade">
+            <nuxt-link v-if="hasAccount" class="forgot" to="password-reset">
+              {{ $t('forgot') }}
+            </nuxt-link>
+          </transition>
         </footer>
       </form>
     </div>
@@ -204,18 +204,6 @@ form footer .buttons {
 form input.password {
   padding-right: 80px;
 }
-.forgot {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: -65px;
-  margin-bottom: 25px;
-  text-align: right;
-  color: $text-light;
-  text-decoration: none;
-  display: flex;
-  animation-duration: 0.3s;
-}
 .agreement {
   display: flex;
   flex: 1;
@@ -249,6 +237,15 @@ form input.password {
   &:active {
     transform: scale(0.9);
   }
+}
+.forgot {
+  color: $text-light;
+  text-decoration: none;
+  display: flex;
+  animation-duration: 0.3s;
+  margin-top: 35px;
+  margin-left: 5px;
+  width: 50%;
 }
 .auth-footer {
   display: flex;
