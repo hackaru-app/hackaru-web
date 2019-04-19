@@ -2,80 +2,82 @@
 
 <template>
   <section>
-    <transition name="fade" mode="out-in">
-      <heading :key="hasAccount" class="is-large">
-        {{ $t(`titles.${hasAccount ? 'login' : 'signUp'}`) }}
-      </heading>
-    </transition>
-    <form @submit.prevent="submit">
-      <text-field
-        v-model="email"
-        :placeholder="$t('email')"
-        :aria-label="$t('email')"
-        type="email"
-        class="has-border"
-        autofocus
-        required
-      />
-      <text-field
-        v-model="password"
-        :placeholder="$t('password')"
-        :aria-label="$t('password')"
-        type="password"
-        class="password has-border"
-        required
-      />
-      <text-field
-        v-if="!hasAccount"
-        v-model="passwordConfirmation"
-        :placeholder="$t('passwordConfirmation')"
-        :aria-label="$t('passwordConfirmation')"
-        class="has-border"
-        type="password"
-      />
-      <footer>
-        <transition name="fade">
-          <nuxt-link v-if="hasAccount" class="forgot" to="password-reset">
-            {{ $t('forgot') }}
-          </nuxt-link>
-        </transition>
-        <div v-if="isShowAgreement" class="agreement">
-          <label for="agreement">
-            <input
-              id="agreement"
-              v-model="agreement"
-              type="checkbox"
-              required="required"
-            />
-            <i18n path="agreement">
-              <a
-                :href="$env.HACKARU_TOS_AND_PRIVACY_URL"
-                target="_blank"
-                rel="noopener"
-                >{{ $t('termOfServiceAndPrivacyPolicy') }}</a
-              >
-            </i18n>
-          </label>
-        </div>
-        <div class="buttons">
-          <btn
-            :disabled="!hasAccount && !isAgreed"
-            type="submit"
-            class="submit-button is-rounded is-primary"
-          >
-            {{ $t(hasAccount ? 'login' : 'signUp') }}
-          </btn>
-          <button
-            type="button"
-            class="toggle-button"
-            @click="hasAccount = !hasAccount"
-          >
-            <span>or</span>
-            {{ $t(hasAccount ? 'or.signUp' : 'or.login') }}
-          </button>
-        </div>
-      </footer>
-    </form>
+    <div class="form-container">
+      <transition name="fade" mode="out-in">
+        <heading :key="hasAccount" class="is-large">
+          {{ $t(`titles.${hasAccount ? 'login' : 'signUp'}`) }}
+        </heading>
+      </transition>
+      <form @submit.prevent="submit">
+        <text-field
+          v-model="email"
+          :placeholder="$t('email')"
+          :aria-label="$t('email')"
+          type="email"
+          class="has-border"
+          autofocus
+          required
+        />
+        <text-field
+          v-model="password"
+          :placeholder="$t('password')"
+          :aria-label="$t('password')"
+          type="password"
+          class="password has-border"
+          required
+        />
+        <text-field
+          v-if="!hasAccount"
+          v-model="passwordConfirmation"
+          :placeholder="$t('passwordConfirmation')"
+          :aria-label="$t('passwordConfirmation')"
+          class="has-border"
+          type="password"
+        />
+        <footer>
+          <transition name="fade">
+            <nuxt-link v-if="hasAccount" class="forgot" to="password-reset">
+              {{ $t('forgot') }}
+            </nuxt-link>
+          </transition>
+          <div v-if="isShowAgreement" class="agreement">
+            <label for="agreement">
+              <input
+                id="agreement"
+                v-model="agreement"
+                type="checkbox"
+                required="required"
+              />
+              <i18n path="agreement">
+                <a
+                  :href="$env.HACKARU_TOS_AND_PRIVACY_URL"
+                  target="_blank"
+                  rel="noopener"
+                  >{{ $t('termOfServiceAndPrivacyPolicy') }}</a
+                >
+              </i18n>
+            </label>
+          </div>
+          <div class="buttons">
+            <btn
+              :disabled="!hasAccount && !isAgreed"
+              type="submit"
+              class="submit-button is-rounded is-primary"
+            >
+              {{ $t(hasAccount ? 'login' : 'signUp') }}
+            </btn>
+            <button
+              type="button"
+              class="toggle-button"
+              @click="hasAccount = !hasAccount"
+            >
+              <span>or</span>
+              {{ $t(hasAccount ? 'or.signUp' : 'or.login') }}
+            </button>
+          </div>
+        </footer>
+      </form>
+    </div>
     <footer class="auth-footer">
       <locale-select class="locale-select" />
       <i18n
@@ -175,7 +177,13 @@ export default {
 
 <style scoped lang="scss">
 section {
-  margin: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.form-container {
+  padding: 30px 50px;
+  flex-grow: 1;
 }
 form {
   padding-top: 30px;
@@ -243,11 +251,9 @@ form input.password {
   }
 }
 .auth-footer {
-  position: absolute;
   display: flex;
-  padding-right: 30px;
+  padding: 30px 50px;
   align-items: center;
-  bottom: 40px;
 }
 .ga-description {
   color: $text-lighter;
