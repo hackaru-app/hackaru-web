@@ -18,7 +18,10 @@ describe('Auth', () => {
     factory = new Factory(Auth, {
       mocks: {
         $store,
-        $env: { GOOGLE_ANALYTICS_TRACKING_ID: 'UA-01234-1' }
+        $env: { GOOGLE_ANALYTICS_TRACKING_ID: 'UA-01234-1' },
+        $route: {
+          query: {}
+        }
       }
     });
   });
@@ -82,7 +85,7 @@ describe('Auth', () => {
       wrapper.find('.toggle-button').trigger('click');
     });
 
-    it('render correctly', () => {
+    it('render sign up', () => {
       expect(wrapper.element).toMatchSnapshot();
     });
 
@@ -96,11 +99,22 @@ describe('Auth', () => {
     });
   });
 
+  describe('when url has sign-up query', () => {
+    beforeEach(() => {
+      factory.options.mocks.$route.query['sign-up'] = true;
+      wrapper = factory.shallow();
+    });
+
+    it('render sign up', () => {
+      expect(wrapper.element).toMatchSnapshot();
+    });
+  });
+
   describe('when it has term of service and privacy', () => {
     beforeEach(() => {
+      factory.options.mocks.$route.query['sign-up'] = true;
       factory.options.mocks.$env.HACKARU_TOS_AND_PRIVACY_URL = 'example.com';
       wrapper = factory.shallow();
-      wrapper.find('.toggle-button').trigger('click');
     });
 
     it('show agreement of checkbox', () => {
@@ -110,9 +124,9 @@ describe('Auth', () => {
 
   describe('when it does not have term of service and privacy', () => {
     beforeEach(() => {
+      factory.options.mocks.$route.query['sign-up'] = true;
       factory.options.mocks.$env.HACKARU_TOS_AND_PRIVACY_URL = undefined;
       wrapper = factory.shallow();
-      wrapper.find('.toggle-button').trigger('click');
     });
 
     it('hide agreement of checkbox', () => {
