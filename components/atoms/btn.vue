@@ -31,13 +31,6 @@ button {
     transform: scale(0.9);
   }
 }
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-  &:active {
-    transform: scale(1);
-  }
-}
 button.is-primary {
   background-color: $cyan;
   color: #fff;
