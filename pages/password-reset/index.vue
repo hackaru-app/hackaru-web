@@ -12,7 +12,7 @@
         :placeholder="$t('email')"
         :aria-label="$t('email')"
         type="email"
-        class="has-underline"
+        class="has-border"
         autofocus
         required
       />

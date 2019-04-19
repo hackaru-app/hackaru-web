@@ -18,7 +18,10 @@ describe('Auth', () => {
     factory = new Factory(Auth, {
       mocks: {
         $store,
-        $env: { GOOGLE_ANALYTICS_TRACKING_ID: 'UA-01234-1' }
+        $env: { GOOGLE_ANALYTICS_TRACKING_ID: 'UA-01234-1' },
+        $route: {
+          query: {}
+        }
       }
     });
   });
@@ -82,7 +85,7 @@ describe('Auth', () => {
       wrapper.find('.toggle-button').trigger('click');
     });
 
-    it('render correctly', () => {
+    it('render sign up', () => {
       expect(wrapper.element).toMatchSnapshot();
     });
 
@@ -96,11 +99,22 @@ describe('Auth', () => {
     });
   });
 
+  describe('when url has sign-up query', () => {
+    beforeEach(() => {
+      factory.options.mocks.$route.query['sign-up'] = true;
+      wrapper = factory.shallow();
+    });
+
+    it('render sign up', () => {
+      expect(wrapper.element).toMatchSnapshot();
+    });
+  });
+
   describe('when it has term of service and privacy', () => {
     beforeEach(() => {
+      factory.options.mocks.$route.query['sign-up'] = true;
       factory.options.mocks.$env.HACKARU_TOS_AND_PRIVACY_URL = 'example.com';
       wrapper = factory.shallow();
-      wrapper.find('.toggle-button').trigger('click');
     });
 
     it('show agreement of checkbox', () => {
@@ -110,9 +124,9 @@ describe('Auth', () => {
 
   describe('when it does not have term of service and privacy', () => {
     beforeEach(() => {
+      factory.options.mocks.$route.query['sign-up'] = true;
       factory.options.mocks.$env.HACKARU_TOS_AND_PRIVACY_URL = undefined;
       wrapper = factory.shallow();
-      wrapper.find('.toggle-button').trigger('click');
     });
 
     it('hide agreement of checkbox', () => {
@@ -122,8 +136,10 @@ describe('Auth', () => {
 
   describe('when click login button', () => {
     beforeEach(() => {
+      factory.options.mocks.$route.query['sign-up'] = false;
       sessionStorage.setItem('previousPath', '/previous');
       $store.dispatch.mockReturnValue(true);
+      $store.getters['auth/getUserId'] = 1;
       wrapper = factory.shallow();
       wrapper.setData({
         email: 'example@example.com',
@@ -138,6 +154,10 @@ describe('Auth', () => {
         email: 'example@example.com',
         password: 'password'
       });
+    });
+
+    it('set user id', () => {
+      expect(factory.options.mocks.$ga.set).toHaveBeenCalledWith('userId', 1);
     });
 
     it('send ga event', () => {
@@ -156,6 +176,7 @@ describe('Auth', () => {
 
   describe('when click login button but login failed', () => {
     beforeEach(() => {
+      factory.options.mocks.$route.query['sign-up'] = false;
       $store.dispatch.mockReturnValue(false);
       wrapper = factory.shallow();
       wrapper.find('form').trigger('submit.prevent');
@@ -170,6 +191,7 @@ describe('Auth', () => {
     beforeEach(() => {
       sessionStorage.setItem('previousPath', '/previous');
       $store.dispatch.mockReturnValue(true);
+      $store.getters['auth/getUserId'] = 1;
       wrapper = factory.shallow();
       wrapper.setData({
         email: 'example@example.com',
@@ -186,6 +208,10 @@ describe('Auth', () => {
         password: 'password',
         passwordConfirmation: 'passwordConfirmation'
       });
+    });
+
+    it('set user id', () => {
+      expect(factory.options.mocks.$ga.set).toHaveBeenCalledWith('userId', 1);
     });
 
     it('send ga event', () => {

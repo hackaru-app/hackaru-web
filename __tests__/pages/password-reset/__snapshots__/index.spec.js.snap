@@ -18,7 +18,7 @@ exports[`Index render correctly 1`] = `
     <text-field-stub
       aria-label="email"
       autofocus=""
-      class="has-underline"
+      class="has-border"
       placeholder="email"
       required=""
       type="email"

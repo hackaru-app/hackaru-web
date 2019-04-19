@@ -30,7 +30,7 @@ input.has-border {
   box-shadow: 0 3px 3px #00000005 inset;
   margin-bottom: 15px;
   &::placeholder {
-    color: $grey-ccc;
+    color: $grey-999;
     opacity: 1;
   }
   &:focus {
@@ -38,33 +38,6 @@ input.has-border {
   }
   &:invalid {
     box-shadow: 0 3px 3px #00000005 inset;
-  }
-  &:placeholder-shown {
-    border-color: $grey-eee;
-  }
-  &:placeholder-shown:focus {
-    border-color: $yellow;
-  }
-}
-input.has-underline {
-  display: flex;
-  padding: 12px 0;
-  font-size: 15px;
-  transition: border-color 0.3s;
-  border-radius: 0;
-  border: 0;
-  border-bottom: 1px $grey-eee solid;
-  margin-bottom: 10px;
-  &::placeholder {
-    color: $grey-ccc;
-    opacity: 1;
-    padding-top: 1px;
-  }
-  &:focus {
-    border-color: $yellow;
-  }
-  &:invalid {
-    box-shadow: none;
   }
   &:placeholder-shown {
     border-color: $grey-eee;

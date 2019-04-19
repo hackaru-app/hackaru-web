@@ -2,80 +2,82 @@
 
 <template>
   <section>
-    <transition name="fade" mode="out-in">
-      <heading :key="hasAccount" class="is-large">
-        {{ $t(`titles.${hasAccount ? 'login' : 'signUp'}`) }}
-      </heading>
-    </transition>
-    <form @submit.prevent="submit">
-      <text-field
-        v-model="email"
-        :placeholder="$t('email')"
-        :aria-label="$t('email')"
-        type="email"
-        class="has-underline"
-        autofocus
-        required
-      />
-      <text-field
-        v-model="password"
-        :placeholder="$t('password')"
-        :aria-label="$t('password')"
-        type="password"
-        class="password has-underline"
-        required
-      />
-      <text-field
-        v-if="!hasAccount"
-        v-model="passwordConfirmation"
-        :placeholder="$t('passwordConfirmation')"
-        :aria-label="$t('passwordConfirmation')"
-        class="has-underline"
-        type="password"
-      />
-      <footer>
-        <transition name="fade">
-          <nuxt-link v-if="hasAccount" class="forgot" to="password-reset">
-            {{ $t('forgot') }}
-          </nuxt-link>
-        </transition>
-        <div v-if="isShowAgreement" class="agreement">
-          <label for="agreement">
-            <input
-              id="agreement"
-              v-model="agreement"
-              type="checkbox"
-              required="required"
-            />
-            <i18n path="agreement">
-              <a
-                :href="$env.HACKARU_TOS_AND_PRIVACY_URL"
-                target="_blank"
-                rel="noopener"
-                >{{ $t('termOfServiceAndPrivacyPolicy') }}</a
-              >
-            </i18n>
-          </label>
-        </div>
-        <div class="buttons">
-          <btn
-            :disabled="!hasAccount && !isAgreed"
-            type="submit"
-            class="submit-button is-rounded is-primary"
-          >
-            {{ $t(hasAccount ? 'login' : 'signUp') }}
-          </btn>
-          <button
-            type="button"
-            class="toggle-button"
-            @click="hasAccount = !hasAccount"
-          >
-            <span>or</span>
-            {{ $t(hasAccount ? 'or.signUp' : 'or.login') }}
-          </button>
-        </div>
-      </footer>
-    </form>
+    <div class="form-container">
+      <transition name="fade" mode="out-in">
+        <heading :key="hasAccount" class="is-large">
+          {{ $t(`titles.${hasAccount ? 'login' : 'signUp'}`) }}
+        </heading>
+      </transition>
+      <form @submit.prevent="submit">
+        <text-field
+          v-model="email"
+          :placeholder="$t('email')"
+          :aria-label="$t('email')"
+          type="email"
+          class="has-border"
+          autofocus
+          required
+        />
+        <text-field
+          v-model="password"
+          :placeholder="$t('password')"
+          :aria-label="$t('password')"
+          type="password"
+          class="password has-border"
+          required
+        />
+        <text-field
+          v-if="!hasAccount"
+          v-model="passwordConfirmation"
+          :placeholder="$t('passwordConfirmation')"
+          :aria-label="$t('passwordConfirmation')"
+          class="has-border"
+          type="password"
+        />
+        <footer>
+          <div v-if="isShowAgreement" class="agreement">
+            <label for="agreement">
+              <input
+                id="agreement"
+                v-model="agreement"
+                type="checkbox"
+                required="required"
+              />
+              <i18n path="agreement">
+                <a
+                  :href="$env.HACKARU_TOS_AND_PRIVACY_URL"
+                  target="_blank"
+                  rel="noopener"
+                  >{{ $t('termOfServiceAndPrivacyPolicy') }}</a
+                >
+              </i18n>
+            </label>
+          </div>
+          <div class="buttons">
+            <btn
+              :disabled="!hasAccount && !isAgreed"
+              type="submit"
+              class="submit-button is-rounded is-primary"
+            >
+              {{ $t(hasAccount ? 'login' : 'signUp') }}
+            </btn>
+            <button
+              type="button"
+              class="toggle-button"
+              @click="hasAccount = !hasAccount"
+            >
+              <span>or</span>
+              {{ $t(hasAccount ? 'or.signUp' : 'or.login') }}
+            </button>
+          </div>
+          <transition name="fade">
+            <nuxt-link v-if="hasAccount" class="forgot" to="password-reset">
+              {{ $t('forgot') }}
+            </nuxt-link>
+          </transition>
+        </footer>
+      </form>
+    </div>
     <footer class="auth-footer">
       <locale-select class="locale-select" />
       <i18n
@@ -120,7 +122,7 @@ export default {
       password: '',
       passwordConfirmation: '',
       agreement: false,
-      hasAccount: true
+      hasAccount: !this.$route.query['sign-up']
     };
   },
   computed: {
@@ -147,6 +149,7 @@ export default {
       });
       if (success) {
         this.goBack();
+        this.$ga.set('userId', this.$store.getters['auth/getUserId']);
         this.$ga.event('auth', 'login');
         this.$toast.success(this.$t('loggedIn'));
       }
@@ -159,6 +162,7 @@ export default {
       });
       if (success) {
         this.goBack();
+        this.$ga.set('userId', this.$store.getters['auth/getUserId']);
         this.$ga.event('auth', 'signUp');
         this.$toast.success(this.$t('signedUp'));
       }
@@ -175,7 +179,13 @@ export default {
 
 <style scoped lang="scss">
 section {
-  margin: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.form-container {
+  padding: 30px 50px;
+  flex-grow: 1;
 }
 form {
   padding-top: 30px;
@@ -195,18 +205,6 @@ form footer .buttons {
 }
 form input.password {
   padding-right: 80px;
-}
-.forgot {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: -65px;
-  margin-bottom: 25px;
-  text-align: right;
-  color: $text-light;
-  text-decoration: none;
-  display: flex;
-  animation-duration: 0.3s;
 }
 .agreement {
   display: flex;
@@ -242,12 +240,19 @@ form input.password {
     transform: scale(0.9);
   }
 }
-.auth-footer {
-  position: absolute;
+.forgot {
+  color: $text-light;
+  text-decoration: none;
   display: flex;
-  padding-right: 30px;
+  animation-duration: 0.3s;
+  margin-top: 30px;
+  margin-left: 5px;
+  width: 300px;
+}
+.auth-footer {
+  display: flex;
+  padding: 30px 50px;
   align-items: center;
-  bottom: 40px;
 }
 .ga-description {
   color: $text-lighter;
@@ -262,10 +267,11 @@ form input.password {
   color: $text-lighter;
 }
 @media screen and (max-width: 640px) {
-  section {
-    margin: 30px;
+  .form-container {
+    padding: 30px;
   }
   .auth-footer {
+    padding: 30px;
     flex-direction: column;
     align-items: flex-start;
   }
