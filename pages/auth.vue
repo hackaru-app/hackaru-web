@@ -149,6 +149,7 @@ export default {
       });
       if (success) {
         this.goBack();
+        this.$ga.set('userId', this.$store.getters['auth/getUserId']);
         this.$ga.event('auth', 'login');
         this.$toast.success(this.$t('loggedIn'));
       }
@@ -161,6 +162,7 @@ export default {
       });
       if (success) {
         this.goBack();
+        this.$ga.set('userId', this.$store.getters['auth/getUserId']);
         this.$ga.event('auth', 'signUp');
         this.$toast.success(this.$t('signedUp'));
       }
