@@ -245,7 +245,7 @@ form input.password {
   text-decoration: none;
   display: flex;
   animation-duration: 0.3s;
-  margin-top: 25px;
+  margin-top: 30px;
   margin-left: 5px;
   width: 300px;
 }
