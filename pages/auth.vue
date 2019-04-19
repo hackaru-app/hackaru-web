@@ -214,7 +214,7 @@ form input.password {
     margin-right: 10px;
   }
   a {
-    color: $grey-666;
+    color: $text;
   }
 }
 .submit-button {
