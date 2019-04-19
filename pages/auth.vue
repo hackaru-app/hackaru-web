@@ -243,9 +243,9 @@ form input.password {
   text-decoration: none;
   display: flex;
   animation-duration: 0.3s;
-  margin-top: 35px;
+  margin-top: 25px;
   margin-left: 5px;
-  width: 50%;
+  width: 300px;
 }
 .auth-footer {
   display: flex;
