@@ -120,7 +120,7 @@ export default {
       password: '',
       passwordConfirmation: '',
       agreement: false,
-      hasAccount: true
+      hasAccount: !this.$route.query['sign-up']
     };
   },
   computed: {
