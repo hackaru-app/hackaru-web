@@ -265,10 +265,11 @@ form input.password {
   color: $text-lighter;
 }
 @media screen and (max-width: 640px) {
-  section {
-    margin: 30px;
+  .form-container {
+    padding: 30px;
   }
   .auth-footer {
+    padding: 30px;
     flex-direction: column;
     align-items: flex-start;
   }
