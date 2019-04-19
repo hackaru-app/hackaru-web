@@ -30,7 +30,7 @@ input.has-border {
   box-shadow: 0 3px 3px #00000005 inset;
   margin-bottom: 15px;
   &::placeholder {
-    color: $grey-ccc;
+    color: $grey-999;
     opacity: 1;
   }
   &:focus {
@@ -40,7 +40,7 @@ input.has-border {
     box-shadow: 0 3px 3px #00000005 inset;
   }
   &:placeholder-shown {
-    color: $grey-ccc;
+    border-color: $grey-eee;
   }
   &:placeholder-shown:focus {
     border-color: $yellow;
