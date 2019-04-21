@@ -35,7 +35,7 @@
         <datetime-picker v-model="startedAt" />
       </modal-item>
 
-      <modal-item>
+      <modal-item v-if="id">
         <modal-label>
           {{ $t('stoppedAt') }}
         </modal-label>
