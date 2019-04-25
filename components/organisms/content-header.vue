@@ -20,4 +20,15 @@
     padding: 0 30px;
   }
 }
+@media print {
+  .content-header {
+    padding: 0;
+    border-top: 2px $border solid;
+    margin-top: 30px;
+    border-bottom: 0;
+    h1 {
+      margin: 0 !important;
+    }
+  }
+}
 </style>

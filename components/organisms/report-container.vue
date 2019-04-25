@@ -1,5 +1,9 @@
 <template>
   <article class="report-container">
+    <div class="bar-chart-wrapper printer">
+      <bar-chart :chart-data="barChartData" class="bar-chart" />
+    </div>
+
     <div class="bar-chart-wrapper">
       <bar-chart :chart-data="barChartData" class="bar-chart" />
     </div>
@@ -75,6 +79,11 @@ export default {
   width: 100%;
   padding: 40px;
   box-sizing: border-box;
+}
+.bar-chart-wrapper.printer {
+  position: absolute;
+  top: -100vh;
+  width: 170mm;
 }
 .bar-chart-wrapper {
   max-width: 100%;
@@ -168,6 +177,27 @@ export default {
     margin: 0;
     padding: 35px 30px;
     width: auto;
+  }
+}
+@media print {
+  .bar-chart-wrapper {
+    display: none;
+  }
+  .bar-chart-wrapper.printer {
+    position: static;
+    display: flex;
+    padding: 30px;
+  }
+  .report-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .duration {
+    color: #000;
   }
 }
 </style>

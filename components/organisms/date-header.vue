@@ -3,6 +3,7 @@
 <template>
   <content-header>
     <div class="date-heading">
+      <span>Report</span>
       <btn
         :aria-label="$t('ariaLabels.previous')"
         class="left-arrow-button has-icon"
@@ -192,11 +193,26 @@ export default {
     margin: 0 15px;
     margin-bottom: 2px;
   }
+  span {
+    display: none;
+  }
 }
 nav {
   display: flex;
 }
 .today-button {
   margin-right: 20px;
+}
+@media print {
+  .left-arrow-button,
+  .right-arrow-button {
+    display: none;
+  }
+  .date-heading span {
+    display: inline;
+    color: $grey-333;
+    font-size: 26px;
+    margin-right: 15px;
+  }
 }
 </style>

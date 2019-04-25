@@ -154,4 +154,10 @@ export default {
   height: 100vh;
   box-shadow: -3px 0 3px #00000005;
 }
+@media print {
+  .slider-item {
+    height: auto;
+    box-shadow: none;
+  }
+}
 </style>

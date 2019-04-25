@@ -46,4 +46,10 @@ select {
   opacity: 0;
   cursor: pointer;
 }
+@media print {
+  .marshmallow-select button {
+    background-color: $grey-f5f5f5;
+    box-shadow: none;
+  }
+}
 </style>

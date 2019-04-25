@@ -5,6 +5,16 @@ exports[`ReportContainer render correctly 1`] = `
   class="report-container"
 >
   <div
+    class="bar-chart-wrapper printer"
+  >
+    <bar-chart-stub
+      chartdata="[object Object]"
+      class="bar-chart"
+      options="[object Object]"
+    />
+  </div>
+   
+  <div
     class="bar-chart-wrapper"
   >
     <bar-chart-stub

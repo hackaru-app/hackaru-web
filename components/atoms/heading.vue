@@ -20,4 +20,9 @@
 .heading.is-large {
   font-size: 22px;
 }
+@media print {
+  .heading {
+    font-size: 26px;
+  }
+}
 </style>

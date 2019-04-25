@@ -5,6 +5,10 @@ exports[`DateHeader render correctly 1`] = `
   <div
     class="date-heading"
   >
+    <span>
+      Report
+    </span>
+     
     <btn-stub
       aria-label="ariaLabels.previous"
       class="left-arrow-button has-icon"

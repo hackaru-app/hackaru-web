@@ -7,6 +7,7 @@
         <img src="@/assets/logo.svg" class="logo-icon" />
       </nuxt-link>
     </h1>
+    <span class="url">www.hackaru.app</span>
     <ul v-if="showMenu">
       <li
         v-for="link in links"
@@ -90,7 +91,7 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  background: $background-dark;
+  background-color: $background-dark;
   z-index: 9;
   &::before {
     display: flex;
@@ -99,13 +100,16 @@ export default {
     content: '';
     top: -50vh;
     left: 0;
-    background: $background-dark;
+    background-color: $background-dark;
     z-index: -1;
     height: 200vh;
   }
   /deep/ + * {
     margin-left: $side-bar-min-width;
   }
+}
+.url {
+  display: none;
 }
 h1 {
   margin: 0;
@@ -232,6 +236,59 @@ li button {
   }
   .add-button {
     display: none;
+  }
+}
+@media print {
+  .menu {
+    position: static;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: auto;
+    height: auto;
+    background: none;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    /deep/ + * {
+      margin-left: 0;
+    }
+    &::before {
+      display: none;
+    }
+  }
+  h1 a {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    background-color: $background-dark;
+  }
+  h1 a .logo-icon {
+    width: 18px;
+    height: 18px;
+  }
+  h1 a .logo-icon svg {
+    fill: rgba(0, 0, 0, 1);
+  }
+  h1 a {
+    padding: 0;
+    text-decoration: none;
+  }
+  ul {
+    display: none;
+  }
+  .add-button {
+    display: none;
+  }
+  .url {
+    display: block;
+    font-size: $font-size;
   }
 }
 </style>
