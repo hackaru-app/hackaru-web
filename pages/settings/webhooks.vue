@@ -45,10 +45,10 @@
         <btn
           :aria-label="$t('ariaLabels.add')"
           type="button"
-          class="add-button has-icon"
+          class="is-primary is-circle has-dropshadow add-button"
           @click="showModal"
         >
-          <icon name="plus-icon" class="is-primary" />
+          <icon name="plus-icon" />
         </btn>
       </header>
 
@@ -163,6 +163,7 @@ select {
 .header {
   display: flex;
   border-bottom: 1px $border solid;
+  align-items: baseline;
   h1 {
     flex: 1;
     display: flex;
