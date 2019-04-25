@@ -39,15 +39,6 @@ describe('Reports', () => {
     expect(factory.shallow().element).toMatchSnapshot();
   });
 
-  it('dispatch reports/getReports', () => {
-    factory.shallow();
-    expect($store.dispatch).toHaveBeenCalledWith('reports/getReports', {
-      start: parse('2019-01-31T00:00:00'),
-      end: parse('2019-01-31T23:59:59.999'),
-      period: 'hour'
-    });
-  });
-
   describe('when date change to daily', () => {
     beforeEach(() => {
       wrapper = factory.shallow();

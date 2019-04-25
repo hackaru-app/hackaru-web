@@ -5,6 +5,7 @@
       :date.sync="date"
       :period-index.sync="index"
       :periods="periods"
+      cache-key="calendarDateHeader"
       @left="slideLeft"
       @right="slideRight"
     />

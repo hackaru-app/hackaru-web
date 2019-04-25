@@ -134,6 +134,10 @@ export default {
     periods: {
       type: Array,
       required: true
+    },
+    cacheKey: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -151,6 +155,15 @@ export default {
         this.period.startOf(this.date)
       );
     }
+  },
+  watch: {
+    periodIndex() {
+      localStorage.setItem(this.cacheKey, this.periodIndex);
+    }
+  },
+  mounted() {
+    const cached = localStorage.getItem(this.cacheKey);
+    if (cached) this.changePeriod(cached);
   },
   methods: {
     left() {

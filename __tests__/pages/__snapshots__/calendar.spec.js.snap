@@ -3,6 +3,7 @@
 exports[`Calendar render correctly 1`] = `
 <section>
   <date-header-stub
+    cachekey="calendarDateHeader"
     date="2019-01-31"
     periodindex="1"
     periods="[object Object],[object Object]"

@@ -10,12 +10,25 @@ describe('DateHeader', () => {
   MockDate.set('2019-01-31T01:23:45');
 
   beforeEach(() => {
+    localStorage.clear();
     factory = new Factory(DateHeader, {
       stubs: ['v-date-picker', 'no-ssr'],
       propsData: {
         date: '2018-01-01',
+        cacheKey: 'testKey',
         periods: [periods.day, periods.week, periods.month, periods.year]
       }
+    });
+  });
+
+  describe('when localStorage has cached index', () => {
+    beforeEach(() => {
+      localStorage.setItem('testKey', 2);
+      wrapper = factory.shallow();
+    });
+
+    it('set cached index', () => {
+      expect(wrapper.emitted('update:periodIndex')[0]).toEqual([2]);
     });
   });
 
@@ -86,6 +99,17 @@ describe('DateHeader', () => {
 
     it('emit update:periodIndex', () => {
       expect(wrapper.emitted('update:periodIndex')[0]).toEqual([1]);
+    });
+  });
+
+  describe('when periodIndex changed', () => {
+    beforeEach(() => {
+      wrapper = factory.shallow();
+      wrapper.setProps({ periodIndex: 1 });
+    });
+
+    it('store index to localStorage', () => {
+      expect(localStorage.setItem).toHaveBeenCalledWith('testKey', 1);
     });
   });
 });
