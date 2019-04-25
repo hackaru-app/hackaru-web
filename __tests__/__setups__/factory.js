@@ -13,6 +13,7 @@ const defaults = {
   mocks: {
     $router: {
       push: jest.fn(),
+      replace: jest.fn(),
       go: jest.fn()
     },
     $route: {

@@ -13,7 +13,7 @@ export default {
   methods: {
     redirect() {
       sessionStorage.setItem('previousPath', this.$route.fullPath);
-      this.$router.push(this.localePath('auth'));
+      this.$router.replace(this.localePath('auth'));
     }
   }
 };

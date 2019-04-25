@@ -38,7 +38,7 @@ describe('LoginGuard', () => {
 
     it('redirect to /auth', () => {
       factory.shallow();
-      expect(factory.options.mocks.$router.push).toHaveBeenCalledWith(
+      expect(factory.options.mocks.$router.replace).toHaveBeenCalledWith(
         '/en/auth'
       );
     });
