@@ -2,6 +2,8 @@
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-select: none;
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
   background: $background;
 }
 body, select, input, button {
@@ -59,3 +61,16 @@ html .toasted.toasted-primary {
 // Animation
 $animationDuration: $animation-duration;
 @import "../../node_modules/vue2-animate/src/sass/vue2-animate.scss";
+
+
+// Print
+@media print {
+  body {
+    margin: 30px auto;
+    max-width: 172mm;
+    background-color: #fff;
+  }
+  body, select, input, button {
+    color: #000;
+  }
+}

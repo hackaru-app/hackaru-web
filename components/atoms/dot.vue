@@ -24,4 +24,8 @@ export default {
   width: 14px;
   height: 14px;
 }
+@media print {
+  .dot {
+  }
+}
 </style>

@@ -15,6 +15,12 @@ exports[`SideBar render correctly 1`] = `
     </a>
   </h1>
    
+  <span
+    class="url"
+  >
+    www.hackaru.app
+  </span>
+   
   <ul>
     <li
       class=""
