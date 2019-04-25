@@ -7,10 +7,10 @@
       <btn
         :aria-label="$t('ariaLabels.add')"
         type="button"
-        class="add-button has-icon"
+        class="is-primary is-circle has-dropshadow add-button"
         @click="showModal"
       >
-        <icon name="plus-icon" class="is-primary" />
+        <icon name="plus-icon" />
       </btn>
     </content-header>
     <activity
@@ -64,6 +64,9 @@ export default {
   display: flex;
   padding: 20px 40px;
   color: $text-light;
+}
+.add-button {
+  margin-right: -5px;
 }
 @include mq(small) {
   .empty {

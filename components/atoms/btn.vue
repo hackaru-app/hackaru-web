@@ -35,6 +35,12 @@ button.is-primary {
   background-color: $cyan;
   color: #fff;
 }
+button.is-circle {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+}
 button.is-danger {
   background-color: $red;
   color: #fff;

@@ -9,11 +9,10 @@ exports[`Index render correctly 1`] = `
      
     <btn-stub
       aria-label="ariaLabels.add"
-      class="add-button has-icon"
+      class="is-primary is-circle has-dropshadow add-button"
       type="button"
     >
       <icon-stub
-        class="is-primary"
         name="plus-icon"
       />
     </btn-stub>
