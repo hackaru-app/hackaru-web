@@ -5,6 +5,7 @@
       :date.sync="date"
       :period-index.sync="index"
       :periods="periods"
+      cache-key="reportDateHeader"
       @left="slideLeft"
       @right="slideRight"
     />
@@ -65,7 +66,7 @@ export default {
   data() {
     return {
       date: format(new Date(), 'YYYY-MM-DD'),
-      index: 0,
+      index: undefined,
       periods: [
         {
           ...periods.day,
@@ -105,8 +106,8 @@ export default {
       this.fetchPeriod();
     }
   },
-  async mounted() {
-    await this.fetchPeriod();
+  mounted() {
+    this.index = this.index || 0;
   },
   methods: {
     fetchPeriod() {
