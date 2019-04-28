@@ -268,6 +268,8 @@ li button {
     justify-content: center;
     align-items: center;
     background-color: $background-dark;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
   }
   h1 a .logo-icon {
     width: 18px;

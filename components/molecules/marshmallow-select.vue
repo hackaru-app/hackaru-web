@@ -49,6 +49,8 @@ select {
 @media print {
   .marshmallow-select button {
     background-color: $grey-f5f5f5;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
     box-shadow: none;
   }
 }
