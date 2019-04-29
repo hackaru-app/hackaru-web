@@ -75,16 +75,22 @@ exports[`ActivityEditor render correctly 1`] = `
       
       </btn-stub>
        
-      <btn-stub
-        aria-label="ariaLabels.delete"
-        class="delete-button has-icon"
-        type="button"
+      <div
+        class="icons"
       >
-        <icon-stub
-          class="is-danger"
-          name="trash-icon"
-        />
-      </btn-stub>
+        <!---->
+         
+        <btn-stub
+          aria-label="ariaLabels.delete"
+          class="delete-button has-icon"
+          type="button"
+        >
+          <icon-stub
+            class="is-danger"
+            name="trash-icon"
+          />
+        </btn-stub>
+      </div>
     </modal-footer-stub>
   </form>
 </section>

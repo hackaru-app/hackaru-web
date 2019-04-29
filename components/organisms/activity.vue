@@ -110,6 +110,7 @@ export default {
         description: this.description,
         startedAt: this.startedAt,
         stoppedAt: this.stoppedAt,
+        duration: this.duration,
         project: this.project
       });
     }

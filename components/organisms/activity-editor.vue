@@ -46,15 +46,26 @@
         <btn type="submit" class="is-rounded is-primary">
           {{ $t(id ? 'update' : 'start') }}
         </btn>
-        <btn
-          v-if="id"
-          :aria-label="$t('ariaLabels.delete')"
-          type="button"
-          class="delete-button has-icon"
-          @click="deleteActivity"
-        >
-          <icon name="trash-icon" class="is-danger" />
-        </btn>
+        <div class="icons">
+          <btn
+            v-if="id && isSharedSupported"
+            :aria-label="$t('ariaLabels.share')"
+            type="button"
+            class="share-button has-icon"
+            @click="share"
+          >
+            <icon name="share-icon" />
+          </btn>
+          <btn
+            v-if="id"
+            :aria-label="$t('ariaLabels.delete')"
+            type="button"
+            class="delete-button has-icon"
+            @click="deleteActivity"
+          >
+            <icon name="trash-icon" class="is-danger" />
+          </btn>
+        </div>
       </modal-footer>
     </form>
   </section>
@@ -70,6 +81,7 @@ import ProjectName from '@/components/molecules/project-name';
 import DatetimePicker from '@/components/molecules/datetime-picker';
 import Btn from '@/components/atoms/btn';
 import Icon from '@/components/atoms/icon';
+import humanizeDuration from 'humanize-duration';
 
 export default {
   name: 'ActivityEditor',
@@ -102,6 +114,11 @@ export default {
       stoppedAt: undefined
     };
   },
+  computed: {
+    isSharedSupported() {
+      return navigator.share !== undefined;
+    }
+  },
   watch: {
     params: {
       immediate: true,
@@ -109,6 +126,7 @@ export default {
         const params = this.params || {};
         this.id = params.id || this.id;
         this.description = params.description || this.description;
+        this.duration = params.duration || 0;
         this.startedAt = params.startedAt || this.startedAt;
         this.stoppedAt = params.stoppedAt || this.stoppedAt;
         this.project = params.project || this.project;
@@ -146,6 +164,18 @@ export default {
         component: ProjectList,
         params: { selected: this.project.id }
       });
+    },
+    share() {
+      const duration = humanizeDuration(this.duration * 1000, {
+        language: 'ja',
+        conjunction: ' '
+      });
+      navigator.share({
+        title: 'Hackaru',
+        text: `「${this.description ||
+          this.project.name}」を計測しました！ - ${duration} #hackaru`,
+        url: 'https://www.hackaru.app'
+      });
     }
   }
 };
@@ -164,6 +194,13 @@ export default {
   background: none;
   &:active {
     transform: scale(0.9);
+  }
+}
+.icons {
+  display: flex;
+  flex-direction: row;
+  button {
+    margin-left: 15px;
   }
 }
 </style>

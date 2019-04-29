@@ -5,7 +5,8 @@
       "start": "Start Timer"
     },
     "ariaLabels": {
-      "delete": "Delete"
+      "delete": "Delete",
+      "share": "Share"
     },
     "project": "Project",
     "description": "Description",
@@ -26,7 +27,8 @@
       "start": "計測を開始"
     },
     "ariaLabels": {
-      "delete": "削除"
+      "delete": "削除",
+      "share": "シェアする"
     },
     "project": "プロジェクト",
     "description": "備考",
