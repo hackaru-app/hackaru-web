@@ -2,8 +2,11 @@ import Factory from '@/__tests__/__setups__/factory';
 import ReportContainer from '@/components/organisms/report-container';
 
 describe('ReportContainer', () => {
-  it('render correctly', () => {
-    const wrapper = new Factory(ReportContainer, {
+  let factory;
+  let wrapper;
+
+  beforeEach(() => {
+    factory = new Factory(ReportContainer, {
       propsData: {
         doughnutChartData: {
           labels: ['Development', 'Review'],
@@ -37,9 +40,11 @@ describe('ReportContainer', () => {
             }
           ]
         },
+        start: new Date(),
+        end: new Date(),
         summary: {
           1: 100,
-          2: 50
+          2: 0
         },
         projects: [
           {
@@ -54,7 +59,25 @@ describe('ReportContainer', () => {
           }
         ]
       }
-    }).shallow();
+    });
+  });
+
+  it('render correctly', () => {
+    wrapper = factory.shallow();
     expect(wrapper.element).toMatchSnapshot();
+  });
+
+  describe('when press share button', () => {
+    beforeEach(() => {
+      window.navigator.share = jest.fn();
+      wrapper = factory.shallow();
+      wrapper.setData({ isSharedSupported: true });
+      wrapper.vm.$forceUpdate();
+      wrapper.find('.share-button').vm.$emit('click');
+    });
+
+    it('call share API', () => {
+      expect(window.navigator.share).toHaveBeenCalled();
+    });
   });
 });

@@ -169,4 +169,16 @@ describe('ActivityEditor', () => {
       ]);
     });
   });
+
+  describe('when press share button', () => {
+    beforeEach(() => {
+      window.navigator.share = jest.fn();
+      wrapper = factory.shallow();
+      wrapper.find('.share-button').vm.$emit('click');
+    });
+
+    it('call share API', () => {
+      expect(window.navigator.share).toHaveBeenCalled();
+    });
+  });
 });

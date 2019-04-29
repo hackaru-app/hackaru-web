@@ -116,6 +116,7 @@ describe('Activity', () => {
         {
           id: 1,
           description: 'Review',
+          duration: 0,
           startedAt: '2019-01-01T01:23:45'
         }
       );

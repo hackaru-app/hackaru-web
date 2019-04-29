@@ -269,6 +269,7 @@ describe('CalendarActivity', () => {
         {
           id: 1,
           description: 'Create a database.',
+          duration: 3600,
           startedAt: '2019-01-01T01:23:45',
           stoppedAt: '2019-01-01T02:23:45'
         }
