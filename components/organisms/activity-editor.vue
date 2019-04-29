@@ -172,8 +172,7 @@ export default {
       });
       navigator.share({
         title: 'Hackaru',
-        text: `「${this.project.name}」を計測しました！ - ${duration} #hackaru`,
-        url: 'https://www.hackaru.app'
+        text: `「${this.project.name}」を計測しました！ - ${duration} #hackaru`
       });
     }
   }
