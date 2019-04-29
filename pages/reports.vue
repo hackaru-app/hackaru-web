@@ -119,7 +119,7 @@ export default {
     }
   },
   mounted() {
-    this.index = this.index || 0;
+    this.fetchPeriod();
   },
   methods: {
     fetchPeriod() {
