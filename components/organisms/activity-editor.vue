@@ -170,9 +170,12 @@ export default {
         language: 'ja',
         conjunction: ' '
       });
+      const title = [this.project.name, this.description]
+        .filter(v => v)
+        .join(' - ');
       navigator.share({
         title: 'Hackaru',
-        text: `「${this.project.name}」を計測しました！ - ${duration} #hackaru`
+        text: `「${title}」を計測しました！ - ${duration} #hackaru`
       });
     }
   }
