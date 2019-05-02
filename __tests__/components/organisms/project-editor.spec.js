@@ -35,6 +35,13 @@ describe('ProjectEditor', () => {
       });
     });
 
+    it('send ga event', () => {
+      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
+        'project',
+        'addProject'
+      );
+    });
+
     it('emit pop', () => {
       expect(wrapper.emitted('pop')[0]).toEqual([{ component: ProjectList }]);
     });
@@ -68,6 +75,13 @@ describe('ProjectEditor', () => {
       });
     });
 
+    it('send ga event', () => {
+      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
+        'project',
+        'updateProject'
+      );
+    });
+
     it('emit pop', () => {
       expect(wrapper.emitted('pop')[0]).toEqual([{ component: ProjectList }]);
     });
@@ -97,6 +111,13 @@ describe('ProjectEditor', () => {
 
     it('dispatch projects/deleteProject', () => {
       expect($store.dispatch).toHaveBeenCalledWith('projects/deleteProject', 1);
+    });
+
+    it('send ga event', () => {
+      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
+        'project',
+        'deleteProject'
+      );
     });
 
     it('emit pop', () => {
