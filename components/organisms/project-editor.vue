@@ -105,6 +105,7 @@ export default {
       });
       if (success) {
         this.pop();
+        this.$ga.event('project', 'addProject');
         this.$toast.success(this.$t('added'));
       }
     },
@@ -116,6 +117,7 @@ export default {
       });
       if (success) {
         this.pop();
+        this.$ga.event('project', 'updateProject');
         this.$toast.success(this.$t('updated'));
       }
     },
@@ -127,6 +129,7 @@ export default {
       );
       if (success) {
         this.pop();
+        this.$ga.event('project', 'deleteProject');
         this.$toast.success(this.$t('deleted'));
       }
     },
