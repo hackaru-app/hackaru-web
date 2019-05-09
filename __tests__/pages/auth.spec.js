@@ -33,7 +33,7 @@ describe('Auth', () => {
     });
 
     it('redirect to index', () => {
-      expect(factory.options.mocks.$router.push).toHaveBeenCalledWith(
+      expect(factory.options.mocks.$router.replace).toHaveBeenCalledWith(
         '/en/index'
       );
     });
@@ -47,7 +47,7 @@ describe('Auth', () => {
     });
 
     it('redirect to before path', () => {
-      expect(factory.options.mocks.$router.push).toHaveBeenCalledWith(
+      expect(factory.options.mocks.$router.replace).toHaveBeenCalledWith(
         '/previous'
       );
     });
@@ -60,7 +60,7 @@ describe('Auth', () => {
     });
 
     it('does not redirect to index', () => {
-      expect(factory.options.mocks.$router.push).not.toHaveBeenCalledWith(
+      expect(factory.options.mocks.$router.replace).not.toHaveBeenCalledWith(
         'index'
       );
     });
@@ -168,7 +168,7 @@ describe('Auth', () => {
     });
 
     it('move to previous page', () => {
-      expect(factory.options.mocks.$router.push).toHaveBeenCalledWith(
+      expect(factory.options.mocks.$router.replace).toHaveBeenCalledWith(
         '/previous'
       );
     });
@@ -183,7 +183,7 @@ describe('Auth', () => {
     });
 
     it('does not move to previous page', () => {
-      expect(factory.options.mocks.$router.push).not.toHaveBeenCalled();
+      expect(factory.options.mocks.$router.replace).not.toHaveBeenCalled();
     });
   });
 
@@ -222,7 +222,7 @@ describe('Auth', () => {
     });
 
     it('move to previous page', () => {
-      expect(factory.options.mocks.$router.push).toHaveBeenCalledWith(
+      expect(factory.options.mocks.$router.replace).toHaveBeenCalledWith(
         '/previous'
       );
     });
@@ -237,7 +237,7 @@ describe('Auth', () => {
     });
 
     it('does not move to previous page', () => {
-      expect(factory.options.mocks.$router.push).not.toHaveBeenCalled();
+      expect(factory.options.mocks.$router.replace).not.toHaveBeenCalled();
     });
   });
 });
