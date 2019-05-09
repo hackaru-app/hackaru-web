@@ -48,7 +48,7 @@
         </btn>
         <div class="icons">
           <btn
-            v-if="id && isSharedSupported"
+            v-if="stoppedAt && isSharedSupported"
             :aria-label="$t('ariaLabels.share')"
             type="button"
             class="share-button has-icon"
@@ -81,7 +81,7 @@ import ProjectName from '@/components/molecules/project-name';
 import DatetimePicker from '@/components/molecules/datetime-picker';
 import Btn from '@/components/atoms/btn';
 import Icon from '@/components/atoms/icon';
-import humanizeDuration from 'humanize-duration';
+import { distanceInWordsStrict } from 'date-fns';
 
 export default {
   name: 'ActivityEditor',
@@ -166,10 +166,7 @@ export default {
       });
     },
     share() {
-      const duration = humanizeDuration(this.duration * 1000, {
-        language: 'ja',
-        conjunction: ' '
-      });
+      const duration = distanceInWordsStrict(this.startedAt, this.stoppedAt);
       const title = [this.project.name, this.description]
         .filter(v => v)
         .join(' - ');

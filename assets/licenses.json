@@ -47,12 +47,6 @@
         "licenseUrl": "https://github.com/Goldob/hh-mm-ss/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "humanize-duration": {
-        "licenses": "Unlicense",
-        "repository": "https://github.com/EvanHahn/HumanizeDuration.js",
-        "licenseUrl": "https://github.com/EvanHahn/HumanizeDuration.js/raw/master/LICENSE.txt",
-        "parents": "Hackaru"
-    },
     "jwt-decode": {
         "licenses": "MIT",
         "repository": "https://github.com/auth0/jwt-decode",
