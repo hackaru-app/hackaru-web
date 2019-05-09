@@ -66,13 +66,11 @@ exports[`ReportContainer render correctly 1`] = `
           class="duration"
         >
           
-          00:00:00
+          00:00:50
         
         </time>
       </li>
     </ul>
   </div>
-   
-  <!---->
 </article>
 `;
