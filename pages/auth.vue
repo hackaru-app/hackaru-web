@@ -168,7 +168,7 @@ export default {
       }
     },
     goBack() {
-      this.$router.push(
+      this.$router.replace(
         sessionStorage.getItem('previousPath') || this.localePath('index')
       );
       sessionStorage.removeItem('previousPath');
