@@ -19,8 +19,6 @@
                 :doughnut-chart-data="doughnutChartData"
                 :summary="summary"
                 :projects="projects"
-                :start="start"
-                :end="end"
                 chart-id="prev"
               />
             </div>
@@ -30,8 +28,6 @@
                 :doughnut-chart-data="doughnutChartData"
                 :summary="summary"
                 :projects="projects"
-                :start="start"
-                :end="end"
                 chart-id="current"
               />
             </div>
@@ -41,8 +37,6 @@
                 :doughnut-chart-data="doughnutChartData"
                 :summary="summary"
                 :projects="projects"
-                :start="start"
-                :end="end"
                 chart-id="next"
               />
             </div>
@@ -102,12 +96,6 @@ export default {
     }),
     period() {
       return this.periods[this.index];
-    },
-    start() {
-      return this.period.startOf(this.date);
-    },
-    end() {
-      return this.period.endOf(this.date);
     }
   },
   watch: {
@@ -124,8 +112,8 @@ export default {
   methods: {
     fetchPeriod() {
       this.$store.dispatch('reports/getReports', {
-        start: this.start,
-        end: this.end,
+        start: this.period.startOf(this.date),
+        end: this.period.endOf(this.date),
         period: this.period.unit
       });
     },
@@ -136,10 +124,16 @@ export default {
       this.$refs.slider.slideRight();
     },
     prev() {
-      this.date = format(this.period.add(this.start, -1), 'YYYY-MM-DD');
+      this.date = format(
+        this.period.add(this.period.startOf(this.date), -1),
+        'YYYY-MM-DD'
+      );
     },
     next() {
-      this.date = format(this.period.add(this.start, 1), 'YYYY-MM-DD');
+      this.date = format(
+        this.period.add(this.period.startOf(this.date), 1),
+        'YYYY-MM-DD'
+      );
     }
   }
 };

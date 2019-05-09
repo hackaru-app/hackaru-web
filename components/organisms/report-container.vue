@@ -26,36 +26,20 @@
         </li>
       </ul>
     </div>
-
-    <btn
-      v-if="isSharedSupported"
-      :aria-label="$t('ariaLabels.share')"
-      type="button"
-      class="share-button has-dropshadow"
-      @click="share"
-    >
-      <icon name="share-icon" />
-      共有
-    </btn>
   </article>
 </template>
 
 <script>
 import ProjectName from '@/components/molecules/project-name';
 import DoughnutChart from '@/components/atoms/doughnut-chart';
-import Icon from '@/components/atoms/icon';
 import BarChart from '@/components/atoms/bar-chart';
-import Btn from '@/components/atoms/btn';
 import { fromS } from 'hh-mm-ss';
-import { format } from 'date-fns';
 
 export default {
   components: {
     DoughnutChart,
     BarChart,
-    ProjectName,
-    Icon,
-    Btn
+    ProjectName
   },
   props: {
     barChartData: {
@@ -73,49 +57,16 @@ export default {
     projects: {
       type: Array,
       required: true
-    },
-    start: {
-      type: Date,
-      required: true
-    },
-    end: {
-      type: Date,
-      required: true
     }
   },
   data() {
     return {
-      fromS,
-      isSharedSupported: false
+      fromS
     };
   },
   computed: {
     isEmpty() {
       return Object.keys(this.summary).length <= 0;
-    }
-  },
-  mounted() {
-    this.isSharedSupported = navigator.share !== undefined;
-  },
-  methods: {
-    share() {
-      const range = `${format(this.start, 'YYYY/MM/DD')}〜${format(
-        this.end,
-        'YYYY/MM/DD'
-      )}`;
-      const lists = this.projects
-        .map(
-          project =>
-            `* ${project.name}  ${fromS(
-              this.summary[project.id] || 0,
-              'hh:mm:ss'
-            )}`
-        )
-        .join('\n');
-      navigator.share({
-        title: 'Hackaru',
-        text: `${range}のレポート\n---\n${lists}\n---\n#hackaru`
-      });
     }
   }
 };
@@ -188,16 +139,6 @@ export default {
   color: $text-lighter;
   font-family: $font-family-duration;
 }
-.share-button {
-  margin: 30px;
-  padding: 13px 15px;
-  align-self: flex-start;
-  line-height: normal;
-  height: auto;
-  .icon {
-    margin-right: 8px;
-  }
-}
 @include mq(small) {
   .report-container {
     flex-direction: column;
@@ -257,9 +198,6 @@ export default {
   }
   .duration {
     color: #000;
-  }
-  .share-button {
-    display: none;
   }
 }
 </style>
