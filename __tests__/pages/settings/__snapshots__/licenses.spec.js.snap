@@ -166,20 +166,6 @@ exports[`Licenses render correctly 1`] = `
       </li>
       <li>
         <a
-          href="https://github.com/EvanHahn/HumanizeDuration.js/raw/master/LICENSE.txt"
-          rel="noopener"
-          target="_blank"
-        >
-          
-          humanize-duration
-          
-          <span>
-             - Unlicense
-          </span>
-        </a>
-      </li>
-      <li>
-        <a
           href="https://github.com/auth0/jwt-decode/raw/master/LICENSE"
           rel="noopener"
           target="_blank"
