@@ -1,37 +1,24 @@
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import BarChart from '@/components/atoms/bar-chart';
 
 describe('BarChart', () => {
-  let factory;
+  let wrapper;
 
   beforeEach(() => {
-    factory = new Factory(BarChart, {
+    wrapper = shallowMount(BarChart, {
       propsData: {
         chartData: {
-          labels: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
-          ],
+          labels: ['Jan', 'Feb', 'Mar'],
           datasets: [
             {
               label: 'Development',
               backgroundColor: '#ff0',
-              data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+              data: [10, 10, 10]
             },
             {
               label: 'Review',
               backgroundColor: '#ff0',
-              data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+              data: [10, 10, 10]
             }
           ]
         }
@@ -39,15 +26,8 @@ describe('BarChart', () => {
     });
   });
 
-  it('render correctly', () => {
-    const wrapper = factory.shallow();
-    expect(wrapper.element).toMatchSnapshot();
-  });
-
-  it('show tooltip text correctly', () => {
-    const wrapper = factory.shallow();
-    expect(wrapper.vm.options.tooltips.callbacks.label({ yLabel: 10 })).toBe(
-      '00:10'
-    );
+  it('show tooltip label correctly', () => {
+    const label = wrapper.vm.options.tooltips.callbacks.label;
+    expect(label({ yLabel: 10 })).toBe('00:10');
   });
 });
