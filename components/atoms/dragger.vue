@@ -1,17 +1,25 @@
 <template>
-  <div
-    v-dragdrop="dragdrop"
-    :style="{
-      top: `${top}px`,
-      left: `${left}px`
-    }"
-  >
-    <slot />
+  <div :style="{ top: `${top}px`, left: `${left}px` }">
+    <drag-drop
+      :delay="400"
+      :enabled="enabled"
+      class="drag-drop"
+      @start="drag"
+      @move="dragging"
+      @end="drop"
+    >
+      <slot />
+    </drag-drop>
   </div>
 </template>
 
 <script>
+import DragDrop from '@/components/atoms/drag-drop';
+
 export default {
+  components: {
+    DragDrop
+  },
   props: {
     top: {
       type: Number,
@@ -20,16 +28,14 @@ export default {
     left: {
       type: Number,
       default: 0
+    },
+    enabled: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
     return {
-      dragdrop: {
-        drag: this.drag,
-        dragging: this.dragging,
-        drop: this.drop,
-        wait: 500
-      },
       started: {
         top: this.top,
         left: this.left
@@ -46,13 +52,18 @@ export default {
       this.$emit('update:top', this.started.top - distance.y);
       this.$emit('update:left', this.started.left - distance.x);
       this.$emit('moving', e);
-      e.preventDefault(); // disable page-scroll for mobile
+      e.preventDefault();
     },
-    drop({ e }) {
-      const moved =
-        this.started.top !== this.top || this.started.left !== this.left;
+    drop({ e, distance }) {
+      const moved = distance.x !== 0 || distance.y !== 0;
       this.$emit(moved ? 'end' : 'cancel', e);
     }
   }
 };
 </script>
+
+<style scoped lang="scss">
+.drag-drop {
+  width: 100%;
+}
+</style>

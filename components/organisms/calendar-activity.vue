@@ -3,6 +3,7 @@
     ref="dragger"
     :top.sync="top"
     :left.sync="left"
+    :enabled="!resizeMoved"
     :class="['dragger', { dragging }]"
     :style="{ height: `${height}px` }"
     @start="moveStart"
