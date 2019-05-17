@@ -12,19 +12,17 @@ describe('CalendarEvent', () => {
   });
 
   describe('when startedAt is undefined', () => {
-    const wrapper = shallow();
-    wrapper.setProps({ startedAt: undefined });
-
     it('has an empty duration', () => {
+      const wrapper = shallow();
+      wrapper.setProps({ startedAt: undefined });
       expect(wrapper.find('.duration').text()).toBe('');
     });
   });
 
   describe('when stoppedAt is undefined', () => {
-    const wrapper = shallow();
-    wrapper.setProps({ stoppedAt: undefined });
-
     it('has an empty duration', () => {
+      const wrapper = shallow();
+      wrapper.setProps({ stoppedAt: undefined });
       expect(wrapper.find('.duration').text()).toBe('');
     });
   });

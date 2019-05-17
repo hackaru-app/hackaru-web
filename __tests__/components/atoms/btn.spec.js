@@ -5,10 +5,9 @@ describe('Btn', () => {
   const shallow = factory(Btn);
 
   describe('when click button', () => {
-    const wrapper = shallow();
-    wrapper.trigger('click');
-
     it('emit click event', () => {
+      const wrapper = shallow();
+      wrapper.trigger('click');
       expect(wrapper.emitted('click')).toBeTruthy();
     });
   });

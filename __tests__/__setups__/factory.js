@@ -62,5 +62,5 @@ export default class Factory {
   }
 }
 
-export const factory = (component, defaults) => options =>
-  shallowMount(component, merge(defaults, options));
+export const factory = (component, options) => () =>
+  shallowMount(component, options);
