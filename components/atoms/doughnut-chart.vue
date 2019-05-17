@@ -19,8 +19,7 @@ export default {
         },
         tooltips: {
           callbacks: {
-            label: (tooltipItem, data) =>
-              fromS(data.datasets[0].data[tooltipItem.index])
+            label: ({ index }, data) => fromS(data.datasets[0].data[index])
           }
         }
       })

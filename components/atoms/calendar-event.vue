@@ -7,7 +7,7 @@
     }"
   >
     <h1>{{ title }}</h1>
-    <p>{{ duration }}</p>
+    <p class="duration">{{ duration }}</p>
   </article>
 </template>
 

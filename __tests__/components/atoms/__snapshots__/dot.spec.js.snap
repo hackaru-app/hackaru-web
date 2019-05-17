@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Dot render correctly 1`] = `
-<span
-  class="dot"
-  style="background-color: rgb(255, 0, 0);"
-/>
-`;

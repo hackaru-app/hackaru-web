@@ -1,22 +1,14 @@
-import Factory from '@/__tests__/__setups__/factory';
+import { factory } from '@/__tests__/__setups__/factory';
 import Btn from '@/components/atoms/btn';
 
 describe('Btn', () => {
-  let factory;
-  let wrapper;
-
-  beforeEach(() => {
-    factory = new Factory(Btn);
-  });
-
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
+  const shallow = factory(Btn);
 
   describe('when click button', () => {
-    it('emit click', () => {
-      wrapper = factory.shallow();
-      wrapper.trigger('click');
+    const wrapper = shallow();
+    wrapper.trigger('click');
+
+    it('emit click event', () => {
       expect(wrapper.emitted('click')).toBeTruthy();
     });
   });
