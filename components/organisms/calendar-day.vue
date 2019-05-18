@@ -1,11 +1,23 @@
 <template>
-  <section>
-    <div v-dragdrop="dragdrop" ref="events" class="events">
+  <resizer
+    :height.sync="ghostHeight"
+    :delay="500"
+    class="calendar-day"
+    @start="ghostDrag"
+    @resizing="ghostDragging"
+    @end="ghostDrop"
+  >
+    <section ref="events" class="events">
       <div class="row">
-        <calendar-ghost-activity
-          ref="ghost"
-          :day="day"
-          :update-guide-line="updateGuideLine"
+        <calendar-event
+          v-show="ghostVisibility"
+          :style="{
+            top: `${ghostTop}px`,
+            height: `${ghostHeight}px`
+          }"
+          title="New Activity"
+          color="#cccfd9"
+          class="ghost-event"
         />
       </div>
       <div
@@ -25,20 +37,22 @@
           :update-guide-line="updateGuideLine"
         />
       </div>
-    </div>
-  </section>
+    </section>
+  </resizer>
 </template>
 
 <script>
+import Resizer from '@/components/atoms/resizer';
+import CalendarEvent from '@/components/atoms/calendar-event';
 import CalendarActivity from '@/components/organisms/calendar-activity';
-import CalendarGhostActivity from '@/components/organisms/calendar-ghost-activity';
 import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
 import { format } from 'date-fns';
 
 export default {
   components: {
-    CalendarActivity,
-    CalendarGhostActivity
+    Resizer,
+    CalendarEvent,
+    CalendarActivity
   },
   mixins: [PxMinConvertable],
   props: {
@@ -62,12 +76,9 @@ export default {
   data() {
     return {
       format,
-      dragdrop: {
-        drag: this.ghostDrag,
-        dragging: this.ghostDragging,
-        drop: this.ghostDrop,
-        wait: 500
-      }
+      ghostTop: 0,
+      ghostHeight: 20,
+      ghostVisibility: false
     };
   },
   computed: {
@@ -80,23 +91,26 @@ export default {
   },
   methods: {
     ghostDrag(e) {
-      this.$refs.ghost.drag(e);
+      this.ghostVisibility = true;
+      const pageY = (e.touches ? e.touches[0] : e).pageY;
+      this.ghostTop = pageY - this.$mezr.offset(this.$el).top;
+      this.updateGuideLine(this.ghostTop + this.ghostHeight, this.$el);
       this.$emit('ghost-drag', e);
     },
     ghostDragging(e) {
-      this.$refs.ghost.dragging(e);
-      this.$emit('ghost-dragging', e);
+      this.updateGuideLine(this.ghostTop + this.ghostHeight, this.$el);
     },
     ghostDrop(e) {
-      this.$refs.ghost.drop(e);
-      this.$emit('ghost-drop', e);
+      this.ghostVisibility = false;
+      this.ghostHeight = 20;
+      this.updateGuideLine();
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-section {
+.calendar-day {
   flex: 1;
   border-left: 1px $border solid;
   box-sizing: border-box;

@@ -11,7 +11,15 @@
     @end="moveEnd"
     @cancel="moveCancel"
   >
-    <div @mousedown="mousedown" @mouseup="mouseup">
+    <div class="exclusiver" @mousedown="mousedown" @mouseup="mouseup">
+      <calendar-event
+        :style="{ height: `${height}px` }"
+        :title="title"
+        :color="color"
+        :started-at="startedAt"
+        :stopped-at="stoppedAt"
+        class="event"
+      />
       <resizer
         ref="resizer"
         :height.sync="height"
@@ -23,12 +31,7 @@
         @end="resizeEnd"
         @cancel="resizeCancel"
       >
-        <calendar-event
-          :title="title"
-          :color="color"
-          :started-at="startedAt"
-          :stopped-at="stoppedAt"
-        />
+        <span class="handler" />
       </resizer>
     </div>
   </dragger>
@@ -216,6 +219,28 @@ export default {
     opacity: 0.8;
   }
 }
+.event {
+  height: 100%;
+}
+.handler {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 5px;
+  padding-top: 15px;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  cursor: s-resize;
+}
+@include mq(small) {
+  .handler {
+    left: auto;
+    right: 0;
+    width: 100%;
+  }
+}
 .dragger.dragging {
   opacity: 1;
   box-shadow: 0 3px 8px -3px #00000020;
@@ -223,7 +248,7 @@ export default {
 .resizer {
   align-items: center;
 }
-div {
+.exclusiver {
   display: flex;
   flex: 1;
   width: 100%;
