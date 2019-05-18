@@ -47,7 +47,7 @@ import Resizer from '@/components/atoms/resizer';
 import CalendarEvent from '@/components/atoms/calendar-event';
 import CalendarActivity from '@/components/organisms/calendar-activity';
 import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
-import { format } from 'date-fns';
+import { format, startOfDay, addMinutes } from 'date-fns';
 
 export default {
   components: {
@@ -102,17 +102,29 @@ export default {
       this.emitUpdateGuideRulerTop(this.ghostTop + this.ghostHeight);
       this.emitDragging(this.$el);
     },
-    ghostDrop(e) {
-      this.ghostVisibility = false;
-      this.ghostHeight = 20;
+    async ghostDrop(e) {
       this.emitUpdateGuideRulerTop(undefined);
       this.emitDragging(undefined);
+      await this.addActivity();
+      this.ghostVisibility = false;
+      this.ghostHeight = 20;
     },
     emitDragging(el) {
       this.$emit('dragging', el);
     },
     emitUpdateGuideRulerTop(top) {
       this.$emit('update:guideRulerTop', top);
+    },
+    async addActivity() {
+      const startedAt = addMinutes(
+        startOfDay(this.day),
+        this.toMin(this.ghostTop)
+      );
+      await this.$store.dispatch('activities/addActivity', {
+        startedAt,
+        stoppedAt: addMinutes(startedAt, this.toMin(this.ghostHeight))
+      });
+      this.$ga.event('activity', 'addActivity');
     }
   }
 };
