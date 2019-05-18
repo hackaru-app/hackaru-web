@@ -3,15 +3,21 @@
     ref="dragger"
     :top.sync="top"
     :left.sync="left"
-    :enabled="!resizeMoved"
-    :class="['dragger', { dragging }]"
+    :enabled="!resized"
+    :class="['dragger', { dragging: dragged }]"
     :style="{ height: `${height}px` }"
     @start="moveStart"
     @moving="moving"
     @end="moveEnd"
     @cancel="moveCancel"
   >
-    <div class="exclusiver" @mousedown="mousedown" @mouseup="mouseup">
+    <div
+      class="exclusiver"
+      @mousedown="mousedown"
+      @mouseup="mouseup"
+      @touchstart="mousedown"
+      @touchend="mouseup"
+    >
       <calendar-event
         :style="{ height: `${height}px` }"
         :title="title"
@@ -23,7 +29,7 @@
       <resizer
         ref="resizer"
         :height.sync="height"
-        :disabled="dragging"
+        :enabled="!dragged"
         :min-height="minHeight"
         :handle-color="color"
         class="resizer"
@@ -100,8 +106,8 @@ export default {
   },
   data() {
     return {
-      dragging: false,
-      resizeMoved: false,
+      dragged: false,
+      resized: false,
       top: this.getInitialTop(),
       height: this.getInitialHeight(),
       left: 0
@@ -138,7 +144,7 @@ export default {
       this.left = 0;
     },
     moveStart(e) {
-      this.dragging = true;
+      this.dragged = true;
       this.updateGuideLine(this.top, this.$el);
     },
     moving(e) {
@@ -160,7 +166,7 @@ export default {
       this.updateGuideLine();
     },
     resizing(e) {
-      this.resizeMoved = true;
+      this.resized = true;
       this.updateGuideLine(this.top + this.height, this.$el);
     },
     resizeEnd(e) {
@@ -172,15 +178,14 @@ export default {
       this.updateGuideLine();
     },
     mousedown(e) {
-      this.resizeMoved = false;
-      this.dragging = false;
+      this.resized = false;
+      this.dragged = false;
     },
     mouseup(e) {
-      if (!this.resizeMoved && !this.dragging) {
-        this.showModal();
-      }
-      this.resizeMoved = false;
-      this.dragging = false;
+      const clickOnly = !this.resized && !this.dragged;
+      if (clickOnly) this.showModal();
+      this.resized = false;
+      this.dragged = false;
     },
     showModal() {
       this.$modal.show('activity', {

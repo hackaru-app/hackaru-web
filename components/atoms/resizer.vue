@@ -1,7 +1,7 @@
 <template>
   <drag-drop
     :delay="delay"
-    :enabled="!disabled"
+    :enabled="enabled"
     @start="drag"
     @move="dragging"
     @end="drop"
@@ -30,7 +30,7 @@ export default {
       type: Number,
       default: 0
     },
-    disabled: {
+    enabled: {
       type: Boolean,
       default: false
     }
