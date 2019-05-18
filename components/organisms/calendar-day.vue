@@ -18,7 +18,6 @@
           }"
           title="New Activity"
           color="#cccfd9"
-          class="ghost-event"
         />
       </div>
       <div
