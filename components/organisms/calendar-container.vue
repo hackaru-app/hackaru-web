@@ -24,7 +24,7 @@
       :guide-ruler-top.sync="guideRulerTop"
       :key="format(day, 'YYYY-MM-DD')"
       :day="format(day, 'YYYY-MM-DD')"
-      @dragging="dragging"
+      @update-overlapped-day="updateOverlappedDay"
     />
   </section>
 </template>
@@ -92,7 +92,7 @@ export default {
       const maxIndex = getMaxIndex(days.map(({ $el }) => getWidth($el)));
       if (maxIndex >= 0) return days[maxIndex].$el.dataset.day;
     },
-    dragging(el) {
+    updateOverlappedDay(el) {
       this.overlappedDay = this.getOverlappedDay(el);
     }
   }

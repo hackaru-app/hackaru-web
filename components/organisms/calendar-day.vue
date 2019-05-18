@@ -35,7 +35,7 @@
           :day="day"
           :overlapped-day="overlappedDay"
           @update-guide-ruler-top="emitUpdateGuideRulerTop"
-          @dragging="emitDragging"
+          @update-overlapped-day="emitUpdateOverlappedDay"
         />
       </div>
     </section>
@@ -96,21 +96,21 @@ export default {
       this.ghostVisibility = true;
       this.ghostTop = pageY - this.$mezr.offset(this.$el).top;
       this.emitUpdateGuideRulerTop(this.ghostTop + this.ghostHeight);
-      this.emitDragging(this.$el);
+      this.emitUpdateOverlappedDay(this.$el);
     },
     ghostDragging(e) {
       this.emitUpdateGuideRulerTop(this.ghostTop + this.ghostHeight);
-      this.emitDragging(this.$el);
+      this.emitUpdateOverlappedDay(this.$el);
     },
     async ghostDrop(e) {
       this.emitUpdateGuideRulerTop(undefined);
-      this.emitDragging(undefined);
+      this.emitUpdateOverlappedDay(undefined);
       await this.addActivity();
       this.ghostVisibility = false;
       this.ghostHeight = 20;
     },
-    emitDragging(el) {
-      this.$emit('dragging', el);
+    emitUpdateOverlappedDay(el) {
+      this.$emit('update-overlapped-day', el);
     },
     emitUpdateGuideRulerTop(top) {
       this.$emit('update:guideRulerTop', top);
