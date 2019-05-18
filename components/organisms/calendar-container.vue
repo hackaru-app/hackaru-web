@@ -24,9 +24,6 @@
       :get-overlap-day="getOverlapDay"
       :key="format(day, 'YYYY-MM-DD')"
       :day="format(day, 'YYYY-MM-DD')"
-      @ghost-drag="ghostDrag"
-      @ghost-dragging="ghostDragging"
-      @ghost-drop="ghostDrop"
     />
   </section>
 </template>
@@ -92,15 +89,6 @@ export default {
     updateGuideLine(top, el) {
       this.guideTop = top;
       this.overlapDay = el && this.getOverlapDay(el);
-    },
-    ghostDrag(e) {
-      this.$emit('ghost-drag', e);
-    },
-    ghostDragging(e) {
-      this.$emit('ghost-dragging', e);
-    },
-    ghostDrop(e) {
-      this.$emit('ghost-drop', e);
     }
   }
 };
