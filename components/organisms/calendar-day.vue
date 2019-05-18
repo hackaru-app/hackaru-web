@@ -1,6 +1,7 @@
 <template>
   <resizer
     :height.sync="ghostHeight"
+    :min-height="20"
     :delay="500"
     class="calendar-day"
     @start="ghostDrag"

@@ -9,6 +9,10 @@ function getScreen(e) {
   return e.touches ? e.touches[0] : e;
 }
 
+function wasTooMoved({ x, y }) {
+  return Math.abs(x) > 3 || Math.abs(y) > 3;
+}
+
 export default {
   props: {
     delay: {
@@ -62,6 +66,7 @@ export default {
     move(e) {
       this.currentX = getScreen(e).pageX;
       this.currentY = getScreen(e).pageY;
+      if (wasTooMoved(this.distance)) clearInterval(this.delayTimer);
       this.emitIfEnabled('move', e);
     },
     end(e) {
