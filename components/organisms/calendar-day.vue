@@ -33,8 +33,9 @@
           v-bind="activity"
           :key="activity.id"
           :day="day"
-          :get-overlap-day="getOverlapDay"
-          :update-guide-line="updateGuideLine"
+          :overlapped-day="overlappedDay"
+          @update-guide-ruler-top="emitUpdateGuideRulerTop"
+          @dragging="emitDragging"
         />
       </div>
     </section>
@@ -64,13 +65,13 @@ export default {
       type: Number,
       default: 20
     },
-    updateGuideLine: {
-      type: Function,
-      required: true
+    guideRulerTop: {
+      type: Number,
+      default: undefined
     },
-    getOverlapDay: {
-      type: Function,
-      required: true
+    overlappedDay: {
+      type: String,
+      default: undefined
     }
   },
   data() {
@@ -91,19 +92,27 @@ export default {
   },
   methods: {
     ghostDrag(e) {
-      this.ghostVisibility = true;
       const pageY = (e.touches ? e.touches[0] : e).pageY;
+      this.ghostVisibility = true;
       this.ghostTop = pageY - this.$mezr.offset(this.$el).top;
-      this.updateGuideLine(this.ghostTop + this.ghostHeight, this.$el);
-      this.$emit('ghost-drag', e);
+      this.emitUpdateGuideRulerTop(this.ghostTop + this.ghostHeight);
+      this.emitDragging(this.$el);
     },
     ghostDragging(e) {
-      this.updateGuideLine(this.ghostTop + this.ghostHeight, this.$el);
+      this.emitUpdateGuideRulerTop(this.ghostTop + this.ghostHeight);
+      this.emitDragging(this.$el);
     },
     ghostDrop(e) {
       this.ghostVisibility = false;
       this.ghostHeight = 20;
-      this.updateGuideLine();
+      this.emitUpdateGuideRulerTop(undefined);
+      this.emitDragging(undefined);
+    },
+    emitDragging(el) {
+      this.$emit('dragging', el);
+    },
+    emitUpdateGuideRulerTop(top) {
+      this.$emit('update:guideRulerTop', top);
     }
   }
 };

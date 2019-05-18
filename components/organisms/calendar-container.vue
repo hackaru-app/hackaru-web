@@ -9,8 +9,8 @@
       />
     </div>
     <calendar-ruler
-      v-if="guideTop"
-      :top="guideTop"
+      v-if="guideRulerTop"
+      :top="guideRulerTop"
       class="guide-ruler"
       color="#2e99b0"
       show-time
@@ -19,11 +19,12 @@
       v-for="day in days"
       ref="days"
       :data-day="format(day, 'YYYY-MM-DD')"
-      :class="{ overlapped: isSameDay(overlapDay, day) }"
-      :update-guide-line="updateGuideLine"
-      :get-overlap-day="getOverlapDay"
+      :class="{ overlapped: isSameDay(overlappedDay, day) }"
+      :overlapped-day="overlappedDay"
+      :guide-ruler-top.sync="guideRulerTop"
       :key="format(day, 'YYYY-MM-DD')"
       :day="format(day, 'YYYY-MM-DD')"
+      @dragging="dragging"
     />
   </section>
 </template>
@@ -35,6 +36,11 @@ import CalendarDay from '@/components/organisms/calendar-day';
 import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
 import { isSameDay, isToday, getHours, getMinutes, parse } from 'date-fns';
 import { format } from 'date-fns';
+
+function getMaxIndex(values) {
+  const maxValue = Math.max(...values.filter(value => !!value));
+  return values.indexOf(maxValue);
+}
 
 export default {
   components: {
@@ -60,8 +66,8 @@ export default {
     return {
       format,
       isSameDay,
-      guideTop: undefined,
-      overlapDay: undefined,
+      guideRulerTop: undefined,
+      overlappedDay: undefined,
       currentDate: parse(Date.now())
     };
   },
@@ -79,16 +85,15 @@ export default {
     updateCurrentDate() {
       this.currentDate = parse(Date.now());
     },
-    getOverlapDay(el) {
-      const widths = this.$refs.days.map(
-        day => (this.$mezr.intersection(day.$el, el) || {}).width
-      );
-      const index = widths.indexOf(Math.max(...widths.filter(w => !!w)));
-      return index >= 0 && this.$refs.days[index].$el.dataset.day;
+    getOverlappedDay(el) {
+      if (!el) return;
+      const days = this.$refs.days;
+      const getWidth = $el => (this.$mezr.intersection($el, el) || {}).width;
+      const maxIndex = getMaxIndex(days.map(({ $el }) => getWidth($el)));
+      if (maxIndex >= 0) return days[maxIndex].$el.dataset.day;
     },
-    updateGuideLine(top, el) {
-      this.guideTop = top;
-      this.overlapDay = el && this.getOverlapDay(el);
+    dragging(el) {
+      this.overlappedDay = this.getOverlappedDay(el);
     }
   }
 };

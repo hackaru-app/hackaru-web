@@ -83,13 +83,9 @@ export default {
       type: String,
       required: true
     },
-    getOverlapDay: {
-      type: Function,
-      required: true
-    },
-    updateGuideLine: {
-      type: Function,
-      required: true
+    overlappedDay: {
+      type: String,
+      default: undefined
     },
     duration: {
       type: Number,
@@ -102,6 +98,10 @@ export default {
     project: {
       type: Object,
       default: () => undefined
+    },
+    guideTop: {
+      type: Number,
+      default: undefined
     }
   },
   data() {
@@ -145,37 +145,48 @@ export default {
     },
     moveStart(e) {
       this.dragged = true;
-      this.updateGuideLine(this.top, this.$el);
+      this.$emit('update-guide-ruler-top', this.top);
+      this.$emit('dragging', this.$el);
     },
     moving(e) {
-      this.updateGuideLine(this.top, this.$el);
+      this.$emit('update-guide-ruler-top', this.top);
+      this.$emit('dragging', this.$el);
     },
     moveEnd(e) {
-      this.updateGuideLine();
+      this.$emit('update-guide-ruler-top', undefined);
+      this.$emit('dragging', undefined);
 
-      const day = this.getOverlapDay(this.$el);
-      if (!day) return this.resetPosition();
+      if (!this.overlappedDay) {
+        return this.resetPosition();
+      }
+      const date = addMinutes(
+        startOfDay(this.overlappedDay),
+        this.toMin(this.top)
+      );
 
-      const date = addMinutes(startOfDay(day), this.toMin(this.top));
       this.update({
         startedAt: date,
         stoppedAt: addSeconds(date, this.duration)
       });
     },
     moveCancel(e) {
-      this.updateGuideLine();
+      this.$emit('update-guide-ruler-top', undefined);
+      this.$emit('dragging', undefined);
     },
     resizing(e) {
       this.resized = true;
-      this.updateGuideLine(this.top + this.height, this.$el);
+      this.$emit('update-guide-ruler-top', this.top + this.height);
+      this.$emit('dragging', this.$el);
     },
     resizeEnd(e) {
-      this.updateGuideLine();
+      this.$emit('update-guide-ruler-top', undefined);
+      this.$emit('dragging', undefined);
       const stoppedAt = addMinutes(this.startedAt, this.toMin(this.height));
       this.update({ stoppedAt });
     },
     resizeCancel(e) {
-      this.updateGuideLine();
+      this.$emit('update-guide-ruler-top', undefined);
+      this.$emit('dragging', undefined);
     },
     mousedown(e) {
       this.resized = false;
