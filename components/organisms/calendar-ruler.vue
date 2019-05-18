@@ -15,7 +15,7 @@
 
 <script>
 import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
-import { format, startOfDay, addMinutes } from 'date-fns';
+import { fromS } from 'hh-mm-ss';
 
 export default {
   mixins: [PxMinConvertable],
@@ -35,8 +35,7 @@ export default {
   },
   computed: {
     time() {
-      const date = addMinutes(startOfDay(new Date()), this.toMin(this.top));
-      return format(date, 'HH:mm');
+      return fromS(Math.floor(this.toMin(this.top)));
     }
   }
 };
