@@ -14,8 +14,8 @@
     />
 
     <loop-slider
-      ref="slider"
       :enabled="sliderEnabled"
+      :sliding.sync="sliding"
       class="slider"
       @slide-left="prev"
       @slide-right="next"
@@ -101,7 +101,8 @@ export default {
       isToday,
       sliderEnabled: true,
       date: new Date(),
-      currentPeriod: 'week'
+      currentPeriod: 'week',
+      sliding: undefined
     };
   },
   computed: {
@@ -140,10 +141,10 @@ export default {
       return eachDay(this.period.startOf(date), this.period.endOf(date));
     },
     slideLeft() {
-      this.$refs.slider.slideLeft();
+      this.sliding = 'left';
     },
     slideRight() {
-      this.$refs.slider.slideRight();
+      this.sliding = 'right';
     },
     prev() {
       this.date = this.period.add(this.period.startOf(this.date), -1);

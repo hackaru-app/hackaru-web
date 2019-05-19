@@ -13,7 +13,7 @@
       @right="slideRight"
     />
 
-    <loop-slider ref="slider" @slide-left="prev" @slide-right="next">
+    <loop-slider :sliding.sync="sliding" @slide-left="prev" @slide-right="next">
       <template slot-scope="{ slideStyle }">
         <div class="reports-wrapper">
           <div :style="slideStyle" class="containers">
@@ -111,8 +111,9 @@ export default {
   },
   data() {
     return {
-      date: format(new Date(), 'YYYY-MM-DD'),
-      currentPeriod: 'day'
+      date: new Date(),
+      currentPeriod: 'day',
+      sliding: undefined
     };
   },
   computed: {
@@ -153,10 +154,10 @@ export default {
       });
     },
     slideLeft() {
-      this.$refs.slider.slideLeft();
+      this.sliding = 'left';
     },
     slideRight() {
-      this.$refs.slider.slideRight();
+      this.sliding = 'right';
     },
     today() {
       this.date = new Date();

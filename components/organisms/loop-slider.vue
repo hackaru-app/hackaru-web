@@ -20,6 +20,10 @@ export default {
     enabled: {
       type: Boolean,
       default: true
+    },
+    sliding: {
+      type: String,
+      default: undefined
     }
   },
   data() {
@@ -37,6 +41,16 @@ export default {
         transform: `translateX(${this.offset})`,
         transition: this.speed ? `transform ${this.speed}ms` : 'none'
       };
+    }
+  },
+  watch: {
+    sliding() {
+      switch (this.sliding) {
+        case 'left':
+          return this.slideLeft();
+        case 'right':
+          return this.slideRight();
+      }
     }
   },
   methods: {
@@ -76,8 +90,9 @@ export default {
       this.slideTimer = setTimeout(() => {
         this.speed = 0;
         this.offset = '-100%';
-        this.$emit(eventName);
         this.slideTimer = undefined;
+        this.$emit(eventName);
+        this.$emit('update:sliding', undefined);
       }, this.speed + wait);
     }
   }
