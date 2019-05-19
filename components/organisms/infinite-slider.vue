@@ -1,28 +1,38 @@
 <template>
-  <section v-dragdrop="dragdrop" v-window-scroll="windowScroll" ref="slider">
+  <drag-drop
+    v-window-scroll="scrollWindow"
+    :enabled="!scrolling && enabled"
+    @move="dragging"
+    @end="drop"
+  >
     <slot :slide-style="style" />
-  </section>
+  </drag-drop>
 </template>
 
 <script>
+import DragDrop from '@/components/atoms/drag-drop';
+
+function wasTooLowDrag({ x }) {
+  return Math.abs(x) < 100;
+}
+
 export default {
+  components: {
+    DragDrop
+  },
   props: {
-    disabled: {
+    enabled: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   data() {
     return {
-      dragdrop: {
-        drag: this.drag,
-        dragging: this.dragging,
-        drop: this.drop
-      },
-      cancelled: undefined,
+      scrolling: false,
       offset: '-100%',
       speed: 0,
-      slideTimer: undefined
+      slideTimer: undefined,
+      scrollEndTimer: undefined
     };
   },
   computed: {
@@ -34,27 +44,21 @@ export default {
     }
   },
   methods: {
-    windowScroll() {
-      this.cancelled = true;
-    },
-    drag() {
-      this.cancelled = false;
+    scrollWindow() {
+      this.scrolling = true;
+      clearInterval(this.scrollEndTimer);
+      this.scrollEndTimer = setTimeout(() => {
+        this.scrolling = false;
+      }, 100);
     },
     dragging({ e, distance }) {
-      if (
-        this.disabled ||
-        this.slideTimer ||
-        this.cancelled ||
-        Math.abs(distance.x) < 20
-      )
-        return;
+      if (this.slideTimer) return;
       this.speed = 0;
-      this.offset = `-${this.$mezr.width(this.$refs.slider) + distance.x}px`;
+      this.offset = `-${this.$mezr.width(this.$el) + distance.x}px`;
       e.preventDefault();
     },
     drop({ e, distance }) {
-      if (this.cancelled || Math.abs(distance.x) < 100)
-        return this.slideReset();
+      if (wasTooLowDrag(distance)) return this.slideReset();
       return distance.x > 0 ? this.slideRight() : this.slideLeft();
     },
     slideReset() {
@@ -68,7 +72,7 @@ export default {
     },
     slideTo(offset, eventName) {
       if (this.slideTimer) return;
-      const delay = 100;
+      const wait = 100;
       this.speed = 300;
       this.offset = offset;
       this.slideTimer = setTimeout(() => {
@@ -76,7 +80,7 @@ export default {
         this.offset = '-100%';
         this.$emit(eventName);
         this.slideTimer = undefined;
-      }, this.speed + delay);
+      }, this.speed + wait);
     }
   }
 };

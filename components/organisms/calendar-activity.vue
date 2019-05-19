@@ -145,16 +145,19 @@ export default {
     },
     moveStart(e) {
       this.dragged = true;
-      this.$emit('update-guide-ruler-top', this.top);
-      this.$emit('update-overlapped-day', this.$el);
+      this.$emit('dragging', {
+        el: this.$el,
+        guideRulerTop: this.top
+      });
     },
     moving(e) {
-      this.$emit('update-guide-ruler-top', this.top);
-      this.$emit('update-overlapped-day', this.$el);
+      this.$emit('dragging', {
+        el: this.$el,
+        guideRulerTop: this.top
+      });
     },
     moveEnd(e) {
-      this.$emit('update-guide-ruler-top', undefined);
-      this.$emit('update-overlapped-day', undefined);
+      this.$emit('drop');
 
       if (!this.overlappedDay) {
         return this.resetPosition();
@@ -170,23 +173,22 @@ export default {
       });
     },
     moveCancel(e) {
-      this.$emit('update-guide-ruler-top', undefined);
-      this.$emit('update-overlapped-day', undefined);
+      this.$emit('drop');
     },
     resizing(e) {
       this.resized = true;
-      this.$emit('update-guide-ruler-top', this.top + this.height);
-      this.$emit('update-overlapped-day', this.$el);
+      this.$emit('dragging', {
+        el: this.$el,
+        guideRulerTop: this.top + this.height
+      });
     },
     resizeEnd(e) {
-      this.$emit('update-guide-ruler-top', undefined);
-      this.$emit('update-overlapped-day', undefined);
+      this.$emit('drop');
       const stoppedAt = addMinutes(this.startedAt, this.toMin(this.height));
       this.update({ stoppedAt });
     },
     resizeCancel(e) {
-      this.$emit('update-guide-ruler-top', undefined);
-      this.$emit('update-overlapped-day', undefined);
+      this.$emit('drop');
     },
     mousedown(e) {
       this.resized = false;

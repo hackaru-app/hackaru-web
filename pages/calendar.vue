@@ -12,7 +12,7 @@
 
     <infinite-slider
       ref="slider"
-      :disabled="sliderDisabled"
+      :enabled="sliderEnabled"
       class="slider"
       @slide-left="prev"
       @slide-right="next"
@@ -38,8 +38,8 @@
             <calendar-container
               :days="days"
               class="slider-item"
-              @ghost-drag="sliderDisabled = true"
-              @ghost-drop="sliderDisabled = false"
+              @dragging="sliderEnabled = false"
+              @drop="sliderEnabled = true"
             />
             <calendar-container :days="[]" class="slider-item" />
           </section>
@@ -75,7 +75,7 @@ export default {
       format,
       isToday,
       index: 1,
-      sliderDisabled: false,
+      sliderEnabled: true,
       date: format(new Date(), 'YYYY-MM-DD'),
       periods: [periods.day, periods.week],
       locales: {

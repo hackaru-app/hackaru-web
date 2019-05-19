@@ -21,10 +21,10 @@
       :data-day="format(day, 'YYYY-MM-DD')"
       :class="{ overlapped: isSameDay(overlappedDay, day) }"
       :overlapped-day="overlappedDay"
-      :guide-ruler-top.sync="guideRulerTop"
       :key="format(day, 'YYYY-MM-DD')"
       :day="format(day, 'YYYY-MM-DD')"
-      @update-overlapped-day="updateOverlappedDay"
+      @dragging="dragging"
+      @drop="drop"
     />
   </section>
 </template>
@@ -92,8 +92,15 @@ export default {
       const maxIndex = getMaxIndex(days.map(({ $el }) => getWidth($el)));
       if (maxIndex >= 0) return days[maxIndex].$el.dataset.day;
     },
-    updateOverlappedDay(el) {
+    dragging({ el, guideRulerTop }) {
       this.overlappedDay = this.getOverlappedDay(el);
+      this.guideRulerTop = guideRulerTop;
+      this.$emit('dragging', el);
+    },
+    drop(el) {
+      this.overlappedDay = undefined;
+      this.guideRulerTop = undefined;
+      this.$emit('drop', el);
     }
   }
 };

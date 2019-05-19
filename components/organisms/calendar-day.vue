@@ -34,8 +34,8 @@
           :key="activity.id"
           :day="day"
           :overlapped-day="overlappedDay"
-          @update-guide-ruler-top="emitUpdateGuideRulerTop"
-          @update-overlapped-day="emitUpdateOverlappedDay"
+          @dragging="dragging"
+          @drop="drop"
         />
       </div>
     </section>
@@ -65,10 +65,6 @@ export default {
       type: Number,
       default: 20
     },
-    guideRulerTop: {
-      type: Number,
-      default: undefined
-    },
     overlappedDay: {
       type: String,
       default: undefined
@@ -95,25 +91,28 @@ export default {
       const pageY = (e.touches ? e.touches[0] : e).pageY;
       this.ghostVisibility = true;
       this.ghostTop = pageY - this.$mezr.offset(this.$el).top;
-      this.emitUpdateGuideRulerTop(this.ghostTop + this.ghostHeight);
-      this.emitUpdateOverlappedDay(this.$el);
+      this.dragging({
+        el: this.$el,
+        guideRulerTop: this.ghostTop + this.ghostHeight
+      });
     },
     ghostDragging(e) {
-      this.emitUpdateGuideRulerTop(this.ghostTop + this.ghostHeight);
-      this.emitUpdateOverlappedDay(this.$el);
+      this.dragging({
+        el: this.$el,
+        guideRulerTop: this.ghostTop + this.ghostHeight
+      });
     },
     async ghostDrop(e) {
-      this.emitUpdateGuideRulerTop(undefined);
-      this.emitUpdateOverlappedDay(undefined);
+      this.drop(this.$el);
       await this.addActivity();
       this.ghostVisibility = false;
       this.ghostHeight = 20;
     },
-    emitUpdateOverlappedDay(el) {
-      this.$emit('update-overlapped-day', el);
+    dragging({ el, guideRulerTop }) {
+      this.$emit('dragging', { el, guideRulerTop });
     },
-    emitUpdateGuideRulerTop(top) {
-      this.$emit('update:guideRulerTop', top);
+    drop(el) {
+      this.$emit('drop', el);
     },
     async addActivity() {
       const startedAt = addMinutes(
