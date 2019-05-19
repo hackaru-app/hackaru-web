@@ -12,6 +12,7 @@
       @left="slideLeft"
       @right="slideRight"
     />
+
     <infinite-slider ref="slider" @slide-left="prev" @slide-right="next">
       <template slot-scope="{ slideStyle }">
         <div class="reports-wrapper">
@@ -135,15 +136,13 @@ export default {
     }
   },
   watch: {
-    period() {
-      this.fetchPeriod();
+    period: {
+      handler: 'fetchPeriod',
+      immediate: true
     },
-    date() {
-      this.fetchPeriod();
+    date: {
+      handler: 'fetchPeriod'
     }
-  },
-  mounted() {
-    this.fetchPeriod();
   },
   methods: {
     fetchPeriod() {
