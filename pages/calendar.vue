@@ -26,7 +26,6 @@
                 :day="format(day, 'YYYY-MM-DD')"
                 :locale="locales[$i18n.locale]"
                 :key="format(day, 'YYYY-MM-DD')"
-                @click="togglePeriod"
               />
             </div>
           </div>
@@ -127,10 +126,6 @@ export default {
         this.period.add(this.period.startOf(this.date), 1),
         'YYYY-MM-DD'
       );
-    },
-    togglePeriod(date) {
-      this.index = (this.index + 1) % this.periods.length;
-      this.date = format(date, 'YYYY-MM-DD');
     }
   }
 };
