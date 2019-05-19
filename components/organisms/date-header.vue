@@ -2,38 +2,7 @@
 
 <template>
   <content-header>
-    <div class="date-heading">
-      <span>Report</span>
-      <btn
-        :aria-label="$t('ariaLabels.previous')"
-        class="left-arrow-button has-icon"
-        @click="left"
-      >
-        <icon name="chevron-left-icon" class="is-primary is-large" />
-      </btn>
-
-      <no-ssr>
-        <v-date-picker
-          :formats="{ input: ['YYYY-MM-DD'] }"
-          :value="date"
-          show-caps
-          @input="setDate"
-        >
-          <heading slot-scope="props" class="heading">
-            {{ format(date, $t(`${period.key}.format`)) }}
-          </heading>
-        </v-date-picker>
-      </no-ssr>
-
-      <btn
-        :aria-label="$t('ariaLabels.next')"
-        class="right-arrow-button has-icon"
-        @click="right"
-      >
-        <icon name="chevron-right-icon" class="is-primary is-large" />
-      </btn>
-    </div>
-
+    <date-heading :title="title" @left="left" @right="right" />
     <nav>
       <transition name="fade">
         <btn
@@ -70,7 +39,7 @@ import Icon from '@/components/atoms/icon';
 import ContentHeader from '@/components/organisms/content-header';
 import Btn from '@/components/atoms/btn';
 import MarshmallowSelect from '@/components/molecules/marshmallow-select';
-import Heading from '@/components/atoms/heading';
+import DateHeading from '@/components/molecules/date-heading';
 import {
   format,
   addDays,
@@ -119,7 +88,7 @@ export default {
   components: {
     Icon,
     ContentHeader,
-    Heading,
+    DateHeading,
     Btn,
     MarshmallowSelect
   },
@@ -141,12 +110,11 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      format
-    };
-  },
   computed: {
+    title() {
+      const formatString = this.$t(`${this.period.key}.format`);
+      return format(this.date, formatString);
+    },
     period() {
       return this.periods[this.periodIndex];
     },
@@ -174,10 +142,7 @@ export default {
       this.$emit('right');
     },
     today() {
-      this.setDate(new Date());
-    },
-    setDate(date) {
-      this.$emit('update:date', date);
+      this.$emit('update:date', `${new Date()}`);
     },
     changePeriod(index) {
       this.$emit('update:periodIndex', Number(index));
@@ -187,16 +152,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.date-heading {
-  display: flex;
-  .heading {
-    margin: 0 15px;
-    margin-bottom: 2px;
-  }
-  span {
-    display: none;
-  }
-}
 nav {
   display: flex;
 }
@@ -204,10 +159,6 @@ nav {
   margin-right: 20px;
 }
 @media print {
-  .left-arrow-button,
-  .right-arrow-button {
-    display: none;
-  }
   .date-heading span {
     display: inline;
     color: $grey-333;
