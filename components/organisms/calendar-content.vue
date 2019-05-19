@@ -1,5 +1,5 @@
 <template>
-  <section class="calendar-container">
+  <section class="calendar-content">
     <calendar-hours />
     <div v-if="hasToday">
       <calendar-ruler
@@ -107,7 +107,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.calendar-container {
+.calendar-content {
   display: flex;
   pointer-events: auto;
   position: relative;

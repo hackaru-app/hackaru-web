@@ -32,16 +32,16 @@
           </div>
         </section>
 
-        <section class="containers-wrapper">
-          <section :style="slideStyle" class="containers">
-            <calendar-container :days="[]" class="slider-item" />
-            <calendar-container
+        <section class="contents-wrapper">
+          <section :style="slideStyle" class="contents">
+            <calendar-content :days="[]" class="slider-item" />
+            <calendar-content
               :days="days"
               class="slider-item"
               @dragging="sliderEnabled = false"
               @drop="sliderEnabled = true"
             />
-            <calendar-container :days="[]" class="slider-item" />
+            <calendar-content :days="[]" class="slider-item" />
           </section>
         </section>
       </template>
@@ -52,7 +52,7 @@
 <script>
 import DateHeader, { periods } from '@/components/organisms/date-header';
 import InfiniteSlider from '@/components/organisms/infinite-slider';
-import CalendarContainer from '@/components/organisms/calendar-container';
+import CalendarContent from '@/components/organisms/calendar-content';
 import CalendarDayHeader from '@/components/organisms/calendar-day-header';
 import { isToday, format, addDays, eachDay } from 'date-fns';
 
@@ -62,7 +62,7 @@ export default {
   },
   components: {
     InfiniteSlider,
-    CalendarContainer,
+    CalendarContent,
     CalendarDayHeader,
     DateHeader
   },
@@ -156,10 +156,10 @@ export default {
   padding-left: 60px;
   border-bottom: 1px $border solid;
 }
-.containers-wrapper {
+.contents-wrapper {
   overflow: hidden;
 }
-.containers {
+.contents {
   display: flex;
 }
 .slider-item {
