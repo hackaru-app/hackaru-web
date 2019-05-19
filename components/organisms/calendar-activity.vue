@@ -47,7 +47,7 @@
 import Dragger from '@/components/atoms/dragger';
 import Resizer from '@/components/atoms/resizer';
 import CalendarEvent from '@/components/atoms/calendar-event';
-import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
+
 import {
   startOfDay,
   addSeconds,
@@ -61,7 +61,7 @@ export default {
     Dragger,
     Resizer
   },
-  mixins: [PxMinConvertable],
+
   props: {
     id: {
       type: Number,
@@ -131,12 +131,12 @@ export default {
   },
   methods: {
     getInitialTop() {
-      return this.toPx(
+      return this.$toPx(
         differenceInMinutes(this.startedAt, startOfDay(this.day))
       );
     },
     getInitialHeight() {
-      return Math.max(this.toPx(this.duration / 60), this.minHeight);
+      return Math.max(this.$toPx(this.duration / 60), this.minHeight);
     },
     resetPosition() {
       this.top = this.getInitialTop();
@@ -164,7 +164,7 @@ export default {
       }
       const date = addMinutes(
         startOfDay(this.overlappedDay),
-        this.toMin(this.top)
+        this.$toMin(this.top)
       );
 
       this.update({
@@ -184,7 +184,7 @@ export default {
     },
     resizeEnd(e) {
       this.$emit('drop');
-      const stoppedAt = addMinutes(this.startedAt, this.toMin(this.height));
+      const stoppedAt = addMinutes(this.startedAt, this.$toMin(this.height));
       this.update({ stoppedAt });
     },
     resizeCancel(e) {

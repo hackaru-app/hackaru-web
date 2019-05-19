@@ -46,7 +46,7 @@
 import Resizer from '@/components/atoms/resizer';
 import CalendarEvent from '@/components/atoms/calendar-event';
 import CalendarActivity from '@/components/organisms/calendar-activity';
-import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
+
 import { format, startOfDay, addMinutes } from 'date-fns';
 
 export default {
@@ -55,7 +55,7 @@ export default {
     CalendarEvent,
     CalendarActivity
   },
-  mixins: [PxMinConvertable],
+
   props: {
     day: {
       type: Date,
@@ -82,7 +82,7 @@ export default {
     calendar() {
       return this.$store.getters['activities/getCalendar'](
         this.day,
-        this.toMin
+        this.$toMin
       );
     }
   },
@@ -120,11 +120,11 @@ export default {
     async addActivity() {
       const startedAt = addMinutes(
         startOfDay(this.day),
-        this.toMin(this.ghostTop)
+        this.$toMin(this.ghostTop)
       );
       await this.$store.dispatch('activities/addActivity', {
         startedAt,
-        stoppedAt: addMinutes(startedAt, this.toMin(this.ghostHeight))
+        stoppedAt: addMinutes(startedAt, this.$toMin(this.ghostHeight))
       });
       this.$ga.event('activity', 'addActivity');
     }

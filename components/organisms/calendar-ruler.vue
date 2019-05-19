@@ -14,11 +14,9 @@
 </template>
 
 <script>
-import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
 import { fromS } from 'hh-mm-ss';
 
 export default {
-  mixins: [PxMinConvertable],
   props: {
     top: {
       type: Number,
@@ -35,7 +33,7 @@ export default {
   },
   computed: {
     time() {
-      return fromS(Math.floor(this.toMin(this.top)));
+      return fromS(Math.floor(this.$toMin(this.top)));
     }
   }
 };

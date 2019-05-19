@@ -1,19 +1,11 @@
 <template>
   <section class="calendar-hours">
-    <time v-for="hour in 24" :style="{ height: `${toPx(60)}px` }" :key="hour">
+    <time v-for="hour in 24" :style="{ height: `${$toPx(60)}px` }" :key="hour">
       {{ `${`0${hour - 1}`.slice(-2)}` }}
       <span class="min">:00</span>
     </time>
   </section>
 </template>
-
-<script>
-import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
-
-export default {
-  mixins: [PxMinConvertable]
-};
-</script>
 
 <style scoped lang="scss">
 .calendar-hours {

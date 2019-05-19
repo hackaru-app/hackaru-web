@@ -33,7 +33,6 @@
 import CalendarHours from '@/components/organisms/calendar-hours';
 import CalendarRuler from '@/components/organisms/calendar-ruler';
 import CalendarDay from '@/components/organisms/calendar-day';
-import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
 import {
   format,
   isSameDay,
@@ -61,7 +60,7 @@ export default {
       repeat: true
     }
   },
-  mixins: [PxMinConvertable],
+
   props: {
     days: {
       type: Array,
@@ -82,7 +81,7 @@ export default {
       return this.days.find(isToday);
     },
     currentTimeLineTop() {
-      return this.toPx(
+      return this.$toPx(
         getHours(this.currentDate) * 60 + getMinutes(this.currentDate)
       );
     }

@@ -82,9 +82,6 @@ const periods = {
 };
 
 export default {
-  provide: {
-    pxPerMin: 40 / 60
-  },
   components: {
     LoopSlider,
     CalendarContent,

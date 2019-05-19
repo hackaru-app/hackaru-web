@@ -85,6 +85,7 @@ module.exports = {
     { src: '~/plugins/directives/v-scroll-window' },
     { src: '~/plugins/customs/i18n-cacher', ssr: false },
     { src: '~/plugins/customs/mezr', ssr: false },
+    { src: '~/plugins/customs/px-min' },
     { src: '~/plugins/vue-timers', ssr: false },
     { src: '~/plugins/v-calendar', ssr: false },
     { src: '~/plugins/local-storage.js', ssr: false },
