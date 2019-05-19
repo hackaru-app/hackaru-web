@@ -3,7 +3,7 @@
     <btn class="has-dropshadow">
       {{ value }}
     </btn>
-    <select ref="select" :aria-label="ariaLabel" @change="change">
+    <select ref="select" @change="change">
       <slot />
     </select>
   </div>
@@ -18,10 +18,6 @@ export default {
   },
   props: {
     value: {
-      type: String,
-      required: true
-    },
-    ariaLabel: {
       type: String,
       required: true
     }

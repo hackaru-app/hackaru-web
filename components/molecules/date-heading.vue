@@ -1,12 +1,12 @@
 <template>
   <div class="date-heading">
-    <btn class="left-arrow-button has-icon" @click="left">
+    <btn class="arrow-button has-icon" @click="left">
       <icon name="chevron-left-icon" class="is-primary is-large" />
     </btn>
     <heading class="heading">
       {{ title }}
     </heading>
-    <btn class="right-arrow-button has-icon" @click="right">
+    <btn class="arrow-button has-icon" @click="right">
       <icon name="chevron-right-icon" class="is-primary is-large" />
     </btn>
   </div>
@@ -43,14 +43,13 @@ export default {
 <style scoped lang="scss">
 .date-heading {
   display: flex;
-  .heading {
-    margin: 0 15px;
-    margin-bottom: 2px;
-  }
+}
+.heading {
+  margin: 0 15px;
+  margin-bottom: 2px;
 }
 @media print {
-  .left-arrow-button,
-  .right-arrow-button {
+  .arrow-button {
     display: none;
   }
 }

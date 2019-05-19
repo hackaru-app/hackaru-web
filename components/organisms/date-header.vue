@@ -15,19 +15,9 @@
         </btn>
       </transition>
 
-      <marshmallow-select
-        ref="period-select"
-        :value="$t(`${period.key}.label`)"
-        :aria-label="$t('ariaLabels.selectPeriod')"
-        @change="changePeriod"
-      >
-        <option
-          v-for="(period, index) in periods"
-          :key="index"
-          :value="index"
-          :selected="index === periodIndex"
-        >
-          {{ $t(`${period.key}.label`) }}
+      <marshmallow-select :value="$t(`${period.key}.label`)" @change="change">
+        <option v-for="period in allowPeriods" :key="period" :value="period">
+          {{ $t(`${period}.label`) }}
         </option>
       </marshmallow-select>
     </nav>
@@ -40,49 +30,7 @@ import ContentHeader from '@/components/organisms/content-header';
 import Btn from '@/components/atoms/btn';
 import MarshmallowSelect from '@/components/molecules/marshmallow-select';
 import DateHeading from '@/components/molecules/date-heading';
-import {
-  format,
-  addDays,
-  addWeeks,
-  addMonths,
-  addYears,
-  startOfDay,
-  startOfWeek,
-  startOfMonth,
-  startOfYear,
-  endOfDay,
-  endOfWeek,
-  endOfMonth,
-  endOfYear,
-  isEqual
-} from 'date-fns';
-
-export const periods = {
-  day: {
-    key: 'day',
-    startOf: startOfDay,
-    endOf: endOfDay,
-    add: addDays
-  },
-  week: {
-    key: 'week',
-    startOf: startOfWeek,
-    endOf: endOfWeek,
-    add: addWeeks
-  },
-  month: {
-    key: 'month',
-    startOf: startOfMonth,
-    endOf: endOfMonth,
-    add: addMonths
-  },
-  year: {
-    key: 'year',
-    startOf: startOfYear,
-    endOf: endOfYear,
-    add: addYears
-  }
-};
+import { format, isEqual } from 'date-fns';
 
 export default {
   components: {
@@ -97,26 +45,21 @@ export default {
       type: String,
       required: true
     },
-    periodIndex: {
-      type: Number,
-      default: 0
-    },
-    periods: {
+    allowPeriods: {
       type: Array,
       required: true
     },
-    cacheKey: {
+    currentPeriod: {
       type: String,
       required: true
     }
   },
   computed: {
-    title() {
-      const formatString = this.$t(`${this.period.key}.format`);
-      return format(this.date, formatString);
-    },
     period() {
-      return this.periods[this.periodIndex];
+      return this.$periods[this.currentPeriod];
+    },
+    title() {
+      return format(this.date, this.$t(`${this.period.key}.format`));
     },
     hasToday() {
       return isEqual(
@@ -124,15 +67,6 @@ export default {
         this.period.startOf(this.date)
       );
     }
-  },
-  watch: {
-    periodIndex() {
-      localStorage.setItem(this.cacheKey, this.periodIndex);
-    }
-  },
-  mounted() {
-    const cached = localStorage.getItem(this.cacheKey);
-    if (cached) this.changePeriod(cached);
   },
   methods: {
     left() {
@@ -144,8 +78,8 @@ export default {
     today() {
       this.$emit('update:date', `${new Date()}`);
     },
-    changePeriod(index) {
-      this.$emit('update:periodIndex', Number(index));
+    change(currentPeriod) {
+      this.$emit('update:currentPeriod', currentPeriod);
     }
   }
 };

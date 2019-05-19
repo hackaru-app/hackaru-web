@@ -3,9 +3,8 @@
     <date-header
       ref="header"
       :date.sync="date"
-      :period-index.sync="index"
-      :periods="periods"
-      cache-key="calendarDateHeader"
+      :current-period.sync="currentPeriod"
+      :allow-periods="['day', 'week']"
       @left="slideLeft"
       @right="slideRight"
     />
@@ -48,7 +47,7 @@
 </template>
 
 <script>
-import DateHeader, { periods } from '@/components/organisms/date-header';
+import DateHeader from '@/components/organisms/date-header';
 import InfiniteSlider from '@/components/organisms/infinite-slider';
 import CalendarContent from '@/components/organisms/calendar-content';
 import CalendarDayHeader from '@/components/organisms/calendar-day-header';
@@ -72,10 +71,9 @@ export default {
       addDays,
       format,
       isToday,
-      index: 1,
       sliderEnabled: true,
       date: format(new Date(), 'YYYY-MM-DD'),
-      periods: [periods.day, periods.week]
+      currentPeriod: 'day'
     };
   },
   computed: {
@@ -83,7 +81,7 @@ export default {
       return this.getDays(this.date).map(date => format(date, 'YYYY-MM-DD'));
     },
     period() {
-      return this.periods[this.index];
+      return this.$periods[this.currentPeriod];
     }
   },
   watch: {

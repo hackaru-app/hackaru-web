@@ -34,8 +34,14 @@ import CalendarHours from '@/components/organisms/calendar-hours';
 import CalendarRuler from '@/components/organisms/calendar-ruler';
 import CalendarDay from '@/components/organisms/calendar-day';
 import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
-import { isSameDay, isToday, getHours, getMinutes, parse } from 'date-fns';
-import { format } from 'date-fns';
+import {
+  format,
+  isSameDay,
+  isToday,
+  getHours,
+  getMinutes,
+  parse
+} from 'date-fns';
 
 function getMaxIndex(values) {
   const maxValue = Math.max(...values.filter(value => !!value));

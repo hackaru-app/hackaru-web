@@ -83,6 +83,7 @@ module.exports = {
    */
   plugins: [
     { src: '~/plugins/directives/v-window-scroll' },
+    { src: '~/plugins/customs/periods' },
     { src: '~/plugins/customs/i18n-cacher', ssr: false },
     { src: '~/plugins/customs/mezr', ssr: false },
     { src: '~/plugins/vue-timers', ssr: false },
