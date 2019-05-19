@@ -3,12 +3,7 @@
 <template>
   <section>
     <modal-header>
-      <btn
-        :aria-label="$t('ariaLabels.back')"
-        type="button"
-        class="has-icon"
-        @click="pop"
-      >
+      <btn type="button" class="has-icon" @click="pop">
         <icon name="chevron-left-icon" class="is-large" />
       </btn>
       <h1>{{ $t(`titles.${id ? 'update' : 'add'}`) }}</h1>
@@ -41,7 +36,6 @@
 
         <btn
           v-if="id !== undefined"
-          :aria-label="$t('ariaLabels.delete')"
           class="delete-button has-icon"
           type="button"
           @click="deleteProject"

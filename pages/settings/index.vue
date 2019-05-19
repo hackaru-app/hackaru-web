@@ -15,7 +15,6 @@
           <input
             v-model="deleteAccountForm.currentPassword"
             :placeholder="$t('deleteAccountModal.currentPassword')"
-            :aria-label="$t('deleteAccountModal.currentPassword')"
             type="password"
             class="input inline"
             required
@@ -38,7 +37,6 @@
         <text-field
           v-model="emailForm.email"
           :placeholder="$t('email')"
-          :aria-label="$t('email')"
           type="email"
           class="has-border"
           required
@@ -47,7 +45,6 @@
         <text-field
           v-model="emailForm.currentPassword"
           :placeholder="$t('password')"
-          :aria-label="$t('password')"
           type="password"
           class="has-border"
           required
@@ -66,7 +63,6 @@
         <text-field
           v-model="passwordForm.currentPassword"
           :placeholder="$t('password')"
-          :aria-label="$t('password')"
           type="password"
           class="has-border"
           size="1"
@@ -75,7 +71,6 @@
         <text-field
           v-model="passwordForm.password"
           :placeholder="$t('newPassword')"
-          :aria-label="$t('newPassword')"
           type="password"
           class="has-border"
           size="1"
@@ -84,7 +79,6 @@
         <text-field
           v-model="passwordForm.passwordConfirmation"
           :placeholder="$t('confirmNewPassword')"
-          :aria-label="$t('confirmNewPassword')"
           type="password"
           class="has-border"
           size="1"

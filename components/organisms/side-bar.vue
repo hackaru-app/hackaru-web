@@ -1,9 +1,7 @@
-<i18n src="@/assets/locales/components/organisms/side-bar.json" />
-
 <template>
   <section :class="['menu', { android: isAndroid }]">
     <h1>
-      <nuxt-link :to="localePath('index')" :aria-label="$t('ariaLabels.index')">
+      <nuxt-link :to="localePath('index')">
         <img src="@/assets/logo.svg" class="logo-icon" />
       </nuxt-link>
     </h1>
@@ -14,17 +12,13 @@
         :key="link.path"
         :class="{ selected: localePath(link.path) === $route.path }"
       >
-        <nuxt-link
-          :to="localePath(link.path)"
-          :aria-label="$t(`ariaLabels.${link.path}`)"
-        >
+        <nuxt-link :to="localePath(link.path)">
           <icon :name="link.icon" class="icon is-small" />
         </nuxt-link>
       </li>
     </ul>
     <button
       v-if="showMenu"
-      :aria-label="$t('ariaLabels.addActivity')"
       type="button"
       class="add-button"
       @click="showNewActivityModal"

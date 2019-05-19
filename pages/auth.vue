@@ -12,7 +12,6 @@
         <text-field
           v-model="email"
           :placeholder="$t('email')"
-          :aria-label="$t('email')"
           type="email"
           class="has-border"
           autofocus
@@ -21,7 +20,6 @@
         <text-field
           v-model="password"
           :placeholder="$t('password')"
-          :aria-label="$t('password')"
           type="password"
           class="password has-border"
           required
@@ -30,7 +28,6 @@
           v-if="!hasAccount"
           v-model="passwordConfirmation"
           :placeholder="$t('passwordConfirmation')"
-          :aria-label="$t('passwordConfirmation')"
           class="has-border"
           type="password"
         />

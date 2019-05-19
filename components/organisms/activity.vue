@@ -28,11 +28,7 @@
       </div>
 
       <nav>
-        <btn
-          :aria-label="$t('ariaLabels.stop')"
-          class="stop-button has-icon"
-          @click="stopActivity"
-        >
+        <btn class="stop-button has-icon" @click="stopActivity">
           <icon name="check-icon" class="is-primary" />
         </btn>
       </nav>

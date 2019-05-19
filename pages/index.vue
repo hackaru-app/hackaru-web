@@ -5,7 +5,6 @@
     <content-header>
       <heading>{{ $t('title') }}</heading>
       <btn
-        :aria-label="$t('ariaLabels.add')"
         type="button"
         class="is-primary is-circle has-dropshadow add-button"
         @click="showModal"

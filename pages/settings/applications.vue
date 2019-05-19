@@ -38,7 +38,6 @@
       >
         <h1 @click="showModal(application)">{{ application.name }}</h1>
         <btn
-          :aria-label="$t('ariaLabels.delete')"
           class="delete-button has-icon"
           @click="deleteApplication(application.id)"
         >

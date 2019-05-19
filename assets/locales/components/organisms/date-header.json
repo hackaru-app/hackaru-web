@@ -1,10 +1,5 @@
 {
   "en": {
-    "ariaLabels": {
-      "previous": "Previous",
-      "next": "Next",
-      "selectPeriod": "Select Period"
-    },
     "day": {
       "label": "Day"
     },
@@ -19,11 +14,6 @@
     }
   },
   "ja": {
-    "ariaLabels": {
-      "previous": "前へ",
-      "next": "次へ",
-      "selectPeriod": "期間を選択"
-    },
     "day": {
       "label": "日"
     },

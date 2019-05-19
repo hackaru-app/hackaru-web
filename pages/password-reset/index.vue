@@ -10,7 +10,6 @@
       <text-field
         v-model="email"
         :placeholder="$t('email')"
-        :aria-label="$t('email')"
         type="email"
         class="has-border"
         autofocus

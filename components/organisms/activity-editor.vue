@@ -49,7 +49,6 @@
         <div class="icons">
           <btn
             v-if="stoppedAt && isSharedSupported"
-            :aria-label="$t('ariaLabels.share')"
             type="button"
             class="share-button has-icon"
             @click="share"
@@ -58,7 +57,6 @@
           </btn>
           <btn
             v-if="id"
-            :aria-label="$t('ariaLabels.delete')"
             type="button"
             class="delete-button has-icon"
             @click="deleteActivity"

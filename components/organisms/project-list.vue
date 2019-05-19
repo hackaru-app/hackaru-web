@@ -3,21 +3,11 @@
 <template>
   <section>
     <modal-header>
-      <btn
-        :aria-label="$t('ariaLabels.back')"
-        class="left-arrow-button has-icon"
-        type="button"
-        @click="pop"
-      >
+      <btn class="left-arrow-button has-icon" type="button" @click="pop">
         <icon name="chevron-left-icon" class="is-large" />
       </btn>
       <h1>{{ $t('title') }}</h1>
-      <btn
-        :aria-label="$t('ariaLabels.add')"
-        class="add-button has-icon"
-        type="button"
-        @click="createProject"
-      >
+      <btn class="add-button has-icon" type="button" @click="createProject">
         <icon name="plus-icon" />
       </btn>
     </modal-header>
@@ -33,7 +23,6 @@
       </div>
       <btn
         v-if="project.id"
-        :aria-label="$t('ariaLabels.edit')"
         class="has-icon edit-button"
         type="button"
         @click="project.id && editProject(project)"

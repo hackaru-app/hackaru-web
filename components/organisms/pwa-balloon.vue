@@ -8,12 +8,7 @@
   >
     <div v-if="visibility && isIOS() && !isStandalone()" class="balloon">
       <div class="content">
-        <btn
-          :aria-label="$t('ariaLabels.close')"
-          type="button"
-          class="has-icon close-button"
-          @click="close"
-        >
+        <btn type="button" class="has-icon close-button" @click="close">
           <icon name="x-icon" />
         </btn>
         <section class="logo">

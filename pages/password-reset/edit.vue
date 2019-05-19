@@ -9,7 +9,6 @@
       <text-field
         v-model="password"
         :placeholder="$t('password')"
-        :aria-label="$t('password')"
         type="password"
         class="has-underline"
         required
@@ -17,7 +16,6 @@
       <text-field
         v-model="passwordConfirmation"
         :placeholder="$t('passwordConfirmation')"
-        :aria-label="$t('passwordConfirmation')"
         type="password"
         class="has-underline"
         required

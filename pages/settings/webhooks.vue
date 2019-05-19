@@ -43,7 +43,6 @@
           {{ $t('title') }}
         </heading>
         <btn
-          :aria-label="$t('ariaLabels.add')"
           type="button"
           class="is-primary is-circle has-dropshadow add-button"
           @click="showModal"
@@ -56,7 +55,6 @@
         <p>{{ $t(`events.${webhook.event}`) }}</p>
         <h1>{{ webhook.targetUrl }}</h1>
         <btn
-          :aria-label="$t('ariaLabels.delete')"
           type="button"
           class="delete-button has-icon"
           @click="deleteWebhook(webhook.id)"
