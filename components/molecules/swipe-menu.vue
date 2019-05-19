@@ -1,11 +1,17 @@
 <template>
-  <div v-dragdrop="dragdrop" v-window-scroll="windowScroll" class="swipe-menu">
+  <div class="swipe-menu">
     <div :style="leftStyle" class="menu">
       <slot name="left" />
     </div>
-    <div class="content">
+    <drag-drop
+      v-window-scroll="scrollWindow"
+      :enabled="!scrolling"
+      class="content"
+      @move="dragging"
+      @end="drop"
+    >
       <slot />
-    </div>
+    </drag-drop>
     <div :style="rightStyle" class="menu">
       <slot name="right" />
     </div>
@@ -13,12 +19,13 @@
 </template>
 
 <script>
+import DragDrop from '@/components/atoms/drag-drop';
+
 export default {
+  components: {
+    DragDrop
+  },
   props: {
-    minDistance: {
-      type: Number,
-      default: 120
-    },
     speed: {
       type: Number,
       default: 300
@@ -26,12 +33,7 @@ export default {
   },
   data() {
     return {
-      cancelled: undefined,
-      dragdrop: {
-        drag: this.drag,
-        dragging: this.dragging,
-        drop: this.drop
-      },
+      scrolling: false,
       rightStyle: {
         transition: '',
         width: 0
@@ -43,17 +45,16 @@ export default {
     };
   },
   methods: {
-    windowScroll() {
-      this.cancelled = true;
-    },
-    drag() {
-      this.cancelled = false;
-      this.reset();
+    scrollWindow() {
+      this.scrolling = true;
+      clearInterval(this.scrollEndTimer);
+      this.scrollEndTimer = setTimeout(() => {
+        this.scrolling = false;
+      }, 100);
     },
     dragging({ e, distance }) {
-      if (Math.abs(distance.x) < 40) {
-        return;
-      }
+      const wasTooLowDrag = Math.abs(distance.x) < 40;
+      if (wasTooLowDrag) return;
       if (distance.x > 0) {
         this.rightStyle = {
           transition: '',
@@ -77,9 +78,8 @@ export default {
       e.preventDefault();
     },
     drop({ e, distance }) {
-      if (Math.abs(distance.x) < this.minDistance || this.cancelled) {
-        return this.resetWithAnimation();
-      }
+      const wasTooLowDrag = Math.abs(distance.x) < 120;
+      if (wasTooLowDrag) return this.reset();
       return distance.x > 0 ? this.swipeRight() : this.swipeLeft();
     },
     swipeRight() {
@@ -97,16 +97,6 @@ export default {
       };
     },
     reset() {
-      this.rightStyle = {
-        transition: '',
-        width: 0
-      };
-      this.leftStyle = {
-        transition: '',
-        width: 0
-      };
-    },
-    resetWithAnimation() {
       this.rightStyle = {
         transition: `width ${this.speed}ms`,
         width: 0

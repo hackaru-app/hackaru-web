@@ -98,7 +98,7 @@ export default {
     },
     deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) {
-        this.$refs.menu.resetWithAnimation();
+        this.$refs.menu.reset();
         return;
       }
       this.$store.dispatch('activities/deleteActivity', this.id);
@@ -164,6 +164,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px $border solid;
+  background-color: #fff;
   &:hover {
     background: $grey-fdfdfd;
   }
