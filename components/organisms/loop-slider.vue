@@ -1,6 +1,6 @@
 <template>
   <drag-drop
-    v-window-scroll="scrollWindow"
+    v-scroll-window="scrollWindow"
     :enabled="!scrolling && enabled"
     @move="dragging"
     @end="drop"

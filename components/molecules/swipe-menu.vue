@@ -4,7 +4,7 @@
       <slot name="left" />
     </div>
     <drag-drop
-      v-window-scroll="scrollWindow"
+      v-scroll-window="scrollWindow"
       :enabled="!scrolling"
       class="content"
       @move="dragging"

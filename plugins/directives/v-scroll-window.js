@@ -8,6 +8,6 @@ const directive = {
   }
 };
 
-Vue.directive('window-scroll', directive);
+Vue.directive('scroll-window', directive);
 
 export default directive;
