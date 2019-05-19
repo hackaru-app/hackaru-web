@@ -15,8 +15,16 @@
         </btn>
       </transition>
 
-      <marshmallow-select :value="$t(`${period.key}.label`)" @change="change">
-        <option v-for="period in allowPeriods" :key="period" :value="period">
+      <marshmallow-select
+        :value="$t(`${currentPeriod}.label`)"
+        @change="change"
+      >
+        <option
+          v-for="period in periods"
+          :key="period"
+          :value="period"
+          :selected="period === currentPeriod"
+        >
           {{ $t(`${period}.label`) }}
         </option>
       </marshmallow-select>
@@ -30,7 +38,6 @@ import ContentHeader from '@/components/organisms/content-header';
 import Btn from '@/components/atoms/btn';
 import MarshmallowSelect from '@/components/molecules/marshmallow-select';
 import DateHeading from '@/components/molecules/date-heading';
-import { format, isEqual } from 'date-fns';
 
 export default {
   components: {
@@ -41,31 +48,21 @@ export default {
     MarshmallowSelect
   },
   props: {
-    date: {
-      type: Date,
+    title: {
+      type: String,
       required: true
     },
-    allowPeriods: {
+    hasToday: {
+      type: Boolean,
+      required: true
+    },
+    periods: {
       type: Array,
       required: true
     },
     currentPeriod: {
       type: String,
       required: true
-    }
-  },
-  computed: {
-    period() {
-      return this.$periods[this.currentPeriod];
-    },
-    title() {
-      return format(this.date, this.$t(`${this.period.key}.format`));
-    },
-    hasToday() {
-      return isEqual(
-        this.period.startOf(new Date()),
-        this.period.startOf(this.date)
-      );
     }
   },
   methods: {
@@ -76,10 +73,10 @@ export default {
       this.$emit('right');
     },
     today() {
-      this.$emit('update:date', `${new Date()}`);
+      this.$emit('today');
     },
-    change(currentPeriod) {
-      this.$emit('update:currentPeriod', currentPeriod);
+    change(period) {
+      this.$emit('update:currentPeriod', period);
     }
   }
 };

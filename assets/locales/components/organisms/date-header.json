@@ -6,20 +6,16 @@
       "selectPeriod": "Select Period"
     },
     "day": {
-      "label": "Day",
-      "format": "DD/MM/YYYY"
+      "label": "Day"
     },
     "week": {
-      "label": "Week",
-      "format": "MM/YYYY"
+      "label": "Week"
     },
     "month": {
-      "label": "Month",
-      "format": "MM/YYYY"
+      "label": "Month"
     },
     "year": {
-      "label": "Year",
-      "format": "YYYY"
+      "label": "Year"
     }
   },
   "ja": {
@@ -29,20 +25,16 @@
       "selectPeriod": "期間を選択"
     },
     "day": {
-      "label": "日",
-      "format": "YYYY/MM/DD"
+      "label": "日"
     },
     "week": {
-      "label": "週",
-      "format": "YYYY/MM"
+      "label": "週"
     },
     "month": {
-      "label": "月",
-      "format": "YYYY/MM"
+      "label": "月"
     },
     "year": {
-      "label": "年",
-      "format": "YYYY"
+      "label": "年"
     }
   }
 }

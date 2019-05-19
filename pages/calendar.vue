@@ -1,10 +1,14 @@
+<i18n src="@/assets/locales/pages/calendar.json" />
+
 <template>
   <section>
     <date-header
       ref="header"
-      :date.sync="date"
+      :periods="['day', 'week']"
       :current-period.sync="currentPeriod"
-      :allow-periods="['day', 'week']"
+      :title="title"
+      :has-today="hasToday"
+      @today="today"
       @left="slideLeft"
       @right="slideRight"
     />
@@ -51,7 +55,31 @@ import DateHeader from '@/components/organisms/date-header';
 import InfiniteSlider from '@/components/organisms/infinite-slider';
 import CalendarContent from '@/components/organisms/calendar-content';
 import CalendarDayHeader from '@/components/organisms/calendar-day-header';
-import { isToday, format, addDays, eachDay } from 'date-fns';
+import {
+  startOfDay,
+  endOfDay,
+  isEqual,
+  startOfWeek,
+  endOfWeek,
+  addWeeks,
+  isToday,
+  format,
+  addDays,
+  eachDay
+} from 'date-fns';
+
+const periods = {
+  day: {
+    startOf: startOfDay,
+    endOf: endOfDay,
+    add: addDays
+  },
+  week: {
+    startOf: startOfWeek,
+    endOf: endOfWeek,
+    add: addWeeks
+  }
+};
 
 export default {
   provide: {
@@ -73,15 +101,24 @@ export default {
       isToday,
       sliderEnabled: true,
       date: new Date(),
-      currentPeriod: 'day'
+      currentPeriod: 'week'
     };
   },
   computed: {
+    period() {
+      return periods[this.currentPeriod];
+    },
+    title() {
+      return format(this.date, this.$t(`${this.currentPeriod}.format`));
+    },
     days() {
       return this.getDays(this.date);
     },
-    period() {
-      return this.$periods[this.currentPeriod];
+    hasToday() {
+      return isEqual(
+        this.period.startOf(new Date()),
+        this.period.startOf(this.date)
+      );
     }
   },
   watch: {
@@ -113,6 +150,9 @@ export default {
     },
     next() {
       this.date = this.period.add(this.period.startOf(this.date), 1);
+    },
+    today() {
+      this.date = new Date();
     }
   }
 };
