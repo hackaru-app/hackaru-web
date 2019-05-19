@@ -12,10 +12,6 @@
 <script>
 import DragDrop from '@/components/atoms/drag-drop';
 
-function wasTooLowDrag({ x }) {
-  return Math.abs(x) < 100;
-}
-
 export default {
   components: {
     DragDrop
@@ -52,13 +48,15 @@ export default {
       }, 100);
     },
     dragging({ e, distance }) {
-      if (this.slideTimer) return;
+      const wasTooLowDrag = Math.abs(distance.x) < 5;
+      if (this.slideTimer || wasTooLowDrag) return;
       this.speed = 0;
       this.offset = `-${this.$mezr.width(this.$el) + distance.x}px`;
       e.preventDefault();
     },
     drop({ e, distance }) {
-      if (wasTooLowDrag(distance)) return this.slideReset();
+      const wasTooLowDrag = Math.abs(distance.x) < 100;
+      if (wasTooLowDrag) return this.slideReset();
       return distance.x > 0 ? this.slideRight() : this.slideLeft();
     },
     slideReset() {

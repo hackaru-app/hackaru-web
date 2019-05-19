@@ -109,7 +109,10 @@ export default {
       this.ghostHeight = 20;
     },
     dragging({ el, guideRulerTop }) {
-      this.$emit('dragging', { el, guideRulerTop });
+      this.$emit('dragging', {
+        el,
+        guideRulerTop
+      });
     },
     drop(el) {
       this.$emit('drop', el);
