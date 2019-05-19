@@ -76,7 +76,7 @@ export default {
       required: true
     },
     day: {
-      type: String,
+      type: Date,
       required: true
     },
     startedAt: {

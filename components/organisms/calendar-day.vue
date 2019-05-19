@@ -58,7 +58,7 @@ export default {
   mixins: [PxMinConvertable],
   props: {
     day: {
-      type: String,
+      type: Date,
       required: true
     },
     minHeight: {

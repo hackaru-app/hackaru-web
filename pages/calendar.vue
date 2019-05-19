@@ -22,8 +22,8 @@
             <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
               <calendar-day-header
                 v-for="day in getDays(period.add(date, page))"
-                :day="format(day, 'YYYY-MM-DD')"
-                :key="format(day, 'YYYY-MM-DD')"
+                :day="day"
+                :key="`${day}`"
               />
             </div>
           </div>
@@ -72,13 +72,13 @@ export default {
       format,
       isToday,
       sliderEnabled: true,
-      date: format(new Date(), 'YYYY-MM-DD'),
+      date: new Date(),
       currentPeriod: 'day'
     };
   },
   computed: {
     days() {
-      return this.getDays(this.date).map(date => format(date, 'YYYY-MM-DD'));
+      return this.getDays(this.date);
     },
     period() {
       return this.$periods[this.currentPeriod];
@@ -109,16 +109,10 @@ export default {
       this.$refs.slider.slideRight();
     },
     prev() {
-      this.date = format(
-        this.period.add(this.period.startOf(this.date), -1),
-        'YYYY-MM-DD'
-      );
+      this.date = this.period.add(this.period.startOf(this.date), -1);
     },
     next() {
-      this.date = format(
-        this.period.add(this.period.startOf(this.date), 1),
-        'YYYY-MM-DD'
-      );
+      this.date = this.period.add(this.period.startOf(this.date), 1);
     }
   }
 };

@@ -15,7 +15,7 @@ import { format, isToday } from 'date-fns';
 export default {
   props: {
     day: {
-      type: String,
+      type: Date,
       required: true
     }
   },

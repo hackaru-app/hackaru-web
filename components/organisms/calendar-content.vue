@@ -18,11 +18,11 @@
     <calendar-day
       v-for="day in days"
       ref="days"
-      :data-day="format(day, 'YYYY-MM-DD')"
+      :data-day="day"
       :class="{ overlapped: isSameDay(overlappedDay, day) }"
       :overlapped-day="overlappedDay"
-      :key="format(day, 'YYYY-MM-DD')"
-      :day="format(day, 'YYYY-MM-DD')"
+      :key="`${day}`"
+      :day="day"
       @dragging="dragging"
       @drop="drop"
     />

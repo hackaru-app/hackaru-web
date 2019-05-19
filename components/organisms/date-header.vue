@@ -42,7 +42,7 @@ export default {
   },
   props: {
     date: {
-      type: String,
+      type: Date,
       required: true
     },
     allowPeriods: {
