@@ -13,7 +13,7 @@
       @right="slideRight"
     />
 
-    <infinite-slider
+    <loop-slider
       ref="slider"
       :enabled="sliderEnabled"
       class="slider"
@@ -46,13 +46,13 @@
           </section>
         </section>
       </template>
-    </infinite-slider>
+    </loop-slider>
   </section>
 </template>
 
 <script>
 import DateHeader from '@/components/organisms/date-header';
-import InfiniteSlider from '@/components/organisms/infinite-slider';
+import LoopSlider from '@/components/organisms/loop-slider';
 import CalendarContent from '@/components/organisms/calendar-content';
 import CalendarDayHeader from '@/components/organisms/calendar-day-header';
 import {
@@ -86,7 +86,7 @@ export default {
     pxPerMin: 40 / 60
   },
   components: {
-    InfiniteSlider,
+    LoopSlider,
     CalendarContent,
     CalendarDayHeader,
     DateHeader

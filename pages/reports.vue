@@ -13,7 +13,7 @@
       @right="slideRight"
     />
 
-    <infinite-slider ref="slider" @slide-left="prev" @slide-right="next">
+    <loop-slider ref="slider" @slide-left="prev" @slide-right="next">
       <template slot-scope="{ slideStyle }">
         <div class="reports-wrapper">
           <div :style="slideStyle" class="containers">
@@ -47,12 +47,12 @@
           </div>
         </div>
       </template>
-    </infinite-slider>
+    </loop-slider>
   </section>
 </template>
 
 <script>
-import InfiniteSlider from '@/components/organisms/infinite-slider';
+import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
 import ReportContainer from '@/components/organisms/report-container';
 import { mapGetters } from 'vuex';
@@ -102,7 +102,7 @@ const periods = {
 
 export default {
   components: {
-    InfiniteSlider,
+    LoopSlider,
     ReportContainer,
     DateHeader
   },
