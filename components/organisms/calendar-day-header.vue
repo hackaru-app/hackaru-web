@@ -1,8 +1,10 @@
+<i18n src="@/assets/locales/components/organisms/calendar-day-header.json" />
+
 <template>
   <header :class="{ today: isToday(day) }">
     <button @click="click">
       <h1>{{ format(day, 'DD') }}</h1>
-      <small>{{ format(day, 'dd', { locale: locale }) }}</small>
+      <small>{{ $t(`weeks[${format(day, 'd')}]`) }}</small>
     </button>
   </header>
 </template>
@@ -14,10 +16,6 @@ export default {
   props: {
     day: {
       type: String,
-      required: true
-    },
-    locale: {
-      type: Object,
       required: true
     }
   },

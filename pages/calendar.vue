@@ -24,7 +24,6 @@
               <calendar-day-header
                 v-for="day in getDays(period.add(date, page))"
                 :day="format(day, 'YYYY-MM-DD')"
-                :locale="locales[$i18n.locale]"
                 :key="format(day, 'YYYY-MM-DD')"
               />
             </div>
@@ -76,11 +75,7 @@ export default {
       index: 1,
       sliderEnabled: true,
       date: format(new Date(), 'YYYY-MM-DD'),
-      periods: [periods.day, periods.week],
-      locales: {
-        en: require('date-fns/locale/en'),
-        ja: require('date-fns/locale/ja')
-      }
+      periods: [periods.day, periods.week]
     };
   },
   computed: {
