@@ -48,7 +48,7 @@ export default {
       }, 100);
     },
     dragging({ e, distance }) {
-      const wasTooLowDrag = Math.abs(distance.x) < 5;
+      const wasTooLowDrag = Math.abs(distance.x) < 10;
       if (this.slideTimer || wasTooLowDrag) return;
       this.speed = 0;
       this.offset = `-${this.$mezr.width(this.$el) + distance.x}px`;
