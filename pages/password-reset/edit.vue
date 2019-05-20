@@ -6,14 +6,14 @@
       {{ $t('title') }}
     </heading>
     <form @submit.prevent="resetPassword">
-      <text-field
+      <base-input
         v-model="password"
         :placeholder="$t('password')"
         type="password"
         class="has-underline"
         required
       />
-      <text-field
+      <base-input
         v-model="passwordConfirmation"
         :placeholder="$t('passwordConfirmation')"
         type="password"
@@ -29,14 +29,14 @@
 
 <script>
 import Heading from '@/components/atoms/heading';
-import TextField from '@/components/atoms/text-field';
+import BaseInput from '@/components/atoms/base-input';
 import BaseButton from '@/components/atoms/base-button';
 
 export default {
   layout: 'no-menu',
   components: {
     Heading,
-    TextField,
+    BaseInput,
     BaseButton
   },
   head: {

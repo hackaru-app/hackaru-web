@@ -34,7 +34,7 @@
         {{ $t('titles.email') }}
       </heading>
       <form class="email" @submit.prevent="changeEmail">
-        <text-field
+        <base-input
           v-model="emailForm.email"
           :placeholder="$t('email')"
           type="email"
@@ -42,7 +42,7 @@
           required
           @focus="$event.target.select()"
         />
-        <text-field
+        <base-input
           v-model="emailForm.currentPassword"
           :placeholder="$t('password')"
           type="password"
@@ -60,7 +60,7 @@
         {{ $t('titles.password') }}
       </heading>
       <form class="password" @submit.prevent="changePassword">
-        <text-field
+        <base-input
           v-model="passwordForm.currentPassword"
           :placeholder="$t('password')"
           type="password"
@@ -68,7 +68,7 @@
           size="1"
           required
         />
-        <text-field
+        <base-input
           v-model="passwordForm.password"
           :placeholder="$t('newPassword')"
           type="password"
@@ -76,7 +76,7 @@
           size="1"
           required
         />
-        <text-field
+        <base-input
           v-model="passwordForm.passwordConfirmation"
           :placeholder="$t('confirmNewPassword')"
           type="password"
@@ -129,7 +129,7 @@
 import Icon from '@/components/atoms/icon';
 import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
-import TextField from '@/components/atoms/text-field';
+import BaseInput from '@/components/atoms/base-input';
 import LocaleSelect from '@/components/molecules/locale-select';
 import BaseModal from '@/components/organisms/base-modal';
 import ModalItem from '@/components/molecules/modal-item';
@@ -142,7 +142,7 @@ export default {
     Icon,
     Heading,
     BaseButton,
-    TextField,
+    BaseInput,
     LocaleSelect,
     BaseModal,
     ModalItem,

@@ -7,7 +7,7 @@
     </heading>
     <p>{{ $t('about') }}</p>
     <form @submit.prevent="sendPasswordResetEmail">
-      <text-field
+      <base-input
         v-model="email"
         :placeholder="$t('email')"
         type="email"
@@ -27,13 +27,13 @@
 <script>
 import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
-import TextField from '@/components/atoms/text-field';
+import BaseInput from '@/components/atoms/base-input';
 
 export default {
   layout: 'no-menu',
   components: {
     Heading,
-    TextField,
+    BaseInput,
     BaseButton
   },
   head() {

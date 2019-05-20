@@ -9,7 +9,7 @@
         </heading>
       </transition>
       <form @submit.prevent="submit">
-        <text-field
+        <base-input
           v-model="email"
           :placeholder="$t('email')"
           type="email"
@@ -17,14 +17,14 @@
           autofocus
           required
         />
-        <text-field
+        <base-input
           v-model="password"
           :placeholder="$t('password')"
           type="password"
           class="password has-border"
           required
         />
-        <text-field
+        <base-input
           v-if="!hasAccount"
           v-model="passwordConfirmation"
           :placeholder="$t('passwordConfirmation')"
@@ -96,7 +96,7 @@
 
 <script>
 import Heading from '@/components/atoms/heading';
-import TextField from '@/components/atoms/text-field';
+import BaseInput from '@/components/atoms/base-input';
 import BaseButton from '@/components/atoms/base-button';
 import LocaleSelect from '@/components/molecules/locale-select';
 
@@ -104,7 +104,7 @@ export default {
   layout: 'no-menu',
   components: {
     Heading,
-    TextField,
+    BaseInput,
     BaseButton,
     LocaleSelect
   },
