@@ -3,7 +3,7 @@
 
 <template>
   <div class="settings">
-    <modal-wrapper name="application">
+    <base-modal name="application">
       <form>
         <modal-header>
           <h1>{{ selected.name }}</h1>
@@ -21,7 +21,7 @@
           </highlight>
         </modal-item>
       </form>
-    </modal-wrapper>
+    </base-modal>
 
     <section class="content">
       <header class="header">
@@ -61,7 +61,7 @@ import ModalItem from '@/components/molecules/modal-item';
 import ModalLabel from '@/components/molecules/modal-label';
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
-import ModalWrapper from '@/components/organisms/modal-wrapper';
+import BaseModal from '@/components/organisms/base-modal';
 import Highlight from '@/components/atoms/highlight';
 import { mapGetters } from 'vuex';
 
@@ -71,7 +71,7 @@ export default {
     Btn,
     Icon,
     Heading,
-    ModalWrapper,
+    BaseModal,
     ModalHeader,
     ModalItem,
     ModalFooter,

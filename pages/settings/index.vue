@@ -2,7 +2,7 @@
 
 <template>
   <section>
-    <modal-wrapper name="deleteAccount">
+    <base-modal name="deleteAccount">
       <form class="delete-account" @submit.prevent="deleteAccount">
         <modal-header>
           <h1>{{ $t('deleteAccountModal.title') }}</h1>
@@ -26,7 +26,7 @@
           </btn>
         </modal-footer>
       </form>
-    </modal-wrapper>
+    </base-modal>
 
     <article>
       <heading class="is-small">
@@ -131,7 +131,7 @@ import Heading from '@/components/atoms/heading';
 import Btn from '@/components/atoms/btn';
 import TextField from '@/components/atoms/text-field';
 import LocaleSelect from '@/components/molecules/locale-select';
-import ModalWrapper from '@/components/organisms/modal-wrapper';
+import BaseModal from '@/components/organisms/base-modal';
 import ModalItem from '@/components/molecules/modal-item';
 import ModalLabel from '@/components/molecules/modal-label';
 import ModalHeader from '@/components/molecules/modal-header';
@@ -144,7 +144,7 @@ export default {
     Btn,
     TextField,
     LocaleSelect,
-    ModalWrapper,
+    BaseModal,
     ModalItem,
     ModalLabel,
     ModalHeader,

@@ -1,5 +1,5 @@
 <template>
-  <modal-wrapper
+  <base-modal
     ref="modal"
     :name="name"
     :height="height"
@@ -20,15 +20,15 @@
         />
       </keep-alive>
     </transition>
-  </modal-wrapper>
+  </base-modal>
 </template>
 
 <script>
-import ModalWrapper from '@/components/organisms/modal-wrapper';
+import BaseModal from '@/components/organisms/base-modal';
 
 export default {
   components: {
-    ModalWrapper
+    BaseModal
   },
   props: {
     name: {

@@ -2,7 +2,7 @@
 
 <template>
   <div class="settings">
-    <modal-wrapper name="webhook">
+    <base-modal name="webhook">
       <form @submit.prevent="addWebhook">
         <modal-header>
           <h1>{{ $t('modalTitle') }}</h1>
@@ -34,7 +34,7 @@
           </btn>
         </modal-footer>
       </form>
-    </modal-wrapper>
+    </base-modal>
 
     <section class="content">
       <header class="header">
@@ -74,7 +74,7 @@
 import Heading from '@/components/atoms/heading';
 import Icon from '@/components/atoms/icon';
 import ContentHeader from '@/components/organisms/content-header';
-import ModalWrapper from '@/components/organisms/modal-wrapper';
+import BaseModal from '@/components/organisms/base-modal';
 import Btn from '@/components/atoms/btn';
 import ModalItem from '@/components/molecules/modal-item';
 import ModalLabel from '@/components/molecules/modal-label';
@@ -87,7 +87,7 @@ export default {
     Heading,
     ContentHeader,
     Icon,
-    ModalWrapper,
+    BaseModal,
     ModalItem,
     ModalLabel,
     ModalHeader,
