@@ -15,10 +15,7 @@
         </btn>
       </transition>
 
-      <marshmallow-select
-        :value="$t(`${currentPeriod}.label`)"
-        @change="change"
-      >
+      <base-select :value="$t(`${currentPeriod}.label`)" @change="change">
         <option
           v-for="period in periods"
           :key="period"
@@ -27,7 +24,7 @@
         >
           {{ $t(`${period}.label`) }}
         </option>
-      </marshmallow-select>
+      </base-select>
     </nav>
   </content-header>
 </template>
@@ -36,7 +33,7 @@
 import Icon from '@/components/atoms/icon';
 import ContentHeader from '@/components/organisms/content-header';
 import Btn from '@/components/atoms/btn';
-import MarshmallowSelect from '@/components/molecules/marshmallow-select';
+import BaseSelect from '@/components/molecules/base-select';
 import DateHeading from '@/components/molecules/date-heading';
 
 export default {
@@ -45,7 +42,7 @@ export default {
     ContentHeader,
     DateHeading,
     Btn,
-    MarshmallowSelect
+    BaseSelect
   },
   props: {
     title: {

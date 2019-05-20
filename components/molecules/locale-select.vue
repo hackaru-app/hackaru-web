@@ -1,5 +1,5 @@
 <template>
-  <marshmallow-select
+  <base-select
     ref="select"
     :value="locales[$i18n.locale]"
     aria-label="Locales"
@@ -13,15 +13,15 @@
     >
       {{ locale }}
     </option>
-  </marshmallow-select>
+  </base-select>
 </template>
 
 <script>
-import MarshmallowSelect from '@/components/molecules/marshmallow-select';
+import BaseSelect from '@/components/molecules/base-select';
 
 export default {
   components: {
-    MarshmallowSelect
+    BaseSelect
   },
   data() {
     return {

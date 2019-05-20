@@ -1,5 +1,5 @@
 <template>
-  <div class="marshmallow-select">
+  <div class="base-select">
     <btn class="has-dropshadow">
       {{ value }}
     </btn>
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.marshmallow-select {
+.base-select {
   position: relative;
   display: flex;
 }
@@ -43,7 +43,7 @@ select {
   cursor: pointer;
 }
 @media print {
-  .marshmallow-select button {
+  .base-select button {
     background-color: $grey-f5f5f5;
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
