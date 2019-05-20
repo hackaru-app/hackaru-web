@@ -11,13 +11,7 @@
     @end="moveEnd"
     @cancel="moveCancel"
   >
-    <div
-      class="exclusiver"
-      @mousedown="mousedown"
-      @mouseup="mouseup"
-      @touchstart="mousedown"
-      @touchend="mouseup"
-    >
+    <div class="exclusiver" @mousedown="mousedown" @mouseup="mouseup">
       <calendar-event
         :style="{ height: `${height}px` }"
         :title="title"
