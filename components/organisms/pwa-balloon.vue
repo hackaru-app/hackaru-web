@@ -6,7 +6,10 @@
     leave-active-class="fadeOutDown"
     appear
   >
-    <div v-if="visibility && isIOS() && !isStandalone()" class="balloon">
+    <div
+      v-if="visibility && $platform.isIOS() && !$platform.isPWA()"
+      class="balloon"
+    >
       <div class="content">
         <base-button type="button" class="has-icon close-button" @click="close">
           <icon name="x-icon" />
@@ -43,12 +46,6 @@ export default {
     this.visibility = !localStorage.hidePwaBallon;
   },
   methods: {
-    isIOS() {
-      return ['iPhone', 'iPad'].includes(navigator.platform);
-    },
-    isStandalone() {
-      return navigator.standalone;
-    },
     close() {
       this.visibility = false;
       localStorage.setItem('hidePwaBallon', true);

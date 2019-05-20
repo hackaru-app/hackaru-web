@@ -65,7 +65,7 @@ export default {
     };
   },
   mounted() {
-    this.isAndroid = navigator.userAgent.match(/android/i);
+    this.isAndroid = this.$platform.isAndroid();
   },
   methods: {
     showNewActivityModal() {
