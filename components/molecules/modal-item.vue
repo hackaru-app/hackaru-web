@@ -20,7 +20,7 @@
   }
   label {
     min-width: 100px;
-    margin-bottom: 25px;
+    justify-content: center;
     color: $text;
     flex-shrink: 0;
   }
@@ -30,7 +30,7 @@
   align-self: flex-start;
   align-items: stretch;
   padding: 25px 30px;
-  .modal-item label {
+  label {
     padding-bottom: 25px;
   }
 }

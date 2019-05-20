@@ -108,7 +108,7 @@ export default {
         name: 'No Project',
         color: '#cccfd9'
       },
-      startedAt: new Date().toString(),
+      startedAt: `${new Date()}`,
       stoppedAt: undefined
     };
   },
