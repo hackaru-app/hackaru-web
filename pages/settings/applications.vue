@@ -9,9 +9,9 @@
           <h1>{{ selected.name }}</h1>
         </modal-header>
         <modal-item class="is-vertical">
-          <modal-label class="is-vertical">
+          <label>
             {{ $t('labels.scopes') }}
-          </modal-label>
+          </label>
           <highlight>
             <ul>
               <li v-for="scope in selected.scopes" :key="scope">
@@ -58,7 +58,7 @@ import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import Heading from '@/components/atoms/heading';
 import ModalItem from '@/components/molecules/modal-item';
-import ModalLabel from '@/components/molecules/modal-label';
+
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import BaseModal from '@/components/organisms/base-modal';
@@ -75,7 +75,7 @@ export default {
     ModalHeader,
     ModalItem,
     ModalFooter,
-    ModalLabel,
+
     Highlight
   },
   data() {
@@ -112,21 +112,6 @@ export default {
   padding-bottom: 50px;
   background-color: $white;
 }
-.list-item h1 {
-  cursor: pointer;
-  flex: 1;
-  font-size: $font-size;
-  font-weight: normal;
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  transition: all 0.3s ease;
-  &:active {
-    transform: scale(0.97);
-  }
-}
 .header {
   display: flex;
   border-bottom: 1px $border solid;
@@ -153,6 +138,21 @@ ul {
   border-bottom: 1px $border solid;
   &:hover {
     background: $grey-fdfdfd;
+  }
+  h1 {
+    cursor: pointer;
+    flex: 1;
+    font-size: $font-size;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    &:active {
+      transform: scale(0.97);
+    }
   }
 }
 .empty {

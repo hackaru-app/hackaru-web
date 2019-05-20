@@ -133,7 +133,7 @@ import BaseInput from '@/components/atoms/base-input';
 import LocaleSelect from '@/components/molecules/locale-select';
 import BaseModal from '@/components/organisms/base-modal';
 import ModalItem from '@/components/molecules/modal-item';
-import ModalLabel from '@/components/molecules/modal-label';
+
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 
@@ -146,7 +146,7 @@ export default {
     LocaleSelect,
     BaseModal,
     ModalItem,
-    ModalLabel,
+
     ModalHeader,
     ModalFooter
   },

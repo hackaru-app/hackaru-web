@@ -8,18 +8,18 @@
 
     <form @submit.prevent="saveActivity">
       <modal-item>
-        <modal-label>
+        <label>
           {{ $t('project') }}
-        </modal-label>
+        </label>
         <button type="button" class="project-button" @click="editProject">
           <project-name :name="project.name" :color="project.color" />
         </button>
       </modal-item>
 
       <modal-item>
-        <modal-label>
+        <label>
           {{ $t('description') }}
-        </modal-label>
+        </label>
         <input
           v-model="description"
           :placeholder="$t('description')"
@@ -29,16 +29,16 @@
       </modal-item>
 
       <modal-item>
-        <modal-label>
+        <label>
           {{ $t('startedAt') }}
-        </modal-label>
+        </label>
         <datetime-picker v-model="startedAt" />
       </modal-item>
 
       <modal-item v-if="id">
-        <modal-label>
+        <label>
           {{ $t('stoppedAt') }}
-        </modal-label>
+        </label>
         <datetime-picker v-model="stoppedAt" />
       </modal-item>
 
@@ -72,7 +72,7 @@
 <script>
 import ProjectList from '@/components/organisms/project-list';
 import ModalItem from '@/components/molecules/modal-item';
-import ModalLabel from '@/components/molecules/modal-label';
+
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import ProjectName from '@/components/molecules/project-name';
@@ -89,7 +89,7 @@ export default {
     ModalHeader,
     ModalItem,
     ModalFooter,
-    ModalLabel,
+
     BaseButton,
     Icon
   },

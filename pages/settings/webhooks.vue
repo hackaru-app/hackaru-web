@@ -8,9 +8,9 @@
           <h1>{{ $t('modalTitle') }}</h1>
         </modal-header>
         <modal-item>
-          <modal-label>
+          <label>
             {{ $t('event') }}
-          </modal-label>
+          </label>
           <select v-model="event">
             <option v-for="event in events" :key="event" :value="event">
               {{ $t(`events.${event}`) }}
@@ -18,9 +18,9 @@
           </select>
         </modal-item>
         <modal-item>
-          <modal-label>
+          <label>
             {{ $t('targetUrl') }}
-          </modal-label>
+          </label>
           <input
             v-model="targetUrl"
             type="url"
@@ -77,7 +77,7 @@ import ContentHeader from '@/components/organisms/content-header';
 import BaseModal from '@/components/organisms/base-modal';
 import BaseButton from '@/components/atoms/base-button';
 import ModalItem from '@/components/molecules/modal-item';
-import ModalLabel from '@/components/molecules/modal-label';
+
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import { mapGetters } from 'vuex';
@@ -89,7 +89,7 @@ export default {
     Icon,
     BaseModal,
     ModalItem,
-    ModalLabel,
+
     ModalHeader,
     ModalFooter,
     BaseButton

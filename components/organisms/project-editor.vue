@@ -11,9 +11,9 @@
 
     <form @submit.prevent="id ? updateProject() : addProject()">
       <modal-item>
-        <modal-label>
+        <label>
           {{ $t('name') }}
-        </modal-label>
+        </label>
         <input
           v-model="name"
           :placeholder="$t('name')"
@@ -23,9 +23,9 @@
       </modal-item>
 
       <modal-item>
-        <modal-label>
+        <label>
           {{ $t('color') }}
-        </modal-label>
+        </label>
         <color-select :value.sync="color" />
       </modal-item>
 
@@ -49,7 +49,7 @@
 
 <script>
 import ModalItem from '@/components/molecules/modal-item';
-import ModalLabel from '@/components/molecules/modal-label';
+
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import Icon from '@/components/atoms/icon';
@@ -64,7 +64,7 @@ export default {
     ModalHeader,
     ModalItem,
     ModalFooter,
-    ModalLabel,
+
     BaseButton
   },
   props: {
