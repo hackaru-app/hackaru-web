@@ -5,15 +5,19 @@
     @move="dragging"
     @end="drop"
   >
-    <slot :slide-style="style" />
+    <window-scroll @scroll="scroll" @end="scrollEnd">
+      <slot :slide-style="style" />
+    </window-scroll>
   </drag-drop>
 </template>
 
 <script>
+import WindowScroll from '@/components/atoms/window-scroll';
 import DragDrop from '@/components/atoms/drag-drop';
 
 export default {
   components: {
+    WindowScroll,
     DragDrop
   },
   props: {
@@ -54,12 +58,11 @@ export default {
     }
   },
   methods: {
-    scrollWindow() {
+    scroll() {
       this.scrolling = true;
-      clearInterval(this.scrollEndTimer);
-      this.scrollEndTimer = setTimeout(() => {
-        this.scrolling = false;
-      }, 100);
+    },
+    scrollEnd() {
+      this.scrolling = false;
     },
     dragging({ e, distance }) {
       const wasTooLowDrag = Math.abs(distance.x) < 10;

@@ -82,7 +82,6 @@ module.exports = {
    ** Plugins
    */
   plugins: [
-    { src: '~/plugins/directives/v-scroll-window' },
     { src: '~/plugins/customs/i18n-cacher', ssr: false },
     { src: '~/plugins/customs/mezr', ssr: false },
     { src: '~/plugins/customs/platform', ssr: false },

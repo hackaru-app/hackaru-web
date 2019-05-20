@@ -4,13 +4,14 @@
       <slot name="left" />
     </div>
     <drag-drop
-      v-scroll-window="scrollWindow"
       :enabled="!scrolling"
       class="content"
       @move="dragging"
       @end="drop"
     >
-      <slot />
+      <window-scroll @scroll="scroll" @end="scrollEnd">
+        <slot />
+      </window-scroll>
     </drag-drop>
     <div :style="rightStyle" class="menu">
       <slot name="right" />
@@ -19,10 +20,12 @@
 </template>
 
 <script>
+import WindowScroll from '@/components/atoms/window-scroll';
 import DragDrop from '@/components/atoms/drag-drop';
 
 export default {
   components: {
+    WindowScroll,
     DragDrop
   },
   props: {
@@ -45,12 +48,11 @@ export default {
     };
   },
   methods: {
-    scrollWindow() {
+    scroll() {
       this.scrolling = true;
-      clearInterval(this.scrollEndTimer);
-      this.scrollEndTimer = setTimeout(() => {
-        this.scrolling = false;
-      }, 100);
+    },
+    scrollEnd() {
+      this.scrolling = false;
     },
     dragging({ e, distance }) {
       const wasTooLowDrag = Math.abs(distance.x) < 40;
