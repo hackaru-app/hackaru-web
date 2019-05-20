@@ -1,5 +1,5 @@
 <template>
-  <article class="report-container">
+  <article class="report-content">
     <div class="bar-chart-wrapper printer">
       <bar-chart :chart-data="barChartData" class="bar-chart" />
     </div>
@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.report-container {
+.report-content {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -140,7 +140,7 @@ export default {
   font-family: $font-family-duration;
 }
 @include mq(small) {
-  .report-container {
+  .report-content {
     flex-direction: column;
     padding: 0;
     margin: 0;
@@ -188,7 +188,7 @@ export default {
     display: flex;
     padding: 30px;
   }
-  .report-container {
+  .report-content {
     display: flex;
     flex-direction: column;
     align-items: center;

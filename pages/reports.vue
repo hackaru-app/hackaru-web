@@ -18,7 +18,7 @@
         <div class="reports-wrapper">
           <div :style="slideStyle" class="containers">
             <div class="slider-item">
-              <report-container
+              <report-content
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
                 :summary="summary"
@@ -27,7 +27,7 @@
               />
             </div>
             <div class="slider-item">
-              <report-container
+              <report-content
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
                 :summary="summary"
@@ -36,7 +36,7 @@
               />
             </div>
             <div class="slider-item">
-              <report-container
+              <report-content
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
                 :summary="summary"
@@ -54,7 +54,7 @@
 <script>
 import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
-import ReportContainer from '@/components/organisms/report-container';
+import ReportContent from '@/components/organisms/report-content';
 import { mapGetters } from 'vuex';
 import {
   format,
@@ -103,7 +103,7 @@ const periods = {
 export default {
   components: {
     LoopSlider,
-    ReportContainer,
+    ReportContent,
     DateHeader
   },
   head: {
