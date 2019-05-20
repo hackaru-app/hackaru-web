@@ -23,7 +23,6 @@
         <input
           v-model="description"
           :placeholder="$t('description')"
-          class="input inline"
           type="text"
         />
       </modal-item>

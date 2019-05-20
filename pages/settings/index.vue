@@ -16,7 +16,6 @@
             v-model="deleteAccountForm.currentPassword"
             :placeholder="$t('deleteAccountModal.currentPassword')"
             type="password"
-            class="input inline"
             required
           />
         </modal-item>

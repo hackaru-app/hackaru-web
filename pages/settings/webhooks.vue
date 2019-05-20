@@ -21,12 +21,7 @@
           <label>
             {{ $t('targetUrl') }}
           </label>
-          <input
-            v-model="targetUrl"
-            type="url"
-            class="input inline"
-            placeholder="https://"
-          />
+          <input v-model="targetUrl" type="url" placeholder="https://" />
         </modal-item>
         <modal-footer>
           <base-button type="submit" class="is-rounded is-primary">

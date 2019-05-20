@@ -14,12 +14,7 @@
         <label>
           {{ $t('name') }}
         </label>
-        <input
-          v-model="name"
-          :placeholder="$t('name')"
-          class="input inline"
-          type="text"
-        />
+        <input v-model="name" :placeholder="$t('name')" type="text" />
       </modal-item>
 
       <modal-item>
