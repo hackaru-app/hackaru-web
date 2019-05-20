@@ -77,19 +77,6 @@
     </div>
     <footer class="auth-footer">
       <locale-select class="locale-select" />
-      <i18n
-        v-if="$env.GOOGLE_ANALYTICS_TRACKING_ID"
-        path="googleAnalytics"
-        tag="p"
-        class="ga-description"
-      >
-        <a
-          target="_blank"
-          rel="noopener"
-          href="https://policies.google.com/technologies/partner-sites"
-          >GoogleAnalytics (Cookie)</a
-        >
-      </i18n>
     </footer>
   </section>
 </template>
@@ -248,20 +235,13 @@ form input.password {
 }
 .auth-footer {
   display: flex;
+  position: absolute;
+  bottom: 0;
   padding: 30px 50px;
   align-items: center;
 }
-.ga-description {
-  color: $text-lighter;
-  font-size: 13px;
-  margin: 20px;
-  margin-right: 0;
-}
 .locale-select {
   flex-shrink: 0;
-}
-.ga-description a {
-  color: $text-lighter;
 }
 @media screen and (max-width: 640px) {
   .form-container {
@@ -271,11 +251,6 @@ form input.password {
     padding: 30px;
     flex-direction: column;
     align-items: flex-start;
-  }
-  .ga-description {
-    color: $text-lighter;
-    margin-left: 0;
-    margin-bottom: 0;
   }
 }
 </style>
