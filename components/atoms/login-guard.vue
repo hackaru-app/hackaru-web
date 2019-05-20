@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  async mounted() {
+  mounted() {
     if (!this.$store.getters['auth/isLoggedIn']) return this.redirect();
     this.$ga.set('userId', this.$store.getters['auth/getUserId']);
   },

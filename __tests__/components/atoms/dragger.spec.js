@@ -1,28 +1,19 @@
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import Dragger from '@/components/atoms/dragger';
-import dragdrop from '@/plugins/directives/v-dragdrop';
 
 describe('Dragger', () => {
-  let factory;
   let wrapper;
 
-  beforeEach(() => {
-    factory = new Factory(Dragger, {
-      slots: {
-        default: '<p>draggable</p>'
-      }
-    });
-    factory.options.localVue.directive('dragdrop', dragdrop);
-  });
-
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
+  const factory = () => shallowMount(Dragger);
+  const dragEvent = (x, y) => ({
+    e: { preventDefault: () => {} },
+    distance: { x, y }
   });
 
   describe('when drag', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.drag({ e: {} });
+      wrapper = factory();
+      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
     });
 
     it('emit start', () => {
@@ -30,56 +21,44 @@ describe('Dragger', () => {
     });
   });
 
-  describe('when dragging', () => {
-    const preventDefault = jest.fn();
-
+  describe('when drag', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.dragging({
-        e: { preventDefault },
-        distance: {
-          x: 30,
-          y: 20
-        }
-      });
-    });
-
-    it('emit update:top', () => {
-      expect(wrapper.emitted('update:top')[0]).toEqual([-20]);
-    });
-
-    it('emit update:left', () => {
-      expect(wrapper.emitted('update:left')[0]).toEqual([-30]);
+      wrapper = factory();
+      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
+      wrapper.find('.drag-drop').vm.$emit('move', dragEvent(70, 80));
     });
 
     it('emit moving', () => {
       expect(wrapper.emitted('moving')).toBeTruthy();
     });
 
-    it('prevent event', () => {
-      expect(preventDefault).toHaveBeenCalled();
+    it('emit update:left', () => {
+      expect(wrapper.emitted('update:left')[0][0]).toBe(70);
+    });
+
+    it('emit update:top', () => {
+      expect(wrapper.emitted('update:top')[0][0]).toBe(80);
     });
   });
 
   describe('when drop', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ started: { top: 5, left: 5 } });
-      wrapper.setProps({ top: 10, left: 10 });
-      wrapper.vm.drop({ e: {} });
+      wrapper = factory();
+      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
+      wrapper.find('.drag-drop').vm.$emit('move', dragEvent(70, 80));
+      wrapper.find('.drag-drop').vm.$emit('end', dragEvent());
     });
 
-    it('emit drop', () => {
+    it('emit end', () => {
       expect(wrapper.emitted('end')).toBeTruthy();
     });
   });
 
-  describe('when drop but element not moving', () => {
+  describe('when drop but not moved', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ started: { top: 10, left: 10 } });
-      wrapper.setProps({ top: 10, left: 10 });
-      wrapper.vm.drop({ e: {} });
+      wrapper = factory();
+      wrapper.find('.drag-drop').vm.$emit('start', dragEvent(0, 0));
+      wrapper.find('.drag-drop').vm.$emit('end', dragEvent(0, 0));
     });
 
     it('emit cancel', () => {

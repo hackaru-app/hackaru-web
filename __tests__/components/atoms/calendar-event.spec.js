@@ -1,9 +1,11 @@
-import { shallow } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import CalendarEvent from '@/components/atoms/calendar-event';
 
 describe('CalendarEvent', () => {
+  let wrapper;
+
   const factory = () =>
-    shallow(CalendarEvent, {
+    shallowMount(CalendarEvent, {
       propsData: {
         color: '#ff0000',
         title: 'Development',
@@ -13,8 +15,10 @@ describe('CalendarEvent', () => {
     });
 
   describe('when startedAt is undefined', () => {
-    const wrapper = factory();
-    wrapper.setProps({ startedAt: undefined });
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setProps({ startedAt: undefined });
+    });
 
     it('has an empty duration', () => {
       expect(wrapper.find('.duration').text()).toBe('');
@@ -22,8 +26,10 @@ describe('CalendarEvent', () => {
   });
 
   describe('when stoppedAt is undefined', () => {
-    const wrapper = factory();
-    wrapper.setProps({ stoppedAt: undefined });
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setProps({ stoppedAt: undefined });
+    });
 
     it('has an empty duration', () => {
       expect(wrapper.find('.duration').text()).toBe('');

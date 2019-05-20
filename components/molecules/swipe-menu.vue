@@ -57,20 +57,20 @@ export default {
     dragging({ e, distance }) {
       const wasTooLowDrag = Math.abs(distance.x) < 40;
       if (wasTooLowDrag) return;
-      if (distance.x > 0) {
+      if (distance.x < 0) {
         this.rightStyle = {
           transition: '',
-          width: `${distance.x}px`
+          width: `${-distance.x}px`
         };
         this.leftStyle = {
           transition: '',
           width: 0
         };
       }
-      if (distance.x < 0) {
+      if (distance.x > 0) {
         this.leftStyle = {
           transition: '',
-          width: `${-distance.x}px`
+          width: `${distance.x}px`
         };
         this.rightStyle = {
           transition: '',
@@ -82,7 +82,7 @@ export default {
     drop({ e, distance }) {
       const wasTooLowDrag = Math.abs(distance.x) < 120;
       if (wasTooLowDrag) return this.reset();
-      return distance.x > 0 ? this.swipeRight() : this.swipeLeft();
+      return distance.x < 0 ? this.swipeRight() : this.swipeLeft();
     },
     swipeRight() {
       setTimeout(() => this.$emit('swipe-right'), this.speed);

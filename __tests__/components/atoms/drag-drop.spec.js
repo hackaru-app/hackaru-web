@@ -4,18 +4,17 @@ import DragDrop from '@/components/atoms/drag-drop';
 jest.useFakeTimers();
 
 describe('DragDrop', () => {
-  const touchEvent = { touches: [{}] };
+  let wrapper;
 
-  const factory = () =>
-    mount(DragDrop, {
-      attachToDocument: true,
-      slots: { default: '<p>Dummy</p>' }
-    });
+  const touchEvent = { touches: [{}] };
+  const factory = () => mount(DragDrop, { attachToDocument: true });
 
   describe('when mousedown', () => {
-    const wrapper = factory();
-    wrapper.trigger('mousedown');
-    jest.runOnlyPendingTimers();
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.trigger('mousedown');
+      jest.runOnlyPendingTimers();
+    });
 
     it('emit start', () => {
       expect(wrapper.emitted('start')).toBeTruthy();
@@ -23,27 +22,31 @@ describe('DragDrop', () => {
   });
 
   describe('when mousemove', () => {
-    const wrapper = factory();
-    wrapper.trigger('mousedown', { pageX: 50, pageY: 50 });
-    jest.runOnlyPendingTimers();
-    wrapper.trigger('mousemove', { pageX: 70, pageY: 80 });
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.trigger('mousedown', { pageX: 50, pageY: 50 });
+      jest.runOnlyPendingTimers();
+      wrapper.trigger('mousemove', { pageX: 70, pageY: 80 });
+    });
 
     it('emit move', () => {
       expect(wrapper.emitted('move')).toBeTruthy();
     });
 
     it('has distance correctly', () => {
-      expect(wrapper.emitted('move')[0][0].distance.x).toBe(-20);
-      expect(wrapper.emitted('move')[0][0].distance.y).toBe(-30);
+      expect(wrapper.emitted('move')[0][0].distance.x).toBe(20);
+      expect(wrapper.emitted('move')[0][0].distance.y).toBe(30);
     });
   });
 
   describe('when mouseup', () => {
-    const wrapper = factory();
-    wrapper.trigger('mousedown');
-    jest.runOnlyPendingTimers();
-    wrapper.trigger('mousemove');
-    wrapper.trigger('mouseup');
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.trigger('mousedown');
+      jest.runOnlyPendingTimers();
+      wrapper.trigger('mousemove');
+      wrapper.trigger('mouseup');
+    });
 
     it('emit end', () => {
       expect(wrapper.emitted('end')).toBeTruthy();
@@ -51,9 +54,11 @@ describe('DragDrop', () => {
   });
 
   describe('when touchstart', () => {
-    const wrapper = factory();
-    wrapper.trigger('touchstart', touchEvent);
-    jest.runOnlyPendingTimers();
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.trigger('touchstart', touchEvent);
+      jest.runOnlyPendingTimers();
+    });
 
     it('emit start', () => {
       expect(wrapper.emitted('start')).toBeTruthy();
@@ -61,10 +66,12 @@ describe('DragDrop', () => {
   });
 
   describe('when touchmove', () => {
-    const wrapper = factory();
-    wrapper.trigger('touchstart', touchEvent);
-    jest.runOnlyPendingTimers();
-    wrapper.trigger('touchmove', touchEvent);
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.trigger('touchstart', touchEvent);
+      jest.runOnlyPendingTimers();
+      wrapper.trigger('touchmove', touchEvent);
+    });
 
     it('emit move', () => {
       expect(wrapper.emitted('move')).toBeTruthy();
@@ -72,11 +79,13 @@ describe('DragDrop', () => {
   });
 
   describe('when touchend', () => {
-    const wrapper = factory();
-    wrapper.trigger('touchstart', touchEvent);
-    jest.runOnlyPendingTimers();
-    wrapper.trigger('touchmove', touchEvent);
-    wrapper.trigger('touchend', touchEvent);
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.trigger('touchstart', touchEvent);
+      jest.runOnlyPendingTimers();
+      wrapper.trigger('touchmove', touchEvent);
+      wrapper.trigger('touchend', touchEvent);
+    });
 
     it('emit end', () => {
       expect(wrapper.emitted('end')).toBeTruthy();
@@ -84,11 +93,13 @@ describe('DragDrop', () => {
   });
 
   describe('when mousemove before delay completed', () => {
-    const wrapper = factory();
-    wrapper.trigger('mousedown');
-    wrapper.trigger('mousemove', { pageX: 500 });
-    jest.runOnlyPendingTimers();
-    wrapper.trigger('mousemove');
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.trigger('mousedown');
+      wrapper.trigger('mousemove', { pageX: 500 });
+      jest.runOnlyPendingTimers();
+      wrapper.trigger('mousemove');
+    });
 
     it('does not emit move', () => {
       expect(wrapper.emitted('move')).toBeFalsy();
@@ -96,10 +107,12 @@ describe('DragDrop', () => {
   });
 
   describe('when mouseup but mousemove not called', () => {
-    const wrapper = factory();
-    wrapper.trigger('mousedown', { pageX: 10, pageY: 10 });
-    jest.runOnlyPendingTimers();
-    wrapper.trigger('mouseup');
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.trigger('mousedown', { pageX: 10, pageY: 10 });
+      jest.runOnlyPendingTimers();
+      wrapper.trigger('mouseup');
+    });
 
     it('distance x and y are zero', () => {
       expect(wrapper.emitted('end')[0][0].distance.x).toBe(0);

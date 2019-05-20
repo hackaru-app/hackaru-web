@@ -1,9 +1,9 @@
-import { shallow } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import BarChart from '@/components/atoms/bar-chart';
 
 describe('BarChart', () => {
   const factory = () =>
-    shallow(BarChart, {
+    shallowMount(BarChart, {
       propsData: {
         chartData: {
           labels: ['Jan', 'Feb', 'Mar'],

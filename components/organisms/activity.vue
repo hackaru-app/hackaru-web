@@ -14,12 +14,7 @@
     </template>
 
     <div class="list-item">
-      <div
-        class="activity-content"
-        @mousedown.stop
-        @mouseup.stop
-        @click="showModal"
-      >
+      <div class="activity-content" @click="showModal">
         <project-name v-bind="project" class="project-name" />
         <ticker
           :started-at="startedAt"

@@ -37,8 +37,8 @@ export default {
   computed: {
     distance() {
       return {
-        x: this.startedX - this.currentX,
-        y: this.startedY - this.currentY
+        x: this.currentX - this.startedX,
+        y: this.currentY - this.startedY
       };
     }
   },

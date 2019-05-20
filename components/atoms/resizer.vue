@@ -1,13 +1,16 @@
 <template>
-  <drag-drop
-    :delay="delay"
-    :enabled="enabled"
-    @start="drag"
-    @move="dragging"
-    @end="drop"
-  >
-    <slot />
-  </drag-drop>
+  <div>
+    <drag-drop
+      :delay="delay"
+      :enabled="enabled"
+      class="drag-drop"
+      @start="drag"
+      @move="dragging"
+      @end="drop"
+    >
+      <slot />
+    </drag-drop>
+  </div>
 </template>
 
 <script>
@@ -46,7 +49,7 @@ export default {
       this.$emit('start', e);
     },
     dragging({ e, distance }) {
-      const height = this.startedHeight - distance.y;
+      const height = this.startedHeight + distance.y;
       this.$emit('update:height', Math.max(height, this.minHeight));
       this.$emit('resizing', e);
       e.preventDefault();

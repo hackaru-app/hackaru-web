@@ -49,8 +49,8 @@ export default {
       this.$emit('start', e);
     },
     dragging({ e, distance }) {
-      this.$emit('update:top', this.started.top - distance.y);
-      this.$emit('update:left', this.started.left - distance.x);
+      this.$emit('update:top', this.started.top + distance.y);
+      this.$emit('update:left', this.started.left + distance.x);
       this.$emit('moving', e);
       e.preventDefault();
     },

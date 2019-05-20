@@ -1,9 +1,9 @@
-import { shallow } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import DoughnutChart from '@/components/atoms/doughnut-chart';
 
 describe('DoughnutChart', () => {
   const factory = () =>
-    shallow(DoughnutChart, {
+    shallowMount(DoughnutChart, {
       propsData: {
         chartData: {
           labels: ['Review', 'Development'],

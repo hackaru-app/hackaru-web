@@ -1,10 +1,5 @@
 <template>
-  <drag-drop
-    v-scroll-window="scrollWindow"
-    :enabled="!scrolling && enabled"
-    @move="dragging"
-    @end="drop"
-  >
+  <drag-drop :enabled="!scrolling && enabled" @move="dragging" @end="drop">
     <window-scroll @scroll="scroll" @end="scrollEnd">
       <slot :slide-style="style" />
     </window-scroll>
@@ -68,13 +63,13 @@ export default {
       const wasTooLowDrag = Math.abs(distance.x) < 10;
       if (this.slideTimer || wasTooLowDrag) return;
       this.speed = 0;
-      this.offset = `-${this.$mezr.width(this.$el) + distance.x}px`;
+      this.offset = `-${this.$mezr.width(this.$el) - distance.x}px`;
       e.preventDefault();
     },
     drop({ e, distance }) {
       const wasTooLowDrag = Math.abs(distance.x) < 100;
       if (wasTooLowDrag) return this.slideReset();
-      return distance.x > 0 ? this.slideRight() : this.slideLeft();
+      return distance.x < 0 ? this.slideRight() : this.slideLeft();
     },
     slideReset() {
       this.slideTo('-100%', 'reset');
