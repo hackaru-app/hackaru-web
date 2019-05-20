@@ -57,8 +57,8 @@ export default {
   methods: {
     start(e) {
       this.delayTimer = setTimeout(() => {
-        this.startedX = getScreen(e).pageX;
-        this.startedY = getScreen(e).pageY;
+        this.startedX = this.currentX = getScreen(e).pageX;
+        this.startedY = this.currentY = getScreen(e).pageY;
         this.triggered = true;
         this.emitIfEnabled('start', e);
       }, this.delay);
