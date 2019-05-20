@@ -204,7 +204,7 @@ export default {
 
 <style scoped lang="scss">
 article {
-  padding: 0 40px;
+  margin: 0 40px;
   padding-bottom: 40px;
   background-color: $white;
   border-bottom: 1px $border solid;
@@ -232,8 +232,8 @@ article form {
 }
 @include mq(small) {
   article {
-    padding-left: 30px;
-    padding-right: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
   }
   .empty {
     padding: 20px 0;

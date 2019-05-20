@@ -4,28 +4,6 @@
   <div class="settings">
     <article>
       <heading class="is-small"
-        ><icon name="zap-icon" class="icon" />Hackaru</heading
-      >
-      <ul>
-        <li>
-          <a
-            href="https://github.com/ktmouk/hackaru"
-            target="_blank"
-            rel="noopener"
-            >ktmouk/hackaru</a
-          >
-          -
-          <a
-            href="https://raw.githubusercontent.com/ktmouk/hackaru/master/LICENSE"
-            target="_blank"
-            rel="noopener"
-            ><span>MIT</span></a
-          >
-        </li>
-      </ul>
-    </article>
-    <article>
-      <heading class="is-small"
         ><icon name="gift-icon" class="icon" />{{ $t('title') }}</heading
       >
       <ul>
@@ -60,7 +38,7 @@ export default {
 
 <style scoped lang="scss">
 article {
-  padding: 0 40px;
+  margin: 0 40px;
   padding-bottom: 50px;
   border-bottom: 1px $border solid;
   background-color: $white;
@@ -93,8 +71,8 @@ li a {
 }
 @include mq(small) {
   article {
-    padding-left: 30px;
-    padding-right: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
   }
 }
 </style>
