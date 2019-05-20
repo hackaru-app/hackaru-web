@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" ontouchstart="">
+  <div class="default" ontouchstart="">
     <nav-modal
       :initial-component="ActivityEditor"
       :keep-alives="['ActivityEditor']"
@@ -83,7 +83,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.wrapper {
+.default {
   display: flex;
   flex-direction: column;
   width: 100%;

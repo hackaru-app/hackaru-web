@@ -101,7 +101,7 @@ import BaseButton from '@/components/atoms/base-button';
 import LocaleSelect from '@/components/molecules/locale-select';
 
 export default {
-  layout: 'no-menu',
+  layout: 'auth',
   components: {
     Heading,
     BaseInput,

@@ -60,7 +60,7 @@ import Highlight from '@/components/atoms/highlight';
 import { mapGetters } from 'vuex';
 
 export default {
-  layout: 'no-menu',
+  layout: 'auth',
   components: {
     LoginGuard,
     ContentHeader,

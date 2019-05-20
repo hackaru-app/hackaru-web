@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" ontouchstart="">
+  <div class="auth" ontouchstart="">
     <side-bar :show-menu="false" />
     <div class="content">
       <nuxt />
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.wrapper {
+.auth {
   display: flex;
   flex-direction: column;
   background: $background;

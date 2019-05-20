@@ -33,7 +33,7 @@ import BaseInput from '@/components/atoms/base-input';
 import BaseButton from '@/components/atoms/base-button';
 
 export default {
-  layout: 'no-menu',
+  layout: 'auth',
   components: {
     Heading,
     BaseInput,
