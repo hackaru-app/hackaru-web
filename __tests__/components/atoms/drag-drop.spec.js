@@ -24,12 +24,17 @@ describe('DragDrop', () => {
 
   describe('when mousemove', () => {
     const wrapper = factory();
-    wrapper.trigger('mousedown');
+    wrapper.trigger('mousedown', { pageX: 50, pageY: 50 });
     jest.runOnlyPendingTimers();
-    wrapper.trigger('mousemove');
+    wrapper.trigger('mousemove', { pageX: 70, pageY: 80 });
 
     it('emit move', () => {
       expect(wrapper.emitted('move')).toBeTruthy();
+    });
+
+    it('has distance correctly', () => {
+      expect(wrapper.emitted('move')[0][0].distance.x).toBe(-20);
+      expect(wrapper.emitted('move')[0][0].distance.y).toBe(-30);
     });
   });
 
