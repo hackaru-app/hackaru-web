@@ -3,13 +3,21 @@
 <template>
   <section>
     <modal-header>
-      <btn class="left-arrow-button has-icon" type="button" @click="pop">
+      <base-button
+        class="left-arrow-button has-icon"
+        type="button"
+        @click="pop"
+      >
         <icon name="chevron-left-icon" class="is-large" />
-      </btn>
+      </base-button>
       <h1>{{ $t('title') }}</h1>
-      <btn class="add-button has-icon" type="button" @click="createProject">
+      <base-button
+        class="add-button has-icon"
+        type="button"
+        @click="createProject"
+      >
         <icon name="plus-icon" />
-      </btn>
+      </base-button>
     </modal-header>
 
     <div v-for="project in projects" :key="project.id" class="list-item">
@@ -21,14 +29,14 @@
           class="check-icon"
         />
       </div>
-      <btn
+      <base-button
         v-if="project.id"
         class="has-icon edit-button"
         type="button"
         @click="project.id && editProject(project)"
       >
         <icon name="edit-3-icon" class="is-primary" />
-      </btn>
+      </base-button>
     </div>
   </section>
 </template>
@@ -38,7 +46,7 @@ import ModalItem from '@/components/molecules/modal-item';
 import ModalHeader from '@/components/molecules/modal-header';
 import ProjectName from '@/components/molecules/project-name';
 import Icon from '@/components/atoms/icon';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import ActivityEditor from '@/components/organisms/activity-editor';
 import ProjectEditor from '@/components/organisms/project-editor';
 
@@ -48,7 +56,7 @@ export default {
     ModalHeader,
     ModalItem,
     ProjectName,
-    Btn
+    BaseButton
   },
   props: {
     params: {

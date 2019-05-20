@@ -29,9 +29,9 @@
           />
         </modal-item>
         <modal-footer>
-          <btn type="submit" class="is-rounded is-primary">
+          <base-button type="submit" class="is-rounded is-primary">
             {{ $t('add') }}
-          </btn>
+          </base-button>
         </modal-footer>
       </form>
     </base-modal>
@@ -42,25 +42,25 @@
           <icon name="anchor-icon" />
           {{ $t('title') }}
         </heading>
-        <btn
+        <base-button
           type="button"
           class="is-primary is-circle has-dropshadow add-button"
           @click="showModal"
         >
           <icon name="plus-icon" />
-        </btn>
+        </base-button>
       </header>
 
       <div v-for="webhook in webhooks" :key="webhook.id" class="list-item">
         <p>{{ $t(`events.${webhook.event}`) }}</p>
         <h1>{{ webhook.targetUrl }}</h1>
-        <btn
+        <base-button
           type="button"
           class="delete-button has-icon"
           @click="deleteWebhook(webhook.id)"
         >
           <icon name="x-icon" class="is-danger" />
-        </btn>
+        </base-button>
       </div>
 
       <p v-if="webhooks.length <= 0" class="empty">
@@ -75,7 +75,7 @@ import Heading from '@/components/atoms/heading';
 import Icon from '@/components/atoms/icon';
 import ContentHeader from '@/components/organisms/content-header';
 import BaseModal from '@/components/organisms/base-modal';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import ModalItem from '@/components/molecules/modal-item';
 import ModalLabel from '@/components/molecules/modal-label';
 import ModalHeader from '@/components/molecules/modal-header';
@@ -92,7 +92,7 @@ export default {
     ModalLabel,
     ModalHeader,
     ModalFooter,
-    Btn
+    BaseButton
   },
   data() {
     const events = [

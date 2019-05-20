@@ -1,8 +1,8 @@
 <template>
   <div class="base-select">
-    <btn class="has-dropshadow">
+    <base-button class="has-dropshadow">
       {{ value }}
-    </btn>
+    </base-button>
     <select ref="select" @change="change">
       <slot />
     </select>
@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 
 export default {
   components: {
-    Btn
+    BaseButton
   },
   props: {
     value: {

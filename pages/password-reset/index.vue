@@ -16,9 +16,9 @@
         required
       />
       <footer>
-        <btn type="submit" class="is-rounded is-primary">
+        <base-button type="submit" class="is-rounded is-primary">
           {{ $t('send') }}
-        </btn>
+        </base-button>
       </footer>
     </form>
   </section>
@@ -26,7 +26,7 @@
 
 <script>
 import Heading from '@/components/atoms/heading';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import TextField from '@/components/atoms/text-field';
 
 export default {
@@ -34,7 +34,7 @@ export default {
   components: {
     Heading,
     TextField,
-    Btn
+    BaseButton
   },
   head() {
     return {

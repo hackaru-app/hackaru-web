@@ -1,25 +1,25 @@
 <template>
   <div class="date-heading">
-    <btn class="arrow-button has-icon" @click="left">
+    <base-button class="arrow-button has-icon" @click="left">
       <icon name="chevron-left-icon" class="is-primary is-large" />
-    </btn>
+    </base-button>
     <heading class="heading">
       {{ title }}
     </heading>
-    <btn class="arrow-button has-icon" @click="right">
+    <base-button class="arrow-button has-icon" @click="right">
       <icon name="chevron-right-icon" class="is-primary is-large" />
-    </btn>
+    </base-button>
   </div>
 </template>
 
 <script>
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import Heading from '@/components/atoms/heading';
 
 export default {
   components: {
-    Btn,
+    BaseButton,
     Icon,
     Heading
   },

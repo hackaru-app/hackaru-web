@@ -21,9 +21,9 @@
           />
         </modal-item>
         <modal-footer>
-          <btn type="submit" class="is-rounded is-danger">
+          <base-button type="submit" class="is-rounded is-danger">
             {{ $t('deleteAccountModal.delete') }}
-          </btn>
+          </base-button>
         </modal-footer>
       </form>
     </base-modal>
@@ -49,9 +49,9 @@
           class="has-border"
           required
         />
-        <btn class="is-rounded is-primary" type="submit">{{
+        <base-button class="is-rounded is-primary" type="submit">{{
           $t('update')
-        }}</btn>
+        }}</base-button>
       </form>
     </article>
     <article>
@@ -84,9 +84,9 @@
           size="1"
           required
         />
-        <btn class="is-rounded is-primary" type="submit">{{
+        <base-button class="is-rounded is-primary" type="submit">{{
           $t('update')
-        }}</btn>
+        }}</base-button>
       </form>
     </article>
     <article>
@@ -101,26 +101,26 @@
         <icon name="log-out-icon" class="icon" />
         {{ $t('titles.logout') }}
       </heading>
-      <btn
+      <base-button
         class="is-rounded logout-button is-primary"
         type="button"
         @click="logout"
       >
         Logout
-      </btn>
+      </base-button>
     </article>
     <article>
       <heading class="is-small">
         <icon name="user-x-icon" class="icon" />
         {{ $t('titles.deleteAccount') }}
       </heading>
-      <btn
+      <base-button
         class="is-rounded delete-account-button is-danger"
         type="button"
         @click="showDeleteAccountModal"
       >
         {{ $t('deleteAccount') }}
-      </btn>
+      </base-button>
     </article>
   </section>
 </template>
@@ -128,7 +128,7 @@
 <script>
 import Icon from '@/components/atoms/icon';
 import Heading from '@/components/atoms/heading';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import TextField from '@/components/atoms/text-field';
 import LocaleSelect from '@/components/molecules/locale-select';
 import BaseModal from '@/components/organisms/base-modal';
@@ -141,7 +141,7 @@ export default {
   components: {
     Icon,
     Heading,
-    Btn,
+    BaseButton,
     TextField,
     LocaleSelect,
     BaseModal,

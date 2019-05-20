@@ -20,9 +20,9 @@
         class="has-underline"
         required
       />
-      <btn type="submit" class="button is-rounded is-primary">
+      <base-button type="submit" class="button is-rounded is-primary">
         {{ $t('reset') }}
-      </btn>
+      </base-button>
     </form>
   </section>
 </template>
@@ -30,14 +30,14 @@
 <script>
 import Heading from '@/components/atoms/heading';
 import TextField from '@/components/atoms/text-field';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 
 export default {
   layout: 'no-menu',
   components: {
     Heading,
     TextField,
-    Btn
+    BaseButton
   },
   head: {
     title: 'Reset Password'

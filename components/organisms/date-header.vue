@@ -5,14 +5,14 @@
     <date-heading :title="title" @left="left" @right="right" />
     <nav>
       <transition name="fade">
-        <btn
+        <base-button
           v-if="!hasToday"
           ref="today-button"
           class="has-dropshadow today-button"
           @click="today"
         >
           <icon name="rotate-ccw-icon" class="is-primary" />
-        </btn>
+        </base-button>
       </transition>
 
       <base-select :value="$t(`${currentPeriod}.label`)" @change="change">
@@ -32,7 +32,7 @@
 <script>
 import Icon from '@/components/atoms/icon';
 import ContentHeader from '@/components/organisms/content-header';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import BaseSelect from '@/components/molecules/base-select';
 import DateHeading from '@/components/molecules/date-heading';
 
@@ -41,7 +41,7 @@ export default {
     Icon,
     ContentHeader,
     DateHeading,
-    Btn,
+    BaseButton,
     BaseSelect
   },
   props: {

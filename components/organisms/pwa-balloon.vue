@@ -8,9 +8,9 @@
   >
     <div v-if="visibility && isIOS() && !isStandalone()" class="balloon">
       <div class="content">
-        <btn type="button" class="has-icon close-button" @click="close">
+        <base-button type="button" class="has-icon close-button" @click="close">
           <icon name="x-icon" />
-        </btn>
+        </base-button>
         <section class="logo">
           <img src="@/assets/logo.svg" />
         </section>
@@ -27,12 +27,12 @@
 
 <script>
 import Icon from '@/components/atoms/icon';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 
 export default {
   components: {
     Icon,
-    Btn
+    BaseButton
   },
   data() {
     return {

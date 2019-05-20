@@ -28,22 +28,22 @@
           </ul>
         </highlight>
         <footer class="footer">
-          <btn
+          <base-button
             ref="allow-button"
             type="button"
             class="is-rounded is-primary allow-button"
             @click="decide('allow')"
           >
             {{ $t('allow') }}
-          </btn>
-          <btn
+          </base-button>
+          <base-button
             ref="deny-button"
             type="button"
             class="is-rounded deny-button"
             @click="decide('deny')"
           >
             {{ $t('deny') }}
-          </btn>
+          </base-button>
         </footer>
       </article>
     </div>
@@ -54,7 +54,7 @@
 import snakecaseKeys from 'snakecase-keys';
 import LoginGuard from '@/components/atoms/login-guard';
 import Heading from '@/components/atoms/heading';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import ContentHeader from '@/components/organisms/content-header';
 import Highlight from '@/components/atoms/highlight';
 import { mapGetters } from 'vuex';
@@ -64,7 +64,7 @@ export default {
   components: {
     LoginGuard,
     ContentHeader,
-    Btn,
+    BaseButton,
     Heading,
     Highlight
   },

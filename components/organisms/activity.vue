@@ -28,9 +28,9 @@
       </div>
 
       <nav>
-        <btn class="stop-button has-icon" @click="stopActivity">
+        <base-button class="stop-button has-icon" @click="stopActivity">
           <icon name="check-icon" class="is-primary" />
-        </btn>
+        </base-button>
       </nav>
     </div>
 
@@ -45,7 +45,7 @@
 <script>
 import { parse } from 'date-fns';
 import Icon from '@/components/atoms/icon';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import ProjectName from '@/components/molecules/project-name';
 import SwipeMenu from '@/components/molecules/swipe-menu';
 import Ticker from '@/components/atoms/ticker';
@@ -53,7 +53,7 @@ import Ticker from '@/components/atoms/ticker';
 export default {
   components: {
     Icon,
-    Btn,
+    BaseButton,
     Ticker,
     SwipeMenu,
     ProjectName

@@ -37,12 +37,12 @@
         class="list-item"
       >
         <h1 @click="showModal(application)">{{ application.name }}</h1>
-        <btn
+        <base-button
           class="delete-button has-icon"
           @click="deleteApplication(application.id)"
         >
           <icon name="x-icon" class="is-danger" />
-        </btn>
+        </base-button>
       </div>
 
       <p v-if="applications.length <= 0" class="empty">
@@ -54,7 +54,7 @@
 
 <script>
 import ContentHeader from '@/components/organisms/content-header';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import Heading from '@/components/atoms/heading';
 import ModalItem from '@/components/molecules/modal-item';
@@ -68,7 +68,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: {
     ContentHeader,
-    Btn,
+    BaseButton,
     Icon,
     Heading,
     BaseModal,

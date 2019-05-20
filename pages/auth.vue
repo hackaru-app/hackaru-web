@@ -51,13 +51,13 @@
             </label>
           </div>
           <div class="buttons">
-            <btn
+            <base-button
               :disabled="!hasAccount && !isAgreed"
               type="submit"
               class="submit-button is-rounded is-primary"
             >
               {{ $t(hasAccount ? 'login' : 'signUp') }}
-            </btn>
+            </base-button>
             <button
               type="button"
               class="toggle-button"
@@ -97,7 +97,7 @@
 <script>
 import Heading from '@/components/atoms/heading';
 import TextField from '@/components/atoms/text-field';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import LocaleSelect from '@/components/molecules/locale-select';
 
 export default {
@@ -105,7 +105,7 @@ export default {
   components: {
     Heading,
     TextField,
-    Btn,
+    BaseButton,
     LocaleSelect
   },
   head() {

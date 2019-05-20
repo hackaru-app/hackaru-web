@@ -43,26 +43,26 @@
       </modal-item>
 
       <modal-footer>
-        <btn type="submit" class="is-rounded is-primary">
+        <base-button type="submit" class="is-rounded is-primary">
           {{ $t(id ? 'update' : 'start') }}
-        </btn>
+        </base-button>
         <div class="icons">
-          <btn
+          <base-button
             v-if="stoppedAt && isSharedSupported"
             type="button"
             class="share-button has-icon"
             @click="share"
           >
             <icon name="share-icon" />
-          </btn>
-          <btn
+          </base-button>
+          <base-button
             v-if="id"
             type="button"
             class="delete-button has-icon"
             @click="deleteActivity"
           >
             <icon name="trash-icon" class="is-danger" />
-          </btn>
+          </base-button>
         </div>
       </modal-footer>
     </form>
@@ -77,7 +77,7 @@ import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import ProjectName from '@/components/molecules/project-name';
 import DatetimePicker from '@/components/molecules/datetime-picker';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import { distanceInWordsStrict } from 'date-fns';
 
@@ -90,7 +90,7 @@ export default {
     ModalItem,
     ModalFooter,
     ModalLabel,
-    Btn,
+    BaseButton,
     Icon
   },
   props: {
