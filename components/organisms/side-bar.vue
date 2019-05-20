@@ -17,14 +17,6 @@
         </nuxt-link>
       </li>
     </ul>
-    <button
-      v-if="showMenu"
-      type="button"
-      class="add-button"
-      @click="showNewActivityModal"
-    >
-      <icon name="clock-icon" class="is-primary" />
-    </button>
   </section>
 </template>
 
@@ -66,11 +58,6 @@ export default {
   },
   mounted() {
     this.isAndroid = this.$platform.isAndroid();
-  },
-  methods: {
-    showNewActivityModal() {
-      this.$modal.show('activity');
-    }
   }
 };
 </script>
@@ -159,19 +146,6 @@ li button {
     transform: scale(0.95);
   }
 }
-.add-button {
-  position: absolute;
-  bottom: 20px;
-  padding: 10px;
-  border: 0;
-  border-radius: 50%;
-  background-color: darken($background-dark, 5%);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  &:active {
-    transform: scale(0.9);
-  }
-}
 @include mq(small) {
   .menu {
     display: flex;
@@ -228,9 +202,6 @@ li button {
   li.selected a {
     background-color: darken($background-dark, 5%);
   }
-  .add-button {
-    display: none;
-  }
 }
 @media print {
   .menu {
@@ -277,9 +248,6 @@ li button {
     text-decoration: none;
   }
   ul {
-    display: none;
-  }
-  .add-button {
     display: none;
   }
   .url {
