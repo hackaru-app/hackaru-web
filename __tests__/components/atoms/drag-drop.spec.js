@@ -1,0 +1,104 @@
+import { mount } from '@vue/test-utils';
+import DragDrop from '@/components/atoms/drag-drop';
+
+jest.useFakeTimers();
+
+describe('DragDrop', () => {
+  const touchEvent = { touches: [{}] };
+
+  const factory = () =>
+    mount(DragDrop, {
+      attachToDocument: true,
+      slots: { default: '<p>Dummy</p>' }
+    });
+
+  describe('when mousedown', () => {
+    const wrapper = factory();
+    wrapper.trigger('mousedown');
+    jest.runOnlyPendingTimers();
+
+    it('emit start', () => {
+      expect(wrapper.emitted('start')).toBeTruthy();
+    });
+  });
+
+  describe('when mousemove', () => {
+    const wrapper = factory();
+    wrapper.trigger('mousedown');
+    jest.runOnlyPendingTimers();
+    wrapper.trigger('mousemove');
+
+    it('emit move', () => {
+      expect(wrapper.emitted('move')).toBeTruthy();
+    });
+  });
+
+  describe('when mouseup', () => {
+    const wrapper = factory();
+    wrapper.trigger('mousedown');
+    jest.runOnlyPendingTimers();
+    wrapper.trigger('mousemove');
+    wrapper.trigger('mouseup');
+
+    it('emit end', () => {
+      expect(wrapper.emitted('end')).toBeTruthy();
+    });
+  });
+
+  describe('when touchstart', () => {
+    const wrapper = factory();
+    wrapper.trigger('touchstart', touchEvent);
+    jest.runOnlyPendingTimers();
+
+    it('emit start', () => {
+      expect(wrapper.emitted('start')).toBeTruthy();
+    });
+  });
+
+  describe('when touchmove', () => {
+    const wrapper = factory();
+    wrapper.trigger('touchstart', touchEvent);
+    jest.runOnlyPendingTimers();
+    wrapper.trigger('touchmove', touchEvent);
+
+    it('emit move', () => {
+      expect(wrapper.emitted('move')).toBeTruthy();
+    });
+  });
+
+  describe('when touchend', () => {
+    const wrapper = factory();
+    wrapper.trigger('touchstart', touchEvent);
+    jest.runOnlyPendingTimers();
+    wrapper.trigger('touchmove', touchEvent);
+    wrapper.trigger('touchend', touchEvent);
+
+    it('emit end', () => {
+      expect(wrapper.emitted('end')).toBeTruthy();
+    });
+  });
+
+  describe('when mousemove before delay completed', () => {
+    const wrapper = factory();
+    wrapper.trigger('mousedown');
+    wrapper.trigger('mousemove', { pageX: 500 });
+    jest.runOnlyPendingTimers();
+    wrapper.trigger('mousemove');
+
+    it('does not emit move', () => {
+      expect(wrapper.emitted('move')).toBeFalsy();
+    });
+  });
+
+  describe('when mouseup but mousemove not called', () => {
+    const wrapper = factory();
+    wrapper.trigger('mousedown', { pageX: 10, pageY: 10 });
+    jest.runOnlyPendingTimers();
+    wrapper.trigger('mouseup');
+
+    it('distance x and y are zero', () => {
+      expect(wrapper.emitted('end')[0][0].distance.x).toBe(0);
+      expect(wrapper.emitted('end')[0][0].distance.y).toBe(0);
+    });
+  });
+});
