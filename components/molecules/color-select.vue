@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="color-select">
     <button
       v-for="color in colors"
       :key="color"
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-section {
+.color-select {
   display: flex;
   flex-flow: wrap;
   flex-direction: row;
@@ -58,7 +58,7 @@ section {
   margin-right: 20px;
   margin: 5px 0;
 }
-section button {
+.color-select button {
   display: flex;
   margin-right: 5px;
   background: 0;

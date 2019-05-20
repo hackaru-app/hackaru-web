@@ -1,7 +1,7 @@
 <i18n src="@/assets/locales/components/organisms/date-header.json" />
 
 <template>
-  <content-header>
+  <content-header class="date-header">
     <date-heading :title="title" @left="left" @right="right" />
     <nav>
       <transition name="fade">
@@ -80,18 +80,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-nav {
+.date-header nav {
   display: flex;
 }
 .today-button {
   margin-right: 20px;
 }
 @media print {
-  .date-heading span {
-    display: inline;
-    color: $grey-333;
-    font-size: 26px;
-    margin-right: 15px;
+  .today-button {
+    display: none;
   }
 }
 </style>

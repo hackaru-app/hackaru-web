@@ -1,10 +1,5 @@
 <template>
-  <base-select
-    ref="select"
-    :value="locales[$i18n.locale]"
-    aria-label="Locales"
-    @change="change"
-  >
+  <base-select :value="locales[$i18n.locale]" @change="change">
     <option
       v-for="(locale, key) in locales"
       :key="key"

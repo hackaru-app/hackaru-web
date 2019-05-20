@@ -4,7 +4,7 @@
     :top.sync="top"
     :left.sync="left"
     :enabled="!resized"
-    :class="['dragger', { dragging: dragged }]"
+    :class="['calendar-activity', { dragging: dragged }]"
     :style="{ height: `${height}px` }"
     @start="moveStart"
     @moving="moving"
@@ -55,7 +55,6 @@ export default {
     Dragger,
     Resizer
   },
-
   props: {
     id: {
       type: Number,
@@ -216,7 +215,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.dragger {
+.calendar-activity {
   flex: 1;
   position: relative;
   box-sizing: border-box;
@@ -230,6 +229,20 @@ export default {
   &:active {
     opacity: 0.8;
   }
+}
+.calendar-activity.dragging {
+  opacity: 1;
+  box-shadow: 0 3px 8px -3px #00000020;
+}
+.calendar-activity h1 {
+  font-size: 12px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0 10px;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .event {
   height: 100%;
@@ -246,17 +259,6 @@ export default {
   width: 100%;
   cursor: s-resize;
 }
-@include mq(small) {
-  .handler {
-    left: auto;
-    right: 0;
-    width: 100%;
-  }
-}
-.dragger.dragging {
-  opacity: 1;
-  box-shadow: 0 3px 8px -3px #00000020;
-}
 .resizer {
   align-items: center;
 }
@@ -268,20 +270,15 @@ export default {
   overflow: hidden;
   align-items: center;
 }
-h1 {
-  font-size: 12px;
-  line-height: 20px;
-  margin: 0;
-  padding: 0 10px;
-  font-weight: normal;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 @include mq(small) {
   h1 {
     font-size: 9px;
     padding: 0 5px;
+  }
+  .handler {
+    left: auto;
+    right: 0;
+    width: 100%;
   }
 }
 </style>

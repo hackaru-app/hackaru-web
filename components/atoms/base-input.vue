@@ -1,5 +1,5 @@
 <template>
-  <input :value="value" @input="input" />
+  <input :value="value" class="base-input" @input="input" />
 </template>
 
 <script>
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-input.has-border {
+.base-input.has-border {
   display: flex;
   align-items: center;
   border-radius: 3px;

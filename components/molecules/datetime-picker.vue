@@ -56,7 +56,7 @@ export default {
   display: flex;
   flex: 1;
 }
-input {
+.datetime-picker input {
   margin-right: 10px;
   border: 0;
   width: 100%;

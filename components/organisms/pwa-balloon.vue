@@ -8,7 +8,7 @@
   >
     <div
       v-if="visibility && $platform.isIOS() && !$platform.isPWA()"
-      class="balloon"
+      class="pwa-balloon"
     >
       <div class="content">
         <base-button type="button" class="has-icon close-button" @click="close">
@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.balloon {
+.pwa-balloon {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -138,7 +138,7 @@ export default {
   }
 }
 @include mq(small) {
-  .balloon {
+  .pwa-balloon {
     top: auto;
     right: auto;
     bottom: 15px;

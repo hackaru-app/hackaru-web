@@ -1,5 +1,5 @@
 <template>
-  <section :class="['menu', { android: isAndroid }]">
+  <section :class="['side-bar', { android: isAndroid }]">
     <h1>
       <nuxt-link :to="localePath('index')">
         <img src="@/assets/logo.svg" class="logo-icon" />
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.menu {
+.side-bar {
   position: fixed;
   min-width: $side-bar-min-width;
   min-height: $side-bar-min-height;
@@ -147,7 +147,7 @@ li button {
   }
 }
 @include mq(small) {
-  .menu {
+  .side-bar {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -170,7 +170,7 @@ li button {
       z-index: index($z, side-bar);
     }
   }
-  .menu.android {
+  .side-bar.android {
     box-shadow: 0 1px 6px 2px #00000020;
   }
   h1 a {
@@ -204,7 +204,7 @@ li button {
   }
 }
 @media print {
-  .menu {
+  .side-bar {
     position: static;
     width: 100%;
     align-items: center;

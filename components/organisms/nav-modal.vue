@@ -1,10 +1,5 @@
 <template>
-  <base-modal
-    ref="modal"
-    :name="name"
-    :height="height"
-    @before-open="beforeOpen"
-  >
+  <base-modal :name="name" :height="height" @before-open="beforeOpen">
     <transition
       :enter-active-class="animation.enter"
       :leave-active-class="animation.leave"

@@ -2,7 +2,7 @@
 <i18n src="@/assets/locales/pages/settings/applications.json" />
 
 <template>
-  <div class="settings">
+  <section>
     <base-modal name="application">
       <form>
         <modal-header>
@@ -34,7 +34,7 @@
       <div
         v-for="application in applications"
         :key="application.id"
-        class="list-item"
+        class="application"
       >
         <h1 @click="showModal(application)">{{ application.name }}</h1>
         <base-button
@@ -49,7 +49,7 @@
         {{ $t('empty') }}
       </p>
     </section>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -130,7 +130,7 @@ ul {
   padding: 0;
   list-style-position: inside;
 }
-.list-item {
+.application {
   height: 65px;
   display: flex;
   align-items: center;

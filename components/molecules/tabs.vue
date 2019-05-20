@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="tabs">
     <li
       v-for="(item, index) in items"
       :key="index"
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-ul {
+.tabs {
   display: flex;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
@@ -43,7 +43,7 @@ ul {
   margin: 0;
   padding: 0;
 }
-ul li {
+.tabs li {
   box-sizing: border-box;
   flex-shrink: 0;
   display: flex;
@@ -55,13 +55,13 @@ ul li {
   color: $text-light;
   transition: all 0.3s ease;
 }
-ul li.selected,
-ul li:hover {
+.tabs li.selected,
+.tabs li:hover {
   cursor: pointer;
   border-bottom-color: $cyan;
   color: $text;
 }
-ul li:active {
+.tabs li:active {
   border-bottom-color: $border;
   color: $text-lighter;
 }

@@ -3,6 +3,7 @@
 <template>
   <swipe-menu
     ref="menu"
+    class="acitivty"
     @swipe-right="stopActivity"
     @swipe-left="deleteActivity"
   >
@@ -132,7 +133,7 @@ export default {
   flex-shrink: 0;
   padding-right: 40px;
 }
-h1 {
+.acitivty h1 {
   font-size: $font-size;
   font-weight: normal;
   flex: 1;
@@ -145,7 +146,7 @@ h1 {
   text-overflow: ellipsis;
   margin-top: 1px;
 }
-nav {
+.acitivty nav {
   display: flex;
   margin-left: 30px;
 }
@@ -166,7 +167,7 @@ nav {
   }
 }
 @include mq(small) {
-  nav {
+  .acitivty nav {
     display: none;
   }
   .list-item {

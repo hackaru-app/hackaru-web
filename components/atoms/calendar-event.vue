@@ -5,6 +5,7 @@
       backgroundColor: backgroundColor,
       color: textColor
     }"
+    class="calendar-event"
   >
     <h1>{{ title }}</h1>
     <p class="duration">{{ duration }}</p>
@@ -53,7 +54,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-article {
+.calendar-event {
   flex: 1;
   flex-direction: row;
   position: relative;
@@ -68,7 +69,7 @@ article {
   border-left-style: solid;
   overflow: hidden;
 }
-h1 {
+.calendar-event h1 {
   flex-shrink: 1;
   font-size: 14px;
   line-height: 20px;
@@ -78,7 +79,7 @@ h1 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-p {
+.calendar-event p {
   flex-shrink: 9999;
   font-size: 12px;
   opacity: 0.6;
@@ -89,7 +90,7 @@ p {
   text-overflow: ellipsis;
 }
 @include mq(small) {
-  p {
+  .calendar-event p {
     font-size: 10px;
     margin-left: 5px;
   }

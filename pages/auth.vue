@@ -1,7 +1,7 @@
 <i18n src="@/assets/locales/pages/auth.json" />
 
 <template>
-  <section>
+  <section class="auth">
     <div class="form-container">
       <transition name="fade" mode="out-in">
         <heading :key="hasAccount" class="is-large">
@@ -162,7 +162,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-section {
+.auth {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -171,23 +171,23 @@ section {
   padding: 30px 50px;
   flex-grow: 1;
 }
-form {
+.auth form {
   padding-top: 30px;
   max-width: 480px;
   display: flex;
   flex-direction: column;
 }
-form footer {
+.auth form footer {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
-form footer .buttons {
+.auth form footer .buttons {
   display: flex;
   flex: 1;
 }
-form input.password {
+.auth form input.password {
   padding-right: 80px;
 }
 .agreement {

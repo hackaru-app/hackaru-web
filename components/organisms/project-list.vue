@@ -20,14 +20,9 @@
       </base-button>
     </modal-header>
 
-    <div v-for="project in projects" :key="project.id" class="list-item">
+    <div v-for="project in projects" :key="project.id" class="item">
       <div class="project-content" @click="selectProject(project)">
         <project-name :name="project.name" :color="project.color" />
-        <icon
-          v-if="params.selected === project.id"
-          name="check-icon"
-          class="check-icon"
-        />
       </div>
       <base-button
         v-if="project.id"
@@ -100,7 +95,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.list-item {
+.item {
   padding: 0 30px;
   height: 65px;
   display: flex;
@@ -122,11 +117,5 @@ export default {
   &:active {
     transform: scale(0.9);
   }
-}
-.check-icon {
-  color: $grey-999;
-}
-button.edit-button {
-  margin-left: 0;
 }
 </style>

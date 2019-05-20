@@ -1,6 +1,6 @@
 <template>
   <div class="base-select">
-    <base-button class="has-dropshadow">
+    <base-button class="base-button has-dropshadow">
       {{ value }}
     </base-button>
     <select ref="select" @change="change">
@@ -35,7 +35,7 @@ export default {
   position: relative;
   display: flex;
 }
-select {
+.base-select select {
   position: absolute;
   top: 0;
   height: 36px;
@@ -43,7 +43,7 @@ select {
   cursor: pointer;
 }
 @media print {
-  .base-select button {
+  .base-select .base-button {
     background-color: $grey-f5f5f5;
     -webkit-print-color-adjust: exact;
     color-adjust: exact;

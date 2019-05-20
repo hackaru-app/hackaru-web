@@ -1,21 +1,19 @@
 <i18n src="@/assets/locales/pages/settings/licenses.json" />
 
 <template>
-  <div class="settings">
-    <article>
-      <heading class="is-small"
-        ><icon name="gift-icon" class="icon" />{{ $t('title') }}</heading
-      >
-      <ul>
-        <li v-for="(license, key) in licenses" :key="key">
-          <a :href="license.licenseUrl" target="_blank" rel="noopener">
-            {{ key }}
-            <span> - {{ license.licenses }}</span>
-          </a>
-        </li>
-      </ul>
-    </article>
-  </div>
+  <section class="licenses">
+    <heading class="is-small"
+      ><icon name="gift-icon" class="icon" />{{ $t('title') }}</heading
+    >
+    <ul>
+      <li v-for="(license, key) in licenses" :key="key">
+        <a :href="license.licenseUrl" target="_blank" rel="noopener">
+          {{ key }}
+          <span> - {{ license.licenses }}</span>
+        </a>
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script>
@@ -37,7 +35,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-article {
+.licenses {
   margin: 0 40px;
   padding-bottom: 50px;
   border-bottom: 1px $border solid;
@@ -51,13 +49,13 @@ article {
     height: 90px;
   }
 }
-ul {
+.licenses ul {
   padding: 0;
   margin: 0;
   list-style-type: disc;
   list-style-position: inside;
 }
-li a {
+.licenses li a {
   text-decoration: none;
   color: $text;
   &:hover {
@@ -70,7 +68,7 @@ li a {
   }
 }
 @include mq(small) {
-  article {
+  .licenses {
     margin-left: 30px;
     margin-right: 30px;
   }
