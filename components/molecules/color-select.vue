@@ -3,7 +3,7 @@
     <button
       v-for="color in colors"
       :key="color"
-      :class="{ selected: value === color }"
+      :class="[{ selected: value === color }]"
       type="button"
       @click="changeColor(color)"
     >
@@ -70,9 +70,13 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 5px;
+  transition: all 0.3s ease;
   &:hover,
   &.selected {
     box-shadow: 0 2px 3px #cccfd9;
+  }
+  &:active {
+    transform: scale(0.9);
   }
 }
 </style>

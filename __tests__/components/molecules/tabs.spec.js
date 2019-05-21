@@ -1,25 +1,19 @@
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import Tabs from '@/components/molecules/tabs';
 
 describe('Tabs', () => {
-  let factory;
   let wrapper;
 
-  beforeEach(() => {
-    factory = new Factory(Tabs, {
+  const factory = () =>
+    shallowMount(Tabs, {
       propsData: {
         items: ['Home', 'Reports', 'Calendar']
       }
     });
-  });
-
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
 
   describe('when click item', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper
         .findAll('li')
         .at(1)
@@ -27,7 +21,7 @@ describe('Tabs', () => {
     });
 
     it('emit change', () => {
-      expect(wrapper.emitted('change')[0]).toEqual([1]);
+      expect(wrapper.emitted('change')[0][0]).toBe(1);
     });
   });
 });

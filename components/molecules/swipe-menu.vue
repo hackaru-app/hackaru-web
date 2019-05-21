@@ -1,6 +1,6 @@
 <template>
   <div class="swipe-menu">
-    <div :style="leftStyle" class="menu">
+    <div :style="leftStyle" class="left menu">
       <slot name="left" />
     </div>
     <drag-drop
@@ -9,11 +9,11 @@
       @move="dragging"
       @end="drop"
     >
-      <window-scroll @scroll="scroll" @end="scrollEnd">
+      <window-scroll class="window-scroll" @scroll="scroll" @end="scrollEnd">
         <slot />
       </window-scroll>
     </drag-drop>
-    <div :style="rightStyle" class="menu">
+    <div :style="rightStyle" class="right menu">
       <slot name="right" />
     </div>
   </div>
