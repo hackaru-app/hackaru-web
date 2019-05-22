@@ -22,7 +22,7 @@ describe('LocaleSelect', () => {
   describe('when select', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.base-select').vm.$emit('change', 'ja');
+      wrapper.find({ ref: 'base-select' }).vm.$emit('change', 'ja');
     });
 
     it('change locale', () => {

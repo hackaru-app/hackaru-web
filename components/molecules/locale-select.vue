@@ -1,20 +1,18 @@
 <template>
-  <div>
-    <base-select
-      :value="locales[$i18n.locale]"
-      class="base-select"
-      @change="change"
+  <base-select
+    ref="base-select"
+    :value="locales[$i18n.locale]"
+    @change="change"
+  >
+    <option
+      v-for="(locale, key) in locales"
+      :key="key"
+      :value="key"
+      :selected="key === $i18n.locale"
     >
-      <option
-        v-for="(locale, key) in locales"
-        :key="key"
-        :value="key"
-        :selected="key === $i18n.locale"
-      >
-        {{ locale }}
-      </option>
-    </base-select>
-  </div>
+      {{ locale }}
+    </option>
+  </base-select>
 </template>
 
 <script>

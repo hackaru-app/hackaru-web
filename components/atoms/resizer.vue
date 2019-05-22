@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <drag-drop
-      :delay="delay"
-      :enabled="enabled"
-      class="drag-drop"
-      @start="drag"
-      @move="dragging"
-      @end="drop"
-    >
-      <slot />
-    </drag-drop>
-  </div>
+  <drag-drop
+    ref="drag-drop"
+    :delay="delay"
+    :enabled="enabled"
+    @start="drag"
+    @move="dragging"
+    @end="drop"
+  >
+    <slot />
+  </drag-drop>
 </template>
 
 <script>

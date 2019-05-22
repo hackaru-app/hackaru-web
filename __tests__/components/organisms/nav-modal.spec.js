@@ -20,7 +20,7 @@ describe('NavModal', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper
-        .find('.base-modal')
+        .find({ ref: 'base-modal' })
         .vm.$emit('before-open', { params: { foo: 'bar' } });
     });
 
@@ -45,7 +45,7 @@ describe('NavModal', () => {
   describe('when emit before-open with empty params', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.base-modal').vm.$emit('before-open', {});
+      wrapper.find({ ref: 'base-modal' }).vm.$emit('before-open', {});
     });
 
     it('reset params', () => {

@@ -1,48 +1,47 @@
 <template>
-  <div>
-    <resizer
-      :height.sync="ghostHeight"
-      :min-height="20"
-      :delay="500"
-      class="resizer calendar-day"
-      @start="ghostDrag"
-      @resizing="ghostDragging"
-      @end="ghostDrop"
-    >
-      <section ref="events" class="events">
-        <div class="row">
-          <calendar-event
-            v-show="ghostVisibility"
-            :style="{
-              top: `${ghostTop}px`,
-              height: `${ghostHeight}px`
-            }"
-            class="ghost-activity"
-            title="New Activity"
-            color="#cccfd9"
-          />
-        </div>
-        <div
-          v-for="(pack, index) in calendar"
-          :key="index"
-          class="row"
-          @mousedown.stop
-          @pointerdown.stop
-          @touchstart.stop
-        >
-          <calendar-activity
-            v-for="activity in pack"
-            v-bind="activity"
-            :key="activity.id"
-            :day="day"
-            :overlapped-day="overlappedDay"
-            @dragging="dragging"
-            @drop="drop"
-          />
-        </div>
-      </section>
-    </resizer>
-  </div>
+  <resizer
+    ref="resizer"
+    :height.sync="ghostHeight"
+    :min-height="20"
+    :delay="500"
+    class="calendar-day"
+    @start="ghostDrag"
+    @resizing="ghostDragging"
+    @end="ghostDrop"
+  >
+    <section ref="events" class="events">
+      <div class="row">
+        <calendar-event
+          v-show="ghostVisibility"
+          :style="{
+            top: `${ghostTop}px`,
+            height: `${ghostHeight}px`
+          }"
+          class="ghost-activity"
+          title="New Activity"
+          color="#cccfd9"
+        />
+      </div>
+      <div
+        v-for="(pack, index) in calendar"
+        :key="index"
+        class="row"
+        @mousedown.stop
+        @pointerdown.stop
+        @touchstart.stop
+      >
+        <calendar-activity
+          v-for="activity in pack"
+          v-bind="activity"
+          :key="activity.id"
+          :day="day"
+          :overlapped-day="overlappedDay"
+          @dragging="dragging"
+          @drop="drop"
+        />
+      </div>
+    </section>
+  </resizer>
 </template>
 
 <script>

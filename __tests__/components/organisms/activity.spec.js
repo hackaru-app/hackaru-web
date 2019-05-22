@@ -49,7 +49,7 @@ describe('Activity', () => {
   describe('when swipe right', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.acitivty').vm.$emit('swipe-right');
+      wrapper.find({ ref: 'menu' }).vm.$emit('swipe-right');
     });
 
     it('dispatch activities/updateActivity', () => {
@@ -67,7 +67,7 @@ describe('Activity', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
-      wrapper.find('.acitivty').vm.$emit('swipe-left');
+      wrapper.find({ ref: 'menu' }).vm.$emit('swipe-left');
     });
 
     it('dispatch activities/deleteActivity', () => {
@@ -83,7 +83,7 @@ describe('Activity', () => {
       global.confirm = () => false;
       wrapper = factory();
       wrapper.setMethods({ resetSwipeMenu: () => {} });
-      wrapper.find('.acitivty').vm.$emit('swipe-left');
+      wrapper.find({ ref: 'menu' }).vm.$emit('swipe-left');
     });
 
     it('does not dispatch activities/deleteActivity', () => {

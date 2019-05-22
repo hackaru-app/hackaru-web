@@ -13,7 +13,7 @@ describe('Resizer', () => {
   describe('when drag', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent());
     });
 
     it('emit start', () => {
@@ -24,8 +24,8 @@ describe('Resizer', () => {
   describe('when drag', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
-      wrapper.find('.drag-drop').vm.$emit('move', dragEvent(0, 80));
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent());
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('move', dragEvent(0, 80));
     });
 
     it('emit resizing', () => {
@@ -40,9 +40,9 @@ describe('Resizer', () => {
   describe('when drop', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
-      wrapper.find('.drag-drop').vm.$emit('move', dragEvent(70, 80));
-      wrapper.find('.drag-drop').vm.$emit('end', dragEvent());
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent());
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('move', dragEvent(70, 80));
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('end', dragEvent());
     });
 
     it('emit end', () => {
@@ -53,8 +53,8 @@ describe('Resizer', () => {
   describe('when drop but not moved', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent(0, 0));
-      wrapper.find('.drag-drop').vm.$emit('end', dragEvent(0, 0));
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent(0, 0));
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('end', dragEvent(0, 0));
     });
 
     it('emit cancel', () => {

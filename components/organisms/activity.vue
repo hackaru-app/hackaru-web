@@ -1,43 +1,41 @@
 <i18n src="@/assets/locales/components/organisms/activity.json" />
 
 <template>
-  <div>
-    <swipe-menu
-      refs="menu"
-      class="acitivty"
-      @swipe-right="stopActivity"
-      @swipe-left="deleteActivity"
-    >
-      <template slot="left">
-        <div class="swipe-menu-item is-danger">
-          <icon name="trash-icon" />
-        </div>
-      </template>
+  <swipe-menu
+    ref="menu"
+    class="acitivty"
+    @swipe-right="stopActivity"
+    @swipe-left="deleteActivity"
+  >
+    <template slot="left">
+      <div class="swipe-menu-item is-danger">
+        <icon name="trash-icon" />
+      </div>
+    </template>
 
-      <div class="list-item">
-        <div class="activity-content" @click="showModal">
-          <project-name v-bind="project" class="project-name" />
-          <ticker
-            :started-at="startedAt"
-            :stopped-at="stoppedAt"
-            class="duration"
-          />
-        </div>
-
-        <nav>
-          <base-button class="stop-button has-icon" @click="stopActivity">
-            <icon name="check-icon" class="is-primary" />
-          </base-button>
-        </nav>
+    <div class="list-item">
+      <div class="activity-content" @click="showModal">
+        <project-name v-bind="project" class="project-name" />
+        <ticker
+          :started-at="startedAt"
+          :stopped-at="stoppedAt"
+          class="duration"
+        />
       </div>
 
-      <template slot="right">
-        <div class="swipe-menu-item is-primary">
-          <icon name="check-icon" />
-        </div>
-      </template>
-    </swipe-menu>
-  </div>
+      <nav>
+        <base-button class="stop-button has-icon" @click="stopActivity">
+          <icon name="check-icon" class="is-primary" />
+        </base-button>
+      </nav>
+    </div>
+
+    <template slot="right">
+      <div class="swipe-menu-item is-primary">
+        <icon name="check-icon" />
+      </div>
+    </template>
+  </swipe-menu>
 </template>
 
 <script>

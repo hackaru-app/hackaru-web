@@ -61,7 +61,7 @@ describe('CalendarDay', () => {
       wrapper = factory();
       wrapper.setData({ ghostHeight: 20 });
       wrapper
-        .find('.resizer')
+        .find({ ref: 'resizer' })
         .vm.$emit('start', { preventDefault: () => {}, pageY: 100 });
     });
 
@@ -81,7 +81,7 @@ describe('CalendarDay', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ ghostTop: 50, ghostHeight: 20 });
-      wrapper.find('.resizer').vm.$emit('resizing');
+      wrapper.find({ ref: 'resizer' }).vm.$emit('resizing');
     });
 
     it('emit dragging', () => {
@@ -96,7 +96,7 @@ describe('CalendarDay', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ ghostTop: 60, ghostHeight: 20 });
-      wrapper.find('.resizer').vm.$emit('end');
+      wrapper.find({ ref: 'resizer' }).vm.$emit('end');
     });
 
     it('emit drop', () => {
