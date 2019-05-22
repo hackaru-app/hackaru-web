@@ -19,7 +19,7 @@
       v-for="day in days"
       ref="days"
       :data-day="day"
-      :class="{ overlapped: isSameDay(overlappedDay, day) }"
+      :class="['day', { overlapped: isSameDay(overlappedDay, day) }]"
       :overlapped-day="overlappedDay"
       :key="`${day}`"
       :day="day"
@@ -60,7 +60,6 @@ export default {
       repeat: true
     }
   },
-
   props: {
     days: {
       type: Array,

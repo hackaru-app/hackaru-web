@@ -1,44 +1,36 @@
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import CalendarRuler from '@/components/organisms/calendar-ruler';
 
 describe('CalendarRuler', () => {
-  let factory;
   let wrapper;
 
-  beforeEach(() => {
-    factory = new Factory(CalendarRuler, {
-      provide: {
-        pxPerMin: 40 / 60
-      },
+  const factory = () =>
+    shallowMount(CalendarRuler, {
       propsData: {
+        top: 90,
         color: '#ff0'
       }
     });
-  });
-
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
-
-  describe('when has top', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({ top: 50 });
-    });
-
-    it('render correctly', () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-  });
 
   describe('when showTime is true', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({ top: 50, showTime: true });
+      wrapper = factory();
+      wrapper.setProps({ showTime: true });
     });
 
-    it('render correctly', () => {
-      expect(wrapper.element).toMatchSnapshot();
+    it('show time correcly', () => {
+      expect(wrapper.find('time').text()).toBe('01:30');
+    });
+  });
+
+  describe('when showTime is false', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setProps({ showTime: false });
+    });
+
+    it('hide time', () => {
+      expect(wrapper.contains('time')).toBe(false);
     });
   });
 });

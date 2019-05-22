@@ -1,10 +1,10 @@
 import { shallowMount } from '@vue/test-utils';
 import SwipeMenu from '@/components/molecules/swipe-menu';
 
-jest.useFakeTimers();
-
 describe('SwipeMenu', () => {
   let wrapper;
+
+  jest.useFakeTimers();
 
   const dragEvent = (x, y) => ({
     e: { preventDefault: () => {} },

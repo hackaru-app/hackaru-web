@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils';
 import DragDrop from '@/components/atoms/drag-drop';
 
-jest.useFakeTimers();
-
 describe('DragDrop', () => {
   let wrapper;
+
+  jest.useFakeTimers();
 
   const touchEvent = { touches: [{}] };
   const factory = () => mount(DragDrop, { attachToDocument: true });

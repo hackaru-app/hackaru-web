@@ -1,37 +1,31 @@
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import NavModal from '@/components/organisms/nav-modal';
 
 describe('NavModal', () => {
-  let factory;
   let wrapper;
 
   const initialComponent = { render: () => '<p>Content</p>' };
-  const nextComponent = { render: () => '<p>Moved!</p>' };
+  const nextComponent = { render: () => '<p>Moved</p>' };
 
-  beforeEach(() => {
-    factory = new Factory(NavModal, {
+  const factory = () =>
+    shallowMount(NavModal, {
       propsData: {
         name: 'example',
         initialComponent,
         keepAlives: []
       }
     });
-  });
-
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
 
   describe('when emit before-open', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper
-        .find({ ref: 'modal' })
+        .find('.base-modal')
         .vm.$emit('before-open', { params: { foo: 'bar' } });
     });
 
     it('set current component', () => {
-      expect(wrapper.vm.current).toEqual(initialComponent);
+      expect(wrapper.find('.current').is(initialComponent)).toBe(true);
     });
 
     it('reset animations', () => {
@@ -48,10 +42,10 @@ describe('NavModal', () => {
     });
   });
 
-  describe('when emit before-open and params is empty', () => {
+  describe('when emit before-open with empty params', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find({ ref: 'modal' }).vm.$emit('before-open', {});
+      wrapper = factory();
+      wrapper.find('.base-modal').vm.$emit('before-open', {});
     });
 
     it('reset params', () => {
@@ -61,16 +55,16 @@ describe('NavModal', () => {
 
   describe('when emit push', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.setData({ current: initialComponent });
-      wrapper.find({ ref: 'current' }).vm.$emit('push', {
+      wrapper.find('.current').vm.$emit('push', {
         component: nextComponent,
         params: { foo: 'bar' }
       });
     });
 
     it('set current component', () => {
-      expect(wrapper.vm.current).toEqual(nextComponent);
+      expect(wrapper.find('.current').is(nextComponent)).toBe(true);
     });
 
     it('set animations', () => {
@@ -87,11 +81,11 @@ describe('NavModal', () => {
     });
   });
 
-  describe('when emit push and params is empty', () => {
+  describe('when emit push with empty params', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.setData({ current: initialComponent });
-      wrapper.find({ ref: 'current' }).vm.$emit('push', {
+      wrapper.find('.current').vm.$emit('push', {
         component: nextComponent
       });
     });
@@ -103,16 +97,16 @@ describe('NavModal', () => {
 
   describe('when emit pop', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.setData({ current: initialComponent });
-      wrapper.find({ ref: 'current' }).vm.$emit('pop', {
+      wrapper.find('.current').vm.$emit('pop', {
         component: nextComponent,
         params: { foo: 'bar' }
       });
     });
 
     it('set current component', () => {
-      expect(wrapper.vm.current).toEqual(nextComponent);
+      expect(wrapper.find('.current').is(nextComponent)).toBe(true);
     });
 
     it('set animations', () => {
@@ -129,11 +123,11 @@ describe('NavModal', () => {
     });
   });
 
-  describe('when emit pop and params is empty', () => {
+  describe('when emit pop with empty params', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.setData({ current: initialComponent });
-      wrapper.find({ ref: 'current' }).vm.$emit('pop', {
+      wrapper.find('.current').vm.$emit('pop', {
         component: nextComponent
       });
     });

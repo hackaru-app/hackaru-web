@@ -44,7 +44,6 @@
 
 <script>
 import ModalItem from '@/components/molecules/modal-item';
-
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import Icon from '@/components/atoms/icon';
@@ -59,7 +58,6 @@ export default {
     ModalHeader,
     ModalItem,
     ModalFooter,
-
     BaseButton
   },
   props: {

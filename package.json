@@ -94,7 +94,8 @@
   "jest": {
     "setupFiles": [
       "jest-canvas-mock",
-      "jest-localstorage-mock"
+      "jest-localstorage-mock",
+      "./__tests__/__setups__/config.js"
     ],
     "moduleFileExtensions": [
       "js",

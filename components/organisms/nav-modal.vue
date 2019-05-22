@@ -1,21 +1,29 @@
 <template>
-  <base-modal :name="name" :height="height" @before-open="beforeOpen">
-    <transition
-      :enter-active-class="animation.enter"
-      :leave-active-class="animation.leave"
+  <div>
+    <base-modal
+      :name="name"
+      :height="height"
+      class="base-modal"
+      @before-open="beforeOpen"
     >
-      <keep-alive :include="keepAlives">
-        <component
-          ref="current"
-          :is="current"
-          :params="params"
-          class="current"
-          @push="push"
-          @pop="pop"
-        />
-      </keep-alive>
-    </transition>
-  </base-modal>
+      <transition
+        :enter-active-class="animation.enter"
+        :leave-active-class="animation.leave"
+        class="transition"
+      >
+        <keep-alive :include="keepAlives">
+          <component
+            ref="current"
+            :is="current"
+            :params="params"
+            class="current"
+            @push="push"
+            @pop="pop"
+          />
+        </keep-alive>
+      </transition>
+    </base-modal>
+  </div>
 </template>
 
 <script>

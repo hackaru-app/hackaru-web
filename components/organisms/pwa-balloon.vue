@@ -10,10 +10,10 @@
       v-if="visibility && $platform.isIOS() && !$platform.isPWA()"
       class="pwa-balloon"
     >
+      <base-button type="button" class="has-icon close-button" @click="close">
+        <icon name="x-icon" />
+      </base-button>
       <div class="content">
-        <base-button type="button" class="has-icon close-button" @click="close">
-          <icon name="x-icon" />
-        </base-button>
         <section class="logo">
           <img src="@/assets/logo.svg" />
         </section>

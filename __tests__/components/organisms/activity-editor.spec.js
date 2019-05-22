@@ -1,18 +1,19 @@
 import { Store } from 'vuex-mock-store';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import ActivityEditor from '@/components/organisms/activity-editor';
 import ProjectList from '@/components/organisms/project-list';
 
 describe('ActivityEditor', () => {
   let wrapper;
-  let factory;
 
   const $store = new Store({});
-
-  beforeEach(() => {
-    $store.reset();
-    factory = new Factory(ActivityEditor, {
-      mocks: { $store },
+  const $modal = { hide: jest.fn() };
+  const factory = () =>
+    shallowMount(ActivityEditor, {
+      mocks: {
+        $store,
+        $modal
+      },
       data() {
         return {
           id: 1,
@@ -27,16 +28,15 @@ describe('ActivityEditor', () => {
         };
       }
     });
+
+  beforeEach(() => {
+    $store.reset();
   });
 
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
-
-  describe('when submit and id is defined', () => {
+  describe('when click submit button', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find('form').trigger('submit.prevent');
     });
 
@@ -53,24 +53,15 @@ describe('ActivityEditor', () => {
       );
     });
 
-    it('send ga event', () => {
-      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
-        'activity',
-        'updateActivity'
-      );
-    });
-
     it('hide modal', () => {
-      expect(factory.options.mocks.$modal.hide).toHaveBeenCalledWith(
-        'activity'
-      );
+      expect($modal.hide).toHaveBeenCalledWith('activity');
     });
   });
 
-  describe('when submit and id is undefined', () => {
+  describe('when click submit button and id is undefined', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.setData({ id: undefined });
       wrapper.find('form').trigger('submit.prevent');
     });
@@ -84,52 +75,15 @@ describe('ActivityEditor', () => {
       });
     });
 
-    it('send ga event', () => {
-      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
-        'activity',
-        'addActivity'
-      );
-    });
-
     it('hide modal', () => {
-      expect(factory.options.mocks.$modal.hide).toHaveBeenCalledWith(
-        'activity'
-      );
+      expect($modal.hide).toHaveBeenCalledWith('activity');
     });
   });
 
-  describe('when submit but failed', () => {
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue(false);
-      wrapper = factory.shallow();
-      wrapper.find('form').trigger('submit.prevent');
-    });
-
-    it('does not hide modal', () => {
-      expect(factory.options.mocks.$modal.hide).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('when press delete button and confirm is false', () => {
-    beforeEach(() => {
-      global.confirm = () => false;
-      wrapper = factory.shallow();
-      wrapper.find('.delete-button').vm.$emit('click');
-    });
-
-    it('dose not dispatch activities/deleteActivity', () => {
-      expect($store.dispatch).not.toHaveBeenCalled();
-    });
-
-    it('does not hide modal', () => {
-      expect(factory.options.mocks.$modal.hide).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('when press delete button and confirm is true', () => {
+  describe('when click delete button', () => {
     beforeEach(() => {
       global.confirm = () => true;
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find('.delete-button').vm.$emit('click');
     });
 
@@ -140,40 +94,41 @@ describe('ActivityEditor', () => {
       );
     });
 
-    it('send ga event', () => {
-      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
-        'activity',
-        'deleteActivity'
-      );
+    it('hide modal', () => {
+      expect($modal.hide).toHaveBeenCalledWith('activity');
+    });
+  });
+
+  describe('when click delete button but comfirm is false', () => {
+    beforeEach(() => {
+      global.confirm = () => false;
+      wrapper = factory();
+      wrapper.find('.delete-button').vm.$emit('click');
     });
 
-    it('hide modal', () => {
-      expect(factory.options.mocks.$modal.hide).toHaveBeenCalledWith(
-        'activity'
-      );
+    it('does not dispatch activities/deleteActivity', () => {
+      expect($store.dispatch).not.toHaveBeenCalled();
     });
   });
 
   describe('when press project button', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find('.project-button').trigger('click');
     });
 
     it('emit push', () => {
-      expect(wrapper.emitted('push')[0]).toEqual([
-        {
-          component: ProjectList,
-          params: { selected: 2 }
-        }
-      ]);
+      expect(wrapper.emitted('push')[0][0]).toEqual({
+        component: ProjectList,
+        params: { selected: 2 }
+      });
     });
   });
 
-  describe('when press share button', () => {
+  describe('when click share button', () => {
     beforeEach(() => {
       window.navigator.share = jest.fn();
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find('.share-button').vm.$emit('click');
     });
 

@@ -1,9 +1,16 @@
 <template>
-  <drag-drop :enabled="!scrolling && enabled" @move="dragging" @end="drop">
-    <window-scroll @scroll="scroll" @end="scrollEnd">
-      <slot :slide-style="style" />
-    </window-scroll>
-  </drag-drop>
+  <div>
+    <drag-drop
+      :enabled="!scrolling && enabled"
+      class="drag-drop"
+      @move="dragging"
+      @end="drop"
+    >
+      <window-scroll class="window-scroll" @scroll="scroll" @end="scrollEnd">
+        <slot :slide-style="style" />
+      </window-scroll>
+    </drag-drop>
+  </div>
 </template>
 
 <script>

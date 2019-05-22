@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils';
 import WindowScroll from '@/components/atoms/window-scroll';
 
-jest.useFakeTimers();
-
 describe('WindowScroll', () => {
   let wrapper;
+
+  jest.useFakeTimers();
 
   const factory = () => mount(WindowScroll, { attachToDocument: true });
 

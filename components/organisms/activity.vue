@@ -1,41 +1,43 @@
 <i18n src="@/assets/locales/components/organisms/activity.json" />
 
 <template>
-  <swipe-menu
-    ref="menu"
-    class="acitivty"
-    @swipe-right="stopActivity"
-    @swipe-left="deleteActivity"
-  >
-    <template slot="left">
-      <div class="swipe-menu-item is-danger">
-        <icon name="trash-icon" />
-      </div>
-    </template>
+  <div>
+    <swipe-menu
+      refs="menu"
+      class="acitivty"
+      @swipe-right="stopActivity"
+      @swipe-left="deleteActivity"
+    >
+      <template slot="left">
+        <div class="swipe-menu-item is-danger">
+          <icon name="trash-icon" />
+        </div>
+      </template>
 
-    <div class="list-item">
-      <div class="activity-content" @click="showModal">
-        <project-name v-bind="project" class="project-name" />
-        <ticker
-          :started-at="startedAt"
-          :stopped-at="stoppedAt"
-          class="duration"
-        />
+      <div class="list-item">
+        <div class="activity-content" @click="showModal">
+          <project-name v-bind="project" class="project-name" />
+          <ticker
+            :started-at="startedAt"
+            :stopped-at="stoppedAt"
+            class="duration"
+          />
+        </div>
+
+        <nav>
+          <base-button class="stop-button has-icon" @click="stopActivity">
+            <icon name="check-icon" class="is-primary" />
+          </base-button>
+        </nav>
       </div>
 
-      <nav>
-        <base-button class="stop-button has-icon" @click="stopActivity">
-          <icon name="check-icon" class="is-primary" />
-        </base-button>
-      </nav>
-    </div>
-
-    <template slot="right">
-      <div class="swipe-menu-item is-primary">
-        <icon name="check-icon" />
-      </div>
-    </template>
-  </swipe-menu>
+      <template slot="right">
+        <div class="swipe-menu-item is-primary">
+          <icon name="check-icon" />
+        </div>
+      </template>
+    </swipe-menu>
+  </div>
 </template>
 
 <script>
@@ -77,7 +79,7 @@ export default {
     },
     project: {
       type: Object,
-      default: () => undefined
+      default: undefined
     }
   },
   methods: {
@@ -88,9 +90,12 @@ export default {
         stoppedAt: `${parse(Date.now())}`
       });
     },
+    resetSwipeMenu() {
+      this.$refs.menu.reset();
+    },
     deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) {
-        this.$refs.menu.reset();
+        this.resetSwipeMenu();
         return;
       }
       this.$store.dispatch('activities/deleteActivity', this.id);
@@ -102,8 +107,7 @@ export default {
         description: this.description,
         startedAt: this.startedAt,
         stoppedAt: this.stoppedAt,
-        duration: this.duration,
-        project: this.project
+        project: this.project || undefined
       });
     }
   }

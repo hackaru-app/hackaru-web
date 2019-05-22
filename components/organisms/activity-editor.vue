@@ -71,7 +71,6 @@
 <script>
 import ProjectList from '@/components/organisms/project-list';
 import ModalItem from '@/components/molecules/modal-item';
-
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import ProjectName from '@/components/molecules/project-name';
@@ -88,7 +87,6 @@ export default {
     ModalHeader,
     ModalItem,
     ModalFooter,
-
     BaseButton,
     Icon
   },
@@ -123,7 +121,6 @@ export default {
         const params = this.params || {};
         this.id = params.id || this.id;
         this.description = params.description || this.description;
-        this.duration = params.duration || 0;
         this.startedAt = params.startedAt || this.startedAt;
         this.stoppedAt = params.stoppedAt || this.stoppedAt;
         this.project = params.project || this.project;

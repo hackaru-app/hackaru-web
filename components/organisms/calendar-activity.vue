@@ -1,40 +1,42 @@
 <template>
-  <dragger
-    ref="dragger"
-    :top.sync="top"
-    :left.sync="left"
-    :enabled="!resized"
-    :class="['calendar-activity', { dragging: dragged }]"
-    :style="{ height: `${height}px` }"
-    @start="moveStart"
-    @moving="moving"
-    @end="moveEnd"
-    @cancel="moveCancel"
-  >
-    <div class="exclusiver" @mousedown="mousedown" @mouseup="mouseup">
-      <calendar-event
-        :style="{ height: `${height}px` }"
-        :title="title"
-        :color="color"
-        :started-at="startedAt"
-        :stopped-at="stoppedAt"
-        class="event"
-      />
-      <resizer
-        ref="resizer"
-        :height.sync="height"
-        :enabled="!dragged"
-        :min-height="minHeight"
-        :handle-color="color"
-        class="resizer"
-        @resizing="resizing"
-        @end="resizeEnd"
-        @cancel="resizeCancel"
-      >
-        <span class="handler" />
-      </resizer>
-    </div>
-  </dragger>
+  <div>
+    <dragger
+      ref="dragger"
+      :top.sync="top"
+      :left.sync="left"
+      :enabled="!resized"
+      :class="['calendar-activity', 'dragger', { dragging: dragged }]"
+      :style="{ height: `${height}px` }"
+      @start="moveStart"
+      @moving="moving"
+      @end="moveEnd"
+      @cancel="moveCancel"
+    >
+      <div class="click-handler" @mousedown="mousedown" @mouseup="mouseup">
+        <calendar-event
+          :style="{ height: `${height}px` }"
+          :title="title"
+          :color="color"
+          :started-at="startedAt"
+          :stopped-at="stoppedAt"
+          class="event"
+        />
+        <resizer
+          ref="resizer"
+          :height.sync="height"
+          :enabled="!dragged"
+          :min-height="minHeight"
+          :handle-color="color"
+          class="resizer"
+          @resizing="resizing"
+          @end="resizeEnd"
+          @cancel="resizeCancel"
+        >
+          <span class="handler" />
+        </resizer>
+      </div>
+    </dragger>
+  </div>
 </template>
 
 <script>
@@ -64,16 +66,16 @@ export default {
       type: String,
       required: true
     },
+    startedAt: {
+      type: String,
+      required: true
+    },
     stoppedAt: {
       type: String,
       required: true
     },
     day: {
       type: Date,
-      required: true
-    },
-    startedAt: {
-      type: String,
       required: true
     },
     overlappedDay: {
@@ -262,7 +264,7 @@ export default {
 .resizer {
   align-items: center;
 }
-.exclusiver {
+.click-handler {
   display: flex;
   flex: 1;
   width: 100%;
