@@ -3,7 +3,7 @@
 <template>
   <setting-box>
     <base-modal name="deleteAccount">
-      <form class="delete-account" @submit.prevent="deleteAccount">
+      <form @submit.prevent="deleteAccount">
         <modal-header>
           <h1>{{ $t('deleteAccountModal.title') }}</h1>
         </modal-header>
@@ -13,14 +13,15 @@
         </modal-item>
         <modal-item>
           <input
-            v-model="deleteAccountForm.currentPassword"
+            v-model="currentPassword"
             :placeholder="$t('deleteAccountModal.currentPassword')"
             type="password"
+            class="current-password"
             required
           />
         </modal-item>
         <modal-footer>
-          <base-button type="submit" class="is-rounded is-danger">
+          <base-button type="submit" class="submit-button is-rounded is-danger">
             {{ $t('deleteAccountModal.delete') }}
           </base-button>
         </modal-footer>
@@ -65,9 +66,7 @@ export default {
   },
   data() {
     return {
-      deleteAccountForm: {
-        currentPassword: ''
-      }
+      currentPassword: ''
     };
   },
   methods: {
@@ -77,7 +76,7 @@ export default {
     async deleteAccount() {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       const success = await this.$store.dispatch('auth/deleteAccount', {
-        ...this.deleteAccountForm
+        currentPassword: this.currentPassword
       });
       if (success) {
         this.$ga.event('auth', 'deleteAccount');

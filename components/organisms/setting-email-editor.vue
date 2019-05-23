@@ -7,12 +7,12 @@
       {{ $t('titles.email') }}
     </template>
 
-    <form class="email" @submit.prevent="changeEmail">
+    <form @submit.prevent="changeEmail">
       <base-input
         v-model="email"
         :placeholder="$t('email')"
         type="email"
-        class="has-border"
+        class="email has-border"
         required
         @focus="$event.target.select()"
       />
@@ -20,7 +20,7 @@
         v-model="currentPassword"
         :placeholder="$t('password')"
         type="password"
-        class="has-border"
+        class="current-password has-border"
         required
       />
       <base-button class="is-rounded is-primary" type="submit">{{

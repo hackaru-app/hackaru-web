@@ -21,7 +21,12 @@
           <label>
             {{ $t('targetUrl') }}
           </label>
-          <input v-model="targetUrl" type="url" placeholder="https://" />
+          <input
+            v-model="targetUrl"
+            type="url"
+            class="target-url"
+            placeholder="https://"
+          />
         </modal-item>
         <modal-footer>
           <base-button type="submit" class="is-rounded is-primary">
@@ -72,7 +77,6 @@ import ContentHeader from '@/components/organisms/content-header';
 import BaseModal from '@/components/organisms/base-modal';
 import BaseButton from '@/components/atoms/base-button';
 import ModalItem from '@/components/molecules/modal-item';
-
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import { mapGetters } from 'vuex';
@@ -84,7 +88,6 @@ export default {
     Icon,
     BaseModal,
     ModalItem,
-
     ModalHeader,
     ModalFooter,
     BaseButton
@@ -110,8 +113,8 @@ export default {
       webhooks: 'webhooks/getWebhooks'
     })
   },
-  async mounted() {
-    await this.$store.dispatch('webhooks/getWebhooks');
+  mounted() {
+    this.$store.dispatch('webhooks/getWebhooks');
   },
   methods: {
     async addWebhook({ store }) {

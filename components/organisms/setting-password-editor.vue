@@ -7,12 +7,12 @@
       {{ $t('titles.password') }}
     </template>
 
-    <form class="password" @submit.prevent="changePassword">
+    <form @submit.prevent="changePassword">
       <base-input
         v-model="currentPassword"
         :placeholder="$t('password')"
         type="password"
-        class="has-border"
+        class="current-password has-border"
         size="1"
         required
       />
@@ -20,7 +20,7 @@
         v-model="password"
         :placeholder="$t('newPassword')"
         type="password"
-        class="has-border"
+        class="password has-border"
         size="1"
         required
       />
@@ -28,7 +28,7 @@
         v-model="passwordConfirmation"
         :placeholder="$t('confirmNewPassword')"
         type="password"
-        class="has-border"
+        class="password-confirmation has-border"
         size="1"
         required
       />

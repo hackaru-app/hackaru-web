@@ -1,9 +1,8 @@
 import { Store } from 'vuex-mock-store';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import Webhooks from '@/pages/settings/webhooks';
 
 describe('Webhooks', () => {
-  let factory;
   let wrapper;
 
   const $store = new Store({
@@ -12,16 +11,8 @@ describe('Webhooks', () => {
         {
           id: 1,
           userId: 1,
-          targetUrl: 'http://www.example.com/1',
+          targetUrl: 'http://www.example.com',
           event: 'activity:updated',
-          createdAt: '2019-02-06T10:23:24.199Z',
-          updatedAt: '2019-02-06T10:23:24.199Z'
-        },
-        {
-          id: 2,
-          userId: 1,
-          targetUrl: 'http://www.example.com/2',
-          event: 'activity:created',
           createdAt: '2019-02-06T10:23:24.199Z',
           updatedAt: '2019-02-06T10:23:24.199Z'
         }
@@ -29,80 +20,79 @@ describe('Webhooks', () => {
     }
   });
 
+  const $modal = {
+    show: jest.fn(),
+    hide: jest.fn()
+  };
+
+  const factory = () =>
+    shallowMount(Webhooks, {
+      mocks: { $store, $modal }
+    });
+
   beforeEach(() => {
     $store.reset();
-    factory = new Factory(Webhooks, {
-      mocks: { $store }
-    });
   });
 
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
+  it('dispatch webhooks/getWebhooks', () => {
+    factory();
+    expect($store.dispatch).toHaveBeenCalledWith('webhooks/getWebhooks');
   });
 
-  describe('when click delete button and confirm is true', () => {
+  describe('when click delete-button', () => {
     beforeEach(() => {
       global.confirm = () => true;
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper
         .findAll('.delete-button')
-        .at(1)
+        .at(0)
         .vm.$emit('click');
     });
 
     it('dispatch webhooks/deleteWebhook', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('webhooks/deleteWebhook', 2);
-    });
-
-    it('send ga event', () => {
-      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
-        'webhook',
-        'deleteWebhook'
-      );
+      expect($store.dispatch).toHaveBeenCalledWith('webhooks/deleteWebhook', 1);
     });
   });
 
-  describe('when click delete button and confirm is false', () => {
+  describe('when click delete-button but confirm is false', () => {
     beforeEach(() => {
       global.confirm = () => false;
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper
         .findAll('.delete-button')
-        .at(1)
+        .at(0)
         .vm.$emit('click');
     });
 
     it('does not dispatch webhooks/deleteWebhook', () => {
       expect($store.dispatch).not.toHaveBeenCalledWith(
         'webhooks/deleteWebhook',
-        2
+        1
       );
     });
   });
 
-  describe('when click add button', () => {
+  describe('when click add-button', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find('.add-button').vm.$emit('click');
     });
 
-    it('render modal correctly', () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
     it('show modal', () => {
-      expect(factory.options.mocks.$modal.show).toHaveBeenCalledWith('webhook');
+      expect($modal.show).toHaveBeenCalledWith('webhook');
     });
   });
 
-  describe('when submit create webhook form', () => {
+  describe('when submit form', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
-      wrapper = factory.shallow();
-      wrapper.setData({
-        event: 'activity:created',
-        targetUrl: 'http://example.com'
-      });
+      wrapper = factory();
+      wrapper
+        .find('.event-select')
+        .findAll('option')
+        .at(0)
+        .setSelected();
+      wrapper.find('.target-url').setValue('http://example.com');
       wrapper.find('form').trigger('submit.prevent');
     });
 
@@ -113,27 +103,8 @@ describe('Webhooks', () => {
       });
     });
 
-    it('send ga event', () => {
-      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
-        'webhook',
-        'addWebhook'
-      );
-    });
-
     it('hide modal', () => {
-      expect(factory.options.mocks.$modal.hide).toHaveBeenCalledWith('webhook');
-    });
-  });
-
-  describe('when submit create webhook form but failed', () => {
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue(false);
-      wrapper = factory.shallow();
-      wrapper.find('form').trigger('submit.prevent');
-    });
-
-    it('does not hide modal', () => {
-      expect(factory.options.mocks.$modal.hide).not.toHaveBeenCalled();
+      expect($modal.hide).toHaveBeenCalledWith('webhook');
     });
   });
 });
