@@ -29,7 +29,6 @@
         </highlight>
         <footer class="footer">
           <base-button
-            ref="allow-button"
             type="button"
             class="is-rounded is-primary allow-button"
             @click="decide('allow')"
@@ -37,7 +36,6 @@
             {{ $t('allow') }}
           </base-button>
           <base-button
-            ref="deny-button"
             type="button"
             class="is-rounded deny-button"
             @click="decide('deny')"
@@ -51,7 +49,6 @@
 </template>
 
 <script>
-import snakecaseKeys from 'snakecase-keys';
 import LoginGuard from '@/components/atoms/login-guard';
 import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
@@ -104,10 +101,10 @@ export default {
       if (data.accessToken || data.errorDescription) {
         return this.$router.push({
           path: '/oauth/callback',
-          query: snakecaseKeys({
-            accessToken: data.accessToken,
-            errorDescription: data.errorDescription
-          })
+          query: {
+            access_token: data.accessToken,
+            error_description: data.errorDescription
+          }
         });
       }
       window.location.assign(data);

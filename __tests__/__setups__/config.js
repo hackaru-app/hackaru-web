@@ -8,4 +8,5 @@ config.mocks['$toMin'] = px => px;
 config.mocks['localePath'] = path => `/en/${path}`;
 
 config.stubs['NuxtLink'] = RouterLinkStub;
+config.stubs['NuxtChild'] = { render: h => h };
 config.stubs['I18n'] = { render: h => h };
