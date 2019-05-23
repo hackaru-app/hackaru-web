@@ -1,16 +1,18 @@
-<i18n src="@/assets/locales/pages/settings/index.json" />
+<i18n
+  src="@/assets/locales/components/organisms/setting-password-editor.json"
+/>
 
 <template>
   <setting-box>
     <template v-slot:heading>
       <icon name="lock-icon" class="icon" />
-      {{ $t('titles.password') }}
+      {{ $t('title') }}
     </template>
 
     <form @submit.prevent="changePassword">
       <base-input
         v-model="currentPassword"
-        :placeholder="$t('password')"
+        :placeholder="$t('currentPassword')"
         type="password"
         class="current-password has-border"
         size="1"
@@ -18,7 +20,7 @@
       />
       <base-input
         v-model="password"
-        :placeholder="$t('newPassword')"
+        :placeholder="$t('password')"
         type="password"
         class="password has-border"
         size="1"
@@ -26,7 +28,7 @@
       />
       <base-input
         v-model="passwordConfirmation"
-        :placeholder="$t('confirmNewPassword')"
+        :placeholder="$t('passwordConfirmation')"
         type="password"
         class="password-confirmation has-border"
         size="1"
@@ -66,7 +68,7 @@ export default {
         password: this.password,
         passwordConfirmation: this.passwordConfirmation
       });
-      if (success) this.$toast.success(this.$t('changed.password'));
+      if (success) this.$toast.success(this.$t('changed'));
     }
   }
 };

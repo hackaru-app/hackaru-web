@@ -1,0 +1,16 @@
+{
+  "en": {
+    "title": "Change email address",
+    "email": "Enter new email address",
+    "password": "Enter current password",
+    "update": "Update",
+    "changed": "Email address changed"
+  },
+  "ja": {
+    "title":  "Eメールを変更",
+    "email": "変更後のメールアドレスを入力",
+    "password": "現在のパスワードを入力",
+    "update": "変更",
+    "changed": "メールアドレスを変更しました"
+  }
+}

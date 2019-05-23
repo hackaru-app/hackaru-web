@@ -1,0 +1,10 @@
+{
+  "en": {
+    "title": "Logout",
+    "confirms": "Logout?"
+  },
+  "ja": {
+    "title": "ログアウト",
+    "confirms": "ログアウトしますか？"
+  }
+}

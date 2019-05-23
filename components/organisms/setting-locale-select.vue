@@ -1,10 +1,10 @@
-<i18n src="@/assets/locales/pages/settings/index.json" />
+<i18n src="@/assets/locales/components/organisms/setting-locale-select.json" />
 
 <template>
   <setting-box>
     <template v-slot:heading>
       <icon name="globe-icon" class="icon" />
-      {{ $t('titles.language') }}
+      {{ $t('title') }}
     </template>
     <locale-select />
   </setting-box>

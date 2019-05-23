@@ -1,5 +1,3 @@
-<i18n src="@/assets/locales/pages/settings/index.json" />
-
 <template>
   <section>
     <setting-email-editor />

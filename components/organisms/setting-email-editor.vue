@@ -1,10 +1,10 @@
-<i18n src="@/assets/locales/pages/settings/index.json" />
+<i18n src="@/assets/locales/components/organisms/setting-email-editor.json" />
 
 <template>
   <setting-box>
     <template v-slot:heading>
       <icon name="mail-icon" class="icon" />
-      {{ $t('titles.email') }}
+      {{ $t('title') }}
     </template>
 
     <form @submit.prevent="changeEmail">
@@ -55,7 +55,7 @@ export default {
         email: this.email,
         currentPassword: this.currentPassword
       });
-      if (success) this.$toast.success(this.$t('changed.email'));
+      if (success) this.$toast.success(this.$t('changed'));
     }
   }
 };

@@ -1,10 +1,10 @@
-<i18n src="@/assets/locales/pages/settings/index.json" />
+<i18n src="@/assets/locales/components/organisms/setting-logout-button.json" />
 
 <template>
   <setting-box>
     <template v-slot:heading>
       <icon name="log-out-icon" class="icon" />
-      {{ $t('titles.logout') }}
+      {{ $t('title') }}
     </template>
 
     <base-button
@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     async logout() {
-      if (!window.confirm(this.$t('confirms.logout'))) return;
+      if (!window.confirm(this.$t('confirms'))) return;
       this.$ga.event('auth', 'logout');
       await this.$store.dispatch('auth/logout');
       window.location.assign(this.localePath('index'));

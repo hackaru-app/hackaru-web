@@ -1,20 +1,22 @@
-<i18n src="@/assets/locales/pages/settings/index.json" />
+<i18n
+  src="@/assets/locales/components/organisms/setting-delete-account-button.json"
+/>
 
 <template>
   <setting-box>
     <base-modal name="deleteAccount">
       <form @submit.prevent="deleteAccount">
         <modal-header>
-          <h1>{{ $t('deleteAccountModal.title') }}</h1>
+          <h1>{{ $t('modal.title') }}</h1>
         </modal-header>
         <modal-item>
           <icon name="alert-triangle-icon" class="icon alert-icon" />
-          {{ $t('deleteAccountModal.warning') }}
+          {{ $t('modal.warning') }}
         </modal-item>
         <modal-item>
           <input
             v-model="currentPassword"
-            :placeholder="$t('deleteAccountModal.currentPassword')"
+            :placeholder="$t('modal.currentPassword')"
             type="password"
             class="current-password"
             required
@@ -22,7 +24,7 @@
         </modal-item>
         <modal-footer>
           <base-button type="submit" class="submit-button is-rounded is-danger">
-            {{ $t('deleteAccountModal.delete') }}
+            {{ $t('modal.delete') }}
           </base-button>
         </modal-footer>
       </form>
@@ -30,7 +32,7 @@
 
     <template v-slot:heading>
       <icon name="user-x-icon" class="icon" />
-      {{ $t('titles.deleteAccount') }}
+      {{ $t('title') }}
     </template>
 
     <base-button
@@ -38,7 +40,7 @@
       type="button"
       @click="showDeleteAccountModal"
     >
-      {{ $t('deleteAccount') }}
+      {{ $t('deleteButton') }}
     </base-button>
   </setting-box>
 </template>
@@ -74,7 +76,7 @@ export default {
       this.$modal.show('deleteAccount');
     },
     async deleteAccount() {
-      if (!window.confirm(this.$t('confirms.delete'))) return;
+      if (!window.confirm(this.$t('confirms'))) return;
       const success = await this.$store.dispatch('auth/deleteAccount', {
         currentPassword: this.currentPassword
       });

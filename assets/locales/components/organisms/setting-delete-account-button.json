@@ -1,0 +1,24 @@
+{
+  "en": {
+    "modal": {
+      "title": "Delete Your Account",
+      "warning": "Delete your account, activities, and projects. You can't cancel after executed.",
+      "delete": "Delete",
+      "currentPassword": "Enter your current password"
+    },
+    "title": "Delete Account",
+    "deleteButton": "Delete",
+    "confirms": "Are you sure you want to delete your account?"
+  },
+  "ja": {
+    "modal": {
+      "title": "アカウントを削除",
+      "warning": "アカウント情報、計測記録、プロジェクト等がすべて削除されます。 この操作は実行後、取り消すことはできません。",
+      "delete": "削除する",
+      "currentPassword": "続行するには、現在のパスワードを入力"
+    },
+    "title": "アカウントを削除",
+    "deleteButton": "削除する",
+    "confirms": "本当にアカウントを削除してよろしいですか？"
+  }
+}
