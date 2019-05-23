@@ -11,9 +11,7 @@ describe('LoginGuard', () => {
       mocks: {
         $store,
         $router,
-        $route: { fullPath: '/secure' },
-        $ga: { set: jest.fn() },
-        localePath: t => t
+        $route: { fullPath: '/secure' }
       }
     });
 
@@ -29,7 +27,7 @@ describe('LoginGuard', () => {
     });
 
     it('redirect to login page', () => {
-      expect($router.replace).toHaveBeenCalledWith('auth');
+      expect($router.replace).toHaveBeenCalledWith('/en/auth');
     });
 
     it('save current path', () => {
