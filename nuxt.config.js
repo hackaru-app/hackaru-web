@@ -128,7 +128,7 @@ module.exports = {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
-    'nuxt-sass-resources-loader',
+    '@nuxtjs/style-resources',
     [
       'nuxt-i18n',
       {
@@ -148,7 +148,9 @@ module.exports = {
       }
     ]
   ],
-  sassResources: ['~/assets/sass/modules/*.scss'],
+  styleResources: {
+    sass: ['~/assets/sass/modules/*.scss']
+  },
   manifest: {
     name: 'Hackaru',
     lang: 'ja'
