@@ -63,8 +63,8 @@ export default {
       return this.duration && `${this.duration}・%s`;
     }
   },
-  async mounted() {
-    await this.$store.dispatch('projects/getProjects');
+  mounted() {
+    this.$store.dispatch('projects/getProjects');
   },
   methods: {
     updateDuration() {
