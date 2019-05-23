@@ -1,11 +1,10 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import Reports from '@/pages/reports';
 import { parse } from 'date-fns';
 
 describe('Reports', () => {
-  let factory;
   let wrapper;
 
   MockDate.set('2019-01-31T01:23:45');
@@ -17,47 +16,36 @@ describe('Reports', () => {
     }
   });
 
-  beforeEach(() => {
-    $store.reset();
-    factory = new Factory(Reports, {
-      stubs: {
-        'infinite-slider': {
-          render: () => {},
-          methods: {
-            slideLeft: jest.fn(),
-            slideRight: jest.fn()
-          }
-        }
-      },
+  const factory = () =>
+    shallowMount(Reports, {
       mocks: {
         $store
       }
     });
+
+  beforeEach(() => {
+    $store.reset();
   });
 
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
-
-  describe('when date change to daily', () => {
+  describe('when change period to day', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ date: '2018-02-01' });
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'day' });
     });
 
     it('dispatch reports/getReports', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
-        start: parse('2018-02-01T00:00:00'),
-        end: parse('2018-02-01T23:59:59.999'),
+        start: parse('2019-01-31T00:00:00'),
+        end: parse('2019-01-31T23:59:59.999'),
         period: 'hour'
       });
     });
   });
 
-  describe('when period change to weekly', () => {
+  describe('when change period to week', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 1 });
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'week' });
     });
 
     it('dispatch reports/getReports', () => {
@@ -69,10 +57,10 @@ describe('Reports', () => {
     });
   });
 
-  describe('when period change to monthly', () => {
+  describe('when change period to month', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 2 });
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'month' });
     });
 
     it('dispatch reports/getReports', () => {
@@ -84,10 +72,10 @@ describe('Reports', () => {
     });
   });
 
-  describe('when period change to yearly', () => {
+  describe('when change period to year', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 3 });
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'year' });
     });
 
     it('dispatch reports/getReports', () => {
@@ -99,125 +87,52 @@ describe('Reports', () => {
     });
   });
 
-  describe('when slide left and period is daily', () => {
+  describe('when slide left', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 0 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-left');
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'week' });
+      wrapper.find('.loop-slider').vm.$emit('slide-left');
     });
 
-    it('set previous date', () => {
-      expect(wrapper.vm.date).toEqual('2019-01-30');
+    it('set prev weeks', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
+        start: parse('2019-01-20T00:00:00'),
+        end: parse('2019-01-26T23:59:59.999'),
+        period: 'day'
+      });
     });
   });
 
-  describe('when slide left and period is weekly', () => {
+  describe('when slide right', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 1 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-left');
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'week' });
+      wrapper.find('.loop-slider').vm.$emit('slide-right');
     });
 
-    it('set previous week', () => {
-      expect(wrapper.vm.date).toEqual('2019-01-20');
+    it('set next weeks', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
+        start: parse('2019-02-03T00:00:00'),
+        end: parse('2019-02-09T23:59:59.999'),
+        period: 'day'
+      });
     });
   });
 
-  describe('when slide left and period is monthly', () => {
+  describe('when click today-button', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 2 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-left');
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'week' });
+      wrapper.find('.loop-slider').vm.$emit('slide-right');
+      wrapper.find('.date-header').vm.$emit('today');
     });
 
-    it('set previous month', () => {
-      expect(wrapper.vm.date).toEqual('2018-12-01');
-    });
-  });
-
-  describe('when slide left and period is yearly', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 3 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-left');
-    });
-
-    it('set previous year', () => {
-      expect(wrapper.vm.date).toEqual('2018-01-01');
-    });
-  });
-
-  describe('when slide right and period is daily', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 0 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-right');
-    });
-
-    it('set next date', () => {
-      expect(wrapper.vm.date).toEqual('2019-02-01');
-    });
-  });
-
-  describe('when slide right and period is weekly', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 1 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-right');
-    });
-
-    it('set next week', () => {
-      expect(wrapper.vm.date).toEqual('2019-02-03');
-    });
-  });
-
-  describe('when slide right and period is monthly', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 2 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-right');
-    });
-
-    it('set next month', () => {
-      expect(wrapper.vm.date).toEqual('2019-02-01');
-    });
-  });
-
-  describe('when slide right and period is yearly', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 3 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-right');
-    });
-
-    it('set next year', () => {
-      expect(wrapper.vm.date).toEqual('2020-01-01');
-    });
-  });
-
-  describe('when click left button', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find({ ref: 'header' }).vm.$emit('left');
-    });
-
-    it('call slideLeft', () => {
-      expect(
-        factory.options.stubs['infinite-slider'].methods.slideLeft
-      ).toHaveBeenCalled();
-    });
-  });
-
-  describe('when click right button', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find({ ref: 'header' }).vm.$emit('right');
-    });
-
-    it('call slideRight', () => {
-      expect(
-        factory.options.stubs['infinite-slider'].methods.slideRight
-      ).toHaveBeenCalled();
+    it('set today weeks', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
+        start: parse('2019-01-27T00:00:00'),
+        end: parse('2019-02-02T23:59:59.999'),
+        period: 'day'
+      });
     });
   });
 });

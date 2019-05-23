@@ -8,12 +8,18 @@
       :current-period.sync="currentPeriod"
       :title="title"
       :has-today="hasToday"
+      class="date-header"
       @today="today"
       @left="slideLeft"
       @right="slideRight"
     />
 
-    <loop-slider v-slot="{ slideStyle }" @slide-left="prev" @slide-right="next">
+    <loop-slider
+      v-slot="{ slideStyle }"
+      class="loop-slider"
+      @slide-left="prev"
+      @slide-right="next"
+    >
       <div class="reports-wrapper">
         <div :style="slideStyle" class="containers">
           <div class="slider-item">
