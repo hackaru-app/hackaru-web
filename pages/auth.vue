@@ -4,7 +4,7 @@
   <section class="auth">
     <div class="form-container">
       <transition name="fade" mode="out-in">
-        <heading :key="hasAccount" class="is-large">
+        <heading :key="hasAccount" class="title is-large">
           {{ $t(`titles.${hasAccount ? 'login' : 'signUp'}`) }}
         </heading>
       </transition>
@@ -13,7 +13,7 @@
           v-model="email"
           :placeholder="$t('email')"
           type="email"
-          class="has-border"
+          class="email has-border"
           autofocus
           required
         />
@@ -28,7 +28,7 @@
           v-if="!hasAccount"
           v-model="passwordConfirmation"
           :placeholder="$t('passwordConfirmation')"
-          class="has-border"
+          class="password-confirmation has-border"
           type="password"
         />
         <footer>
@@ -38,7 +38,7 @@
                 id="agreement"
                 v-model="agreement"
                 type="checkbox"
-                required="required"
+                required
               />
               <i18n path="agreement">
                 <a
@@ -52,7 +52,6 @@
           </div>
           <div class="buttons">
             <base-button
-              :disabled="!hasAccount && !isAgreed"
               type="submit"
               class="submit-button is-rounded is-primary"
             >
@@ -112,9 +111,6 @@ export default {
   computed: {
     isShowAgreement() {
       return !this.hasAccount && this.$env.HACKARU_TOS_AND_PRIVACY_URL;
-    },
-    isAgreed() {
-      return !this.$env.HACKARU_TOS_AND_PRIVACY_URL || this.agreement;
     }
   },
   mounted() {
@@ -152,9 +148,8 @@ export default {
       }
     },
     goBack() {
-      this.$router.replace(
-        sessionStorage.getItem('previousPath') || this.localePath('index')
-      );
+      const prev = sessionStorage.getItem('previousPath');
+      this.$router.replace(prev || this.localePath('index'));
       sessionStorage.removeItem('previousPath');
     }
   }

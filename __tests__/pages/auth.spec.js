@@ -1,11 +1,14 @@
 import { Store } from 'vuex-mock-store';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import Auth from '@/pages/auth';
 
 describe('Auth', () => {
   let factory;
   let wrapper;
 
+  const $route = { query: {} };
+  const $router = { replace: jest.fn() };
+  const $env = {};
   const $store = new Store({
     getters: {
       'auth/isLoggedIn': false
@@ -15,27 +18,21 @@ describe('Auth', () => {
   beforeEach(() => {
     sessionStorage.clear();
     $store.reset();
-    factory = new Factory(Auth, {
-      mocks: {
-        $store,
-        $env: { GOOGLE_ANALYTICS_TRACKING_ID: 'UA-01234-1' },
-        $route: {
-          query: {}
-        }
-      }
-    });
+    $route.query['sign-up'] = false;
+    factory = () =>
+      shallowMount(Auth, {
+        mocks: { $store, $route, $router, $env }
+      });
   });
 
-  describe('when user already logged in and has no previous path', () => {
+  describe('when user already logged in', () => {
     beforeEach(() => {
       $store.getters['auth/isLoggedIn'] = true;
-      factory.shallow();
+      factory();
     });
 
     it('redirect to index', () => {
-      expect(factory.options.mocks.$router.replace).toHaveBeenCalledWith(
-        '/en/index'
-      );
+      expect($router.replace).toHaveBeenCalledWith('/en/index');
     });
   });
 
@@ -43,78 +40,30 @@ describe('Auth', () => {
     beforeEach(() => {
       $store.getters['auth/isLoggedIn'] = true;
       sessionStorage.setItem('previousPath', '/previous');
-      factory.shallow();
+      factory();
     });
 
-    it('redirect to before path', () => {
-      expect(factory.options.mocks.$router.replace).toHaveBeenCalledWith(
-        '/previous'
-      );
+    it('redirect to previous path', () => {
+      expect($router.replace).toHaveBeenCalledWith('/previous');
     });
   });
 
   describe('when user does not logged in', () => {
     beforeEach(() => {
       $store.getters['auth/isLoggedIn'] = false;
-      wrapper = factory.shallow();
+      wrapper = factory();
     });
 
-    it('does not redirect to index', () => {
-      expect(factory.options.mocks.$router.replace).not.toHaveBeenCalledWith(
-        'index'
-      );
-    });
-
-    it('render correctly', () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
-    it('render title correctly', () => {
-      expect(
-        wrapper.vm
-          .$meta()
-          .inject()
-          .title.text()
-      ).toMatchSnapshot();
+    it('does not redirect', () => {
+      expect($router.replace).not.toHaveBeenCalled();
     });
   });
 
-  describe('when click toggle button', () => {
+  describe('when service has terms-and-privacy', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find('.toggle-button').trigger('click');
-    });
-
-    it('render sign up', () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
-    it('change title', () => {
-      expect(
-        wrapper.vm
-          .$meta()
-          .inject()
-          .title.text()
-      ).toMatchSnapshot();
-    });
-  });
-
-  describe('when url has sign-up query', () => {
-    beforeEach(() => {
-      factory.options.mocks.$route.query['sign-up'] = true;
-      wrapper = factory.shallow();
-    });
-
-    it('render sign up', () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-  });
-
-  describe('when it has term of service and privacy', () => {
-    beforeEach(() => {
-      factory.options.mocks.$route.query['sign-up'] = true;
-      factory.options.mocks.$env.HACKARU_TOS_AND_PRIVACY_URL = 'example.com';
-      wrapper = factory.shallow();
+      $route.query['sign-up'] = true;
+      $env.HACKARU_TOS_AND_PRIVACY_URL = 'example.com';
+      wrapper = factory();
     });
 
     it('show agreement of checkbox', () => {
@@ -122,11 +71,11 @@ describe('Auth', () => {
     });
   });
 
-  describe('when it does not have term of service and privacy', () => {
+  describe('when service does not have terms-and-privacy', () => {
     beforeEach(() => {
-      factory.options.mocks.$route.query['sign-up'] = true;
-      factory.options.mocks.$env.HACKARU_TOS_AND_PRIVACY_URL = undefined;
-      wrapper = factory.shallow();
+      $route.query['sign-up'] = true;
+      $env.HACKARU_TOS_AND_PRIVACY_URL = undefined;
+      wrapper = factory();
     });
 
     it('hide agreement of checkbox', () => {
@@ -134,18 +83,11 @@ describe('Auth', () => {
     });
   });
 
-  describe('when click login button', () => {
+  describe('when click login-button', () => {
     beforeEach(() => {
-      factory.options.mocks.$route.query['sign-up'] = false;
-      sessionStorage.setItem('previousPath', '/previous');
-      $store.dispatch.mockReturnValue(true);
-      $store.getters['auth/getUserId'] = 1;
-      wrapper = factory.shallow();
-      wrapper.setData({
-        email: 'example@example.com',
-        password: 'password',
-        hasAccount: true
-      });
+      wrapper = factory();
+      wrapper.find('.email').vm.$emit('input', 'example@example.com');
+      wrapper.find('.password').vm.$emit('input', 'password');
       wrapper.find('form').trigger('submit.prevent');
     });
 
@@ -155,50 +97,15 @@ describe('Auth', () => {
         password: 'password'
       });
     });
-
-    it('set user id', () => {
-      expect(factory.options.mocks.$ga.set).toHaveBeenCalledWith('userId', 1);
-    });
-
-    it('send ga event', () => {
-      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
-        'auth',
-        'login'
-      );
-    });
-
-    it('move to previous page', () => {
-      expect(factory.options.mocks.$router.replace).toHaveBeenCalledWith(
-        '/previous'
-      );
-    });
   });
 
-  describe('when click login button but login failed', () => {
+  describe('when click sign-up button', () => {
     beforeEach(() => {
-      factory.options.mocks.$route.query['sign-up'] = false;
-      $store.dispatch.mockReturnValue(false);
-      wrapper = factory.shallow();
-      wrapper.find('form').trigger('submit.prevent');
-    });
-
-    it('does not move to previous page', () => {
-      expect(factory.options.mocks.$router.replace).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('when click sign up button', () => {
-    beforeEach(() => {
-      sessionStorage.setItem('previousPath', '/previous');
-      $store.dispatch.mockReturnValue(true);
-      $store.getters['auth/getUserId'] = 1;
-      wrapper = factory.shallow();
-      wrapper.setData({
-        email: 'example@example.com',
-        password: 'password',
-        passwordConfirmation: 'passwordConfirmation',
-        hasAccount: false
-      });
+      $route.query['sign-up'] = true;
+      wrapper = factory();
+      wrapper.find('.email').vm.$emit('input', 'example@example.com');
+      wrapper.find('.password').vm.$emit('input', 'password');
+      wrapper.find('.password-confirmation').vm.$emit('input', 'confirmation');
       wrapper.find('form').trigger('submit.prevent');
     });
 
@@ -206,38 +113,8 @@ describe('Auth', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/signUp', {
         email: 'example@example.com',
         password: 'password',
-        passwordConfirmation: 'passwordConfirmation'
+        passwordConfirmation: 'confirmation'
       });
-    });
-
-    it('set user id', () => {
-      expect(factory.options.mocks.$ga.set).toHaveBeenCalledWith('userId', 1);
-    });
-
-    it('send ga event', () => {
-      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
-        'auth',
-        'signUp'
-      );
-    });
-
-    it('move to previous page', () => {
-      expect(factory.options.mocks.$router.replace).toHaveBeenCalledWith(
-        '/previous'
-      );
-    });
-  });
-
-  describe('when click sign up button but sign up failed', () => {
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue(false);
-      wrapper = factory.shallow();
-      wrapper.setData({ hasAccount: false });
-      wrapper.find('form').trigger('submit.prevent');
-    });
-
-    it('does not move to previous page', () => {
-      expect(factory.options.mocks.$router.replace).not.toHaveBeenCalled();
     });
   });
 });

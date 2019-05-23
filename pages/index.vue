@@ -47,8 +47,8 @@ export default {
       activities: 'activities/getWorkingActivities'
     })
   },
-  async mounted() {
-    await this.$store.dispatch('activities/getWorkingActivities');
+  mounted() {
+    this.$store.dispatch('activities/getWorkingActivities');
   },
   methods: {
     showModal() {
