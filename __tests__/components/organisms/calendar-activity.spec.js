@@ -21,7 +21,7 @@ describe('CalendarActivity', () => {
         startedAt: '2019-01-01T01:23:45',
         stoppedAt: '2019-01-01T02:23:45',
         duration: 3600,
-        day: parse('2019-01-01')
+        day: '2019-01-01'
       }
     });
 

@@ -72,7 +72,7 @@ export default {
       required: true
     },
     day: {
-      type: Date,
+      type: String,
       required: true
     },
     overlappedDay: {

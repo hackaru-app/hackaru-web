@@ -22,7 +22,7 @@
       :class="['day', { overlapped: isSameDay(overlappedDay, day) }]"
       :overlapped-day="overlappedDay"
       :key="`${day}`"
-      :day="day"
+      :day="`${day}`"
       @dragging="dragging"
       @drop="drop"
     />

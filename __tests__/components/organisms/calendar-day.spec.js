@@ -48,7 +48,7 @@ describe('CalendarDay', () => {
         }
       },
       propsData: {
-        day: parse('2019-01-01')
+        day: '2019-01-01'
       }
     });
 

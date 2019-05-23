@@ -1,6 +1,5 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
-import { parse } from 'date-fns';
 import { shallowMount } from '@vue/test-utils';
 import CalendarContent from '@/components/organisms/calendar-content';
 
@@ -22,7 +21,7 @@ describe('CalendarContent', () => {
         }
       },
       propsData: {
-        days: [parse('2019-01-01'), parse('2019-01-02'), parse('2019-01-03')]
+        days: ['2019-01-01', '2019-01-02', '2019-01-03']
       }
     });
 
@@ -38,7 +37,7 @@ describe('CalendarContent', () => {
   describe('when has today', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setProps({ days: [parse('2019-01-31')] });
+      wrapper.setProps({ days: ['2019-01-31'] });
     });
 
     it('show today ruler', () => {
@@ -49,7 +48,7 @@ describe('CalendarContent', () => {
   describe('when does not have today', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setProps({ days: [parse('1999-01-01')] });
+      wrapper.setProps({ days: ['1999-01-01'] });
     });
 
     it('hide today ruler', () => {

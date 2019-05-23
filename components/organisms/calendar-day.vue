@@ -34,7 +34,7 @@
           v-for="activity in pack"
           v-bind="activity"
           :key="activity.id"
-          :day="day"
+          :day="`${day}`"
           :overlapped-day="overlappedDay"
           @dragging="dragging"
           @drop="drop"
@@ -58,7 +58,7 @@ export default {
   },
   props: {
     day: {
-      type: Date,
+      type: String,
       required: true
     },
     minHeight: {

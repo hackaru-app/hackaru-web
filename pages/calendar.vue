@@ -26,7 +26,7 @@
             <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
               <calendar-day-header
                 v-for="day in getDays(period.add(date, page))"
-                :day="day"
+                :day="`${day}`"
                 :key="`${day}`"
               />
             </div>
