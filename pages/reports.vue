@@ -13,40 +13,38 @@
       @right="slideRight"
     />
 
-    <loop-slider :sliding.sync="sliding" @slide-left="prev" @slide-right="next">
-      <template slot-scope="{ slideStyle }">
-        <div class="reports-wrapper">
-          <div :style="slideStyle" class="containers">
-            <div class="slider-item">
-              <report-content
-                :bar-chart-data="barChartData"
-                :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
-                :projects="projects"
-                chart-id="prev"
-              />
-            </div>
-            <div class="slider-item">
-              <report-content
-                :bar-chart-data="barChartData"
-                :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
-                :projects="projects"
-                chart-id="current"
-              />
-            </div>
-            <div class="slider-item">
-              <report-content
-                :bar-chart-data="barChartData"
-                :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
-                :projects="projects"
-                chart-id="next"
-              />
-            </div>
+    <loop-slider v-slot="{ slideStyle }" @slide-left="prev" @slide-right="next">
+      <div class="reports-wrapper">
+        <div :style="slideStyle" class="containers">
+          <div class="slider-item">
+            <report-content
+              :bar-chart-data="barChartData"
+              :doughnut-chart-data="doughnutChartData"
+              :summary="summary"
+              :projects="projects"
+              chart-id="prev"
+            />
+          </div>
+          <div class="slider-item">
+            <report-content
+              :bar-chart-data="barChartData"
+              :doughnut-chart-data="doughnutChartData"
+              :summary="summary"
+              :projects="projects"
+              chart-id="current"
+            />
+          </div>
+          <div class="slider-item">
+            <report-content
+              :bar-chart-data="barChartData"
+              :doughnut-chart-data="doughnutChartData"
+              :summary="summary"
+              :projects="projects"
+              chart-id="next"
+            />
           </div>
         </div>
-      </template>
+      </div>
     </loop-slider>
   </section>
 </template>
@@ -112,8 +110,7 @@ export default {
   data() {
     return {
       date: new Date(),
-      currentPeriod: 'day',
-      sliding: undefined
+      currentPeriod: 'day'
     };
   },
   computed: {
@@ -154,10 +151,10 @@ export default {
       });
     },
     slideLeft() {
-      this.sliding = 'left';
+      this.$refs.slider.slideLeft();
     },
     slideRight() {
-      this.sliding = 'right';
+      this.$refs.slider.slideRight();
     },
     today() {
       this.date = new Date();

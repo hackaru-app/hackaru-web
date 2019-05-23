@@ -3,49 +3,48 @@
 <template>
   <section>
     <date-header
-      ref="header"
       :periods="['day', 'week']"
       :current-period.sync="currentPeriod"
       :title="title"
       :has-today="hasToday"
+      class="date-header"
       @today="today"
       @left="slideLeft"
       @right="slideRight"
     />
 
     <loop-slider
+      v-slot="{ slideStyle }"
+      ref="slider"
       :enabled="sliderEnabled"
-      :sliding.sync="sliding"
-      class="slider"
+      class="loop-slider"
       @slide-left="prev"
       @slide-right="next"
     >
-      <template slot-scope="{ slideStyle }">
-        <section class="sticky">
-          <div :style="slideStyle" class="headers-wrapper">
-            <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
-              <calendar-day-header
-                v-for="day in getDays(period.add(date, page))"
-                :day="`${day}`"
-                :key="`${day}`"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section class="contents-wrapper">
-          <section :style="slideStyle" class="contents">
-            <calendar-content :days="[]" class="slider-item" />
-            <calendar-content
-              :days="days"
-              class="slider-item"
-              @dragging="sliderEnabled = false"
-              @drop="sliderEnabled = true"
+      <section class="sticky">
+        <div :style="slideStyle" class="headers-wrapper">
+          <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
+            <calendar-day-header
+              v-for="day in getDays(period.add(date, page))"
+              :day="`${day}`"
+              :key="`${day}`"
             />
-            <calendar-content :days="[]" class="slider-item" />
-          </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="contents-wrapper">
+        <section :style="slideStyle" class="contents">
+          <calendar-content :days="[]" class="slider-item" />
+          <calendar-content
+            :days="days"
+            class="slider-item"
+            @dragging="sliderEnabled = false"
+            @drop="sliderEnabled = true"
+          />
+          <calendar-content :days="[]" class="slider-item" />
         </section>
-      </template>
+      </section>
     </loop-slider>
   </section>
 </template>
@@ -120,12 +119,10 @@ export default {
     }
   },
   watch: {
-    async date() {
-      await this.fetchActivities();
+    date: {
+      handler: 'fetchActivities',
+      immediate: true
     }
-  },
-  async mounted() {
-    await this.fetchActivities();
   },
   methods: {
     async fetchActivities() {
@@ -138,10 +135,10 @@ export default {
       return eachDay(this.period.startOf(date), this.period.endOf(date));
     },
     slideLeft() {
-      this.sliding = 'left';
+      this.$refs.slider.slideLeft();
     },
     slideRight() {
-      this.sliding = 'right';
+      this.$refs.slider.slideRight();
     },
     prev() {
       this.date = this.period.add(this.period.startOf(this.date), -1);

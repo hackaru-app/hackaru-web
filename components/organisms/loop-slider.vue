@@ -6,7 +6,7 @@
     @end="drop"
   >
     <window-scroll class="window-scroll" @scroll="scroll" @end="scrollEnd">
-      <slot :slide-style="style" />
+      <slot :slideStyle="slideStyle" />
     </window-scroll>
   </drag-drop>
 </template>
@@ -24,10 +24,6 @@ export default {
     enabled: {
       type: Boolean,
       default: true
-    },
-    sliding: {
-      type: String,
-      default: undefined
     }
   },
   data() {
@@ -40,21 +36,11 @@ export default {
     };
   },
   computed: {
-    style() {
+    slideStyle() {
       return {
         transform: `translateX(${this.offset})`,
         transition: this.speed ? `transform ${this.speed}ms` : 'none'
       };
-    }
-  },
-  watch: {
-    sliding() {
-      switch (this.sliding) {
-        case 'left':
-          return this.slideLeft();
-        case 'right':
-          return this.slideRight();
-      }
     }
   },
   methods: {
@@ -95,7 +81,6 @@ export default {
         this.offset = '-100%';
         this.slideTimer = undefined;
         this.$emit(eventName);
-        this.$emit('update:sliding', undefined);
       }, this.speed + wait);
     }
   }
