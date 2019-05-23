@@ -28,22 +28,20 @@
           </ul>
         </highlight>
         <footer class="footer">
-          <btn
-            ref="allow-button"
+          <base-button
             type="button"
             class="is-rounded is-primary allow-button"
             @click="decide('allow')"
           >
             {{ $t('allow') }}
-          </btn>
-          <btn
-            ref="deny-button"
+          </base-button>
+          <base-button
             type="button"
             class="is-rounded deny-button"
             @click="decide('deny')"
           >
             {{ $t('deny') }}
-          </btn>
+          </base-button>
         </footer>
       </article>
     </div>
@@ -51,20 +49,19 @@
 </template>
 
 <script>
-import snakecaseKeys from 'snakecase-keys';
 import LoginGuard from '@/components/atoms/login-guard';
 import Heading from '@/components/atoms/heading';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import ContentHeader from '@/components/organisms/content-header';
 import Highlight from '@/components/atoms/highlight';
 import { mapGetters } from 'vuex';
 
 export default {
-  layout: 'no-menu',
+  layout: 'auth',
   components: {
     LoginGuard,
     ContentHeader,
-    Btn,
+    BaseButton,
     Heading,
     Highlight
   },
@@ -104,10 +101,10 @@ export default {
       if (data.accessToken || data.errorDescription) {
         return this.$router.push({
           path: '/oauth/callback',
-          query: snakecaseKeys({
-            accessToken: data.accessToken,
-            errorDescription: data.errorDescription
-          })
+          query: {
+            access_token: data.accessToken,
+            error_description: data.errorDescription
+          }
         });
       }
       window.location.assign(data);

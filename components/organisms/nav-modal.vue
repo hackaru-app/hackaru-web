@@ -1,6 +1,6 @@
 <template>
-  <modal-wrapper
-    ref="modal"
+  <base-modal
+    ref="base-modal"
     :name="name"
     :height="height"
     @before-open="beforeOpen"
@@ -8,6 +8,7 @@
     <transition
       :enter-active-class="animation.enter"
       :leave-active-class="animation.leave"
+      class="transition"
     >
       <keep-alive :include="keepAlives">
         <component
@@ -20,15 +21,15 @@
         />
       </keep-alive>
     </transition>
-  </modal-wrapper>
+  </base-modal>
 </template>
 
 <script>
-import ModalWrapper from '@/components/organisms/modal-wrapper';
+import BaseModal from '@/components/organisms/base-modal';
 
 export default {
   components: {
-    ModalWrapper
+    BaseModal
   },
   props: {
     name: {

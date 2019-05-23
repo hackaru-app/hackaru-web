@@ -1,8 +1,10 @@
+<i18n src="@/assets/locales/components/organisms/calendar-day-header.json" />
+
 <template>
-  <header :class="{ today: isToday(day) }">
+  <header :class="['calendar-day-header', { today: isToday(day) }]">
     <button @click="click">
       <h1>{{ format(day, 'DD') }}</h1>
-      <small>{{ format(day, 'dd', { locale: locale }) }}</small>
+      <small>{{ $t(`weeks[${format(day, 'd')}]`) }}</small>
     </button>
   </header>
 </template>
@@ -14,10 +16,6 @@ export default {
   props: {
     day: {
       type: String,
-      required: true
-    },
-    locale: {
-      type: Object,
       required: true
     }
   },
@@ -36,7 +34,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-header {
+.calendar-day-header {
   flex: 1;
   width: 1px;
   display: flex;
@@ -47,7 +45,7 @@ header {
   box-sizing: border-box;
   border-left: 1px $border solid;
 }
-header button {
+.calendar-day-header button {
   display: flex;
   width: 100%;
   height: 100%;
@@ -61,7 +59,7 @@ header button {
     transform: scale(0.9);
   }
 }
-header h1 {
+.calendar-day-header h1 {
   display: flex;
   font-weight: normal;
   font-size: 16px;
@@ -71,19 +69,19 @@ header h1 {
   align-items: flex-end;
   color: $text;
 }
-header small {
+.calendar-day-header small {
   color: $text-light;
   padding-left: 5px;
 }
-header.today h1,
-header.today small {
+.calendar-day-header.today h1,
+.calendar-day-header.today small {
   color: $cyan;
 }
 @include mq(small) {
-  header button {
+  .calendar-day-header button {
     flex-direction: column;
   }
-  header small {
+  .calendar-day-header small {
     padding: 0;
   }
 }

@@ -1,11 +1,25 @@
 <template>
-  <section>
-    <div v-dragdrop="dragdrop" ref="events" class="events">
+  <resizer
+    ref="resizer"
+    :height.sync="ghostHeight"
+    :min-height="20"
+    :delay="500"
+    class="calendar-day"
+    @start="ghostDrag"
+    @resizing="ghostDragging"
+    @end="ghostDrop"
+  >
+    <section ref="events" class="events">
       <div class="row">
-        <calendar-ghost-activity
-          ref="ghost"
-          :day="day"
-          :update-guide-line="updateGuideLine"
+        <calendar-event
+          v-show="ghostVisibility"
+          :style="{
+            top: `${ghostTop}px`,
+            height: `${ghostHeight}px`
+          }"
+          class="ghost-activity"
+          title="New Activity"
+          color="#cccfd9"
         />
       </div>
       <div
@@ -20,27 +34,28 @@
           v-for="activity in pack"
           v-bind="activity"
           :key="activity.id"
-          :day="day"
-          :get-overlap-day="getOverlapDay"
-          :update-guide-line="updateGuideLine"
+          :day="`${day}`"
+          :overlapped-day="overlappedDay"
+          @dragging="dragging"
+          @drop="drop"
         />
       </div>
-    </div>
-  </section>
+    </section>
+  </resizer>
 </template>
 
 <script>
+import Resizer from '@/components/atoms/resizer';
+import CalendarEvent from '@/components/atoms/calendar-event';
 import CalendarActivity from '@/components/organisms/calendar-activity';
-import CalendarGhostActivity from '@/components/organisms/calendar-ghost-activity';
-import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
-import { format } from 'date-fns';
+import { format, startOfDay, addMinutes } from 'date-fns';
 
 export default {
   components: {
-    CalendarActivity,
-    CalendarGhostActivity
+    Resizer,
+    CalendarEvent,
+    CalendarActivity
   },
-  mixins: [PxMinConvertable],
   props: {
     day: {
       type: String,
@@ -50,53 +65,75 @@ export default {
       type: Number,
       default: 20
     },
-    updateGuideLine: {
-      type: Function,
-      required: true
-    },
-    getOverlapDay: {
-      type: Function,
-      required: true
+    overlappedDay: {
+      type: String,
+      default: undefined
     }
   },
   data() {
     return {
       format,
-      dragdrop: {
-        drag: this.ghostDrag,
-        dragging: this.ghostDragging,
-        drop: this.ghostDrop,
-        wait: 500
-      }
+      ghostTop: 0,
+      ghostHeight: 20,
+      ghostVisibility: false
     };
   },
   computed: {
     calendar() {
       return this.$store.getters['activities/getCalendar'](
         this.day,
-        this.toMin
+        this.$toMin
       );
     }
   },
   methods: {
     ghostDrag(e) {
-      this.$refs.ghost.drag(e);
-      this.$emit('ghost-drag', e);
+      const pageY = (e.touches ? e.touches[0] : e).pageY;
+      this.ghostVisibility = true;
+      this.ghostTop = pageY - this.$mezr.offset(this.$el).top;
+      this.dragging({
+        el: this.$el,
+        guideRulerTop: this.ghostTop + this.ghostHeight
+      });
     },
     ghostDragging(e) {
-      this.$refs.ghost.dragging(e);
-      this.$emit('ghost-dragging', e);
+      this.dragging({
+        el: this.$el,
+        guideRulerTop: this.ghostTop + this.ghostHeight
+      });
     },
-    ghostDrop(e) {
-      this.$refs.ghost.drop(e);
-      this.$emit('ghost-drop', e);
+    async ghostDrop(e) {
+      this.drop(this.$el);
+      await this.addActivity();
+      this.ghostVisibility = false;
+      this.ghostHeight = 20;
+    },
+    dragging({ el, guideRulerTop }) {
+      this.$emit('dragging', {
+        el,
+        guideRulerTop
+      });
+    },
+    drop(el) {
+      this.$emit('drop', el);
+    },
+    async addActivity() {
+      const startedAt = addMinutes(
+        startOfDay(this.day),
+        this.$toMin(this.ghostTop)
+      );
+      await this.$store.dispatch('activities/addActivity', {
+        startedAt,
+        stoppedAt: addMinutes(startedAt, this.$toMin(this.ghostHeight))
+      });
+      this.$ga.event('activity', 'addActivity');
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-section {
+.calendar-day {
   flex: 1;
   border-left: 1px $border solid;
   box-sizing: border-box;

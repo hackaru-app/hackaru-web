@@ -33,10 +33,9 @@
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",
     "normalizr": "^3.2.4",
-    "nuxt": "^2.3.4",
+    "nuxt": "^2.7.1",
     "nuxt-env": "^0.1.0",
     "nuxt-i18n": "^5.4.4",
-    "nuxt-sass-resources-loader": "^2.0.5",
     "sass-loader": "^7.1.0",
     "snakecase-keys": "^1.2.0",
     "style-loader": "^0.23.1",
@@ -64,7 +63,8 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
-    "@vue/test-utils": "^1.0.0-beta.28",
+    "@nuxtjs/style-resources": "^0.1.2",
+    "@vue/test-utils": "^1.0.0-beta.29",
     "axios-mock-adapter": "^1.16.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^8.2.1",
@@ -88,13 +88,13 @@
     "npm-license-crawler": "mwittig/npm-license-crawler#master",
     "prettier": "^1.16.1",
     "vue-jest": "^3.0.2",
-    "vue-meta": "^1.5.8",
     "vuex-mock-store": "^0.0.6"
   },
   "jest": {
     "setupFiles": [
       "jest-canvas-mock",
-      "jest-localstorage-mock"
+      "jest-localstorage-mock",
+      "./__tests__/__setups__/config.js"
     ],
     "moduleFileExtensions": [
       "js",

@@ -1,63 +1,113 @@
+<i18n src="@/assets/locales/pages/reports.json" />
+
 <template>
   <section>
     <date-header
       ref="header"
-      :date.sync="date"
-      :period-index.sync="index"
-      :periods="periods"
-      cache-key="reportDateHeader"
+      :periods="['day', 'week', 'month', 'year']"
+      :current-period.sync="currentPeriod"
+      :title="title"
+      :has-today="hasToday"
+      class="date-header"
+      @today="today"
       @left="slideLeft"
       @right="slideRight"
     />
-    <infinite-slider ref="slider" @slide-left="prev" @slide-right="next">
-      <template slot-scope="{ slideStyle }">
-        <div class="reports-wrapper">
-          <div :style="slideStyle" class="containers">
-            <div class="slider-item">
-              <report-container
-                :bar-chart-data="barChartData"
-                :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
-                :projects="projects"
-                chart-id="prev"
-              />
-            </div>
-            <div class="slider-item">
-              <report-container
-                :bar-chart-data="barChartData"
-                :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
-                :projects="projects"
-                chart-id="current"
-              />
-            </div>
-            <div class="slider-item">
-              <report-container
-                :bar-chart-data="barChartData"
-                :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
-                :projects="projects"
-                chart-id="next"
-              />
-            </div>
+
+    <loop-slider
+      v-slot="{ slideStyle }"
+      class="loop-slider"
+      @slide-left="prev"
+      @slide-right="next"
+    >
+      <div class="reports-wrapper">
+        <div :style="slideStyle" class="containers">
+          <div class="slider-item">
+            <report-content
+              :bar-chart-data="barChartData"
+              :doughnut-chart-data="doughnutChartData"
+              :summary="summary"
+              :projects="projects"
+              chart-id="prev"
+            />
+          </div>
+          <div class="slider-item">
+            <report-content
+              :bar-chart-data="barChartData"
+              :doughnut-chart-data="doughnutChartData"
+              :summary="summary"
+              :projects="projects"
+              chart-id="current"
+            />
+          </div>
+          <div class="slider-item">
+            <report-content
+              :bar-chart-data="barChartData"
+              :doughnut-chart-data="doughnutChartData"
+              :summary="summary"
+              :projects="projects"
+              chart-id="next"
+            />
           </div>
         </div>
-      </template>
-    </infinite-slider>
+      </div>
+    </loop-slider>
   </section>
 </template>
 
 <script>
-import InfiniteSlider from '@/components/organisms/infinite-slider';
-import DateHeader, { periods } from '@/components/organisms/date-header';
-import ReportContainer from '@/components/organisms/report-container';
-import { format } from 'date-fns';
+import LoopSlider from '@/components/organisms/loop-slider';
+import DateHeader from '@/components/organisms/date-header';
+import ReportContent from '@/components/organisms/report-content';
 import { mapGetters } from 'vuex';
+import {
+  format,
+  isEqual,
+  addDays,
+  addWeeks,
+  addMonths,
+  addYears,
+  startOfDay,
+  startOfWeek,
+  startOfMonth,
+  startOfYear,
+  endOfDay,
+  endOfWeek,
+  endOfMonth,
+  endOfYear
+} from 'date-fns';
+
+const periods = {
+  day: {
+    startOf: startOfDay,
+    endOf: endOfDay,
+    add: addDays,
+    barChartPeriod: 'hour'
+  },
+  week: {
+    startOf: startOfWeek,
+    endOf: endOfWeek,
+    add: addWeeks,
+    barChartPeriod: 'day'
+  },
+  month: {
+    startOf: startOfMonth,
+    endOf: endOfMonth,
+    add: addMonths,
+    barChartPeriod: 'day'
+  },
+  year: {
+    startOf: startOfYear,
+    endOf: endOfYear,
+    add: addYears,
+    barChartPeriod: 'month'
+  }
+};
 
 export default {
   components: {
-    InfiniteSlider,
-    ReportContainer,
+    LoopSlider,
+    ReportContent,
     DateHeader
   },
   head: {
@@ -65,26 +115,8 @@ export default {
   },
   data() {
     return {
-      date: format(new Date(), 'YYYY-MM-DD'),
-      index: 0,
-      periods: [
-        {
-          ...periods.day,
-          unit: 'hour'
-        },
-        {
-          ...periods.week,
-          unit: 'day'
-        },
-        {
-          ...periods.month,
-          unit: 'day'
-        },
-        {
-          ...periods.year,
-          unit: 'month'
-        }
-      ]
+      date: new Date(),
+      currentPeriod: 'day'
     };
   },
   computed: {
@@ -95,26 +127,33 @@ export default {
       projects: 'reports/getProjects'
     }),
     period() {
-      return this.periods[this.index];
+      return periods[this.currentPeriod];
+    },
+    title() {
+      return format(this.date, this.$t(`${this.currentPeriod}.format`));
+    },
+    hasToday() {
+      return isEqual(
+        this.period.startOf(new Date()),
+        this.period.startOf(this.date)
+      );
     }
   },
   watch: {
-    index() {
-      this.fetchPeriod();
+    period: {
+      handler: 'fetchPeriod',
+      immediate: true
     },
-    date() {
-      this.fetchPeriod();
+    date: {
+      handler: 'fetchPeriod'
     }
-  },
-  mounted() {
-    this.fetchPeriod();
   },
   methods: {
     fetchPeriod() {
       this.$store.dispatch('reports/getReports', {
         start: this.period.startOf(this.date),
         end: this.period.endOf(this.date),
-        period: this.period.unit
+        period: this.period.barChartPeriod
       });
     },
     slideLeft() {
@@ -123,17 +162,14 @@ export default {
     slideRight() {
       this.$refs.slider.slideRight();
     },
+    today() {
+      this.date = new Date();
+    },
     prev() {
-      this.date = format(
-        this.period.add(this.period.startOf(this.date), -1),
-        'YYYY-MM-DD'
-      );
+      this.date = this.period.add(this.period.startOf(this.date), -1);
     },
     next() {
-      this.date = format(
-        this.period.add(this.period.startOf(this.date), 1),
-        'YYYY-MM-DD'
-      );
+      this.date = this.period.add(this.period.startOf(this.date), 1);
     }
   }
 };

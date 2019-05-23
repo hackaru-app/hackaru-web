@@ -1,68 +1,89 @@
+<i18n src="@/assets/locales/pages/calendar.json" />
+
 <template>
   <section>
     <date-header
-      ref="header"
-      :date.sync="date"
-      :period-index.sync="index"
-      :periods="periods"
-      cache-key="calendarDateHeader"
+      :periods="['day', 'week']"
+      :current-period.sync="currentPeriod"
+      :title="title"
+      :has-today="hasToday"
+      class="date-header"
+      @today="today"
       @left="slideLeft"
       @right="slideRight"
     />
 
-    <infinite-slider
+    <loop-slider
+      v-slot="{ slideStyle }"
       ref="slider"
-      :disabled="sliderDisabled"
-      class="slider"
+      :enabled="sliderEnabled"
+      class="loop-slider"
       @slide-left="prev"
       @slide-right="next"
     >
-      <template slot-scope="{ slideStyle }">
-        <section class="sticky">
-          <div :style="slideStyle" class="headers-wrapper">
-            <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
-              <calendar-day-header
-                v-for="day in getDays(period.add(date, page))"
-                :day="format(day, 'YYYY-MM-DD')"
-                :locale="locales[$i18n.locale]"
-                :key="format(day, 'YYYY-MM-DD')"
-                @click="togglePeriod"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section class="containers-wrapper">
-          <section :style="slideStyle" class="containers">
-            <calendar-container :days="[]" class="slider-item" />
-            <calendar-container
-              :days="days"
-              class="slider-item"
-              @ghost-drag="sliderDisabled = true"
-              @ghost-drop="sliderDisabled = false"
+      <section class="sticky">
+        <div :style="slideStyle" class="headers-wrapper">
+          <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
+            <calendar-day-header
+              v-for="day in getDays(period.add(date, page))"
+              :day="`${day}`"
+              :key="`${day}`"
             />
-            <calendar-container :days="[]" class="slider-item" />
-          </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="contents-wrapper">
+        <section :style="slideStyle" class="contents">
+          <calendar-content :days="[]" class="slider-item" />
+          <calendar-content
+            :days="days"
+            class="slider-item"
+            @dragging="sliderEnabled = false"
+            @drop="sliderEnabled = true"
+          />
+          <calendar-content :days="[]" class="slider-item" />
         </section>
-      </template>
-    </infinite-slider>
+      </section>
+    </loop-slider>
   </section>
 </template>
 
 <script>
-import DateHeader, { periods } from '@/components/organisms/date-header';
-import InfiniteSlider from '@/components/organisms/infinite-slider';
-import CalendarContainer from '@/components/organisms/calendar-container';
+import DateHeader from '@/components/organisms/date-header';
+import LoopSlider from '@/components/organisms/loop-slider';
+import CalendarContent from '@/components/organisms/calendar-content';
 import CalendarDayHeader from '@/components/organisms/calendar-day-header';
-import { isToday, format, addDays, eachDay } from 'date-fns';
+import {
+  startOfDay,
+  endOfDay,
+  isEqual,
+  startOfWeek,
+  endOfWeek,
+  addWeeks,
+  isToday,
+  format,
+  addDays,
+  eachDay
+} from 'date-fns';
+
+const periods = {
+  day: {
+    startOf: startOfDay,
+    endOf: endOfDay,
+    add: addDays
+  },
+  week: {
+    startOf: startOfWeek,
+    endOf: endOfWeek,
+    add: addWeeks
+  }
+};
 
 export default {
-  provide: {
-    pxPerMin: 40 / 60
-  },
   components: {
-    InfiniteSlider,
-    CalendarContainer,
+    LoopSlider,
+    CalendarContent,
     CalendarDayHeader,
     DateHeader
   },
@@ -74,31 +95,34 @@ export default {
       addDays,
       format,
       isToday,
-      index: 1,
-      sliderDisabled: false,
-      date: format(new Date(), 'YYYY-MM-DD'),
-      periods: [periods.day, periods.week],
-      locales: {
-        en: require('date-fns/locale/en'),
-        ja: require('date-fns/locale/ja')
-      }
+      sliderEnabled: true,
+      date: new Date(),
+      currentPeriod: 'week',
+      sliding: undefined
     };
   },
   computed: {
-    days() {
-      return this.getDays(this.date).map(date => format(date, 'YYYY-MM-DD'));
-    },
     period() {
-      return this.periods[this.index];
+      return periods[this.currentPeriod];
+    },
+    title() {
+      return format(this.date, this.$t(`${this.currentPeriod}.format`));
+    },
+    days() {
+      return this.getDays(this.date);
+    },
+    hasToday() {
+      return isEqual(
+        this.period.startOf(new Date()),
+        this.period.startOf(this.date)
+      );
     }
   },
   watch: {
-    async date() {
-      await this.fetchActivities();
+    date: {
+      handler: 'fetchActivities',
+      immediate: true
     }
-  },
-  async mounted() {
-    await this.fetchActivities();
   },
   methods: {
     async fetchActivities() {
@@ -117,20 +141,13 @@ export default {
       this.$refs.slider.slideRight();
     },
     prev() {
-      this.date = format(
-        this.period.add(this.period.startOf(this.date), -1),
-        'YYYY-MM-DD'
-      );
+      this.date = this.period.add(this.period.startOf(this.date), -1);
     },
     next() {
-      this.date = format(
-        this.period.add(this.period.startOf(this.date), 1),
-        'YYYY-MM-DD'
-      );
+      this.date = this.period.add(this.period.startOf(this.date), 1);
     },
-    togglePeriod(date) {
-      this.index = (this.index + 1) % this.periods.length;
-      this.date = format(date, 'YYYY-MM-DD');
+    today() {
+      this.date = new Date();
     }
   }
 };
@@ -156,10 +173,10 @@ export default {
   padding-left: 60px;
   border-bottom: 1px $border solid;
 }
-.containers-wrapper {
+.contents-wrapper {
   overflow: hidden;
 }
-.containers {
+.contents {
   display: flex;
 }
 .slider-item {

@@ -1,37 +1,34 @@
 <i18n src="@/assets/locales/pages/auth.json" />
 
 <template>
-  <section>
+  <section class="auth">
     <div class="form-container">
       <transition name="fade" mode="out-in">
-        <heading :key="hasAccount" class="is-large">
+        <heading :key="hasAccount" class="title is-large">
           {{ $t(`titles.${hasAccount ? 'login' : 'signUp'}`) }}
         </heading>
       </transition>
       <form @submit.prevent="submit">
-        <text-field
+        <base-input
           v-model="email"
           :placeholder="$t('email')"
-          :aria-label="$t('email')"
           type="email"
-          class="has-border"
+          class="email has-border"
           autofocus
           required
         />
-        <text-field
+        <base-input
           v-model="password"
           :placeholder="$t('password')"
-          :aria-label="$t('password')"
           type="password"
           class="password has-border"
           required
         />
-        <text-field
+        <base-input
           v-if="!hasAccount"
           v-model="passwordConfirmation"
           :placeholder="$t('passwordConfirmation')"
-          :aria-label="$t('passwordConfirmation')"
-          class="has-border"
+          class="password-confirmation has-border"
           type="password"
         />
         <footer>
@@ -41,7 +38,7 @@
                 id="agreement"
                 v-model="agreement"
                 type="checkbox"
-                required="required"
+                required
               />
               <i18n path="agreement">
                 <a
@@ -54,13 +51,12 @@
             </label>
           </div>
           <div class="buttons">
-            <btn
-              :disabled="!hasAccount && !isAgreed"
+            <base-button
               type="submit"
               class="submit-button is-rounded is-primary"
             >
               {{ $t(hasAccount ? 'login' : 'signUp') }}
-            </btn>
+            </base-button>
             <button
               type="button"
               class="toggle-button"
@@ -80,35 +76,22 @@
     </div>
     <footer class="auth-footer">
       <locale-select class="locale-select" />
-      <i18n
-        v-if="$env.GOOGLE_ANALYTICS_TRACKING_ID"
-        path="googleAnalytics"
-        tag="p"
-        class="ga-description"
-      >
-        <a
-          target="_blank"
-          rel="noopener"
-          href="https://policies.google.com/technologies/partner-sites"
-          >GoogleAnalytics (Cookie)</a
-        >
-      </i18n>
     </footer>
   </section>
 </template>
 
 <script>
 import Heading from '@/components/atoms/heading';
-import TextField from '@/components/atoms/text-field';
-import Btn from '@/components/atoms/btn';
+import BaseInput from '@/components/atoms/base-input';
+import BaseButton from '@/components/atoms/base-button';
 import LocaleSelect from '@/components/molecules/locale-select';
 
 export default {
-  layout: 'no-menu',
+  layout: 'auth',
   components: {
     Heading,
-    TextField,
-    Btn,
+    BaseInput,
+    BaseButton,
     LocaleSelect
   },
   head() {
@@ -128,9 +111,6 @@ export default {
   computed: {
     isShowAgreement() {
       return !this.hasAccount && this.$env.HACKARU_TOS_AND_PRIVACY_URL;
-    },
-    isAgreed() {
-      return !this.$env.HACKARU_TOS_AND_PRIVACY_URL || this.agreement;
     }
   },
   mounted() {
@@ -168,9 +148,8 @@ export default {
       }
     },
     goBack() {
-      this.$router.replace(
-        sessionStorage.getItem('previousPath') || this.localePath('index')
-      );
+      const prev = sessionStorage.getItem('previousPath');
+      this.$router.replace(prev || this.localePath('index'));
       sessionStorage.removeItem('previousPath');
     }
   }
@@ -178,7 +157,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-section {
+.auth {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -187,23 +166,23 @@ section {
   padding: 30px 50px;
   flex-grow: 1;
 }
-form {
+.auth form {
   padding-top: 30px;
   max-width: 480px;
   display: flex;
   flex-direction: column;
 }
-form footer {
+.auth form footer {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
-form footer .buttons {
+.auth form footer .buttons {
   display: flex;
   flex: 1;
 }
-form input.password {
+.auth form input.password {
   padding-right: 80px;
 }
 .agreement {
@@ -251,20 +230,13 @@ form input.password {
 }
 .auth-footer {
   display: flex;
+  position: absolute;
+  bottom: 0;
   padding: 30px 50px;
   align-items: center;
 }
-.ga-description {
-  color: $text-lighter;
-  font-size: 13px;
-  margin: 20px;
-  margin-right: 0;
-}
 .locale-select {
   flex-shrink: 0;
-}
-.ga-description a {
-  color: $text-lighter;
 }
 @media screen and (max-width: 640px) {
   .form-container {
@@ -274,11 +246,6 @@ form input.password {
     padding: 30px;
     flex-direction: column;
     align-items: flex-start;
-  }
-  .ga-description {
-    color: $text-lighter;
-    margin-left: 0;
-    margin-bottom: 0;
   }
 }
 </style>

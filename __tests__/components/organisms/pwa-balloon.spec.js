@@ -1,110 +1,88 @@
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import PwaBalloon from '@/components/organisms/pwa-balloon';
 
 describe('PwaBalloon', () => {
-  let factory;
   let wrapper;
 
-  function setPlatform(platform) {
-    Object.defineProperty(window.navigator, 'platform', {
-      value: platform,
-      configurable: true
-    });
-  }
+  const $platform = {
+    isIOS: () => false,
+    isPWA: () => false
+  };
 
-  function setStandalone(standalone) {
-    Object.defineProperty(window.navigator, 'standalone', {
-      value: standalone,
-      configurable: true
+  const factory = () =>
+    shallowMount(PwaBalloon, {
+      stubs: ['i18n'],
+      mocks: { $platform }
     });
-  }
 
   beforeEach(() => {
     localStorage.clear();
-    setStandalone(false);
-    factory = new Factory(PwaBalloon, {
-      stubs: ['i18n']
+  });
+
+  describe('when user platform is iOS', () => {
+    beforeEach(() => {
+      $platform.isIOS = () => true;
+      $platform.isPWA = () => false;
+      wrapper = factory();
+    });
+
+    it('show balloon', () => {
+      expect(wrapper.contains('.pwa-balloon')).toBe(true);
     });
   });
 
-  describe('when platform is iPhone', () => {
+  describe('when user platform is not iOS', () => {
     beforeEach(() => {
-      setPlatform('iPhone');
-      wrapper = factory.shallow();
+      $platform.isIOS = () => false;
+      $platform.isPWA = () => false;
+      wrapper = factory();
     });
 
-    it('render correctly', () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
-    it('render balloon', () => {
-      expect(wrapper.contains('.balloon')).toBe(true);
+    it('show balloon', () => {
+      expect(wrapper.contains('.pwa-balloon')).toBe(false);
     });
   });
 
-  describe('when platform is iPad', () => {
+  describe('when user platform is iOS but already use PWA', () => {
     beforeEach(() => {
-      setPlatform('iPad');
-      wrapper = factory.shallow();
+      $platform.isIOS = () => true;
+      $platform.isPWA = () => true;
+      wrapper = factory();
     });
 
-    it('render correctly', () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
-    it('render balloon', () => {
-      expect(wrapper.contains('.balloon')).toBe(true);
+    it('hide balloon', () => {
+      expect(wrapper.contains('.pwa-balloon')).toBe(false);
     });
   });
 
-  describe('when other platform', () => {
+  describe('when click close-button', () => {
     beforeEach(() => {
-      setPlatform('Win32');
-      wrapper = factory.shallow();
+      $platform.isIOS = () => true;
+      $platform.isPWA = () => false;
+      wrapper = factory();
     });
 
-    it('does not render balloon', () => {
-      expect(wrapper.contains('.balloon')).toBe(false);
-    });
-  });
-
-  describe('when platform is iPhone but standalone mode', () => {
-    beforeEach(() => {
-      setStandalone(true);
-      setPlatform('iPhone');
-      wrapper = factory.shallow();
-    });
-
-    it('does not render balloon', () => {
-      expect(wrapper.contains('.balloon')).toBe(false);
-    });
-  });
-
-  describe('when click close button', () => {
-    beforeEach(() => {
-      setPlatform('iPhone');
-      wrapper = factory.shallow();
-      wrapper.vm.close();
-    });
-
-    it('enable hidePwaBallon', () => {
+    it('save hidePwaBallon', () => {
+      wrapper.find('.close-button').vm.$emit('click');
       expect(localStorage.setItem).toHaveBeenCalledWith('hidePwaBallon', true);
     });
 
-    it('does not render balloon', () => {
-      expect(wrapper.contains('.balloon')).toBe(false);
+    it('hide balloon', () => {
+      wrapper.find('.close-button').vm.$emit('click');
+      expect(wrapper.contains('.pwa-balloon')).toBe(false);
     });
   });
 
-  describe('when platform is iPhone but balloon already closed', () => {
+  describe('when platform is iOS but balloon already closed', () => {
     beforeEach(() => {
-      setPlatform('iPhone');
+      $platform.isIOS = () => true;
+      $platform.isPWA = () => false;
       localStorage.setItem('hidePwaBallon', true);
-      wrapper = factory.shallow();
+      wrapper = factory();
     });
 
-    it('does not render balloon', () => {
-      expect(wrapper.contains('.balloon')).toBe(false);
+    it('hide balloon', () => {
+      expect(wrapper.contains('.pwa-balloon')).toBe(false);
     });
   });
 });

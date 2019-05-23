@@ -4,14 +4,13 @@
   <section>
     <content-header>
       <heading>{{ $t('title') }}</heading>
-      <btn
-        :aria-label="$t('ariaLabels.add')"
+      <base-button
         type="button"
         class="is-primary is-circle has-dropshadow add-button"
         @click="showModal"
       >
         <icon name="plus-icon" />
-      </btn>
+      </base-button>
     </content-header>
     <activity
       v-for="activity in activities"
@@ -27,7 +26,7 @@
 <script>
 import ContentHeader from '@/components/organisms/content-header';
 import Heading from '@/components/atoms/heading';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import Activity from '@/components/organisms/activity';
 import { mapGetters } from 'vuex';
@@ -37,7 +36,7 @@ export default {
     ContentHeader,
     Heading,
     Icon,
-    Btn,
+    BaseButton,
     Activity
   },
   head: {
@@ -48,8 +47,8 @@ export default {
       activities: 'activities/getWorkingActivities'
     })
   },
-  async mounted() {
-    await this.$store.dispatch('activities/getWorkingActivities');
+  mounted() {
+    this.$store.dispatch('activities/getWorkingActivities');
   },
   methods: {
     showModal() {

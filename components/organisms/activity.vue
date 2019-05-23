@@ -3,6 +3,7 @@
 <template>
   <swipe-menu
     ref="menu"
+    class="acitivty"
     @swipe-right="stopActivity"
     @swipe-left="deleteActivity"
   >
@@ -13,12 +14,7 @@
     </template>
 
     <div class="list-item">
-      <div
-        class="activity-content"
-        @mousedown.stop
-        @mouseup.stop
-        @click="showModal"
-      >
+      <div class="activity-content" @click="showModal">
         <project-name v-bind="project" class="project-name" />
         <ticker
           :started-at="startedAt"
@@ -28,13 +24,9 @@
       </div>
 
       <nav>
-        <btn
-          :aria-label="$t('ariaLabels.stop')"
-          class="stop-button has-icon"
-          @click="stopActivity"
-        >
+        <base-button class="stop-button has-icon" @click="stopActivity">
           <icon name="check-icon" class="is-primary" />
-        </btn>
+        </base-button>
       </nav>
     </div>
 
@@ -49,7 +41,7 @@
 <script>
 import { parse } from 'date-fns';
 import Icon from '@/components/atoms/icon';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import ProjectName from '@/components/molecules/project-name';
 import SwipeMenu from '@/components/molecules/swipe-menu';
 import Ticker from '@/components/atoms/ticker';
@@ -57,7 +49,7 @@ import Ticker from '@/components/atoms/ticker';
 export default {
   components: {
     Icon,
-    Btn,
+    BaseButton,
     Ticker,
     SwipeMenu,
     ProjectName
@@ -85,7 +77,7 @@ export default {
     },
     project: {
       type: Object,
-      default: () => undefined
+      default: undefined
     }
   },
   methods: {
@@ -96,9 +88,12 @@ export default {
         stoppedAt: `${parse(Date.now())}`
       });
     },
+    resetSwipeMenu() {
+      this.$refs.menu.reset();
+    },
     deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) {
-        this.$refs.menu.resetWithAnimation();
+        this.resetSwipeMenu();
         return;
       }
       this.$store.dispatch('activities/deleteActivity', this.id);
@@ -110,8 +105,7 @@ export default {
         description: this.description,
         startedAt: this.startedAt,
         stoppedAt: this.stoppedAt,
-        duration: this.duration,
-        project: this.project
+        project: this.project || undefined
       });
     }
   }
@@ -136,7 +130,7 @@ export default {
   flex-shrink: 0;
   padding-right: 40px;
 }
-h1 {
+.acitivty h1 {
   font-size: $font-size;
   font-weight: normal;
   flex: 1;
@@ -149,7 +143,7 @@ h1 {
   text-overflow: ellipsis;
   margin-top: 1px;
 }
-nav {
+.acitivty nav {
   display: flex;
   margin-left: 30px;
 }
@@ -164,12 +158,13 @@ nav {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px $border solid;
+  background-color: #fff;
   &:hover {
     background: $grey-fdfdfd;
   }
 }
 @include mq(small) {
-  nav {
+  .acitivty nav {
     display: none;
   }
   .list-item {

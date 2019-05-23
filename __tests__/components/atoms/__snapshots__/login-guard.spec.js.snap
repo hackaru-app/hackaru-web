@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`LoginGuard when user has valid token does not redirect 1`] = `
-<section>
-  <p>
-    Content
-  </p>
-</section>
-`;

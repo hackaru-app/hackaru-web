@@ -82,13 +82,13 @@ module.exports = {
    ** Plugins
    */
   plugins: [
-    { src: '~/plugins/directives/v-dragdrop' },
-    { src: '~/plugins/directives/v-window-scroll' },
     { src: '~/plugins/customs/i18n-cacher', ssr: false },
     { src: '~/plugins/customs/mezr', ssr: false },
+    { src: '~/plugins/customs/platform', ssr: false },
+    { src: '~/plugins/customs/px-min' },
     { src: '~/plugins/vue-timers', ssr: false },
     { src: '~/plugins/v-calendar', ssr: false },
-    { src: '~/plugins/local-storage.js', ssr: false },
+    { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/vue-analytics.js', ssr: false },
     { src: '~/plugins/vue-js-modal' }
   ],
@@ -128,7 +128,7 @@ module.exports = {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
-    'nuxt-sass-resources-loader',
+    '@nuxtjs/style-resources',
     [
       'nuxt-i18n',
       {
@@ -148,7 +148,9 @@ module.exports = {
       }
     ]
   ],
-  sassResources: ['~/assets/sass/modules/*.scss'],
+  styleResources: {
+    sass: ['~/assets/sass/modules/*.scss']
+  },
   manifest: {
     name: 'Hackaru',
     lang: 'ja'

@@ -6,40 +6,38 @@
       {{ $t('title') }}
     </heading>
     <form @submit.prevent="resetPassword">
-      <text-field
+      <base-input
         v-model="password"
         :placeholder="$t('password')"
-        :aria-label="$t('password')"
         type="password"
-        class="has-underline"
+        class="password has-underline"
         required
       />
-      <text-field
+      <base-input
         v-model="passwordConfirmation"
         :placeholder="$t('passwordConfirmation')"
-        :aria-label="$t('passwordConfirmation')"
         type="password"
-        class="has-underline"
+        class="password-confirmation has-underline"
         required
       />
-      <btn type="submit" class="button is-rounded is-primary">
+      <base-button type="submit" class="button is-rounded is-primary">
         {{ $t('reset') }}
-      </btn>
+      </base-button>
     </form>
   </section>
 </template>
 
 <script>
 import Heading from '@/components/atoms/heading';
-import TextField from '@/components/atoms/text-field';
-import Btn from '@/components/atoms/btn';
+import BaseInput from '@/components/atoms/base-input';
+import BaseButton from '@/components/atoms/base-button';
 
 export default {
-  layout: 'no-menu',
+  layout: 'auth',
   components: {
     Heading,
-    TextField,
-    Btn
+    BaseInput,
+    BaseButton
   },
   head: {
     title: 'Reset Password'

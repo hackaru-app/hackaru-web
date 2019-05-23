@@ -1,11 +1,11 @@
 import { Store } from 'vuex-mock-store';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import Index from '@/pages/index';
 
 describe('Index', () => {
   let wrapper;
-  let factory;
 
+  const $modal = { show: jest.fn() };
   const $store = new Store({
     getters: {
       'activities/getWorkingActivities': () => [
@@ -18,35 +18,29 @@ describe('Index', () => {
     }
   });
 
-  beforeEach(() => {
-    factory = new Factory(Index, {
+  const factory = () =>
+    shallowMount(Index, {
       mocks: {
-        $store
+        $store,
+        $modal
       }
     });
-  });
-
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
 
   it('dispatch activities/getWorkingActivities', () => {
-    factory.shallow();
+    factory();
     expect($store.dispatch).toHaveBeenCalledWith(
       'activities/getWorkingActivities'
     );
   });
 
-  describe('when click add button', () => {
+  describe('when click add-button', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find('.add-button').vm.$emit('click');
     });
 
-    it('show new activity modal', () => {
-      expect(factory.options.mocks.$modal.show).toHaveBeenCalledWith(
-        'activity'
-      );
+    it('show activity-modal', () => {
+      expect($modal.show).toHaveBeenCalledWith('activity');
     });
   });
 });

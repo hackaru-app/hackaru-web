@@ -1,26 +1,19 @@
 import MockDate from 'mockdate';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import { parse } from 'date-fns';
 import DatetimePicker from '@/components/molecules/datetime-picker';
 
 describe('DatetimePicker', () => {
-  let factory;
   let wrapper;
 
   MockDate.set('2019-01-31T01:23:45');
 
-  beforeEach(() => {
-    factory = new Factory(DatetimePicker);
-  });
-
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
+  const factory = () => shallowMount(DatetimePicker);
 
   describe('when focus date', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find('input[type=date]').trigger('focus');
+      wrapper = factory();
+      wrapper.find('.date').trigger('focus');
     });
 
     it('emit input with current date', () => {
@@ -28,14 +21,14 @@ describe('DatetimePicker', () => {
     });
   });
 
-  describe('when focus date and date already input', () => {
+  describe('when focus date and date already inputted', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.setProps({ value: `${parse('2018-03-03T01:23:45')}` });
-      wrapper.find('input[type=date]').trigger('focus');
+      wrapper.find('.date').trigger('focus');
     });
 
-    it('emit input', () => {
+    it('emit input with inputted date', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
         `${parse('2018-03-03T01:23:45')}`
       ]);
@@ -44,8 +37,8 @@ describe('DatetimePicker', () => {
 
   describe('when focus time', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find('input[type=time]').trigger('focus');
+      wrapper = factory();
+      wrapper.find('.time').trigger('focus');
     });
 
     it('emit input with current date', () => {
@@ -53,14 +46,14 @@ describe('DatetimePicker', () => {
     });
   });
 
-  describe('when focus time but time already input', () => {
+  describe('when focus time but time already inputted', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.setProps({ value: `${parse('2018-03-03T01:23:45')}` });
-      wrapper.find('input[type=time]').trigger('focus');
+      wrapper.find('.time').trigger('focus');
     });
 
-    it('emit input', () => {
+    it('emit input with inputted date', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
         `${parse('2018-03-03T01:23:45')}`
       ]);
@@ -69,9 +62,9 @@ describe('DatetimePicker', () => {
 
   describe('when input value is invalid', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find('input[type=date]').setValue('yay!');
-      wrapper.find('input[type=time]').setValue('yay!');
+      wrapper = factory();
+      wrapper.find('.date').setValue('foo');
+      wrapper.find('.time').setValue('bar');
     });
 
     it('emit input with undefined', () => {

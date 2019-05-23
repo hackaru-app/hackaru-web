@@ -4,10 +4,6 @@
       "update": "Edit Project",
       "add": "Create Project"
     },
-    "ariaLabels": {
-      "back": "Back",
-      "delete": "Delete"
-    },
     "name": "Name",
     "color": "Color",
     "add": "Add",
@@ -23,10 +19,6 @@
     "titles": {
       "update": "プロジェクトを編集",
       "add": "プロジェクトを追加"
-    },
-    "ariaLabels": {
-      "back": "戻る",
-      "delete": "削除"
     },
     "name": "名前",
     "color": "色",

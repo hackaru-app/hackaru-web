@@ -1,17 +1,38 @@
-import { addDays } from 'date-fns';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import CalendarEvent from '@/components/atoms/calendar-event';
 
 describe('CalendarEvent', () => {
-  it('render correctly', () => {
-    const wrapper = new Factory(CalendarEvent, {
+  let wrapper;
+
+  const factory = () =>
+    shallowMount(CalendarEvent, {
       propsData: {
         color: '#ff0000',
-        title: 'Review',
-        startedAt: `${new Date()}`,
-        stoppedAt: `${addDays(new Date(), 1)}`
+        title: 'Development',
+        startedAt: '2019-01-01T01:23:45',
+        stoppedAt: '2019-01-01T01:23:45'
       }
-    }).shallow();
-    expect(wrapper.element).toMatchSnapshot();
+    });
+
+  describe('when startedAt is undefined', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setProps({ startedAt: undefined });
+    });
+
+    it('has an empty duration', () => {
+      expect(wrapper.find('.duration').text()).toBe('');
+    });
+  });
+
+  describe('when stoppedAt is undefined', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setProps({ stoppedAt: undefined });
+    });
+
+    it('has an empty duration', () => {
+      expect(wrapper.find('.duration').text()).toBe('');
+    });
   });
 });

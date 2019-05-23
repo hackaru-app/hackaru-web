@@ -1,28 +1,19 @@
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import Resizer from '@/components/atoms/resizer';
-import dragdrop from '@/plugins/directives/v-dragdrop';
 
 describe('Resizer', () => {
-  let factory;
   let wrapper;
 
-  beforeEach(() => {
-    factory = new Factory(Resizer, {
-      slots: {
-        default: '<p>resizable</p>'
-      }
-    });
-    factory.options.localVue.directive('dragdrop', dragdrop);
+  const factory = () => shallowMount(Resizer);
+  const dragEvent = (x, y) => ({
+    e: { preventDefault: () => {} },
+    distance: { x, y }
   });
 
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
-
-  describe('when drag handler', () => {
+  describe('when drag', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.drag({ e: {} });
+      wrapper = factory();
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent());
     });
 
     it('emit start', () => {
@@ -30,69 +21,28 @@ describe('Resizer', () => {
     });
   });
 
-  describe('when drag handler but disabled', () => {
+  describe('when drag', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({ disabled: true });
-      wrapper.vm.drag({ e: {} });
+      wrapper = factory();
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent());
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('move', dragEvent(0, 80));
     });
 
-    it('does not emit start', () => {
-      expect(wrapper.emitted('start')).toBeFalsy();
-    });
-  });
-
-  describe('when dragging handler', () => {
-    const preventDefault = jest.fn();
-
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ started: { height: 50 } });
-      wrapper.vm.dragging({
-        e: { preventDefault },
-        distance: { x: 0, y: 30 }
-      });
+    it('emit resizing', () => {
+      expect(wrapper.emitted('resizing')).toBeTruthy();
     });
 
     it('emit update:height', () => {
-      expect(wrapper.emitted('update:height')[0]).toEqual([20]);
+      expect(wrapper.emitted('update:height')[0][0]).toBe(80);
     });
   });
 
-  describe('when dragging handler but resized height < minHeight', () => {
+  describe('when drop', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({ minHeight: 50 });
-      wrapper.setData({ started: { height: 100 } });
-      wrapper.vm.dragging({
-        e: { preventDefault: jest.fn() },
-        distance: { x: 0, y: 999 }
-      });
-    });
-
-    it('emit update:height with minHeight', () => {
-      expect(wrapper.emitted('update:height')[0]).toEqual([50]);
-    });
-  });
-
-  describe('when dragging handler but disabled', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({ disabled: true });
-      wrapper.vm.dragging({ e: {} });
-    });
-
-    it('does not emit resizing', () => {
-      expect(wrapper.emitted('resizing')).toBeFalsy();
-    });
-  });
-
-  describe('when drop handler', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ started: { height: 5 } });
-      wrapper.setProps({ height: 10 });
-      wrapper.vm.drop({ e: {} });
+      wrapper = factory();
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent());
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('move', dragEvent(70, 80));
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('end', dragEvent());
     });
 
     it('emit end', () => {
@@ -100,28 +50,15 @@ describe('Resizer', () => {
     });
   });
 
-  describe('when drop handler but not resized', () => {
+  describe('when drop but not moved', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ started: { height: 10 } });
-      wrapper.setProps({ height: 10 });
-      wrapper.vm.drop({ e: {} });
+      wrapper = factory();
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent(0, 0));
+      wrapper.find({ ref: 'drag-drop' }).vm.$emit('end', dragEvent(0, 0));
     });
 
     it('emit cancel', () => {
       expect(wrapper.emitted('cancel')).toBeTruthy();
-    });
-  });
-
-  describe('when drop handler but disabled', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({ disabled: true });
-      wrapper.vm.drop({ e: {} });
-    });
-
-    it('does not emit end', () => {
-      expect(wrapper.emitted('end')).toBeFalsy();
     });
   });
 });

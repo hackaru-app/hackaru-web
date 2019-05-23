@@ -113,12 +113,6 @@
         "licenseUrl": "https://github.com/nuxt-community/nuxt-i18n/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "nuxt-sass-resources-loader": {
-        "licenses": "MIT",
-        "repository": "https://github.com/anteriovieira/nuxt-sass-resources-loader",
-        "licenseUrl": "https://github.com/anteriovieira/nuxt-sass-resources-loader",
-        "parents": "Hackaru"
-    },
     "nuxt": {
         "licenses": "MIT",
         "repository": "https://github.com/nuxt/nuxt.js",

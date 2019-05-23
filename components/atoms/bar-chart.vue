@@ -20,7 +20,7 @@ export default {
         },
         tooltips: {
           callbacks: {
-            label: tooltipItem => fromS(tooltipItem.yLabel)
+            label: ({ yLabel }) => fromS(yLabel)
           }
         },
         scales: {

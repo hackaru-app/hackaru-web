@@ -1,58 +1,50 @@
 import MockDate from 'mockdate';
-import Factory from '@/__tests__/__setups__/factory';
-import { addDays } from 'date-fns';
+import { shallowMount } from '@vue/test-utils';
 import Ticker from '@/components/atoms/ticker';
 
 describe('Ticker', () => {
   let wrapper;
-  let factory;
 
   MockDate.set('2019-01-31T01:23:45');
 
-  beforeEach(() => {
-    factory = new Factory(Ticker, {
-      mocks: {
-        $timer: { stop: jest.fn() }
-      },
-      propsData: {
-        startedAt: `${new Date()}`
-      }
+  const $timer = { stop: jest.fn() };
+  const factory = () =>
+    shallowMount(Ticker, {
+      propsData: { startedAt: '2019-01-31T02:23:45' },
+      mocks: { $timer }
     });
-  });
 
-  it('render correctly', () => {
-    wrapper = factory.shallow();
-    expect(wrapper.element).toMatchSnapshot();
-    expect(wrapper.find('time').text()).toBe('00:00:00');
-  });
-
-  describe('when set startedAt', () => {
+  describe('when stoppedAt is empty', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({ startedAt: `${addDays(new Date(), -1)}` });
+      wrapper = factory();
+      wrapper.setProps({
+        startedAt: '2019-01-31T00:23:45',
+        stoppedAt: undefined
+      });
       wrapper.vm.updateDuration();
     });
 
-    it('render duration', () => {
-      expect(wrapper.find('time').text()).toBe('24:00:00');
+    it('set duration correctly', () => {
+      expect(wrapper.find('time').text()).toBe('01:00:00');
     });
   });
 
-  describe('when set stoppedAt', () => {
+  describe('when stoppedAt is defined', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({ stoppedAt: `${addDays(new Date(), 2)}` });
+      wrapper = factory();
+      wrapper.setProps({
+        startedAt: '2019-01-31T02:23:45',
+        stoppedAt: '2019-01-31T04:23:45'
+      });
       wrapper.vm.updateDuration();
     });
 
-    it('render duration', () => {
-      expect(wrapper.find('time').text()).toBe('48:00:00');
+    it('set duration correctly', () => {
+      expect(wrapper.find('time').text()).toBe('02:00:00');
     });
 
     it('stop timer', () => {
-      expect(factory.options.mocks.$timer.stop).toHaveBeenCalledWith(
-        'updateDuration'
-      );
+      expect($timer.stop).toHaveBeenCalledWith('updateDuration');
     });
   });
 });

@@ -3,18 +3,26 @@
     ref="dragger"
     :top.sync="top"
     :left.sync="left"
-    :class="['dragger', { dragging }]"
+    :enabled="!resized"
+    :class="['calendar-activity', { dragging: dragged }]"
     :style="{ height: `${height}px` }"
     @start="moveStart"
     @moving="moving"
     @end="moveEnd"
     @cancel="moveCancel"
   >
-    <div @mousedown="mousedown" @mouseup="mouseup">
+    <div class="click-handler" @mousedown="mousedown" @mouseup="mouseup">
+      <calendar-event
+        :style="{ height: `${height}px` }"
+        :title="title"
+        :color="color"
+        :started-at="startedAt"
+        :stopped-at="stoppedAt"
+        class="event"
+      />
       <resizer
-        ref="resizer"
         :height.sync="height"
-        :disabled="dragging"
+        :enabled="!dragged"
         :min-height="minHeight"
         :handle-color="color"
         class="resizer"
@@ -22,12 +30,7 @@
         @end="resizeEnd"
         @cancel="resizeCancel"
       >
-        <calendar-event
-          :title="title"
-          :color="color"
-          :started-at="startedAt"
-          :stopped-at="stoppedAt"
-        />
+        <span class="handler" />
       </resizer>
     </div>
   </dragger>
@@ -37,7 +40,7 @@
 import Dragger from '@/components/atoms/dragger';
 import Resizer from '@/components/atoms/resizer';
 import CalendarEvent from '@/components/atoms/calendar-event';
-import PxMinConvertable from '@/plugins/mixins/px-min-convertable';
+
 import {
   startOfDay,
   addSeconds,
@@ -51,13 +54,16 @@ export default {
     Dragger,
     Resizer
   },
-  mixins: [PxMinConvertable],
   props: {
     id: {
       type: Number,
       required: true
     },
     description: {
+      type: String,
+      required: true
+    },
+    startedAt: {
       type: String,
       required: true
     },
@@ -69,17 +75,9 @@ export default {
       type: String,
       required: true
     },
-    startedAt: {
+    overlappedDay: {
       type: String,
-      required: true
-    },
-    getOverlapDay: {
-      type: Function,
-      required: true
-    },
-    updateGuideLine: {
-      type: Function,
-      required: true
+      default: undefined
     },
     duration: {
       type: Number,
@@ -92,12 +90,16 @@ export default {
     project: {
       type: Object,
       default: () => undefined
+    },
+    guideTop: {
+      type: Number,
+      default: undefined
     }
   },
   data() {
     return {
-      dragging: false,
-      resizeMoved: false,
+      dragged: false,
+      resized: false,
       top: this.getInitialTop(),
       height: this.getInitialHeight(),
       left: 0
@@ -121,12 +123,12 @@ export default {
   },
   methods: {
     getInitialTop() {
-      return this.toPx(
+      return this.$toPx(
         differenceInMinutes(this.startedAt, startOfDay(this.day))
       );
     },
     getInitialHeight() {
-      return Math.max(this.toPx(this.duration / 60), this.minHeight);
+      return Math.max(this.$toPx(this.duration / 60), this.minHeight);
     },
     resetPosition() {
       this.top = this.getInitialTop();
@@ -134,49 +136,61 @@ export default {
       this.left = 0;
     },
     moveStart(e) {
-      this.dragging = true;
-      this.updateGuideLine(this.top, this.$el);
+      this.dragged = true;
+      this.$emit('dragging', {
+        el: this.$el,
+        guideRulerTop: this.top
+      });
     },
     moving(e) {
-      this.updateGuideLine(this.top, this.$el);
+      this.$emit('dragging', {
+        el: this.$el,
+        guideRulerTop: this.top
+      });
     },
     moveEnd(e) {
-      this.updateGuideLine();
+      this.$emit('drop');
 
-      const day = this.getOverlapDay(this.$el);
-      if (!day) return this.resetPosition();
+      if (!this.overlappedDay) {
+        return this.resetPosition();
+      }
+      const date = addMinutes(
+        startOfDay(this.overlappedDay),
+        this.$toMin(this.top)
+      );
 
-      const date = addMinutes(startOfDay(day), this.toMin(this.top));
       this.update({
         startedAt: date,
         stoppedAt: addSeconds(date, this.duration)
       });
     },
     moveCancel(e) {
-      this.updateGuideLine();
+      this.$emit('drop');
     },
     resizing(e) {
-      this.resizeMoved = true;
-      this.updateGuideLine(this.top + this.height, this.$el);
+      this.resized = true;
+      this.$emit('dragging', {
+        el: this.$el,
+        guideRulerTop: this.top + this.height
+      });
     },
     resizeEnd(e) {
-      this.updateGuideLine();
-      const stoppedAt = addMinutes(this.startedAt, this.toMin(this.height));
+      this.$emit('drop');
+      const stoppedAt = addMinutes(this.startedAt, this.$toMin(this.height));
       this.update({ stoppedAt });
     },
     resizeCancel(e) {
-      this.updateGuideLine();
+      this.$emit('drop');
     },
     mousedown(e) {
-      this.resizeMoved = false;
-      this.dragging = false;
+      this.resized = false;
+      this.dragged = false;
     },
     mouseup(e) {
-      if (!this.resizeMoved && !this.dragging) {
-        this.showModal();
-      }
-      this.resizeMoved = false;
-      this.dragging = false;
+      const clickOnly = !this.resized && !this.dragged;
+      if (clickOnly) this.showModal();
+      this.resized = false;
+      this.dragged = false;
     },
     showModal() {
       this.$modal.show('activity', {
@@ -200,7 +214,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.dragger {
+.calendar-activity {
   flex: 1;
   position: relative;
   box-sizing: border-box;
@@ -215,21 +229,11 @@ export default {
     opacity: 0.8;
   }
 }
-.dragger.dragging {
+.calendar-activity.dragging {
   opacity: 1;
   box-shadow: 0 3px 8px -3px #00000020;
 }
-.resizer {
-  align-items: center;
-}
-div {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  overflow: hidden;
-  align-items: center;
-}
-h1 {
+.calendar-activity h1 {
   font-size: 12px;
   line-height: 20px;
   margin: 0;
@@ -239,10 +243,41 @@ h1 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.event {
+  height: 100%;
+}
+.handler {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 5px;
+  padding-top: 15px;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  cursor: s-resize;
+}
+.resizer {
+  align-items: center;
+}
+.click-handler {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  align-items: center;
+}
 @include mq(small) {
   h1 {
     font-size: 9px;
     padding: 0 5px;
+  }
+  .handler {
+    left: auto;
+    right: 0;
+    width: 100%;
   }
 }
 </style>

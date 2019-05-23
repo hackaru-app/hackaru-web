@@ -8,63 +8,60 @@
 
     <form @submit.prevent="saveActivity">
       <modal-item>
-        <modal-label>
+        <label>
           {{ $t('project') }}
-        </modal-label>
+        </label>
         <button type="button" class="project-button" @click="editProject">
           <project-name :name="project.name" :color="project.color" />
         </button>
       </modal-item>
 
       <modal-item>
-        <modal-label>
+        <label>
           {{ $t('description') }}
-        </modal-label>
+        </label>
         <input
           v-model="description"
           :placeholder="$t('description')"
-          class="input inline"
           type="text"
         />
       </modal-item>
 
       <modal-item>
-        <modal-label>
+        <label>
           {{ $t('startedAt') }}
-        </modal-label>
+        </label>
         <datetime-picker v-model="startedAt" />
       </modal-item>
 
       <modal-item v-if="id">
-        <modal-label>
+        <label>
           {{ $t('stoppedAt') }}
-        </modal-label>
+        </label>
         <datetime-picker v-model="stoppedAt" />
       </modal-item>
 
       <modal-footer>
-        <btn type="submit" class="is-rounded is-primary">
+        <base-button type="submit" class="is-rounded is-primary">
           {{ $t(id ? 'update' : 'start') }}
-        </btn>
+        </base-button>
         <div class="icons">
-          <btn
+          <base-button
             v-if="stoppedAt && isSharedSupported"
-            :aria-label="$t('ariaLabels.share')"
             type="button"
             class="share-button has-icon"
             @click="share"
           >
             <icon name="share-icon" />
-          </btn>
-          <btn
+          </base-button>
+          <base-button
             v-if="id"
-            :aria-label="$t('ariaLabels.delete')"
             type="button"
             class="delete-button has-icon"
             @click="deleteActivity"
           >
             <icon name="trash-icon" class="is-danger" />
-          </btn>
+          </base-button>
         </div>
       </modal-footer>
     </form>
@@ -74,12 +71,11 @@
 <script>
 import ProjectList from '@/components/organisms/project-list';
 import ModalItem from '@/components/molecules/modal-item';
-import ModalLabel from '@/components/molecules/modal-label';
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import ProjectName from '@/components/molecules/project-name';
 import DatetimePicker from '@/components/molecules/datetime-picker';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import { distanceInWordsStrict } from 'date-fns';
 
@@ -91,8 +87,7 @@ export default {
     ModalHeader,
     ModalItem,
     ModalFooter,
-    ModalLabel,
-    Btn,
+    BaseButton,
     Icon
   },
   props: {
@@ -110,7 +105,7 @@ export default {
         name: 'No Project',
         color: '#cccfd9'
       },
-      startedAt: new Date().toString(),
+      startedAt: `${new Date()}`,
       stoppedAt: undefined
     };
   },
@@ -126,7 +121,6 @@ export default {
         const params = this.params || {};
         this.id = params.id || this.id;
         this.description = params.description || this.description;
-        this.duration = params.duration || 0;
         this.startedAt = params.startedAt || this.startedAt;
         this.stoppedAt = params.stoppedAt || this.stoppedAt;
         this.project = params.project || this.project;

@@ -1,0 +1,30 @@
+{
+  "en": {
+    "day": {
+      "format": "DD/MM/YYYY"
+    },
+    "week": {
+      "format": "MM/YYYY"
+    },
+    "month": {
+      "format": "MM/YYYY"
+    },
+    "year": {
+      "format": "YYYY"
+    }
+  },
+  "ja": {
+    "day": {
+      "format": "YYYY/MM/DD"
+    },
+    "week": {
+      "format": "YYYY/MM"
+    },
+    "month": {
+      "format": "YYYY/MM"
+    },
+    "year": {
+      "format": "YYYY"
+    }
+  }
+}

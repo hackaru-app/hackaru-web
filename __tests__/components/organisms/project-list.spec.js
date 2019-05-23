@@ -1,11 +1,10 @@
 import { Store } from 'vuex-mock-store';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import ProjectList from '@/components/organisms/project-list';
 import ActivityEditor from '@/components/organisms/activity-editor';
 import ProjectEditor from '@/components/organisms/project-editor';
 
 describe('ProjectList', () => {
-  let factory;
   let wrapper;
 
   const $store = new Store({
@@ -25,44 +24,44 @@ describe('ProjectList', () => {
     }
   });
 
+  const factory = () =>
+    shallowMount(ProjectList, {
+      mocks: { $store }
+    });
+
   beforeEach(() => {
     $store.reset();
-    factory = new Factory(ProjectList, { mocks: { $store } });
   });
 
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
-
-  describe('when click left arrow button', () => {
+  describe('when click left-arrow-button', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find('.left-arrow-button').vm.$emit('click');
     });
 
     it('emit pop', () => {
-      expect(wrapper.emitted('pop')[0]).toEqual([
-        { component: ActivityEditor }
-      ]);
+      expect(wrapper.emitted('pop')[0][0]).toEqual({
+        component: ActivityEditor
+      });
     });
   });
 
-  describe('when click add button', () => {
+  describe('when click add-button', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find('.add-button').vm.$emit('click');
     });
 
     it('emit push', () => {
-      expect(wrapper.emitted('push')[0]).toEqual([
-        { component: ProjectEditor }
-      ]);
+      expect(wrapper.emitted('push')[0][0]).toEqual({
+        component: ProjectEditor
+      });
     });
   });
 
   describe('when click edit-button', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper
         .findAll('.edit-button')
         .at(1)
@@ -70,22 +69,20 @@ describe('ProjectList', () => {
     });
 
     it('emit push', () => {
-      expect(wrapper.emitted('push')[0]).toEqual([
-        {
-          component: ProjectEditor,
-          params: {
-            id: 2,
-            name: 'Review',
-            color: '#f00'
-          }
+      expect(wrapper.emitted('push')[0][0]).toEqual({
+        component: ProjectEditor,
+        params: {
+          id: 2,
+          name: 'Review',
+          color: '#f00'
         }
-      ]);
+      });
     });
   });
 
   describe('when click project-content', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper
         .findAll('.project-content')
         .at(2)
@@ -93,18 +90,16 @@ describe('ProjectList', () => {
     });
 
     it('emit pop', () => {
-      expect(wrapper.emitted('pop')[0]).toEqual([
-        {
-          component: ActivityEditor,
-          params: {
-            project: {
-              id: 2,
-              name: 'Review',
-              color: '#f00'
-            }
+      expect(wrapper.emitted('pop')[0][0]).toEqual({
+        component: ActivityEditor,
+        params: {
+          project: {
+            id: 2,
+            name: 'Review',
+            color: '#f00'
           }
         }
-      ]);
+      });
     });
   });
 });

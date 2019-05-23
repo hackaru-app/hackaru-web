@@ -8,10 +8,6 @@
     "confirms": {
       "delete": "Are you sure you want to delete the webhook?"
     },
-    "ariaLabels": {
-      "delete": "Delete",
-      "add": "Add Webhook"
-    },
     "events": {
       "activity:created": "Created Activity",
       "activity:stopped": "Stopped Activity",
@@ -33,10 +29,6 @@
     "add": "追加",
     "confirms": {
       "delete": "Webhookを削除しますか？"
-    },
-    "ariaLabels": {
-      "delete": "削除",
-      "add": "Webhookを追加"
     },
     "events": {
       "activity:created": "タイマー開始時",

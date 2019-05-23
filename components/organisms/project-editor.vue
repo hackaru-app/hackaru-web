@@ -3,51 +3,40 @@
 <template>
   <section>
     <modal-header>
-      <btn
-        :aria-label="$t('ariaLabels.back')"
-        type="button"
-        class="has-icon"
-        @click="pop"
-      >
+      <base-button type="button" class="has-icon" @click="pop">
         <icon name="chevron-left-icon" class="is-large" />
-      </btn>
+      </base-button>
       <h1>{{ $t(`titles.${id ? 'update' : 'add'}`) }}</h1>
     </modal-header>
 
     <form @submit.prevent="id ? updateProject() : addProject()">
       <modal-item>
-        <modal-label>
+        <label>
           {{ $t('name') }}
-        </modal-label>
-        <input
-          v-model="name"
-          :placeholder="$t('name')"
-          class="input inline"
-          type="text"
-        />
+        </label>
+        <input v-model="name" :placeholder="$t('name')" type="text" />
       </modal-item>
 
       <modal-item>
-        <modal-label>
+        <label>
           {{ $t('color') }}
-        </modal-label>
+        </label>
         <color-select :value.sync="color" />
       </modal-item>
 
       <modal-footer>
-        <btn type="submit" class="is-rounded is-primary">
+        <base-button type="submit" class="is-rounded is-primary">
           {{ $t(id ? 'update' : 'add') }}
-        </btn>
+        </base-button>
 
-        <btn
+        <base-button
           v-if="id !== undefined"
-          :aria-label="$t('ariaLabels.delete')"
           class="delete-button has-icon"
           type="button"
           @click="deleteProject"
         >
           <icon name="trash-icon" class="is-danger" />
-        </btn>
+        </base-button>
       </modal-footer>
     </form>
   </section>
@@ -55,12 +44,11 @@
 
 <script>
 import ModalItem from '@/components/molecules/modal-item';
-import ModalLabel from '@/components/molecules/modal-label';
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import Icon from '@/components/atoms/icon';
 import ColorSelect from '@/components/molecules/color-select';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import ProjectList from '@/components/organisms/project-list';
 
 export default {
@@ -70,8 +58,7 @@ export default {
     ModalHeader,
     ModalItem,
     ModalFooter,
-    ModalLabel,
-    Btn
+    BaseButton
   },
   props: {
     params: {

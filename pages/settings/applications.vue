@@ -2,16 +2,16 @@
 <i18n src="@/assets/locales/pages/settings/applications.json" />
 
 <template>
-  <div class="settings">
-    <modal-wrapper name="application">
+  <section>
+    <base-modal name="application">
       <form>
         <modal-header>
           <h1>{{ selected.name }}</h1>
         </modal-header>
         <modal-item class="is-vertical">
-          <modal-label class="is-vertical">
+          <label>
             {{ $t('labels.scopes') }}
-          </modal-label>
+          </label>
           <highlight>
             <ul>
               <li v-for="scope in selected.scopes" :key="scope">
@@ -21,7 +21,7 @@
           </highlight>
         </modal-item>
       </form>
-    </modal-wrapper>
+    </base-modal>
 
     <section class="content">
       <header class="header">
@@ -34,49 +34,48 @@
       <div
         v-for="application in applications"
         :key="application.id"
-        class="list-item"
+        class="application"
       >
         <h1 @click="showModal(application)">{{ application.name }}</h1>
-        <btn
-          :aria-label="$t('ariaLabels.delete')"
+        <base-button
           class="delete-button has-icon"
           @click="deleteApplication(application.id)"
         >
           <icon name="x-icon" class="is-danger" />
-        </btn>
+        </base-button>
       </div>
 
       <p v-if="applications.length <= 0" class="empty">
         {{ $t('empty') }}
       </p>
     </section>
-  </div>
+  </section>
 </template>
 
 <script>
 import ContentHeader from '@/components/organisms/content-header';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import Heading from '@/components/atoms/heading';
 import ModalItem from '@/components/molecules/modal-item';
-import ModalLabel from '@/components/molecules/modal-label';
+
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
-import ModalWrapper from '@/components/organisms/modal-wrapper';
+import BaseModal from '@/components/organisms/base-modal';
 import Highlight from '@/components/atoms/highlight';
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
     ContentHeader,
-    Btn,
+    BaseButton,
     Icon,
     Heading,
-    ModalWrapper,
+    BaseModal,
     ModalHeader,
     ModalItem,
     ModalFooter,
-    ModalLabel,
+
     Highlight
   },
   data() {
@@ -113,21 +112,6 @@ export default {
   padding-bottom: 50px;
   background-color: $white;
 }
-.list-item h1 {
-  cursor: pointer;
-  flex: 1;
-  font-size: $font-size;
-  font-weight: normal;
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  transition: all 0.3s ease;
-  &:active {
-    transform: scale(0.97);
-  }
-}
 .header {
   display: flex;
   border-bottom: 1px $border solid;
@@ -146,7 +130,7 @@ ul {
   padding: 0;
   list-style-position: inside;
 }
-.list-item {
+.application {
   height: 65px;
   display: flex;
   align-items: center;
@@ -154,6 +138,21 @@ ul {
   border-bottom: 1px $border solid;
   &:hover {
     background: $grey-fdfdfd;
+  }
+  h1 {
+    cursor: pointer;
+    flex: 1;
+    font-size: $font-size;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    &:active {
+      transform: scale(0.97);
+    }
   }
 }
 .empty {

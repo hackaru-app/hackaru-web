@@ -1,9 +1,8 @@
 import { Store } from 'vuex-mock-store';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import Applications from '@/pages/settings/applications';
 
 describe('Applications', () => {
-  let factory;
   let wrapper;
 
   const $store = new Store({
@@ -11,22 +10,10 @@ describe('Applications', () => {
       'applications/getApplications': [
         {
           id: 1,
-          name: 'Example1',
-          uid: 'uid',
+          name: 'Hackaru for Desktop',
+          uid: 2,
           redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-          scopes: ['projects:read', 'projects:write'],
-          confidential: true,
-          createdAt: '2019-01-22T07:06:53.159Z',
-          updatedAt: '2019-01-22T07:06:53.159Z',
-          ownerId: null,
-          ownerType: null
-        },
-        {
-          id: 2,
-          name: 'Example2',
-          uid: 'uid',
-          redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-          scopes: ['activities:read', 'activities:write'],
+          scopes: ['projects:read'],
           confidential: true,
           createdAt: '2019-01-22T07:06:53.159Z',
           updatedAt: '2019-01-22T07:06:53.159Z',
@@ -37,84 +24,70 @@ describe('Applications', () => {
     }
   });
 
+  const $modal = { show: jest.fn() };
+  const factory = () =>
+    shallowMount(Applications, {
+      mocks: { $store, $modal }
+    });
+
   beforeEach(() => {
     $store.reset();
-    factory = new Factory(Applications, {
-      mocks: { $store }
-    });
-  });
-
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
   });
 
   it('dispatch applications/getApplications', () => {
-    factory.shallow();
+    factory();
     expect($store.dispatch).toHaveBeenCalledWith(
       'applications/getApplications'
     );
   });
 
-  describe('when click delete button and confirm is true', () => {
+  describe('when click delete-button', () => {
     beforeEach(() => {
       global.confirm = () => true;
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper
         .findAll('.delete-button')
-        .at(1)
+        .at(0)
         .vm.$emit('click');
     });
 
     it('dispatch applications/deleteApplication', () => {
       expect($store.dispatch).toHaveBeenCalledWith(
         'applications/deleteApplication',
-        2
-      );
-    });
-
-    it('send ga event', () => {
-      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
-        'oauth',
-        'deleteApplication'
+        1
       );
     });
   });
 
-  describe('when click delete button and confirm is false', () => {
+  describe('when click delete-button but confirm is false', () => {
     beforeEach(() => {
       global.confirm = () => false;
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper
         .findAll('.delete-button')
-        .at(1)
+        .at(0)
         .vm.$emit('click');
     });
 
-    it('does not dispatch applications/deleteApplication', () => {
+    it('does not dispatch', () => {
       expect($store.dispatch).not.toHaveBeenCalledWith(
         'applications/deleteApplication',
-        2
+        1
       );
     });
   });
 
-  describe('when click list item', () => {
+  describe('when click application', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper
-        .findAll('.list-item > h1')
-        .at(1)
+        .findAll('.application h1')
+        .at(0)
         .trigger('click');
     });
 
-    it('render modal correctly', () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
     it('show modal', () => {
-      expect(factory.options.mocks.$modal.show).toHaveBeenCalledWith(
-        'application'
-      );
+      expect($modal.show).toHaveBeenCalledWith('application');
     });
   });
 });

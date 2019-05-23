@@ -4,10 +4,6 @@
       "update": "Update Activity",
       "start": "Start Timer"
     },
-    "ariaLabels": {
-      "delete": "Delete",
-      "share": "Share"
-    },
     "project": "Project",
     "description": "Description",
     "startedAt": "Started At",
@@ -25,10 +21,6 @@
     "titles": {
       "update": "記録を更新",
       "start": "計測を開始"
-    },
-    "ariaLabels": {
-      "delete": "削除",
-      "share": "シェアする"
     },
     "project": "プロジェクト",
     "description": "備考",

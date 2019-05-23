@@ -3,43 +3,35 @@
 <template>
   <section>
     <modal-header>
-      <btn
-        :aria-label="$t('ariaLabels.back')"
+      <base-button
         class="left-arrow-button has-icon"
         type="button"
         @click="pop"
       >
         <icon name="chevron-left-icon" class="is-large" />
-      </btn>
+      </base-button>
       <h1>{{ $t('title') }}</h1>
-      <btn
-        :aria-label="$t('ariaLabels.add')"
+      <base-button
         class="add-button has-icon"
         type="button"
         @click="createProject"
       >
         <icon name="plus-icon" />
-      </btn>
+      </base-button>
     </modal-header>
 
-    <div v-for="project in projects" :key="project.id" class="list-item">
+    <div v-for="project in projects" :key="project.id" class="item">
       <div class="project-content" @click="selectProject(project)">
         <project-name :name="project.name" :color="project.color" />
-        <icon
-          v-if="params.selected === project.id"
-          name="check-icon"
-          class="check-icon"
-        />
       </div>
-      <btn
+      <base-button
         v-if="project.id"
-        :aria-label="$t('ariaLabels.edit')"
         class="has-icon edit-button"
         type="button"
         @click="project.id && editProject(project)"
       >
         <icon name="edit-3-icon" class="is-primary" />
-      </btn>
+      </base-button>
     </div>
   </section>
 </template>
@@ -49,7 +41,7 @@ import ModalItem from '@/components/molecules/modal-item';
 import ModalHeader from '@/components/molecules/modal-header';
 import ProjectName from '@/components/molecules/project-name';
 import Icon from '@/components/atoms/icon';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 import ActivityEditor from '@/components/organisms/activity-editor';
 import ProjectEditor from '@/components/organisms/project-editor';
 
@@ -59,7 +51,7 @@ export default {
     ModalHeader,
     ModalItem,
     ProjectName,
-    Btn
+    BaseButton
   },
   props: {
     params: {
@@ -103,7 +95,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.list-item {
+.item {
   padding: 0 30px;
   height: 65px;
   display: flex;
@@ -125,11 +117,5 @@ export default {
   &:active {
     transform: scale(0.9);
   }
-}
-.check-icon {
-  color: $grey-999;
-}
-button.edit-button {
-  margin-left: 0;
 }
 </style>

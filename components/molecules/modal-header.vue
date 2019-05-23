@@ -17,7 +17,7 @@
   margin-bottom: 0;
   box-sizing: border-box;
   justify-content: space-between;
-  > h1 {
+  h1 {
     font-size: $font-size;
     position: absolute;
     left: 0;

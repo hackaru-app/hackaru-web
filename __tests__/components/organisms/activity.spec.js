@@ -1,45 +1,37 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import Activity from '@/components/organisms/activity';
 
 describe('Activity', () => {
-  let factory;
   let wrapper;
 
   MockDate.set('2019-01-31T01:23:45');
 
   const $store = new Store({});
-
-  beforeEach(() => {
-    $store.reset();
-    factory = new Factory(Activity, {
-      stubs: {
-        swipeMenu: {
-          template: '<div><slot /></div>',
-          methods: {
-            resetWithAnimation: jest.fn()
-          }
-        }
-      },
+  const $modal = { show: jest.fn() };
+  const factory = () =>
+    shallowMount(Activity, {
       propsData: {
         id: 1,
+        project: null,
         description: 'Review',
+        duration: 0,
         startedAt: '2019-01-01T01:23:45'
       },
       mocks: {
-        $store
+        $store,
+        $modal
       }
     });
+
+  beforeEach(() => {
+    $store.reset();
   });
 
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
-
-  describe('when click stop button', () => {
+  describe('when click stop-button', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find('.stop-button').vm.$emit('click');
     });
 
@@ -56,7 +48,7 @@ describe('Activity', () => {
 
   describe('when swipe right', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find({ ref: 'menu' }).vm.$emit('swipe-right');
     });
 
@@ -71,10 +63,10 @@ describe('Activity', () => {
     });
   });
 
-  describe('when swipe left and confirm is true', () => {
+  describe('when swipe left', () => {
     beforeEach(() => {
       global.confirm = () => true;
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find({ ref: 'menu' }).vm.$emit('swipe-left');
     });
 
@@ -86,40 +78,33 @@ describe('Activity', () => {
     });
   });
 
-  describe('when swipe left and confirm is false', () => {
+  describe('when swipe left but confirm is false', () => {
     beforeEach(() => {
       global.confirm = () => false;
-      wrapper = factory.shallow();
+      wrapper = factory();
+      wrapper.setMethods({ resetSwipeMenu: () => {} });
       wrapper.find({ ref: 'menu' }).vm.$emit('swipe-left');
     });
 
     it('does not dispatch activities/deleteActivity', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
     });
-
-    it('call resetWithAnimation', () => {
-      expect(
-        factory.options.stubs.swipeMenu.methods.resetWithAnimation
-      ).toHaveBeenCalled();
-    });
   });
 
   describe('when click content', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find('.activity-content').trigger('click');
     });
 
     it('show modal', () => {
-      expect(factory.options.mocks.$modal.show).toHaveBeenCalledWith(
-        'activity',
-        {
-          id: 1,
-          description: 'Review',
-          duration: 0,
-          startedAt: '2019-01-01T01:23:45'
-        }
-      );
+      expect($modal.show).toHaveBeenCalledWith('activity', {
+        id: 1,
+        description: 'Review',
+        project: undefined,
+        startedAt: '2019-01-01T01:23:45',
+        stoppedAt: undefined
+      });
     });
   });
 });

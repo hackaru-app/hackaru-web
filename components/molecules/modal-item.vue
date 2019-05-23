@@ -18,11 +18,20 @@
     display: flex;
     border: 0;
   }
+  label {
+    min-width: 100px;
+    justify-content: center;
+    color: $text;
+    flex-shrink: 0;
+  }
 }
 .modal-item.is-vertical {
   flex-direction: column;
   align-self: flex-start;
   align-items: stretch;
   padding: 25px 30px;
+  label {
+    padding-bottom: 25px;
+  }
 }
 </style>

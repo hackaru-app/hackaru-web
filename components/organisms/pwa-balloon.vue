@@ -6,16 +6,14 @@
     leave-active-class="fadeOutDown"
     appear
   >
-    <div v-if="visibility && isIOS() && !isStandalone()" class="balloon">
+    <div
+      v-if="visibility && $platform.isIOS() && !$platform.isPWA()"
+      class="pwa-balloon"
+    >
+      <base-button type="button" class="has-icon close-button" @click="close">
+        <icon name="x-icon" />
+      </base-button>
       <div class="content">
-        <btn
-          :aria-label="$t('ariaLabels.close')"
-          type="button"
-          class="has-icon close-button"
-          @click="close"
-        >
-          <icon name="x-icon" />
-        </btn>
         <section class="logo">
           <img src="@/assets/logo.svg" />
         </section>
@@ -32,12 +30,12 @@
 
 <script>
 import Icon from '@/components/atoms/icon';
-import Btn from '@/components/atoms/btn';
+import BaseButton from '@/components/atoms/base-button';
 
 export default {
   components: {
     Icon,
-    Btn
+    BaseButton
   },
   data() {
     return {
@@ -48,12 +46,6 @@ export default {
     this.visibility = !localStorage.hidePwaBallon;
   },
   methods: {
-    isIOS() {
-      return ['iPhone', 'iPad'].includes(navigator.platform);
-    },
-    isStandalone() {
-      return navigator.standalone;
-    },
     close() {
       this.visibility = false;
       localStorage.setItem('hidePwaBallon', true);
@@ -63,7 +55,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.balloon {
+.pwa-balloon {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -146,7 +138,7 @@ export default {
   }
 }
 @include mq(small) {
-  .balloon {
+  .pwa-balloon {
     top: auto;
     right: auto;
     bottom: 15px;

@@ -7,19 +7,18 @@
     </heading>
     <p>{{ $t('about') }}</p>
     <form @submit.prevent="sendPasswordResetEmail">
-      <text-field
+      <base-input
         v-model="email"
         :placeholder="$t('email')"
-        :aria-label="$t('email')"
         type="email"
-        class="has-border"
+        class="email has-border"
         autofocus
         required
       />
       <footer>
-        <btn type="submit" class="is-rounded is-primary">
+        <base-button type="submit" class="is-rounded is-primary">
           {{ $t('send') }}
-        </btn>
+        </base-button>
       </footer>
     </form>
   </section>
@@ -27,15 +26,15 @@
 
 <script>
 import Heading from '@/components/atoms/heading';
-import Btn from '@/components/atoms/btn';
-import TextField from '@/components/atoms/text-field';
+import BaseButton from '@/components/atoms/base-button';
+import BaseInput from '@/components/atoms/base-input';
 
 export default {
-  layout: 'no-menu',
+  layout: 'auth',
   components: {
     Heading,
-    TextField,
-    Btn
+    BaseInput,
+    BaseButton
   },
   head() {
     return {

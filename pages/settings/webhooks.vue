@@ -1,40 +1,40 @@
 <i18n src="@/assets/locales/pages/settings/webhooks.json" />
 
 <template>
-  <div class="settings">
-    <modal-wrapper name="webhook">
+  <section>
+    <base-modal name="webhook">
       <form @submit.prevent="addWebhook">
         <modal-header>
           <h1>{{ $t('modalTitle') }}</h1>
         </modal-header>
         <modal-item>
-          <modal-label>
+          <label>
             {{ $t('event') }}
-          </modal-label>
-          <select v-model="event">
+          </label>
+          <select v-model="event" class="event-select">
             <option v-for="event in events" :key="event" :value="event">
               {{ $t(`events.${event}`) }}
             </option>
           </select>
         </modal-item>
         <modal-item>
-          <modal-label>
+          <label>
             {{ $t('targetUrl') }}
-          </modal-label>
+          </label>
           <input
             v-model="targetUrl"
             type="url"
-            class="input inline"
+            class="target-url"
             placeholder="https://"
           />
         </modal-item>
         <modal-footer>
-          <btn type="submit" class="is-rounded is-primary">
+          <base-button type="submit" class="is-rounded is-primary">
             {{ $t('add') }}
-          </btn>
+          </base-button>
         </modal-footer>
       </form>
-    </modal-wrapper>
+    </base-modal>
 
     <section class="content">
       <header class="header">
@@ -42,44 +42,41 @@
           <icon name="anchor-icon" />
           {{ $t('title') }}
         </heading>
-        <btn
-          :aria-label="$t('ariaLabels.add')"
+        <base-button
           type="button"
           class="is-primary is-circle has-dropshadow add-button"
           @click="showModal"
         >
           <icon name="plus-icon" />
-        </btn>
+        </base-button>
       </header>
 
-      <div v-for="webhook in webhooks" :key="webhook.id" class="list-item">
+      <div v-for="webhook in webhooks" :key="webhook.id" class="webhook">
         <p>{{ $t(`events.${webhook.event}`) }}</p>
         <h1>{{ webhook.targetUrl }}</h1>
-        <btn
-          :aria-label="$t('ariaLabels.delete')"
+        <base-button
           type="button"
           class="delete-button has-icon"
           @click="deleteWebhook(webhook.id)"
         >
           <icon name="x-icon" class="is-danger" />
-        </btn>
+        </base-button>
       </div>
 
       <p v-if="webhooks.length <= 0" class="empty">
         {{ $t('empty') }}
       </p>
     </section>
-  </div>
+  </section>
 </template>
 
 <script>
 import Heading from '@/components/atoms/heading';
 import Icon from '@/components/atoms/icon';
 import ContentHeader from '@/components/organisms/content-header';
-import ModalWrapper from '@/components/organisms/modal-wrapper';
-import Btn from '@/components/atoms/btn';
+import BaseModal from '@/components/organisms/base-modal';
+import BaseButton from '@/components/atoms/base-button';
 import ModalItem from '@/components/molecules/modal-item';
-import ModalLabel from '@/components/molecules/modal-label';
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import { mapGetters } from 'vuex';
@@ -89,12 +86,11 @@ export default {
     Heading,
     ContentHeader,
     Icon,
-    ModalWrapper,
+    BaseModal,
     ModalItem,
-    ModalLabel,
     ModalHeader,
     ModalFooter,
-    Btn
+    BaseButton
   },
   data() {
     const events = [
@@ -117,8 +113,8 @@ export default {
       webhooks: 'webhooks/getWebhooks'
     })
   },
-  async mounted() {
-    await this.$store.dispatch('webhooks/getWebhooks');
+  mounted() {
+    this.$store.dispatch('webhooks/getWebhooks');
   },
   methods: {
     async addWebhook({ store }) {
@@ -148,7 +144,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-select {
+.event-select {
   flex: 1;
   box-sizing: border-box;
   border: 0;
@@ -179,15 +175,14 @@ select {
   padding-bottom: 50px;
   background-color: $white;
 }
-.list-item {
+.webhook {
   height: 65px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px $border solid;
 }
-.list-item h1 {
-  cursor: pointer;
+.webhook h1 {
   flex: 1;
   font-size: $font-size;
   font-weight: normal;
@@ -196,12 +191,8 @@ select {
   height: 100%;
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
-  &:active {
-    transform: scale(0.97);
-  }
 }
-.list-item p {
+.webhook p {
   margin-right: 20px;
   color: $text-light;
 }

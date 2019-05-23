@@ -1,134 +1,113 @@
 import { Store } from 'vuex-mock-store';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import { parse } from 'date-fns';
-import dragdrop from '@/plugins/directives/v-dragdrop';
 import CalendarActivity from '@/components/organisms/calendar-activity';
 
 describe('CalendarActivity', () => {
-  let factory;
   let wrapper;
 
   const $store = new Store({});
-  const pxPerMin = 40 / 60;
+  const $modal = { show: jest.fn() };
 
-  beforeEach(() => {
-    $store.reset();
-    factory = new Factory(CalendarActivity, {
-      provide: {
-        pxPerMin
+  const factory = () =>
+    shallowMount(CalendarActivity, {
+      mocks: {
+        $store,
+        $modal
       },
-      mocks: { $store },
       propsData: {
         id: 1,
         description: 'Create a database.',
         startedAt: '2019-01-01T01:23:45',
         stoppedAt: '2019-01-01T02:23:45',
         duration: 3600,
-        day: '2019-01-01',
-        getOverlapDay: () => {},
-        updateGuideLine: jest.fn()
+        day: '2019-01-01'
       }
     });
-    factory.options.localVue.directive('dragdrop', dragdrop);
+
+  beforeEach(() => {
+    $store.reset();
   });
 
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
+  it('has top position correctly', () => {
+    const top = 60 + 23; // 01:23
+    wrapper = factory();
+    expect(wrapper.find({ ref: 'dragger' }).props().top).toBe(top);
   });
 
-  it('has top correctly', () => {
-    const min = 60 + 23; // 01:23
-    expect(factory.shallow().vm.top).toBe(min * pxPerMin);
+  it('has height correctly', () => {
+    wrapper = factory();
+    expect(wrapper.find({ ref: 'dragger' }).attributes().style).toBe(
+      'height: 60px;'
+    );
   });
 
-  describe('when project is defined', () => {
+  describe('when added 20 min to startedAt', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({
-        project: {
-          id: 1,
-          name: 'Development',
-          color: '#ff0'
-        }
-      });
-    });
-
-    it('render correctly', () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-  });
-
-  describe('when change startedAt', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({ startedAt: '2019-01-01T02:43:00' });
+      wrapper = factory();
+      wrapper.setProps({ startedAt: '2019-01-01T01:43:00' });
     });
 
     it('update top', () => {
-      const min = 60 * 2 + 43; // 02:43
-      expect(wrapper.vm.top).toBe(min * pxPerMin);
+      const top = 60 + 43; // 01:43
+      expect(wrapper.find({ ref: 'dragger' }).props().top).toBe(top);
     });
   });
 
-  describe('when change duration', () => {
+  describe('when added 20 min to duration', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({ duration: 7200 });
+      wrapper = factory();
+      wrapper.setProps({ duration: 4800 });
     });
 
     it('update height', () => {
-      const min = 7200 / 60;
-      expect(wrapper.vm.height).toBe(min * pxPerMin);
+      expect(wrapper.find({ ref: 'dragger' }).attributes().style).toBe(
+        'height: 80px;'
+      );
     });
   });
 
   describe('when drag start', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ top: 50 });
+      wrapper = factory();
       wrapper.find({ ref: 'dragger' }).vm.$emit('start');
     });
 
-    it('set dragging', () => {
-      expect(wrapper.vm.dragging).toBe(true);
+    it('disable resizer', () => {
+      expect(wrapper.find('.resizer').props().enabled).toBe(false);
     });
 
-    it('update guide line', () => {
-      expect(wrapper.vm.updateGuideLine).toHaveBeenCalledWith(
-        50,
-        wrapper.element
-      );
+    it('emit dragging', () => {
+      expect(wrapper.emitted('dragging')[0][0]).toEqual({
+        el: wrapper.element,
+        guideRulerTop: 60 + 23
+      });
     });
   });
 
-  describe('when moving', () => {
+  describe('when drag move', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ top: 50 });
+      wrapper = factory();
       wrapper.find({ ref: 'dragger' }).vm.$emit('moving');
     });
 
-    it('update guide line', () => {
-      expect(wrapper.vm.updateGuideLine).toHaveBeenCalledWith(
-        50,
-        wrapper.element
-      );
+    it('emit dragging', () => {
+      expect(wrapper.emitted('dragging')[0][0]).toEqual({
+        el: wrapper.element,
+        guideRulerTop: 60 + 23
+      });
     });
   });
 
-  describe('when move end', () => {
+  describe('when drag end', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ top: 40 }); // 40px = 60min
-      wrapper.setProps({
-        duration: 7200, // 120min
-        getOverlapDay: () => parse('2019-01-02T00:00:00') // new day
-      });
+      wrapper = factory();
+      wrapper.setProps({ overlappedDay: '2019-01-02' });
       wrapper.find({ ref: 'dragger' }).vm.$emit('end');
     });
 
-    it('hide guide line', () => {
-      expect(wrapper.vm.updateGuideLine).toHaveBeenCalledWith();
+    it('emit drop', () => {
+      expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
     it('dispatch activities/updateActivity', () => {
@@ -136,38 +115,22 @@ describe('CalendarActivity', () => {
         'activities/updateActivity',
         {
           id: 1,
-          startedAt: parse('2019-01-02T01:23:00'), // + 60min
-          stoppedAt: parse('2019-01-02T03:23:00') // + 120min
+          startedAt: parse('2019-01-02T01:23:00'),
+          stoppedAt: parse('2019-01-02T02:23:00')
         }
-      );
-    });
-
-    it('send ga event', () => {
-      expect(factory.options.mocks.$ga.event).toHaveBeenCalledWith(
-        'activity',
-        'updateActivity'
       );
     });
   });
 
-  describe('when move end but getOverlapDay is undefined', () => {
+  describe('when drag end but does not has overlapped-day', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setProps({
-        duration: 3600,
-        getOverlapDay: () => undefined
-      });
+      wrapper = factory();
+      wrapper.setProps({ overlappedDay: undefined });
       wrapper.find({ ref: 'dragger' }).vm.$emit('end');
     });
 
-    it('hide guide line', () => {
-      expect(wrapper.vm.updateGuideLine).toHaveBeenCalledWith();
-    });
-
-    it('reset position', () => {
-      expect(wrapper.vm.left).toBe(0);
-      expect(wrapper.vm.top).toBe((60 + 23) * pxPerMin);
-      expect(wrapper.vm.height).toBe(40);
+    it('emit drop', () => {
+      expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
     it('does not dispatch activities/updateActivity', () => {
@@ -175,45 +138,43 @@ describe('CalendarActivity', () => {
     });
   });
 
-  describe('when move cancel', () => {
+  describe('when drag cancel', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
       wrapper.find({ ref: 'dragger' }).vm.$emit('cancel');
     });
 
-    it('hide guide line', () => {
-      expect(wrapper.vm.updateGuideLine).toHaveBeenCalledWith();
+    it('emit drop', () => {
+      expect(wrapper.emitted('drop')).toBeTruthy();
     });
   });
 
   describe('when resizing', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ top: 30, height: 30 });
-      wrapper.find({ ref: 'resizer' }).vm.$emit('resizing');
+      wrapper = factory();
+      wrapper.find('.resizer').vm.$emit('resizing');
     });
 
-    it('set resizeMoved', () => {
-      expect(wrapper.vm.resizeMoved).toBe(true);
+    it('disable dragger', () => {
+      expect(wrapper.find({ ref: 'dragger' }).props().enabled).toBe(false);
     });
 
-    it('update guide line', () => {
-      expect(wrapper.vm.updateGuideLine).toHaveBeenCalledWith(
-        60, // bottom (top + height)
-        wrapper.element
-      );
+    it('emit dragging', () => {
+      expect(wrapper.emitted('dragging')[0][0]).toEqual({
+        el: wrapper.element,
+        guideRulerTop: 60 + 23 + 60
+      });
     });
   });
 
   describe('when resize end', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ height: 40 }); // 40px = 60min
-      wrapper.find({ ref: 'resizer' }).vm.$emit('end');
+      wrapper = factory();
+      wrapper.find('.resizer').vm.$emit('end');
     });
 
-    it('hide guide line', () => {
-      expect(wrapper.vm.updateGuideLine).toHaveBeenCalledWith();
+    it('emit drop', () => {
+      expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
     it('dispatch activities/updateActivity', () => {
@@ -229,86 +190,60 @@ describe('CalendarActivity', () => {
 
   describe('when resize cancel', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find({ ref: 'resizer' }).vm.$emit('cancel');
+      wrapper = factory();
+      wrapper.find('.resizer').vm.$emit('cancel');
     });
 
-    it('hide guide line', () => {
-      expect(wrapper.vm.updateGuideLine).toHaveBeenCalledWith();
-    });
-
-    it('does not dispatch activities/updateActivity', () => {
-      expect($store.dispatch).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('when mousedown', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find('div').trigger('mousedown');
-    });
-
-    it('reset resizeMoved', () => {
-      expect(wrapper.vm.resizeMoved).toBeFalsy();
-    });
-
-    it('reset dragging', () => {
-      expect(wrapper.vm.dragging).toBeFalsy();
+    it('emit drop', () => {
+      expect(wrapper.emitted('drop')).toBeTruthy();
     });
   });
 
   describe('when mouseup', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find('div').trigger('mouseup');
+      wrapper = factory();
+      wrapper.find('.click-handler').trigger('mousedown');
+      wrapper.find('.click-handler').trigger('mouseup');
     });
 
     it('show modal', () => {
-      expect(factory.options.mocks.$modal.show).toHaveBeenCalledWith(
-        'activity',
-        {
-          id: 1,
-          description: 'Create a database.',
-          duration: 3600,
-          startedAt: '2019-01-01T01:23:45',
-          stoppedAt: '2019-01-01T02:23:45'
-        }
-      );
-    });
-
-    it('reset resizeMoved', () => {
-      expect(wrapper.vm.resizeMoved).toBeFalsy();
-    });
-
-    it('reset dragging', () => {
-      expect(wrapper.vm.dragging).toBeFalsy();
+      expect($modal.show).toHaveBeenCalledWith('activity', {
+        id: 1,
+        description: 'Create a database.',
+        duration: 3600,
+        startedAt: '2019-01-01T01:23:45',
+        stoppedAt: '2019-01-01T02:23:45'
+      });
     });
   });
 
-  describe('when mouseup but moved', () => {
+  describe('when mouseup but dragged', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
+      wrapper = factory();
+      wrapper.find('.click-handler').trigger('mousedown');
       wrapper.find({ ref: 'dragger' }).vm.$emit('start');
       wrapper.find({ ref: 'dragger' }).vm.$emit('moving');
       wrapper.find({ ref: 'dragger' }).vm.$emit('end');
-      wrapper.find('div').trigger('mouseup');
+      wrapper.find('.click-handler').trigger('mouseup');
     });
 
     it('does not show modal', () => {
-      expect(factory.options.mocks.$modal.show).not.toHaveBeenCalled();
+      expect($modal.show).not.toHaveBeenCalled();
     });
   });
 
   describe('when mouseup but resized', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find({ ref: 'resizer' }).vm.$emit('resizing');
-      wrapper.find({ ref: 'resizer' }).vm.$emit('end');
-      wrapper.find('div').trigger('mouseup');
+      wrapper = factory();
+      wrapper.find('.click-handler').trigger('mousedown');
+      wrapper.find('.resizer').vm.$emit('start');
+      wrapper.find('.resizer').vm.$emit('resizing');
+      wrapper.find('.resizer').vm.$emit('end');
+      wrapper.find('.click-handler').trigger('mouseup');
     });
 
     it('does not show modal', () => {
-      expect(factory.options.mocks.$modal.show).not.toHaveBeenCalled();
+      expect($modal.show).not.toHaveBeenCalled();
     });
   });
 });

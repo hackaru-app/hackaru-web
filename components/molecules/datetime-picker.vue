@@ -3,6 +3,7 @@
     <input
       ref="date"
       :value="date"
+      class="date"
       type="date"
       step="1"
       @input="update"
@@ -11,6 +12,7 @@
     <input
       ref="time"
       :value="time"
+      class="time"
       type="time"
       step="1"
       @input="update"
@@ -56,7 +58,7 @@ export default {
   display: flex;
   flex: 1;
 }
-input {
+.datetime-picker input {
   margin-right: 10px;
   border: 0;
   width: 100%;

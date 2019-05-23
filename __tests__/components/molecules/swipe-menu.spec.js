@@ -1,260 +1,141 @@
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import SwipeMenu from '@/components/molecules/swipe-menu';
-import dragdrop from '@/plugins/directives/v-dragdrop';
-import windowScroll from '@/plugins/directives/v-window-scroll';
 
 describe('SwipeMenu', () => {
-  let factory;
   let wrapper;
 
-  beforeEach(() => {
-    jest.useFakeTimers();
-    factory = new Factory(SwipeMenu, {
-      propsData: {
-        speed: 100,
-        minDistance: 120
-      },
+  jest.useFakeTimers();
+
+  const dragEvent = (x, y) => ({
+    e: { preventDefault: () => {} },
+    distance: { x, y }
+  });
+
+  const factory = () =>
+    shallowMount(SwipeMenu, {
       slots: {
-        left: '<span>Swipe Left</span>',
+        left: '<span>Left</span>',
         default: '<p>Content</p>',
-        right: '<span>Swipe Right</span>'
+        right: '<span>Right</span>'
       }
     });
-    factory.options.localVue.directive('dragdrop', dragdrop);
-    factory.options.localVue.directive('window-scroll', windowScroll);
-  });
 
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
-  });
-
-  describe('when drag', () => {
+  describe('when scroll window', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.drag();
+      wrapper = factory();
+      wrapper.find('.window-scroll').vm.$emit('scroll');
     });
 
-    it('reset left style', () => {
-      expect(wrapper.vm.leftStyle).toEqual({
-        transition: '',
-        width: 0
-      });
-    });
-
-    it('reset right style', () => {
-      expect(wrapper.vm.rightStyle).toEqual({
-        transition: '',
-        width: 0
-      });
+    it('disable swipe menu', () => {
+      expect(wrapper.find('.content').props().enabled).toBe(false);
     });
   });
 
-  describe('when left swiping', () => {
-    const preventDefault = jest.fn();
-
+  describe('when scroll window', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.dragging({
-        e: { preventDefault },
-        distance: {
-          x: -100,
-          y: 0
-        }
-      });
+      wrapper = factory();
+      wrapper.find('.window-scroll').vm.$emit('end');
     });
 
-    it('reset right style', () => {
-      expect(wrapper.vm.rightStyle).toEqual({
-        transition: '',
-        width: 0
-      });
+    it('enable swipe menu', () => {
+      expect(wrapper.find('.content').props().enabled).toBe(true);
+    });
+  });
+
+  describe('when swiping left', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.find('.content').vm.$emit('start');
+      wrapper.find('.content').vm.$emit('move', dragEvent(100, 0));
     });
 
     it('set left style', () => {
-      expect(wrapper.vm.leftStyle).toEqual({
-        transition: '',
-        width: '100px'
-      });
+      expect(wrapper.find('.left.menu').attributes().style).toBe(
+        'width: 100px;'
+      );
     });
 
-    it('prevent event', () => {
-      expect(preventDefault).toHaveBeenCalled();
+    it('unset right style', () => {
+      expect(wrapper.find('.right.menu').attributes().style).toBe(
+        'width: 0px;'
+      );
     });
   });
 
-  describe('when right swiping', () => {
-    const preventDefault = jest.fn();
-
+  describe('when swiping right', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.dragging({
-        e: { preventDefault },
-        distance: {
-          x: 100,
-          y: 0
-        }
-      });
+      wrapper = factory();
+      wrapper.find('.content').vm.$emit('start');
+      wrapper.find('.content').vm.$emit('move', dragEvent(-100, 0));
+    });
+
+    it('unset left style', () => {
+      expect(wrapper.find('.left.menu').attributes().style).toBe('width: 0px;');
     });
 
     it('set right style', () => {
-      expect(wrapper.vm.rightStyle).toEqual({
-        transition: '',
-        width: '100px'
-      });
-    });
-
-    it('reset left style', () => {
-      expect(wrapper.vm.leftStyle).toEqual({
-        transition: '',
-        width: 0
-      });
-    });
-
-    it('prevent event', () => {
-      expect(preventDefault).toHaveBeenCalled();
-    });
-  });
-
-  describe('when swiping but distance.x < 40', () => {
-    const preventDefault = jest.fn();
-
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.dragging({
-        e: { preventDefault },
-        distance: {
-          x: 39,
-          y: 0
-        }
-      });
-    });
-
-    it('does not set styles', () => {
-      expect(wrapper.vm.leftStyle).toEqual({
-        transition: '',
-        width: 0
-      });
-      expect(wrapper.vm.rightStyle).toEqual({
-        transition: '',
-        width: 0
-      });
-    });
-
-    it('does not prevent event', () => {
-      expect(preventDefault).not.toHaveBeenCalled();
+      expect(wrapper.find('.right.menu').attributes().style).toBe(
+        'width: 100px;'
+      );
     });
   });
 
   describe('when left swiped', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.drop({
-        distance: {
-          x: -500,
-          y: 0
-        }
-      });
+      wrapper = factory();
+      wrapper.find('.content').vm.$emit('start');
+      wrapper.find('.content').vm.$emit('move', dragEvent());
+      wrapper.find('.content').vm.$emit('end', dragEvent(200, 0));
+      jest.runOnlyPendingTimers();
     });
 
     it('set left style', () => {
-      expect(wrapper.vm.leftStyle).toEqual({
-        transition: 'width 100ms',
-        width: '100%'
-      });
+      expect(wrapper.find('.left.menu').attributes().style).toBe(
+        'width: 100%;'
+      );
     });
 
-    it('call swipeLeft delayed', () => {
-      jest.runOnlyPendingTimers();
+    it('emit swipe-left', () => {
       expect(wrapper.emitted('swipe-left')).toBeTruthy();
     });
   });
 
   describe('when right swiped', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.drop({
-        distance: {
-          x: 500,
-          y: 0
-        }
-      });
+      wrapper = factory();
+      wrapper.find('.content').vm.$emit('start');
+      wrapper.find('.content').vm.$emit('move', dragEvent());
+      wrapper.find('.content').vm.$emit('end', dragEvent(-200, 0));
+      jest.runOnlyPendingTimers();
     });
 
     it('set right style', () => {
-      expect(wrapper.vm.rightStyle).toEqual({
-        transition: 'width 100ms',
-        width: '100%'
-      });
+      expect(wrapper.find('.right.menu').attributes().style).toBe(
+        'width: 100%;'
+      );
     });
 
-    it('call swipeRight delayed', () => {
-      jest.runOnlyPendingTimers();
+    it('emit swipe-right', () => {
       expect(wrapper.emitted('swipe-right')).toBeTruthy();
     });
   });
 
-  describe('when swiped but distance.x < minDistance', () => {
+  describe('when swiped but distance is too low', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.drop({
-        distance: {
-          x: 119,
-          y: 0
-        }
-      });
+      wrapper = factory();
+      wrapper.find('.content').vm.$emit('start');
+      wrapper.find('.content').vm.$emit('move', dragEvent());
+      wrapper.find('.content').vm.$emit('end', dragEvent(3, 0));
     });
 
-    it('reset styles', () => {
-      expect(wrapper.vm.leftStyle).toEqual({
-        transition: 'width 100ms',
-        width: 0
-      });
-      expect(wrapper.vm.rightStyle).toEqual({
-        transition: 'width 100ms',
-        width: 0
-      });
-    });
-  });
-
-  describe('when swiped but scrolled', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.windowScroll();
-      wrapper.vm.drop({
-        distance: {
-          x: 100,
-          y: 0
-        }
-      });
+    it('unset left style', () => {
+      expect(wrapper.find('.left.menu').attributes().style).toBe('width: 0px;');
     });
 
-    it('reset styles', () => {
-      expect(wrapper.vm.leftStyle).toEqual({
-        transition: 'width 100ms',
-        width: 0
-      });
-      expect(wrapper.vm.rightStyle).toEqual({
-        transition: 'width 100ms',
-        width: 0
-      });
-    });
-  });
-
-  describe('when call resetWithAnimation', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.vm.resetWithAnimation();
-    });
-
-    it('reset styles', () => {
-      expect(wrapper.vm.leftStyle).toEqual({
-        transition: 'width 100ms',
-        width: 0
-      });
-      expect(wrapper.vm.rightStyle).toEqual({
-        transition: 'width 100ms',
-        width: 0
-      });
+    it('unset right style', () => {
+      expect(wrapper.find('.right.menu').attributes().style).toBe(
+        'width: 0px;'
+      );
     });
   });
 });

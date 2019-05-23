@@ -1,16 +1,10 @@
 {
   "en": {
     "title": "Timers",
-    "ariaLabels": {
-      "add": "Add activity"
-    },
     "empty": "Timers are not working."
   },
   "ja": {
     "title": "Timers",
-    "ariaLabels": {
-      "add": "計測を開始"
-    },
     "empty": "稼働中のタイマーはありません。"
   }
 }

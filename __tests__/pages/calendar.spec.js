@@ -1,163 +1,122 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
-import Factory from '@/__tests__/__setups__/factory';
+import { shallowMount } from '@vue/test-utils';
 import Calendar from '@/pages/calendar';
 import { parse } from 'date-fns';
 
 describe('Calendar', () => {
   let wrapper;
-  let factory;
 
   MockDate.set('2019-01-31T01:23:45');
 
   const $store = new Store({});
-
-  beforeEach(() => {
-    factory = new Factory(Calendar, {
-      stubs: {
-        'infinite-slider': {
-          template: '<div><slot /></div>',
-          methods: {
-            slideLeft: jest.fn(),
-            slideRight: jest.fn()
-          }
-        }
-      },
+  const factory = () =>
+    shallowMount(Calendar, {
       mocks: {
         $store
       }
     });
-  });
 
-  it('render correctly', () => {
-    expect(factory.shallow().element).toMatchSnapshot();
+  beforeEach(() => {
+    $store.reset();
   });
 
   it('dispatch activities/getActivities', () => {
-    factory.shallow();
+    wrapper = factory();
     expect($store.dispatch).toHaveBeenCalledWith('activities/getActivities', {
       start: parse('2019-01-27T00:00:00'),
       end: parse('2019-02-02T23:59:59.999')
     });
   });
 
-  describe('when period is daily', () => {
+  describe('when change period to day', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 0 });
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'day' });
     });
 
-    it('has days correctly', () => {
-      expect(wrapper.vm.days).toEqual(['2019-01-31']);
+    it('set days correctly', () => {
+      expect(wrapper.vm.days).toEqual([parse('2019-01-31T00:00:00')]);
     });
   });
 
-  describe('when period is weekly', () => {
+  describe('when change period to week', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 1 });
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'week' });
     });
 
-    it('has days correctly', () => {
+    it('set days correctly', () => {
       expect(wrapper.vm.days).toEqual([
-        '2019-01-27',
-        '2019-01-28',
-        '2019-01-29',
-        '2019-01-30',
-        '2019-01-31',
-        '2019-02-01',
-        '2019-02-02'
+        parse('2019-01-27T00:00:00'),
+        parse('2019-01-28T00:00:00'),
+        parse('2019-01-29T00:00:00'),
+        parse('2019-01-30T00:00:00'),
+        parse('2019-01-31T00:00:00'),
+        parse('2019-02-01T00:00:00'),
+        parse('2019-02-02T00:00:00')
       ]);
     });
   });
 
-  describe('when call togglePeriod', () => {
+  describe('when slide left', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 1 });
-      wrapper.vm.togglePeriod('2019-01-27');
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'week' });
+      wrapper.find('.loop-slider').vm.$emit('slide-left');
     });
 
-    it('toggle period', () => {
-      expect(wrapper.vm.index).toBe(0);
-    });
-
-    it('set date', () => {
-      expect(wrapper.vm.date).toEqual('2019-01-27');
+    it('set prev weeks', () => {
+      expect(wrapper.vm.days).toEqual([
+        parse('2019-01-20T00:00:00'),
+        parse('2019-01-21T00:00:00'),
+        parse('2019-01-22T00:00:00'),
+        parse('2019-01-23T00:00:00'),
+        parse('2019-01-24T00:00:00'),
+        parse('2019-01-25T00:00:00'),
+        parse('2019-01-26T00:00:00')
+      ]);
     });
   });
 
-  describe('when slide left and period is daily', () => {
+  describe('when slide right', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 0 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-left');
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'week' });
+      wrapper.find('.loop-slider').vm.$emit('slide-right');
     });
 
-    it('set previous date', () => {
-      expect(wrapper.vm.date).toEqual('2019-01-30');
+    it('set next weeks', () => {
+      expect(wrapper.vm.days).toEqual([
+        parse('2019-02-03T00:00:00'),
+        parse('2019-02-04T00:00:00'),
+        parse('2019-02-05T00:00:00'),
+        parse('2019-02-06T00:00:00'),
+        parse('2019-02-07T00:00:00'),
+        parse('2019-02-08T00:00:00'),
+        parse('2019-02-09T00:00:00')
+      ]);
     });
   });
 
-  describe('when slide left and period is weekly', () => {
+  describe('when click today-button', () => {
     beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 1 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-left');
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'week' });
+      wrapper.find('.loop-slider').vm.$emit('slide-right');
+      wrapper.find('.date-header').vm.$emit('today');
     });
 
-    it('set previous week', () => {
-      expect(wrapper.vm.date).toEqual('2019-01-20');
-    });
-  });
-
-  describe('when slide right and period is daily', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 0 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-right');
-    });
-
-    it('set next date', () => {
-      expect(wrapper.vm.date).toEqual('2019-02-01');
-    });
-  });
-
-  describe('when slide right and period is weekly', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.setData({ index: 1 });
-      wrapper.find({ ref: 'slider' }).vm.$emit('slide-right');
-    });
-
-    it('set next week', () => {
-      expect(wrapper.vm.date).toEqual('2019-02-03');
-    });
-  });
-
-  describe('when click left button', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find({ ref: 'header' }).vm.$emit('left');
-    });
-
-    it('call slideLeft', () => {
-      expect(
-        factory.options.stubs['infinite-slider'].methods.slideLeft
-      ).toHaveBeenCalled();
-    });
-  });
-
-  describe('when click right button', () => {
-    beforeEach(() => {
-      wrapper = factory.shallow();
-      wrapper.find({ ref: 'header' }).vm.$emit('right');
-    });
-
-    it('call slideRight', () => {
-      expect(
-        factory.options.stubs['infinite-slider'].methods.slideRight
-      ).toHaveBeenCalled();
+    it('set today weeks', () => {
+      expect(wrapper.vm.days).toEqual([
+        parse('2019-01-27T00:00:00'),
+        parse('2019-01-28T00:00:00'),
+        parse('2019-01-29T00:00:00'),
+        parse('2019-01-30T00:00:00'),
+        parse('2019-01-31T00:00:00'),
+        parse('2019-02-01T00:00:00'),
+        parse('2019-02-02T00:00:00')
+      ]);
     });
   });
 });
