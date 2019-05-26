@@ -1,4 +1,3 @@
-import union from 'lodash.union';
 import { activity } from '@/schemas';
 import {
   isWithinRange,
@@ -7,18 +6,10 @@ import {
   addMinutes
 } from 'date-fns';
 
-export const MERGE_ACTIVITIES = 'MERGE_ACTIVITIES';
-export const ADD_ACTIVITY = 'ADD_ACTIVITY';
-export const REMOVE_ACTIVITY = 'REMOVE_ACTIVITY';
-
-export const state = () => ({
-  items: []
-});
-
 export const actions = {
-  async getWorkingActivities({ commit, dispatch }) {
+  async fetchWorkings({ dispatch }) {
     try {
-      const res = await dispatch(
+      const { data } = await dispatch(
         'auth-api/request',
         {
           url: '/v1/activities',
@@ -28,20 +19,19 @@ export const actions = {
         },
         { root: true }
       );
-      const data = await dispatch(
-        'entities/normalize',
-        { json: res.data, schema: [activity] },
+      dispatch(
+        'entities/merge',
+        { json: data, schema: [activity] },
         { root: true }
       );
-      commit(MERGE_ACTIVITIES, data.result);
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
   },
 
-  async getActivities({ commit, dispatch }, payload) {
+  async fetchByRange({ dispatch }, payload) {
     try {
-      const res = await dispatch(
+      const { data } = await dispatch(
         'auth-api/request',
         {
           url: '/v1/activities',
@@ -52,38 +42,34 @@ export const actions = {
         },
         { root: true }
       );
-      const data = await dispatch(
-        'entities/normalize',
-        { json: res.data, schema: [activity] },
+      dispatch(
+        'entities/merge',
+        { json: data, schema: [activity] },
         { root: true }
       );
-      commit(MERGE_ACTIVITIES, data.result);
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
   },
 
-  async addActivity({ commit, dispatch }, payload) {
+  async add({ dispatch }, payload) {
     try {
-      const res = await dispatch(
+      const { data } = await dispatch(
         'auth-api/request',
         {
           url: '/v1/activities',
           method: 'post',
           data: {
-            activity: {
-              ...payload
-            }
+            activity: payload
           }
         },
         { root: true }
       );
-      const data = await dispatch(
-        'entities/normalize',
-        { json: res.data, schema: activity },
+      dispatch(
+        'entities/merge',
+        { json: data, schema: activity },
         { root: true }
       );
-      commit(ADD_ACTIVITY, data.result);
       return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -91,9 +77,9 @@ export const actions = {
     }
   },
 
-  async deleteActivity({ commit, dispatch }, id) {
+  async delete({ dispatch }, id) {
     try {
-      commit(REMOVE_ACTIVITY, id);
+      dispatch('entities/delete', { name: 'activity', id }, { root: true });
       await dispatch(
         'auth-api/request',
         {
@@ -107,13 +93,12 @@ export const actions = {
     }
   },
 
-  async updateActivity({ commit, dispatch }, payload) {
-    const { id } = payload;
+  async update({ dispatch }, payload) {
     try {
-      const res = await dispatch(
+      const { data } = await dispatch(
         'auth-api/request',
         {
-          url: `/v1/activities/${id}`,
+          url: `/v1/activities/${payload.id}`,
           method: 'put',
           data: {
             activity: payload
@@ -121,9 +106,9 @@ export const actions = {
         },
         { root: true }
       );
-      await dispatch(
-        'entities/normalize',
-        { json: res.data, schema: activity },
+      dispatch(
+        'entities/merge',
+        { json: data, schema: activity },
         { root: true }
       );
       return true;
@@ -134,27 +119,15 @@ export const actions = {
   }
 };
 
-export const mutations = {
-  [MERGE_ACTIVITIES](state, payload) {
-    state.items = union(state.items, payload);
-  },
-  [ADD_ACTIVITY](state, payload) {
-    state.items = [payload, ...state.items];
-  },
-  [REMOVE_ACTIVITY](state, payload) {
-    state.items = state.items.filter(id => id !== payload);
-  }
-};
-
 export const getters = {
-  getActivities(state, getters, rootState, rootGetters) {
-    return rootGetters['entities/getDenormalized'](state.items, [activity]);
+  all(state, getters, rootState, rootGetters) {
+    return rootGetters['entities/getEntities']('activities', [activity]);
   },
-  getWorkingActivities(state, getters) {
-    return getters.getActivities.filter(({ stoppedAt }) => !stoppedAt);
+  workings(state, getters) {
+    return getters.all.filter(({ stoppedAt }) => !stoppedAt);
   },
-  getArchivesByDay: (state, getters) => date => {
-    return getters.getActivities.filter(
+  getByDay: (state, getters) => date => {
+    return getters.all.filter(
       ({ stoppedAt, startedAt }) =>
         stoppedAt &&
         isWithinRange(
@@ -165,26 +138,27 @@ export const getters = {
     );
   },
   getCalendar: (state, getters) => (date, toMin) => {
-    const packs = [];
+    const rows = [];
+    const addNewRow = () => rows.push([]) - 1;
 
-    const isDuplicate = (a, b) => {
-      return areRangesOverlapping(
-        a.startedAt,
-        addMinutes(a.startedAt, Math.max(toMin(20), a.duration / 60)),
-        b.startedAt,
-        addMinutes(b.startedAt, Math.max(toMin(20), b.duration / 60))
-      );
-    };
-    const getDuplicatePackIndex = activity => {
-      const index = packs.findIndex(pack =>
-        pack.find(item => isDuplicate(item, activity))
-      );
-      if (index > -1) return index;
-      return packs.push([]) - 1; // create new pack
-    };
-    getters.getArchivesByDay(date).forEach(activity => {
-      packs[getDuplicatePackIndex(activity)].push(activity);
+    getters.getByDay(date).forEach(activity => {
+      const overlappedIndex = findOverppedRow(rows, activity, toMin);
+      const index = overlappedIndex > -1 ? overlappedIndex : addNewRow();
+      rows[index].push(activity);
     });
-    return packs;
+    return rows;
   }
 };
+
+function isOverlapped(a, b, toMin) {
+  return areRangesOverlapping(
+    a.startedAt,
+    addMinutes(a.startedAt, Math.max(toMin(20), a.duration / 60)),
+    b.startedAt,
+    addMinutes(b.startedAt, Math.max(toMin(20), b.duration / 60))
+  );
+}
+
+function findOverppedRow(rows, b, toMin) {
+  return rows.findIndex(row => row.find(a => isOverlapped(a, b, toMin)));
+}

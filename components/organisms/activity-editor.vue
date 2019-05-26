@@ -129,7 +129,7 @@ export default {
   },
   methods: {
     async saveActivity() {
-      const action = this.id ? 'updateActivity' : 'addActivity';
+      const action = this.id ? 'update' : 'add';
       const success = await this.$store.dispatch(`activities/${action}`, {
         id: this.id,
         projectId: this.project.id,
@@ -148,7 +148,7 @@ export default {
     },
     deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      this.$store.dispatch('activities/deleteActivity', this.id);
+      this.$store.dispatch('activities/delete', this.id);
       this.$toast.success(this.$t('deleted'));
       this.$ga.event('activity', 'deleteActivity');
       this.$modal.hide('activity');

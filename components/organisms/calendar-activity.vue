@@ -203,7 +203,7 @@ export default {
       });
     },
     async update(payload) {
-      await this.$store.dispatch('activities/updateActivity', {
+      await this.$store.dispatch('activities/update', {
         id: this.id,
         ...payload
       });

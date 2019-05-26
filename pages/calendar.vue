@@ -126,7 +126,7 @@ export default {
   },
   methods: {
     async fetchActivities() {
-      await this.$store.dispatch('activities/getActivities', {
+      await this.$store.dispatch('activities/fetchByRange', {
         start: this.period.startOf(this.date),
         end: this.period.endOf(this.date)
       });

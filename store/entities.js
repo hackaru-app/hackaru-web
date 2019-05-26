@@ -1,28 +1,37 @@
 import merge from 'lodash.merge';
+import omit from 'lodash.omit';
+
 import { normalize, denormalize } from 'normalizr';
 
-export const MERGE_ENTITIES = 'MERGE_ENTITIES';
-
 export const state = () => ({
-  data: {}
+  entities: {}
 });
 
 export const actions = {
-  async normalize({ commit }, { json, schema }) {
-    const data = normalize(json, schema);
-    commit(MERGE_ENTITIES, data.entities);
-    return data;
+  merge({ commit }, { json, schema }) {
+    const { entities } = normalize(json, schema);
+    commit('MERGE_ENTITIES', entities);
+  },
+  delete({ commit }, { name, id }) {
+    commit('DELETE_ENTITY', { name, id });
   }
 };
 
 export const mutations = {
-  [MERGE_ENTITIES](state, payload) {
-    state.data = { ...merge(state.data, payload) };
+  MERGE_ENTITIES(state, payload) {
+    state.entities = { ...merge(state.entities, payload) };
+  },
+  DELETE_ENTITY(state, { name, id }) {
+    state.entities = {
+      ...state.entities,
+      [name]: omit(state.entities[name], id)
+    };
   }
 };
 
 export const getters = {
-  getDenormalized: (state, getter) => (result, schema) => {
-    return denormalize(result, schema, state.data);
+  getEntities: state => (name, schema) => {
+    const ids = Object.keys(state.entities[name] || {});
+    return denormalize(ids, schema, state.entities);
   }
 };
