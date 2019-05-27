@@ -6,7 +6,7 @@ const MERGE_ENTITIES = 'MERGE_ENTITIES';
 const DELETE_ENTITY = 'DELETE_ENTITY';
 
 export const state = () => ({
-  entities: {}
+  data: {}
 });
 
 export const actions = {
@@ -21,19 +21,19 @@ export const actions = {
 
 export const mutations = {
   [MERGE_ENTITIES](state, payload) {
-    state.entities = { ...merge(state.entities, payload) };
+    state.data = { ...merge(state.data, payload) };
   },
   [DELETE_ENTITY](state, { name, id }) {
-    state.entities = {
-      ...state.entities,
-      [name]: omit(state.entities[name], id)
+    state.data = {
+      ...state.data,
+      [name]: omit(state.data[name], id)
     };
   }
 };
 
 export const getters = {
   getEntities: state => (name, schema) => {
-    const ids = Object.keys(state.entities[name] || {});
-    return denormalize(ids, schema, state.entities);
+    const ids = Object.keys(state.data[name] || {});
+    return denormalize(ids, schema, state.data);
   }
 };

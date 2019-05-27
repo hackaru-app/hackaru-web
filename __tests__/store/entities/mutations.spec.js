@@ -31,29 +31,29 @@ describe('Mutations', () => {
     });
 
     it('overwrite existing array', () => {
-      expect(state.entities.users[1].tags).toEqual(['apple']);
+      expect(state.data.users[1].tags).toEqual(['apple']);
     });
 
     it('overwrite existing property', () => {
-      expect(state.entities.users[1].name).toBe('John');
+      expect(state.data.users[1].name).toBe('John');
     });
 
     it('add new property', () => {
-      expect(state.entities.users[1].age).toBe(20);
+      expect(state.data.users[1].age).toBe(20);
     });
 
     it('add new user', () => {
-      expect(state.entities.users[2]).toEqual({ id: 2, name: 'Bob' });
+      expect(state.data.users[2]).toEqual({ id: 2, name: 'Bob' });
     });
 
     it('is not shallow copy', () => {
-      expect(entities).not.toBe(state.entities);
+      expect(entities).not.toBe(state.data);
     });
   });
 
   describe('when commit DELETE_ENTITY', () => {
     const state = {
-      entities: {
+      data: {
         users: {
           1: {
             id: 1,
@@ -69,7 +69,7 @@ describe('Mutations', () => {
     });
 
     it('remove entity', () => {
-      expect(state.entities.users).toEqual({});
+      expect(state.data.users).toEqual({});
     });
   });
 });

@@ -10,7 +10,7 @@ describe('Getters', () => {
 
   describe('when call getEntities', () => {
     const state = {
-      entities: {
+      data: {
         users: {
           1: {
             comment: 2,
@@ -47,7 +47,7 @@ describe('Getters', () => {
 
   describe('when call getEntities but entities is empty', () => {
     const state = {
-      entities: {}
+      data: {}
     };
 
     beforeEach(() => {
