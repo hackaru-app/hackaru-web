@@ -2,10 +2,8 @@
 
 <template>
   <header :class="['calendar-day-header', { today: isToday(day) }]">
-    <button @click="click">
-      <h1>{{ format(day, 'DD') }}</h1>
-      <small>{{ $t(`weeks[${format(day, 'd')}]`) }}</small>
-    </button>
+    <h1>{{ format(day, 'DD') }}</h1>
+    <small>{{ $t(`weeks[${format(day, 'd')}]`) }}</small>
   </header>
 </template>
 
@@ -24,11 +22,6 @@ export default {
       format,
       isToday
     };
-  },
-  methods: {
-    click() {
-      this.$emit('click', this.day);
-    }
   }
 };
 </script>
@@ -44,20 +37,6 @@ export default {
   height: 65px;
   box-sizing: border-box;
   border-left: 1px $border solid;
-}
-.calendar-day-header button {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  &:active {
-    transform: scale(0.9);
-  }
 }
 .calendar-day-header h1 {
   display: flex;
