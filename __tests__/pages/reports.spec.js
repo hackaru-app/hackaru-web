@@ -11,8 +11,8 @@ describe('Reports', () => {
 
   const $store = new Store({
     getters: {
-      'reports/getChartData': () => {},
-      'reports/getSummary': () => []
+      'reports/chartData': () => {},
+      'reports/summary': () => []
     }
   });
 
@@ -33,8 +33,8 @@ describe('Reports', () => {
       wrapper.setData({ currentPeriod: 'day' });
     });
 
-    it('dispatch reports/getReports', () => {
-      expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
+    it('dispatch reports/fetch', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         start: parse('2019-01-31T00:00:00'),
         end: parse('2019-01-31T23:59:59.999'),
         period: 'hour'
@@ -48,8 +48,8 @@ describe('Reports', () => {
       wrapper.setData({ currentPeriod: 'week' });
     });
 
-    it('dispatch reports/getReports', () => {
-      expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
+    it('dispatch reports/fetch', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         start: parse('2019-01-27T00:00:00'),
         end: parse('2019-02-02T23:59:59.999'),
         period: 'day'
@@ -63,8 +63,8 @@ describe('Reports', () => {
       wrapper.setData({ currentPeriod: 'month' });
     });
 
-    it('dispatch reports/getReports', () => {
-      expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
+    it('dispatch reports/fetch', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         start: parse('2019-01-01T00:00:00'),
         end: parse('2019-01-31T23:59:59.999'),
         period: 'day'
@@ -78,8 +78,8 @@ describe('Reports', () => {
       wrapper.setData({ currentPeriod: 'year' });
     });
 
-    it('dispatch reports/getReports', () => {
-      expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
+    it('dispatch reports/fetch', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         start: parse('2019-01-01T00:00:00'),
         end: parse('2019-12-31T23:59:59.999'),
         period: 'month'
@@ -95,7 +95,7 @@ describe('Reports', () => {
     });
 
     it('set prev weeks', () => {
-      expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         start: parse('2019-01-20T00:00:00'),
         end: parse('2019-01-26T23:59:59.999'),
         period: 'day'
@@ -111,7 +111,7 @@ describe('Reports', () => {
     });
 
     it('set next weeks', () => {
-      expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         start: parse('2019-02-03T00:00:00'),
         end: parse('2019-02-09T23:59:59.999'),
         period: 'day'
@@ -128,7 +128,7 @@ describe('Reports', () => {
     });
 
     it('set today weeks', () => {
-      expect($store.dispatch).toHaveBeenLastCalledWith('reports/getReports', {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         start: parse('2019-01-27T00:00:00'),
         end: parse('2019-02-02T23:59:59.999'),
         period: 'day'

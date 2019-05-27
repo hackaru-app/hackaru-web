@@ -2,42 +2,15 @@ import { actions } from '@/store/applications';
 import { application } from '@/schemas';
 
 describe('Actions', () => {
-  let params;
+  describe('when dispatch fetch', () => {
+    const dispatch = jest.fn(() => ({ data: {} }));
 
-  beforeEach(() => {
-    params = {
-      commit: jest.fn(),
-      dispatch: jest.fn()
-    };
-  });
-
-  describe('when dispatch getApplications', () => {
     beforeEach(() => {
-      params.dispatch
-        .mockReturnValueOnce({
-          data: [
-            {
-              id: 1,
-              name: 'Example1',
-              uid: 'uid',
-              redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-              scopes: ['projects:read', 'projects:write'],
-              confidential: true,
-              createdAt: '2019-01-22T07:06:53.159Z',
-              updatedAt: '2019-01-22T07:06:53.159Z',
-              ownerId: null,
-              ownerType: null
-            }
-          ]
-        })
-        .mockReturnValueOnce({
-          result: [1]
-        });
-      actions.getApplications(params);
+      actions.fetch({ dispatch });
     });
 
     it('dispatch auth-api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
           url: '/v1/oauth/authorized_applications'
@@ -46,99 +19,40 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch entities/normalize', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'entities/normalize',
+    it('dispatch entities/merge', () => {
+      expect(dispatch).toHaveBeenCalledWith(
+        'entities/merge',
         {
-          json: [
-            {
-              id: 1,
-              name: 'Example1',
-              uid: 'uid',
-              redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-              scopes: ['projects:read', 'projects:write'],
-              confidential: true,
-              createdAt: '2019-01-22T07:06:53.159Z',
-              updatedAt: '2019-01-22T07:06:53.159Z',
-              ownerId: null,
-              ownerType: null
-            }
-          ],
+          json: {},
           schema: [application]
         },
         { root: true }
       );
     });
-
-    it('commit MERGE_APPLICATIONS', () => {
-      expect(params.commit).toHaveBeenCalledWith('MERGE_APPLICATIONS', [1]);
-    });
   });
 
-  describe('when dispatch getApplications but throw error', () => {
+  describe('when dispatch delete', () => {
+    const dispatch = jest.fn();
+
     beforeEach(() => {
-      params.dispatch.mockRejectedValueOnce(new Error('error'));
-      actions.getApplications(params, 1);
+      actions.delete({ dispatch }, 1);
     });
 
-    it('dispatch toast/error', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        new Error('error'),
+    it('dispatch entities/delete', () => {
+      expect(dispatch).toHaveBeenCalledWith(
+        'entities/delete',
+        { name: 'applications', id: 1 },
         { root: true }
       );
     });
-  });
-
-  describe('when dispatch deleteApplication', () => {
-    beforeEach(() => {
-      params.dispatch.mockReturnValueOnce({
-        data: {
-          id: 1,
-          name: 'Example1',
-          uid: 'uid',
-          redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-          scopes: ['projects:read', 'projects:write'],
-          confidential: true,
-          createdAt: '2019-01-22T07:06:53.159Z',
-          updatedAt: '2019-01-22T07:06:53.159Z',
-          ownerId: null,
-          ownerType: null
-        }
-      });
-      actions.deleteApplication(params, 1);
-    });
 
     it('dispatch auth-api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
           url: '/v1/oauth/authorized_applications/1',
           method: 'delete'
         },
-        { root: true }
-      );
-    });
-
-    it('commit REMOVE_APPLICATION', () => {
-      expect(params.commit).toHaveBeenCalledWith('REMOVE_APPLICATION', 1);
-    });
-  });
-
-  describe('when dispatch deleteApplication but throw error', () => {
-    beforeEach(() => {
-      params.dispatch.mockRejectedValueOnce(new Error('error'));
-      actions.deleteApplication(params, 1);
-    });
-
-    it('commit REMOVE_APPLICATION', () => {
-      expect(params.commit).toHaveBeenCalledWith('REMOVE_APPLICATION', 1);
-    });
-
-    it('dispatch toast/error', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        new Error('error'),
         { root: true }
       );
     });

@@ -4,7 +4,7 @@ import { parse } from 'date-fns';
 
 describe('Actions', () => {
   describe('when dispatch fetchWorkings', () => {
-    const dispatch = jest.fn().mockReturnValue({ data: {} });
+    const dispatch = jest.fn(() => ({ data: {} }));
 
     beforeEach(() => {
       actions.fetchWorkings({ dispatch });
@@ -36,7 +36,7 @@ describe('Actions', () => {
   });
 
   describe('when dispatch fetchByRange', () => {
-    const dispatch = jest.fn().mockReturnValue({ data: {} });
+    const dispatch = jest.fn(() => ({ data: {} }));
 
     beforeEach(() => {
       actions.fetchByRange(
@@ -75,7 +75,7 @@ describe('Actions', () => {
   });
 
   describe('when dispatch add', () => {
-    const dispatch = jest.fn().mockReturnValue({ data: {} });
+    const dispatch = jest.fn(() => ({ data: {} }));
 
     beforeEach(() => {
       actions.add({ dispatch }, {});
@@ -117,7 +117,7 @@ describe('Actions', () => {
     it('dispatch entities/delete', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'entities/delete',
-        { name: 'activity', id: 1 },
+        { name: 'activities', id: 1 },
         { root: true }
       );
     });
@@ -135,7 +135,7 @@ describe('Actions', () => {
   });
 
   describe('when dispatch update', () => {
-    const dispatch = jest.fn().mockReturnValue({ data: {} });
+    const dispatch = jest.fn(() => ({ data: {} }));
 
     beforeEach(() => {
       actions.update({ dispatch }, { id: 1 });

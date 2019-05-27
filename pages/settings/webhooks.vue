@@ -110,15 +110,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-      webhooks: 'webhooks/getWebhooks'
+      webhooks: 'webhooks/all'
     })
   },
   mounted() {
-    this.$store.dispatch('webhooks/getWebhooks');
+    this.$store.dispatch('webhooks/fetch');
   },
   methods: {
     async addWebhook({ store }) {
-      const success = await this.$store.dispatch('webhooks/addWebhook', {
+      const success = await this.$store.dispatch('webhooks/add', {
         event: this.event,
         targetUrl: this.targetUrl
       });
@@ -130,7 +130,7 @@ export default {
     },
     deleteWebhook(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      this.$store.dispatch('webhooks/deleteWebhook', id);
+      this.$store.dispatch('webhooks/delete', id);
       this.$ga.event('webhook', 'deleteWebhook');
       this.$toast.success(this.$t('deleted'));
     },

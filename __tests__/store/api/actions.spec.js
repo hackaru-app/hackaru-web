@@ -1,32 +1,25 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import snakecaseKeys from 'snakecase-keys';
 import { actions } from '@/store/api';
 
 describe('Actions', () => {
-  process.env.HACKARU_API_URL = 'http://localhost';
+  let result;
 
   const mock = new MockAdapter(axios);
-  let result;
 
   beforeEach(() => {
     mock.reset();
-
-    actions.$env = {
-      HACKARU_API_URL: 'http://localhost'
-    };
-    actions.app = {
-      i18n: { locale: 'en' }
-    };
+    actions.$env = { HACKARU_API_URL: 'http://localhost' };
+    actions.app = { i18n: { locale: 'en' } };
   });
 
   describe('when dispatch request', () => {
     beforeEach(async () => {
       mock.onPost('http://localhost/example').replyOnce(200);
-      result = await actions.request(
+      await actions.request(
         {},
         {
-          url: 'http://localhost/example',
+          url: '/example',
           method: 'post',
           headers: { 'X-Foo': 'bar' },
           params: {
@@ -39,19 +32,15 @@ describe('Actions', () => {
       );
     });
 
-    it('convert request params to snakecase', () => {
-      expect(mock.history.post[0].params).toEqual(
-        snakecaseKeys({ fooBar: 'baz' })
-      );
+    it('convert params to snakecase', () => {
+      expect(mock.history.post[0].params).toEqual({ foo_bar: 'baz' });
     });
 
-    it('convert request data to snakecase', () => {
-      expect(JSON.parse(mock.history.post[0].data)).toEqual(
-        snakecaseKeys({ barBaz: 'baz' })
-      );
+    it('convert data to snakecase', () => {
+      expect(JSON.parse(mock.history.post[0].data)).toEqual({ bar_baz: 'baz' });
     });
 
-    it('send request headers', () => {
+    it('send headers', () => {
       expect(mock.history.post[0].headers['X-Foo']).toEqual('bar');
     });
 
@@ -60,17 +49,11 @@ describe('Actions', () => {
     });
   });
 
-  describe('when response data is snakecase', () => {
+  describe('when response data', () => {
     beforeEach(async () => {
       mock
         .onGet('http://localhost/example')
-        .reply(
-          200,
-          snakecaseKeys(
-            { fooBar: 'baz', foo: { barBaz: 'foo' } },
-            { deep: true }
-          )
-        );
+        .reply(200, { foo_bar: 'baz', foo: { bar_baz: 'foo' } });
       result = await actions.request({}, { url: '/example' });
     });
 

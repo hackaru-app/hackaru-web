@@ -64,7 +64,7 @@ export default {
     }
   },
   mounted() {
-    // this.$store.dispatch('projects/getProjects');
+    this.$store.dispatch('projects/fetch');
   },
   methods: {
     updateDuration() {

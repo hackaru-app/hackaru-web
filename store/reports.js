@@ -10,7 +10,7 @@ export const state = () => ({
 });
 
 export const actions = {
-  async getReports({ commit, dispatch }, payload) {
+  async fetch({ commit, dispatch }, payload) {
     try {
       const res = await dispatch(
         'auth-api/request',
@@ -45,10 +45,10 @@ export const mutations = {
 };
 
 export const getters = {
-  getProjects: (state, getter) => {
+  projects: (state, getter) => {
     return state.projects;
   },
-  getSummary: (state, getter) => {
+  summary: (state, getter) => {
     return state.summary.reduce((acc, cur) => {
       return {
         ...acc,
@@ -56,7 +56,7 @@ export const getters = {
       };
     }, {});
   },
-  getBarChartLabels: (state, getter) => {
+  barChartLabels: (state, getter) => {
     const labelFormat = {
       hour: 'H:00',
       day: 'DD',
@@ -64,9 +64,9 @@ export const getters = {
     }[state.period];
     return uniq(state.summary.map(({ date }) => format(date, labelFormat)));
   },
-  getBarChartData: (state, getters) => {
+  barChartData: (state, getters) => {
     return {
-      labels: getters.getBarChartLabels,
+      labels: getters.barChartLabels,
       datasets: state.projects.map(project => ({
         label: project.name,
         backgroundColor: project.color,
@@ -76,13 +76,13 @@ export const getters = {
       }))
     };
   },
-  getDoughnutChartData: (state, getters) => {
+  doughnutChartData: (state, getters) => {
     const projects = state.projects;
     return {
       labels: projects.map(project => project.name),
       datasets: [
         {
-          data: projects.map(project => getters.getSummary[project.id] || 0),
+          data: projects.map(project => getters.summary[project.id] || 0),
           backgroundColor: projects.map(project => project.color)
         }
       ]

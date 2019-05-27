@@ -1,38 +1,37 @@
 import { actions } from '@/store/auth';
 
 describe('Actions', () => {
-  let params;
   let result;
 
   beforeEach(() => {
     localStorage.clear();
-    params = {
-      state: {},
-      commit: jest.fn(),
-      dispatch: jest.fn()
-    };
   });
 
   describe('when dispatch fetchRefreshToken', () => {
+    const commit = jest.fn();
+    const dispatch = jest.fn(() => ({
+      headers: {
+        'x-refresh-token': 'refreshToken',
+        'x-client-id': 'clientId'
+      },
+      data: {
+        id: 1,
+        email: 'example@example.com'
+      }
+    }));
+
     beforeEach(async () => {
-      params.dispatch.mockReturnValueOnce({
-        headers: {
-          'x-refresh-token': 'refreshToken',
-          'x-client-id': 'clientId'
-        },
-        data: {
-          id: 1,
-          email: 'example@example.com'
+      result = await actions.fetchRefreshToken(
+        { commit, dispatch },
+        {
+          email: 'example@example.com',
+          password: 'password'
         }
-      });
-      result = await actions.fetchRefreshToken(params, {
-        email: 'example@example.com',
-        password: 'password'
-      });
+      );
     });
 
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
           url: '/v1/auth/refresh_tokens',
@@ -49,14 +48,14 @@ describe('Actions', () => {
     });
 
     it('commit SET_REFRESH_TOKEN', () => {
-      expect(params.commit).toHaveBeenCalledWith('SET_REFRESH_TOKEN', {
+      expect(commit).toHaveBeenCalledWith('SET_REFRESH_TOKEN', {
         refreshToken: 'refreshToken',
         clientId: 'clientId'
       });
     });
 
     it('commit SET_USER', () => {
-      expect(params.commit).toHaveBeenCalledWith('SET_USER', {
+      expect(commit).toHaveBeenCalledWith('SET_USER', {
         id: 1,
         email: 'example@example.com'
       });
@@ -67,54 +66,30 @@ describe('Actions', () => {
     });
   });
 
-  describe('when dispatch fetchRefreshToken but throw error', () => {
-    beforeEach(async () => {
-      params.dispatch.mockRejectedValueOnce(new Error('error'));
-      result = await actions.fetchRefreshToken(params, {
-        user: {
-          email: 'example@example.com',
-          password: 'password'
-        }
-      });
-    });
-
-    it('does not commit', () => {
-      expect(params.commit).not.toHaveBeenCalled();
-    });
-
-    it('dispatch toast/error', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        new Error('error'),
-        { root: true }
-      );
-    });
-
-    it('returns false', () => {
-      expect(result).toBe(false);
-    });
-  });
-
   describe('when dispatch fetchAccessToken', () => {
+    const state = {
+      clientId: 'clientId',
+      refreshToken: 'refreshToken'
+    };
+
+    const commit = jest.fn();
+
+    const dispatch = jest.fn(() => ({
+      headers: {
+        'x-access-token': 'accessToken'
+      },
+      data: {
+        id: 1,
+        email: 'example@example.com'
+      }
+    }));
+
     beforeEach(async () => {
-      params.state = {
-        clientId: 'clientId',
-        refreshToken: 'refreshToken'
-      };
-      params.dispatch.mockReturnValueOnce({
-        headers: {
-          'x-access-token': 'accessToken'
-        },
-        data: {
-          id: 1,
-          email: 'example@example.com'
-        }
-      });
-      result = await actions.fetchAccessToken(params);
+      result = await actions.fetchAccessToken({ state, commit, dispatch });
     });
 
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
           url: '/v1/auth/access_tokens',
@@ -129,10 +104,7 @@ describe('Actions', () => {
     });
 
     it('commit SET_ACCESS_TOKEN', () => {
-      expect(params.commit).toHaveBeenCalledWith(
-        'SET_ACCESS_TOKEN',
-        'accessToken'
-      );
+      expect(commit).toHaveBeenCalledWith('SET_ACCESS_TOKEN', 'accessToken');
     });
 
     it('returns true', () => {
@@ -140,55 +112,32 @@ describe('Actions', () => {
     });
   });
 
-  describe('when dispatch fetchAccessToken but throw error', () => {
+  describe('when dispatch signUp', () => {
+    const commit = jest.fn();
+    const dispatch = jest.fn(() => ({
+      headers: {
+        'x-refresh-token': 'refreshToken',
+        'x-client-id': 'clientId'
+      },
+      data: {
+        id: 1,
+        email: 'example@example.com'
+      }
+    }));
+
     beforeEach(async () => {
-      params.dispatch.mockRejectedValueOnce(new Error('error'));
-      result = await actions.fetchAccessToken(params, {
-        user: {
+      result = await actions.signUp(
+        { dispatch, commit },
+        {
           email: 'example@example.com',
-          password: 'password'
+          password: 'password',
+          passwordConfirmation: 'passwordConfirmation'
         }
-      });
-    });
-
-    it('does not commit', () => {
-      expect(params.commit).not.toHaveBeenCalled();
-    });
-
-    it('dispatch toast/error', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        new Error('error'),
-        { root: true }
       );
     });
 
-    it('returns false', () => {
-      expect(result).toBe(false);
-    });
-  });
-
-  describe('when dispatch signUp', () => {
-    beforeEach(async () => {
-      params.dispatch.mockReturnValueOnce({
-        headers: {
-          'x-refresh-token': 'refreshToken',
-          'x-client-id': 'clientId'
-        },
-        data: {
-          id: 1,
-          email: 'example@example.com'
-        }
-      });
-      result = await actions.signUp(params, {
-        email: 'example@example.com',
-        password: 'password',
-        passwordConfirmation: 'passwordConfirmation'
-      });
-    });
-
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
           url: '/v1/auth/users',
@@ -206,14 +155,14 @@ describe('Actions', () => {
     });
 
     it('commit SET_REFRESH_TOKEN', () => {
-      expect(params.commit).toHaveBeenCalledWith('SET_REFRESH_TOKEN', {
+      expect(commit).toHaveBeenCalledWith('SET_REFRESH_TOKEN', {
         refreshToken: 'refreshToken',
         clientId: 'clientId'
       });
     });
 
     it('commit SET_USER', () => {
-      expect(params.commit).toHaveBeenCalledWith('SET_USER', {
+      expect(commit).toHaveBeenCalledWith('SET_USER', {
         id: 1,
         email: 'example@example.com'
       });
@@ -224,54 +173,34 @@ describe('Actions', () => {
     });
   });
 
-  describe('when dispatch signUp but throw error', () => {
-    beforeEach(async () => {
-      params.dispatch.mockRejectedValueOnce(new Error('error'));
-      result = await actions.signUp(params, {
-        email: 'example@example.com',
-        password: 'password',
-        passwordConfirmation: 'passwordConfirmation'
-      });
-    });
+  describe('when dispatch changeEmail', () => {
+    const state = {
+      user: {
+        email: 'example@example.com'
+      }
+    };
 
-    it('dispatch toast/error', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        new Error('error'),
-        { root: true }
+    const commit = jest.fn();
+
+    const dispatch = jest.fn(() => ({
+      data: {
+        id: 1,
+        email: 'changed@example.com'
+      }
+    }));
+
+    beforeEach(async () => {
+      result = await actions.changeEmail(
+        { state, dispatch, commit },
+        {
+          email: 'changed@example.com',
+          currentPassword: 'password'
+        }
       );
     });
 
-    it('does not commit', () => {
-      expect(params.commit).not.toHaveBeenCalled();
-    });
-
-    it('returns false', () => {
-      expect(result).toBe(false);
-    });
-  });
-
-  describe('when dispatch changeEmail', () => {
-    beforeEach(async () => {
-      params.state = {
-        user: {
-          email: 'example@example.com'
-        }
-      };
-      params.dispatch.mockReturnValueOnce({
-        data: {
-          id: 1,
-          email: 'changed@example.com'
-        }
-      });
-      result = await actions.changeEmail(params, {
-        email: 'changed@example.com',
-        currentPassword: 'password'
-      });
-    });
-
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
           url: '/v1/auth/user',
@@ -288,7 +217,7 @@ describe('Actions', () => {
     });
 
     it('commit SET_USER', () => {
-      expect(params.commit).toHaveBeenCalledWith('SET_USER', {
+      expect(commit).toHaveBeenCalledWith('SET_USER', {
         id: 1,
         email: 'changed@example.com'
       });
@@ -299,56 +228,31 @@ describe('Actions', () => {
     });
   });
 
-  describe('when dispatch changeEmail but throw error', () => {
-    beforeEach(async () => {
-      params.state = {
-        email: 'example@example.com'
-      };
-      params.dispatch.mockRejectedValueOnce(new Error('error'));
-      result = await actions.changeEmail(params, {
-        email: 'example@example.com',
-        password: 'password',
-        passwordConfirmation: 'passwordConfirmation'
-      });
-    });
+  describe('when dispatch changePassword', () => {
+    const state = {
+      email: 'example@example.com'
+    };
 
-    it('dispatch toast/error', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        new Error('error'),
-        { root: true }
+    const dispatch = jest.fn(() => ({
+      data: {
+        id: 1,
+        email: 'example@example.com'
+      }
+    }));
+
+    beforeEach(async () => {
+      result = await actions.changePassword(
+        { state, dispatch },
+        {
+          currentPassword: 'currentPassword',
+          password: 'password',
+          passwordConfirmation: 'passwordConfirmation'
+        }
       );
     });
 
-    it('does not commit', () => {
-      expect(params.commit).not.toHaveBeenCalled();
-    });
-
-    it('returns false', () => {
-      expect(result).toBe(false);
-    });
-  });
-
-  describe('when dispatch changePassword', () => {
-    beforeEach(async () => {
-      params.state = {
-        email: 'example@example.com'
-      };
-      params.dispatch.mockReturnValueOnce({
-        data: {
-          id: 1,
-          email: 'example@example.com'
-        }
-      });
-      result = await actions.changePassword(params, {
-        currentPassword: 'currentPassword',
-        password: 'password',
-        passwordConfirmation: 'passwordConfirmation'
-      });
-    });
-
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
           url: '/v1/auth/user',
@@ -370,41 +274,20 @@ describe('Actions', () => {
     });
   });
 
-  describe('when dispatch changePassword but throw error', () => {
-    beforeEach(async () => {
-      params.state = {
-        email: 'example@example.com'
-      };
-      params.dispatch.mockRejectedValueOnce(new Error('error'));
-      result = await actions.changePassword(params, {
-        currentPassword: 'currentPassword',
-        password: 'password',
-        passwordConfirmation: 'passwordConfirmation'
-      });
-    });
+  describe('when dispatch sendPasswordResetEmail', () => {
+    const dispatch = jest.fn();
 
-    it('dispatch toast/error', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        new Error('error'),
-        { root: true }
+    beforeEach(async () => {
+      result = await actions.sendPasswordResetEmail(
+        { dispatch },
+        {
+          email: 'example@example.com'
+        }
       );
     });
 
-    it('returns false', () => {
-      expect(result).toBe(false);
-    });
-  });
-
-  describe('when dispatch sendPasswordResetEmail', () => {
-    beforeEach(async () => {
-      result = await actions.sendPasswordResetEmail(params, {
-        email: 'example@example.com'
-      });
-    });
-
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
           url: '/v1/auth/password_reset/mails',
@@ -424,38 +307,22 @@ describe('Actions', () => {
     });
   });
 
-  describe('when dispatch sendPasswordResetEmail but throw error', () => {
-    beforeEach(async () => {
-      params.dispatch.mockRejectedValueOnce(new Error('error'));
-      result = await actions.sendPasswordResetEmail(params, {
-        email: 'example@example.com'
-      });
-    });
+  describe('when dispatch resetPassword', () => {
+    const dispatch = jest.fn();
 
-    it('dispatch toast/error', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        new Error('error'),
-        { root: true }
+    beforeEach(async () => {
+      result = await actions.resetPassword(
+        { dispatch },
+        {
+          token: 'passwordResetToken',
+          password: 'password',
+          passwordConfirmation: 'passwordConfirmation'
+        }
       );
     });
 
-    it('returns false', () => {
-      expect(result).toBe(false);
-    });
-  });
-
-  describe('when dispatch resetPassword', () => {
-    beforeEach(async () => {
-      result = await actions.resetPassword(params, {
-        token: 'passwordResetToken',
-        password: 'password',
-        passwordConfirmation: 'passwordConfirmation'
-      });
-    });
-
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
           url: '/v1/auth/password_reset',
@@ -477,40 +344,21 @@ describe('Actions', () => {
     });
   });
 
-  describe('when dispatch resetPassword but throw error', () => {
-    beforeEach(async () => {
-      params.dispatch.mockRejectedValueOnce(new Error('error'));
-      result = await actions.resetPassword(params, {
-        token: 'passwordResetToken',
-        password: 'password',
-        passwordConfirmation: 'passwordConfirmation'
-      });
-    });
-
-    it('dispatch toast/error', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        new Error('error'),
-        { root: true }
-      );
-    });
-
-    it('returns false', () => {
-      expect(result).toBe(false);
-    });
-  });
-
   describe('when dispatch logout', () => {
+    const state = {
+      clientId: 'clientId',
+      refreshToken: 'refreshToken'
+    };
+
+    const commit = jest.fn();
+    const dispatch = jest.fn();
+
     beforeEach(async () => {
-      params.state = {
-        clientId: 'clientId',
-        refreshToken: 'refreshToken'
-      };
-      await actions.logout(params);
+      await actions.logout({ state, dispatch, commit });
     });
 
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
           url: '/v1/auth/refresh_token',
@@ -525,19 +373,25 @@ describe('Actions', () => {
     });
 
     it('commit CLEAR_TOKENS_AND_USER', () => {
-      expect(params.commit).toHaveBeenCalledWith('CLEAR_TOKENS_AND_USER');
+      expect(commit).toHaveBeenCalledWith('CLEAR_TOKENS_AND_USER');
     });
   });
 
   describe('when dispatch deleteAccount', () => {
+    const commit = jest.fn();
+    const dispatch = jest.fn();
+
     beforeEach(async () => {
-      result = await actions.deleteAccount(params, {
-        currentPassword: 'currentPassword'
-      });
+      result = await actions.deleteAccount(
+        { dispatch, commit },
+        {
+          currentPassword: 'currentPassword'
+        }
+      );
     });
 
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
           url: '/v1/auth/user',
@@ -556,32 +410,7 @@ describe('Actions', () => {
       expect(result).toBe(true);
     });
     it('commit CLEAR_TOKENS_AND_USER', () => {
-      expect(params.commit).toHaveBeenCalledWith('CLEAR_TOKENS_AND_USER');
-    });
-  });
-
-  describe('when dispatch deleteAccount but throw error', () => {
-    beforeEach(async () => {
-      params.dispatch.mockRejectedValueOnce(new Error('error'));
-      result = await actions.deleteAccount(params, {
-        currentPassword: 'currentPassword'
-      });
-    });
-
-    it('dispatch toast/error', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        new Error('error'),
-        { root: true }
-      );
-    });
-
-    it('returns false', () => {
-      expect(result).toBe(false);
-    });
-
-    it('does not commit', () => {
-      expect(params.commit).not.toHaveBeenCalled();
+      expect(commit).toHaveBeenCalledWith('CLEAR_TOKENS_AND_USER');
     });
   });
 });

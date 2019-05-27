@@ -13,7 +13,7 @@ describe('Edit', () => {
         $route: {
           query: {
             user_id: 1,
-            token: '123abc456efg'
+            token: 'token'
           }
         }
       }
@@ -32,7 +32,7 @@ describe('Edit', () => {
         id: 1,
         password: 'password',
         passwordConfirmation: 'confirmation',
-        token: '123abc456efg'
+        token: 'token'
       });
     });
   });

@@ -28,7 +28,6 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
     }
   },
-
   async fetchByRange({ dispatch }, payload) {
     try {
       const { data } = await dispatch(
@@ -51,7 +50,6 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
     }
   },
-
   async add({ dispatch }, payload) {
     try {
       const { data } = await dispatch(
@@ -76,10 +74,9 @@ export const actions = {
       return false;
     }
   },
-
   async delete({ dispatch }, id) {
     try {
-      dispatch('entities/delete', { name: 'activity', id }, { root: true });
+      dispatch('entities/delete', { name: 'activities', id }, { root: true });
       await dispatch(
         'auth-api/request',
         {
@@ -92,7 +89,6 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
     }
   },
-
   async update({ dispatch }, payload) {
     try {
       const { data } = await dispatch(

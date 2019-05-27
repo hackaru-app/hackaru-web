@@ -1,3 +1,5 @@
+import get from 'lodash.get';
+
 export const SET_CLIENT = 'SET_CLIENT';
 
 export const state = () => ({
@@ -7,7 +9,7 @@ export const state = () => ({
 export const actions = {
   async getClient({ commit, dispatch }, payload) {
     try {
-      const res = await dispatch(
+      const { data } = await dispatch(
         'auth-api/request',
         {
           url: '/v1/oauth/authorize',
@@ -21,13 +23,11 @@ export const actions = {
         },
         { root: true }
       );
-      const { redirectUri, status } = res.data;
-      if (redirectUri && status === 'redirect') return redirectUri;
-      commit(SET_CLIENT, res.data);
+      if (data.status === 'redirect') return data.redirectUri;
+      commit(SET_CLIENT, data);
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
-    return undefined;
   },
   async allow({ commit, dispatch }, payload) {
     try {
@@ -70,18 +70,21 @@ export const actions = {
         { root: true }
       );
     } catch (e) {
-      if (!e.response || !e.response.data) {
-        dispatch('toast/error', e, { root: true });
-        return undefined;
-      }
-      const redirectUri = e.response.data.redirect_uri;
-      if (redirectUri) return redirectUri;
-
-      const errorDescription = e.response.data.error_description;
-      return { errorDescription };
+      const response = getRedirectUriByError(e) || getDescriptionByError(e);
+      if (response) return response;
+      dispatch('toast/error', e, { root: true });
     }
   }
 };
+
+function getRedirectUriByError(e) {
+  return get(e, 'response.data.redirect_uri');
+}
+
+function getDescriptionByError(e) {
+  const errorDescription = get(e, 'response.data.error_description');
+  return errorDescription && { errorDescription };
+}
 
 export const mutations = {
   [SET_CLIENT](state, payload) {

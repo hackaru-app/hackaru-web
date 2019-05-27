@@ -7,7 +7,7 @@ describe('Webhooks', () => {
 
   const $store = new Store({
     getters: {
-      'webhooks/getWebhooks': [
+      'webhooks/all': [
         {
           id: 1,
           userId: 1,
@@ -34,9 +34,9 @@ describe('Webhooks', () => {
     $store.reset();
   });
 
-  it('dispatch webhooks/getWebhooks', () => {
+  it('dispatch webhooks/fetch', () => {
     factory();
-    expect($store.dispatch).toHaveBeenCalledWith('webhooks/getWebhooks');
+    expect($store.dispatch).toHaveBeenCalledWith('webhooks/fetch');
   });
 
   describe('when click delete-button', () => {
@@ -49,8 +49,8 @@ describe('Webhooks', () => {
         .vm.$emit('click');
     });
 
-    it('dispatch webhooks/deleteWebhook', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('webhooks/deleteWebhook', 1);
+    it('dispatch webhooks/delete', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('webhooks/delete', 1);
     });
   });
 
@@ -64,11 +64,8 @@ describe('Webhooks', () => {
         .vm.$emit('click');
     });
 
-    it('does not dispatch webhooks/deleteWebhook', () => {
-      expect($store.dispatch).not.toHaveBeenCalledWith(
-        'webhooks/deleteWebhook',
-        1
-      );
+    it('does not dispatch webhooks/delete', () => {
+      expect($store.dispatch).not.toHaveBeenCalledWith('webhooks/delete', 1);
     });
   });
 
@@ -96,8 +93,8 @@ describe('Webhooks', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch webhooks/addWebhook', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('webhooks/addWebhook', {
+    it('dispatch webhooks/add', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('webhooks/add', {
         event: 'activity:created',
         targetUrl: 'http://example.com'
       });

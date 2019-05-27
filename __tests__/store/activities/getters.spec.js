@@ -6,7 +6,7 @@ describe('Getters', () => {
 
   describe('when call all', () => {
     const rootGetters = {
-      'entities/getEntities': jest.fn().mockReturnValue({})
+      'entities/getEntities': jest.fn(() => ({}))
     };
 
     beforeEach(() => {

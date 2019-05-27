@@ -4,7 +4,7 @@ export const actions = {
   async request({ dispatch, rootGetters }, config) {
     if (!rootGetters['auth/isLoggedIn']) throw Error(undefined);
     if (!rootGetters['auth/validateToken']()) {
-      await dispatch('auth/fetchAccessToken', null, { root: true });
+      await dispatch('auth/fetchAccessToken', {}, { root: true });
     }
     return await dispatch(
       'api/request',

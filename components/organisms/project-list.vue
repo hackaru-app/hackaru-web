@@ -65,7 +65,7 @@ export default {
     projects() {
       return [
         { id: null, name: 'No Project', color: '#cccfd9' },
-        ...this.$store.getters['projects/getProjects']
+        ...this.$store.getters['projects/all']
       ];
     }
   },
