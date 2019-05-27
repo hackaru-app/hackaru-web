@@ -1,11 +1,10 @@
 import i18nCacher from '@/plugins/customs/i18n-cacher';
 
 describe('I18nCacher', () => {
-  let app;
   let onReady;
+  let app;
 
   beforeEach(() => {
-    localStorage.clear();
     app = {
       i18n: {},
       router: {
@@ -14,20 +13,12 @@ describe('I18nCacher', () => {
         }
       }
     };
+
+    localStorage.clear();
     i18nCacher({ app });
   });
 
-  describe('when call onReady and local storage does not have locale', () => {
-    beforeEach(() => {
-      onReady();
-    });
-
-    it('does not set locale', () => {
-      expect(app.i18n.locale).toBeUndefined();
-    });
-  });
-
-  describe('when call onReady and local storage has locale', () => {
+  describe('when call onReady', () => {
     beforeEach(() => {
       localStorage.setItem('locale', 'ja');
       onReady();
@@ -38,12 +29,22 @@ describe('I18nCacher', () => {
     });
   });
 
+  describe('when call onReady but local-storage does not have locale', () => {
+    beforeEach(() => {
+      onReady();
+    });
+
+    it('does not set locale', () => {
+      expect(app.i18n.locale).toBeUndefined();
+    });
+  });
+
   describe('when switch language', () => {
     beforeEach(() => {
       app.i18n.onLanguageSwitched('en', 'ja');
     });
 
-    it('cache locale', () => {
+    it('cache locale to local-storage', () => {
       expect(localStorage.setItem).toHaveBeenCalledWith('locale', 'ja');
     });
   });
