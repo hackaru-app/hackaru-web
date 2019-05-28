@@ -8,7 +8,7 @@ describe('Index', () => {
   const $modal = { show: jest.fn() };
   const $store = new Store({
     getters: {
-      'activities/getWorkingActivities': () => [
+      'activities/workings': () => [
         {
           id: 1,
           description: 'Review',
@@ -26,11 +26,9 @@ describe('Index', () => {
       }
     });
 
-  it('dispatch activities/getWorkingActivities', () => {
+  it('dispatch activities/fetchWorkings', () => {
     factory();
-    expect($store.dispatch).toHaveBeenCalledWith(
-      'activities/getWorkingActivities'
-    );
+    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorkings');
   });
 
   describe('when click add-button', () => {

@@ -1,47 +1,46 @@
 import { actions } from '@/store/entities';
 import { schema } from 'normalizr';
 
-const user = new schema.Entity('users', {
-  comment: new schema.Entity('comments')
-});
-
 describe('Actions', () => {
-  let params;
-  let result;
-
-  beforeEach(() => {
-    params = { commit: jest.fn() };
+  const user = new schema.Entity('users', {
+    comment: new schema.Entity('comments')
   });
 
-  describe('when dispatch normalize', () => {
+  describe('when dispatch merge', () => {
+    const commit = jest.fn();
+
     beforeEach(async () => {
-      result = await actions.normalize(params, {
-        schema: user,
-        json: {
-          id: 1,
-          name: 'Example',
-          comment: {
-            id: 2,
-            description: 'comment!'
+      actions.merge(
+        { commit },
+        {
+          schema: user,
+          json: {
+            id: 1,
+            name: 'John',
+            comment: {
+              id: 2,
+              description: 'Hello'
+            }
           }
         }
-      });
+      );
     });
 
     it('commit MERGE_ENTITIES', () => {
-      expect(params.commit).toHaveBeenCalledWith('MERGE_ENTITIES', {
-        users: { 1: { comment: 2, id: 1, name: 'Example' } },
-        comments: { 2: { id: 2, description: 'comment!' } }
-      });
-    });
-
-    it('returns normalized data', () => {
-      expect(result).toEqual({
-        entities: {
-          users: { 1: { comment: 2, id: 1, name: 'Example' } },
-          comments: { 2: { id: 2, description: 'comment!' } }
+      expect(commit).toHaveBeenCalledWith('MERGE_ENTITIES', {
+        users: {
+          1: {
+            id: 1,
+            comment: 2,
+            name: 'John'
+          }
         },
-        result: 1
+        comments: {
+          2: {
+            id: 2,
+            description: 'Hello'
+          }
+        }
       });
     });
   });

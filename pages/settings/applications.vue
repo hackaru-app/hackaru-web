@@ -58,7 +58,6 @@ import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import Heading from '@/components/atoms/heading';
 import ModalItem from '@/components/molecules/modal-item';
-
 import ModalHeader from '@/components/molecules/modal-header';
 import ModalFooter from '@/components/molecules/modal-footer';
 import BaseModal from '@/components/organisms/base-modal';
@@ -85,16 +84,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      applications: 'applications/getApplications'
+      applications: 'applications/all'
     })
   },
   async mounted() {
-    await this.$store.dispatch('applications/getApplications');
+    await this.$store.dispatch('applications/fetch');
   },
   methods: {
     deleteApplication(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      this.$store.dispatch('applications/deleteApplication', id);
+      this.$store.dispatch('applications/delete', id);
       this.$ga.event('oauth', 'deleteApplication');
       this.$toast.success(this.$t('deleted'));
     },

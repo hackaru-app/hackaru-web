@@ -21,9 +21,9 @@ describe('Calendar', () => {
     $store.reset();
   });
 
-  it('dispatch activities/getActivities', () => {
+  it('dispatch activities/fetchByRange', () => {
     wrapper = factory();
-    expect($store.dispatch).toHaveBeenCalledWith('activities/getActivities', {
+    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchByRange', {
       start: parse('2019-01-27T00:00:00'),
       end: parse('2019-02-02T23:59:59.999')
     });

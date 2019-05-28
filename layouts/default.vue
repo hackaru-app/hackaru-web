@@ -57,14 +57,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      activities: 'activities/getWorkingActivities'
+      activities: 'activities/workings'
     }),
     titleTemplate() {
       return this.duration && `${this.duration}・%s`;
     }
   },
   mounted() {
-    this.$store.dispatch('projects/getProjects');
+    this.$store.dispatch('projects/fetch');
   },
   methods: {
     updateDuration() {

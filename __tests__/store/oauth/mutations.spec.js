@@ -1,13 +1,12 @@
 import { mutations } from '@/store/oauth';
 
 describe('Mutations', () => {
-  let state;
-
   describe('when commit SET_CLIENT', () => {
+    const state = { client: {} };
+
     beforeEach(() => {
-      state = { client: {} };
       mutations['SET_CLIENT'](state, {
-        clientName: 'Example',
+        clientName: 'Hackaru for Desktop',
         scope: 'activity:create activity:update',
         responseType: 'token',
         state: 'state'
@@ -16,7 +15,7 @@ describe('Mutations', () => {
 
     it('set client', () => {
       expect(state.client).toEqual({
-        name: 'Example',
+        name: 'Hackaru for Desktop',
         scopes: ['activity:create', 'activity:update'],
         responseType: 'token',
         state: 'state'

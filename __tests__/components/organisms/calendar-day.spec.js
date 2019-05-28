@@ -107,8 +107,8 @@ describe('CalendarDay', () => {
       expect(wrapper.find('.ghost-activity').isVisible()).toBe(false);
     });
 
-    it('dispatch activities/addActivity', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('activities/addActivity', {
+    it('dispatch activities/add', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         startedAt: parse('2019-01-01T01:00:00'),
         stoppedAt: parse('2019-01-01T01:20:00')
       });

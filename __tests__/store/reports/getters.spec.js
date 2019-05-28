@@ -1,42 +1,21 @@
 import { getters } from '@/store/reports';
 
 describe('Getters', () => {
-  let params;
   let result;
 
-  beforeEach(() => {
-    params = {
-      state: {},
-      getters: {},
-      rootState: {},
-      rootGetters: {}
-    };
-  });
-
-  describe('when call getProjects', () => {
-    beforeEach(() => {
-      params = {
-        state: {
-          projects: [
-            {
-              id: 1,
-              name: 'Development',
-              color: '#ff0'
-            },
-            {
-              id: 2,
-              name: 'Review',
-              color: '#f00'
-            }
-          ]
+  describe('when call projects', () => {
+    const state = {
+      projects: [
+        {
+          id: 1,
+          name: 'Development',
+          color: '#ff0'
         }
-      };
-      result = getters.getProjects(
-        params.state,
-        params.getters,
-        params.rootState,
-        params.rootGetters
-      );
+      ]
+    };
+
+    beforeEach(() => {
+      result = getters.projects(state);
     });
 
     it('returns projects', () => {
@@ -45,57 +24,34 @@ describe('Getters', () => {
           id: 1,
           name: 'Development',
           color: '#ff0'
-        },
-        {
-          id: 2,
-          name: 'Review',
-          color: '#f00'
         }
       ]);
     });
   });
 
-  describe('when call getSummary', () => {
-    beforeEach(() => {
-      params = {
-        state: {
-          projects: [
-            {
-              id: 1,
-              name: 'Development',
-              color: '#ff0'
-            },
-            {
-              id: 2,
-              name: 'Review',
-              color: '#f00'
-            }
-          ],
-          summary: [
-            {
-              projectId: 1,
-              duration: 100,
-              date: '2019-01-01T00:00:00'
-            },
-            {
-              projectId: 1,
-              duration: 200,
-              date: '2019-01-02T00:00:00'
-            },
-            {
-              projectId: 2,
-              duration: 200,
-              date: '2019-01-02T00:00:00'
-            }
-          ]
+  describe('when call summary', () => {
+    const state = {
+      summary: [
+        {
+          projectId: 1,
+          duration: 100,
+          date: '2019-01-01T00:00:00'
+        },
+        {
+          projectId: 1,
+          duration: 200,
+          date: '2019-01-02T00:00:00'
+        },
+        {
+          projectId: 2,
+          duration: 200,
+          date: '2019-01-02T00:00:00'
         }
-      };
-      result = getters.getSummary(
-        params.state,
-        params.getters,
-        params.rootState,
-        params.rootGetters
-      );
+      ]
+    };
+
+    beforeEach(() => {
+      result = getters.summary(state);
     });
 
     it('returns summary', () => {
@@ -106,174 +62,98 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call getDoughnutChartData', () => {
+  describe('when call barChartLabels and period is hour', () => {
+    const state = {
+      period: 'hour',
+      summary: [
+        { date: '2019-01-01T01:00:00' },
+        { date: '2019-01-02T03:00:00' }
+      ]
+    };
+
     beforeEach(() => {
-      params.state = {
-        projects: [
-          {
-            id: 1,
-            name: 'Development',
-            color: '#ff0'
-          },
-          {
-            id: 2,
-            name: 'Review',
-            color: '#f00'
-          },
-          {
-            id: 3,
-            name: 'Coding',
-            color: '#f0f'
-          }
-        ]
-      };
-      params.getters = {
-        getSummary: {
-          1: 100,
-          2: 200
+      result = getters.barChartLabels(state);
+    });
+
+    it('returns labels', () => {
+      expect(result).toEqual(['1:00', '3:00']);
+    });
+  });
+
+  describe('when call barChartLabels and period is day', () => {
+    const state = {
+      period: 'day',
+      summary: [{ date: '2019-01-01' }, { date: '2019-01-03' }]
+    };
+
+    beforeEach(() => {
+      result = getters.barChartLabels(state);
+    });
+
+    it('returns labels', () => {
+      expect(result).toEqual(['01', '03']);
+    });
+  });
+
+  describe('when call barChartLabels and period is month', () => {
+    const state = {
+      period: 'month',
+      summary: [{ date: '2019-01' }, { date: '2019-03' }]
+    };
+
+    beforeEach(() => {
+      result = getters.barChartLabels(state);
+    });
+
+    it('returns labels', () => {
+      expect(result).toEqual(['Jan', 'Mar']);
+    });
+  });
+
+  describe('when call barChartData ', () => {
+    const state = {
+      projects: [
+        {
+          id: 1,
+          name: 'Development',
+          color: '#ff0'
+        },
+        {
+          id: 2,
+          name: 'Review',
+          color: '#f00'
         }
-      };
-      result = getters.getDoughnutChartData(
-        params.state,
-        params.getters,
-        params.rootState,
-        params.rootGetters
-      );
-    });
+      ],
+      summary: [
+        {
+          projectId: 1,
+          duration: 100,
+          date: '2019-01-01'
+        },
+        {
+          projectId: 1,
+          duration: 200,
+          date: '2019-01-02'
+        },
+        {
+          projectId: 2,
+          duration: 0,
+          date: '2019-01-01'
+        },
+        {
+          projectId: 2,
+          duration: 100,
+          date: '2019-01-02'
+        }
+      ]
+    };
 
-    it('returns chart data', () => {
-      expect(result).toEqual({
-        labels: ['Development', 'Review', 'Coding'],
-        datasets: [
-          {
-            data: [100, 200, 0],
-            backgroundColor: ['#ff0', '#f00', '#f0f']
-          }
-        ]
-      });
-    });
-  });
+    const mockGetters = {
+      barChartLabels: ['01/01', '01/02']
+    };
 
-  describe('when call getBarChartLabels and period is hour', () => {
     beforeEach(() => {
-      params.state = {
-        period: 'hour',
-        summary: [
-          { projectId: 1, duration: 0, date: '2019-01-01T01:00:00' },
-          { projectId: 1, duration: 0, date: '2019-01-02T02:00:00' },
-          { projectId: 2, duration: 0, date: '2019-01-01T01:00:00' },
-          { projectId: 2, duration: 0, date: '2019-01-02T02:00:00' }
-        ]
-      };
-      result = getters.getBarChartLabels(
-        params.state,
-        params.getters,
-        params.rootState,
-        params.rootGetters
-      );
-    });
-
-    it('returns labels', () => {
-      expect(result).toEqual(['1:00', '2:00']);
-    });
-  });
-
-  describe('when call getBarChartLabels and period is day', () => {
-    beforeEach(() => {
-      params.state = {
-        period: 'day',
-        summary: [
-          { projectId: 1, duration: 0, date: '2019-01-01' },
-          { projectId: 1, duration: 0, date: '2019-01-02' },
-          { projectId: 2, duration: 0, date: '2019-01-01' },
-          { projectId: 2, duration: 0, date: '2019-01-02' }
-        ]
-      };
-      result = getters.getBarChartLabels(
-        params.state,
-        params.getters,
-        params.rootState,
-        params.rootGetters
-      );
-    });
-
-    it('returns labels', () => {
-      expect(result).toEqual(['01', '02']);
-    });
-  });
-
-  describe('when call getBarChartLabels and period is month', () => {
-    beforeEach(() => {
-      params.state = {
-        period: 'month',
-        summary: [
-          { projectId: 1, duration: 0, date: '2019-01' },
-          { projectId: 1, duration: 0, date: '2019-02' },
-          { projectId: 2, duration: 0, date: '2019-01' },
-          { projectId: 2, duration: 0, date: '2019-02' }
-        ]
-      };
-      result = getters.getBarChartLabels(
-        params.state,
-        params.getters,
-        params.rootState,
-        params.rootGetters
-      );
-    });
-
-    it('returns labels', () => {
-      expect(result).toEqual(['Jan', 'Feb']);
-    });
-  });
-
-  describe('when call getBarChartData ', () => {
-    beforeEach(() => {
-      params.getters = {
-        getBarChartLabels: ['01/01', '01/02']
-      };
-      params.state = {
-        labelFormat: 'MM/DD',
-        projects: [
-          {
-            id: 1,
-            name: 'Development',
-            color: '#ff0'
-          },
-          {
-            id: 2,
-            name: 'Review',
-            color: '#f00'
-          }
-        ],
-        summary: [
-          {
-            projectId: 1,
-            duration: 100,
-            date: '2019-01-01'
-          },
-          {
-            projectId: 1,
-            duration: 200,
-            date: '2019-01-02'
-          },
-          {
-            projectId: 2,
-            duration: 0,
-            date: '2019-01-01'
-          },
-          {
-            projectId: 2,
-            duration: 100,
-            date: '2019-01-02'
-          }
-        ]
-      };
-      result = getters.getBarChartData(
-        params.state,
-        params.getters,
-        params.rootState,
-        params.rootGetters
-      );
+      result = getters.barChartData(state, mockGetters);
     });
 
     it('returns labels correctly', () => {
@@ -293,6 +173,51 @@ describe('Getters', () => {
           data: [0, 100]
         }
       ]);
+    });
+  });
+
+  describe('when call doughnutChartData', () => {
+    const state = {
+      projects: [
+        {
+          id: 1,
+          name: 'Development',
+          color: '#ff0'
+        },
+        {
+          id: 2,
+          name: 'Review',
+          color: '#f00'
+        },
+        {
+          id: 3,
+          name: 'Coding',
+          color: '#f0f'
+        }
+      ]
+    };
+
+    const mockGetters = {
+      summary: {
+        1: 100,
+        2: 200
+      }
+    };
+
+    beforeEach(() => {
+      result = getters.doughnutChartData(state, mockGetters);
+    });
+
+    it('returns chart data', () => {
+      expect(result).toEqual({
+        labels: ['Development', 'Review', 'Coding'],
+        datasets: [
+          {
+            data: [100, 200, 0],
+            backgroundColor: ['#ff0', '#f00', '#f0f']
+          }
+        ]
+      });
     });
   });
 });

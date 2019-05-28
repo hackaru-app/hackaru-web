@@ -4,47 +4,43 @@ import { parse } from 'date-fns';
 import jwt from 'jsonwebtoken';
 
 describe('Getters', () => {
-  let params;
   let result;
 
   MockDate.set('2019-01-31T01:23:45');
 
   beforeEach(() => {
     localStorage.clear();
-    params = {
-      state: {},
-      getters: {},
-      rootState: {},
-      rootGetters: {}
-    };
   });
 
   describe('when call getAccessToken', () => {
+    const state = { accessToken: 'accessToken' };
+
     beforeEach(() => {
-      params.state = { accessToken: 'accessToken' };
-      result = getters.getAccessToken(params.state);
+      result = getters.getAccessToken(state);
     });
 
     it('returns access token', () => {
-      expect(result).toEqual('accessToken');
+      expect(result).toBe('accessToken');
     });
   });
 
   describe('when call getEmail', () => {
+    const state = { id: 1, email: 'example@example.com' };
+
     beforeEach(() => {
-      params.state = { id: 1, email: 'example@example.com' };
-      result = getters.getEmail(params.state);
+      result = getters.getEmail(state);
     });
 
     it('returns email', () => {
-      expect(result).toEqual('example@example.com');
+      expect(result).toBe('example@example.com');
     });
   });
 
   describe('when call getUserId', () => {
+    const state = { id: 1, email: 'example@example.com' };
+
     beforeEach(() => {
-      params.state = { id: 1, email: 'example@example.com' };
-      result = getters.getUserId(params.state);
+      result = getters.getUserId(state);
     });
 
     it('returns id', () => {
@@ -52,10 +48,14 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call isLoggedIn and user has token and client id', () => {
+  describe('when call isLoggedIn', () => {
+    const state = {
+      refreshToken: 'refreshToken',
+      clientId: 'clientId'
+    };
+
     beforeEach(() => {
-      params.state = { refreshToken: 'refreshToken', clientId: 'clientId' };
-      result = getters.isLoggedIn(params.state);
+      result = getters.isLoggedIn(state);
     });
 
     it('returns true', () => {
@@ -63,10 +63,14 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call isLoggedIn and user does not has token', () => {
+  describe('when call isLoggedIn but user does not have token', () => {
+    const state = {
+      refreshToken: '',
+      clientId: ''
+    };
+
     beforeEach(() => {
-      params.state = { refreshToken: '', clientId: '' };
-      result = getters.isLoggedIn(params.state);
+      result = getters.isLoggedIn(state);
     });
 
     it('returns false', () => {
@@ -74,15 +78,12 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call validateToken and token is valid', () => {
+  describe('when call validateToken', () => {
+    const exp = parse('2019-02-01T00:00:00').getTime() / 1000;
+    const state = { accessToken: jwt.sign({ exp }, 'secret') };
+
     beforeEach(() => {
-      params.state = {
-        accessToken: jwt.sign(
-          { exp: parse('2019-02-01T00:00:00').getTime() / 1000 },
-          'secret'
-        )
-      };
-      result = getters.validateToken(params.state)();
+      result = getters.validateToken(state)();
     });
 
     it('returns truthy', () => {
@@ -91,14 +92,11 @@ describe('Getters', () => {
   });
 
   describe('when call validateToken but token expired', () => {
+    const exp = parse('2018-12-31T00:00:00').getTime() / 1000;
+    const state = { accessToken: jwt.sign({ exp }, 'secret') };
+
     beforeEach(() => {
-      params.state = {
-        accessToken: jwt.sign(
-          { exp: parse('2018-12-31T00:00:00').getTime() / 1000 },
-          'secret'
-        )
-      };
-      result = getters.validateToken(params.state)();
+      result = getters.validateToken(state)();
     });
 
     it('returns falsy', () => {
@@ -107,9 +105,10 @@ describe('Getters', () => {
   });
 
   describe('when call validateToken but user does not have token', () => {
+    const state = { accessToken: '' };
+
     beforeEach(() => {
-      params.state = { accessToken: '' };
-      result = getters.validateToken(params.state)();
+      result = getters.validateToken(state)();
     });
 
     it('returns falsy', () => {
@@ -118,9 +117,10 @@ describe('Getters', () => {
   });
 
   describe('when call validateToken but user have invalid token', () => {
+    const state = { accessToken: 'invalid' };
+
     beforeEach(() => {
-      params.state = { accessToken: 'invalid' };
-      result = getters.validateToken(params.state)();
+      result = getters.validateToken(state)();
     });
 
     it('returns falsy', () => {

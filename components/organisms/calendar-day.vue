@@ -122,7 +122,7 @@ export default {
         startOfDay(this.day),
         this.$toMin(this.ghostTop)
       );
-      await this.$store.dispatch('activities/addActivity', {
+      await this.$store.dispatch('activities/add', {
         startedAt,
         stoppedAt: addMinutes(startedAt, this.$toMin(this.ghostHeight))
       });

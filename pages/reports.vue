@@ -121,10 +121,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      doughnutChartData: 'reports/getDoughnutChartData',
-      barChartData: 'reports/getBarChartData',
-      summary: 'reports/getSummary',
-      projects: 'reports/getProjects'
+      doughnutChartData: 'reports/doughnutChartData',
+      barChartData: 'reports/barChartData',
+      summary: 'reports/summary',
+      projects: 'reports/projects'
     }),
     period() {
       return periods[this.currentPeriod];
@@ -141,16 +141,16 @@ export default {
   },
   watch: {
     period: {
-      handler: 'fetchPeriod',
+      handler: 'fetchReport',
       immediate: true
     },
     date: {
-      handler: 'fetchPeriod'
+      handler: 'fetchReport'
     }
   },
   methods: {
-    fetchPeriod() {
-      this.$store.dispatch('reports/getReports', {
+    fetchReport() {
+      this.$store.dispatch('reports/fetch', {
         start: this.period.startOf(this.date),
         end: this.period.endOf(this.date),
         period: this.period.barChartPeriod

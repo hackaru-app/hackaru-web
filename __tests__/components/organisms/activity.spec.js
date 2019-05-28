@@ -35,14 +35,11 @@ describe('Activity', () => {
       wrapper.find('.stop-button').vm.$emit('click');
     });
 
-    it('dispatch activities/updateActivity', () => {
-      expect($store.dispatch).toHaveBeenCalledWith(
-        'activities/updateActivity',
-        {
-          id: 1,
-          stoppedAt: `${new Date()}`
-        }
-      );
+    it('dispatch activities/update', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        stoppedAt: `${new Date()}`
+      });
     });
   });
 
@@ -52,14 +49,11 @@ describe('Activity', () => {
       wrapper.find({ ref: 'menu' }).vm.$emit('swipe-right');
     });
 
-    it('dispatch activities/updateActivity', () => {
-      expect($store.dispatch).toHaveBeenCalledWith(
-        'activities/updateActivity',
-        {
-          id: 1,
-          stoppedAt: `${new Date()}`
-        }
-      );
+    it('dispatch activities/update', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        stoppedAt: `${new Date()}`
+      });
     });
   });
 
@@ -70,11 +64,8 @@ describe('Activity', () => {
       wrapper.find({ ref: 'menu' }).vm.$emit('swipe-left');
     });
 
-    it('dispatch activities/deleteActivity', () => {
-      expect($store.dispatch).toHaveBeenCalledWith(
-        'activities/deleteActivity',
-        1
-      );
+    it('dispatch activities/delete', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/delete', 1);
     });
   });
 
@@ -86,7 +77,7 @@ describe('Activity', () => {
       wrapper.find({ ref: 'menu' }).vm.$emit('swipe-left');
     });
 
-    it('does not dispatch activities/deleteActivity', () => {
+    it('does not dispatch activities/delete', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
     });
   });

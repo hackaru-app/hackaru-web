@@ -28,7 +28,7 @@ describe('Authorize', () => {
             client_id: 'clientId',
             secret: 'secret',
             redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-            state: '123abc456def',
+            state: 'state',
             response_type: 'token',
             scope: ['activities:read']
           }
@@ -55,7 +55,7 @@ describe('Authorize', () => {
         scope: ['activities:read'],
         responseType: 'token',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        state: '123abc456def'
+        state: 'state'
       });
     });
   });
@@ -98,7 +98,7 @@ describe('Authorize', () => {
         scope: ['activities:read'],
         responseType: 'token',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        state: '123abc456def'
+        state: 'state'
       });
     });
 
@@ -135,7 +135,7 @@ describe('Authorize', () => {
         scope: ['activities:read'],
         responseType: 'token',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        state: '123abc456def'
+        state: 'state'
       });
     });
 
@@ -157,7 +157,7 @@ describe('Authorize', () => {
         scope: ['activities:read'],
         responseType: 'token',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        state: '123abc456def'
+        state: 'state'
       });
     });
 

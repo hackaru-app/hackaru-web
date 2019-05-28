@@ -44,11 +44,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      activities: 'activities/getWorkingActivities'
+      activities: 'activities/workings'
     })
   },
   mounted() {
-    this.$store.dispatch('activities/getWorkingActivities');
+    this.$store.dispatch('activities/fetchWorkings');
   },
   methods: {
     showModal() {

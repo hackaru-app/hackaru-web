@@ -28,8 +28,8 @@ describe('ProjectEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch projects/updateProject', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('projects/updateProject', {
+    it('dispatch projects/update', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('projects/update', {
         id: 1,
         name: 'Development',
         color: '#ff0'
@@ -52,8 +52,8 @@ describe('ProjectEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch projects/addProject', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('projects/addProject', {
+    it('dispatch projects/add', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('projects/add', {
         name: 'Development',
         color: '#ff0'
       });
@@ -79,8 +79,8 @@ describe('ProjectEditor', () => {
       wrapper.find('.delete-button').vm.$emit('click');
     });
 
-    it('dispatch projects/deleteProject', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('projects/deleteProject', 1);
+    it('dispatch projects/delete', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('projects/delete', 1);
     });
 
     it('emit pop', () => {

@@ -83,7 +83,7 @@ export default {
   methods: {
     stopActivity() {
       this.$toast.success(this.$t('archived'));
-      this.$store.dispatch('activities/updateActivity', {
+      this.$store.dispatch('activities/update', {
         id: this.id,
         stoppedAt: `${parse(Date.now())}`
       });
@@ -96,7 +96,7 @@ export default {
         this.resetSwipeMenu();
         return;
       }
-      this.$store.dispatch('activities/deleteActivity', this.id);
+      this.$store.dispatch('activities/delete', this.id);
       this.$toast.success(this.$t('deleted'));
     },
     showModal(params) {

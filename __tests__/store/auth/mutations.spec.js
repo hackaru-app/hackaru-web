@@ -1,11 +1,10 @@
 import { mutations } from '@/store/auth';
 
 describe('Mutations', () => {
-  let state;
-
   describe('when commit SET_REFRESH_TOKEN', () => {
+    const state = { refreshToken: '', clientId: '' };
+
     beforeEach(() => {
-      state = { refreshToken: '', clientId: '' };
       mutations['SET_REFRESH_TOKEN'](state, {
         refreshToken: 'refreshToken',
         clientId: 'clientId'
@@ -19,8 +18,9 @@ describe('Mutations', () => {
   });
 
   describe('when commit SET_ACCESS_TOKEN', () => {
+    const state = { accessToken: '' };
+
     beforeEach(() => {
-      state = { accessToken: '' };
       mutations['SET_ACCESS_TOKEN'](state, 'accessToken');
     });
 
@@ -30,8 +30,9 @@ describe('Mutations', () => {
   });
 
   describe('when commit SET_USER', () => {
+    const state = { id: undefined, email: '' };
+
     beforeEach(() => {
-      state = { id: undefined, email: '' };
       mutations['SET_USER'](state, { id: 1, email: 'example@example.com' });
     });
 
@@ -42,14 +43,15 @@ describe('Mutations', () => {
   });
 
   describe('when commit CLEAR_TOKENS_AND_USER', () => {
+    const state = {
+      id: 1,
+      email: 'example@example.com',
+      refreshToken: 'refreshToken',
+      clientId: 'clientId',
+      accessToken: 'accessToken'
+    };
+
     beforeEach(() => {
-      state = {
-        id: 1,
-        email: 'example@example.com',
-        refreshToken: 'refreshToken',
-        clientId: 'clientId',
-        accessToken: 'accessToken'
-      };
       mutations['CLEAR_TOKENS_AND_USER'](state);
     });
 

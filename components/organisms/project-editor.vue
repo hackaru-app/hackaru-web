@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     async addProject() {
-      const success = await this.$store.dispatch('projects/addProject', {
+      const success = await this.$store.dispatch('projects/add', {
         name: this.name,
         color: this.color
       });
@@ -97,7 +97,7 @@ export default {
       }
     },
     async updateProject() {
-      const success = await this.$store.dispatch('projects/updateProject', {
+      const success = await this.$store.dispatch('projects/update', {
         id: this.id,
         name: this.name,
         color: this.color
@@ -110,10 +110,7 @@ export default {
     },
     async deleteProject() {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      const success = await this.$store.dispatch(
-        'projects/deleteProject',
-        this.id
-      );
+      const success = await this.$store.dispatch('projects/delete', this.id);
       if (success) {
         this.pop();
         this.$ga.event('project', 'deleteProject');

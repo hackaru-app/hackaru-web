@@ -7,7 +7,7 @@ describe('Applications', () => {
 
   const $store = new Store({
     getters: {
-      'applications/getApplications': [
+      'applications/all': [
         {
           id: 1,
           name: 'Hackaru for Desktop',
@@ -34,11 +34,9 @@ describe('Applications', () => {
     $store.reset();
   });
 
-  it('dispatch applications/getApplications', () => {
+  it('dispatch applications/fetch', () => {
     factory();
-    expect($store.dispatch).toHaveBeenCalledWith(
-      'applications/getApplications'
-    );
+    expect($store.dispatch).toHaveBeenCalledWith('applications/fetch');
   });
 
   describe('when click delete-button', () => {
@@ -51,11 +49,8 @@ describe('Applications', () => {
         .vm.$emit('click');
     });
 
-    it('dispatch applications/deleteApplication', () => {
-      expect($store.dispatch).toHaveBeenCalledWith(
-        'applications/deleteApplication',
-        1
-      );
+    it('dispatch applications/delete', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('applications/delete', 1);
     });
   });
 
@@ -71,7 +66,7 @@ describe('Applications', () => {
 
     it('does not dispatch', () => {
       expect($store.dispatch).not.toHaveBeenCalledWith(
-        'applications/deleteApplication',
+        'applications/delete',
         1
       );
     });

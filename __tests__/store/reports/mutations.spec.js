@@ -1,17 +1,16 @@
 import { mutations } from '@/store/reports';
 
 describe('Mutations', () => {
-  let state;
-
   describe('when commit SET_REPORTS', () => {
+    const state = {
+      start: undefined,
+      end: undefined,
+      projects: [],
+      summary: [],
+      unit: ''
+    };
+
     beforeEach(() => {
-      state = {
-        start: undefined,
-        end: undefined,
-        projects: [],
-        summary: [],
-        unit: ''
-      };
       mutations['SET_REPORTS'](state, {
         period: 'hour',
         projects: [
@@ -26,11 +25,6 @@ describe('Mutations', () => {
             projectId: 1,
             duration: 100,
             date: '2019-01-01T00:00:00.000Z'
-          },
-          {
-            projectId: 1,
-            duration: 200,
-            date: '2019-01-02T00:00:00.000Z'
           }
         ]
       });
@@ -56,11 +50,6 @@ describe('Mutations', () => {
           projectId: 1,
           duration: 100,
           date: '2019-01-01T00:00:00.000Z'
-        },
-        {
-          projectId: 1,
-          duration: 200,
-          date: '2019-01-02T00:00:00.000Z'
         }
       ]);
     });

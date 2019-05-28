@@ -1,41 +1,35 @@
 import { actions } from '@/store/auth-api';
 
 describe('Actions', () => {
-  let params;
   let result;
 
-  beforeEach(() => {
-    params = {
-      dispatch: {},
-      rootGetters: {}
-    };
-  });
-
   describe('when user has valid access token', () => {
+    const dispatch = jest.fn(() => ({ foo: 'bar' }));
+    const rootGetters = {
+      'auth/isLoggedIn': true,
+      'auth/validateToken': () => true,
+      'auth/getAccessToken': 'accessToken'
+    };
+
     beforeEach(async () => {
-      params.dispatch = jest.fn(() => ({
-        foo: 'bar'
-      }));
-      params.rootGetters = {
-        'auth/isLoggedIn': true,
-        'auth/validateToken': () => true,
-        'auth/getAccessToken': 'accessToken'
-      };
-      result = await actions.request(params, {
-        url: '/example',
-        method: 'post',
-        headers: { 'X-Foo': 'bar' },
-        params: {
-          fooBar: 'baz'
-        },
-        data: {
-          barBaz: 'baz'
+      result = await actions.request(
+        { dispatch, rootGetters },
+        {
+          url: '/example',
+          method: 'post',
+          headers: { 'X-Foo': 'bar' },
+          params: {
+            fooBar: 'baz'
+          },
+          data: {
+            barBaz: 'baz'
+          }
         }
-      });
+      );
     });
 
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
           url: '/example',
@@ -63,45 +57,50 @@ describe('Actions', () => {
   });
 
   describe('when user is not logged in', () => {
+    const rootGetters = {
+      'auth/isLoggedIn': false
+    };
+
     beforeEach(() => {
-      params.rootGetters = {
-        'auth/isLoggedIn': false
-      };
-      result = actions.request(params);
+      result = actions.request({ rootGetters });
     });
 
-    it('throw error', async () => {
+    it('throw error with empty messsage', async () => {
       await expect(result).rejects.toThrowError(new Error(undefined));
     });
   });
 
   describe('when user does not have valid access token', () => {
+    const dispatch = jest.fn();
+    const rootGetters = {
+      'auth/isLoggedIn': true,
+      'auth/validateToken': () => false,
+      'auth/getAccessToken': 'accessToken'
+    };
+
     beforeEach(async () => {
-      params.dispatch = jest.fn();
-      params.rootGetters = {
-        'auth/isLoggedIn': true,
-        'auth/validateToken': () => false,
-        'auth/getAccessToken': 'accessToken'
-      };
-      result = await actions.request(params, {
-        url: '/example',
-        method: 'post',
-        data: {
-          barBaz: 'baz'
+      result = await actions.request(
+        { dispatch, rootGetters },
+        {
+          url: '/example',
+          method: 'post',
+          data: {
+            barBaz: 'baz'
+          }
         }
-      });
+      );
     });
 
-    it('dispatch api/fetchAccessToken', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+    it('dispatch api/fetchAccessToken before request', () => {
+      expect(dispatch).toHaveBeenCalledWith(
         'auth/fetchAccessToken',
-        null,
+        {},
         { root: true }
       );
     });
 
     it('dispatch api/request', () => {
-      expect(params.dispatch).toHaveBeenCalledWith(
+      expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
           url: '/example',

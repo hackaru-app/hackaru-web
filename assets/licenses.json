@@ -65,6 +65,12 @@
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
         "parents": "Hackaru"
     },
+    "lodash.omit": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lodash/lodash",
+        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
     "lodash.union": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",

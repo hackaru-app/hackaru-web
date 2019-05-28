@@ -110,15 +110,12 @@ describe('CalendarActivity', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('dispatch activities/updateActivity', () => {
-      expect($store.dispatch).toHaveBeenCalledWith(
-        'activities/updateActivity',
-        {
-          id: 1,
-          startedAt: parse('2019-01-02T01:23:00'),
-          stoppedAt: parse('2019-01-02T02:23:00')
-        }
-      );
+    it('dispatch activities/update', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        startedAt: parse('2019-01-02T01:23:00'),
+        stoppedAt: parse('2019-01-02T02:23:00')
+      });
     });
   });
 
@@ -133,7 +130,7 @@ describe('CalendarActivity', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('does not dispatch activities/updateActivity', () => {
+    it('does not dispatch activities/update', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
     });
   });
@@ -177,14 +174,11 @@ describe('CalendarActivity', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('dispatch activities/updateActivity', () => {
-      expect($store.dispatch).toHaveBeenCalledWith(
-        'activities/updateActivity',
-        {
-          id: 1,
-          stoppedAt: parse('2019-01-01T02:23:45')
-        }
-      );
+    it('dispatch activities/update', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        stoppedAt: parse('2019-01-01T02:23:45')
+      });
     });
   });
 
