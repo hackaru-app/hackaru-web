@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      email: this.$store.getters['auth/getEmail'],
+      email: this.$store.getters['auth/email'],
       currentPassword: ''
     };
   },

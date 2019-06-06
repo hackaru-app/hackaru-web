@@ -7,8 +7,8 @@ describe('Authorize', () => {
 
   const $store = new Store({
     getters: {
-      'auth/getEmail': 'example@example.com',
-      'oauth/getClient': {
+      'auth/email': 'example@example.com',
+      'oauth/client': {
         name: 'ExampleApp',
         scopes: ['activities:read'],
         responseType: 'token',
@@ -49,8 +49,8 @@ describe('Authorize', () => {
       wrapper = factory();
     });
 
-    it('dispatch oauth/getClient', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('oauth/getClient', {
+    it('dispatch oauth/fetchClient', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('oauth/fetchClient', {
         clientId: 'clientId',
         scope: ['activities:read'],
         responseType: 'token',

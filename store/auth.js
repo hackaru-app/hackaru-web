@@ -251,16 +251,16 @@ export const mutations = {
 };
 
 export const getters = {
-  getAccessToken: state => {
+  accessToken: state => {
     return state.accessToken;
   },
-  getEmail: state => {
+  email: state => {
     return state.email;
   },
-  getUserId: state => {
+  userId: state => {
     return state.id;
   },
-  isLoggedIn: (state, getters) => {
+  loggedIn: (state, getters) => {
     return state.clientId && state.refreshToken;
   },
   validateToken: (state, getters) => () => {

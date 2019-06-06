@@ -22,7 +22,7 @@ describe('LoginGuard', () => {
 
   describe('when user is not logged-in', () => {
     beforeEach(() => {
-      $store.getters['auth/isLoggedIn'] = false;
+      $store.getters['auth/loggedIn'] = false;
       factory();
     });
 
@@ -40,7 +40,7 @@ describe('LoginGuard', () => {
 
   describe('when user is logged-in', () => {
     beforeEach(() => {
-      $store.getters['auth/isLoggedIn'] = true;
+      $store.getters['auth/loggedIn'] = true;
       factory();
     });
 

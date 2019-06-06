@@ -3,11 +3,11 @@ import { getters } from '@/store/oauth';
 describe('Getters', () => {
   let result;
 
-  describe('when call getClient', () => {
+  describe('when call client', () => {
     const state = { client: {} };
 
     beforeEach(() => {
-      result = getters.getClient(state);
+      result = getters.client(state);
     });
 
     it('returns client', () => {

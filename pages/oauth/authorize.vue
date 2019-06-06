@@ -70,12 +70,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      client: 'oauth/getClient',
-      email: 'auth/getEmail'
+      client: 'oauth/client',
+      email: 'auth/email'
     })
   },
   async mounted() {
-    const data = await this.$store.dispatch('oauth/getClient', {
+    const data = await this.$store.dispatch('oauth/fetchClient', {
       clientId: this.$route.query['client_id'],
       responseType: this.$route.query['response_type'],
       redirectUri: this.$route.query['redirect_uri'],
