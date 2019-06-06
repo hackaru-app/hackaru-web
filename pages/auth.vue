@@ -114,7 +114,7 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.getters['auth/isLoggedIn']) {
+    if (this.$store.getters['auth/loggedIn']) {
       this.goBack();
     }
   },
@@ -129,7 +129,7 @@ export default {
       });
       if (success) {
         this.goBack();
-        this.$ga.set('userId', this.$store.getters['auth/getUserId']);
+        this.$ga.set('userId', this.$store.getters['auth/userId']);
         this.$ga.event('auth', 'login');
         this.$toast.success(this.$t('loggedIn'));
       }
@@ -142,7 +142,7 @@ export default {
       });
       if (success) {
         this.goBack();
-        this.$ga.set('userId', this.$store.getters['auth/getUserId']);
+        this.$ga.set('userId', this.$store.getters['auth/userId']);
         this.$ga.event('auth', 'signUp');
         this.$toast.success(this.$t('signedUp'));
       }

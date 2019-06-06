@@ -2,7 +2,7 @@ import merge from 'lodash.merge';
 
 export const actions = {
   async request({ dispatch, rootGetters }, config) {
-    if (!rootGetters['auth/isLoggedIn']) throw Error(undefined);
+    if (!rootGetters['auth/loggedIn']) throw Error(undefined);
     if (!rootGetters['auth/validateToken']()) {
       await dispatch('auth/fetchAccessToken', {}, { root: true });
     }
@@ -10,7 +10,7 @@ export const actions = {
       'api/request',
       merge(config, {
         headers: {
-          'x-access-token': rootGetters['auth/getAccessToken']
+          'x-access-token': rootGetters['auth/accessToken']
         }
       }),
       { root: true }

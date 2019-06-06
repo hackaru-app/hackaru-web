@@ -3,7 +3,7 @@ import { actions } from '@/store/oauth';
 describe('Actions', () => {
   let result;
 
-  describe('when dispatch getClient', () => {
+  describe('when dispatch fetchClient', () => {
     const commit = jest.fn();
     const dispatch = jest.fn(() => ({
       data: {
@@ -17,7 +17,7 @@ describe('Actions', () => {
     }));
 
     beforeEach(async () => {
-      result = await actions.getClient(
+      result = await actions.fetchClient(
         { dispatch, commit },
         {
           clientId: 'clientId',
@@ -62,7 +62,7 @@ describe('Actions', () => {
     });
   });
 
-  describe('when dispatch getClient but already authorized', () => {
+  describe('when dispatch fetchClient but already authorized', () => {
     const commit = jest.fn();
     const dispatch = jest.fn(() => ({
       data: {
@@ -73,7 +73,7 @@ describe('Actions', () => {
     }));
 
     beforeEach(async () => {
-      result = await actions.getClient(
+      result = await actions.fetchClient(
         { dispatch, commit },
         {
           clientId: 'clientId',
@@ -96,11 +96,11 @@ describe('Actions', () => {
     });
   });
 
-  describe('when dispatch getClient but throw error', () => {
+  describe('when dispatch fetchClient but throw error', () => {
     const dispatch = jest.fn().mockRejectedValueOnce(new Error('error'));
 
     beforeEach(async () => {
-      result = await actions.getClient(
+      result = await actions.fetchClient(
         { dispatch },
         {
           clientId: 'clientId',

@@ -11,7 +11,7 @@ describe('Auth', () => {
   const $env = {};
   const $store = new Store({
     getters: {
-      'auth/isLoggedIn': false
+      'auth/loggedIn': false
     }
   });
 
@@ -27,7 +27,7 @@ describe('Auth', () => {
 
   describe('when user already logged in', () => {
     beforeEach(() => {
-      $store.getters['auth/isLoggedIn'] = true;
+      $store.getters['auth/loggedIn'] = true;
       factory();
     });
 
@@ -38,7 +38,7 @@ describe('Auth', () => {
 
   describe('when user already logged in and has previous path', () => {
     beforeEach(() => {
-      $store.getters['auth/isLoggedIn'] = true;
+      $store.getters['auth/loggedIn'] = true;
       sessionStorage.setItem('previousPath', '/previous');
       factory();
     });
@@ -50,7 +50,7 @@ describe('Auth', () => {
 
   describe('when user does not logged in', () => {
     beforeEach(() => {
-      $store.getters['auth/isLoggedIn'] = false;
+      $store.getters['auth/loggedIn'] = false;
       wrapper = factory();
     });
 

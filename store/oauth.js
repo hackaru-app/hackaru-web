@@ -7,7 +7,7 @@ export const state = () => ({
 });
 
 export const actions = {
-  async getClient({ commit, dispatch }, payload) {
+  async fetchClient({ commit, dispatch }, payload) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
@@ -98,7 +98,7 @@ export const mutations = {
 };
 
 export const getters = {
-  getClient(state) {
+  client(state) {
     return state.client;
   }
 };

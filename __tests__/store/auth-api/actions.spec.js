@@ -6,9 +6,9 @@ describe('Actions', () => {
   describe('when user has valid access token', () => {
     const dispatch = jest.fn(() => ({ foo: 'bar' }));
     const rootGetters = {
-      'auth/isLoggedIn': true,
+      'auth/loggedIn': true,
       'auth/validateToken': () => true,
-      'auth/getAccessToken': 'accessToken'
+      'auth/accessToken': 'accessToken'
     };
 
     beforeEach(async () => {
@@ -58,7 +58,7 @@ describe('Actions', () => {
 
   describe('when user is not logged in', () => {
     const rootGetters = {
-      'auth/isLoggedIn': false
+      'auth/loggedIn': false
     };
 
     beforeEach(() => {
@@ -73,9 +73,9 @@ describe('Actions', () => {
   describe('when user does not have valid access token', () => {
     const dispatch = jest.fn();
     const rootGetters = {
-      'auth/isLoggedIn': true,
+      'auth/loggedIn': true,
       'auth/validateToken': () => false,
-      'auth/getAccessToken': 'accessToken'
+      'auth/accessToken': 'accessToken'
     };
 
     beforeEach(async () => {

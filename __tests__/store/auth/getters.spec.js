@@ -12,11 +12,11 @@ describe('Getters', () => {
     localStorage.clear();
   });
 
-  describe('when call getAccessToken', () => {
+  describe('when call accessToken', () => {
     const state = { accessToken: 'accessToken' };
 
     beforeEach(() => {
-      result = getters.getAccessToken(state);
+      result = getters.accessToken(state);
     });
 
     it('returns access token', () => {
@@ -24,11 +24,11 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call getEmail', () => {
+  describe('when call email', () => {
     const state = { id: 1, email: 'example@example.com' };
 
     beforeEach(() => {
-      result = getters.getEmail(state);
+      result = getters.email(state);
     });
 
     it('returns email', () => {
@@ -36,11 +36,11 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call getUserId', () => {
+  describe('when call userId', () => {
     const state = { id: 1, email: 'example@example.com' };
 
     beforeEach(() => {
-      result = getters.getUserId(state);
+      result = getters.userId(state);
     });
 
     it('returns id', () => {
@@ -48,14 +48,14 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call isLoggedIn', () => {
+  describe('when call loggedIn', () => {
     const state = {
       refreshToken: 'refreshToken',
       clientId: 'clientId'
     };
 
     beforeEach(() => {
-      result = getters.isLoggedIn(state);
+      result = getters.loggedIn(state);
     });
 
     it('returns true', () => {
@@ -63,14 +63,14 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call isLoggedIn but user does not have token', () => {
+  describe('when call loggedIn but user does not have token', () => {
     const state = {
       refreshToken: '',
       clientId: ''
     };
 
     beforeEach(() => {
-      result = getters.isLoggedIn(state);
+      result = getters.loggedIn(state);
     });
 
     it('returns false', () => {
