@@ -23,7 +23,7 @@
       "start": "計測を開始"
     },
     "project": "プロジェクト",
-    "description": "備考",
+    "description": "作業内容",
     "startedAt": "開始時間",
     "stoppedAt": "終了時間",
     "update": "更新",
