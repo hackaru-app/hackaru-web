@@ -35,6 +35,7 @@ export default {
   align-items: center;
   justify-content: center;
   height: 65px;
+  line-height: 1;
   box-sizing: border-box;
   border-left: 1px $border solid;
 }
@@ -57,11 +58,12 @@ export default {
   color: $cyan;
 }
 @include mq(small) {
-  .calendar-day-header button {
+  .calendar-day-header {
     flex-direction: column;
   }
   .calendar-day-header small {
     padding: 0;
+    margin-top: 2px;
   }
 }
 </style>
