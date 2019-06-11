@@ -29,7 +29,7 @@
           class="nav-button has-icon"
           @click="stopActivity"
         >
-          <icon name="check-icon" class="nav-icon is-primary" />
+          <icon name="check-icon" class="is-primary" />
         </base-button>
         <base-button v-if="stoppedAt" class="nav-button has-icon" @click="copy">
           <icon name="repeat-icon" class="nav-icon" />
@@ -179,6 +179,7 @@ export default {
 .nav-icon {
   width: 18px;
   height: 18px;
+  margin-left: 3px;
 }
 @include mq(small) {
   .acitivty nav {
