@@ -15,17 +15,22 @@
 
     <div class="list-item">
       <div class="activity-content" @click="showModal">
+        <div class="date">
+          <span class="day">{{ format(startedAt, 'DD') }}</span>
+          <span class="week">{{ format(startedAt, 'ddd') }}</span>
+        </div>
         <project-name
           v-bind="project"
           :name="description || (project ? project.name : undefined)"
           class="project-name"
         />
-        <ticker
-          :started-at="startedAt"
-          :stopped-at="stoppedAt"
-          class="duration"
-        />
       </div>
+
+      <ticker
+        :started-at="startedAt"
+        :stopped-at="stoppedAt"
+        :class="['duration', { stopped: stoppedAt }]"
+      />
 
       <nav>
         <base-button
@@ -50,7 +55,7 @@
 </template>
 
 <script>
-import { parse } from 'date-fns';
+import { parse, format } from 'date-fns';
 import Icon from '@/components/atoms/icon';
 import BaseButton from '@/components/atoms/base-button';
 import ProjectName from '@/components/molecules/project-name';
@@ -90,6 +95,11 @@ export default {
       type: Object,
       default: undefined
     }
+  },
+  data() {
+    return {
+      format
+    };
   },
   methods: {
     stopActivity() {
@@ -131,7 +141,6 @@ export default {
 
 <style scoped lang="scss">
 .activity-content {
-  justify-content: space-between;
   cursor: pointer;
   transition: all 0.2s ease;
   flex: 1;
@@ -165,20 +174,53 @@ export default {
   margin-left: 30px;
 }
 .duration {
+  display: flex;
   color: $text-light;
+  justify-content: flex-end;
   font-family: $font-family-duration;
+  background-color: $white;
+  padding-left: 30px;
+  z-index: 1;
+}
+.duration.stopped {
+  color: $text-lighter;
 }
 .list-item {
   padding: 0 40px;
+  padding-left: 0;
   height: 65px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px $border solid;
   background-color: #fff;
+  .activity-content {
+    position: relative;
+  }
   &:hover {
     background: $grey-fdfdfd;
   }
+}
+.date {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  width: 100px;
+  margin-right: 25px;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px $border solid;
+}
+.date .day {
+  font-size: 18px;
+}
+.date .week {
+  font-size: 11px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  color: $text-light;
+  margin-top: 3px;
 }
 .nav-icon {
   width: 18px;
@@ -186,12 +228,16 @@ export default {
   margin-left: 3px;
 }
 @include mq(small) {
+  .date {
+    padding: 0 25px;
+    padding-right: 20px;
+  }
   .acitivty nav {
     display: none;
   }
   .list-item {
-    padding: 0 30px;
     height: 70px;
+    padding-right: 30px;
   }
 }
 </style>

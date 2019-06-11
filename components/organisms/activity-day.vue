@@ -1,13 +1,12 @@
 <template>
   <section v-if="activites.length > 0" class="activity-day">
-    <header class="header">
-      {{ title }}
-    </header>
-    <activity
-      v-for="activity in activites"
-      :key="activity.id"
-      v-bind="activity"
-    />
+    <div class="content">
+      <activity
+        v-for="activity in activites"
+        :key="activity.id"
+        v-bind="activity"
+      />
+    </div>
   </section>
 </template>
 
@@ -40,16 +39,50 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.activity-day {
+  display: flex;
+  // padding-bottom: 40px;
+  // border-bottom: 1px $border solid;
+  // border-top: 1px $border solid;
+  &:last-child {
+    border: 0;
+  }
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 .header {
+  width: 110px;
+  height: 65px;
   align-items: center;
-  background-color: #fff;
-  padding: 7px 40px;
-  color: $text;
-  font-size: 16px;
-  border-bottom: 1px $border solid;
-  padding-top: 40px;
-  padding-bottom: 15px;
-  box-shadow: 0 3px 5px #00000010;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px $grey-fafafa solid;
+  // background-color: $grey-fafafa;
+  line-height: 1;
+  span {
+    font-size: 11px;
+    color: $text-light;
+  }
+  // align-items: center;
+  // background-color: #fff;
+  // padding: 7px 0;
+  // color: $text;
+  // font-size: 16px;
+  // border-bottom: 1px $border solid;
+  // padding-top: 0;
+  // padding-bottom: 0;
+  // box-shadow: 0 3px 5px #00000010;
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    // font-size: $font-size;
+    font-weight: normal;
+  }
 }
 @include mq(small) {
   .header {
