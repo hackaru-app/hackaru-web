@@ -122,29 +122,31 @@ export const getters = {
   workings(state, getters) {
     return getters.all.filter(({ stoppedAt }) => !stoppedAt);
   },
-  getByDay: (state, getters) => date => {
-    return getters.all.filter(
-      ({ stoppedAt, startedAt }) =>
-        stoppedAt &&
-        isWithinRange(
-          startOfDay(date),
-          startOfDay(startedAt),
-          startOfDay(stoppedAt)
-        )
-    );
-  },
   getCalendar: (state, getters) => (date, toMin) => {
     const rows = [];
     const addNewRow = () => rows.push([]) - 1;
 
-    getters.getByDay(date).forEach(activity => {
-      const overlappedIndex = findOverppedRow(rows, activity, toMin);
-      const index = overlappedIndex > -1 ? overlappedIndex : addNewRow();
-      rows[index].push(activity);
-    });
+    getters.all
+      .filter(activity => isRange(activity, date))
+      .forEach(activity => {
+        const overlappedIndex = findOverppedRow(rows, activity, toMin);
+        const index = overlappedIndex > -1 ? overlappedIndex : addNewRow();
+        rows[index].push(activity);
+      });
     return rows;
   }
 };
+
+function isRange({ startedAt, stoppedAt }, date) {
+  return (
+    stoppedAt &&
+    isWithinRange(
+      startOfDay(date),
+      startOfDay(startedAt),
+      startOfDay(stoppedAt)
+    )
+  );
+}
 
 function isOverlapped(a, b, toMin) {
   return areRangesOverlapping(
