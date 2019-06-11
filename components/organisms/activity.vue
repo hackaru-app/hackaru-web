@@ -15,7 +15,11 @@
 
     <div class="list-item">
       <div class="activity-content" @click="showModal">
-        <project-name v-bind="project" class="project-name" />
+        <project-name
+          v-bind="project"
+          :name="description || (project ? project.name : undefined)"
+          class="project-name"
+        />
         <ticker
           :started-at="startedAt"
           :stopped-at="stoppedAt"
