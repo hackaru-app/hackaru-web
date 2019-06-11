@@ -223,7 +223,7 @@ export default {
   align-items: center;
   overflow: hidden;
   pointer-events: auto;
-  transition: box-shadow 0.3s, opacity 0.3s;
+  transition: box-shadow 0.2s, opacity 0.2s;
   &:hover,
   &:active {
     opacity: 0.8;

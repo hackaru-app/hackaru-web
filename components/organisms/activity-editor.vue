@@ -176,7 +176,7 @@ export default {
 <style scoped lang="scss">
 .project-button {
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   border: 0;

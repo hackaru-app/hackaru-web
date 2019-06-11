@@ -129,7 +129,7 @@ export default {
 .activity-content {
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   flex: 1;
   height: 100%;
   display: flex;

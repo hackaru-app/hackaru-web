@@ -21,7 +21,7 @@
   z-index: index($z, modal);
 }
 /deep/ .v--modal-box {
-  animation-duration: 0.3s;
+  animation-duration: 0.2s;
 }
 .modal-content {
   overflow: hidden;

@@ -28,7 +28,7 @@ export default {
   font-size: $font-size;
   line-height: 1;
   border: 1px $grey-eee solid;
-  transition: border-color 0.3s;
+  transition: border-color 0.2s;
   box-shadow: 0 3px 3px #00000005;
   margin-bottom: 15px;
   &::placeholder {

@@ -106,7 +106,7 @@ h1 {
     width: 20px;
     height: 20px;
     color: $yellow;
-    transition: filter 0.3s;
+    transition: filter 0.2s;
   }
   a:hover .logo-icon {
     filter: drop-shadow(0 0 4px rgba($yellow, 0.3));

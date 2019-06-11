@@ -206,7 +206,7 @@ export default {
   width: 200px;
   padding: 10px 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   text-align: left;
   border: 0;
   background: none;
@@ -223,7 +223,7 @@ export default {
   color: $text-light;
   text-decoration: none;
   display: flex;
-  animation-duration: 0.3s;
+  animation-duration: 0.2s;
   margin-top: 30px;
   margin-left: 5px;
   width: 300px;

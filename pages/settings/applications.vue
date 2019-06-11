@@ -148,7 +148,7 @@ ul {
     height: 100%;
     display: flex;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     &:active {
       transform: scale(0.97);
     }
