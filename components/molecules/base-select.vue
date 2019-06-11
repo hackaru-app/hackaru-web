@@ -1,6 +1,6 @@
 <template>
   <div class="base-select">
-    <base-button class="base-button has-dropshadow">
+    <base-button class="is-marshmallow base-button">
       {{ value }}
     </base-button>
     <select ref="select" @change="change">

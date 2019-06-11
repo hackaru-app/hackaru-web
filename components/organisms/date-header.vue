@@ -8,7 +8,7 @@
         <base-button
           v-if="!hasToday"
           ref="today-button"
-          class="has-dropshadow today-button"
+          class="is-marshmallow today-button"
           @click="today"
         >
           <icon name="rotate-ccw-icon" class="is-primary" />
@@ -84,7 +84,7 @@ export default {
   display: flex;
 }
 .today-button {
-  margin-right: 20px;
+  margin-right: 15px;
 }
 @media print {
   .today-button {

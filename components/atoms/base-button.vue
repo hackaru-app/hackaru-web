@@ -14,7 +14,7 @@
   align-items: center;
   display: flex;
   line-height: 1.5em;
-  border-radius: 5px;
+  border-radius: 3px;
   background: none;
   border: 0;
   &:active {
@@ -40,6 +40,11 @@
   padding-right: 20px;
   padding-left: 20px;
   box-shadow: 0 2px 3px #00000015;
+}
+.base-button.is-marshmallow {
+  height: 43px;
+  border: 1px $grey-eee solid;
+  box-shadow: 0 2px 3px #00000006;
 }
 .base-button.has-dropshadow {
   box-shadow: 0 2px 3px #00000015;
