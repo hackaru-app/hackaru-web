@@ -42,7 +42,7 @@
   box-shadow: 0 2px 3px #00000015;
 }
 .base-button.has-dropshadow {
-  box-shadow: 0 2px 5px #00000018;
+  box-shadow: 0 2px 3px #00000015;
 }
 .base-button.has-icon {
   line-height: normal;
