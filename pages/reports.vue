@@ -16,6 +16,7 @@
 
     <loop-slider
       v-slot="{ slideStyle }"
+      ref="slider"
       class="loop-slider"
       @slide-left="prev"
       @slide-right="next"
