@@ -25,7 +25,8 @@
 
       <nav>
         <base-button class="stop-button has-icon" @click="stopActivity">
-          <icon name="check-icon" class="is-primary" />
+          <!-- <icon name="check-icon" class="is-primary" /> -->
+          <icon name="repeat-icon" class="repeat-icon" />
         </base-button>
       </nav>
     </div>
@@ -162,6 +163,10 @@ export default {
   &:hover {
     background: $grey-fdfdfd;
   }
+}
+.repeat-icon {
+  width: 18px;
+  height: 18px;
 }
 @include mq(small) {
   .acitivty nav {
