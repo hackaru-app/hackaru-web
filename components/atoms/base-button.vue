@@ -7,9 +7,9 @@
 <style scoped lang="scss">
 .base-button {
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   padding: 0 15px;
-  height: 39px;
+  height: 41px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -39,9 +39,10 @@
   border-radius: 99px;
   padding-right: 20px;
   padding-left: 20px;
+  box-shadow: 0 2px 3px #00000015;
 }
 .base-button.has-dropshadow {
-  box-shadow: 0 2px 3px #00000010;
+  box-shadow: 0 2px 3px #00000015;
 }
 .base-button.has-icon {
   line-height: normal;
