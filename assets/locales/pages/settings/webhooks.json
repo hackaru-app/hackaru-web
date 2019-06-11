@@ -19,7 +19,7 @@
     },
     "added": "Webhook created",
     "deleted": "Webhook deleted",
-    "empty": "Webhooks are not exists."
+    "empty": "No Webhooks."
   },
   "ja": {
     "modalTitle": "Webhookを追加",
