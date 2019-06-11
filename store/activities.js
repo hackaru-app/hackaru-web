@@ -2,6 +2,7 @@ import { activity } from '@/schemas';
 import {
   isWithinRange,
   startOfDay,
+  endOfDay,
   areRangesOverlapping,
   addMinutes
 } from 'date-fns';
@@ -121,6 +122,15 @@ export const getters = {
   },
   workings(state, getters) {
     return getters.all.filter(({ stoppedAt }) => !stoppedAt);
+  },
+  getByDay: (state, getters) => date => {
+    return getters.all.filter(activity =>
+      isWithinRange(
+        startOfDay(activity.startedAt),
+        startOfDay(date),
+        endOfDay(date)
+      )
+    );
   },
   getCalendar: (state, getters) => (date, toMin) => {
     const rows = [];

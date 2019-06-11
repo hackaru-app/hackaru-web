@@ -24,9 +24,15 @@
       </div>
 
       <nav>
-        <base-button class="stop-button has-icon" @click="stopActivity">
-          <!-- <icon name="check-icon" class="is-primary" /> -->
-          <icon name="repeat-icon" class="repeat-icon" />
+        <base-button
+          v-if="!stoppedAt"
+          class="nav-button has-icon"
+          @click="stopActivity"
+        >
+          <icon name="check-icon" class="nav-icon is-primary" />
+        </base-button>
+        <base-button v-if="stoppedAt" class="nav-button has-icon" @click="copy">
+          <icon name="repeat-icon" class="nav-icon" />
         </base-button>
       </nav>
     </div>
@@ -87,6 +93,12 @@ export default {
       this.$store.dispatch('activities/update', {
         id: this.id,
         stoppedAt: `${parse(Date.now())}`
+      });
+    },
+    copy() {
+      this.$modal.show('activity', {
+        description: this.description,
+        project: this.project || undefined
       });
     },
     resetSwipeMenu() {
@@ -164,7 +176,7 @@ export default {
     background: $grey-fdfdfd;
   }
 }
-.repeat-icon {
+.nav-icon {
   width: 18px;
   height: 18px;
 }
