@@ -1,5 +1,5 @@
 <template>
-  <form class="activity-form">
+  <form class="activity-form" @submit.prevent="startActivity">
     <project-select v-model="projectId" />
     <input
       v-model="description"
@@ -8,7 +8,7 @@
       placeholder="何を始めますか？"
     />
     <base-button
-      type="button"
+      type="submit"
       class="is-primary is-circle has-dropshadow add-button"
     >
       <icon name="plus-icon" />
@@ -32,6 +32,20 @@ export default {
       projectId: null,
       description: ''
     };
+  },
+  methods: {
+    async startActivity() {
+      const success = await this.$store.dispatch('activities/add', {
+        projectId: this.projectId,
+        description: this.description,
+        startedAt: `${new Date()}`
+      });
+      if (success) {
+        this.description = '';
+        this.$ga.event('activity', 'add');
+        this.$store.dispatch('toast/success', '開始しました');
+      }
+    }
   }
 };
 </script>

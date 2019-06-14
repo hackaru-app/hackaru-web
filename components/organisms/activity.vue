@@ -14,9 +14,6 @@
     </template>
 
     <div class="list-item">
-      <!-- <div class="date">
-        <span class="day">{{ format(startedAt, 'HH:mm') }}</span>
-      </div> -->
       <div class="activity-content" @click="showModal">
         <project-name
           v-bind="project"
@@ -139,34 +136,39 @@ export default {
 
 <style scoped lang="scss">
 .activity {
-  // margin-top: 30px;
   margin-bottom: 10px;
   border: 1px $grey-eee solid;
-  // margin-bottom: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 3px #00000008;
 }
 .list-item {
   display: flex;
   align-items: center;
-  padding: 20px 25px;
+  padding-right: 25px;
 }
 .activity-content {
   flex: 1;
+  cursor: pointer;
+  display: flex;
   transition: all 0.2s ease;
+  padding: 20px 25px;
   &:active {
     transform: scale(0.97);
   }
 }
 .duration {
   margin-right: 20px;
+  font-family: $font-family-duration;
+}
+.nav-button {
+  width: 60px;
 }
 .nav-icon {
   width: 18px;
   height: 18px;
 }
 .stopped {
-  color: $text-lighter;
+  color: $text-light;
 }
 
 @include mq(small) {
@@ -189,95 +191,4 @@ export default {
     display: none;
   }
 }
-// .activity-content {
-//   cursor: pointer;
-//   transition: all 0.2s ease;
-//   height: 100%;
-//   min-width: 0;
-//   display: flex;
-//   align-items: center;
-//   width: 100%;
-//   &:active {
-//     transform: scale(0.97);
-//   }
-// }
-// .project-name {
-//   // max-width: 200px
-//   max-width: 100%;
-//   min-width: 1px;
-//   width: 100%;
-//   overflow: hidden;
-//   white-space: nowrap;
-//   text-overflow: ellipsis;
-// }
-// .activity nav {
-//   display: flex;
-//   margin-left: 30px;
-// }
-// .duration {
-//   display: flex;
-//   font-family: $font-family-duration;
-//   flex-shrink: 0;
-// }
-// .duration.stopped {
-// }
-// .list-item {
-//   padding: 0 40px;
-//   padding-left: 30px;
-//   height: 70px;
-//   width: 100%;
-//   box-sizing: border-box;
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   border-bottom: 1px $border solid;
-//   overflow: hidden;
-//   background-color: #fff;
-//   .activity-content {
-//     position: relative;
-//   }
-//   &:hover {
-//     background: $grey-fdfdfd;
-//   }
-// }
-// .date {
-//   display: flex;
-//   flex-direction: column;
-//   line-height: 1;
-//   width: 100px;
-//   // margin-right: 25px;
-//   height: 100%;
-//   justify-content: center;
-//   align-items: center;
-//   // border-right: 1px $border solid;
-// }
-// .date .day {
-//   font-size: 14px;
-// }
-// .date .week {
-//   font-size: 11px;
-//   width: 35px;
-//   display: flex;
-//   justify-content: center;
-//   color: $text-light;
-//   margin-top: 3px;
-// }
-// .nav-icon {
-//   width: 18px;
-//   height: 18px;
-//   margin-left: 3px;
-// }
-// @include mq(small) {
-//   .date {
-//     display: none;
-//   }
-//   .activity nav {
-//     display: none;
-//   }
-//   .list-item {
-//     height: 70px;
-//     padding-left: 30px;
-//     padding-right: 30px;
-//   }
-// }
 </style>
