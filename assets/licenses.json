@@ -149,6 +149,12 @@
         "licenseUrl": "https://github.com/nathanreyes/v-calendar/raw/master/LICENSE",
         "parents": "Hackaru"
     },
+    "v-tooltip": {
+        "licenses": "ISC",
+        "repository": "https://github.com/Akryum/vue-tooltip",
+        "licenseUrl": "https://github.com/Akryum/vue-tooltip/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
     "vue-analytics": {
         "licenses": "MIT",
         "repository": "https://github.com/MatteoGabriele/vue-analytics",

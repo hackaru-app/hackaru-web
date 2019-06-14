@@ -8,6 +8,7 @@
         <project-tooltip />
         <input type="text" name="" value="" placeholder="何を始めますか？" />
         <base-button
+          v-tooltip="{ content: '計測を始める', offset: 5 }"
           type="button"
           class="is-primary is-circle has-dropshadow add-button"
           @click="showModal"
