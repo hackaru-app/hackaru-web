@@ -7,11 +7,8 @@
       type="text"
       placeholder="何を始めますか？"
     />
-    <base-button
-      type="submit"
-      class="is-primary is-circle has-dropshadow add-button"
-    >
-      <icon name="plus-icon" />
+    <base-button type="submit" class="is-primary is-circle add-button">
+      <icon name="play-icon" class="icon" />
     </base-button>
   </form>
 </template>
@@ -65,6 +62,11 @@ export default {
   height: 100%;
 }
 .add-button {
-  margin-right: 10px;
+  margin-right: 15px;
+  .icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 3px;
+  }
 }
 </style>

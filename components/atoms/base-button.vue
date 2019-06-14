@@ -26,10 +26,11 @@
   color: #fff;
 }
 .base-button.is-circle {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   padding: 0;
   border-radius: 50%;
+  box-shadow: 0 2px 3px #00000015;
 }
 .base-button.is-danger {
   background-color: $red;
