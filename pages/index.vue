@@ -3,9 +3,10 @@
 <template>
   <section>
     <header>
-      <form class="timer-form">
+      <project-select />
+      <!-- <form class="timer-form">
         <heading class="title">{{ $t('title') }}</heading>
-        <project-tooltip />
+
         <input type="text" name="" value="" placeholder="何を始めますか？" />
         <base-button
           v-tooltip="{ content: '計測を始める', offset: 5 }"
@@ -15,7 +16,7 @@
         >
           <icon name="plus-icon" />
         </base-button>
-      </form>
+      </form> -->
       <!-- <heading>{{ $t('title') }}</heading>
       <base-button
         type="button"
@@ -44,7 +45,7 @@
 <script>
 import Dot from '@/components/atoms/dot';
 import ProjectName from '@/components/molecules/project-name';
-import ProjectTooltip from '@/components/molecules/project-tooltip';
+import ProjectSelect from '@/components/molecules/project-select';
 import ContentHeader from '@/components/organisms/content-header';
 import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
@@ -58,7 +59,7 @@ export default {
     Dot,
     ContentHeader,
     ProjectName,
-    ProjectTooltip,
+    ProjectSelect,
     Heading,
     Icon,
     BaseButton,
