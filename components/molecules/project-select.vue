@@ -6,15 +6,20 @@
       </button>
 
       <template slot="popover">
-        <div v-for="project in projects" :key="project.id" class="list-item">
+        <div
+          v-close-popover
+          v-for="project in projects"
+          :key="project.id"
+          class="list-item"
+          @click="input(project.id)"
+        >
           <project-name v-bind="project" class="project-name" />
           <base-button
             v-if="project.id"
             class="has-icon edit-button"
             type="button"
-            @click="change(project.id)"
           >
-            <icon name="edit-icon" class="is-primary edit-icon" />
+            <icon name="edit-3-icon" class="is-primary edit-icon" />
           </base-button>
         </div>
         <footer class="footer">
@@ -42,9 +47,7 @@ export default {
   props: {
     value: {
       type: Number,
-      default() {
-        return null;
-      }
+      default: () => null
     }
   },
   computed: {
@@ -55,12 +58,12 @@ export default {
       ];
     },
     selected() {
-      return this.projects[this.value];
+      return this.projects.find(({ id }) => id === this.value);
     }
   },
   methods: {
-    change(id) {
-      this.$emit('update:value', id);
+    input(id) {
+      this.$emit('input', id);
     }
   }
 };
@@ -75,6 +78,7 @@ export default {
   cursor: pointer;
   padding: 0;
   width: 100%;
+  min-width: 150px;
   border: 0;
   border-right: 1px #eee solid;
 }
@@ -82,12 +86,13 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 15px 40px;
+  padding: 15px 0;
+  padding-right: 40px;
 }
 .project-name {
   transition: all 0.2s ease;
   &:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
 }
 .list-item {
@@ -99,7 +104,7 @@ export default {
   border-top: 1px $grey-f5f5f5 solid;
   min-width: 150px;
   color: $text;
-  font-size: 14px;
+  font-size: $font-size;
   cursor: pointer;
   &:hover {
     background-color: $grey-fdfdfd;
@@ -110,9 +115,10 @@ export default {
   }
 }
 .list-item .edit-icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   margin-top: 2px;
+  margin-left: 20px;
 }
 .footer {
   border-top: 1px $grey-f5f5f5 solid;

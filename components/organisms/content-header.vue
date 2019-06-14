@@ -13,6 +13,7 @@
   padding: 0 40px;
   background-color: $white;
   border-bottom: 1px $border solid;
+  box-shadow: 0 2px 3px #00000008;
   justify-content: space-between;
 }
 @include mq(small) {

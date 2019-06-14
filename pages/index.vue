@@ -2,38 +2,9 @@
 
 <template>
   <section>
-    <header>
-      <project-select />
-      <!-- <form class="timer-form">
-        <heading class="title">{{ $t('title') }}</heading>
-
-        <input type="text" name="" value="" placeholder="何を始めますか？" />
-        <base-button
-          v-tooltip="{ content: '計測を始める', offset: 5 }"
-          type="button"
-          class="is-primary is-circle has-dropshadow add-button"
-          @click="showModal"
-        >
-          <icon name="plus-icon" />
-        </base-button>
-      </form> -->
-      <!-- <heading>{{ $t('title') }}</heading>
-      <base-button
-        type="button"
-        class="is-primary is-circle has-dropshadow add-button"
-        @click="showModal"
-      >
-        <icon name="plus-icon" />
-      </base-button> -->
-    </header>
-
-    <!-- <base-button
-      type="button"
-      class="is-primary is-circle has-dropshadow add-button-sm"
-      @click="showModal"
-    >
-      <icon name="plus-icon" />
-    </base-button> -->
+    <content-header>
+      <activity-form />
+    </content-header>
     <activity-day
       v-for="prev in [0, 1, 2, 3, 4, 5, 6]"
       :key="prev"
@@ -45,7 +16,7 @@
 <script>
 import Dot from '@/components/atoms/dot';
 import ProjectName from '@/components/molecules/project-name';
-import ProjectSelect from '@/components/molecules/project-select';
+import ActivityForm from '@/components/molecules/activity-form';
 import ContentHeader from '@/components/organisms/content-header';
 import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
@@ -59,7 +30,7 @@ export default {
     Dot,
     ContentHeader,
     ProjectName,
-    ProjectSelect,
+    ActivityForm,
     Heading,
     Icon,
     BaseButton,

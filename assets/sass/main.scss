@@ -78,6 +78,7 @@ $animationDuration: $animation-duration;
 .tooltip {
   display: block !important;
   z-index: 10000;
+  outline: none;
 
   .tooltip-inner {
     background: black;
