@@ -44,7 +44,7 @@
         </heading>
         <base-button
           type="button"
-          class="is-primary is-circle has-dropshadow add-button"
+          class="is-primary is-circle add-button"
           @click="showModal"
         >
           <icon name="plus-icon" />

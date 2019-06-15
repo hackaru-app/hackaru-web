@@ -47,9 +47,6 @@
   border: 1px $grey-eee solid;
   box-shadow: 0 2px 3px #00000006;
 }
-.base-button.has-dropshadow {
-  box-shadow: 0 2px 3px #00000015;
-}
 .base-button.has-icon {
   line-height: normal;
   height: auto;
