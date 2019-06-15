@@ -69,6 +69,7 @@ export default {
   border-left-style: solid;
   overflow: hidden;
   border-radius: 0 3px 3px 0;
+  box-shadow: 0 5px 6px #00000008;
 }
 .calendar-event h1 {
   flex-shrink: 1;

@@ -152,6 +152,9 @@ export default {
   display: flex;
   transition: all 0.2s ease;
   padding: 20px 25px;
+  &:hover {
+    padding-left: 30px;
+  }
   &:active {
     transform: scale(0.97);
   }
@@ -168,7 +171,7 @@ export default {
   height: 18px;
 }
 .stopped {
-  color: $text-lighter;
+  color: $text-light;
 }
 @include mq(small) {
   .activity {
@@ -181,6 +184,9 @@ export default {
   }
   .content {
     padding: 26px 30px;
+  }
+  .stopped {
+    color: $text-lighter;
   }
   .duration {
     margin-right: 0;
