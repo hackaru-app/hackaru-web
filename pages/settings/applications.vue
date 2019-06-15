@@ -109,11 +109,9 @@ export default {
 .content {
   padding: 0 40px;
   padding-bottom: 50px;
-  background-color: $white;
 }
 .header {
   display: flex;
-  border-bottom: 1px $border solid;
   h1 {
     flex: 1;
     display: flex;
@@ -130,14 +128,14 @@ ul {
   list-style-position: inside;
 }
 .application {
-  height: 65px;
+  padding: 18px 25px;
   display: flex;
+  margin-bottom: 10px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px $border solid;
-  &:hover {
-    background: $grey-fdfdfd;
-  }
+  border: 1px $border solid;
+  border-radius: 5px;
+  box-shadow: 0 2px 3px #00000008;
   h1 {
     cursor: pointer;
     flex: 1;
@@ -155,8 +153,10 @@ ul {
   }
 }
 .empty {
-  padding: 15px 0;
+  margin: 0;
+  padding: 30px 0;
   color: $text-light;
+  border-top: 1px $border solid;
 }
 @include mq(small) {
   .content {

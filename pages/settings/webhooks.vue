@@ -158,7 +158,6 @@ export default {
 }
 .header {
   display: flex;
-  border-bottom: 1px $border solid;
   align-items: baseline;
   h1 {
     flex: 1;
@@ -173,14 +172,16 @@ export default {
 .content {
   padding: 0 40px;
   padding-bottom: 50px;
-  background-color: $white;
 }
 .webhook {
-  height: 65px;
+  padding: 18px 25px;
   display: flex;
+  margin-bottom: 10px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px $border solid;
+  border: 1px $border solid;
+  border-radius: 5px;
+  box-shadow: 0 2px 3px #00000008;
 }
 .webhook h1 {
   flex: 1;
@@ -193,12 +194,15 @@ export default {
   align-items: center;
 }
 .webhook p {
+  margin: 0;
   margin-right: 20px;
   color: $text-light;
 }
 .empty {
-  padding: 15px 0;
+  margin: 0;
+  padding: 30px 0;
   color: $text-light;
+  border-top: 1px $border solid;
 }
 @include mq(small) {
   .content {
