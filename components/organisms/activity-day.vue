@@ -62,7 +62,6 @@ export default {
   }
   .date {
     padding-left: 30px;
-    border-bottom: 1px $border solid;
   }
 }
 </style>

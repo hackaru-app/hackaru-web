@@ -149,10 +149,15 @@ export default {
   display: flex;
   align-items: center;
   padding-right: 25px;
+  width: 100%;
+}
+.project-name {
+  width: 100%;
 }
 .content {
-  flex: 1;
   cursor: pointer;
+  min-width: 0;
+  flex: 1;
   display: flex;
   transition: all 0.2s ease;
   padding: 20px 25px;
@@ -176,18 +181,11 @@ export default {
 }
 @include mq(small) {
   .activity {
-    border-radius: 0;
-    box-shadow: none;
-    margin: 0;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
+    margin: 0 30px;
+    margin-bottom: 10px;
   }
   .content {
-    padding: 26px 30px;
-  }
-  .duration {
-    margin-right: 0;
+    padding: 20px 30px;
   }
   .activity nav {
     display: none;
