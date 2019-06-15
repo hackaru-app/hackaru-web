@@ -10,7 +10,7 @@
 
     <div class="content">
       <div class="doughnut-chart-wrapper">
-        <p v-if="isEmpty" class="doughnut-chart-empty">NO DATA</p>
+        <p v-if="isEmpty" class="doughnut-chart-empty" />
         <doughnut-chart
           v-if="!isEmpty"
           :chart-data="doughnutChartData"
@@ -112,8 +112,16 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $text-light;
   margin: 0;
+  &:before {
+    position: absolute;
+    content: '';
+    width: 160px;
+    height: 160px;
+    box-sizing: border-box;
+    border: 40px $grey-f5f5f5 solid;
+    border-radius: 50%;
+  }
 }
 .projects {
   display: flex;
