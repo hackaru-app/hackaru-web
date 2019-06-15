@@ -14,7 +14,7 @@
     </template>
 
     <div class="list-item">
-      <div class="activity-content" @click="showModal">
+      <div class="content" @click="showModal">
         <project-name
           v-bind="project"
           :name="description || (project ? project.name : undefined)"
@@ -137,7 +137,7 @@ export default {
 <style scoped lang="scss">
 .activity {
   margin-bottom: 10px;
-  border: 1px $grey-eee solid;
+  border: 1px $border solid;
   border-radius: 5px;
   box-shadow: 0 2px 3px #00000008;
 }
@@ -146,7 +146,7 @@ export default {
   align-items: center;
   padding-right: 25px;
 }
-.activity-content {
+.content {
   flex: 1;
   cursor: pointer;
   display: flex;
@@ -168,21 +168,19 @@ export default {
   height: 18px;
 }
 .stopped {
-  color: $text-light;
+  color: $text-lighter;
 }
-
 @include mq(small) {
   .activity {
-    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-radius: 0;
-    box-shadow: none;
   }
-  .list-item {
-    padding: 25px 30px;
-    padding-left: 31px;
+  .content {
+    padding: 26px 30px;
   }
   .duration {
     margin-right: 0;

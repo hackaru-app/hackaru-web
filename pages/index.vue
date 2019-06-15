@@ -3,7 +3,14 @@
 <template>
   <section>
     <content-header>
-      <activity-form />
+      <heading>Timers</heading>
+      <base-button
+        type="button"
+        class="is-primary is-circle add-button"
+        @click="showModal"
+      >
+        <icon name="plus-icon" class="icon" />
+      </base-button>
     </content-header>
     <activity-day
       v-for="prev in [0, 1, 2, 3, 4, 5, 6]"
@@ -16,7 +23,6 @@
 <script>
 import Dot from '@/components/atoms/dot';
 import ProjectName from '@/components/molecules/project-name';
-import ActivityForm from '@/components/molecules/activity-form';
 import ContentHeader from '@/components/organisms/content-header';
 import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
@@ -30,7 +36,6 @@ export default {
     Dot,
     ContentHeader,
     ProjectName,
-    ActivityForm,
     Heading,
     Icon,
     BaseButton,
@@ -65,68 +70,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.timer-form {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  // padding: 0 25px;
-  border-bottom: 1px $grey-eee solid;
-  // margin-bottom: 10px;
-  // border-radius: 5px;
-  padding: 0 40px;
-  padding-left: 0;
-  padding-right: 58px;
-  box-sizing: border-box;
-  box-shadow: 0 2px 3px #00000008;
-}
-.project-name {
-  margin-right: 45px;
-  // padding: 0 40px;
-  display: flex;
-  align-items: center;
-  height: 60%;
-  padding-right: 45px;
-  border-right: 1px #eee solid;
-}
-.timer-form input {
-  height: 100%;
-  border: 0;
-  flex: 1;
-}
 .add-button {
-}
-.add-button-sm {
-  display: none;
-}
-.title {
-  display: none;
-}
-
-@include mq(small) {
-  .title {
-    flex: 1;
-    display: flex;
-  }
-  .timer-form {
-    // display: none;
-    padding: 0 30px;
-  }
-  .timer-form .project-name {
-    width: 100px;
-    display: none;
-  }
-  .timer-form input {
-    width: 100px;
-    display: none;
-  }
-  .add-button-sm {
-    display: flex;
-    position: fixed;
-    z-index: 9999;
-    width: 43px !important;
-    height: 43px !important;
-    bottom: 30px;
-    right: 30px;
-  }
+  margin-right: 5px;
 }
 </style>
