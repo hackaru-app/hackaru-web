@@ -79,7 +79,6 @@ $animationDuration: $animation-duration;
   display: block !important;
   z-index: 10000;
   outline: none;
-
   .tooltip-inner {
     background: black;
     color: white;
@@ -87,7 +86,6 @@ $animationDuration: $animation-duration;
     font-size: 14px;
     padding: 10px;
   }
-
   .tooltip-arrow {
     width: 0;
     height: 0;
@@ -97,10 +95,8 @@ $animationDuration: $animation-duration;
     border-color: black;
     z-index: 1;
   }
-
   &[x-placement^="top"] {
     margin-bottom: 5px;
-
     .tooltip-arrow {
       border-width: 5px 5px 0 5px;
       border-left-color: transparent !important;
@@ -111,10 +107,8 @@ $animationDuration: $animation-duration;
       margin-bottom: 0;
     }
   }
-
   &[x-placement^="bottom"] {
     margin-top: 5px;
-
     .tooltip-arrow {
       border-width: 0 5px 5px 5px;
       border-left-color: transparent !important;
@@ -126,10 +120,8 @@ $animationDuration: $animation-duration;
       margin-bottom: 0;
     }
   }
-
   &[x-placement^="right"] {
     margin-left: 5px;
-
     .tooltip-arrow {
       border-width: 5px 5px 5px 0;
       border-left-color: transparent !important;
@@ -141,10 +133,8 @@ $animationDuration: $animation-duration;
       margin-right: 0;
     }
   }
-
   &[x-placement^="left"] {
     margin-right: 5px;
-
     .tooltip-arrow {
       border-width: 5px 0 5px 5px;
       border-top-color: transparent !important;
@@ -155,29 +145,5 @@ $animationDuration: $animation-duration;
       margin-left: 0;
       margin-right: 0;
     }
-  }
-
-  &.popover {
-    .popover-inner {
-      background: $white;
-      padding: 0;
-      border-radius: 5px;
-      box-shadow: 0 5px 30px rgba(black, .1);
-    }
-    .popover-arrow {
-      border-color: $white;
-    }
-  }
-
-  &[aria-hidden='true'] {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity .15s, visibility .15s;
-  }
-
-  &[aria-hidden='false'] {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity .15s;
   }
 }
