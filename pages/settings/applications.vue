@@ -156,7 +156,6 @@ ul {
 .empty {
   margin: 0;
   padding: 30px 0;
-  color: $text-light;
   border-top: 1px $border solid;
 }
 @include mq(small) {
