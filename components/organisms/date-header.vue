@@ -85,6 +85,7 @@ export default {
 }
 .today-button {
   margin-right: 15px;
+  padding: 0 13px;
 }
 @media print {
   .today-button {

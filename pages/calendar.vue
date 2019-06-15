@@ -168,7 +168,7 @@ export default {
 .headers {
   display: flex;
   flex-direction: row;
-  background: #ffffffee;
+  background: $white;
   min-width: 100%;
   box-sizing: border-box;
   padding-left: 60px;
