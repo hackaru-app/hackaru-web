@@ -138,15 +138,16 @@ ul {
   box-shadow: 0 2px 3px #00000008;
   h1 {
     cursor: pointer;
-    flex: 1;
     font-size: $font-size;
     font-weight: normal;
     padding: 0;
     margin: 0;
     height: 100%;
-    display: flex;
     align-items: center;
     transition: all 0.2s ease;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     &:active {
       transform: scale(0.97);
     }

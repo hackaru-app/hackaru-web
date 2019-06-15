@@ -52,8 +52,8 @@
       </header>
 
       <div v-for="webhook in webhooks" :key="webhook.id" class="webhook">
-        <p>{{ $t(`events.${webhook.event}`) }}</p>
         <h1>{{ webhook.targetUrl }}</h1>
+        <p>・{{ $t(`events.${webhook.event}`) }}</p>
         <base-button
           type="button"
           class="delete-button has-icon"
@@ -175,28 +175,39 @@ export default {
 }
 .webhook {
   padding: 18px 25px;
+  padding-right: 20px;
   display: flex;
   margin-bottom: 10px;
   align-items: center;
-  justify-content: space-between;
   border: 1px $border solid;
   border-radius: 5px;
   box-shadow: 0 2px 3px #00000008;
 }
+.list-item-content {
+  display: flex;
+  min-width: 0;
+}
 .webhook h1 {
-  flex: 1;
+  flex-shrink: 1;
   font-size: $font-size;
   font-weight: normal;
   padding: 0;
   margin: 0;
   height: 100%;
-  display: flex;
   align-items: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .webhook p {
+  flex-shrink: 9999;
   margin: 0;
+  flex: 1;
   margin-right: 20px;
   color: $text-light;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .empty {
   margin: 0;

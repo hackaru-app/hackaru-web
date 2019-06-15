@@ -149,7 +149,6 @@ export default {
   display: flex;
   align-items: center;
   padding-right: 25px;
-  width: 100%;
 }
 .project-name {
   width: 100%;
@@ -184,8 +183,11 @@ export default {
     margin: 0 30px;
     margin-bottom: 10px;
   }
+  .duration {
+    margin-right: 0;
+  }
   .content {
-    padding: 20px 30px;
+    padding: 20px 25px;
   }
   .activity nav {
     display: none;
