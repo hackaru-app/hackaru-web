@@ -159,19 +159,19 @@ export default {
   top: 0;
   overflow: hidden;
   z-index: index($z, calendar-day-header);
+  box-shadow: 0 2px 3px #00000008;
+  border-bottom: 1px $border solid;
 }
 .headers-wrapper {
   display: flex;
-  background: $background;
 }
 .headers {
   display: flex;
   flex-direction: row;
-  background: $background;
+  background: #ffffffee;
   min-width: 100%;
   box-sizing: border-box;
   padding-left: 60px;
-  border-bottom: 1px $border solid;
 }
 .contents-wrapper {
   overflow: hidden;

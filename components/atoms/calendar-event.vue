@@ -44,7 +44,7 @@ export default {
       );
     },
     backgroundColor() {
-      return Color(this.color).fade(0.666);
+      return Color(this.color).mix(Color('white'), 0.666);
     },
     textColor() {
       return Color(this.color).darken(0.6);
@@ -68,6 +68,7 @@ export default {
   border-left-width: 2px;
   border-left-style: solid;
   overflow: hidden;
+  border-radius: 0 3px 3px 0;
 }
 .calendar-event h1 {
   flex-shrink: 1;
