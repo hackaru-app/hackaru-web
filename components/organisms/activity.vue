@@ -105,10 +105,14 @@ export default {
       });
     },
     copy() {
-      this.$modal.show('activity', {
+      const success = this.$store.dispatch('activities/add', {
         description: this.description,
-        project: this.project || undefined
+        projectId: this.project && this.project.id,
+        startedAt: `${new Date()}`
       });
+      if (success) {
+        this.$toast.success(this.$t('copied'));
+      }
     },
     resetSwipeMenu() {
       this.$refs.menu.reset();
@@ -152,9 +156,6 @@ export default {
   display: flex;
   transition: all 0.2s ease;
   padding: 20px 25px;
-  &:hover {
-    padding-left: 30px;
-  }
   &:active {
     transform: scale(0.97);
   }

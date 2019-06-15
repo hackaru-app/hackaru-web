@@ -1,5 +1,6 @@
 {
   "en": {
+    "copied": "Activity copied",
     "deleted": "Activity deleted",
     "archived": "Activty archived!",
     "confirms": {
@@ -7,6 +8,7 @@
     }
   },
   "ja": {
+    "copied": "複製しました",
     "deleted": "削除しました",
     "archived": "記録しました！",
     "confirms": {
