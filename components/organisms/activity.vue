@@ -186,9 +186,6 @@ export default {
   .content {
     padding: 26px 30px;
   }
-  .stopped {
-    color: $text-lighter;
-  }
   .duration {
     margin-right: 0;
   }

@@ -171,10 +171,6 @@ export default {
     padding: 30px 0;
     border-bottom: 1px $border solid;
   }
-  .doughnut-chart-empty {
-    margin-top: -10px;
-    padding-bottom: 10px;
-  }
   .projects {
     display: flex;
     flex-grow: 1;
