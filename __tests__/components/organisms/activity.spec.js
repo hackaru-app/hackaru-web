@@ -46,6 +46,7 @@ describe('Activity', () => {
   describe('when swipe right', () => {
     beforeEach(() => {
       wrapper = factory();
+      wrapper.setMethods({ resetSwipeMenu: () => {} });
       wrapper.find({ ref: 'menu' }).vm.$emit('swipe-right');
     });
 
@@ -53,6 +54,26 @@ describe('Activity', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         stoppedAt: `${new Date()}`
+      });
+    });
+  });
+
+  describe('when swipe right and already stopped', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setProps({
+        project: { id: 1 },
+        stoppedAt: '2019-01-02T01:23:45'
+      });
+      wrapper.setMethods({ resetSwipeMenu: () => {} });
+      wrapper.find({ ref: 'menu' }).vm.$emit('swipe-right');
+    });
+
+    it('dispatch activities/add for copy', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
+        projectId: 1,
+        description: 'Review',
+        startedAt: `${new Date()}`
       });
     });
   });
@@ -85,7 +106,7 @@ describe('Activity', () => {
   describe('when click content', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.activity-content').trigger('click');
+      wrapper.find('.content').trigger('click');
     });
 
     it('show modal', () => {

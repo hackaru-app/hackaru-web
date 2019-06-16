@@ -31,7 +31,7 @@
       <nav>
         <base-button
           v-if="!stoppedAt"
-          class="nav-button has-icon"
+          class="nav-button stop-button has-icon"
           @click="stopActivity"
         >
           <icon name="check-icon" class="is-primary" />
@@ -106,11 +106,11 @@ export default {
       const diff = differenceInDays(new Date(), this.startedAt);
       switch (diff) {
         case 0:
-          return this.$i18n.t('today');
+          return this.$t('today');
         case 1:
-          return this.$i18n.t('yesterday');
+          return this.$t('yesterday');
         default:
-          return this.$i18n.t('ago', { day: diff });
+          return this.$t('ago', { day: diff });
       }
     }
   },
