@@ -1,16 +1,19 @@
-<i18n src="@/assets/locales/components/organisms/activity-day.json" />
-
 <template>
-  <activity-group :title="title" :activites="activites" />
+  <section>
+    <activity
+      v-for="activity in activites"
+      :key="activity.id"
+      v-bind="activity"
+    />
+  </section>
 </template>
 
 <script>
-import ActivityGroup from '@/components/organisms/activity-group';
-import { differenceInDays } from 'date-fns';
+import Activity from '@/components/organisms/activity';
 
 export default {
   components: {
-    ActivityGroup
+    Activity
   },
   props: {
     day: {
@@ -19,17 +22,6 @@ export default {
     }
   },
   computed: {
-    title() {
-      const diff = differenceInDays(new Date(), this.day);
-      switch (diff) {
-        case 0:
-          return this.$i18n.t('today');
-        case 1:
-          return this.$i18n.t('yesterday');
-        default:
-          return this.$i18n.t('ago', { day: diff });
-      }
-    },
     activites() {
       return this.$store.getters['activities/getByDay'](this.day);
     }

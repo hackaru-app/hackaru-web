@@ -3,7 +3,7 @@
 <template>
   <swipe-menu
     ref="menu"
-    class="activity"
+    :class="['activity', { stopped: stoppedAt }]"
     @swipe-right="swipeRight"
     @swipe-left="deleteActivity"
   >
@@ -18,13 +18,13 @@
         <project-name
           v-bind="project"
           :name="description || (project ? project.name : undefined)"
-          :highlight="!stoppedAt"
           class="project-name"
         />
+        <span class="difference">{{ difference }}</span>
         <ticker
           :started-at="startedAt"
           :stopped-at="stoppedAt"
-          :class="['duration', { stopped: stoppedAt }]"
+          class="duration"
         />
       </div>
 
@@ -60,6 +60,7 @@ import BaseButton from '@/components/atoms/base-button';
 import ProjectName from '@/components/molecules/project-name';
 import SwipeMenu from '@/components/molecules/swipe-menu';
 import Ticker from '@/components/atoms/ticker';
+import { differenceInDays } from 'date-fns';
 
 export default {
   components: {
@@ -100,6 +101,19 @@ export default {
       format
     };
   },
+  computed: {
+    difference() {
+      const diff = differenceInDays(new Date(), this.startedAt);
+      switch (diff) {
+        case 0:
+          return this.$i18n.t('today');
+        case 1:
+          return this.$i18n.t('yesterday');
+        default:
+          return this.$i18n.t('ago', { day: diff });
+      }
+    }
+  },
   methods: {
     stopActivity() {
       this.$toast.success(this.$t('archived'));
@@ -132,10 +146,10 @@ export default {
     async swipeRight() {
       if (this.stoppedAt) {
         await this.copy();
-        this.resetSwipeMenu();
       } else {
         this.stopActivity();
       }
+      this.resetSwipeMenu();
     },
     showModal(params) {
       this.$modal.show('activity', {
@@ -152,19 +166,29 @@ export default {
 
 <style scoped lang="scss">
 .activity {
-  margin-bottom: 10px;
-  border: 1px $border solid;
-  border-radius: 5px;
-  box-shadow: 0 2px 3px #00000008;
+  border-bottom: 1px $border solid;
 }
 .list-item {
   display: flex;
   align-items: center;
-  padding-right: 25px;
+  padding-right: 45px;
 }
 .project-name {
   width: 100%;
   min-width: 0;
+}
+.duration {
+  padding-left: 15px;
+  font-family: $font-family-duration;
+}
+.difference {
+  flex-shrink: 0;
+  display: flex;
+  margin-left: 10px;
+}
+.stopped .duration,
+.stopped .difference {
+  color: $text-lighter;
 }
 .content {
   width: 100%;
@@ -173,14 +197,11 @@ export default {
   justify-content: space-between;
   min-width: 0;
   transition: all 0.2s ease;
-  padding: 20px 25px;
+  padding: 23px 40px;
+  padding-right: 20px;
   &:active {
     transform: scale(0.97);
   }
-}
-.duration {
-  padding-left: 20px;
-  font-family: $font-family-duration;
 }
 .nav-button {
   width: 60px;
@@ -189,23 +210,16 @@ export default {
   width: 18px;
   height: 18px;
 }
-.stopped {
-  color: $text-light;
-}
 .swipe-menu-item.is-repeat {
   background-color: #85b369;
   color: #fff;
-}
-.swipe-menu-item.is-repeat,
-.swipe-menu-item.is-primary {
-  border-radius: 0 5px 5px 0;
 }
 @include mq(small) {
   .list-item {
     padding-right: 0;
   }
   .content {
-    padding: 23px 25px;
+    padding: 25px 30px;
   }
   .activity nav {
     display: none;

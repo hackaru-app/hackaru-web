@@ -12,7 +12,11 @@
         <icon name="plus-icon" class="icon" />
       </base-button>
     </content-header>
-    <activity-group :activites="workings" :title="$t('workings')" />
+    <activity
+      v-for="activity in workings"
+      :key="activity.id"
+      v-bind="activity"
+    />
     <activity-day
       v-for="prev in [0, 1, 2, 3, 4, 5, 6]"
       :key="prev"
@@ -28,8 +32,8 @@ import ContentHeader from '@/components/organisms/content-header';
 import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
-import ActivityGroup from '@/components/organisms/activity-group';
 import ActivityDay from '@/components/organisms/activity-day';
+import Activity from '@/components/organisms/activity';
 import { mapGetters } from 'vuex';
 import { addDays } from 'date-fns';
 
@@ -41,8 +45,8 @@ export default {
     Heading,
     Icon,
     BaseButton,
-    ActivityGroup,
-    ActivityDay
+    ActivityDay,
+    Activity
   },
   head: {
     title: 'Timers'
@@ -71,9 +75,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.add-button {
-  margin-right: 5px;
-}
-</style>

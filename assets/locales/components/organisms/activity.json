@@ -3,6 +3,9 @@
     "copied": "Activity copied",
     "deleted": "Activity deleted",
     "archived": "Activty archived!",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "ago": "{day} days",
     "confirms": {
       "delete": "Are you sure you want to delete the timer?"
     }
@@ -11,6 +14,9 @@
     "copied": "複製しました",
     "deleted": "削除しました",
     "archived": "記録しました！",
+    "today": "今日",
+    "yesterday": "昨日",
+    "ago": "{day}日前",
     "confirms": {
       "delete": "削除しますか？"
     }

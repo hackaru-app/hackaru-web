@@ -174,7 +174,7 @@ export default {
   padding-bottom: 50px;
 }
 .webhook {
-  padding: 18px 25px;
+  padding: 20px 25px;
   padding-right: 20px;
   display: flex;
   margin-bottom: 10px;
