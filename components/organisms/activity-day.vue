@@ -1,34 +1,20 @@
 <template>
-  <section v-if="activites.length > 0" class="activity-day">
-    <header class="date">
-      <span class="title">{{ title.toUpperCase() }}</span>
-    </header>
-    <activity
-      v-for="activity in activites"
-      :key="activity.id"
-      v-bind="activity"
-    />
-  </section>
+  <activity-group :title="title.toUpperCase()" :activites="activites" />
 </template>
 
 <script>
-import Activity from '@/components/organisms/activity';
-import { differenceInDays, distanceInWordsToNow, format } from 'date-fns';
+import ActivityGroup from '@/components/organisms/activity-group';
+import { differenceInDays, distanceInWordsToNow } from 'date-fns';
 
 export default {
   components: {
-    Activity
+    ActivityGroup
   },
   props: {
     day: {
       type: String,
       required: true
     }
-  },
-  data() {
-    return {
-      format
-    };
   },
   computed: {
     title() {
@@ -47,21 +33,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.activity-day {
-  margin: 40px;
-}
-.date {
-  padding-bottom: 15px;
-}
-
-@include mq(small) {
-  .activity-day {
-    margin: 50px 0;
-  }
-  .date {
-    padding-left: 30px;
-  }
-}
-</style>

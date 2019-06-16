@@ -4,7 +4,8 @@ import {
   startOfDay,
   endOfDay,
   areRangesOverlapping,
-  addMinutes
+  addMinutes,
+  compareDesc
 } from 'date-fns';
 
 export const actions = {
@@ -124,13 +125,17 @@ export const getters = {
     return getters.all.filter(({ stoppedAt }) => !stoppedAt);
   },
   getByDay: (state, getters) => date => {
-    return getters.all.filter(activity =>
-      isWithinRange(
-        startOfDay(activity.startedAt),
-        startOfDay(date),
-        endOfDay(date)
+    return getters.all
+      .filter(
+        activity =>
+          activity.stoppedAt &&
+          isWithinRange(
+            startOfDay(activity.startedAt),
+            startOfDay(date),
+            endOfDay(date)
+          )
       )
-    );
+      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },
   getCalendar: (state, getters) => (date, toMin) => {
     const rows = [];
