@@ -4,7 +4,7 @@
   <swipe-menu
     ref="menu"
     class="activity"
-    @swipe-right="stopActivity"
+    @swipe-right="swipeRight"
     @swipe-left="deleteActivity"
   >
     <template slot="left">
@@ -42,7 +42,10 @@
     </div>
 
     <template slot="right">
-      <div class="swipe-menu-item is-primary">
+      <div v-if="stoppedAt" class="swipe-menu-item is-repeat">
+        <icon name="repeat-icon" />
+      </div>
+      <div v-else class="swipe-menu-item is-primary">
         <icon name="check-icon" />
       </div>
     </template>
@@ -104,8 +107,8 @@ export default {
         stoppedAt: `${parse(Date.now())}`
       });
     },
-    copy() {
-      const success = this.$store.dispatch('activities/add', {
+    async copy() {
+      const success = await this.$store.dispatch('activities/add', {
         description: this.description,
         projectId: this.project && this.project.id,
         startedAt: `${new Date()}`
@@ -124,6 +127,14 @@ export default {
       }
       this.$store.dispatch('activities/delete', this.id);
       this.$toast.success(this.$t('deleted'));
+    },
+    async swipeRight() {
+      if (this.stoppedAt) {
+        await this.copy();
+        this.resetSwipeMenu();
+      } else {
+        this.stopActivity();
+      }
     },
     showModal(params) {
       this.$modal.show('activity', {
@@ -177,6 +188,10 @@ export default {
 }
 .stopped {
   color: $text-light;
+}
+.swipe-menu-item.is-repeat {
+  background-color: #85b369;
+  color: #fff;
 }
 @include mq(small) {
   .activity {
