@@ -21,12 +21,12 @@
           :highlight="!stoppedAt"
           class="project-name"
         />
+        <ticker
+          :started-at="startedAt"
+          :stopped-at="stoppedAt"
+          :class="['duration', { stopped: stoppedAt }]"
+        />
       </div>
-      <ticker
-        :started-at="startedAt"
-        :stopped-at="stoppedAt"
-        :class="['duration', { stopped: stoppedAt }]"
-      />
 
       <nav>
         <base-button
@@ -177,7 +177,6 @@ export default {
   }
 }
 .duration {
-  margin-right: 20px;
   font-family: $font-family-duration;
 }
 .nav-button {
@@ -190,14 +189,24 @@ export default {
 .stopped {
   color: $text-light;
 }
+.swipe-menu-item.is-danger {
+  border-radius: 5px 0 0 5px;
+}
 .swipe-menu-item.is-repeat {
   background-color: #85b369;
   color: #fff;
+}
+.swipe-menu-item.is-primary,
+.swipe-menu-item.is-repeat {
+  border-radius: 0 5px 5px 0;
 }
 @include mq(small) {
   .activity {
     margin: 0 30px;
     margin-bottom: 10px;
+  }
+  .list-item {
+    padding-right: 0;
   }
   .duration {
     margin-right: 0;
