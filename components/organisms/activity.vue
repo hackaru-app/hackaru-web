@@ -20,7 +20,7 @@
           :name="description || (project ? project.name : undefined)"
           class="project-name"
         />
-        <span class="difference">{{ difference }}</span>
+        <span class="day">{{ day }}</span>
         <ticker
           :started-at="startedAt"
           :stopped-at="stoppedAt"
@@ -102,7 +102,7 @@ export default {
     };
   },
   computed: {
-    difference() {
+    day() {
       const diff = differenceInDays(new Date(), this.startedAt);
       switch (diff) {
         case 0:
@@ -181,13 +181,13 @@ export default {
   padding-left: 15px;
   font-family: $font-family-duration;
 }
-.difference {
+.day {
   flex-shrink: 0;
   display: flex;
   margin-left: 10px;
 }
 .stopped .duration,
-.stopped .difference {
+.stopped .day {
   color: $text-lighter;
 }
 .content {
