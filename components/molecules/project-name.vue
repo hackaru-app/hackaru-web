@@ -1,6 +1,6 @@
 <template>
   <div class="project-name">
-    <dot :color="color" class="dot" />
+    <dot :highlight="highlight" :color="color" class="dot" />
     <p>{{ name }}</p>
   </div>
 </template>
@@ -20,6 +20,10 @@ export default {
     color: {
       type: String,
       default: '#cccfd9'
+    },
+    highlight: {
+      type: Boolean,
+      default: false
     }
   }
 };

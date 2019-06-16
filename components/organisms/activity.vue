@@ -18,6 +18,7 @@
         <project-name
           v-bind="project"
           :name="description || (project ? project.name : undefined)"
+          :highlight="!stoppedAt"
           class="project-name"
         />
       </div>
