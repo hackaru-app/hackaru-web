@@ -18,7 +18,7 @@
             height: `${ghostHeight}px`
           }"
           class="ghost-activity"
-          title="New Activity"
+          title="No Project"
           color="#cccfd9"
         />
       </div>
