@@ -164,12 +164,14 @@ export default {
 }
 .project-name {
   width: 100%;
+  min-width: 0;
 }
 .content {
+  width: 100%;
   cursor: pointer;
-  min-width: 0;
-  flex: 1;
   display: flex;
+  justify-content: space-between;
+  min-width: 0;
   transition: all 0.2s ease;
   padding: 20px 25px;
   &:active {
@@ -177,6 +179,7 @@ export default {
   }
 }
 .duration {
+  padding-left: 20px;
   font-family: $font-family-duration;
 }
 .nav-button {
@@ -189,30 +192,20 @@ export default {
 .stopped {
   color: $text-light;
 }
-.swipe-menu-item.is-danger {
-  border-radius: 5px 0 0 5px;
-}
 .swipe-menu-item.is-repeat {
   background-color: #85b369;
   color: #fff;
 }
-.swipe-menu-item.is-primary,
-.swipe-menu-item.is-repeat {
+.swipe-menu-item.is-repeat,
+.swipe-menu-item.is-primary {
   border-radius: 0 5px 5px 0;
 }
 @include mq(small) {
-  .activity {
-    margin: 0 30px;
-    margin-bottom: 10px;
-  }
   .list-item {
     padding-right: 0;
   }
-  .duration {
-    margin-right: 0;
-  }
   .content {
-    padding: 20px 25px;
+    padding: 23px 25px;
   }
   .activity nav {
     display: none;

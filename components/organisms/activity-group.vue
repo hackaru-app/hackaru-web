@@ -35,19 +35,17 @@ export default {
 
 <style scoped lang="scss">
 .activity-group {
-  margin: 40px;
+  margin: 40px 30px;
   margin-bottom: 45px;
 }
 .title {
   padding: 0;
-  padding-bottom: 10px;
+  margin: 0;
+  padding-bottom: 15px;
 }
 @include mq(small) {
-  .activity-group {
-    margin: 50px 0;
-  }
   .title {
-    padding-left: 30px;
+    padding-left: 0;
   }
 }
 </style>
