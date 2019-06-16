@@ -8,7 +8,7 @@
 .heading {
   display: flex;
   align-items: center;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: normal;
   .icon {
     margin-right: 10px;

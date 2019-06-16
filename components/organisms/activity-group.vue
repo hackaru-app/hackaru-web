@@ -1,6 +1,8 @@
 <template>
   <section v-if="activites.length > 0" class="activity-group">
-    <h1 class="title">{{ title }}</h1>
+    <heading class="title is-small">
+      {{ title }}
+    </heading>
     <activity
       v-for="activity in activites"
       :key="activity.id"
@@ -10,10 +12,12 @@
 </template>
 
 <script>
+import Heading from '@/components/atoms/heading';
 import Activity from '@/components/organisms/activity';
 
 export default {
   components: {
+    Heading,
     Activity
   },
   props: {
@@ -32,12 +36,11 @@ export default {
 <style scoped lang="scss">
 .activity-group {
   margin: 40px;
+  margin-bottom: 45px;
 }
 .title {
-  font-size: $font-size;
-  font-weight: normal;
   padding: 0;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 @include mq(small) {
   .activity-group {

@@ -1,8 +1,8 @@
 {
   "en": {
-    "today": "TODAY",
-    "yesterday": "YESTERDAY",
-    "ago": "{day} DAYS AGO"
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "ago": "{day} days ago"
   },
   "ja": {
     "today": "今日",

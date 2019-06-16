@@ -12,7 +12,7 @@
         <icon name="plus-icon" class="icon" />
       </base-button>
     </content-header>
-    <activity-group :activites="workings" title="WORKINGS" />
+    <activity-group :activites="workings" :title="$t('workings')" />
     <activity-day
       v-for="prev in [0, 1, 2, 3, 4, 5, 6]"
       :key="prev"
