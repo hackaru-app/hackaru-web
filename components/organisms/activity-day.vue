@@ -1,10 +1,12 @@
+<i18n src="@/assets/locales/components/organisms/activity-day.json" />
+
 <template>
-  <activity-group :title="title.toUpperCase()" :activites="activites" />
+  <activity-group :title="title" :activites="activites" />
 </template>
 
 <script>
 import ActivityGroup from '@/components/organisms/activity-group';
-import { differenceInDays, distanceInWordsToNow } from 'date-fns';
+import { differenceInDays } from 'date-fns';
 
 export default {
   components: {
@@ -18,13 +20,14 @@ export default {
   },
   computed: {
     title() {
-      switch (differenceInDays(this.day, new Date())) {
+      const diff = differenceInDays(new Date(), this.day);
+      switch (diff) {
         case 0:
-          return 'Today';
-        case -1:
-          return 'Yesterday';
+          return this.$i18n.t('today');
+        case 1:
+          return this.$i18n.t('yesterday');
         default:
-          return distanceInWordsToNow(this.day, { addSuffix: true });
+          return this.$i18n.t('ago', { day: diff });
       }
     },
     activites() {
