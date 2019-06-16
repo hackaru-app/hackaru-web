@@ -48,7 +48,9 @@ describe('Actions', () => {
       expect(commit).toHaveBeenCalledWith('SET_REPORTS', {
         period: 'day',
         projects: [],
-        summary: []
+        summary: [],
+        start: parse('2019-01-01T00:00:00'),
+        end: parse('2019-01-03T00:00:00')
       });
     });
   });

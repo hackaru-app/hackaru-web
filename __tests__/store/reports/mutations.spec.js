@@ -1,4 +1,5 @@
 import { mutations } from '@/store/reports';
+import { parse } from 'date-fns';
 
 describe('Mutations', () => {
   describe('when commit SET_REPORTS', () => {
@@ -12,6 +13,8 @@ describe('Mutations', () => {
 
     beforeEach(() => {
       mutations['SET_REPORTS'](state, {
+        start: parse('2019-01-01'),
+        end: parse('2019-01-03'),
         period: 'hour',
         projects: [
           {
@@ -42,6 +45,14 @@ describe('Mutations', () => {
 
     it('set period', () => {
       expect(state.period).toBe('hour');
+    });
+
+    it('set start', () => {
+      expect(state.start).toEqual(parse('2019-01-01'));
+    });
+
+    it('set end', () => {
+      expect(state.end).toEqual(parse('2019-01-03'));
     });
 
     it('set summary', () => {
