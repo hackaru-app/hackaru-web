@@ -35,7 +35,7 @@ export default {
 
 <style scoped lang="scss">
 .activity-group {
-  margin: 40px 30px;
+  margin: 40px;
   margin-bottom: 45px;
 }
 .title {
@@ -44,6 +44,10 @@ export default {
   padding-bottom: 15px;
 }
 @include mq(small) {
+  .activity-group {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
   .title {
     padding-left: 0;
   }

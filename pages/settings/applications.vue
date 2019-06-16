@@ -128,7 +128,7 @@ ul {
   list-style-position: inside;
 }
 .application {
-  padding: 20px 25px;
+  padding: 18px 25px;
   display: flex;
   margin-bottom: 10px;
   align-items: center;
