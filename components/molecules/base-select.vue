@@ -45,6 +45,7 @@ export default {
 @media print {
   .base-select .base-button {
     background-color: $grey-f5f5f5;
+    border: 0;
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
     box-shadow: none;
