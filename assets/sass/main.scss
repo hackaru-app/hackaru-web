@@ -80,10 +80,10 @@ $animationDuration: $animation-duration;
   z-index: 10000;
   outline: none;
   .tooltip-inner {
-    background: black;
+    background: darken($grey-333, 10%);
     color: white;
     border-radius: 3px;
-    font-size: 14px;
+    font-size: 13px;
     padding: 10px;
   }
   .tooltip-arrow {
@@ -92,7 +92,7 @@ $animationDuration: $animation-duration;
     border-style: solid;
     position: absolute;
     margin: 5px;
-    border-color: black;
+    border-color: darken($grey-333, 10%);
     z-index: 1;
   }
   &[x-placement^="top"] {
@@ -146,4 +146,14 @@ $animationDuration: $animation-duration;
       margin-right: 0;
     }
   }
+}
+.tooltip[aria-hidden='true'] {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .15s, visibility .15s;
+}
+.tooltip[aria-hidden='false'] {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .15s;
 }

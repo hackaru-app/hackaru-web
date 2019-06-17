@@ -11,7 +11,12 @@
         <label>
           {{ $t('project') }}
         </label>
-        <button type="button" class="project-button" @click="editProject">
+        <button
+          v-tooltip="{ content: 'プロジェクトを選択して分類しよう' }"
+          type="button"
+          class="project-button"
+          @click="editProject"
+        >
           <project-name :name="project.name" :color="project.color" />
         </button>
       </modal-item>

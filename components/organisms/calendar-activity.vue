@@ -1,5 +1,6 @@
 <template>
   <dragger
+    v-tooltip="{ content: '長押しで移動できます', hideOnTargetClick: true }"
     ref="dragger"
     :top.sync="top"
     :left.sync="left"

@@ -30,13 +30,19 @@
 
       <nav>
         <base-button
+          v-tooltip="{ content: '停止', offset: -10 }"
           v-if="!stoppedAt"
           class="nav-button stop-button has-icon"
           @click="stopActivity"
         >
           <icon name="check-icon" class="is-primary" />
         </base-button>
-        <base-button v-if="stoppedAt" class="nav-button has-icon" @click="copy">
+        <base-button
+          v-tooltip="{ content: '複製して開始', offset: -10 }"
+          v-if="stoppedAt"
+          class="nav-button has-icon"
+          @click="copy"
+        >
           <icon name="repeat-icon" class="nav-icon" />
         </base-button>
       </nav>

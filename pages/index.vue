@@ -5,6 +5,7 @@
     <content-header>
       <heading>Timers</heading>
       <base-button
+        v-tooltip="'ここから計測を開始しましょう！'"
         type="button"
         class="is-primary is-circle add-button"
         @click="showModal"

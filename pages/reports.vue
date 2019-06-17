@@ -16,6 +16,7 @@
 
     <loop-slider
       v-slot="{ slideStyle }"
+      v-tooltip="{ content: 'スワイプで次の期間へ' }"
       ref="slider"
       class="loop-slider"
       @slide-left="prev"

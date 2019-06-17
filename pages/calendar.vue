@@ -14,6 +14,10 @@
     />
 
     <loop-slider
+      v-tooltip="{
+        content: '任意の場所を長押しで新規追加',
+        hideOnTargetClick: true
+      }"
       v-slot="{ slideStyle }"
       ref="slider"
       :enabled="sliderEnabled"
