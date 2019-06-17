@@ -122,7 +122,9 @@ export const getters = {
     return rootGetters['entities/getEntities']('activities', [activity]);
   },
   workings(state, getters) {
-    return getters.all.filter(({ stoppedAt }) => !stoppedAt);
+    return getters.all
+      .filter(({ stoppedAt }) => !stoppedAt)
+      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },
   getByDay: (state, getters) => date => {
     return getters.all
