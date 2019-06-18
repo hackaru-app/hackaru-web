@@ -4,6 +4,7 @@
   <swipe-menu
     ref="menu"
     :class="['activity', { stopped: stoppedAt }]"
+    :speed="swipeSpeed"
     @swipe-right="swipeRight"
     @swipe-left="deleteActivity"
   >
@@ -104,7 +105,8 @@ export default {
   },
   data() {
     return {
-      format
+      format,
+      swipeSpeed: 300
     };
   },
   computed: {
@@ -149,13 +151,15 @@ export default {
       this.$store.dispatch('activities/delete', this.id);
       this.$toast.success(this.$t('deleted'));
     },
-    async swipeRight() {
-      if (this.stoppedAt) {
-        await this.copy();
-      } else {
-        this.stopActivity();
-      }
+    swipeRight() {
       this.resetSwipeMenu();
+      setTimeout(() => {
+        if (this.stoppedAt) {
+          this.copy();
+        } else {
+          this.stopActivity();
+        }
+      }, this.swipeSpeed + 50);
     },
     showModal(params) {
       this.$modal.show('activity', {

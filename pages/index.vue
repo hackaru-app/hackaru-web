@@ -20,9 +20,10 @@
       </tutorial-tooltip>
     </content-header>
     <activity
-      v-for="activity in workings"
+      v-for="(activity, index) in workings"
       :key="activity.id"
       v-bind="activity"
+      :class="{ tutorial: index === 0 }"
     />
     <activity-day
       v-for="prev in [0, 1, 2, 3, 4, 5, 6]"
