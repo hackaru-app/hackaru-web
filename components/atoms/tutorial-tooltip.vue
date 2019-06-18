@@ -4,7 +4,8 @@
       trigger: 'manual',
       content: content,
       show: isOpen,
-      offset: offset
+      offset: offset,
+      placement: placement
     }"
     @click="hide"
   >
@@ -15,12 +16,16 @@
 <script>
 export default {
   timers: {
-    learn: {
+    hide: {
       time: 5000,
       autostart: true
     }
   },
   props: {
+    placement: {
+      type: String,
+      default: undefined
+    },
     offset: {
       type: Number,
       required: true
