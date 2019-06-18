@@ -6,16 +6,10 @@
     leave-active-class="fadeOutDown"
     appear
   >
-    <div
-      v-if="visibility && $platform.isIOS() && !$platform.isPWA()"
-      class="pwa-balloon"
-    >
-      <base-button type="button" class="has-icon close-button" @click="close">
-        <icon name="x-icon" />
-      </base-button>
+    <div class="pwa-balloon">
       <div class="content">
         <section class="logo">
-          <img src="@/assets/logo.svg" />
+          <img src="@/assets/logo.svg" class="logo-icon" />
         </section>
         <section class="about">
           <h1>{{ $t('title') }}</h1>
@@ -43,12 +37,12 @@ export default {
     };
   },
   mounted() {
-    this.visibility = !localStorage.hidePwaBallon;
+    this.visibility = !localStorage.getItem('hide-pwa-ballon');
   },
   methods: {
     close() {
       this.visibility = false;
-      localStorage.setItem('hidePwaBallon', true);
+      localStorage.setItem('hide-pwa-ballon', true);
     }
   }
 };
@@ -67,16 +61,16 @@ export default {
   padding: 15px;
   box-sizing: border-box;
   z-index: index($z, pwa-ballon);
+  animation-delay: 10s;
 }
 .content {
   position: relative;
   justify-content: center;
   display: flex;
-  width: 100%;
-  padding: 20px;
+  padding: 15px;
   box-sizing: border-box;
-  border-radius: 8px;
-  background: #fff;
+  border-radius: 3px;
+  background: $white;
   box-shadow: 0 3px 10px 0 #00000010;
   &::before {
     content: '';
@@ -86,7 +80,7 @@ export default {
     width: 0;
     height: 0;
     border-right: 15px solid transparent;
-    border-bottom: 15px solid #fff;
+    border-bottom: 15px solid $white;
     border-left: 15px solid transparent;
     filter: drop-shadow(0 -4px 4px #00000010);
   }
@@ -101,8 +95,9 @@ export default {
   margin-right: 20px;
   justify-content: center;
   align-items: center;
-  .icon {
-    color: $yellow;
+  .logo-icon {
+    width: 20px;
+    height: 20px;
   }
 }
 .about {
@@ -110,32 +105,26 @@ export default {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 1px;
   h1 {
-    font-size: $font-size;
     margin: 0;
     padding: 0;
     font-weight: normal;
-    margin-bottom: 3px;
+    font-size: $font-size;
   }
   p {
     padding: 0;
     margin: 0;
     font-size: 13px;
+    padding-right: 10px;
+    display: flex;
     color: $text-light;
   }
 }
 .share-icon {
-  margin: 0 5px;
-}
-.close-button {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  padding: 20px;
-  margin: -20px;
-  .icon {
-    color: $grey-999;
-  }
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
 }
 @include mq(small) {
   .pwa-balloon {
@@ -148,7 +137,7 @@ export default {
     top: auto;
     bottom: -15px;
     margin: 0;
-    border-top: 15px solid #fff;
+    border-top: 15px solid $white;
     border-right: 15px solid transparent;
     border-left: 15px solid transparent;
     filter: drop-shadow(0 4px 4px #00000010);
