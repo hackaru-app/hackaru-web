@@ -93,7 +93,7 @@ export default {
       if (success) {
         this.pop();
         this.$ga.event('project', 'addProject');
-        this.$toast.success(this.$t('added'));
+        this.$store.dispatch('toast/success', this.$t('added'));
       }
     },
     async updateProject() {
@@ -105,7 +105,7 @@ export default {
       if (success) {
         this.pop();
         this.$ga.event('project', 'updateProject');
-        this.$toast.success(this.$t('updated'));
+        this.$store.dispatch('toast/success', this.$t('updated'));
       }
     },
     async deleteProject() {
@@ -114,7 +114,7 @@ export default {
       if (success) {
         this.pop();
         this.$ga.event('project', 'deleteProject');
-        this.$toast.success(this.$t('deleted'));
+        this.$store.dispatch('toast/success', this.$t('deleted'));
       }
     },
     pop() {

@@ -16,13 +16,13 @@
   </modal>
 </template>
 
-<style scoped lang="scss">
-/deep/ .v--modal-overlay {
+<style lang="scss">
+.v--modal-overlay {
   z-index: index($z, modal);
 }
-/deep/ .v--modal-box {
-  animation-duration: 0.2s;
-}
+</style>
+
+<style scoped lang="scss">
 .modal-content {
   overflow: hidden;
   min-height: 100%;

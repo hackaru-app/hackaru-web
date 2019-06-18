@@ -55,7 +55,7 @@ export default {
         email: this.email,
         currentPassword: this.currentPassword
       });
-      if (success) this.$toast.success(this.$t('changed'));
+      if (success) this.$store.dispatch('toast/success', this.$t('changed'));
     }
   }
 };

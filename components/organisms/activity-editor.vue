@@ -150,7 +150,7 @@ export default {
     deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('activities/delete', this.id);
-      this.$toast.success(this.$t('deleted'));
+      this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$ga.event('activity', 'deleteActivity');
       this.$modal.hide('activity');
     },

@@ -68,7 +68,7 @@ export default {
         password: this.password,
         passwordConfirmation: this.passwordConfirmation
       });
-      if (success) this.$toast.success(this.$t('changed'));
+      if (success) this.$store.dispatch('toast/success', this.$t('changed'));
     }
   }
 };

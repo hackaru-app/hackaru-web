@@ -9,14 +9,18 @@
     <side-bar />
     <login-guard class="content">
       <nuxt />
-      <pwa-balloon />
+      <toast />
+      <no-ssr>
+        <pwa-popover />
+      </no-ssr>
     </login-guard>
   </div>
 </template>
 
 <script>
 import LoginGuard from '@/components/atoms/login-guard';
-import PwaBalloon from '@/components/organisms/pwa-balloon';
+import Toast from '@/components/molecules/toast';
+import PwaPopover from '@/components/organisms/pwa-popover';
 import SideBar from '@/components/organisms/side-bar';
 import NavModal from '@/components/organisms/nav-modal';
 import ActivityEditor from '@/components/organisms/activity-editor';
@@ -33,10 +37,11 @@ export default {
     }
   },
   components: {
+    Toast,
     LoginGuard,
     NavModal,
     SideBar,
-    PwaBalloon
+    PwaPopover
   },
   head() {
     return {

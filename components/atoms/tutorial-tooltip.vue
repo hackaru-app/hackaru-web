@@ -3,7 +3,7 @@
     v-tooltip="{
       trigger: 'manual',
       content: content,
-      show: isOpen,
+      show: opened,
       offset: offset,
       placement: placement
     }"
@@ -28,7 +28,7 @@ export default {
     },
     offset: {
       type: Number,
-      required: true
+      default: undefined
     },
     name: {
       type: String,
@@ -41,15 +41,15 @@ export default {
   },
   data() {
     return {
-      isOpen: false
+      opened: false
     };
   },
   mounted() {
-    this.isOpen = !localStorage.getItem(`tutorial-tooltip/${this.name}`);
+    this.opened = !localStorage.getItem(`tutorial-tooltip/${this.name}`);
   },
   methods: {
     hide() {
-      this.isOpen = false;
+      this.opened = false;
       this.learn();
     },
     learn() {
