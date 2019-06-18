@@ -8,6 +8,7 @@
         :offset="10"
         :content="$t('startTimer')"
         name="start-activity"
+        placement="bottom"
       >
         <base-button
           type="button"

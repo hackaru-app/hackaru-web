@@ -77,7 +77,7 @@ $animationDuration: $animation-duration;
 // https://github.com/Akryum/v-tooltip#style-examples
 .tooltip {
   display: block !important;
-  z-index: 10000;
+  z-index: index($z, tooltip);
   outline: none;
   .tooltip-inner {
     background: darken($grey-333, 10%);
