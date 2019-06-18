@@ -242,6 +242,7 @@ export default {
 .calendar-activity.dragging {
   opacity: 1;
   box-shadow: 0 7px 10px #00000010;
+  z-index: index($z, calendar-dragging-activity);
 }
 .calendar-activity h1 {
   font-size: 12px;
