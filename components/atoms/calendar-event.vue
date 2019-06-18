@@ -73,7 +73,7 @@ export default {
 }
 .calendar-event h1 {
   flex-shrink: 1;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 20px;
   padding: 0;
   font-weight: normal;
@@ -83,7 +83,7 @@ export default {
 }
 .calendar-event p {
   flex-shrink: 9999;
-  font-size: 12px;
+  font-size: 13px;
   opacity: 0.6;
   margin: 0;
   margin-left: 10px;

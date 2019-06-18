@@ -84,7 +84,8 @@ export default {
 
 <style scoped>
 .current {
-  animation-delay: 0.2s;
+  animation-delay: 0.15s;
+  animation-duration: 0.35s;
   animation-timing-function: ease;
   position: absolute;
   width: 100%;
