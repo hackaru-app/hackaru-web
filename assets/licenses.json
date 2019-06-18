@@ -77,12 +77,6 @@
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
         "parents": "Hackaru"
     },
-    "lodash.uniq": {
-        "licenses": "MIT",
-        "repository": "https://github.com/lodash/lodash",
-        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
-        "parents": "Hackaru"
-    },
     "mezr": {
         "licenses": "MIT",
         "repository": "https://github.com/niklasramo/mezr",
@@ -159,6 +153,12 @@
         "licenses": "MIT",
         "repository": "https://github.com/MatteoGabriele/vue-analytics",
         "licenseUrl": "https://github.com/MatteoGabriele/vue-analytics/raw/master/LICENCE",
+        "parents": "Hackaru"
+    },
+    "vue-autofocus-directive": {
+        "licenses": "MIT",
+        "repository": "https://github.com/byteboomers/vue-autofocus-directive",
+        "licenseUrl": "https://github.com/byteboomers/vue-autofocus-directive/raw/master/LICENSE",
         "parents": "Hackaru"
     },
     "vue-chartjs": {

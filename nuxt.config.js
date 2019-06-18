@@ -91,7 +91,8 @@ module.exports = {
     { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/vue-analytics.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
-    { src: '~/plugins/vue-js-modal' }
+    { src: '~/plugins/vue-js-modal' },
+    { src: '~/plugins/vue-autofocus' }
   ],
   /*
    ** Build configuration

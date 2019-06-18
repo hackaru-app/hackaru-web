@@ -10953,6 +10953,13 @@ vue-analytics@^5.16.4:
   version "5.16.4"
   resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.16.4.tgz#7f9e197cbc64afac96884a05214b17efaf8e9d09"
 
+vue-autofocus-directive@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vue-autofocus-directive/-/vue-autofocus-directive-1.0.3.tgz#0a03c07ff74c73cfd42255b2edad9a570ccfbe13"
+  integrity sha512-f+tNZOaPDSTGjak74h/PAcn35yn14bnwKmIap8vKNqF0MEof9mr+iKY53EVgNAuFdPEQKwlQZeDGFpgZ2VAh+g==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+
 vue-chartjs@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-3.4.0.tgz#669e4453be0676605fc9290b3b581867ccd15c88"
