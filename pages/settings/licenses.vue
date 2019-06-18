@@ -3,7 +3,7 @@
 <template>
   <setting-box>
     <template v-slot:heading>
-      <icon v-tooltip.bottom="$t('thanks')" name="gift-icon" class="icon" />
+      <icon v-tooltip.right="$t('thanks')" name="gift-icon" class="icon" />
       {{ $t('title') }}
     </template>
     <ul class="licenses">
