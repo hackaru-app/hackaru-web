@@ -4,14 +4,18 @@
   <section>
     <content-header>
       <heading>Timers</heading>
-      <base-button
-        v-tooltip="'ここから計測を開始しましょう！'"
-        type="button"
-        class="is-primary is-circle add-button"
-        @click="showModal"
+      <tutorial-tooltip
+        name="start-activity"
+        content="ここから計測を開始しましょう！"
       >
-        <icon name="plus-icon" class="icon" />
-      </base-button>
+        <base-button
+          type="button"
+          class="is-primary is-circle add-button"
+          @click="showModal"
+        >
+          <icon name="plus-icon" class="icon" />
+        </base-button>
+      </tutorial-tooltip>
     </content-header>
     <activity
       v-for="activity in workings"
@@ -29,6 +33,7 @@
 <script>
 import Dot from '@/components/atoms/dot';
 import ProjectName from '@/components/molecules/project-name';
+import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
 import ContentHeader from '@/components/organisms/content-header';
 import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
@@ -41,6 +46,7 @@ import { addDays } from 'date-fns';
 export default {
   components: {
     Dot,
+    TutorialTooltip,
     ContentHeader,
     ProjectName,
     Heading,
