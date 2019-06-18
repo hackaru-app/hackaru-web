@@ -11,7 +11,8 @@
     },
     "year": {
       "format": "YYYY"
-    }
+    },
+    "addActivityByLongPress": "Add activity by long press"
   },
   "ja": {
     "day": {
@@ -25,6 +26,7 @@
     },
     "year": {
       "format": "YYYY"
-    }
+    },
+    "addActivityByLongPress": "任意の場所を長押しで新規作成"
   }
 }

@@ -34,8 +34,8 @@
       </section>
 
       <tutorial-tooltip
+        :content="$t('addActivityByLongPress')"
         name="add-calendar-activity"
-        content="任意の場所を長押しで新規作成"
       >
         <section class="contents-wrapper">
           <section :style="slideStyle" class="contents">

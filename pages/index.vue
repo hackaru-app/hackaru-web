@@ -6,8 +6,8 @@
       <heading>Timers</heading>
       <tutorial-tooltip
         :offset="10"
+        :content="$t('startTimer')"
         name="start-activity"
-        content="ここから計測を開始しましょう！"
       >
         <base-button
           type="button"

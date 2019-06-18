@@ -14,7 +14,7 @@
       @right="slideRight"
     />
 
-    <tutorial-tooltip name="swipe-report" content="左右にスワイプで次の期間へ">
+    <tutorial-tooltip :content="$t('moveToNextPage')" name="swipe-report">
       <loop-slider
         v-slot="{ slideStyle }"
         ref="slider"

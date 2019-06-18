@@ -2,11 +2,11 @@
   "en": {
     "title": "Timers",
     "workings": "Workings",
-    "empty": "Timers are not working."
+    "startTimer": "Let's start timer from here!"
   },
   "ja": {
     "title": "Timers",
     "workings": "計測中",
-    "empty": "計測中のタイマーはありません。"
+    "startTimer": "ここから計測を開始しましょう！"
   }
 }

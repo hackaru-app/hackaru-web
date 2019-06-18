@@ -1,3 +1,5 @@
+<i18n src="@/assets/locales/components/organisms/calendar-activity.json" />
+
 <template>
   <dragger
     ref="dragger"
@@ -12,7 +14,7 @@
     @cancel="moveCancel"
   >
     <div
-      v-tooltip="'長押しで移動'"
+      v-tooltip="$t('moveByLongPress')"
       class="click-handler"
       @mousedown="mousedown"
       @mouseup="mouseup"
