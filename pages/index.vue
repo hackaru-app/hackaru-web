@@ -5,6 +5,7 @@
     <content-header>
       <heading>Timers</heading>
       <tutorial-tooltip
+        :offset="10"
         name="start-activity"
         content="ここから計測を開始しましょう！"
       >

@@ -1,6 +1,11 @@
 <template>
   <div
-    v-tooltip="{ content: content, show: isOpen, trigger: 'manual' }"
+    v-tooltip="{
+      trigger: 'manual',
+      content: content,
+      show: isOpen,
+      offset: offset
+    }"
     @click="hide"
   >
     <slot />
@@ -10,12 +15,16 @@
 <script>
 export default {
   timers: {
-    learned: {
+    learn: {
       time: 5000,
       autostart: true
     }
   },
   props: {
+    offset: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -34,12 +43,12 @@ export default {
     this.isOpen = !localStorage.getItem(`tutorial-tooltip/${this.name}`);
   },
   methods: {
-    learned() {
-      localStorage.setItem(`tutorial-tooltip/${this.name}`, true);
-    },
     hide() {
       this.isOpen = false;
-      this.learned();
+      this.learn();
+    },
+    learn() {
+      localStorage.setItem(`tutorial-tooltip/${this.name}`, true);
     }
   }
 };

@@ -1,6 +1,5 @@
 <template>
   <dragger
-    v-tooltip="{ content: '長押しで移動できます', hideOnTargetClick: true }"
     ref="dragger"
     :top.sync="top"
     :left.sync="left"
@@ -12,7 +11,12 @@
     @end="moveEnd"
     @cancel="moveCancel"
   >
-    <div class="click-handler" @mousedown="mousedown" @mouseup="mouseup">
+    <div
+      v-tooltip="'長押しで移動'"
+      class="click-handler"
+      @mousedown="mousedown"
+      @mouseup="mouseup"
+    >
       <calendar-event
         :style="{ height: `${height}px` }"
         :title="title"
@@ -38,6 +42,7 @@
 </template>
 
 <script>
+import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
 import Dragger from '@/components/atoms/dragger';
 import Resizer from '@/components/atoms/resizer';
 import CalendarEvent from '@/components/atoms/calendar-event';
@@ -51,6 +56,7 @@ import {
 
 export default {
   components: {
+    TutorialTooltip,
     CalendarEvent,
     Dragger,
     Resizer

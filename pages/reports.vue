@@ -14,50 +14,52 @@
       @right="slideRight"
     />
 
-    <loop-slider
-      v-slot="{ slideStyle }"
-      v-tooltip="{ content: 'スワイプで次の期間へ' }"
-      ref="slider"
-      class="loop-slider"
-      @slide-left="prev"
-      @slide-right="next"
-    >
-      <div class="reports-wrapper">
-        <div :style="slideStyle" class="containers">
-          <div class="slider-item">
-            <report-content
-              :bar-chart-data="barChartData"
-              :doughnut-chart-data="doughnutChartData"
-              :summary="summary"
-              :projects="projects"
-              chart-id="prev"
-            />
-          </div>
-          <div class="slider-item">
-            <report-content
-              :bar-chart-data="barChartData"
-              :doughnut-chart-data="doughnutChartData"
-              :summary="summary"
-              :projects="projects"
-              chart-id="current"
-            />
-          </div>
-          <div class="slider-item">
-            <report-content
-              :bar-chart-data="barChartData"
-              :doughnut-chart-data="doughnutChartData"
-              :summary="summary"
-              :projects="projects"
-              chart-id="next"
-            />
+    <tutorial-tooltip name="swipe-report" content="左右にスワイプで次の期間へ">
+      <loop-slider
+        v-slot="{ slideStyle }"
+        ref="slider"
+        class="loop-slider"
+        @slide-left="prev"
+        @slide-right="next"
+      >
+        <div class="reports-wrapper">
+          <div :style="slideStyle" class="containers">
+            <div class="slider-item">
+              <report-content
+                :bar-chart-data="barChartData"
+                :doughnut-chart-data="doughnutChartData"
+                :summary="summary"
+                :projects="projects"
+                chart-id="prev"
+              />
+            </div>
+            <div class="slider-item">
+              <report-content
+                :bar-chart-data="barChartData"
+                :doughnut-chart-data="doughnutChartData"
+                :summary="summary"
+                :projects="projects"
+                chart-id="current"
+              />
+            </div>
+            <div class="slider-item">
+              <report-content
+                :bar-chart-data="barChartData"
+                :doughnut-chart-data="doughnutChartData"
+                :summary="summary"
+                :projects="projects"
+                chart-id="next"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </loop-slider>
+      </loop-slider>
+    </tutorial-tooltip>
   </section>
 </template>
 
 <script>
+import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
 import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
 import ReportContent from '@/components/organisms/report-content';
@@ -108,6 +110,7 @@ const periods = {
 
 export default {
   components: {
+    TutorialTooltip,
     LoopSlider,
     ReportContent,
     DateHeader

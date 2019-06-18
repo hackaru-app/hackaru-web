@@ -14,10 +14,6 @@
     />
 
     <loop-slider
-      v-tooltip="{
-        content: '任意の場所を長押しで新規追加',
-        hideOnTargetClick: true
-      }"
       v-slot="{ slideStyle }"
       ref="slider"
       :enabled="sliderEnabled"
@@ -37,23 +33,29 @@
         </div>
       </section>
 
-      <section class="contents-wrapper">
-        <section :style="slideStyle" class="contents">
-          <calendar-content :days="[]" class="slider-item" />
-          <calendar-content
-            :days="days"
-            class="slider-item"
-            @dragging="sliderEnabled = false"
-            @drop="sliderEnabled = true"
-          />
-          <calendar-content :days="[]" class="slider-item" />
+      <tutorial-tooltip
+        name="add-calendar-activity"
+        content="任意の場所を長押しで新規作成"
+      >
+        <section class="contents-wrapper">
+          <section :style="slideStyle" class="contents">
+            <calendar-content :days="[]" class="slider-item" />
+            <calendar-content
+              :days="days"
+              class="slider-item"
+              @dragging="sliderEnabled = false"
+              @drop="sliderEnabled = true"
+            />
+            <calendar-content :days="[]" class="slider-item" />
+          </section>
         </section>
-      </section>
+      </tutorial-tooltip>
     </loop-slider>
   </section>
 </template>
 
 <script>
+import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
 import DateHeader from '@/components/organisms/date-header';
 import LoopSlider from '@/components/organisms/loop-slider';
 import CalendarContent from '@/components/organisms/calendar-content';
@@ -86,6 +88,7 @@ const periods = {
 
 export default {
   components: {
+    TutorialTooltip,
     LoopSlider,
     CalendarContent,
     CalendarDayHeader,
