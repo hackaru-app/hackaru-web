@@ -57,7 +57,7 @@ export default {
           )}/edit`
         }
       );
-      if (success) this.$toast.success(this.$t('sent'));
+      if (success) this.$store.dispatch('toast/success', this.$t('sent'));
     }
   }
 };

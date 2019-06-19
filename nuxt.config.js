@@ -129,7 +129,6 @@ module.exports = {
   },
   modules: [
     '@nuxtjs/pwa',
-    '@nuxtjs/toast',
     '@nuxtjs/style-resources',
     [
       'nuxt-i18n',

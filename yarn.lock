@@ -1584,12 +1584,6 @@
     glob-all "^3.1.0"
     sass-resources-loader "^2.0.0"
 
-"@nuxtjs/toast@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/toast/-/toast-3.0.2.tgz#6f027fb2210f0f348eb223ac5ad48d50d2369d92"
-  dependencies:
-    vue-toasted "^1.1.26"
-
 "@nuxtjs/workbox@^2.6.0":
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/workbox/-/workbox-2.6.0.tgz#eb057e7cbddc8f50bc181a5af9795cc93bd774d8"
@@ -11093,10 +11087,6 @@ vue-template-es2015-compiler@^1.9.0:
 vue-timers@^1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/vue-timers/-/vue-timers-1.10.0.tgz#96031623d8388eb6b70e97bfed067a34b9cafe3f"
-
-vue-toasted@^1.1.26:
-  version "1.1.26"
-  resolved "https://registry.yarnpkg.com/vue-toasted/-/vue-toasted-1.1.26.tgz#1333d1a42157ab78389c3810023a49ba94e69c7b"
 
 vue2-animate@^2.1.0:
   version "2.1.0"

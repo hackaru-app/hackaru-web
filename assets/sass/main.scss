@@ -41,31 +41,9 @@ button:focus {
   outline: none;
 }
 
-// Toast
-html .toasted.toasted-primary.success {
-  background: $cyan;
-}
-html .toasted.toasted-primary.error {
-  background: $red;
-}
-html .toasted.toasted-primary {
-  font-size: $font-size;
-  border-radius: 30px;
-  padding: 2px 20px;
-  font-weight: 400;
-  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
-}
-@include mq(small) {
-  html .toasted.toasted-primary {
-    width: 100vw;
-    height: 100vh;
-  }
-}
-
 // Animation
 $animationDuration: $animation-duration;
 @import "../../node_modules/vue2-animate/src/sass/vue2-animate.scss";
-
 
 // Print
 @media print {

@@ -95,7 +95,7 @@ export default {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('applications/delete', id);
       this.$ga.event('oauth', 'deleteApplication');
-      this.$toast.success(this.$t('deleted'));
+      this.$store.dispatch('toast/success', this.$t('deleted'));
     },
     showModal(application) {
       this.selected = application;

@@ -125,14 +125,14 @@ export default {
       if (success) {
         this.$modal.hide('webhook');
         this.$ga.event('webhook', 'addWebhook');
-        this.$toast.success(this.$t('added'));
+        this.$store.dispatch('toast/success', this.$t('added'));
       }
     },
     deleteWebhook(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('webhooks/delete', id);
       this.$ga.event('webhook', 'deleteWebhook');
-      this.$toast.success(this.$t('deleted'));
+      this.$store.dispatch('toast/success', this.$t('deleted'));
     },
     showModal() {
       this.targetUrl = '';

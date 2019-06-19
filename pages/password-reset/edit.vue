@@ -58,7 +58,7 @@ export default {
       });
       if (success) {
         this.$router.push(this.localePath('auth'));
-        this.$toast.success(this.$t('success'));
+        this.$store.dispatch('toast/success', this.$t('success'));
       }
     }
   }
