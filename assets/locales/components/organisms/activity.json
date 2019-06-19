@@ -1,8 +1,10 @@
 {
   "en": {
-    "copied": "Timer copied",
+    "duplicated": "Timer duplicated",
     "deleted": "Timer deleted",
-    "archived": "Timer stopped!🎉",
+    "archived": "Timer stopped! 🎉",
+    "duplicate": "Duplicate",
+    "stop": "Stop",
     "today": "Today",
     "yesterday": "Yesterday",
     "ago": "{day} days",
@@ -11,9 +13,11 @@
     }
   },
   "ja": {
-    "copied": "計測を複製しました",
-    "deleted": "削除しました",
+    "duplicated": "計測を複製しました",
+    "deleted": "計測を削除しました",
     "archived": "計測を停止しました！🎉",
+    "duplicate": "複製する",
+    "stop": "停止",
     "today": "今日",
     "yesterday": "昨日",
     "ago": "{day}日前",

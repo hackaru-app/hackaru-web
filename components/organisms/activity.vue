@@ -31,7 +31,7 @@
 
       <nav>
         <base-button
-          v-tooltip="{ content: '停止', offset: -10 }"
+          v-tooltip="{ content: $t('stop'), offset: -10 }"
           v-if="!stoppedAt"
           class="nav-button stop-button has-icon"
           @click="stopActivity"
@@ -39,10 +39,10 @@
           <icon name="check-icon" class="is-primary" />
         </base-button>
         <base-button
-          v-tooltip="{ content: '複製して開始', offset: -10 }"
+          v-tooltip="{ content: $t('duplicate'), offset: -10 }"
           v-if="stoppedAt"
           class="nav-button has-icon"
-          @click="copy"
+          @click="duplicate"
         >
           <icon name="repeat-icon" class="nav-icon" />
         </base-button>
@@ -130,14 +130,14 @@ export default {
         stoppedAt: `${parse(Date.now())}`
       });
     },
-    async copy() {
+    async duplicate() {
       const success = await this.$store.dispatch('activities/add', {
         description: this.description,
         projectId: this.project && this.project.id,
         startedAt: `${new Date()}`
       });
       if (success) {
-        this.$store.dispatch('toast/success', this.$t('copied'));
+        this.$store.dispatch('toast/success', this.$t('duplicated'));
       }
     },
     resetSwipeMenu() {
@@ -155,7 +155,7 @@ export default {
       this.resetSwipeMenu();
       setTimeout(() => {
         if (this.stoppedAt) {
-          this.copy();
+          this.duplicate();
         } else {
           this.stopActivity();
         }
