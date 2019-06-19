@@ -15,7 +15,7 @@
   }
 }
 .heading.is-small {
-  font-size: 19px;
+  font-size: 18px;
 }
 .heading.is-large {
   font-size: 22px;
