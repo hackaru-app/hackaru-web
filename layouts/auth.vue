@@ -3,15 +3,18 @@
     <side-bar :show-menu="false" />
     <div class="content">
       <nuxt />
+      <toast />
     </div>
   </div>
 </template>
 
 <script>
+import Toast from '@/components/molecules/toast';
 import SideBar from '@/components/organisms/side-bar';
 
 export default {
   components: {
+    Toast,
     SideBar
   }
 };
