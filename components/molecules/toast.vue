@@ -65,20 +65,13 @@ export default {
 @include mq(small) {
   .content {
     padding: 18px 30px;
-    padding-bottom: 0;
+    padding-bottom: calc(18px + env(safe-area-inset-bottom));
     flex-direction: column;
     box-sizing: border-box;
     bottom: 0;
     margin: 0;
     width: 100%;
     border-radius: 0;
-    &:after {
-      display: flex;
-      content: '';
-      width: 100%;
-      height: 18px;
-      height: env(safe-area-inset-bottom);
-    }
   }
 }
 </style>

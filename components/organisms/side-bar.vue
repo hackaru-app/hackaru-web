@@ -70,21 +70,11 @@ export default {
   display: flex;
   margin: 0 auto;
   flex-direction: column;
-  align-items: center;
   height: 100vh;
+  box-sizing: border-box;
   background-color: $background-dark;
+  padding-left: env(safe-area-inset-left);
   z-index: 9;
-  &::before {
-    display: flex;
-    position: fixed;
-    min-width: $side-bar-min-width;
-    content: '';
-    top: -50vh;
-    left: 0;
-    background-color: $background-dark;
-    z-index: -1;
-    height: 200vh;
-  }
   /deep/ + * {
     margin-left: $side-bar-min-width;
   }
@@ -126,7 +116,6 @@ li button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
   box-sizing: border-box;
   border: 0;
   border-left: 2px #00000000 solid;
@@ -148,26 +137,21 @@ li button {
 }
 @include mq(small) {
   .side-bar {
+    position: fixed;
     display: flex;
-    align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-    height: auto;
     border: 0;
     z-index: index($z, side-bar);
     padding: 0 30px;
+    padding-top: env(safe-area-inset-top);
+    height: auto;
     box-sizing: border-box;
     /deep/ + * {
       margin-left: 0;
       margin-top: $side-bar-min-height;
-    }
-    &::before {
-      top: -60px;
-      left: 0;
-      height: 60.1px;
-      width: 100%;
-      z-index: index($z, side-bar);
     }
   }
   .side-bar.android {

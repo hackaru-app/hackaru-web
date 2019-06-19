@@ -192,7 +192,7 @@ export default {
   display: flex;
   align-items: flex-start;
   min-width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   box-shadow: -3px 0 3px #00000005;
 }
 @media print {
