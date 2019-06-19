@@ -2,13 +2,12 @@
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-select: none;
-  background: $background;
 }
 body, select, input, button {
   color: $text;
 }
 body {
-  background: $background;
+  background-color: $background;
   outline: none;
   font-display: auto;
   font-family: $font-family;
