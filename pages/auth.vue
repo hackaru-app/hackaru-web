@@ -131,7 +131,6 @@ export default {
         this.goBack();
         this.$ga.set('userId', this.$store.getters['auth/userId']);
         this.$ga.event('auth', 'login');
-        this.$store.dispatch('toast/success', this.$t('loggedIn'));
       }
     },
     async signUp() {
@@ -144,7 +143,6 @@ export default {
         this.goBack();
         this.$ga.set('userId', this.$store.getters['auth/userId']);
         this.$ga.event('auth', 'signUp');
-        this.$store.dispatch('toast/success', this.$t('signedUp'));
       }
     },
     goBack() {
