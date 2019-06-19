@@ -16,7 +16,7 @@ export const actions = {
       get(payload, 'response.data.error_description') ||
       get(payload, 'response.data.message') ||
       get(payload, 'message');
-    commit(SHOW_ERROR, text);
+    if (text) commit(SHOW_ERROR, text);
   },
   success({ commit }, payload) {
     commit(SHOW_SUCCESS, payload);
