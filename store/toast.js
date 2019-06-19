@@ -27,7 +27,7 @@ export const mutations = {
   [SHOW_ERROR](state, payload) {
     state.text = payload;
     state.type = 'error';
-    state.duration = 3500;
+    state.duration = 5000;
     state.rand = Math.random();
   },
   [SHOW_SUCCESS](state, payload) {

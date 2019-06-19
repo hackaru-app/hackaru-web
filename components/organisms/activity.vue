@@ -197,8 +197,9 @@ export default {
   margin-left: 10px;
 }
 .stopped .duration,
-.stopped .day {
-  color: $text-lighter;
+.stopped .day,
+.stopped .project-name {
+  opacity: 0.6;
 }
 .content {
   width: 100%;
