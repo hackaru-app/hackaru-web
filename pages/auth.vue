@@ -66,11 +66,9 @@
               {{ $t(hasAccount ? 'or.signUp' : 'or.login') }}
             </button>
           </div>
-          <transition name="fade">
-            <nuxt-link v-if="hasAccount" class="forgot" to="password-reset">
-              {{ $t('forgot') }}
-            </nuxt-link>
-          </transition>
+          <nuxt-link v-if="hasAccount" class="forgot" to="password-reset">
+            {{ $t('forgot') }}
+          </nuxt-link>
         </footer>
       </form>
     </div>
@@ -228,8 +226,6 @@ export default {
 }
 .auth-footer {
   display: flex;
-  position: absolute;
-  bottom: 0;
   padding: 30px 50px;
   align-items: center;
 }
@@ -237,6 +233,9 @@ export default {
   flex-shrink: 0;
 }
 @media screen and (max-width: 640px) {
+  .auth {
+    min-height: auto;
+  }
   .form-container {
     padding: 30px;
   }
