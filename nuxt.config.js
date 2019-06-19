@@ -8,7 +8,8 @@ module.exports = {
       { charset: 'utf-8' },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1, user-scalable=0'
+        content:
+          'width=device-width, initial-scale=1, user-scalable=0, viewport-fit=cover'
       },
       {
         hid: 'description',
