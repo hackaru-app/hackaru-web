@@ -9,10 +9,10 @@
       "delete": "Are you sure you want to delete the webhook?"
     },
     "events": {
-      "activity:created": "Created Activity",
-      "activity:stopped": "Stopped Activity",
-      "activity:updated": "Updated Activity",
-      "activity:deleted": "Deleted Activity",
+      "activity:created": "Created Timer",
+      "activity:stopped": "Stopped Timer",
+      "activity:updated": "Updated Timer",
+      "activity:deleted": "Deleted Timer",
       "project:created": "Created Project",
       "project:updated": "Updated Project",
       "project:deleted": "Deleted Project"

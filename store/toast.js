@@ -33,7 +33,7 @@ export const mutations = {
   [SHOW_SUCCESS](state, payload) {
     state.text = payload;
     state.type = 'success';
-    state.duration = 2000;
+    state.duration = 3000;
     state.rand = Math.random();
   }
 };
