@@ -89,8 +89,8 @@ h1 {
   align-items: center;
   a {
     display: flex;
-    padding: 35px 0;
-    padding-bottom: 20px;
+    align-items: center;
+    height: 90px;
   }
   a .logo-icon {
     width: 20px;
@@ -108,6 +108,7 @@ ul {
   list-style-position: inside;
   flex-direction: column;
   padding: 0;
+  margin: 0;
 }
 li a,
 li button {
@@ -135,6 +136,9 @@ li button {
     transform: scale(0.95);
   }
 }
+li:first-child a {
+  margin-top: 0;
+}
 @include mq(small) {
   .side-bar {
     position: fixed;
@@ -159,6 +163,7 @@ li button {
   }
   h1 a {
     padding: 0;
+    height: auto;
   }
   h1 a .logo-icon {
     width: 18px;
@@ -168,7 +173,7 @@ li button {
     display: flex;
     margin: 0;
     flex-direction: row;
-    margin-right: -14px;
+    margin-right: -5px;
   }
   li a,
   li button {
