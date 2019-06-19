@@ -1,7 +1,7 @@
 <i18n src="@/assets/locales/pages/index.json" />
 
 <template>
-  <section>
+  <section class="index">
     <content-header>
       <heading>Timers</heading>
       <tutorial-tooltip
@@ -31,7 +31,6 @@
       :day="`${addDays(new Date(), -prev)}`"
     />
     <div v-if="workings.length <= 0" class="empty-message">
-      <icon name="zap-icon" class="is-x-large" />
       <p>ようこそ。時間管理を始めましょう！</p>
     </div>
   </section>
@@ -95,22 +94,8 @@ export default {
   pointer-events: none;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-  text-align: center;
+  margin-top: 30px;
   box-sizing: border-box;
   color: $text-lighter;
-  animation-duration: 2s;
-  .icon {
-    margin-right: 10px;
-  }
-}
-@include mq(small) {
-  .empty-message {
-    flex-direction: column;
-    .icon {
-      margin: 0;
-    }
-  }
 }
 </style>

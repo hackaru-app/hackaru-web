@@ -92,7 +92,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: $background;
+  min-height: 100vh;
 }
 .content {
   flex: 1;
