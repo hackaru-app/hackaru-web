@@ -21,7 +21,6 @@
           {{ $t('description') }}
         </label>
         <input
-          v-autofocus
           v-model="description"
           :placeholder="$t('description')"
           type="text"
