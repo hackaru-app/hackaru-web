@@ -40,6 +40,7 @@ export default {
 .toast {
   display: flex;
   justify-content: center;
+  position: absolute;
   width: 100%;
   left: 0;
 }

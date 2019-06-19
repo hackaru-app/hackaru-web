@@ -32,7 +32,7 @@
     />
     <div v-if="workings.length <= 0" class="empty-message">
       <icon name="zap-icon" class="is-x-large" />
-      <p>こんにちは。時間管理を始めましょう！</p>
+      <p>ようこそ。時間管理を始めましょう！</p>
     </div>
   </section>
 </template>
