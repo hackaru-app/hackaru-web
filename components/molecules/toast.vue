@@ -45,7 +45,7 @@ export default {
 }
 .content {
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 50px;
   justify-content: center;
   padding: 9px 20px;
