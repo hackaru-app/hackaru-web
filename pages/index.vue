@@ -30,6 +30,10 @@
       :key="prev"
       :day="`${addDays(new Date(), -prev)}`"
     />
+    <div v-if="workings.length <= 0" class="empty-message">
+      <icon name="zap-icon" class="is-x-large" />
+      <p>こんにちは。時間管理を始めましょう！</p>
+    </div>
   </section>
 </template>
 
@@ -85,3 +89,23 @@ export default {
   }
 };
 </script>
+
+<style scoped lang="scss">
+.empty-message {
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 0 30px;
+  text-align: center;
+  box-sizing: border-box;
+  color: $text-lighter;
+  animation-duration: 2s;
+}
+</style>
