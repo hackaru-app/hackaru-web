@@ -12,7 +12,7 @@
     "year": {
       "format": "YYYY"
     },
-    "addActivityByLongPress": "Add timer by long press"
+    "addActivityByLongPress": "Move or add a timer by long press"
   },
   "ja": {
     "day": {
@@ -27,6 +27,6 @@
     "year": {
       "format": "YYYY"
     },
-    "addActivityByLongPress": "任意の場所を長押しで新規作成"
+    "addActivityByLongPress": "長押しで記録の追加や移動ができます"
   }
 }

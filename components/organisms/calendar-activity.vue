@@ -13,12 +13,7 @@
     @end="moveEnd"
     @cancel="moveCancel"
   >
-    <div
-      v-tooltip="$t('moveByLongPress')"
-      class="click-handler"
-      @mousedown="mousedown"
-      @mouseup="mouseup"
-    >
+    <div class="click-handler" @mousedown="mousedown" @mouseup="mouseup">
       <calendar-event
         :style="{ height: `${height}px` }"
         :title="title"
@@ -240,6 +235,7 @@ export default {
   }
 }
 .calendar-activity.dragging {
+  cursor: grabbing;
   opacity: 1;
   box-shadow: 0 7px 10px #00000010;
   z-index: index($z, calendar-dragging-activity);
