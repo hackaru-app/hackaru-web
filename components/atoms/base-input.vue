@@ -30,6 +30,7 @@ export default {
   border: 1px $grey-eee solid;
   transition: border-color 0.2s;
   margin-bottom: 15px;
+  box-shadow: none;
   &::placeholder {
     color: $grey-999;
     opacity: 1;
