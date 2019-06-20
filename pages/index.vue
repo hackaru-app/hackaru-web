@@ -23,7 +23,7 @@
       v-for="(activity, index) in activities"
       :key="activity.id"
       v-bind="activity"
-      :class="{ tutorial: index === 0 }"
+      :class="{ tutorial: !activity.stoppedAt && index === 0 }"
     />
     <p v-if="activities.length <= 0" class="empty-message">
       {{ $t('empty') }}
