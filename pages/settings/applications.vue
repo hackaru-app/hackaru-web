@@ -31,7 +31,7 @@
         </heading>
       </header>
 
-      <div
+      <!-- <div
         v-for="application in applications"
         :key="application.id"
         class="application"
@@ -43,9 +43,9 @@
         >
           <icon name="x-icon" class="is-danger" />
         </base-button>
-      </div>
+      </div> -->
 
-      <p v-if="applications.length <= 0" class="empty-message">
+      <p class="empty-message">
         {{ $t('empty') }}
       </p>
     </section>
@@ -166,9 +166,9 @@ ul {
   .content {
     padding: 0 30px;
   }
-  .empty {
-    text-align: center;
-    width: 100%;
+  .empty-message {
+    box-sizing: border-box;
+    justify-content: center;
   }
 }
 </style>

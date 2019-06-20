@@ -221,9 +221,9 @@ export default {
   .content {
     padding: 0 30px;
   }
-  .empty {
-    text-align: center;
-    width: 100%;
+  .empty-message {
+    box-sizing: border-box;
+    justify-content: center;
   }
 }
 </style>
