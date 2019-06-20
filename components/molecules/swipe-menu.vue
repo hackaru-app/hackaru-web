@@ -56,7 +56,8 @@ export default {
     },
     dragging({ e, distance }) {
       const wasTooLowDrag = Math.abs(distance.x) < 40;
-      if (wasTooLowDrag) return;
+      const wasDragUpDown = Math.abs(distance.y) > 40;
+      if (wasTooLowDrag || wasDragUpDown) return;
       if (distance.x < 0) {
         this.rightStyle = {
           animationName: 'none',
