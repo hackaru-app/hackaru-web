@@ -2,10 +2,11 @@ import { activity } from '@/schemas';
 import {
   isWithinRange,
   startOfDay,
-  endOfDay,
+  isAfter,
   areRangesOverlapping,
   addMinutes,
-  compareDesc
+  compareDesc,
+  addDays
 } from 'date-fns';
 
 export const actions = {
@@ -126,16 +127,11 @@ export const getters = {
       .filter(({ stoppedAt }) => !stoppedAt)
       .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },
-  getByDay: (state, getters) => date => {
+  weekly: (state, getters) => {
     return getters.all
-      .filter(
-        activity =>
-          activity.stoppedAt &&
-          isWithinRange(
-            startOfDay(activity.startedAt),
-            startOfDay(date),
-            endOfDay(date)
-          )
+      .filter(({ stoppedAt }) => stoppedAt)
+      .filter(({ startedAt }) =>
+        isAfter(startedAt, startOfDay(addDays(new Date(), -7)))
       )
       .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },

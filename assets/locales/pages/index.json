@@ -2,11 +2,13 @@
   "en": {
     "title": "Timers",
     "workings": "Workings",
-    "startTimer": "Let's start timer from here!"
+    "startTimer": "Let's start timer from here!",
+    "empty": "Welcome! Let's start Time-tracking!"
   },
   "ja": {
     "title": "Timers",
     "workings": "計測中",
-    "startTimer": "ここから計測を開始しましょう！"
+    "startTimer": "ここから計測を開始しましょう！",
+    "empty": "ようこそ。時間の管理を始めましょう！"
   }
 }

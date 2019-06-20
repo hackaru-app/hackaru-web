@@ -45,7 +45,7 @@
         </base-button>
       </div>
 
-      <p v-if="applications.length <= 0" class="empty">
+      <p v-if="applications.length <= 0" class="empty-message">
         {{ $t('empty') }}
       </p>
     </section>
@@ -153,10 +153,14 @@ ul {
     }
   }
 }
-.empty {
-  margin: 0;
-  padding: 30px 0;
+.empty-message {
   border-top: 1px $border solid;
+  padding: 0 10px;
+  padding-top: 30px;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  color: $text-lighter;
 }
 @include mq(small) {
   .content {

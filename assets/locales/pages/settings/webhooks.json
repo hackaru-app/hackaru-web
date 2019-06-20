@@ -41,6 +41,6 @@
     },
     "added": "追加しました",
     "deleted": "削除しました",
-    "empty": "Webhookはまだ作成していません。"
+    "empty": "Webhookはまだ作成していません"
   }
 }

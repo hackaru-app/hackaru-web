@@ -20,19 +20,14 @@
       </tutorial-tooltip>
     </content-header>
     <activity
-      v-for="(activity, index) in workings"
+      v-for="(activity, index) in activities"
       :key="activity.id"
       v-bind="activity"
       :class="{ tutorial: index === 0 }"
     />
-    <activity-day
-      v-for="prev in [0, 1, 2, 3, 4, 5, 6]"
-      :key="prev"
-      :day="`${addDays(new Date(), -prev)}`"
-    />
-    <div v-if="workings.length <= 0" class="empty-message">
-      <p>ようこそ。時間管理を始めましょう！</p>
-    </div>
+    <p v-if="activities.length <= 0" class="empty-message">
+      {{ $t('empty') }}
+    </p>
   </section>
 </template>
 
@@ -44,9 +39,7 @@ import ContentHeader from '@/components/organisms/content-header';
 import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
-import ActivityDay from '@/components/organisms/activity-day';
 import Activity from '@/components/organisms/activity';
-import { mapGetters } from 'vuex';
 import { addDays } from 'date-fns';
 
 export default {
@@ -58,7 +51,6 @@ export default {
     Heading,
     Icon,
     BaseButton,
-    ActivityDay,
     Activity
   },
   head: {
@@ -70,9 +62,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      workings: 'activities/workings'
-    })
+    activities() {
+      return [
+        ...this.$store.getters['activities/workings'],
+        ...this.$store.getters['activities/weekly']
+      ];
+    }
   },
   mounted() {
     this.$store.dispatch('activities/fetchWorkings');
@@ -91,11 +86,10 @@ export default {
 
 <style scoped lang="scss">
 .empty-message {
-  pointer-events: none;
-  display: flex;
+  margin-top: 45px;
   justify-content: center;
-  margin-top: 30px;
-  box-sizing: border-box;
+  display: flex;
+  width: 100%;
   color: $text-lighter;
 }
 </style>
