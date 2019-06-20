@@ -42,7 +42,7 @@ export default {
 .calendar-day-header h1 {
   display: flex;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 18px;
   margin: 0;
   padding: 0;
   justify-content: center;
@@ -55,9 +55,12 @@ export default {
 }
 .calendar-day-header.today h1,
 .calendar-day-header.today small {
-  color: $cyan;
+  color: $cyan-dark;
 }
 @include mq(small) {
+  .calendar-day-header h1 {
+    font-size: 16px;
+  }
   .calendar-day-header {
     flex-direction: column;
   }

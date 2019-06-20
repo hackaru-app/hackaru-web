@@ -1,8 +1,10 @@
 {
   "en": {
-    "title": "Third-party libraries"
+    "title": "Third Party Libraries",
+    "thanks": "Thank you very much to the open source developers and contributors."
   },
   "ja": {
-    "title": "使用ライブラリ"
+    "title": "使用ライブラリ",
+    "thanks": "素敵なオープンソースの開発者と貢献者に心から感謝します。"
   }
 }

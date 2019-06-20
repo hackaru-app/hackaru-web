@@ -29,15 +29,15 @@ export default {
   height: 16px;
 }
 .icon.is-large {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 .icon.is-x-large {
   width: 24px;
   height: 24px;
 }
 .icon.is-primary {
-  color: $cyan;
+  color: $cyan-dark;
 }
 .icon.is-danger {
   color: $red;

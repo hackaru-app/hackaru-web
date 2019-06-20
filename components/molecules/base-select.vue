@@ -1,6 +1,6 @@
 <template>
   <div class="base-select">
-    <base-button class="base-button has-dropshadow">
+    <base-button class="is-marshmallow base-button">
       {{ value }}
     </base-button>
     <select ref="select" @change="change">
@@ -45,6 +45,7 @@ export default {
 @media print {
   .base-select .base-button {
     background-color: $grey-f5f5f5;
+    border: 0;
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
     box-shadow: none;

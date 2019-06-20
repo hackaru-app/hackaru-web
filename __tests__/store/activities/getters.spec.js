@@ -1,8 +1,11 @@
+import MockDate from 'mockdate';
 import { getters } from '@/store/activities';
 import { parse } from 'date-fns';
 
 describe('Getters', () => {
   let result;
+
+  MockDate.set('2019-01-31T01:23:45');
 
   describe('when call all', () => {
     const rootGetters = {
@@ -35,45 +38,50 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call getByDay', () => {
+  describe('when call weekly', () => {
     const mockGetters = {
       all: [
         {
           id: 1,
-          startedAt: '2018-12-31T00:00:00',
-          stoppedAt: '2019-01-01T02:00:00'
+          startedAt: '2019-01-31T00:00:00',
+          stoppedAt: '2019-01-31T01:00:00',
+          duration: 3600
         },
         {
           id: 2,
-          startedAt: '2019-01-01T00:00:00',
-          stoppedAt: '2019-01-01T01:00:00'
+          startedAt: '2019-01-24T00:00:00',
+          stoppedAt: '2019-01-24T01:00:00',
+          duration: 3600
         },
         {
           id: 3,
-          startedAt: '2019-01-02T00:00:00',
-          stoppedAt: '2019-01-02T01:00:00'
-        },
-        {
-          id: 4,
-          startedAt: '2019-01-01T00:00:00',
-          stoppedAt: null
+          startedAt: '2019-01-31T00:00:00',
+          stoppedAt: undefined,
+          duration: 3600
         }
       ]
     };
 
     beforeEach(() => {
-      result = getters.getByDay({}, mockGetters, {}, {})(parse('2019-01-01'));
+      result = getters.weekly({}, mockGetters, {}, {});
     });
 
-    it('returns activites correctly', () => {
-      expect(result.map(({ id }) => id)).toEqual([1, 2]);
+    it('returns correctly', () => {
+      expect(result).toEqual([
+        {
+          id: 1,
+          startedAt: '2019-01-31T00:00:00',
+          stoppedAt: '2019-01-31T01:00:00',
+          duration: 3600
+        }
+      ]);
     });
   });
 
   describe('when call getCalendar', () => {
     const toMin = px => px;
     const mockGetters = {
-      getByDay: jest.fn().mockReturnValue([
+      all: [
         {
           id: 1,
           startedAt: '2019-01-01T01:00:00',
@@ -91,8 +99,14 @@ describe('Getters', () => {
           startedAt: '2019-01-01T05:00:00',
           stoppedAt: '2019-01-01T06:00:00',
           duration: 3600
+        },
+        {
+          id: 4,
+          startedAt: '2019-01-02T01:00:00',
+          stoppedAt: '2019-01-02T02:00:00',
+          duration: 3600
         }
-      ])
+      ]
     };
 
     beforeEach(() => {

@@ -3,8 +3,9 @@
 <template>
   <swipe-menu
     ref="menu"
-    class="acitivty"
-    @swipe-right="stopActivity"
+    :class="['activity', { stopped: stoppedAt }]"
+    :speed="swipeSpeed"
+    @swipe-right="swipeRight"
     @swipe-left="deleteActivity"
   >
     <template slot="left">
@@ -14,8 +15,13 @@
     </template>
 
     <div class="list-item">
-      <div class="activity-content" @click="showModal">
-        <project-name v-bind="project" class="project-name" />
+      <div class="content" @click="showModal">
+        <project-name
+          v-bind="project"
+          :name="description || (project ? project.name : undefined)"
+          class="project-name"
+        />
+        <span class="day">{{ day }}</span>
         <ticker
           :started-at="startedAt"
           :stopped-at="stoppedAt"
@@ -24,14 +30,30 @@
       </div>
 
       <nav>
-        <base-button class="stop-button has-icon" @click="stopActivity">
+        <base-button
+          v-tooltip="{ content: $t('stop'), offset: -10 }"
+          v-if="!stoppedAt"
+          class="nav-button stop-button has-icon"
+          @click="stopActivity"
+        >
           <icon name="check-icon" class="is-primary" />
+        </base-button>
+        <base-button
+          v-tooltip="{ content: $t('duplicate'), offset: -10 }"
+          v-if="stoppedAt"
+          class="nav-button has-icon"
+          @click="duplicate"
+        >
+          <icon name="repeat-icon" class="nav-icon" />
         </base-button>
       </nav>
     </div>
 
     <template slot="right">
-      <div class="swipe-menu-item is-primary">
+      <div v-if="stoppedAt" class="swipe-menu-item is-repeat">
+        <icon name="repeat-icon" />
+      </div>
+      <div v-else class="swipe-menu-item is-primary">
         <icon name="check-icon" />
       </div>
     </template>
@@ -39,12 +61,13 @@
 </template>
 
 <script>
-import { parse } from 'date-fns';
+import { parse, format } from 'date-fns';
 import Icon from '@/components/atoms/icon';
 import BaseButton from '@/components/atoms/base-button';
 import ProjectName from '@/components/molecules/project-name';
 import SwipeMenu from '@/components/molecules/swipe-menu';
 import Ticker from '@/components/atoms/ticker';
+import { differenceInDays } from 'date-fns';
 
 export default {
   components: {
@@ -80,13 +103,42 @@ export default {
       default: undefined
     }
   },
+  data() {
+    return {
+      format,
+      swipeSpeed: 300
+    };
+  },
+  computed: {
+    day() {
+      const diff = differenceInDays(new Date(), this.startedAt);
+      switch (diff) {
+        case 0:
+          return this.$t('today');
+        case 1:
+          return this.$t('yesterday');
+        default:
+          return this.$t('ago', { day: diff });
+      }
+    }
+  },
   methods: {
     stopActivity() {
-      this.$toast.success(this.$t('archived'));
+      this.$store.dispatch('toast/success', this.$t('archived'));
       this.$store.dispatch('activities/update', {
         id: this.id,
         stoppedAt: `${parse(Date.now())}`
       });
+    },
+    async duplicate() {
+      const success = await this.$store.dispatch('activities/add', {
+        description: this.description,
+        projectId: this.project && this.project.id,
+        startedAt: `${new Date()}`
+      });
+      if (success) {
+        this.$store.dispatch('toast/success', this.$t('duplicated'));
+      }
     },
     resetSwipeMenu() {
       this.$refs.menu.reset();
@@ -97,7 +149,17 @@ export default {
         return;
       }
       this.$store.dispatch('activities/delete', this.id);
-      this.$toast.success(this.$t('deleted'));
+      this.$store.dispatch('toast/success', this.$t('deleted'));
+    },
+    swipeRight() {
+      this.resetSwipeMenu();
+      setTimeout(() => {
+        if (this.stoppedAt) {
+          this.duplicate();
+        } else {
+          this.stopActivity();
+        }
+      }, this.swipeSpeed + 50);
     },
     showModal(params) {
       this.$modal.show('activity', {
@@ -113,63 +175,64 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.activity-content {
-  justify-content: space-between;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  flex: 1;
-  height: 100%;
+.activity {
+  border-bottom: 1px $border solid;
+}
+.list-item {
   display: flex;
   align-items: center;
+  padding-right: 45px;
+}
+.project-name {
+  width: 100%;
   min-width: 0;
+}
+.duration {
+  padding-left: 15px;
+  font-family: $font-family-duration;
+}
+.day {
+  flex-shrink: 0;
+  display: flex;
+  margin-left: 10px;
+}
+.stopped .duration,
+.stopped .day {
+  color: $text-lighter;
+}
+.content {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  min-width: 0;
+  transition: all 0.2s ease;
+  padding: 23px 40px;
+  padding-right: 20px;
   &:active {
     transform: scale(0.97);
   }
 }
-.project-name {
-  flex-shrink: 0;
-  padding-right: 40px;
+.nav-button {
+  width: 60px;
 }
-.acitivty h1 {
-  font-size: $font-size;
-  font-weight: normal;
-  flex: 1;
-  border: 0;
-  margin: 0;
-  padding: 0 20px;
-  background: none;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  margin-top: 1px;
+.nav-icon {
+  width: 18px;
+  height: 18px;
 }
-.acitivty nav {
-  display: flex;
-  margin-left: 30px;
-}
-.duration {
-  color: $text-light;
-  font-family: $font-family-duration;
-}
-.list-item {
-  padding: 0 40px;
-  height: 65px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px $border solid;
-  background-color: #fff;
-  &:hover {
-    background: $grey-fdfdfd;
-  }
+.swipe-menu-item.is-repeat {
+  background-color: #85b369;
+  color: #fff;
 }
 @include mq(small) {
-  .acitivty nav {
-    display: none;
-  }
   .list-item {
-    padding: 0 30px;
-    height: 70px;
+    padding-right: 0;
+  }
+  .content {
+    padding: 25px 30px;
+  }
+  .activity nav {
+    display: none;
   }
 }
 </style>

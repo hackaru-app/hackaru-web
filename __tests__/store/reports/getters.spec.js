@@ -64,11 +64,7 @@ describe('Getters', () => {
 
   describe('when call barChartLabels and period is hour', () => {
     const state = {
-      period: 'hour',
-      summary: [
-        { date: '2019-01-01T01:00:00' },
-        { date: '2019-01-02T03:00:00' }
-      ]
+      period: 'hour'
     };
 
     beforeEach(() => {
@@ -76,14 +72,40 @@ describe('Getters', () => {
     });
 
     it('returns labels', () => {
-      expect(result).toEqual(['1:00', '3:00']);
+      expect(result).toEqual([
+        '0:00',
+        '1:00',
+        '2:00',
+        '3:00',
+        '4:00',
+        '5:00',
+        '6:00',
+        '7:00',
+        '8:00',
+        '9:00',
+        '10:00',
+        '11:00',
+        '12:00',
+        '13:00',
+        '14:00',
+        '15:00',
+        '16:00',
+        '17:00',
+        '18:00',
+        '19:00',
+        '20:00',
+        '21:00',
+        '22:00',
+        '23:00'
+      ]);
     });
   });
 
   describe('when call barChartLabels and period is day', () => {
     const state = {
       period: 'day',
-      summary: [{ date: '2019-01-01' }, { date: '2019-01-03' }]
+      start: '2019-01-01',
+      end: '2019-01-03'
     };
 
     beforeEach(() => {
@@ -91,14 +113,13 @@ describe('Getters', () => {
     });
 
     it('returns labels', () => {
-      expect(result).toEqual(['01', '03']);
+      expect(result).toEqual(['01', '02', '03']);
     });
   });
 
   describe('when call barChartLabels and period is month', () => {
     const state = {
-      period: 'month',
-      summary: [{ date: '2019-01' }, { date: '2019-03' }]
+      period: 'month'
     };
 
     beforeEach(() => {
@@ -106,7 +127,20 @@ describe('Getters', () => {
     });
 
     it('returns labels', () => {
-      expect(result).toEqual(['Jan', 'Mar']);
+      expect(result).toEqual([
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+      ]);
     });
   });
 

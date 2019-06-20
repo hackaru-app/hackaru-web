@@ -97,7 +97,7 @@ export default {
 <style scoped lang="scss">
 .item {
   padding: 0 30px;
-  height: 65px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -109,7 +109,7 @@ export default {
 .project-content {
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   height: 100%;
   width: 100%;
   display: flex;

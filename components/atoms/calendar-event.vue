@@ -44,7 +44,7 @@ export default {
       );
     },
     backgroundColor() {
-      return Color(this.color).fade(0.666);
+      return Color(this.color).mix(Color('white'), 0.666);
     },
     textColor() {
       return Color(this.color).darken(0.6);
@@ -68,10 +68,11 @@ export default {
   border-left-width: 2px;
   border-left-style: solid;
   overflow: hidden;
+  border-radius: 0 3px 3px 0;
 }
 .calendar-event h1 {
   flex-shrink: 1;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 20px;
   padding: 0;
   font-weight: normal;
@@ -81,7 +82,7 @@ export default {
 }
 .calendar-event p {
   flex-shrink: 9999;
-  font-size: 12px;
+  font-size: 13px;
   opacity: 0.6;
   margin: 0;
   margin-left: 10px;

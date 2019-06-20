@@ -17,12 +17,12 @@ export default {
 .dot {
   display: inline;
   border-radius: 50%;
-  width: 9px;
-  height: 9px;
+  min-width: 9px;
+  min-height: 9px;
 }
 .dot.is-large {
-  width: 14px;
-  height: 14px;
+  min-width: 14px;
+  min-height: 14px;
 }
 @media print {
   .dot {

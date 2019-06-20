@@ -70,21 +70,11 @@ export default {
   display: flex;
   margin: 0 auto;
   flex-direction: column;
-  align-items: center;
   height: 100vh;
+  box-sizing: border-box;
   background-color: $background-dark;
+  padding-left: env(safe-area-inset-left);
   z-index: 9;
-  &::before {
-    display: flex;
-    position: fixed;
-    min-width: $side-bar-min-width;
-    content: '';
-    top: -50vh;
-    left: 0;
-    background-color: $background-dark;
-    z-index: -1;
-    height: 200vh;
-  }
   /deep/ + * {
     margin-left: $side-bar-min-width;
   }
@@ -99,14 +89,14 @@ h1 {
   align-items: center;
   a {
     display: flex;
-    padding: 35px 0;
-    padding-bottom: 20px;
+    align-items: center;
+    height: 90px;
   }
   a .logo-icon {
     width: 20px;
     height: 20px;
     color: $yellow;
-    transition: filter 0.3s;
+    transition: filter 0.2s;
   }
   a:hover .logo-icon {
     filter: drop-shadow(0 0 4px rgba($yellow, 0.3));
@@ -118,15 +108,15 @@ ul {
   list-style-position: inside;
   flex-direction: column;
   padding: 0;
+  margin: 0;
 }
 li a,
 li button {
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
   box-sizing: border-box;
   border: 0;
   border-left: 2px #00000000 solid;
@@ -146,28 +136,26 @@ li button {
     transform: scale(0.95);
   }
 }
+li:first-child a {
+  margin-top: 0;
+}
 @include mq(small) {
   .side-bar {
+    position: fixed;
     display: flex;
-    align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-    height: auto;
     border: 0;
     z-index: index($z, side-bar);
     padding: 0 30px;
+    padding-top: env(safe-area-inset-top);
+    height: auto;
     box-sizing: border-box;
     /deep/ + * {
       margin-left: 0;
       margin-top: $side-bar-min-height;
-    }
-    &::before {
-      top: -60px;
-      left: 0;
-      height: 60.1px;
-      width: 100%;
-      z-index: index($z, side-bar);
     }
   }
   .side-bar.android {
@@ -175,6 +163,7 @@ li button {
   }
   h1 a {
     padding: 0;
+    height: auto;
   }
   h1 a .logo-icon {
     width: 18px;
@@ -184,7 +173,7 @@ li button {
     display: flex;
     margin: 0;
     flex-direction: row;
-    margin-right: -14px;
+    margin-right: -5px;
   }
   li a,
   li button {

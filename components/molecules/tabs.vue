@@ -53,7 +53,7 @@ export default {
   padding: 10px 15px;
   align-items: center;
   color: $text-light;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 .tabs li.selected,
 .tabs li:hover {

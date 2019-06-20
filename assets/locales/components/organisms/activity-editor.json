@@ -1,7 +1,7 @@
 {
   "en": {
     "titles": {
-      "update": "Update Activity",
+      "update": "Update Timer",
       "start": "Start Timer"
     },
     "project": "Project",
@@ -10,29 +10,29 @@
     "stoppedAt": "Stopped At",
     "update": "Update",
     "start": "Start",
-    "saved": "Activity saved",
+    "saved": "Timer updated",
     "started": "Timer started",
-    "deleted": "Activity deleted",
+    "deleted": "Timer deleted",
     "confirms": {
-      "delete":  "Are you sure you want to delete the activity?"
+      "delete":  "Are you sure you want to delete the timer?"
     }
   },
   "ja": {
     "titles": {
-      "update": "記録を更新",
+      "update": "計測を編集",
       "start": "計測を開始"
     },
     "project": "プロジェクト",
-    "description": "備考",
+    "description": "作業内容",
     "startedAt": "開始時間",
     "stoppedAt": "終了時間",
     "update": "更新",
     "start": "開始",
-    "saved": "保存しました",
-    "started": "開始しました",
-    "deleted": "削除しました",
+    "saved": "計測を更新しました",
+    "started": "計測を開始しました",
+    "deleted": "計測を削除しました",
     "confirms": {
-      "delete":  "記録を削除しますか？"
+      "delete":  "計測を削除しますか？"
     }
   }
 }

@@ -1,12 +1,13 @@
-import { format } from 'date-fns';
-import uniq from 'lodash.uniq';
+import { eachDay, format } from 'date-fns';
 
 export const SET_REPORTS = 'SET_REPORTS';
 
 export const state = () => ({
   projects: [],
   summary: [],
-  period: ''
+  period: '',
+  start: undefined,
+  end: undefined
 });
 
 export const actions = {
@@ -28,7 +29,9 @@ export const actions = {
       commit(SET_REPORTS, {
         projects: res.data.projects,
         summary: res.data.summary,
-        period: payload.period
+        period: payload.period,
+        start: payload.start,
+        end: payload.end
       });
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -41,6 +44,8 @@ export const mutations = {
     state.projects = payload.projects;
     state.summary = payload.summary;
     state.period = payload.period;
+    state.start = payload.start;
+    state.end = payload.end;
   }
 };
 
@@ -57,12 +62,24 @@ export const getters = {
     }, {});
   },
   barChartLabels: (state, getter) => {
-    const labelFormat = {
-      hour: 'H:00',
-      day: 'DD',
-      month: 'MMM'
+    return {
+      hour: [...Array(24).keys()].map(hour => `${hour}:00`),
+      day: eachDay(state.start, state.end).map(date => format(date, 'DD')),
+      month: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+      ]
     }[state.period];
-    return uniq(state.summary.map(({ date }) => format(date, labelFormat)));
   },
   barChartData: (state, getters) => {
     return {

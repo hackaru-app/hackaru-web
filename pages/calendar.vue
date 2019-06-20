@@ -33,23 +33,29 @@
         </div>
       </section>
 
-      <section class="contents-wrapper">
-        <section :style="slideStyle" class="contents">
-          <calendar-content :days="[]" class="slider-item" />
-          <calendar-content
-            :days="days"
-            class="slider-item"
-            @dragging="sliderEnabled = false"
-            @drop="sliderEnabled = true"
-          />
-          <calendar-content :days="[]" class="slider-item" />
+      <tutorial-tooltip
+        :content="$t('addActivityByLongPress')"
+        name="add-calendar-activity"
+      >
+        <section class="contents-wrapper">
+          <section :style="slideStyle" class="contents">
+            <calendar-content :days="[]" class="slider-item" />
+            <calendar-content
+              :days="days"
+              class="slider-item"
+              @dragging="sliderEnabled = false"
+              @drop="sliderEnabled = true"
+            />
+            <calendar-content :days="[]" class="slider-item" />
+          </section>
         </section>
-      </section>
+      </tutorial-tooltip>
     </loop-slider>
   </section>
 </template>
 
 <script>
+import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
 import DateHeader from '@/components/organisms/date-header';
 import LoopSlider from '@/components/organisms/loop-slider';
 import CalendarContent from '@/components/organisms/calendar-content';
@@ -82,6 +88,7 @@ const periods = {
 
 export default {
   components: {
+    TutorialTooltip,
     LoopSlider,
     CalendarContent,
     CalendarDayHeader,
@@ -159,19 +166,18 @@ export default {
   top: 0;
   overflow: hidden;
   z-index: index($z, calendar-day-header);
+  border-bottom: 1px $border solid;
 }
 .headers-wrapper {
   display: flex;
-  background: $background;
 }
 .headers {
   display: flex;
   flex-direction: row;
-  background: $background;
+  background: $white;
   min-width: 100%;
   box-sizing: border-box;
   padding-left: 60px;
-  border-bottom: 1px $border solid;
 }
 .contents-wrapper {
   overflow: hidden;

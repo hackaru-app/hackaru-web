@@ -42,7 +42,11 @@
       </modal-item>
 
       <modal-footer>
-        <base-button type="submit" class="is-rounded is-primary">
+        <base-button
+          :disabled="disabled"
+          type="submit"
+          class="is-rounded is-primary"
+        >
           {{ $t(id ? 'update' : 'start') }}
         </base-button>
         <div class="icons">
@@ -100,6 +104,7 @@ export default {
     return {
       id: undefined,
       description: '',
+      disabled: false,
       project: {
         id: null,
         name: 'No Project',
@@ -129,6 +134,7 @@ export default {
   },
   methods: {
     async saveActivity() {
+      this.disabled = true;
       const action = this.id ? 'update' : 'add';
       const success = await this.$store.dispatch(`activities/${action}`, {
         id: this.id,
@@ -137,19 +143,20 @@ export default {
         startedAt: this.startedAt,
         stoppedAt: this.stoppedAt
       });
+      this.disabled = false;
       if (success) {
-        this.$modal.hide('activity');
-        this.$ga.event('activity', action);
         this.$store.dispatch(
           'toast/success',
           this.$t(this.id || this.stoppedAt ? 'saved' : 'started')
         );
+        this.$modal.hide('activity');
+        this.$ga.event('activity', action);
       }
     },
     deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('activities/delete', this.id);
-      this.$toast.success(this.$t('deleted'));
+      this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$ga.event('activity', 'deleteActivity');
       this.$modal.hide('activity');
     },
@@ -176,7 +183,7 @@ export default {
 <style scoped lang="scss">
 .project-button {
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   border: 0;

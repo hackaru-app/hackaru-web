@@ -7,14 +7,14 @@
 <style scoped lang="scss">
 .base-button {
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   padding: 0 15px;
-  height: 39px;
+  height: 41px;
   justify-content: center;
   align-items: center;
   display: flex;
   line-height: 1.5em;
-  border-radius: 5px;
+  border-radius: 3px;
   background: none;
   border: 0;
   &:active {
@@ -26,8 +26,8 @@
   color: #fff;
 }
 .base-button.is-circle {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   padding: 0;
   border-radius: 50%;
 }
@@ -40,8 +40,9 @@
   padding-right: 20px;
   padding-left: 20px;
 }
-.base-button.has-dropshadow {
-  box-shadow: 0 2px 3px #00000010;
+.base-button.is-marshmallow {
+  height: 43px;
+  border: 1px $grey-eee solid;
 }
 .base-button.has-icon {
   line-height: normal;

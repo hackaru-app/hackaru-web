@@ -1,3 +1,5 @@
+<i18n src="@/assets/locales/components/organisms/calendar-activity.json" />
+
 <template>
   <dragger
     ref="dragger"
@@ -37,6 +39,7 @@
 </template>
 
 <script>
+import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
 import Dragger from '@/components/atoms/dragger';
 import Resizer from '@/components/atoms/resizer';
 import CalendarEvent from '@/components/atoms/calendar-event';
@@ -50,6 +53,7 @@ import {
 
 export default {
   components: {
+    TutorialTooltip,
     CalendarEvent,
     Dragger,
     Resizer
@@ -223,15 +227,17 @@ export default {
   align-items: center;
   overflow: hidden;
   pointer-events: auto;
-  transition: box-shadow 0.3s, opacity 0.3s;
+  transition: box-shadow 0.2s, opacity 0.2s;
   &:hover,
   &:active {
     opacity: 0.8;
   }
 }
 .calendar-activity.dragging {
+  cursor: grabbing;
   opacity: 1;
-  box-shadow: 0 3px 8px -3px #00000020;
+  box-shadow: 0 7px 10px #00000010;
+  z-index: index($z, calendar-dragging-activity);
 }
 .calendar-activity h1 {
   font-size: 12px;

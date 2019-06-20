@@ -19,7 +19,7 @@
     border: 0;
   }
   label {
-    min-width: 100px;
+    min-width: 110px;
     justify-content: center;
     color: $text;
     flex-shrink: 0;

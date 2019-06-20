@@ -8,14 +8,14 @@
 .heading {
   display: flex;
   align-items: center;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: normal;
   .icon {
     margin-right: 10px;
   }
 }
 .heading.is-small {
-  font-size: 17px;
+  font-size: 18px;
 }
 .heading.is-large {
   font-size: 22px;

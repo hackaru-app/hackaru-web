@@ -45,7 +45,7 @@
         </base-button>
       </div>
 
-      <p v-if="applications.length <= 0" class="empty">
+      <p v-if="applications.length <= 0" class="empty-message">
         {{ $t('empty') }}
       </p>
     </section>
@@ -95,7 +95,7 @@ export default {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('applications/delete', id);
       this.$ga.event('oauth', 'deleteApplication');
-      this.$toast.success(this.$t('deleted'));
+      this.$store.dispatch('toast/success', this.$t('deleted'));
     },
     showModal(application) {
       this.selected = application;
@@ -109,11 +109,9 @@ export default {
 .content {
   padding: 0 40px;
   padding-bottom: 50px;
-  background-color: $white;
 }
 .header {
   display: flex;
-  border-bottom: 1px $border solid;
   h1 {
     flex: 1;
     display: flex;
@@ -130,41 +128,47 @@ ul {
   list-style-position: inside;
 }
 .application {
-  height: 65px;
+  padding: 20px 25px;
   display: flex;
+  margin-bottom: 10px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px $border solid;
-  &:hover {
-    background: $grey-fdfdfd;
-  }
+  border: 1px $border solid;
+  border-radius: 3px;
   h1 {
     cursor: pointer;
-    flex: 1;
     font-size: $font-size;
     font-weight: normal;
     padding: 0;
     margin: 0;
     height: 100%;
-    display: flex;
+    width: 100%;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     &:active {
       transform: scale(0.97);
     }
   }
 }
-.empty {
-  padding: 15px 0;
-  color: $text-light;
+.empty-message {
+  border-top: 1px $border solid;
+  padding: 0 10px;
+  padding-top: 30px;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  color: $text-lighter;
 }
 @include mq(small) {
   .content {
     padding: 0 30px;
   }
-  .empty {
-    text-align: center;
-    width: 100%;
+  .empty-message {
+    box-sizing: border-box;
+    justify-content: center;
   }
 }
 </style>

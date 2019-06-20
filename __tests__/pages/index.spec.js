@@ -8,13 +8,8 @@ describe('Index', () => {
   const $modal = { show: jest.fn() };
   const $store = new Store({
     getters: {
-      'activities/workings': () => [
-        {
-          id: 1,
-          description: 'Review',
-          startedAt: '2019-01-01T01:23:45'
-        }
-      ]
+      'activities/workings': [],
+      'activities/weekly': []
     }
   });
 

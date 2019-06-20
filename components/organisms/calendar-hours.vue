@@ -19,14 +19,14 @@
   display: flex;
   box-sizing: border-box;
   color: $text-light;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 20px;
   &::before {
     position: absolute;
     left: 0;
     width: 100vw;
     content: '';
-    border-top: 1px $border dashed;
+    border-top: 1px $grey-eee dashed;
   }
   &:first-child::before {
     display: none;

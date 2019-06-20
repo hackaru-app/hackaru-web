@@ -56,23 +56,28 @@ export default {
     },
     dragging({ e, distance }) {
       const wasTooLowDrag = Math.abs(distance.x) < 40;
-      if (wasTooLowDrag) return;
+      const wasDragUpDown = Math.abs(distance.y) > 40;
+      if (wasTooLowDrag || wasDragUpDown) return;
       if (distance.x < 0) {
         this.rightStyle = {
+          animationName: 'none',
           transition: '',
           width: `${-distance.x}px`
         };
         this.leftStyle = {
+          animationName: 'none',
           transition: '',
           width: 0
         };
       }
       if (distance.x > 0) {
         this.leftStyle = {
+          animationName: 'none',
           transition: '',
           width: `${distance.x}px`
         };
         this.rightStyle = {
+          animationName: 'none',
           transition: '',
           width: 0
         };
@@ -87,6 +92,7 @@ export default {
     swipeRight() {
       setTimeout(() => this.$emit('swipe-right'), this.speed);
       this.rightStyle = {
+        animationName: 'none',
         transition: `width ${this.speed}ms`,
         width: '100%'
       };
@@ -94,16 +100,19 @@ export default {
     swipeLeft() {
       setTimeout(() => this.$emit('swipe-left'), this.speed);
       this.leftStyle = {
+        animationName: 'none',
         transition: `width ${this.speed}ms`,
         width: '100%'
       };
     },
     reset() {
       this.rightStyle = {
+        animationName: 'none',
         transition: `width ${this.speed}ms`,
         width: 0
       };
       this.leftStyle = {
+        animationName: 'none',
         transition: `width ${this.speed}ms`,
         width: 0
       };
@@ -141,5 +150,27 @@ export default {
 .swipe-menu-item.is-danger {
   background-color: $red;
   color: #fff;
+}
+@include mq(small) {
+  .tutorial .right {
+    animation-name: gesture;
+    animation-delay: 0.5s;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+  }
+  @keyframes gesture {
+    0% {
+      width: 0px;
+    }
+    20% {
+      width: 60px;
+    }
+    60% {
+      width: 60px;
+    }
+    100% {
+      width: 0px;
+    }
+  }
 }
 </style>

@@ -14,49 +14,52 @@
       @right="slideRight"
     />
 
-    <loop-slider
-      v-slot="{ slideStyle }"
-      ref="slider"
-      class="loop-slider"
-      @slide-left="prev"
-      @slide-right="next"
-    >
-      <div class="reports-wrapper">
-        <div :style="slideStyle" class="containers">
-          <div class="slider-item">
-            <report-content
-              :bar-chart-data="barChartData"
-              :doughnut-chart-data="doughnutChartData"
-              :summary="summary"
-              :projects="projects"
-              chart-id="prev"
-            />
-          </div>
-          <div class="slider-item">
-            <report-content
-              :bar-chart-data="barChartData"
-              :doughnut-chart-data="doughnutChartData"
-              :summary="summary"
-              :projects="projects"
-              chart-id="current"
-            />
-          </div>
-          <div class="slider-item">
-            <report-content
-              :bar-chart-data="barChartData"
-              :doughnut-chart-data="doughnutChartData"
-              :summary="summary"
-              :projects="projects"
-              chart-id="next"
-            />
+    <tutorial-tooltip :content="$t('moveToNextPage')" name="swipe-report">
+      <loop-slider
+        v-slot="{ slideStyle }"
+        ref="slider"
+        class="loop-slider"
+        @slide-left="prev"
+        @slide-right="next"
+      >
+        <div class="reports-wrapper">
+          <div :style="slideStyle" class="containers">
+            <div class="slider-item">
+              <report-content
+                :bar-chart-data="barChartData"
+                :doughnut-chart-data="doughnutChartData"
+                :summary="summary"
+                :projects="projects"
+                chart-id="prev"
+              />
+            </div>
+            <div class="slider-item">
+              <report-content
+                :bar-chart-data="barChartData"
+                :doughnut-chart-data="doughnutChartData"
+                :summary="summary"
+                :projects="projects"
+                chart-id="current"
+              />
+            </div>
+            <div class="slider-item">
+              <report-content
+                :bar-chart-data="barChartData"
+                :doughnut-chart-data="doughnutChartData"
+                :summary="summary"
+                :projects="projects"
+                chart-id="next"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </loop-slider>
+      </loop-slider>
+    </tutorial-tooltip>
   </section>
 </template>
 
 <script>
+import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
 import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
 import ReportContent from '@/components/organisms/report-content';
@@ -107,6 +110,7 @@ const periods = {
 
 export default {
   components: {
+    TutorialTooltip,
     LoopSlider,
     ReportContent,
     DateHeader
@@ -188,7 +192,7 @@ export default {
   display: flex;
   align-items: flex-start;
   min-width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   box-shadow: -3px 0 3px #00000005;
 }
 @media print {

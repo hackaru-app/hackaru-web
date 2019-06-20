@@ -11,7 +11,8 @@
     },
     "year": {
       "format": "YYYY"
-    }
+    },
+    "moveToNextPage": "Move to the next period by swiping"
   },
   "ja": {
     "day": {
@@ -25,6 +26,7 @@
     },
     "year": {
       "format": "YYYY"
-    }
+    },
+    "moveToNextPage": "左右にスワイプで別の日付へ"
   }
 }

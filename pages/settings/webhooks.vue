@@ -44,7 +44,7 @@
         </heading>
         <base-button
           type="button"
-          class="is-primary is-circle has-dropshadow add-button"
+          class="is-primary is-circle add-button"
           @click="showModal"
         >
           <icon name="plus-icon" />
@@ -52,8 +52,8 @@
       </header>
 
       <div v-for="webhook in webhooks" :key="webhook.id" class="webhook">
-        <p>{{ $t(`events.${webhook.event}`) }}</p>
         <h1>{{ webhook.targetUrl }}</h1>
+        <p>・{{ $t(`events.${webhook.event}`) }}</p>
         <base-button
           type="button"
           class="delete-button has-icon"
@@ -63,7 +63,7 @@
         </base-button>
       </div>
 
-      <p v-if="webhooks.length <= 0" class="empty">
+      <p v-if="webhooks.length <= 0" class="empty-message">
         {{ $t('empty') }}
       </p>
     </section>
@@ -125,14 +125,14 @@ export default {
       if (success) {
         this.$modal.hide('webhook');
         this.$ga.event('webhook', 'addWebhook');
-        this.$toast.success(this.$t('added'));
+        this.$store.dispatch('toast/success', this.$t('added'));
       }
     },
     deleteWebhook(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('webhooks/delete', id);
       this.$ga.event('webhook', 'deleteWebhook');
-      this.$toast.success(this.$t('deleted'));
+      this.$store.dispatch('toast/success', this.$t('deleted'));
     },
     showModal() {
       this.targetUrl = '';
@@ -158,7 +158,6 @@ export default {
 }
 .header {
   display: flex;
-  border-bottom: 1px $border solid;
   align-items: baseline;
   h1 {
     flex: 1;
@@ -173,40 +172,58 @@ export default {
 .content {
   padding: 0 40px;
   padding-bottom: 50px;
-  background-color: $white;
 }
 .webhook {
-  height: 65px;
+  padding: 20px 25px;
+  padding-right: 20px;
   display: flex;
+  margin-bottom: 10px;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px $border solid;
+  border: 1px $border solid;
+  border-radius: 3px;
+}
+.list-item-content {
+  display: flex;
+  min-width: 0;
 }
 .webhook h1 {
-  flex: 1;
+  flex-shrink: 1;
   font-size: $font-size;
   font-weight: normal;
   padding: 0;
   margin: 0;
   height: 100%;
-  display: flex;
   align-items: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .webhook p {
+  flex-shrink: 9999;
+  margin: 0;
+  flex: 1;
   margin-right: 20px;
   color: $text-light;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.empty {
-  padding: 15px 0;
-  color: $text-light;
+.empty-message {
+  border-top: 1px $border solid;
+  padding: 0 10px;
+  padding-top: 30px;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  color: $text-lighter;
 }
 @include mq(small) {
   .content {
     padding: 0 30px;
   }
-  .empty {
-    text-align: center;
-    width: 100%;
+  .empty-message {
+    box-sizing: border-box;
+    justify-content: center;
   }
 }
 </style>

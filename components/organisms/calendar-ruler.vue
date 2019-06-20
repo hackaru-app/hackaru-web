@@ -47,7 +47,7 @@ export default {
   left: 0;
   width: 100%;
   z-index: index($z, calendar-ruler);
-  animation-duration: 0.3s;
+  animation-duration: 0.2s;
 }
 .ruler time {
   width: 60px;

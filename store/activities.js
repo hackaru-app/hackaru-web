@@ -2,8 +2,11 @@ import { activity } from '@/schemas';
 import {
   isWithinRange,
   startOfDay,
+  isAfter,
   areRangesOverlapping,
-  addMinutes
+  addMinutes,
+  compareDesc,
+  addDays
 } from 'date-fns';
 
 export const actions = {
@@ -120,31 +123,43 @@ export const getters = {
     return rootGetters['entities/getEntities']('activities', [activity]);
   },
   workings(state, getters) {
-    return getters.all.filter(({ stoppedAt }) => !stoppedAt);
+    return getters.all
+      .filter(({ stoppedAt }) => !stoppedAt)
+      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },
-  getByDay: (state, getters) => date => {
-    return getters.all.filter(
-      ({ stoppedAt, startedAt }) =>
-        stoppedAt &&
-        isWithinRange(
-          startOfDay(date),
-          startOfDay(startedAt),
-          startOfDay(stoppedAt)
-        )
-    );
+  weekly: (state, getters) => {
+    return getters.all
+      .filter(({ stoppedAt }) => stoppedAt)
+      .filter(({ startedAt }) =>
+        isAfter(startedAt, startOfDay(addDays(new Date(), -7)))
+      )
+      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },
   getCalendar: (state, getters) => (date, toMin) => {
     const rows = [];
     const addNewRow = () => rows.push([]) - 1;
 
-    getters.getByDay(date).forEach(activity => {
-      const overlappedIndex = findOverppedRow(rows, activity, toMin);
-      const index = overlappedIndex > -1 ? overlappedIndex : addNewRow();
-      rows[index].push(activity);
-    });
+    getters.all
+      .filter(activity => isRange(activity, date))
+      .forEach(activity => {
+        const overlappedIndex = findOverppedRow(rows, activity, toMin);
+        const index = overlappedIndex > -1 ? overlappedIndex : addNewRow();
+        rows[index].push(activity);
+      });
     return rows;
   }
 };
+
+function isRange({ startedAt, stoppedAt }, date) {
+  return (
+    stoppedAt &&
+    isWithinRange(
+      startOfDay(date),
+      startOfDay(startedAt),
+      startOfDay(stoppedAt)
+    )
+  );
+}
 
 function isOverlapped(a, b, toMin) {
   return areRangesOverlapping(

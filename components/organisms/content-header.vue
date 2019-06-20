@@ -24,6 +24,7 @@
   .content-header {
     padding: 0;
     border-top: 2px $border solid;
+    box-shadow: none;
     margin-top: 30px;
     border-bottom: 0;
     h1 {

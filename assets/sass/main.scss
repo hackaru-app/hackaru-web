@@ -2,13 +2,13 @@
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-select: none;
-  background: $background;
 }
 body, select, input, button {
   color: $text;
 }
 body {
-  background: $background-dark;
+  background-color: $background;
+  outline: none;
   font-display: auto;
   font-family: $font-family;
   font-size: $font-size;
@@ -41,25 +41,9 @@ button:focus {
   outline: none;
 }
 
-// Toast
-html .toasted.toasted-primary.success {
-  background: $cyan;
-}
-html .toasted.toasted-primary.error {
-  background: $red;
-}
-html .toasted.toasted-primary {
-  font-size: 15px;
-  border-radius: 30px;
-  padding: 2px 20px;
-  font-weight: 400;
-  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
-}
-
 // Animation
 $animationDuration: $animation-duration;
 @import "../../node_modules/vue2-animate/src/sass/vue2-animate.scss";
-
 
 // Print
 @media print {
@@ -71,4 +55,101 @@ $animationDuration: $animation-duration;
   body, select, input, button {
     color: #000;
   }
+}
+
+// Tooltip
+// https://github.com/Akryum/v-tooltip#style-examples
+.tooltip {
+  display: block !important;
+  z-index: index($z, tooltip);
+  outline: none;
+  .tooltip-inner {
+    background: darken($grey-333, 10%);
+    color: white;
+    border-radius: 3px;
+    font-size: 14px;
+    padding: 10px 13px;
+  }
+  .tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    margin: 5px;
+    border-color: darken($grey-333, 10%);
+    z-index: 1;
+  }
+  &[x-placement^="top"] {
+    margin-bottom: 5px;
+    .tooltip-arrow {
+      border-width: 5px 5px 0 5px;
+      border-left-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      bottom: -5px;
+      left: calc(50% - 5px);
+      margin-bottom: 0;
+    }
+  }
+  &[x-placement^="bottom"] {
+    margin-top: 5px;
+    .tooltip-arrow {
+      border-width: 0 5px 5px 5px;
+      border-left-color: transparent !important;
+      border-right-color: transparent !important;
+      border-top-color: transparent !important;
+      top: -5px;
+      left: calc(50% - 5px);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+  &[x-placement^="right"] {
+    margin-left: 5px;
+    .tooltip-arrow {
+      border-width: 5px 5px 5px 0;
+      border-left-color: transparent !important;
+      border-top-color: transparent !important;
+      border-bottom-color: transparent !important;
+      left: -5px;
+      top: calc(50% - 5px);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  &[x-placement^="left"] {
+    margin-right: 5px;
+    .tooltip-arrow {
+      border-width: 5px 0 5px 5px;
+      border-top-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      right: -5px;
+      top: calc(50% - 5px);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+.tooltip.popover {
+  .popover-inner {
+    background: $white;
+    color: black;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 5px 30px rgba(black, .1);
+  }
+  .popover-arrow {
+    border-color: $white;
+  }
+}
+.tooltip[aria-hidden='true'] {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .15s, visibility .15s;
+}
+.tooltip[aria-hidden='false'] {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .15s;
 }

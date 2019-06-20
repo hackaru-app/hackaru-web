@@ -9,6 +9,7 @@ $grey-f5f5f5: #f5f6f7;
 $grey-fafafa: #fafafc;
 $grey-fdfdfd: #fdfdfd;
 $cyan: #2daec4;
+$cyan-dark: darken($cyan, 5%);
 $yellow: #ffd96a;
 $red: #eb4f34;
 $white: #fff;
@@ -19,8 +20,8 @@ $text-light: $grey-666;
 $text-lighter: $grey-999;
 
 // Font
-$font-size: 15px;
-$font-family: -apple-system, sans-serif;
+$font-size: 16px;
+$font-family: system-ui, -apple-system, sans-serif;
 $font-family-duration: 'Arial', sans-serif;
 $line-height: 1.5;
 
@@ -32,7 +33,7 @@ $background: $white;
 $background-dark: $grey-333;
 
 // Animation
-$animation-duration: .35s;
+$animation-duration: .25s;
 
 // Mediaqueries
 $breakpoints: (
@@ -41,13 +42,16 @@ $breakpoints: (
 
 // ZIndex
 $z:
+  calendar-dragging-activity,
   calendar-ruler,
   calendar-day-header,
-  pwa-ballon,
+  tooltip,
+  pwa-popover,
   modal,
+  toast,
   side-bar,
 ;
 
 // Sidebar
-$side-bar-min-width: 80px;
-$side-bar-min-height: 56px;
+$side-bar-min-width: calc(80px + env(safe-area-inset-left));
+$side-bar-min-height: calc(65px + env(safe-area-inset-top));

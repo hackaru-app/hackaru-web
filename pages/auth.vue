@@ -66,11 +66,9 @@
               {{ $t(hasAccount ? 'or.signUp' : 'or.login') }}
             </button>
           </div>
-          <transition name="fade">
-            <nuxt-link v-if="hasAccount" class="forgot" to="password-reset">
-              {{ $t('forgot') }}
-            </nuxt-link>
-          </transition>
+          <nuxt-link v-if="hasAccount" class="forgot" to="password-reset">
+            {{ $t('forgot') }}
+          </nuxt-link>
         </footer>
       </form>
     </div>
@@ -131,7 +129,6 @@ export default {
         this.goBack();
         this.$ga.set('userId', this.$store.getters['auth/userId']);
         this.$ga.event('auth', 'login');
-        this.$toast.success(this.$t('loggedIn'));
       }
     },
     async signUp() {
@@ -144,7 +141,6 @@ export default {
         this.goBack();
         this.$ga.set('userId', this.$store.getters['auth/userId']);
         this.$ga.event('auth', 'signUp');
-        this.$toast.success(this.$t('signedUp'));
       }
     },
     goBack() {
@@ -197,16 +193,16 @@ export default {
   }
 }
 .submit-button {
-  width: 100px;
+  min-width: 110px;
 }
 .toggle-button {
   box-sizing: border-box;
-  color: $cyan;
+  color: $cyan-dark;
   text-decoration: none;
   width: 200px;
   padding: 10px 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   text-align: left;
   border: 0;
   background: none;
@@ -223,15 +219,13 @@ export default {
   color: $text-light;
   text-decoration: none;
   display: flex;
-  animation-duration: 0.3s;
+  animation-duration: 0.2s;
   margin-top: 30px;
   margin-left: 5px;
   width: 300px;
 }
 .auth-footer {
   display: flex;
-  position: absolute;
-  bottom: 0;
   padding: 30px 50px;
   align-items: center;
 }
@@ -239,6 +233,9 @@ export default {
   flex-shrink: 0;
 }
 @media screen and (max-width: 640px) {
+  .auth {
+    min-height: auto;
+  }
   .form-container {
     padding: 30px;
   }

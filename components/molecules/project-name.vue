@@ -1,7 +1,7 @@
 <template>
   <div class="project-name">
     <dot :color="color" class="dot" />
-    {{ name }}
+    <p>{{ name }}</p>
   </div>
 </template>
 
@@ -29,6 +29,14 @@ export default {
 .project-name {
   display: flex;
   align-items: baseline;
+}
+p {
+  width: 100%;
+  display: inline;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .dot {
   margin-right: 15px;

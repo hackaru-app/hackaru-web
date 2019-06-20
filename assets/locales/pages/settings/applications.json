@@ -8,7 +8,7 @@
       "scopes": "This application can"
     },
     "deleted": "Application deleted",
-    "empty": "Applications are not exists."
+    "empty": "No Applications."
   },
   "ja": {
     "title": "認証済みアプリ",
@@ -19,6 +19,6 @@
       "scopes": "使用可能な操作"
     },
     "deleted": "削除しました",
-    "empty": "認証済みのアプリはありません。"
+    "empty": "認証済みのアプリはありません"
   }
 }

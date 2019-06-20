@@ -8,7 +8,7 @@ module.exports = {
       { charset: 'utf-8' },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1, user-scalable=0'
+        content: 'width=device-width,initial-scale=1,viewport-fit=cover'
       },
       {
         hid: 'description',
@@ -90,6 +90,7 @@ module.exports = {
     { src: '~/plugins/v-calendar', ssr: false },
     { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/vue-analytics.js', ssr: false },
+    { src: '~/plugins/v-tooltip', ssr: false },
     { src: '~/plugins/vue-js-modal' }
   ],
   /*
@@ -127,7 +128,6 @@ module.exports = {
   },
   modules: [
     '@nuxtjs/pwa',
-    '@nuxtjs/toast',
     '@nuxtjs/style-resources',
     [
       'nuxt-i18n',
