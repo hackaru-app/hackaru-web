@@ -19,7 +19,7 @@
   display: flex;
   box-sizing: border-box;
   color: $text-light;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 20px;
   &::before {
     position: absolute;

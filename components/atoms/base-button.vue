@@ -30,7 +30,6 @@
   height: 36px;
   padding: 0;
   border-radius: 50%;
-  box-shadow: 0 2px 3px #00000015;
 }
 .base-button.is-danger {
   background-color: $red;
@@ -40,12 +39,10 @@
   border-radius: 99px;
   padding-right: 20px;
   padding-left: 20px;
-  box-shadow: 0 2px 3px #00000015;
 }
 .base-button.is-marshmallow {
   height: 43px;
   border: 1px $grey-eee solid;
-  box-shadow: 0 2px 3px #00000006;
 }
 .base-button.has-icon {
   line-height: normal;

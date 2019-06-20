@@ -134,8 +134,7 @@ ul {
   align-items: center;
   justify-content: space-between;
   border: 1px $border solid;
-  border-radius: 5px;
-  box-shadow: 0 2px 3px #00000008;
+  border-radius: 3px;
   h1 {
     cursor: pointer;
     font-size: $font-size;

@@ -53,7 +53,6 @@ export default {
   margin: 0 20px;
   color: $white;
   border-radius: 99px;
-  box-shadow: 0 3px 5px #00000025;
   text-align: center;
   z-index: index($z, toast);
 }
@@ -66,7 +65,7 @@ export default {
 @include mq(small) {
   .content {
     padding: 18px 30px;
-    padding-bottom: calc(18px + env(safe-area-inset-bottom));
+    padding-bottom: calc(18px + env(safe-area-inset-bottom) * 0.6);
     flex-direction: column;
     box-sizing: border-box;
     bottom: 0;

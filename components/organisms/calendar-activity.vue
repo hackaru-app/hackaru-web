@@ -228,7 +228,6 @@ export default {
   overflow: hidden;
   pointer-events: auto;
   transition: box-shadow 0.2s, opacity 0.2s;
-  box-shadow: 0 5px 6px #00000008;
   &:hover,
   &:active {
     opacity: 0.8;

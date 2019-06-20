@@ -180,8 +180,7 @@ export default {
   margin-bottom: 10px;
   align-items: center;
   border: 1px $border solid;
-  border-radius: 5px;
-  box-shadow: 0 2px 3px #00000008;
+  border-radius: 3px;
 }
 .list-item-content {
   display: flex;
