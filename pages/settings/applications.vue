@@ -31,7 +31,7 @@
         </heading>
       </header>
 
-      <!-- <div
+      <div
         v-for="application in applications"
         :key="application.id"
         class="application"
@@ -43,9 +43,9 @@
         >
           <icon name="x-icon" class="is-danger" />
         </base-button>
-      </div> -->
+      </div>
 
-      <p class="empty-message">
+      <p v-if="applications.length <= 0" class="empty-message">
         {{ $t('empty') }}
       </p>
     </section>

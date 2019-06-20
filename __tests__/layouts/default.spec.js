@@ -14,7 +14,7 @@ describe('Default', () => {
 
   const factory = () =>
     shallowMount(Default, {
-      stubs: ['nuxt'],
+      stubs: ['nuxt', 'no-ssr'],
       mocks: { $store }
     });
 

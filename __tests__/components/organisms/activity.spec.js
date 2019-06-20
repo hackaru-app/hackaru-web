@@ -1,17 +1,22 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Activity from '@/components/organisms/activity';
 
 describe('Activity', () => {
   let wrapper;
 
+  jest.useFakeTimers();
   MockDate.set('2019-01-31T01:23:45');
+
+  const localVue = createLocalVue();
+  localVue.directive('tooltip', () => {});
 
   const $store = new Store({});
   const $modal = { show: jest.fn() };
   const factory = () =>
     shallowMount(Activity, {
+      localVue,
       propsData: {
         id: 1,
         project: null,
@@ -48,6 +53,7 @@ describe('Activity', () => {
       wrapper = factory();
       wrapper.setMethods({ resetSwipeMenu: () => {} });
       wrapper.find({ ref: 'menu' }).vm.$emit('swipe-right');
+      jest.runOnlyPendingTimers();
     });
 
     it('dispatch activities/update', () => {
@@ -67,6 +73,7 @@ describe('Activity', () => {
       });
       wrapper.setMethods({ resetSwipeMenu: () => {} });
       wrapper.find({ ref: 'menu' }).vm.$emit('swipe-right');
+      jest.runOnlyPendingTimers();
     });
 
     it('dispatch activities/add for copy', () => {
@@ -83,6 +90,7 @@ describe('Activity', () => {
       global.confirm = () => true;
       wrapper = factory();
       wrapper.find({ ref: 'menu' }).vm.$emit('swipe-left');
+      jest.runOnlyPendingTimers();
     });
 
     it('dispatch activities/delete', () => {

@@ -36,7 +36,7 @@ export default {
     },
     content: {
       type: String,
-      required: true
+      default: undefined
     }
   },
   data() {
@@ -50,9 +50,6 @@ export default {
   methods: {
     hide() {
       this.opened = false;
-      this.learn();
-    },
-    learn() {
       localStorage.setItem(`tutorial-tooltip/${this.name}`, true);
     }
   }

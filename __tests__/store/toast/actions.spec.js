@@ -1,27 +1,22 @@
 import { actions } from '@/store/toast';
 
 describe('Actions', () => {
-  actions.app = {
-    $toast: {
-      success: jest.fn(),
-      error: jest.fn()
-    }
-  };
+  const commit = jest.fn();
 
   describe('when dispatch success', () => {
     beforeEach(() => {
-      actions.success({}, 'message');
+      actions.success({ commit }, 'message');
     });
 
     it('show toast', () => {
-      expect(actions.app.$toast.success).toHaveBeenCalledWith('message');
+      expect(commit).toHaveBeenCalledWith('SHOW_SUCCESS', 'message');
     });
   });
 
   describe('when error has message in error_description', () => {
     beforeEach(() => {
       actions.error(
-        {},
+        { commit },
         {
           response: {
             data: {
@@ -33,14 +28,14 @@ describe('Actions', () => {
     });
 
     it('show response.data.error-description', () => {
-      expect(actions.app.$toast.error).toHaveBeenCalledWith('message');
+      expect(commit).toHaveBeenCalledWith('SHOW_ERROR', 'message');
     });
   });
 
   describe('when error has message in data.message', () => {
     beforeEach(() => {
       actions.error(
-        {},
+        { commit },
         {
           response: {
             data: {
@@ -52,27 +47,27 @@ describe('Actions', () => {
     });
 
     it('show response.data.message', () => {
-      expect(actions.app.$toast.error).toHaveBeenCalledWith('message');
+      expect(commit).toHaveBeenCalledWith('SHOW_ERROR', 'message');
     });
   });
 
   describe('when error has message', () => {
     beforeEach(() => {
-      actions.error({}, { message: 'message' });
+      actions.error({ commit }, { message: 'message' });
     });
 
     it('show message', () => {
-      expect(actions.app.$toast.error).toHaveBeenCalledWith('message');
+      expect(commit).toHaveBeenCalledWith('SHOW_ERROR', 'message');
     });
   });
 
   describe('when error does not have message', () => {
     beforeEach(() => {
-      actions.error(undefined);
+      actions.error({ commit }, undefined);
     });
 
     it('does not show toast', () => {
-      expect(actions.app.$toast.error).not.toHaveBeenCalled();
+      expect(commit).not.toHaveBeenCalled();
     });
   });
 });

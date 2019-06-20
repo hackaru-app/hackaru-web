@@ -1,8 +1,11 @@
+import MockDate from 'mockdate';
 import { getters } from '@/store/activities';
 import { parse } from 'date-fns';
 
 describe('Getters', () => {
   let result;
+
+  MockDate.set('2019-01-31T01:23:45');
 
   describe('when call all', () => {
     const rootGetters = {
@@ -32,6 +35,46 @@ describe('Getters', () => {
 
     it('returns unstopped activites', () => {
       expect(result.length).toBe(1);
+    });
+  });
+
+  describe('when call weekly', () => {
+    const mockGetters = {
+      all: [
+        {
+          id: 1,
+          startedAt: '2019-01-31T00:00:00',
+          stoppedAt: '2019-01-31T01:00:00',
+          duration: 3600
+        },
+        {
+          id: 2,
+          startedAt: '2019-01-24T00:00:00',
+          stoppedAt: '2019-01-24T01:00:00',
+          duration: 3600
+        },
+        {
+          id: 3,
+          startedAt: '2019-01-31T00:00:00',
+          stoppedAt: undefined,
+          duration: 3600
+        }
+      ]
+    };
+
+    beforeEach(() => {
+      result = getters.weekly({}, mockGetters, {}, {});
+    });
+
+    it('returns correctly', () => {
+      expect(result).toEqual([
+        {
+          id: 1,
+          startedAt: '2019-01-31T00:00:00',
+          stoppedAt: '2019-01-31T01:00:00',
+          duration: 3600
+        }
+      ]);
     });
   });
 
