@@ -178,9 +178,6 @@ export default {
   display: flex;
   flex: 1;
 }
-.auth form input.password {
-  padding-right: 80px;
-}
 .agreement {
   display: flex;
   flex: 1;
