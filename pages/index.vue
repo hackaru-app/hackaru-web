@@ -2,7 +2,7 @@
 
 <template>
   <section class="index">
-    <content-header>
+    <content-header class="sticky">
       <heading>Timers</heading>
       <tutorial-tooltip
         :offset="10"
