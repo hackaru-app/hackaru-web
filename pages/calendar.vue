@@ -167,6 +167,7 @@ export default {
   overflow: hidden;
   z-index: index($z, calendar-day-header);
   border-bottom: 1px $border solid;
+  background-color: #fffffff5;
 }
 .headers-wrapper {
   display: flex;
@@ -174,7 +175,6 @@ export default {
 .headers {
   display: flex;
   flex-direction: row;
-  background: $white;
   min-width: 100%;
   box-sizing: border-box;
   padding-left: 60px;

@@ -14,9 +14,8 @@
   background-color: $white;
   border-bottom: 1px $border solid;
   justify-content: space-between;
-  box-shadow: 0 3px 5px #00000008;
 }
-.sticky {
+.content-header.sticky {
   position: sticky;
   top: 0;
   background-color: #ffffffee;
@@ -25,6 +24,9 @@
 @include mq(small) {
   .content-header {
     padding: 0 30px;
+  }
+  .content-header.sticky {
+    top: $side-bar-min-height;
   }
 }
 @media print {
