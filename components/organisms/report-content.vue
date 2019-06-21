@@ -66,7 +66,9 @@ export default {
   },
   computed: {
     isEmpty() {
-      return Object.keys(this.summary).length <= 0;
+      return (
+        Object.values(this.summary).reduce((acc, cur) => acc + cur, 0) <= 0
+      );
     }
   }
 };
