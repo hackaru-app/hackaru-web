@@ -28,7 +28,7 @@ import BaseButton from '@/components/atoms/base-button';
 export default {
   timers: {
     hide: {
-      time: 5000,
+      time: 15000,
       autostart: true
     }
   },
