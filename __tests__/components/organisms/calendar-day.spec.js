@@ -114,4 +114,27 @@ describe('CalendarDay', () => {
       });
     });
   });
+
+  describe('when cancel ghost-activity', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setData({ ghostTop: 60, ghostHeight: 20 });
+      wrapper.find({ ref: 'resizer' }).vm.$emit('cancel');
+    });
+
+    it('emit drop', () => {
+      expect(wrapper.emitted('drop')).toBeTruthy();
+    });
+
+    it('hide ghost-activity', () => {
+      expect(wrapper.find('.ghost-activity').isVisible()).toBe(false);
+    });
+
+    it('dispatch activities/add', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
+        startedAt: parse('2019-01-01T01:00:00'),
+        stoppedAt: parse('2019-01-01T01:20:00')
+      });
+    });
+  });
 });
