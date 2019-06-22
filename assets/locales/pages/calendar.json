@@ -27,6 +27,6 @@
     "year": {
       "format": "YYYY"
     },
-    "addActivityByLongPress": "長押しで記録の追加や移動ができます"
+    "addActivityByLongPress": "長押しで、その位置に記録を追加できます"
   }
 }
