@@ -8,6 +8,7 @@
     @start="ghostDrag"
     @resizing="ghostDragging"
     @end="ghostDrop"
+    @cancel="ghostDrop"
   >
     <section ref="events" class="events">
       <div class="row">
