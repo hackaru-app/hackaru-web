@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
+import CoachTooltip from '@/components/atoms/coach-tooltip';
 import Dragger from '@/components/atoms/dragger';
 import Resizer from '@/components/atoms/resizer';
 import CalendarEvent from '@/components/atoms/calendar-event';
@@ -53,7 +53,7 @@ import {
 
 export default {
   components: {
-    TutorialTooltip,
+    CoachTooltip,
     CalendarEvent,
     Dragger,
     Resizer

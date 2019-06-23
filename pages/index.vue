@@ -4,7 +4,7 @@
   <section class="index">
     <content-header class="sticky">
       <heading>Timers</heading>
-      <tutorial-tooltip
+      <coach-tooltip
         :offset="10"
         :content="$t('startTimer')"
         name="start-activity"
@@ -17,7 +17,7 @@
         >
           <icon name="plus-icon" class="icon" />
         </base-button>
-      </tutorial-tooltip>
+      </coach-tooltip>
     </content-header>
     <activity
       v-for="(activity, index) in activities"
@@ -34,7 +34,7 @@
 <script>
 import Dot from '@/components/atoms/dot';
 import ProjectName from '@/components/molecules/project-name';
-import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
+import CoachTooltip from '@/components/atoms/coach-tooltip';
 import ContentHeader from '@/components/organisms/content-header';
 import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
@@ -45,7 +45,7 @@ import { addDays } from 'date-fns';
 export default {
   components: {
     Dot,
-    TutorialTooltip,
+    CoachTooltip,
     ContentHeader,
     ProjectName,
     Heading,
