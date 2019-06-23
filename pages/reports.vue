@@ -14,7 +14,7 @@
       @right="slideRight"
     />
 
-    <tutorial-tooltip :content="$t('moveToNextPage')" name="swipe-report">
+    <coach-tooltip :content="$t('moveToNextPage')" name="swipe-report">
       <loop-slider
         v-slot="{ slideStyle }"
         ref="slider"
@@ -54,12 +54,12 @@
           </div>
         </div>
       </loop-slider>
-    </tutorial-tooltip>
+    </coach-tooltip>
   </section>
 </template>
 
 <script>
-import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
+import CoachTooltip from '@/components/atoms/coach-tooltip';
 import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
 import ReportContent from '@/components/organisms/report-content';
@@ -110,7 +110,7 @@ const periods = {
 
 export default {
   components: {
-    TutorialTooltip,
+    CoachTooltip,
     LoopSlider,
     ReportContent,
     DateHeader

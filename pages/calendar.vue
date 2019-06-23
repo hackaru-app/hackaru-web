@@ -33,7 +33,7 @@
         </div>
       </section>
 
-      <tutorial-tooltip
+      <coach-tooltip
         :content="$t('addActivityByLongPress')"
         name="add-calendar-activity"
       >
@@ -49,13 +49,13 @@
             <calendar-content :days="[]" class="slider-item" />
           </section>
         </section>
-      </tutorial-tooltip>
+      </coach-tooltip>
     </loop-slider>
   </section>
 </template>
 
 <script>
-import TutorialTooltip from '@/components/atoms/tutorial-tooltip';
+import CoachTooltip from '@/components/atoms/coach-tooltip';
 import DateHeader from '@/components/organisms/date-header';
 import LoopSlider from '@/components/organisms/loop-slider';
 import CalendarContent from '@/components/organisms/calendar-content';
@@ -88,7 +88,7 @@ const periods = {
 
 export default {
   components: {
-    TutorialTooltip,
+    CoachTooltip,
     LoopSlider,
     CalendarContent,
     CalendarDayHeader,

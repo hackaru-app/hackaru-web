@@ -45,12 +45,12 @@ export default {
     };
   },
   mounted() {
-    this.opened = !localStorage.getItem(`tutorial-tooltip/${this.name}`);
+    this.opened = !localStorage.getItem(`coach-tooltip/${this.name}`);
   },
   methods: {
     hide() {
       this.opened = false;
-      localStorage.setItem(`tutorial-tooltip/${this.name}`, true);
+      localStorage.setItem(`coach-tooltip/${this.name}`, true);
     }
   }
 };
