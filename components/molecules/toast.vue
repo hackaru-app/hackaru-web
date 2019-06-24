@@ -41,8 +41,8 @@ export default {
   display: flex;
   justify-content: center;
   position: absolute;
-  width: 100%;
-  left: 0;
+  width: calc(100% - #{$side-bar-min-width});
+  left: $side-bar-min-width;
 }
 .content {
   display: flex;
@@ -69,6 +69,7 @@ export default {
     flex-direction: column;
     box-sizing: border-box;
     bottom: 0;
+    left: 0;
     margin: 0;
     width: 100%;
     border-radius: 0;

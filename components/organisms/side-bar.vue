@@ -146,7 +146,7 @@ li:first-child a {
     width: 100%;
     border: 0;
     z-index: index($z, side-bar);
-    padding: 0 30px;
+    padding: 0 32px;
     padding-top: env(safe-area-inset-top);
     height: auto;
     box-sizing: border-box;
@@ -170,7 +170,7 @@ li:first-child a {
     display: flex;
     margin: 0;
     flex-direction: row;
-    margin-right: -5px;
+    margin-right: -15px;
   }
   li a,
   li button {

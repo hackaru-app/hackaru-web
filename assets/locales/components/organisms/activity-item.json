@@ -1,0 +1,10 @@
+{
+  "en": {
+    "duplicated": "Timer duplicated",
+    "duplicate": "Duplicate"
+  },
+  "ja": {
+    "duplicated": "計測を複製しました",
+    "duplicate": "複製する"
+  }
+}
