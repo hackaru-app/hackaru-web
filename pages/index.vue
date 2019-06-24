@@ -15,6 +15,7 @@
           type="text"
           class="description"
           placeholder="作業内容や備考を入力..."
+          autofocus
         />
       </div>
     </div>
