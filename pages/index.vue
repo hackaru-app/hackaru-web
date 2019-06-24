@@ -65,13 +65,14 @@ export default {
   justify-content: center;
 }
 .duration {
-  font-size: 72px;
+  font-size: 76px;
+  font-weight: 300;
   font-family: $font-family-duration;
 }
 .control-button {
   flex-shrink: 0;
-  width: 64px;
-  height: 64px;
+  width: 62px;
+  height: 62px;
   margin-top: 15px;
   border-radius: 50%;
   .icon {
