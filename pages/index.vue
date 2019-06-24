@@ -2,16 +2,18 @@
 
 <template>
   <section class="index">
-    <div class="timer">
-      <ticker :started-at="`${new Date()}`" class="duration" />
-      <base-button class="is-primary play-button">
-        <icon name="play-icon" />
-      </base-button>
-      <div class="form">
-        <div class="project"><project-name /></div>
+    <ticker :started-at="`${new Date()}`" class="duration" />
+    <base-button class="is-primary control-button">
+      <icon name="play-icon" />
+    </base-button>
+    <div class="form">
+      <div class="form-item">
+        <project-name />
+      </div>
+      <div class="form-item">
         <input
           type="text"
-          class="form-item description"
+          class="description"
           placeholder="作業内容や備考を入力..."
         />
       </div>
@@ -20,51 +22,30 @@
 </template>
 
 <script>
-import Dot from '@/components/atoms/dot';
 import ProjectName from '@/components/molecules/project-name';
 import CoachTooltip from '@/components/atoms/coach-tooltip';
-import ContentHeader from '@/components/organisms/content-header';
 import Ticker from '@/components/atoms/ticker';
-import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
-import Activity from '@/components/organisms/activity';
-import { addDays } from 'date-fns';
 
 export default {
   components: {
-    Dot,
     Ticker,
     CoachTooltip,
-    ContentHeader,
     ProjectName,
-    Heading,
     Icon,
-    BaseButton,
-    Activity
+    BaseButton
   },
   head: {
     title: 'Timers'
   },
-  data() {
-    return {
-      addDays
-    };
-  },
   computed: {
-    activities() {
-      return [
-        ...this.$store.getters['activities/workings'],
-        ...this.$store.getters['activities/weekly']
-      ];
+    workings() {
+      return this.$store.getters['activities/workings'];
     }
   },
   mounted() {
     this.$store.dispatch('activities/fetchWorkings');
-    this.$store.dispatch('activities/fetchByRange', {
-      start: addDays(new Date(), -7),
-      end: new Date()
-    });
   },
   methods: {
     showModal() {
@@ -75,7 +56,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.timer {
+.index {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -83,74 +64,65 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.play-button {
+.duration {
+  font-size: 72px;
+  font-family: $font-family-duration;
+}
+.control-button {
+  flex-shrink: 0;
   width: 64px;
   height: 64px;
   margin-top: 15px;
   border-radius: 50%;
-  margin-bottom: 50px;
+  .icon {
+    width: 32px;
+    height: 32px;
+    padding-left: 4px;
+  }
 }
 .form {
+  margin-top: 50px;
   max-width: 400px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  // flex-direction: column;
-  // align-items: center;
+  border: 1px $border solid;
+  border-left: 0;
+  border-right: 0;
 }
 .form-item {
-  border: 0;
-  border-bottom: 1px $border solid;
-  padding: 20px 10px;
-  height: 60px;
-  // background: red;
-}
-.project {
-  border-top: 1px $border solid;
-  width: 100%;
-  box-sizing: border-box;
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-bottom: 1px $border solid;
-}
-.form-item,
-.project {
   height: 65px;
 }
 .project-name {
-  border: 0;
-  padding: 20px 0;
-  // background: red;
+  display: flex;
+  height: 100%;
+  align-items: center;
 }
 .description {
   display: flex;
   align-items: center;
   line-height: 1;
+  border: 0;
+  height: 100%;
+  width: 100%;
   text-align: center;
-}
-.play-button .icon {
-  width: 32px;
-  height: 32px;
-  padding-left: 5px;
-}
-.duration {
-  font-size: 72px;
-  font-family: $font-family-duration;
+  border-top: 1px $border solid;
+  background: none;
 }
 @include mq(small) {
-  .form-item,
-  .project {
+  .form-item {
     height: 70px;
   }
-  .play-button {
+  .control-button {
     width: 64px;
     height: 64px;
   }
   .duration {
     font-size: 64px;
   }
-  .timer {
+  .index {
     height: calc(100vh - #{$side-bar-min-height});
   }
 }
