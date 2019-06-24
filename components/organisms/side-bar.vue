@@ -39,7 +39,7 @@ export default {
       links: [
         {
           path: 'index',
-          icon: 'home-icon'
+          icon: 'clock-icon'
         },
         {
           path: 'calendar',
@@ -110,8 +110,7 @@ ul {
   padding: 0;
   margin: 0;
 }
-li a,
-li button {
+li a {
   cursor: pointer;
   transition: all 0.1s ease;
   display: flex;
@@ -120,21 +119,19 @@ li button {
   box-sizing: border-box;
   border: 0;
   border-left: 2px #00000000 solid;
-  padding: 11px 0;
-  margin: 5px 0;
+  padding: 16px 0;
   padding-right: 4px;
   text-decoration: none;
   background-color: none;
   .icon {
     color: $grey-f5f5f5;
   }
-  &:hover {
-    background-color: darken($background-dark, 5%);
-    border-left-color: $red;
-  }
-  &:active {
-    transform: scale(0.95);
-  }
+}
+li a:hover {
+  background-color: darken($background-dark, 5%);
+}
+li.selected a {
+  border-left-color: $red;
 }
 li:first-child a {
   margin-top: 0;
