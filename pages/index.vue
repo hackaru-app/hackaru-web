@@ -2,16 +2,20 @@
 
 <template>
   <section class="index">
-    <ticker :started-at="`${new Date()}`" class="duration" />
-    <base-button class="is-primary control-button">
+    <ticker :started-at="startedAt" class="duration" />
+    <base-button v-if="!startedAt" class="is-primary control-button play">
       <icon name="play-icon" />
+    </base-button>
+    <base-button v-else class="is-danger control-button stop">
+      <icon name="square-icon" />
     </base-button>
     <div class="form">
       <div class="form-item">
-        <project-name />
+        <project-name v-bind="project" />
       </div>
       <div class="form-item">
         <input
+          v-model="description"
           type="text"
           class="description"
           placeholder="作業内容や備考を入力..."
@@ -40,9 +44,26 @@ export default {
   head: {
     title: 'Timers'
   },
+  data() {
+    return {
+      description: '',
+      project: undefined,
+      startedAt: undefined
+    };
+  },
   computed: {
     workings() {
       return this.$store.getters['activities/workings'];
+    }
+  },
+  watch: {
+    workings() {
+      const activity = this.workings && this.workings[0];
+      if (activity) {
+        this.description = activity.description;
+        this.startedAt = activity.startedAt;
+        this.project = activity.project;
+      }
     }
   },
   mounted() {
@@ -76,10 +97,18 @@ export default {
   height: 62px;
   margin-top: 15px;
   border-radius: 50%;
+}
+.control-button.play {
   .icon {
     width: 32px;
     height: 32px;
     padding-left: 4px;
+  }
+}
+.control-button.stop {
+  .icon {
+    width: 26px;
+    height: 26px;
   }
 }
 .form {
@@ -100,6 +129,7 @@ export default {
 .project-name {
   display: flex;
   height: 100%;
+  padding-right: 10px;
   align-items: center;
 }
 .description {

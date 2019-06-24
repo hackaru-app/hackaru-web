@@ -25,6 +25,10 @@
   background-color: $cyan;
   color: #fff;
 }
+.base-button.is-danger {
+  background-color: $red;
+  color: #fff;
+}
 .base-button.is-circle {
   width: 36px;
   height: 36px;
