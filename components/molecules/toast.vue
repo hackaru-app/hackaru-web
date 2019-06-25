@@ -41,16 +41,15 @@ export default {
   display: flex;
   justify-content: center;
   position: absolute;
-  width: calc(100% - #{$side-bar-min-width});
-  left: $side-bar-min-width;
+  width: calc(100vw - #{$side-bar-min-width});
 }
 .content {
   display: flex;
   position: fixed;
+  align-self: center;
   bottom: 50px;
   justify-content: center;
   padding: 9px 20px;
-  margin: 0 20px;
   color: $white;
   border-radius: 99px;
   text-align: center;
