@@ -58,7 +58,6 @@ export default {
   width: 100%;
   max-width: 400px;
   padding-top: 45px;
-  width: 0;
 }
 .recents {
   display: flex;
@@ -69,6 +68,7 @@ export default {
   overflow-x: scroll;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
+  z-index: 1;
 }
 @include mq(small) {
   .big-timer {

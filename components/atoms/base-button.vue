@@ -9,11 +9,11 @@
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 0 15px;
-  height: 41px;
+  height: 42px;
   justify-content: center;
   align-items: center;
   display: flex;
-  line-height: 1.5em;
+  line-height: 1;
   border-radius: 3px;
   background: none;
   border: 0;

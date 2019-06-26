@@ -220,6 +220,7 @@ export default {
     display: flex;
     justify-content: center;
     border-bottom: 1px $border solid;
+    border-right: 0;
   }
   .project-name {
     max-width: none;
