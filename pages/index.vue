@@ -2,14 +2,14 @@
 
 <template>
   <section class="index">
-    <section class="recents">
+    <!-- <section class="recents">
       <activity-item
         v-for="activity in activities"
         :key="activity.id"
         v-bind="activity"
         class="activity-item"
       />
-    </section>
+    </section> -->
     <big-timer class="big-timer" />
   </section>
 </template>
@@ -57,7 +57,6 @@ export default {
   height: 100vh;
   width: 100%;
   max-width: 400px;
-  padding-top: 45px;
 }
 .recents {
   display: flex;

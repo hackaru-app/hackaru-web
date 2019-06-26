@@ -2,11 +2,11 @@
   "en": {
     "start": "Start timer",
     "stop": "Stop timer",
-    "description": "Enter description..."
+    "description": "Enter description"
   },
   "ja": {
     "start": "計測を開始",
     "stop": "計測を停止",
-    "description": "作業内容や備考を入力..."
+    "description": "作業内容や備考を入力"
   }
 }

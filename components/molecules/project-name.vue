@@ -28,7 +28,7 @@ export default {
 <style scoped lang="scss">
 .project-name {
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 p {
   width: 100%;

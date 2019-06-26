@@ -15,6 +15,7 @@
           ref="current"
           :is="current"
           :params="params"
+          :can-pop="componentStacks.length > 0"
           class="current"
           @push="push"
           @pop="popOrClose"

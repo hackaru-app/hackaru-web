@@ -121,7 +121,6 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: -30px;
 }
 .duration {
   font-size: 76px;
@@ -206,7 +205,9 @@ export default {
     align-items: center;
     flex-direction: column;
     width: 100%;
+    padding: 0 30px;
     max-width: 100%;
+    font-size: 17px;
   }
   .project-name,
   .description {
@@ -225,6 +226,8 @@ export default {
   .project-name {
     max-width: none;
     border: 0;
+    padding: 0;
+    padding-right: 10px;
   }
   .form-content {
     order: 1;
@@ -234,8 +237,8 @@ export default {
     border-right: 0;
   }
   .control-button {
-    width: 65px;
-    height: 65px;
+    width: 62px;
+    height: 62px;
     border-radius: 50%;
     padding: 0;
     margin-bottom: 50px;
@@ -250,7 +253,7 @@ export default {
     height: 28px;
   }
   .duration {
-    font-size: 72px;
+    font-size: 68px;
   }
 }
 </style>

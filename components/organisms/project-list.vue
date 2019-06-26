@@ -4,6 +4,7 @@
   <section>
     <modal-header>
       <base-button
+        v-if="canPop"
         class="left-arrow-button has-icon"
         type="button"
         @click="pop"
@@ -58,6 +59,10 @@ export default {
       default: () => ({
         selected: null
       })
+    },
+    canPop: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
