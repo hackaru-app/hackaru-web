@@ -6,6 +6,10 @@
 
 <style scoped lang="scss">
 .modal-header {
+  position: sticky;
+  top: 0;
+  border-radius: 3px 3px 0 0;
+  background-color: $white;
   display: flex;
   width: 100%;
   height: 60px;
