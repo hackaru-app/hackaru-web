@@ -4,9 +4,9 @@
   <form class="big-timer" @submit.prevent="submit">
     <nav-modal
       :initial-component="ProjectList"
-      :keep-alives="[]"
       height="450"
       name="project-list"
+      @close="selectProject"
     />
     <ticker
       :started-at="startedAt"
@@ -85,6 +85,9 @@ export default {
     }
   },
   methods: {
+    selectProject({ project }) {
+      this.project = project;
+    },
     submit() {
       (this.startedAt ? this.stopActivity : this.startActivity)();
     },

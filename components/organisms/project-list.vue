@@ -42,7 +42,6 @@ import ModalHeader from '@/components/molecules/modal-header';
 import ProjectName from '@/components/molecules/project-name';
 import Icon from '@/components/atoms/icon';
 import BaseButton from '@/components/atoms/base-button';
-import ActivityEditor from '@/components/organisms/activity-editor';
 import ProjectEditor from '@/components/organisms/project-editor';
 
 export default {
@@ -71,7 +70,7 @@ export default {
   },
   methods: {
     pop() {
-      this.$emit('pop', { component: ActivityEditor });
+      this.$emit('pop');
     },
     createProject() {
       this.$emit('push', { component: ProjectEditor });
@@ -83,12 +82,7 @@ export default {
       });
     },
     selectProject(project) {
-      this.$emit('pop', {
-        component: ActivityEditor,
-        params: {
-          project
-        }
-      });
+      this.$emit('pop', { project });
     }
   }
 };
