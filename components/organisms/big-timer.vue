@@ -2,13 +2,19 @@
 
 <template>
   <form class="big-timer" @submit.prevent="submit">
+    <nav-modal
+      :initial-component="ProjectList"
+      :keep-alives="[]"
+      height="450"
+      name="project-list"
+    />
     <ticker
       :started-at="startedAt"
       :class="['duration', { stopped: !startedAt }]"
     />
     <div class="form">
       <div class="form-content">
-        <div class="project-wrapper">
+        <div class="project-wrapper" @click="showModal">
           <project-name v-bind="project" />
         </div>
         <input
@@ -40,6 +46,8 @@
 </template>
 
 <script>
+import NavModal from '@/components/organisms/nav-modal';
+import ProjectList from '@/components/organisms/project-list';
 import ProjectName from '@/components/molecules/project-name';
 import CoachTooltip from '@/components/atoms/coach-tooltip';
 import Ticker from '@/components/atoms/ticker';
@@ -48,6 +56,7 @@ import Icon from '@/components/atoms/icon';
 
 export default {
   components: {
+    NavModal,
     Ticker,
     CoachTooltip,
     ProjectName,
@@ -56,6 +65,7 @@ export default {
   },
   data() {
     return {
+      ProjectList,
       description: '',
       project: undefined,
       startedAt: undefined
@@ -94,6 +104,9 @@ export default {
       if (success) {
         this.$store.dispatch('toast/success', this.$t('計測を開始しました！'));
       }
+    },
+    showModal() {
+      this.$modal.show('project-list');
     }
   }
 };
@@ -136,7 +149,6 @@ export default {
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 40px;
-  pointer-events: auto;
   display: flex;
   border-radius: 5px;
   height: 64px;
@@ -151,14 +163,21 @@ export default {
   border-right: 0;
   border-radius: 3px 0 0 3px;
 }
+.project-wrapper {
+  border-right: 1px $border solid;
+}
 .project-name {
+  cursor: pointer;
   display: flex;
   height: 100%;
   max-width: 120px;
   padding-right: 30px;
   padding-left: 25px;
-  border-right: 1px $border solid;
   align-items: center;
+  transition: all 0.2s ease;
+  &:active {
+    transform: scale(0.9);
+  }
 }
 .description {
   line-height: 1;

@@ -58,7 +58,7 @@ export default {
   width: 100%;
   max-width: 400px;
   padding-top: 45px;
-  pointer-events: none;
+  width: 0;
 }
 .recents {
   display: flex;
