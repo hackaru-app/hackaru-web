@@ -89,7 +89,7 @@ export default {
     },
     minHeight: {
       type: Number,
-      default: 20
+      default: 30
     },
     project: {
       type: Object,
@@ -111,7 +111,9 @@ export default {
   },
   computed: {
     title() {
-      return this.project ? this.project.name : 'No Project';
+      return (
+        this.description || (this.project ? this.project.name : 'No Project')
+      );
     },
     color() {
       return this.project ? this.project.color : '#cccfd9';
