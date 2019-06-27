@@ -114,13 +114,9 @@ export default {
 .project-content {
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.2s ease;
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
-  &:active {
-    transform: scale(0.9);
-  }
 }
 </style>

@@ -176,10 +176,6 @@ export default {
   padding-right: 30px;
   padding-left: 25px;
   align-items: center;
-  transition: all 0.2s ease;
-  &:active {
-    transform: scale(0.9);
-  }
 }
 .description {
   line-height: 1;

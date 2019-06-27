@@ -70,13 +70,9 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 5px;
-  transition: all 0.2s ease;
   &:hover,
   &.selected {
     box-shadow: 0 2px 3px #cccfd9;
-  }
-  &:active {
-    transform: scale(0.9);
   }
 }
 </style>

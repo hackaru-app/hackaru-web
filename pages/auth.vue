@@ -199,7 +199,6 @@ export default {
   width: 200px;
   padding: 10px 0;
   cursor: pointer;
-  transition: all 0.2s ease;
   text-align: left;
   border: 0;
   background: none;
@@ -207,9 +206,6 @@ export default {
     color: $text-lighter;
     margin-right: 5px;
     margin-left: 20px;
-  }
-  &:active {
-    transform: scale(0.9);
   }
 }
 .forgot {

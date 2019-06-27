@@ -88,13 +88,9 @@ export default {
 .content {
   cursor: pointer;
   padding-left: 20px;
-  transition: all 0.2s ease;
   height: 100%;
   display: flex;
   align-items: center;
-  &:active {
-    transform: scale(0.9);
-  }
 }
 .repeat-button {
   height: 100%;
