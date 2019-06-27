@@ -15,7 +15,7 @@
           ref="current"
           :is="current"
           :params="params"
-          :can-pop="componentStacks.length > 0"
+          :pop-enabled="stack.length > 0"
           class="current"
           @push="push"
           @pop="popOrClose"
@@ -58,19 +58,19 @@ export default {
       },
       params: {},
       current: undefined,
-      componentStacks: []
+      stack: []
     };
   },
   methods: {
     beforeOpen({ params = {} }) {
       this.current = this.initialComponent;
-      this.componentStacks = [];
+      this.stack = [];
       this.params = params;
       this.animation.enter = '';
       this.animation.leave = '';
     },
     push({ component, params = {} }) {
-      this.componentStacks.push(this.current);
+      this.stack.push(this.current);
       this.animation.enter = 'fadeInRight';
       this.animation.leave = 'fadeOutLeft';
       this.current = component;
@@ -83,7 +83,7 @@ export default {
       this.params = params;
     },
     popOrClose(params = {}) {
-      const prev = this.componentStacks.pop();
+      const prev = this.stack.pop();
       if (prev) {
         this.pop({
           component: prev,

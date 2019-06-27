@@ -3,9 +3,12 @@
 <template>
   <section>
     <modal-header>
-      <base-button type="button" class="has-icon" @click="pop">
-        <icon name="chevron-left-icon" class="is-large" />
-      </base-button>
+      <template slot="left">
+        <base-button type="button" class="has-icon" @click="pop">
+          <icon name="chevron-left-icon" class="is-large" />
+        </base-button>
+      </template>
+
       <h1>{{ $t(`titles.${id ? 'update' : 'add'}`) }}</h1>
     </modal-header>
 

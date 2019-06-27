@@ -1,6 +1,12 @@
 <template>
   <header class="modal-header">
+    <div>
+      <slot name="left" />
+    </div>
     <slot />
+    <div>
+      <slot name="right" />
+    </div>
   </header>
 </template>
 

@@ -3,22 +3,28 @@
 <template>
   <section>
     <modal-header>
-      <base-button
-        v-if="canPop"
-        class="left-arrow-button has-icon"
-        type="button"
-        @click="pop"
-      >
-        <icon name="chevron-left-icon" class="is-large" />
-      </base-button>
+      <template slot="left">
+        <base-button
+          v-if="popEnabled"
+          class="left-arrow-button has-icon"
+          type="button"
+          @click="pop"
+        >
+          <icon name="chevron-left-icon" class="is-large" />
+        </base-button>
+      </template>
+
       <h1>{{ $t('title') }}</h1>
-      <base-button
-        class="add-button has-icon"
-        type="button"
-        @click="createProject"
-      >
-        <icon name="plus-icon" />
-      </base-button>
+
+      <template slot="right">
+        <base-button
+          class="add-button has-icon"
+          type="button"
+          @click="createProject"
+        >
+          <icon name="plus-icon" />
+        </base-button>
+      </template>
     </modal-header>
 
     <div v-for="project in projects" :key="project.id" class="item">
@@ -60,7 +66,7 @@ export default {
         selected: null
       })
     },
-    canPop: {
+    popEnabled: {
       type: Boolean,
       default: false
     }
