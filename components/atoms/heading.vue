@@ -18,7 +18,7 @@
   font-size: 18px;
 }
 .heading.is-large {
-  font-size: 22px;
+  font-size: 24px;
 }
 @media print {
   .heading {
