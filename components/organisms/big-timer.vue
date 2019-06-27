@@ -25,22 +25,24 @@
           autofocus
         />
       </div>
-      <base-button
-        v-tooltip="$t('start')"
-        v-if="!startedAt"
-        type="submit"
-        class="is-primary control-button start"
-      >
-        <icon name="play-icon" />
-      </base-button>
-      <base-button
-        v-tooltip="$t('stop')"
-        v-else
-        type="submit"
-        class="is-danger control-button stop"
-      >
-        <icon name="square-icon" />
-      </base-button>
+      <coach-tooltip :content="$t('welcome')" name="welcome" placement="bottom">
+        <base-button
+          v-tooltip="$t('start')"
+          v-if="!startedAt"
+          type="submit"
+          class="is-primary control-button start"
+        >
+          <icon name="play-icon" />
+        </base-button>
+        <base-button
+          v-tooltip="$t('stop')"
+          v-else
+          type="submit"
+          class="is-danger control-button stop"
+        >
+          <icon name="square-icon" />
+        </base-button>
+      </coach-tooltip>
     </div>
   </form>
 </template>
@@ -92,7 +94,7 @@ export default {
       (this.startedAt ? this.stopActivity : this.startActivity)();
     },
     stopActivity() {
-      this.$store.dispatch('toast/success', this.$t('計測を完了しました！🎉'));
+      this.$store.dispatch('toast/success', this.$t('stopped'));
       this.$store.dispatch('activities/update', {
         id: this.workings[0].id,
         stoppedAt: `${new Date()}`
@@ -105,7 +107,7 @@ export default {
         startedAt: `${new Date()}`
       });
       if (success) {
-        this.$store.dispatch('toast/success', this.$t('計測を開始しました！'));
+        this.$store.dispatch('toast/success', this.$t('started'));
       }
     },
     showModal() {
@@ -150,7 +152,6 @@ export default {
   max-width: 700px;
   justify-content: center;
   margin-top: 20px;
-  margin-bottom: 40px;
   display: flex;
   border-radius: 5px;
   height: 64px;
@@ -166,6 +167,8 @@ export default {
   border-radius: 3px 0 0 3px;
 }
 .project-wrapper {
+  display: flex;
+  align-items: center;
   border-right: 1px $border solid;
 }
 .project-name {
@@ -231,13 +234,13 @@ export default {
     border-radius: 0;
     border-left: 0;
     border-right: 0;
+    margin-top: 50px;
   }
   .control-button {
     width: 62px;
     height: 62px;
     border-radius: 50%;
     padding: 0;
-    margin-bottom: 50px;
   }
   .control-button .icon {
     width: 25px;
