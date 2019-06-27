@@ -12,7 +12,7 @@
     "year": {
       "format": "YYYY"
     },
-    "addActivityByLongPress": "Let's long press on an any place. You can add a record there."
+    "addActivityByLongPress": "You can add a record using long press."
   },
   "ja": {
     "day": {
@@ -27,6 +27,6 @@
     "year": {
       "format": "YYYY"
     },
-    "addActivityByLongPress": "適当な所を長押してみよう。そこに記録を追加できます"
+    "addActivityByLongPress": "長押しした位置に記録を追加できます"
   }
 }
