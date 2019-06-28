@@ -1,7 +1,7 @@
 <i18n src="@/assets/locales/components/organisms/big-timer.json" />
 
 <template>
-  <form class="big-timer" @submit.prevent="submit">
+  <section class="big-timer" @submit.prevent="submit">
     <nav-modal
       :initial-component="ProjectList"
       height="450"
@@ -12,17 +12,28 @@
       :started-at="startedAt"
       :class="['duration', { stopped: !startedAt }]"
     />
-    <div class="form">
+    <form class="form">
       <div class="form-content">
-        <div class="project-wrapper" @click="showModal">
-          <project-name v-bind="project" />
-        </div>
+        <coach-tooltip
+          :content="$t('selectProject')"
+          name="select-project"
+          placement="bottom"
+        >
+          <div class="project-wrapper" @click="showModal">
+            <project-name v-bind="project" class="selected-project" />
+            <dot
+              :color="project ? project.color : '#ccc'"
+              class="dot-only is-medium"
+            />
+          </div>
+        </coach-tooltip>
         <input
           v-model="description"
           :placeholder="$t('description')"
           type="text"
           class="description"
-          autofocus
+          @focus="suggestion = true"
+          @blur="suggestion = false"
         />
       </div>
       <coach-tooltip :content="$t('welcome')" name="welcome" placement="bottom">
@@ -43,8 +54,18 @@
           <icon name="square-icon" />
         </base-button>
       </coach-tooltip>
-    </div>
-  </form>
+      <transition name="fade">
+        <div v-if="suggestion" class="suggestion">
+          <ul>
+            <li><project-name color="#4ab8b8" name="データベースの構築" /></li>
+            <li><project-name color="#4ab8b8" name="データベースの構築" /></li>
+            <li><project-name color="#4ab8b8" name="データベースの構築" /></li>
+            <li><project-name color="#4ab8b8" name="データベースの構築" /></li>
+          </ul>
+        </div>
+      </transition>
+    </form>
+  </section>
 </template>
 
 <script>
@@ -55,9 +76,11 @@ import CoachTooltip from '@/components/atoms/coach-tooltip';
 import Ticker from '@/components/atoms/ticker';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
+import Dot from '@/components/atoms/dot';
 
 export default {
   components: {
+    Dot,
     NavModal,
     Ticker,
     CoachTooltip,
@@ -70,7 +93,8 @@ export default {
       ProjectList,
       description: '',
       project: undefined,
-      startedAt: undefined
+      startedAt: undefined,
+      suggestion: false
     };
   },
   computed: {
@@ -123,6 +147,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: calc(100vw - #{$side-bar-min-width});
+  max-width: 700px;
 }
 .duration {
   font-size: 76px;
@@ -148,20 +174,17 @@ export default {
   padding-left: 3px;
 }
 .form {
-  width: calc(100vw - #{$side-bar-min-width});
-  max-width: 700px;
+  width: 100%;
   justify-content: center;
   margin-top: 20px;
   display: flex;
   border-radius: 5px;
   height: 64px;
-  padding: 0 50px;
   box-sizing: border-box;
 }
 .form-content {
   display: flex;
   flex: 1;
-  width: 100%;
   border: 1px $border solid;
   border-right: 0;
   border-radius: 3px 0 0 3px;
@@ -169,15 +192,15 @@ export default {
 .project-wrapper {
   display: flex;
   align-items: center;
+  height: 100%;
   border-right: 1px $border solid;
 }
-.project-name {
+.selected-project {
   cursor: pointer;
   display: flex;
   height: 100%;
   max-width: 120px;
-  padding-right: 30px;
-  padding-left: 25px;
+  padding: 0 30px;
   align-items: center;
 }
 .description {
@@ -189,6 +212,42 @@ export default {
   padding: 0 25px;
   display: flex;
   background: none;
+}
+.dot-only {
+  display: none;
+}
+.suggestion {
+  animation-duration: 0.2s;
+  position: absolute;
+  width: 100%;
+  max-height: 196px;
+  overflow-y: scroll;
+  margin-top: 80px;
+  box-sizing: border-box;
+  background-color: #fffffffa;
+  border: 1px $border solid;
+  border-radius: 3px;
+  box-shadow: 0 3px 8px #00000005;
+  -webkit-overflow-scrolling: touch;
+}
+.suggestion ul {
+  margin: 0;
+  padding: 0;
+}
+.suggestion ul li {
+  display: flex;
+  cursor: pointer;
+  list-style-position: inside;
+  list-style-type: none;
+  text-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 65px;
+  padding: 0 30px;
+  border-bottom: 1px $grey-f5f5f5 solid;
+  &:last-child {
+    border-bottom: 0;
+  }
 }
 @include mq(small) {
   .big-timer {
@@ -208,43 +267,40 @@ export default {
     max-width: 100%;
     font-size: 17px;
   }
-  .project-name {
-    height: 78px;
-  }
-  .description {
-    text-align: center;
-    line-height: 1;
-    height: 75px;
+  .description::placeholder {
+    padding-top: 3px;
   }
   .project-wrapper {
-    width: 100%;
     display: flex;
     justify-content: center;
-    border-bottom: 1px $border solid;
-    border-right: 0;
+    min-width: 80px;
+    height: 100%;
   }
-  .project-name {
-    max-width: none;
-    border: 0;
-    padding: 0;
-    padding-right: 5px;
+  .selected-project {
+    display: none;
+  }
+  .dot-only {
+    display: flex;
   }
   .form-content {
     order: 1;
     position: absolute;
-    top: 0;
-    padding-top: 1px;
-    flex-direction: column;
+    top: 1px;
     border-radius: 0;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
+    width: 100%;
+    border: 0;
+    height: 80px;
+    box-sizing: border-box;
+    border-bottom: 1px $border solid;
   }
   .control-button {
     width: 62px;
     height: 62px;
     border-radius: 50%;
     padding: 0;
+  }
+  .description {
+    padding: 0 30px;
   }
   .control-button .icon {
     width: 25px;
@@ -257,6 +313,28 @@ export default {
   }
   .duration {
     font-size: 68px;
+  }
+  .suggestion {
+    position: absolute;
+    top: 0;
+    border-radius: 0;
+    border: 0;
+    margin-top: 80px;
+    min-height: 100vh;
+    border-top: 1px $border solid;
+    box-shadow: 0 3px 3px #00000005 inset;
+  }
+  .suggestion ul {
+    min-height: 150vh;
+  }
+  .suggestion ul li {
+    height: 75px;
+    padding: 0 36px;
+    border-bottom: 1px $grey-f5f5f5 solid;
+    border-radius: 0;
+    &:last-child {
+      border-bottom: 1px $grey-f5f5f5 solid;
+    }
   }
 }
 </style>
