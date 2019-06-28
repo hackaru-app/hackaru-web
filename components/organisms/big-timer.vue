@@ -208,12 +208,13 @@ export default {
     max-width: 100%;
     font-size: 17px;
   }
-  .project-name,
-  .description {
-    height: 70px;
+  .project-name {
+    height: 78px;
   }
   .description {
     text-align: center;
+    line-height: 1;
+    height: 75px;
   }
   .project-wrapper {
     width: 100%;
@@ -226,15 +227,18 @@ export default {
     max-width: none;
     border: 0;
     padding: 0;
-    padding-right: 10px;
+    padding-right: 5px;
   }
   .form-content {
     order: 1;
+    position: absolute;
+    top: 0;
+    padding-top: 1px;
     flex-direction: column;
     border-radius: 0;
     border-left: 0;
     border-right: 0;
-    margin-top: 50px;
+    border-top: 0;
   }
   .control-button {
     width: 62px;
