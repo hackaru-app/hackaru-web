@@ -24,6 +24,7 @@
     "date-fns": "^1.29.0",
     "hh-mm-ss": "^1.2.0",
     "jwt-decode": "^2.2.0",
+    "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.merge": "^4.6.1",
     "lodash.omit": "^4.5.0",

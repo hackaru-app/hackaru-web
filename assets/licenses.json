@@ -47,6 +47,12 @@
         "licenseUrl": "https://github.com/auth0/jwt-decode/raw/master/LICENSE",
         "parents": "Hackaru"
     },
+    "lodash.debounce": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lodash/lodash",
+        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
     "lodash.get": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",

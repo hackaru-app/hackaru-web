@@ -33,7 +33,7 @@
           class="description"
           @focus="onFocus"
           @blur="onBlur"
-          @input="onChange"
+          @input="onInput"
         />
       </div>
       <coach-tooltip :content="$t('welcome')" name="welcome" placement="bottom">
@@ -80,6 +80,7 @@ import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import Dot from '@/components/atoms/dot';
 import { mapGetters } from 'vuex';
+import debounce from 'lodash.debounce';
 
 export default {
   components: {
@@ -140,15 +141,19 @@ export default {
         this.$store.dispatch('toast/success', this.$t('started'));
       }
     },
+    search: debounce(function() {
+      this.$store.dispatch('activities/search', this.description);
+    }, 500),
     showModal() {
       this.$modal.show('project-list');
     },
-    onChange(e) {
+    onInput(e) {
       this.description = e.target.value;
-      this.$store.dispatch('activities/search', this.description);
+      this.search();
     },
     onFocus() {
       this.focused = true;
+      this.search();
     },
     onBlur() {
       this.focused = false;

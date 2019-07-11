@@ -158,7 +158,7 @@ export const getters = {
     const activities = rootGetters['entities/getEntitiesByIds'](
       state.searchResults,
       [activity]
-    ).filter(({ description }) => description);
+    ).filter(activity => activity && activity.description);
 
     // ProjectとDescriptionが同一のものは取り除く
     const distincted = uniqBy(activities, activity =>
