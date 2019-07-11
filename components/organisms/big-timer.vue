@@ -148,7 +148,7 @@ export default {
   align-items: center;
   justify-content: center;
   width: calc(100vw - #{$side-bar-min-width});
-  max-width: 700px;
+  max-width: 620px;
 }
 .duration {
   font-size: 76px;
