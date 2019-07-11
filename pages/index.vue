@@ -34,7 +34,7 @@ export default {
   justify-content: center;
   height: 100vh;
   width: 100%;
-  margin-top: -60px;
+  margin-top: -40px;
 }
 @include mq(small) {
   .big-timer {
