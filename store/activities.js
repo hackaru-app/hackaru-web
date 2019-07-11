@@ -1,4 +1,5 @@
 import { activity } from '@/schemas';
+import uniqBy from 'lodash.uniqby';
 import {
   isWithinRange,
   startOfDay,
@@ -9,7 +10,33 @@ import {
   addDays
 } from 'date-fns';
 
+export const state = () => ({
+  searchResults: []
+});
+
+const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS';
+
 export const actions = {
+  async search({ dispatch, commit }, q) {
+    try {
+      const { data } = await dispatch(
+        'auth-api/request',
+        {
+          url: '/v1/search',
+          params: { q }
+        },
+        { root: true }
+      );
+      const ids = await dispatch(
+        'entities/merge',
+        { json: data, schema: [activity] },
+        { root: true }
+      );
+      commit(SET_SEARCH_RESULTS, ids);
+    } catch (e) {
+      dispatch('toast/error', e, { root: true });
+    }
+  },
   async fetchWorkings({ dispatch }) {
     try {
       const { data } = await dispatch(
@@ -127,6 +154,22 @@ export const getters = {
       .filter(({ stoppedAt }) => !stoppedAt)
       .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },
+  searchResults(state, getters, rootState, rootGetters) {
+    const activities = rootGetters['entities/getEntitiesByIds'](
+      state.searchResults,
+      [activity]
+    ).filter(({ description }) => description);
+
+    // ProjectとDescriptionが同一のものは取り除く
+    const distincted = uniqBy(activities, activity =>
+      JSON.stringify({
+        project: activity.project,
+        description: activity.description
+      })
+    );
+
+    return distincted;
+  },
   weekly: (state, getters) => {
     return getters.all
       .filter(({ stoppedAt }) => stoppedAt)
@@ -147,6 +190,12 @@ export const getters = {
         rows[index].push(activity);
       });
     return rows;
+  }
+};
+
+export const mutations = {
+  [SET_SEARCH_RESULTS](state, ids) {
+    state.searchResults = ids;
   }
 };
 

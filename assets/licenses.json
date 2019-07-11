@@ -71,6 +71,12 @@
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
         "parents": "Hackaru"
     },
+    "lodash.uniqby": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lodash/lodash",
+        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
     "mezr": {
         "licenses": "MIT",
         "repository": "https://github.com/niklasramo/mezr",

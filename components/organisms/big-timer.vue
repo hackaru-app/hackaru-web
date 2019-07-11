@@ -28,12 +28,12 @@
           </div>
         </coach-tooltip>
         <input
-          v-model="description"
           :placeholder="$t('description')"
           type="text"
           class="description"
-          @focus="suggestion = true"
-          @blur="suggestion = false"
+          @focus="onFocus"
+          @blur="onBlur"
+          @input="onChange"
         />
       </div>
       <coach-tooltip :content="$t('welcome')" name="welcome" placement="bottom">
@@ -55,12 +55,14 @@
         </base-button>
       </coach-tooltip>
       <transition name="fade">
-        <div v-if="suggestion" class="suggestion">
+        <div v-if="focused && searchResults.length > 0" class="suggestion">
           <ul>
-            <li><project-name color="#4ab8b8" name="データベースの構築" /></li>
-            <li><project-name color="#4ab8b8" name="データベースの構築" /></li>
-            <li><project-name color="#4ab8b8" name="データベースの構築" /></li>
-            <li><project-name color="#4ab8b8" name="データベースの構築" /></li>
+            <li v-for="activity in searchResults" :key="activity.id">
+              <project-name
+                v-bind="activity.project"
+                :name="activity.description"
+              />
+            </li>
           </ul>
         </div>
       </transition>
@@ -77,6 +79,7 @@ import Ticker from '@/components/atoms/ticker';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import Dot from '@/components/atoms/dot';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -94,10 +97,13 @@ export default {
       description: '',
       project: undefined,
       startedAt: undefined,
-      suggestion: false
+      focused: false
     };
   },
   computed: {
+    ...mapGetters({
+      searchResults: 'activities/searchResults'
+    }),
     workings() {
       return this.$store.getters['activities/workings'];
     }
@@ -136,6 +142,16 @@ export default {
     },
     showModal() {
       this.$modal.show('project-list');
+    },
+    onChange(e) {
+      this.description = e.target.value;
+      this.$store.dispatch('activities/search', this.description);
+    },
+    onFocus() {
+      this.focused = true;
+    },
+    onBlur() {
+      this.focused = false;
     }
   }
 };

@@ -11,8 +11,9 @@ export const state = () => ({
 
 export const actions = {
   merge({ commit }, { json, schema }) {
-    const { entities } = normalize(json, schema);
+    const { entities, result } = normalize(json, schema);
     commit(MERGE_ENTITIES, entities);
+    return result;
   },
   delete({ commit }, { name, id }) {
     commit(DELETE_ENTITY, { name, id });
@@ -32,6 +33,9 @@ export const mutations = {
 };
 
 export const getters = {
+  getEntitiesByIds: state => (ids, schema) => {
+    return denormalize(ids, schema, state.data);
+  },
   getEntities: state => (name, schema) => {
     const ids = Object.keys(state.data[name] || {});
     return denormalize(ids, schema, state.data);

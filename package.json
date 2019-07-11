@@ -28,6 +28,7 @@
     "lodash.merge": "^4.6.1",
     "lodash.omit": "^4.5.0",
     "lodash.union": "^4.6.0",
+    "lodash.uniqby": "^4.7.0",
     "mezr": "^0.6.2",
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",
