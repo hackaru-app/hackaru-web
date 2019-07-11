@@ -179,7 +179,7 @@ export default {
   margin-top: 20px;
   display: flex;
   border-radius: 5px;
-  height: 64px;
+  height: 62px;
   box-sizing: border-box;
 }
 .form-content {
