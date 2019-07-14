@@ -14,6 +14,7 @@
   background-color: $white;
   border-bottom: 1px $border solid;
   justify-content: space-between;
+  box-shadow: 0 3px 3px #00000005;
 }
 .content-header.sticky {
   position: sticky;

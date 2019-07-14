@@ -202,6 +202,7 @@ export default {
   border-radius: 5px;
   height: 62px;
   box-sizing: border-box;
+  box-shadow: 0 3px 3px #00000005;
 }
 .form-content {
   display: flex;
@@ -248,7 +249,7 @@ export default {
   background-color: #fffffffa;
   border: 1px $border solid;
   border-radius: 3px;
-  box-shadow: 0 3px 8px #00000005;
+  box-shadow: 0 3px 8px #00000008;
   -webkit-overflow-scrolling: touch;
 }
 .suggestion ul {
@@ -287,6 +288,7 @@ export default {
     padding: 0 30px;
     max-width: 100%;
     font-size: 17px;
+    box-shadow: none;
   }
   .description::placeholder {
     padding-top: 3px;
