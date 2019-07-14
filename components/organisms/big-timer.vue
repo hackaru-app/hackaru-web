@@ -28,6 +28,7 @@
           </div>
         </coach-tooltip>
         <input
+          :value="description"
           :placeholder="$t('description')"
           type="text"
           class="description"
@@ -56,12 +57,16 @@
       </coach-tooltip>
       <transition name="fade">
         <div
-          v-if="focused && searchResults.length > 0"
+          v-if="focused && !startedAt && searchResults.length > 0"
           class="suggestion-wrapper"
         >
           <div class="suggestion">
             <ul>
-              <li v-for="activity in searchResults" :key="activity.id">
+              <li
+                v-for="activity in searchResults"
+                :key="activity.id"
+                @click="startBySuggest(activity)"
+              >
                 <project-name
                   v-bind="activity.project"
                   :name="activity.description"
@@ -162,6 +167,11 @@ export default {
     },
     onBlur() {
       this.focused = false;
+    },
+    startBySuggest(activity) {
+      this.description = activity.description;
+      this.project = activity.project;
+      this.startActivity();
     }
   }
 };
@@ -254,7 +264,7 @@ export default {
 }
 .suggestion {
   animation-duration: 0.2s;
-  max-height: 196px;
+  max-height: 190px;
   overflow-y: scroll;
   margin-top: 80px;
   box-sizing: border-box;
@@ -276,7 +286,7 @@ export default {
   text-align: center;
   align-items: center;
   box-sizing: border-box;
-  height: 65px;
+  height: 63px;
   padding: 0 30px;
   border-bottom: 1px $grey-f5f5f5 solid;
   &:hover {
