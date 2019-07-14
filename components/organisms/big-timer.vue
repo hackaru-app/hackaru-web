@@ -279,6 +279,9 @@ export default {
   height: 65px;
   padding: 0 30px;
   border-bottom: 1px $grey-f5f5f5 solid;
+  &:hover {
+    background-color: $grey-fdfdfd;
+  }
   &:last-child {
     border-bottom: 0;
   }
