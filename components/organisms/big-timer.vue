@@ -55,15 +55,20 @@
         </base-button>
       </coach-tooltip>
       <transition name="fade">
-        <div v-if="focused && searchResults.length > 0" class="suggestion">
-          <ul>
-            <li v-for="activity in searchResults" :key="activity.id">
-              <project-name
-                v-bind="activity.project"
-                :name="activity.description"
-              />
-            </li>
-          </ul>
+        <div
+          v-if="focused && searchResults.length > 0"
+          class="suggestion-wrapper"
+        >
+          <div class="suggestion">
+            <ul>
+              <li v-for="activity in searchResults" :key="activity.id">
+                <project-name
+                  v-bind="activity.project"
+                  :name="activity.description"
+                />
+              </li>
+            </ul>
+          </div>
         </div>
       </transition>
     </form>
@@ -168,8 +173,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: calc(100vw - #{$side-bar-min-width});
-  max-width: 620px;
+  max-width: calc(100vw - #{$side-bar-min-width});
+  box-sizing: border-box;
 }
 .duration {
   font-size: 76px;
@@ -196,6 +201,8 @@ export default {
 }
 .form {
   width: 100%;
+  max-width: 700px;
+  padding: 0 35px;
   justify-content: center;
   margin-top: 20px;
   display: flex;
@@ -238,10 +245,15 @@ export default {
 .dot-only {
   display: none;
 }
-.suggestion {
-  animation-duration: 0.2s;
+.suggestion-wrapper {
   position: absolute;
   width: 100%;
+  max-width: 700px;
+  padding: 0 35px;
+  box-sizing: border-box;
+}
+.suggestion {
+  animation-duration: 0.2s;
   max-height: 196px;
   overflow-y: scroll;
   margin-top: 80px;
@@ -274,6 +286,7 @@ export default {
 @include mq(small) {
   .big-timer {
     margin-top: 0;
+    max-width: 100%;
   }
   .form {
     height: auto;
@@ -337,12 +350,16 @@ export default {
   .duration {
     font-size: 68px;
   }
-  .suggestion {
+  .suggestion-wrapper {
     position: absolute;
     top: 0;
-    border-radius: 0;
     border: 0;
     margin-top: 80px;
+    margin: 0;
+    padding: 0;
+  }
+  .suggestion {
+    border-radius: 0;
     min-height: 100vh;
     border-top: 1px $border solid;
     box-shadow: 0 3px 3px #00000005 inset;
