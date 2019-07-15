@@ -240,7 +240,6 @@ export default {
   border-radius: 5px;
   height: 62px;
   box-sizing: border-box;
-  box-shadow: 0 3px 3px #00000005;
 }
 .form-content {
   display: flex;
@@ -248,6 +247,7 @@ export default {
   border: 1px $border solid;
   border-right: 0;
   border-radius: 3px 0 0 3px;
+  box-shadow: 0 3px 3px #00000005;
 }
 .project-wrapper {
   display: flex;
@@ -335,7 +335,6 @@ export default {
     padding: 0 30px;
     max-width: 100%;
     font-size: 17px;
-    box-shadow: none;
   }
   .description::placeholder {
     padding-top: 3px;
@@ -362,6 +361,7 @@ export default {
     height: 80px;
     box-sizing: border-box;
     border-bottom: 1px $border solid;
+    box-shadow: none;
   }
   .control-button {
     width: 62px;
