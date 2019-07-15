@@ -1,7 +1,7 @@
 <i18n src="@/assets/locales/components/organisms/big-timer.json" />
 
 <template>
-  <section class="big-timer" @submit.prevent="submit">
+  <section class="big-timer">
     <nav-modal
       :initial-component="ProjectList"
       height="450"
@@ -12,7 +12,7 @@
       :started-at="startedAt"
       :class="['duration', { stopped: !startedAt }]"
     />
-    <form class="form">
+    <form class="form" @submit.prevent="submit">
       <div class="form-content">
         <coach-tooltip
           :content="$t('selectProject')"
