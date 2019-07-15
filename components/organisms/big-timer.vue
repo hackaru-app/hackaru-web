@@ -140,6 +140,8 @@ export default {
         id: this.working.id,
         stoppedAt: `${new Date()}`
       });
+      this.project = null;
+      this.description = '';
     },
     async startActivity() {
       const success = await this.$store.dispatch('activities/add', {
