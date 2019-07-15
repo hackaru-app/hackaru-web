@@ -6,6 +6,7 @@
     "selectProject": "Select project",
     "welcome": "Start timer from here.",
     "started": "Timer started!",
+    "updated": "Timer updated!",
     "stopped": "Timer stopped!🎉"
   },
   "ja": {
@@ -15,6 +16,7 @@
     "selectProject": "プロジェクトを選択",
     "welcome": "ここから計測を開始できます",
     "started": "計測を開始しました！",
+    "updated": "更新しました！",
     "stopped": "計測を完了しました！🎉"
   }
 }

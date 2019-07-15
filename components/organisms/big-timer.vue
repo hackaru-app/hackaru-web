@@ -35,6 +35,7 @@
           @focus="onFocus"
           @blur="onBlur"
           @input="onInput"
+          @keypress.enter.prevent="onEnterDescription"
         />
       </div>
       <coach-tooltip :content="$t('welcome')" name="welcome" placement="bottom">
@@ -130,9 +131,25 @@ export default {
   methods: {
     selectProject({ project }) {
       this.project = project;
+      if (this.working.id) {
+        this.updateActivity();
+      }
     },
     submit() {
       (this.startedAt ? this.stopActivity : this.startActivity)();
+    },
+    onEnterDescription() {
+      (this.startedAt ? this.updateActivity : this.startActivity)();
+    },
+    async updateActivity() {
+      const success = await this.$store.dispatch('activities/update', {
+        id: this.working.id,
+        description: this.description,
+        projectId: this.project && this.project.id
+      });
+      if (success) {
+        this.$store.dispatch('toast/success', this.$t('updated'));
+      }
     },
     stopActivity() {
       this.$store.dispatch('toast/success', this.$t('stopped'));
@@ -154,7 +171,9 @@ export default {
       }
     },
     search: debounce(function() {
-      this.$store.dispatch('activities/search', this.description);
+      if (!this.working.id) {
+        this.$store.dispatch('activities/search', this.description);
+      }
     }, 500),
     showModal() {
       this.$modal.show('project-list');
