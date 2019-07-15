@@ -115,16 +115,16 @@ export default {
     ...mapGetters({
       searchResults: 'activities/searchResults'
     }),
-    workings() {
-      return this.$store.getters['activities/workings'];
+    working() {
+      const workings = this.$store.getters['activities/workings'];
+      return workings.length > 0 ? workings[0] : {};
     }
   },
   watch: {
-    workings() {
-      const activity = this.workings.length > 0 ? this.workings[0] : {};
-      this.description = activity.description;
-      this.startedAt = activity.startedAt;
-      this.project = activity.project;
+    working() {
+      this.startedAt = this.working.startedAt;
+      this.project = this.working.project || this.project;
+      this.description = this.working.description || this.description;
     }
   },
   methods: {
@@ -137,7 +137,7 @@ export default {
     stopActivity() {
       this.$store.dispatch('toast/success', this.$t('stopped'));
       this.$store.dispatch('activities/update', {
-        id: this.workings[0].id,
+        id: this.working.id,
         stoppedAt: `${new Date()}`
       });
     },
