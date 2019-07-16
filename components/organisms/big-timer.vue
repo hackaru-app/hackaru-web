@@ -319,7 +319,6 @@ export default {
 }
 @include mq(small) {
   .big-timer {
-    margin-top: 0;
     max-width: 100%;
   }
   .form {
@@ -327,7 +326,7 @@ export default {
     padding: 0;
     justify-content: flex-start;
     margin: 0;
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -383,6 +382,7 @@ export default {
   }
   .duration {
     font-size: 68px;
+    margin-top: -30px;
   }
   .suggestion-wrapper {
     position: absolute;
