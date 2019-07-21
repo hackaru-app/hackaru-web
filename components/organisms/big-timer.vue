@@ -37,25 +37,29 @@
           @input="onInput"
           @keypress.enter.prevent="onEnterDescription"
         />
+        <coach-tooltip
+          :content="$t('welcome')"
+          name="welcome"
+          placement="bottom"
+        >
+          <base-button
+            v-tooltip="$t('start')"
+            v-if="!startedAt"
+            type="submit"
+            class="is-primary control-button start"
+          >
+            <icon name="play-icon" />
+          </base-button>
+          <base-button
+            v-tooltip="$t('stop')"
+            v-else
+            type="submit"
+            class="is-danger control-button stop"
+          >
+            <icon name="square-icon" />
+          </base-button>
+        </coach-tooltip>
       </div>
-      <coach-tooltip :content="$t('welcome')" name="welcome" placement="bottom">
-        <base-button
-          v-tooltip="$t('start')"
-          v-if="!startedAt"
-          type="submit"
-          class="is-primary control-button start"
-        >
-          <icon name="play-icon" />
-        </base-button>
-        <base-button
-          v-tooltip="$t('stop')"
-          v-else
-          type="submit"
-          class="is-danger control-button stop"
-        >
-          <icon name="square-icon" />
-        </base-button>
-      </coach-tooltip>
       <transition name="fade">
         <div
           v-if="focused && !startedAt && searchResults.length > 0"
@@ -352,8 +356,8 @@ export default {
   }
   .form-content {
     order: 1;
-    position: absolute;
-    top: 1px;
+    position: fixed;
+    top: $side-bar-min-height;
     border-radius: 0;
     width: 100%;
     border: 0;
@@ -363,39 +367,34 @@ export default {
     box-shadow: none;
   }
   .control-button {
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    padding: 0;
+    display: flex;
+    flex-shrink: 0;
+    border-radius: 0;
+    width: 65px;
   }
   .description {
-    padding: 0 30px;
+    padding: 0 25px;
+    min-width: 1px;
   }
   .control-button .icon {
-    width: 25px;
-    height: 25px;
-  }
-  .control-button.start .icon {
-    padding-left: 5px;
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
   }
   .duration {
     font-size: 68px;
-    margin-top: -30px;
   }
   .suggestion-wrapper {
     position: absolute;
     top: 0;
     border: 0;
-    margin-top: 80px;
     margin: 0;
     padding: 0;
   }
   .suggestion {
     border-radius: 0;
     min-height: 100vh;
-    border-top: 1px $border solid;
+    border-top: none;
+    margin-top: 80px;
     box-shadow: 0 3px 3px #00000005 inset;
   }
   .suggestion ul {
@@ -403,7 +402,7 @@ export default {
   }
   .suggestion ul li {
     height: 75px;
-    padding: 0 36px;
+    padding: 0 35px;
     border-bottom: 1px $grey-f5f5f5 solid;
     border-radius: 0;
     &:last-child {
