@@ -361,7 +361,7 @@ export default {
     border-radius: 0;
     width: 100%;
     border: 0;
-    height: 80px;
+    height: 90px;
     box-sizing: border-box;
     border-bottom: 1px $border solid;
     box-shadow: none;
