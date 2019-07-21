@@ -242,7 +242,7 @@ export default {
   margin-top: 20px;
   display: flex;
   border-radius: 5px;
-  height: 62px;
+  height: 65px;
   box-sizing: border-box;
 }
 .form-content {
@@ -361,10 +361,10 @@ export default {
     border-radius: 0;
     width: 100%;
     border: 0;
-    height: 90px;
+    height: 80px;
     box-sizing: border-box;
     border-bottom: 1px $border solid;
-    box-shadow: none;
+    box-shadow: 0 3px 3px #00000005;
   }
   .control-button {
     display: flex;
@@ -393,8 +393,9 @@ export default {
   .suggestion {
     border-radius: 0;
     min-height: 100vh;
-    border-top: none;
-    margin-top: 90px;
+    border-top: 0;
+    border-left: 0;
+    margin-top: 80px;
     box-shadow: 0 3px 3px #00000005 inset;
   }
   .suggestion ul {
