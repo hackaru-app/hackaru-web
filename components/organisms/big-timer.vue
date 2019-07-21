@@ -394,7 +394,7 @@ export default {
     border-radius: 0;
     min-height: 100vh;
     border-top: none;
-    margin-top: 80px;
+    margin-top: 90px;
     box-shadow: 0 3px 3px #00000005 inset;
   }
   .suggestion ul {
