@@ -1,8 +1,8 @@
 {
   "en": {
-    "title": "Change Email Address",
-    "email": "Enter New Email Address",
-    "password": "Enter Password",
+    "title": "Change email address",
+    "email": "Enter new email address",
+    "password": "Enter password",
     "update": "Update",
     "changed": "Email address changed"
   },

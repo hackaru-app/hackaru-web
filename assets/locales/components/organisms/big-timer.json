@@ -2,7 +2,7 @@
   "en": {
     "start": "Start timer",
     "stop": "Stop timer",
-    "description": "Enter description",
+    "description": "What are you working on?",
     "selectProject": "Select project",
     "started": "Timer started!",
     "updated": "Timer updated!",

@@ -1,8 +1,8 @@
 {
   "en": {
     "titles": {
-      "update": "Edit Project",
-      "add": "Create Project"
+      "update": "Edit project",
+      "add": "Create project"
     },
     "name": "Name",
     "color": "Color",

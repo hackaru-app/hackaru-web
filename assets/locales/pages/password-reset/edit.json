@@ -1,8 +1,8 @@
 {
   "en": {
     "title": "Reset your password",
-    "password": "New Password",
-    "passwordConfirmation": "Confirm New Password",
+    "password": "New password",
+    "passwordConfirmation": "Confirm new password",
     "reset": "Reset",
     "success": "Password reset successfully"
   },
