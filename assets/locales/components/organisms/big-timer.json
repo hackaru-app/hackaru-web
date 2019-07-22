@@ -4,7 +4,6 @@
     "stop": "Stop timer",
     "description": "Enter description",
     "selectProject": "Select project",
-    "welcome": "Start timer from here.",
     "started": "Timer started!",
     "updated": "Timer updated!",
     "stopped": "Timer stopped!🎉"
@@ -13,8 +12,7 @@
     "start": "計測を開始",
     "stop": "計測を停止",
     "description": "作業内容や備考を入力",
-    "selectProject": "プロジェクトを選択",
-    "welcome": "ここから計測を開始できます",
+    "selectProject": "プロジェクトを選択してみよう",
     "started": "計測を開始しました！",
     "updated": "更新しました！",
     "stopped": "計測を完了しました！🎉"
