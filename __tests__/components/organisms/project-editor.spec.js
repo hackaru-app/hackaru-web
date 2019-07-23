@@ -1,7 +1,6 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import ProjectEditor from '@/components/organisms/project-editor';
-import ProjectList from '@/components/organisms/project-list';
 
 describe('ProjectEditor', () => {
   let wrapper;
@@ -37,7 +36,7 @@ describe('ProjectEditor', () => {
     });
 
     it('emit pop', () => {
-      expect(wrapper.emitted('pop')[0][0]).toEqual({ component: ProjectList });
+      expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
 
@@ -60,9 +59,7 @@ describe('ProjectEditor', () => {
     });
 
     it('emit pop', () => {
-      expect(wrapper.emitted('pop')[0][0]).toEqual({
-        component: ProjectList
-      });
+      expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
 
@@ -84,7 +81,7 @@ describe('ProjectEditor', () => {
     });
 
     it('emit pop', () => {
-      expect(wrapper.emitted('pop')[0][0]).toEqual({ component: ProjectList });
+      expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
 
