@@ -37,28 +37,22 @@
           @input="onInput"
           @keypress.enter.prevent="onEnterDescription"
         />
-        <coach-tooltip
-          :content="$t('welcome')"
-          name="welcome"
-          placement="bottom"
+        <base-button
+          v-tooltip="$t('start')"
+          v-if="!startedAt"
+          type="submit"
+          class="is-primary control-button start"
         >
-          <base-button
-            v-tooltip="$t('start')"
-            v-if="!startedAt"
-            type="submit"
-            class="is-primary control-button start"
-          >
-            <icon name="play-icon" />
-          </base-button>
-          <base-button
-            v-tooltip="$t('stop')"
-            v-else
-            type="submit"
-            class="is-danger control-button stop"
-          >
-            <icon name="square-icon" />
-          </base-button>
-        </coach-tooltip>
+          <icon name="play-icon" />
+        </base-button>
+        <base-button
+          v-tooltip="$t('stop')"
+          v-else
+          type="submit"
+          class="is-danger control-button stop"
+        >
+          <icon name="square-icon" />
+        </base-button>
       </div>
       <transition name="fade">
         <div
