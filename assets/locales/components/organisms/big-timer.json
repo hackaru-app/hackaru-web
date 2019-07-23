@@ -3,7 +3,7 @@
     "start": "Start timer",
     "stop": "Stop timer",
     "description": "What are you working on?",
-    "selectProject": "Select project",
+    "selectProject": "Let's select project",
     "started": "Timer started!",
     "updated": "Timer updated!",
     "stopped": "Timer stopped!🎉"
