@@ -1,11 +1,5 @@
 <template>
-  <input
-    :value="value"
-    class="base-input"
-    @focus="focus"
-    @blur="focus"
-    @input="input"
-  />
+  <input :value="value" class="base-input" v-on="$listeners" @input="input" />
 </template>
 
 <script>
@@ -19,12 +13,6 @@ export default {
   methods: {
     input(e) {
       this.$emit('input', e.target.value);
-    },
-    focus(e) {
-      this.$emit('focus', e);
-    },
-    blur(e) {
-      this.$emit('blur', e);
     }
   }
 };
