@@ -11,7 +11,7 @@
   "ja": {
     "start": "計測を開始",
     "stop": "計測を停止",
-    "description": "作業内容や備考を入力",
+    "description": "何の作業を始めますか？",
     "selectProject": "プロジェクトを選択してみよう",
     "started": "計測を開始しました！",
     "updated": "更新しました！",
