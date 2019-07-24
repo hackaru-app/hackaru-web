@@ -32,10 +32,10 @@
           :placeholder="$t('description')"
           type="text"
           class="description"
-          @focus="onFocus"
-          @blur="onBlur"
-          @input="onInput"
-          @keypress.enter.prevent="onEnterDescription"
+          @focus="focus"
+          @blur="blur"
+          @input="input"
+          @keypress.enter.prevent="enterDescription"
         />
         <base-button
           v-tooltip="$t('start')"
@@ -57,14 +57,14 @@
       <transition name="fade">
         <div
           v-if="focused && !startedAt && searchResults.length > 0"
-          class="suggestion-wrapper"
+          class="suggester-wrapper"
         >
-          <div class="suggestion">
+          <div class="suggester">
             <ul>
               <li
                 v-for="activity in searchResults"
                 :key="activity.id"
-                @click="startBySuggest(activity)"
+                @click="clickSuggest(activity)"
               >
                 <project-name
                   v-bind="activity.project"
@@ -136,7 +136,7 @@ export default {
     submit() {
       (this.startedAt ? this.stopActivity : this.startActivity)();
     },
-    onEnterDescription() {
+    enterDescription() {
       (this.startedAt ? this.updateActivity : this.startActivity)();
     },
     async updateActivity() {
@@ -176,18 +176,18 @@ export default {
     showModal() {
       this.$modal.show('project-list');
     },
-    onInput(e) {
+    input(e) {
       this.description = e.target.value;
       this.search();
     },
-    onFocus() {
+    focus() {
       this.focused = true;
       this.search();
     },
-    onBlur() {
+    blur() {
       this.focused = false;
     },
-    startBySuggest(activity) {
+    clickSuggest(activity) {
       this.description = activity.description;
       this.project = activity.project;
       this.startActivity();
@@ -274,14 +274,14 @@ export default {
 .dot-only {
   display: none;
 }
-.suggestion-wrapper {
+.suggester-wrapper {
   position: absolute;
   width: 100%;
   max-width: 700px;
   padding: 0 35px;
   box-sizing: border-box;
 }
-.suggestion {
+.suggester {
   animation-duration: 0.2s;
   max-height: 190px;
   overflow-y: scroll;
@@ -293,11 +293,11 @@ export default {
   box-shadow: 0 3px 8px #00000008;
   -webkit-overflow-scrolling: touch;
 }
-.suggestion ul {
+.suggester ul {
   margin: 0;
   padding: 0;
 }
-.suggestion ul li {
+.suggester ul li {
   display: flex;
   cursor: pointer;
   list-style-position: inside;
@@ -377,14 +377,14 @@ export default {
   .duration {
     font-size: 68px;
   }
-  .suggestion-wrapper {
+  .suggester-wrapper {
     position: absolute;
     top: 0;
     border: 0;
     margin: 0;
     padding: 0;
   }
-  .suggestion {
+  .suggester {
     border-radius: 0;
     min-height: 100vh;
     border-top: 0;
@@ -392,10 +392,10 @@ export default {
     margin-top: 80px;
     box-shadow: 0 3px 3px #00000005 inset;
   }
-  .suggestion ul {
+  .suggester ul {
     min-height: 150vh;
   }
-  .suggestion ul li {
+  .suggester ul li {
     height: 75px;
     padding: 0 35px;
     border-bottom: 1px $grey-f5f5f5 solid;
