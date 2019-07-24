@@ -38,46 +38,6 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call weekly', () => {
-    const mockGetters = {
-      all: [
-        {
-          id: 1,
-          startedAt: '2019-01-31T00:00:00',
-          stoppedAt: '2019-01-31T01:00:00',
-          duration: 3600
-        },
-        {
-          id: 2,
-          startedAt: '2019-01-24T00:00:00',
-          stoppedAt: '2019-01-24T01:00:00',
-          duration: 3600
-        },
-        {
-          id: 3,
-          startedAt: '2019-01-31T00:00:00',
-          stoppedAt: undefined,
-          duration: 3600
-        }
-      ]
-    };
-
-    beforeEach(() => {
-      result = getters.weekly({}, mockGetters, {}, {});
-    });
-
-    it('returns correctly', () => {
-      expect(result).toEqual([
-        {
-          id: 1,
-          startedAt: '2019-01-31T00:00:00',
-          stoppedAt: '2019-01-31T01:00:00',
-          duration: 3600
-        }
-      ]);
-    });
-  });
-
   describe('when call getCalendar', () => {
     const toMin = px => px;
     const mockGetters = {
