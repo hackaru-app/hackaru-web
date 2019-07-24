@@ -62,6 +62,40 @@ describe('Getters', () => {
     });
   });
 
+  describe('when call empty and summary is empty', () => {
+    const state = {
+      summary: []
+    };
+
+    beforeEach(() => {
+      result = getters.empty(state);
+    });
+
+    it('returns true', () => {
+      expect(result).toBe(true);
+    });
+  });
+
+  describe('when call empty and summary is not empty', () => {
+    const state = {
+      summary: [
+        {
+          projectId: 1,
+          duration: 100,
+          date: '2019-01-01T00:00:00'
+        }
+      ]
+    };
+
+    beforeEach(() => {
+      result = getters.empty(state);
+    });
+
+    it('returns false', () => {
+      expect(result).toBe(false);
+    });
+  });
+
   describe('when call barChartLabels and period is hour', () => {
     const state = {
       period: 'hour'
