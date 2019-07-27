@@ -55,13 +55,14 @@
       <transition name="fade">
         <div
           v-if="focused && !id && searchResults.length > 0"
-          class="suggester-wrapper"
+          class="suggest-list-wrapper"
         >
-          <div class="suggester">
+          <div class="suggest-list">
             <ul>
               <li
                 v-for="activity in searchResults"
                 :key="activity.id"
+                class="suggest-item"
                 @click="clickSuggest(activity)"
               >
                 <project-name
@@ -277,14 +278,14 @@ export default {
 .dot-only {
   display: none;
 }
-.suggester-wrapper {
+.suggest-list-wrapper {
   position: absolute;
   width: 100%;
   max-width: 700px;
   padding: 0 35px;
   box-sizing: border-box;
 }
-.suggester {
+.suggest-list {
   animation-duration: 0.2s;
   max-height: 190px;
   overflow-y: scroll;
@@ -296,11 +297,11 @@ export default {
   box-shadow: 0 3px 8px #00000008;
   -webkit-overflow-scrolling: touch;
 }
-.suggester ul {
+.suggest-list ul {
   margin: 0;
   padding: 0;
 }
-.suggester ul li {
+.suggest-list ul li {
   display: flex;
   cursor: pointer;
   list-style-position: inside;
@@ -380,14 +381,14 @@ export default {
   .duration {
     font-size: 68px;
   }
-  .suggester-wrapper {
+  .suggest-list-wrapper {
     position: absolute;
     top: 0;
     border: 0;
     margin: 0;
     padding: 0;
   }
-  .suggester {
+  .suggest-list {
     border-radius: 0;
     min-height: 100vh;
     border-top: 0;
@@ -395,10 +396,10 @@ export default {
     margin-top: 80px;
     box-shadow: 0 3px 3px #00000005 inset;
   }
-  .suggester ul {
+  .suggest-list ul {
     min-height: 150vh;
   }
-  .suggester ul li {
+  .suggest-list ul li {
     height: 75px;
     padding: 0 35px;
     border-bottom: 1px $grey-f5f5f5 solid;

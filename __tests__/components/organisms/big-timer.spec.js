@@ -16,7 +16,17 @@ describe('BigTimer', () => {
   const $store = new Store({
     localVue,
     getters: {
-      'activities/workings': () => []
+      'activities/workings': [],
+      'activities/searchResults': [
+        {
+          project: {
+            id: 2,
+            name: 'Review',
+            color: '#ff0'
+          },
+          description: 'Review my tasks'
+        }
+      ]
     }
   });
 
@@ -95,7 +105,7 @@ describe('BigTimer', () => {
       wrapper = factory();
       wrapper.find('.nav-modal').vm.$emit('close', {
         project: {
-          id: 1,
+          id: 2,
           name: 'Review',
           color: '#ff0'
         }
@@ -107,7 +117,7 @@ describe('BigTimer', () => {
     it('dispatch activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         description: 'Review my tasks',
-        projectId: 1,
+        projectId: 2,
         startedAt: `${new Date()}`
       });
     });
@@ -164,6 +174,45 @@ describe('BigTimer', () => {
       });
       wrapper.find('.description').setValue('Review my tasks');
       wrapper.find('.description').trigger('keypress.enter');
+    });
+
+    it('dispatch activities/add', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
+        projectId: 2,
+        description: 'Review my tasks',
+        startedAt: `${new Date()}`
+      });
+    });
+  });
+
+  describe('when focus description', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.find('.description').trigger('focus');
+    });
+
+    it('show suggest-list', () => {
+      expect(wrapper.find('.suggest-list-wrapper').exists()).toBe(true);
+    });
+  });
+
+  describe('when blur description', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.find('.description').trigger('focus');
+      wrapper.find('.description').trigger('blur');
+    });
+
+    it('hide suggest-list', () => {
+      expect(wrapper.find('.suggest-list-wrapper').exists()).toBe(false);
+    });
+  });
+
+  describe('when click suggest-item', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.find('.description').trigger('focus');
+      wrapper.find('.suggest-item').trigger('click');
     });
 
     it('dispatch activities/add', () => {
