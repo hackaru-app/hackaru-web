@@ -11,10 +11,10 @@
   "ja": {
     "start": "計測を開始",
     "stop": "計測を停止",
-    "description": "何の作業を始めますか？",
+    "description": "何を始めますか？",
     "selectProject": "プロジェクトを選択してみよう",
     "started": "計測を開始しました！",
-    "updated": "更新しました！",
+    "updated": "計測中の情報を更新しました！",
     "stopped": "計測を完了しました！🎉"
   }
 }
