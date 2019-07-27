@@ -127,4 +127,51 @@ describe('BigTimer', () => {
       });
     });
   });
+
+  describe('when press enter on description and timer is working', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setData({ id: 1 });
+      wrapper.find('.nav-modal').vm.$emit('close', {
+        project: {
+          id: 2,
+          name: 'Review',
+          color: '#ff0'
+        }
+      });
+      wrapper.find('.description').setValue('Review my tasks');
+      wrapper.find('.description').trigger('keypress.enter');
+    });
+
+    it('dispatch activities/update', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        projectId: 2,
+        description: 'Review my tasks'
+      });
+    });
+  });
+
+  describe('when press enter on description and timer is not working', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.find('.nav-modal').vm.$emit('close', {
+        project: {
+          id: 2,
+          name: 'Review',
+          color: '#ff0'
+        }
+      });
+      wrapper.find('.description').setValue('Review my tasks');
+      wrapper.find('.description').trigger('keypress.enter');
+    });
+
+    it('dispatch activities/add', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
+        projectId: 2,
+        description: 'Review my tasks',
+        startedAt: `${new Date()}`
+      });
+    });
+  });
 });
