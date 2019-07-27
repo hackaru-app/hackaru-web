@@ -13,9 +13,6 @@ export default {
   },
   head: {
     title: 'Timer'
-  },
-  mounted() {
-    this.$store.dispatch('activities/fetchWorkings');
   }
 };
 </script>

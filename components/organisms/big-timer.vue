@@ -5,13 +5,11 @@
     <nav-modal
       :initial-component="ProjectList"
       height="450"
+      class="nav-modal"
       name="project-list"
       @close="selectProject"
     />
-    <ticker
-      :started-at="startedAt"
-      :class="['duration', { stopped: !startedAt }]"
-    />
+    <ticker :started-at="startedAt" :class="['duration', { stopped: !id }]" />
     <form class="form" @submit.prevent="submit">
       <div class="form-content">
         <coach-tooltip
@@ -39,7 +37,7 @@
         />
         <base-button
           v-tooltip="$t('start')"
-          v-if="!startedAt"
+          v-if="!id"
           type="submit"
           class="is-primary control-button start"
         >
@@ -56,7 +54,7 @@
       </div>
       <transition name="fade">
         <div
-          v-if="focused && !startedAt && searchResults.length > 0"
+          v-if="focused && !id && searchResults.length > 0"
           class="suggester-wrapper"
         >
           <div class="suggester">
@@ -104,6 +102,7 @@ export default {
   data() {
     return {
       ProjectList,
+      id: undefined,
       description: '',
       project: undefined,
       startedAt: undefined,
@@ -121,6 +120,7 @@ export default {
   },
   watch: {
     working() {
+      this.id = this.id;
       this.startedAt = this.working.startedAt;
       this.project = this.working.project || this.project;
       this.description = this.working.description || this.description;
@@ -129,19 +129,17 @@ export default {
   methods: {
     selectProject({ project }) {
       this.project = project;
-      if (this.working.id) {
-        this.updateActivity();
-      }
+      if (this.id) this.updateActivity();
     },
     submit() {
-      (this.startedAt ? this.stopActivity : this.startActivity)();
+      (this.id ? this.stopActivity : this.startActivity)();
     },
     enterDescription() {
-      (this.startedAt ? this.updateActivity : this.startActivity)();
+      (this.id ? this.updateActivity : this.startActivity)();
     },
     async updateActivity() {
       const success = await this.$store.dispatch('activities/update', {
-        id: this.working.id,
+        id: this.id,
         description: this.description,
         projectId: this.project && this.project.id
       });
@@ -152,7 +150,7 @@ export default {
     stopActivity() {
       this.$store.dispatch('toast/success', this.$t('stopped'));
       this.$store.dispatch('activities/update', {
-        id: this.working.id,
+        id: this.id,
         stoppedAt: `${new Date()}`
       });
       this.project = null;
@@ -169,7 +167,7 @@ export default {
       }
     },
     search: debounce(function() {
-      if (!this.working.id) {
+      if (!this.id) {
         this.$store.dispatch('activities/search', this.description);
       }
     }, 500),
