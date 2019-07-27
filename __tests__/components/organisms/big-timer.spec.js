@@ -42,6 +42,11 @@ describe('BigTimer', () => {
     $store.reset();
   });
 
+  it('dispatch activities/fetchWorkings', () => {
+    factory();
+    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorkings');
+  });
+
   describe('when click project-select', () => {
     beforeEach(() => {
       wrapper = factory();
