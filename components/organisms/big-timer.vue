@@ -118,15 +118,19 @@ export default {
       return workings.length > 0 ? workings[0] : {};
     }
   },
-  watch: {
-    working() {
-      this.id = this.id;
-      this.startedAt = this.working.startedAt;
-      this.project = this.working.project || this.project;
-      this.description = this.working.description || this.description;
-    }
+  async mounted() {
+    await this.$store.dispatch('activities/fetchWorkings');
+    this.setWorkingProps();
   },
   methods: {
+    setWorkingProps() {
+      if (this.working) {
+        this.id = this.working.id;
+        this.startedAt = this.working.startedAt;
+        this.project = this.working.project;
+        this.description = this.working.description;
+      }
+    },
     selectProject({ project }) {
       this.project = project;
       if (this.id) this.updateActivity();
@@ -144,17 +148,17 @@ export default {
         projectId: this.project && this.project.id
       });
       if (success) {
+        this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('updated'));
       }
     },
-    stopActivity() {
+    async stopActivity() {
       this.$store.dispatch('toast/success', this.$t('stopped'));
-      this.$store.dispatch('activities/update', {
+      await this.$store.dispatch('activities/update', {
         id: this.id,
         stoppedAt: `${new Date()}`
       });
-      this.project = null;
-      this.description = '';
+      this.setWorkingProps();
     },
     async startActivity() {
       const success = await this.$store.dispatch('activities/add', {
@@ -163,6 +167,7 @@ export default {
         startedAt: `${new Date()}`
       });
       if (success) {
+        this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('started'));
       }
     },
