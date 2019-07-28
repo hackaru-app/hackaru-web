@@ -11,8 +11,8 @@
   "ja": {
     "start": "計測を開始",
     "stop": "計測を停止",
-    "description": "何を始めますか？",
-    "selectProject": "プロジェクトを選択してみよう",
+    "description": "何を始めますか？ ジョギングや〇〇の本を読むなど...",
+    "selectProject": "プロジェクトを選択しよう",
     "started": "計測を開始しました！",
     "updated": "計測中の情報を更新しました！",
     "stopped": "計測を完了しました！🎉"

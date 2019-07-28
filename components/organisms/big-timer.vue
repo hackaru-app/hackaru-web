@@ -9,7 +9,6 @@
       name="project-list"
       @close="selectProject"
     />
-    <ticker :started-at="startedAt" :class="['duration', { stopped: !id }]" />
     <form class="form" @submit.prevent="submit">
       <div class="form-content">
         <coach-tooltip
@@ -35,6 +34,12 @@
           @input="input"
           @keypress.enter.prevent="enterDescription"
         />
+        <transition name="fade">
+          <ticker
+            :started-at="startedAt"
+            :class="['duration', { show: !focused && id }]"
+          />
+        </transition>
         <base-button
           v-tooltip="$t('start')"
           v-if="!id"
@@ -54,7 +59,9 @@
       </div>
       <transition name="fade">
         <div
-          v-if="focused && !id && searchResults.length > 0"
+          v-if="
+            focused && !id && description !== '' && searchResults.length > 0
+          "
           class="suggest-list-wrapper"
         >
           <div class="suggest-list">
@@ -186,7 +193,6 @@ export default {
     },
     focus() {
       this.focused = true;
-      this.search();
     },
     blur() {
       this.focused = false;
@@ -203,52 +209,58 @@ export default {
 <style scoped lang="scss">
 .big-timer {
   display: flex;
+  position: fixed;
+  background-color: #fffffff5;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   max-width: calc(100vw - #{$side-bar-min-width});
-  box-sizing: border-box;
-}
-.duration {
-  font-size: 76px;
-  font-weight: 300;
-  font-family: $font-family-duration;
+  height: 91px;
 }
 .duration.stopped {
   color: $text-light;
 }
 .control-button {
+  display: flex;
+  align-self: center;
   flex-shrink: 0;
   padding: 0;
-  width: 65px;
-  height: 100%;
-  border-radius: 0 3px 3px 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 40px;
   pointer-events: auto;
+  box-shadow: 0 3px 3px #00000010;
 }
 .control-button .icon {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 }
 .control-button.start .icon {
   padding-left: 3px;
 }
 .form {
   width: 100%;
-  max-width: 700px;
-  padding: 0 35px;
   justify-content: center;
-  margin-top: 20px;
+  height: 100%;
   display: flex;
   border-radius: 5px;
-  height: 65px;
   box-sizing: border-box;
+}
+.form .duration {
+  font-size: 18px;
+  align-self: center;
+  margin-right: 30px;
+  font-family: $font-family-duration;
+}
+.form .duration.show {
+  display: block;
 }
 .form-content {
   display: flex;
   flex: 1;
-  border: 1px $border solid;
+  border-bottom: 1px $border solid;
   border-right: 0;
-  border-radius: 3px 0 0 3px;
   box-shadow: 0 3px 3px #00000005;
 }
 .project-wrapper {
@@ -262,7 +274,7 @@ export default {
   display: flex;
   height: 100%;
   max-width: 120px;
-  padding: 0 30px;
+  padding: 0 50px;
   align-items: center;
 }
 .description {
@@ -271,7 +283,7 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 0 25px;
+  padding: 0 40px;
   display: flex;
   background: none;
 }
@@ -281,20 +293,21 @@ export default {
 .suggest-list-wrapper {
   position: absolute;
   width: 100%;
-  max-width: 700px;
-  padding: 0 35px;
   box-sizing: border-box;
+  max-width: calc(100vw - #{$side-bar-min-width});
 }
 .suggest-list {
   animation-duration: 0.2s;
-  max-height: 190px;
   overflow-y: scroll;
-  margin-top: 80px;
+  margin-top: 90px;
   box-sizing: border-box;
-  background-color: #fffffffa;
+  background-color: #fffffff5;
   border: 1px $border solid;
-  border-radius: 3px;
-  box-shadow: 0 3px 8px #00000008;
+  padding-top: 15px;
+  overflow: hidden;
+  height: calc(100vh - 90px);
+  overflow-y: scroll;
+  box-shadow: 0 3px 5px #00000005 inset;
   -webkit-overflow-scrolling: touch;
 }
 .suggest-list ul {
@@ -310,18 +323,15 @@ export default {
   align-items: center;
   box-sizing: border-box;
   height: 63px;
-  padding: 0 30px;
+  padding: 0 50px;
   border-bottom: 1px $grey-f5f5f5 solid;
-  &:hover {
-    background-color: $grey-fdfdfd;
-  }
   &:last-child {
     border-bottom: 0;
   }
 }
 @include mq(small) {
   .big-timer {
-    max-width: 100%;
+    max-width: 100vw;
   }
   .form {
     height: auto;
@@ -368,36 +378,40 @@ export default {
     display: flex;
     flex-shrink: 0;
     border-radius: 0;
-    width: 65px;
+    width: 60px;
+    height: 100%;
+    margin-right: 0;
   }
   .description {
+    margin: 0;
     padding: 0 25px;
     min-width: 1px;
+  }
+  .form .duration {
+    margin-right: 25px;
+    display: none;
   }
   .control-button .icon {
     width: 22px;
     height: 22px;
   }
-  .duration {
-    font-size: 68px;
-  }
   .suggest-list-wrapper {
     position: absolute;
-    top: 0;
+    top: 80px;
     border: 0;
     margin: 0;
     padding: 0;
+    max-width: 100vw;
+    width: 100%;
   }
   .suggest-list {
     border-radius: 0;
     min-height: 100vh;
     border-top: 0;
     border-left: 0;
-    margin-top: 80px;
+    margin: 0;
+    max-width: 100vw;
     box-shadow: 0 3px 3px #00000005 inset;
-  }
-  .suggest-list ul {
-    min-height: 150vh;
   }
   .suggest-list ul li {
     height: 75px;
