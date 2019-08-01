@@ -294,6 +294,7 @@ export default {
 }
 .suggest-list-wrapper {
   position: absolute;
+  animation-delay: 1s;
   width: 100%;
   box-sizing: border-box;
   max-width: calc(100vw - #{$side-bar-min-width});
