@@ -286,6 +286,8 @@ export default {
   padding: 0 40px;
   display: flex;
   background: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .dot-only {
   display: none;
