@@ -426,8 +426,12 @@ export default {
     padding: 0 35px;
     border-bottom: 1px $grey-f5f5f5 solid;
     border-radius: 0;
+    &:first-child {
+      padding-top: 0;
+    }
     &:last-child {
       border-bottom: 1px $grey-f5f5f5 solid;
+      padding-bottom: 0;
     }
   }
 }

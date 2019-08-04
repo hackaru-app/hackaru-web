@@ -104,4 +104,13 @@ export default {
   border-radius: 0;
   margin-left: 10px;
 }
+@include mq(small) {
+  .activity {
+    padding: 0 30px;
+    padding-left: 35px;
+  }
+  .repeat-button {
+    display: none;
+  }
+}
 </style>
