@@ -44,15 +44,16 @@ $breakpoints: (
 
 // ZIndex
 $z:
-  calendar-dragging-activity,
+  calendar-dragging-activity, // low
   calendar-ruler,
   content-header,
   calendar-day-header,
+  timer-form,
   tooltip,
   pwa-popover,
   modal,
   toast,
-  side-bar,
+  side-bar, // high
 ;
 
 // Sidebar

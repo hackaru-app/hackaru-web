@@ -141,6 +141,7 @@ export default {
   .activity {
     padding: 0 30px;
     padding-left: 35px;
+    height: 75px;
   }
   .repeat-button {
     display: none;

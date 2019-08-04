@@ -215,6 +215,7 @@ export default {
   align-items: center;
   justify-content: center;
   max-width: calc(100vw - #{$side-bar-min-width});
+  z-index: index($z, timer-form);
   height: 91px;
 }
 .duration.stopped {
