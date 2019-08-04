@@ -1,6 +1,6 @@
 <template>
   <section class="index">
-    <big-timer class="big-timer" />
+    <timer-form class="timer-form" />
     <div class="content">
       <activity-day-group
         v-for="ago in 7"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import BigTimer from '@/components/organisms/big-timer';
+import TimerForm from '@/components/organisms/timer-form';
 import ProjectName from '@/components/molecules/project-name';
 import BaseButton from '@/components/atoms/base-button';
 import ActivityDayGroup from '@/components/organisms/activity-day-group';
@@ -22,7 +22,7 @@ import { startOfDay, endOfDay, addDays, format } from 'date-fns';
 
 export default {
   components: {
-    BigTimer,
+    TimerForm,
     ProjectName,
     Icon,
     BaseButton,
@@ -53,7 +53,7 @@ export default {
   width: 100%;
   align-items: center;
 }
-.big-timer {
+.timer-form {
   width: 100%;
 }
 .content {

@@ -11,7 +11,7 @@
     </div>
     <ticker :started-at="startedAt" :stopped-at="stoppedAt" class="duration" />
     <base-button class="repeat-button" @click="duplicate">
-      <icon name="repeat-icon" class="is-small" />
+      <icon name="repeat-icon" class="is-midium" />
     </base-button>
   </div>
 </template>

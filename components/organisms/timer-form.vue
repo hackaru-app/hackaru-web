@@ -1,7 +1,7 @@
-<i18n src="@/assets/locales/components/organisms/big-timer.json" />
+<i18n src="@/assets/locales/components/organisms/timer-form.json" />
 
 <template>
-  <section class="big-timer">
+  <section class="timer-form">
     <nav-modal
       :initial-component="ProjectList"
       height="450"
@@ -207,7 +207,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.big-timer {
+.timer-form {
   display: flex;
   position: fixed;
   background-color: #fffffff5;
@@ -333,7 +333,7 @@ export default {
   }
 }
 @include mq(small) {
-  .big-timer {
+  .timer-form {
     max-width: 100vw;
   }
   .form {

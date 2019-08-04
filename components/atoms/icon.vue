@@ -28,6 +28,10 @@ export default {
   width: 16px;
   height: 16px;
 }
+.icon.is-midium {
+  width: 18px;
+  height: 18px;
+}
 .icon.is-large {
   width: 22px;
   height: 22px;
