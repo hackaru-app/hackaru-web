@@ -329,7 +329,7 @@ export default {
   border-bottom: 1px $grey-f5f5f5 solid;
   &:last-child {
     border-bottom: 0;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
   }
   &:first-child {
     padding-top: 10px;
