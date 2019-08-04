@@ -1,10 +1,18 @@
 {
   "en": {
     "duplicated": "Timer duplicated",
-    "duplicate": "Duplicate"
+    "duplicate": "Duplicate",
+    "deleted": "Timer deleted",
+    "confirms": {
+      "delete":  "Are you sure you want to delete the timer?"
+    }
   },
   "ja": {
     "duplicated": "計測を複製しました",
-    "duplicate": "複製する"
+    "duplicate": "複製する",
+    "deleted": "計測を削除しました",
+    "confirms": {
+      "delete":  "計測を削除しますか？"
+    }
   }
 }

@@ -1,19 +1,39 @@
 <i18n src="@/assets/locales/components/organisms/activity-item.json" />
 
 <template>
-  <div class="activity">
-    <div class="content" @click="showModal">
-      <project-name
-        v-bind="project"
-        :name="description || (project ? project.name : undefined)"
-        class="project-name"
+  <swipe-menu
+    ref="swipeMenu"
+    @swipe-left="deleteActivity"
+    @swipe-right="duplicateActivity"
+  >
+    <template slot="left">
+      <div class="swipe-menu-item is-danger">
+        <icon name="trash-icon" />
+      </div>
+    </template>
+    <section class="activity">
+      <div class="content" @click="showModal">
+        <project-name
+          v-bind="project"
+          :name="description || (project ? project.name : undefined)"
+          class="project-name"
+        />
+      </div>
+      <ticker
+        :started-at="startedAt"
+        :stopped-at="stoppedAt"
+        class="duration"
       />
-    </div>
-    <ticker :started-at="startedAt" :stopped-at="stoppedAt" class="duration" />
-    <base-button class="repeat-button" @click="duplicate">
-      <icon name="repeat-icon" class="is-midium" />
-    </base-button>
-  </div>
+      <base-button class="repeat-button" @click="duplicateActivity">
+        <icon name="repeat-icon" class="is-midium" />
+      </base-button>
+    </section>
+    <template slot="right">
+      <div class="swipe-menu-item is-repeat">
+        <icon name="repeat-icon" />
+      </div>
+    </template>
+  </swipe-menu>
 </template>
 
 <script>
@@ -21,10 +41,12 @@ import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import ProjectName from '@/components/molecules/project-name';
 import Ticker from '@/components/atoms/ticker';
+import SwipeMenu from '@/components/molecules/swipe-menu';
 
 export default {
   components: {
     BaseButton,
+    SwipeMenu,
     Icon,
     ProjectName,
     Ticker
@@ -65,13 +87,20 @@ export default {
         project: this.project || undefined
       });
     },
-    async duplicate() {
+    deleteActivity() {
+      if (!window.confirm(this.$t('confirms.delete'))) return;
+      this.$store.dispatch('activities/delete', this.id);
+      this.$store.dispatch('toast/success', this.$t('deleted'));
+      this.$ga.event('activity', 'deleteActivity');
+    },
+    async duplicateActivity() {
       const success = await this.$store.dispatch('activities/add', {
         description: this.description,
         projectId: this.project && this.project.id,
         startedAt: `${new Date()}`
       });
       if (success) {
+        this.$refs.swipeMenu.reset();
         this.$store.dispatch('toast/success', this.$t('duplicated'));
       }
     }
@@ -103,6 +132,10 @@ export default {
   height: 100%;
   border-radius: 0;
   margin-left: 10px;
+}
+.is-repeat {
+  background-color: $green;
+  color: $white;
 }
 @include mq(small) {
   .activity {
