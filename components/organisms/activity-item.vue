@@ -24,12 +24,16 @@
         :stopped-at="stoppedAt"
         class="duration"
       />
-      <base-button class="repeat-button" @click="duplicateActivity">
+      <base-button
+        v-tooltip="$t('duplicate')"
+        class="duplicate-button"
+        @click="duplicateActivity"
+      >
         <icon name="repeat-icon" class="is-midium" />
       </base-button>
     </section>
     <template slot="right">
-      <div class="swipe-menu-item is-repeat">
+      <div class="swipe-menu-item is-duplicate">
         <icon name="repeat-icon" />
       </div>
     </template>
@@ -130,12 +134,12 @@ export default {
   padding-right: 10px;
   height: 100%;
 }
-.repeat-button {
+.duplicate-button {
   height: 100%;
   border-radius: 0;
   margin-left: 10px;
 }
-.is-repeat {
+.is-duplicate {
   background-color: $green;
   color: $white;
 }
@@ -145,7 +149,7 @@ export default {
     padding-left: 35px;
     height: 75px;
   }
-  .repeat-button {
+  .duplicate-button {
     display: none;
   }
 }
