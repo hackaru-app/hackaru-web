@@ -29,6 +29,7 @@ export default {
 .project-name {
   display: flex;
   align-items: baseline;
+  overflow: hidden;
 }
 p {
   width: 100%;

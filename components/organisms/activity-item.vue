@@ -122,11 +122,12 @@ export default {
   font-family: $font-family-duration;
 }
 .content {
-  cursor: pointer;
-  flex: 1;
-  height: 100%;
-  display: flex;
   align-items: center;
+  min-width: 1px;
+  justify-content: space-between;
+  display: flex;
+  flex: 1;
+  padding-right: 10px;
 }
 .repeat-button {
   height: 100%;
