@@ -66,6 +66,10 @@ export default {
   color: $text-light;
 }
 @include mq(small) {
+  .activity-day-group {
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
   .activity-day-group h1 {
     margin-left: 30px;
   }
