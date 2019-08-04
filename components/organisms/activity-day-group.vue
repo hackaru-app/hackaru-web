@@ -13,7 +13,7 @@
 
 <script>
 import ActivityItem from '@/components/organisms/activity-item';
-import { format } from 'date-fns';
+import { differenceInDays, format } from 'date-fns';
 
 export default {
   components: {
@@ -27,7 +27,15 @@ export default {
   },
   computed: {
     title() {
-      return '1日前';
+      const diff = differenceInDays(new Date(), this.day);
+      switch (diff) {
+        case 0:
+          return '今日';
+        case 1:
+          return '昨日';
+        default:
+          return `${diff}日前`;
+      }
     },
     week() {
       return format(this.day, 'dddd');
