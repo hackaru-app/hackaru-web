@@ -415,12 +415,15 @@ export default {
   }
   .suggest-list {
     border-radius: 0;
-    min-height: 100vh;
+    height: 100vh;
     border-top: 0;
     border-left: 0;
     margin: 0;
     max-width: 100vw;
     box-shadow: 0 3px 3px #00000005 inset;
+  }
+  .suggest-list ul {
+    min-height: 110vh;
   }
   .suggest-list ul li {
     height: 75px;
