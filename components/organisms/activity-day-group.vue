@@ -1,7 +1,7 @@
 <i18n src="@/assets/locales/components/organisms/activity-day-group.json" />
 
 <template>
-  <section class="activity-day-group">
+  <section v-if="activities.length > 0" class="activity-day-group">
     <h1>
       {{ title }}<span>・{{ week }}</span>
     </h1>
