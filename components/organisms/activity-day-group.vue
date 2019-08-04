@@ -69,5 +69,8 @@ export default {
   .activity-day-group h1 {
     margin-left: 30px;
   }
+  .activity-day-group span {
+    display: none;
+  }
 }
 </style>
