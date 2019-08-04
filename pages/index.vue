@@ -5,7 +5,7 @@
       <activity-day-group
         v-for="ago in 7"
         :key="ago"
-        :day="addDays(new Date(), -(ago - 1))"
+        :day="`${addDays(new Date(), -(ago - 1))}`"
         class="day"
       />
     </div>
@@ -39,7 +39,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('activities/fetchByRange', {
-      start: startOfDay(new Date()),
+      start: startOfDay(addDays(new Date(), -7)),
       end: endOfDay(new Date())
     });
   }

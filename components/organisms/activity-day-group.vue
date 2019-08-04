@@ -50,7 +50,7 @@ export default {
 <style scoped lang="scss">
 .activity-day-group {
   padding: 0 0;
-  margin-top: 50px;
+  margin: 50px 0;
   width: 100%;
   box-sizing: border-box;
   border-bottom: 1px $border solid;
@@ -63,6 +63,7 @@ export default {
 }
 .activity-day-group span {
   font-size: 16px;
+  color: $text-light;
 }
 @include mq(small) {
   .activity-day-group h1 {
