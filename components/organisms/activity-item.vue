@@ -9,6 +9,7 @@
         class="project-name"
       />
     </div>
+    <ticker :started-at="startedAt" :stopped-at="stoppedAt" class="duration" />
     <base-button class="repeat-button" @click="duplicate">
       <icon name="repeat-icon" class="is-small" />
     </base-button>
@@ -19,12 +20,14 @@
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import ProjectName from '@/components/molecules/project-name';
+import Ticker from '@/components/atoms/ticker';
 
 export default {
   components: {
     BaseButton,
     Icon,
-    ProjectName
+    ProjectName,
+    Ticker
   },
   props: {
     id: {
@@ -78,25 +81,27 @@ export default {
 
 <style scoped lang="scss">
 .activity {
-  border: 1px $border solid;
-  height: 54px;
+  border-top: 1px $border solid;
+  height: 68px;
   display: flex;
   align-items: center;
-  margin-right: 15px;
-  border-radius: 3px;
+  padding: 0 50px;
+  padding-right: 40px;
+}
+.duration {
+  color: $text-light;
+  font-family: $font-family-duration;
 }
 .content {
   cursor: pointer;
-  padding-left: 20px;
+  flex: 1;
   height: 100%;
   display: flex;
   align-items: center;
 }
 .repeat-button {
   height: 100%;
-  border-left: 1px $border solid;
   border-radius: 0;
-  width: 55px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 </style>

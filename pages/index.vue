@@ -2,78 +2,17 @@
   <section class="index">
     <big-timer class="big-timer" />
     <div class="content">
-      <section class="day">
-        <h1>一昨日<span>・月曜日</span></h1>
-        <article>
-          <project-name
-            class="project"
-            color="#4ab8b8"
-            name="データベースの構築"
-          />
-          <time>01:23:45</time>
-          <base-button type="button" class="has-icon repeat-button">
-            <icon name="repeat-icon" />
-          </base-button>
-        </article>
-        <article>
-          <project-name
-            class="project"
-            color="#4ab8b8"
-            name="データベースの構築"
-          />
-          <p></p>
-          <time>01:23:45</time>
-          <base-button type="button" class="has-icon repeat-button">
-            <icon name="repeat-icon" />
-          </base-button>
-        </article>
-        <article>
-          <project-name
-            class="project"
-            color="#4ab8b8"
-            name="データベースの構築"
-          />
-          <time>01:23:45</time>
-          <base-button type="button" class="has-icon repeat-button">
-            <icon name="repeat-icon" />
-          </base-button>
-        </article>
-      </section>
-      <section class="day">
-        <h1>3日前<span>・日曜日</span></h1>
-        <article>
-          <project-name
-            class="project"
-            color="#4ab8b8"
-            name="データベースの構築"
-          />
-          <time>01:23:45</time>
-          <base-button type="button" class="has-icon repeat-button">
-            <icon name="repeat-icon" />
-          </base-button>
-        </article>
-        <article>
-          <project-name
-            class="project"
-            color="#4ab8b8"
-            name="データベースの構築"
-          />
-          <time>01:23:45</time>
-          <base-button type="button" class="has-icon repeat-button">
-            <icon name="repeat-icon" />
-          </base-button>
-        </article>
-        <article>
-          <project-name
-            class="project"
-            color="#4ab8b8"
-            name="データベースの構築"
-          />
-          <time>01:23:45</time>
-          <base-button type="button" class="has-icon repeat-button">
-            <icon name="repeat-icon" />
-          </base-button>
-        </article>
+      <section v-for="ago in 7" :key="ago" class="day">
+        <h1>
+          {{ ago }}日前<span
+            >・{{ format(addDays(new Date(), -ago + 1), 'dddd') }}</span
+          >
+        </h1>
+        <activity-item
+          v-for="activity in getByDay(addDays(new Date(), -ago + 1))"
+          :key="activity.id"
+          v-bind="activity"
+        />
       </section>
     </div>
   </section>
@@ -83,17 +22,37 @@
 import BigTimer from '@/components/organisms/big-timer';
 import ProjectName from '@/components/molecules/project-name';
 import BaseButton from '@/components/atoms/base-button';
+import ActivityItem from '@/components/organisms/activity-item';
 import Icon from '@/components/atoms/icon';
+import { startOfDay, endOfDay, addDays, format } from 'date-fns';
 
 export default {
   components: {
     BigTimer,
     ProjectName,
     Icon,
-    BaseButton
+    BaseButton,
+    ActivityItem
+  },
+  data() {
+    return {
+      addDays,
+      format
+    };
   },
   head: {
     title: 'Timer'
+  },
+  mounted() {
+    this.$store.dispatch('activities/fetchByRange', {
+      start: startOfDay(new Date()),
+      end: endOfDay(new Date())
+    });
+  },
+  methods: {
+    getByDay(date) {
+      return this.$store.getters['activities/getByDay'](date);
+    }
   }
 };
 </script>
@@ -138,7 +97,6 @@ export default {
   padding-bottom: 10px;
   span {
     font-size: 16px;
-    color: $text-light;
   }
 }
 .day p {

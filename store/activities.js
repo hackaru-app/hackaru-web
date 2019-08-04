@@ -3,11 +3,10 @@ import uniqBy from 'lodash.uniqby';
 import {
   isWithinRange,
   startOfDay,
-  isAfter,
   areRangesOverlapping,
   addMinutes,
   compareDesc,
-  addDays
+  isSameDay
 } from 'date-fns';
 
 export const state = () => ({
@@ -170,12 +169,10 @@ export const getters = {
 
     return distincted;
   },
-  weekly: (state, getters) => {
+  getByDay: (state, getters) => date => {
     return getters.all
       .filter(({ stoppedAt }) => stoppedAt)
-      .filter(({ startedAt }) =>
-        isAfter(startedAt, startOfDay(addDays(new Date(), -7)))
-      )
+      .filter(({ startedAt }) => isSameDay(startedAt, date))
       .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },
   getCalendar: (state, getters) => (date, toMin) => {
