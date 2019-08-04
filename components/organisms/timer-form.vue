@@ -300,7 +300,7 @@ export default {
   top: 90px;
   box-sizing: border-box;
   max-width: calc(100vw - #{$side-bar-min-width});
-  background: #00000030;
+  background-color: #00000030;
 }
 .suggest-list {
   animation-duration: 0.2s;
@@ -412,6 +412,7 @@ export default {
     padding: 0;
     max-width: 100vw;
     width: 100%;
+    background: none;
   }
   .suggest-list {
     border-radius: 0;
