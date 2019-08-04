@@ -294,7 +294,6 @@ export default {
 }
 .suggest-list-wrapper {
   position: absolute;
-  animation-delay: 1s;
   width: 100%;
   height: 100vh;
   top: 90px;
