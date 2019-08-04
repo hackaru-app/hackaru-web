@@ -40,7 +40,7 @@ export default {
       }
     },
     week() {
-      return format(this.day, 'dddd');
+      return this.$t(`weeks[${format(this.day, 'd')}]`);
     },
     activities() {
       return this.$store.getters['activities/getByDay'](this.day);
