@@ -1,3 +1,5 @@
+<i18n src="@/assets/locales/components/organisms/activity-day-group.json" />
+
 <template>
   <section class="activity-day-group">
     <h1>
@@ -30,11 +32,11 @@ export default {
       const diff = differenceInDays(new Date(), this.day);
       switch (diff) {
         case 0:
-          return '今日';
+          return this.$t('today');
         case 1:
-          return '昨日';
+          return this.$t('yesterday');
         default:
-          return `${diff}日前`;
+          return `${diff}${this.$t('ago')}`;
       }
     },
     week() {
