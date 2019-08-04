@@ -128,6 +128,7 @@ export default {
   display: flex;
   flex: 1;
   padding-right: 10px;
+  height: 100%;
 }
 .repeat-button {
   height: 100%;
