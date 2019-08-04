@@ -183,7 +183,7 @@ export default {
       if (!this.id) {
         this.$store.dispatch('activities/search', this.description);
       }
-    }, 500),
+    }, 1000),
     showModal() {
       this.$modal.show('project-list');
     },
@@ -296,21 +296,21 @@ export default {
   position: absolute;
   animation-delay: 1s;
   width: 100%;
+  height: 100vh;
+  top: 90px;
   box-sizing: border-box;
   max-width: calc(100vw - #{$side-bar-min-width});
+  background: #00000030;
 }
 .suggest-list {
   animation-duration: 0.2s;
   overflow-y: scroll;
-  margin-top: 90px;
   box-sizing: border-box;
-  background-color: #fffffff5;
-  border: 1px $border solid;
-  padding-top: 15px;
+  background-color: $white;
+  border-top: 1px $border solid;
   overflow: hidden;
-  height: calc(100vh - 90px);
   overflow-y: scroll;
-  box-shadow: 0 3px 5px #00000005 inset;
+  box-shadow: 0 3px 5px #00000015;
   -webkit-overflow-scrolling: touch;
 }
 .suggest-list ul {
@@ -324,12 +324,18 @@ export default {
   list-style-type: none;
   text-align: center;
   align-items: center;
-  box-sizing: border-box;
-  height: 63px;
+  height: 65px;
   padding: 0 50px;
   border-bottom: 1px $grey-f5f5f5 solid;
   &:last-child {
     border-bottom: 0;
+    padding-bottom: 20px;
+  }
+  &:first-child {
+    padding-top: 10px;
+  }
+  &:hover {
+    background-color: $grey-fdfdfd;
   }
 }
 @include mq(small) {
