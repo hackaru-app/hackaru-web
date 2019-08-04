@@ -5,8 +5,7 @@ import {
   startOfDay,
   areRangesOverlapping,
   addMinutes,
-  compareDesc,
-  isSameDay
+  compareDesc
 } from 'date-fns';
 
 export const state = () => ({
@@ -159,20 +158,18 @@ export const getters = {
       [activity]
     ).filter(activity => activity && activity.description);
 
-    // ProjectとDescriptionが同一のものは取り除く
     const distincted = uniqBy(activities, activity =>
       JSON.stringify({
         project: activity.project,
         description: activity.description
       })
     );
-
     return distincted;
   },
-  getByDay: (state, getters) => date => {
+  getByRange: (state, getters) => (start, end) => {
     return getters.all
       .filter(({ stoppedAt }) => stoppedAt)
-      .filter(({ startedAt }) => isSameDay(startedAt, date))
+      .filter(({ startedAt }) => isWithinRange(startedAt, start, end))
       .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },
   getCalendar: (state, getters) => (date, toMin) => {

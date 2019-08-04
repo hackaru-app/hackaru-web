@@ -15,7 +15,7 @@
 
 <script>
 import ActivityItem from '@/components/organisms/activity-item';
-import { differenceInDays, format } from 'date-fns';
+import { differenceInDays, format, startOfDay, endOfDay } from 'date-fns';
 
 export default {
   components: {
@@ -43,7 +43,10 @@ export default {
       return this.$t(`weeks[${format(this.day, 'd')}]`);
     },
     activities() {
-      return this.$store.getters['activities/getByDay'](this.day);
+      return this.$store.getters['activities/getByRange'](
+        startOfDay(this.day),
+        endOfDay(this.day)
+      );
     }
   }
 };
