@@ -2,7 +2,7 @@
 
 <template>
   <section class="pwa-popover">
-    <v-popover :open="opened" class="popover">
+    <v-popover :delay="{ show: 500 }" :open="opened" class="popover">
       <span class="tooltip-target" />
       <template slot="popover">
         <div class="content">
@@ -28,7 +28,7 @@ import BaseButton from '@/components/atoms/base-button';
 export default {
   timers: {
     hide: {
-      time: 15000,
+      time: 10000,
       autostart: true
     }
   },
