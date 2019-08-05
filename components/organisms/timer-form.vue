@@ -126,6 +126,13 @@ export default {
       return workings.length > 0 ? workings[0] : {};
     }
   },
+  watch: {
+    working(newValue, oldValue) {
+      if (newValue.id !== oldValue.id) {
+        this.setWorkingProps();
+      }
+    }
+  },
   async mounted() {
     await this.$store.dispatch('activities/fetchWorkings');
     this.setWorkingProps();
