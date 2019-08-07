@@ -8,12 +8,6 @@ import {
   compareDesc
 } from 'date-fns';
 
-export const state = () => ({
-  searchResults: []
-});
-
-const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS';
-
 export const actions = {
   async search({ dispatch, commit }, q) {
     try {
@@ -25,12 +19,11 @@ export const actions = {
         },
         { root: true }
       );
-      const ids = await dispatch(
+      await dispatch(
         'entities/merge',
         { json: data, schema: [activity] },
         { root: true }
       );
-      commit(SET_SEARCH_RESULTS, ids);
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
@@ -152,19 +145,18 @@ export const getters = {
       .filter(({ stoppedAt }) => !stoppedAt)
       .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },
-  searchResults(state, getters, rootState, rootGetters) {
-    const activities = rootGetters['entities/getEntitiesByIds'](
-      state.searchResults,
-      [activity]
-    ).filter(activity => activity && activity.description);
+  search: (state, getters, rootState, rootGetters) => text => {
+    const matched = getters.all
+      .filter(({ description }) => description)
+      .filter(({ description }) => description.indexOf(text) >= 0)
+      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
 
-    const distincted = uniqBy(activities, activity =>
+    return uniqBy(matched, ({ project, description }) =>
       JSON.stringify({
-        project: activity.project,
-        description: activity.description
+        project: project,
+        description: description
       })
     );
-    return distincted;
   },
   getByRange: (state, getters) => (start, end) => {
     return getters.all
@@ -184,12 +176,6 @@ export const getters = {
         rows[index].push(activity);
       });
     return rows;
-  }
-};
-
-export const mutations = {
-  [SET_SEARCH_RESULTS](state, ids) {
-    state.searchResults = ids;
   }
 };
 

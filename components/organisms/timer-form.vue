@@ -59,15 +59,13 @@
       </div>
       <transition name="fade">
         <div
-          v-if="
-            focused && !id && description !== '' && searchResults.length > 0
-          "
+          v-if="focused && !id && suggests.length > 0"
           class="suggest-list-wrapper"
         >
           <div class="suggest-list">
             <ul>
               <li
-                v-for="activity in searchResults"
+                v-for="activity in suggests"
                 :key="activity.id"
                 class="suggest-item"
                 @click="clickSuggest(activity)"
@@ -124,6 +122,9 @@ export default {
     working() {
       const workings = this.$store.getters['activities/workings'];
       return workings.length > 0 ? workings[0] : {};
+    },
+    suggests() {
+      return this.$store.getters['activities/search'](this.description);
     }
   },
   watch: {
