@@ -26,6 +26,11 @@ import ActivityDayGroup from '@/components/organisms/activity-day-group';
 import Icon from '@/components/atoms/icon';
 import { startOfDay, endOfDay, addDays, format } from 'date-fns';
 
+const weekly = {
+  start: startOfDay(addDays(new Date(), -7)),
+  end: endOfDay(new Date())
+};
+
 export default {
   components: {
     TimerForm,
@@ -46,17 +51,15 @@ export default {
   computed: {
     empty() {
       return (
-        this.$store.getters['activities/getByRange'](
-          startOfDay(addDays(new Date(), -7)),
-          endOfDay(new Date())
-        ).length <= 0
+        this.$store.getters['activities/getByRange'](weekly.start, weekly.end)
+          .length <= 0
       );
     }
   },
   mounted() {
     this.$store.dispatch('activities/fetchByRange', {
-      start: startOfDay(addDays(new Date(), -7)),
-      end: endOfDay(new Date())
+      start: weekly.start,
+      end: weekly.end
     });
   }
 };
