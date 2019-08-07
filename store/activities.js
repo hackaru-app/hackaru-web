@@ -151,7 +151,8 @@ export const getters = {
     const matched = getters.all
       .filter(({ description }) => description)
       .filter(({ description }) => description.indexOf(text) >= 0)
-      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
+      .sort((a, b) => compareDesc(a.startedAt, b.startedAt))
+      .slice(0, 6);
 
     return uniqBy(matched, ({ project, description }) =>
       JSON.stringify({
