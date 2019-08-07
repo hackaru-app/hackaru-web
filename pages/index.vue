@@ -85,9 +85,6 @@ export default {
 }
 @include mq(small) {
   .empty-message {
-    position: absolute;
-    top: 0;
-    align-items: center;
     height: calc(100vh - #{$side-bar-min-height});
   }
 }
