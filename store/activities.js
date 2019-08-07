@@ -146,6 +146,8 @@ export const getters = {
       .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
   },
   search: (state, getters, rootState, rootGetters) => text => {
+    if (text === '') return [];
+
     const matched = getters.all
       .filter(({ description }) => description)
       .filter(({ description }) => description.indexOf(text) >= 0)
