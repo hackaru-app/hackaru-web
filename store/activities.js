@@ -28,21 +28,16 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
     }
   },
-  async fetchWorkings({ dispatch }) {
+  async fetchWorking({ dispatch }) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
-        {
-          url: '/v1/activities',
-          params: {
-            working: true
-          }
-        },
+        { url: '/v1/activities/working' },
         { root: true }
       );
       dispatch(
         'entities/merge',
-        { json: data, schema: [activity] },
+        { json: data, schema: activity },
         { root: true }
       );
     } catch (e) {
@@ -140,10 +135,8 @@ export const getters = {
   all(state, getters, rootState, rootGetters) {
     return rootGetters['entities/getEntities']('activities', [activity]);
   },
-  workings(state, getters) {
-    return getters.all
-      .filter(({ stoppedAt }) => !stoppedAt)
-      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
+  working(state, getters) {
+    return getters.all.find(({ stoppedAt }) => !stoppedAt);
   },
   search: (state, getters, rootState, rootGetters) => text => {
     if (text === '') return [];

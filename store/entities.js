@@ -11,6 +11,7 @@ export const state = () => ({
 
 export const actions = {
   merge({ commit }, { json, schema }) {
+    if (Object.keys(json).length <= 0) return [];
     const { entities, result } = normalize(json, schema);
     commit(MERGE_ENTITIES, entities);
     return result;

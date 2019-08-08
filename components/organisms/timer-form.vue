@@ -117,35 +117,27 @@ export default {
   },
   computed: {
     ...mapGetters({
-      searchResults: 'activities/searchResults'
+      working: 'activities/working'
     }),
-    working() {
-      const workings = this.$store.getters['activities/workings'];
-      return workings.length > 0 ? workings[0] : {};
-    },
     suggests() {
       return this.$store.getters['activities/search'](this.description);
     }
   },
   watch: {
-    working(newValue, oldValue) {
-      if (newValue.id !== oldValue.id) {
-        this.setWorkingProps();
-      }
+    working() {
+      this.setWorkingProps();
     }
   },
   async mounted() {
-    await this.$store.dispatch('activities/fetchWorkings');
-    this.setWorkingProps();
+    await this.$store.dispatch('activities/fetchWorking');
   },
   methods: {
     setWorkingProps() {
-      if (this.working) {
-        this.id = this.working.id;
-        this.startedAt = this.working.startedAt;
-        this.project = this.working.project;
-        this.description = this.working.description;
-      }
+      const props = this.working || {};
+      this.id = props.id;
+      this.startedAt = props.startedAt;
+      this.project = props.project;
+      this.description = props.description;
     },
     selectProject({ project }) {
       this.project = project;
