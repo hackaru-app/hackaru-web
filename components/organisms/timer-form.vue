@@ -57,28 +57,26 @@
           <icon name="square-icon" />
         </base-button>
       </div>
-      <transition name="fade">
-        <div
-          v-if="focused && !id && suggests.length > 0"
-          class="suggest-list-wrapper"
-        >
-          <div class="suggest-list">
-            <ul>
-              <li
-                v-for="activity in suggests"
-                :key="activity.id"
-                class="suggest-item"
-                @click="clickSuggest(activity)"
-              >
-                <project-name
-                  v-bind="activity.project"
-                  :name="activity.description"
-                />
-              </li>
-            </ul>
-          </div>
+      <div
+        v-if="focused && !id && suggests.length > 0"
+        class="suggest-list-wrapper"
+      >
+        <div class="suggest-list">
+          <ul>
+            <li
+              v-for="activity in suggests"
+              :key="activity.id"
+              class="suggest-item"
+              @click="clickSuggest(activity)"
+            >
+              <project-name
+                v-bind="activity.project"
+                :name="activity.description"
+              />
+            </li>
+          </ul>
         </div>
-      </transition>
+      </div>
     </form>
   </section>
 </template>
@@ -304,7 +302,6 @@ export default {
   background-color: #00000030;
 }
 .suggest-list {
-  animation-duration: 0.2s;
   overflow-y: scroll;
   box-sizing: border-box;
   background-color: $white;
