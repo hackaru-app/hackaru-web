@@ -21,7 +21,7 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call workings', () => {
+  describe('when call working', () => {
     const mockGetters = {
       all: [
         { id: 1, stoppedAt: '2019-01-01T01:23:45' },
@@ -30,51 +30,52 @@ describe('Getters', () => {
     };
 
     beforeEach(() => {
-      result = getters.workings({}, mockGetters, {}, {});
+      result = getters.working({}, mockGetters, {}, {});
     });
 
-    it('returns unstopped activites', () => {
-      expect(result.length).toBe(1);
+    it('returns unstopped activity', () => {
+      expect(result.id).toBe(2);
     });
   });
 
-  describe('when call weekly', () => {
+  describe('when call getByRange', () => {
     const mockGetters = {
       all: [
         {
           id: 1,
-          startedAt: '2019-01-31T00:00:00',
-          stoppedAt: '2019-01-31T01:00:00',
+          startedAt: '2019-01-01T00:00:00',
+          stoppedAt: '2019-01-01T01:00:00',
           duration: 3600
         },
         {
           id: 2,
-          startedAt: '2019-01-24T00:00:00',
-          stoppedAt: '2019-01-24T01:00:00',
+          startedAt: '2019-01-02T00:00:00',
+          stoppedAt: '2019-01-02T01:00:00',
           duration: 3600
         },
         {
           id: 3,
-          startedAt: '2019-01-31T00:00:00',
-          stoppedAt: undefined,
-          duration: 3600
+          startedAt: '2019-01-03T00:00:00',
+          stoppedAt: '2019-01-04T00:00:00',
+          duration: 86400
         }
       ]
     };
 
     beforeEach(() => {
-      result = getters.weekly({}, mockGetters, {}, {});
+      result = getters.getByRange({}, mockGetters, {}, {})(
+        parse('2019-01-02T00:00:00'),
+        parse('2019-01-03T00:00:00')
+      );
     });
 
-    it('returns correctly', () => {
-      expect(result).toEqual([
-        {
-          id: 1,
-          startedAt: '2019-01-31T00:00:00',
-          stoppedAt: '2019-01-31T01:00:00',
-          duration: 3600
-        }
-      ]);
+    it('returns activities in range', () => {
+      expect(result.length).toBe(2);
+    });
+
+    it('returns activities in descending order of startedAt', () => {
+      expect(result[0].id).toBe(3);
+      expect(result[1].id).toBe(2);
     });
   });
 
