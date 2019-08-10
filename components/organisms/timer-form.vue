@@ -393,12 +393,16 @@ export default {
     box-shadow: 0 3px 3px #00000005;
   }
   .control-button {
-    display: flex;
-    flex-shrink: 0;
-    border-radius: 0;
-    width: 61px;
-    height: 100%;
-    margin-right: 0;
+    width: 48px;
+    height: 48px;
+    margin-right: 16px;
+  }
+  .control-button.start .icon {
+    padding-left: 3px;
+  }
+  .control-button .icon {
+    width: 20px;
+    height: 20px;
   }
   .description {
     margin: 0;
@@ -408,10 +412,6 @@ export default {
   .form .duration {
     margin-right: 25px;
     display: none;
-  }
-  .control-button .icon {
-    width: 22px;
-    height: 22px;
   }
   .suggest-list-wrapper {
     position: absolute;
