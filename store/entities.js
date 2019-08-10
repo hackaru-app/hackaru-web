@@ -34,9 +34,6 @@ export const mutations = {
 };
 
 export const getters = {
-  getEntitiesByIds: state => (ids, schema) => {
-    return denormalize(ids, schema, state.data);
-  },
   getEntities: state => (name, schema) => {
     const ids = Object.keys(state.data[name] || {});
     return denormalize(ids, schema, state.data);
