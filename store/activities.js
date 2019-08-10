@@ -139,7 +139,7 @@ export const getters = {
     return getters.all.find(({ stoppedAt }) => !stoppedAt);
   },
   search: (state, getters, rootState, rootGetters) => text => {
-    if (text === '') return [];
+    if (!text) return [];
 
     const matched = getters.all
       .filter(({ description }) => description)
