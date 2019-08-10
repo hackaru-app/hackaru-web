@@ -11,8 +11,8 @@
         <icon name="trash-icon" />
       </div>
     </template>
-    <section class="activity">
-      <div class="content" @click="showModal">
+    <section class="activity" @click="showModal">
+      <div class="content">
         <project-name
           v-bind="project"
           :name="description || (project ? project.name : undefined)"
@@ -27,7 +27,7 @@
       <base-button
         v-tooltip="$t('duplicate')"
         class="duplicate-button"
-        @click="duplicateActivity"
+        @click.stop="duplicateActivity"
       >
         <icon name="repeat-icon" class="is-midium" />
       </base-button>
