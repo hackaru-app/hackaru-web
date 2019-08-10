@@ -211,6 +211,14 @@ describe('TimerForm', () => {
     it('hide suggest-list', () => {
       expect(wrapper.find('.suggest-list-wrapper').exists()).toBe(false);
     });
+  });
+
+  describe('when change description and timer is not working', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.find('.description').setValue('Review my tasks');
+      wrapper.find('.description').trigger('change');
+    });
 
     it('does not dispatch activities/update', () => {
       expect($store.dispatch).not.toHaveBeenCalledWith(
@@ -220,7 +228,7 @@ describe('TimerForm', () => {
     });
   });
 
-  describe('when blur description and timer is working', () => {
+  describe('when change description and timer is working', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ id: 1 });
@@ -231,9 +239,8 @@ describe('TimerForm', () => {
           color: '#ff0'
         }
       });
-      wrapper.find('.description').trigger('focus');
       wrapper.find('.description').setValue('Review my tasks');
-      wrapper.find('.description').trigger('blur');
+      wrapper.find('.description').trigger('change');
     });
 
     it('dispatch activities/update', () => {

@@ -32,6 +32,7 @@
           @focus="focus"
           @blur="blur"
           @input="input"
+          @change="change"
           @keypress.enter.prevent="enterDescription"
         />
         <transition name="fade">
@@ -96,6 +97,7 @@ import { mapGetters } from 'vuex';
 import debounce from 'lodash.debounce';
 
 function getRandI18n(t) {
+  if (!t) return;
   const max = Object.values(t).length;
   return t[Math.floor(Math.random() * max)];
 }
@@ -201,9 +203,9 @@ export default {
     },
     blur() {
       this.focused = false;
-      if (this.id) {
-        this.updateActivity();
-      }
+    },
+    change() {
+      if (this.id) this.updateActivity();
     },
     clickSuggest(activity) {
       this.description = activity.description;
