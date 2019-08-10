@@ -251,6 +251,7 @@ export default {
 .form .duration {
   font-size: 18px;
   align-self: center;
+  line-height: 1;
   margin-right: 30px;
   font-family: $font-family-duration;
 }
