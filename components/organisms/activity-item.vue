@@ -134,7 +134,7 @@ export default {
   justify-content: space-between;
   display: flex;
   flex: 1;
-  padding-right: 10px;
+  padding-right: 20px;
   height: 100%;
 }
 .duplicate-button {
