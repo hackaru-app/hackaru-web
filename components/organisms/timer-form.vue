@@ -95,6 +95,11 @@ import Dot from '@/components/atoms/dot';
 import { mapGetters } from 'vuex';
 import debounce from 'lodash.debounce';
 
+function getRandI18n(t) {
+  const max = Object.values(t).length;
+  return t[Math.floor(Math.random() * max)];
+}
+
 export default {
   components: {
     Dot,
@@ -161,7 +166,7 @@ export default {
       }
     },
     async stopActivity() {
-      this.$store.dispatch('toast/success', this.$t('stopped'));
+      this.$store.dispatch('toast/success', getRandI18n(this.$t('stopped')));
       await this.$store.dispatch('activities/update', {
         id: this.id,
         stoppedAt: `${new Date()}`
