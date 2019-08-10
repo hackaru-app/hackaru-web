@@ -12,6 +12,7 @@
         v-else
         :key="ago"
         :day="`${addDays(new Date(), -(ago - 1))}`"
+        :first="ago === 1"
         class="day"
       />
     </div>
