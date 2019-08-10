@@ -1,10 +1,10 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import BigTimer from '@/components/organisms/big-timer';
+import TimerForm from '@/components/organisms/timer-form';
 import Tooltip from '@/plugins/v-tooltip';
 
-describe('BigTimer', () => {
+describe('TimerForm', () => {
   let wrapper;
 
   MockDate.set('2019-01-31T01:23:45');
@@ -16,8 +16,8 @@ describe('BigTimer', () => {
   const $store = new Store({
     localVue,
     getters: {
-      'activities/workings': [],
-      'activities/searchResults': [
+      'activities/working': [],
+      'activities/search': () => [
         {
           project: {
             id: 2,
@@ -31,7 +31,7 @@ describe('BigTimer', () => {
   });
 
   const factory = () =>
-    shallowMount(BigTimer, {
+    shallowMount(TimerForm, {
       mocks: {
         $store,
         $modal
@@ -42,9 +42,9 @@ describe('BigTimer', () => {
     $store.reset();
   });
 
-  it('dispatch activities/fetchWorkings', () => {
+  it('dispatch activities/fetchWorking', () => {
     factory();
-    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorkings');
+    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorking');
   });
 
   describe('when click project-select', () => {
