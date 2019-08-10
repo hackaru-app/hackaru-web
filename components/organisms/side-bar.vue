@@ -73,8 +73,8 @@ export default {
   height: 100vh;
   box-sizing: border-box;
   background-color: $background-dark;
+  z-index: index($z, side-bar);
   padding-left: env(safe-area-inset-left);
-  z-index: 9;
   /deep/ + * {
     margin-left: $side-bar-min-width;
   }
@@ -145,7 +145,6 @@ li:first-child a {
     align-items: center;
     width: 100%;
     border: 0;
-    z-index: index($z, side-bar);
     padding: 0 32px;
     padding-top: env(safe-area-inset-top);
     height: auto;

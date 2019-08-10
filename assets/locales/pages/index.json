@@ -1,8 +1,8 @@
 {
   "en": {
-    "empty": "There is no activity this week. Let's start the timer!"
+    "empty": "Welcome. There is no activity this week. Let's start the timer!"
   },
   "ja": {
-    "empty": "過去一週間の計測はまだありません。計測を始めましょう！"
+    "empty": "ようこそ。過去一週間の計測はまだありません。計測を始めましょう！"
   }
 }
