@@ -196,6 +196,9 @@ export default {
     },
     blur() {
       this.focused = false;
+      if (this.id) {
+        this.updateActivity();
+      }
     },
     clickSuggest(activity) {
       this.description = activity.description;
