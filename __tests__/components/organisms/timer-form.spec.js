@@ -70,7 +70,7 @@ describe('TimerForm', () => {
       });
     });
 
-    it('does not dispatch', () => {
+    it('does not dispatch activities/update', () => {
       expect($store.dispatch).not.toHaveBeenCalledWith(
         'activities/update',
         expect.any(Object)
@@ -201,7 +201,7 @@ describe('TimerForm', () => {
     });
   });
 
-  describe('when blur description', () => {
+  describe('when blur description and timer is not working', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.find('.description').trigger('focus');
@@ -210,6 +210,38 @@ describe('TimerForm', () => {
 
     it('hide suggest-list', () => {
       expect(wrapper.find('.suggest-list-wrapper').exists()).toBe(false);
+    });
+
+    it('does not dispatch activities/update', () => {
+      expect($store.dispatch).not.toHaveBeenCalledWith(
+        'activities/update',
+        expect.any(Object)
+      );
+    });
+  });
+
+  describe('when blur description and timer is working', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setData({ id: 1 });
+      wrapper.find('.nav-modal').vm.$emit('close', {
+        project: {
+          id: 2,
+          name: 'Review',
+          color: '#ff0'
+        }
+      });
+      wrapper.find('.description').trigger('focus');
+      wrapper.find('.description').setValue('Review my tasks');
+      wrapper.find('.description').trigger('blur');
+    });
+
+    it('dispatch activities/update', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        projectId: 2,
+        description: 'Review my tasks'
+      });
     });
   });
 
