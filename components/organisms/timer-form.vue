@@ -385,7 +385,7 @@ export default {
     display: flex;
     flex-shrink: 0;
     border-radius: 0;
-    width: 60px;
+    width: 61px;
     height: 100%;
     margin-right: 0;
   }
