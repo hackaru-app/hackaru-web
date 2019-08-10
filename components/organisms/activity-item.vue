@@ -92,7 +92,10 @@ export default {
       });
     },
     deleteActivity() {
-      if (!window.confirm(this.$t('confirms.delete'))) return;
+      if (!window.confirm(this.$t('confirms.delete'))) {
+        this.$refs.swipeMenu.reset();
+        return;
+      }
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$ga.event('activity', 'deleteActivity');
