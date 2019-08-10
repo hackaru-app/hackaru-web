@@ -145,7 +145,7 @@ export default {
   flex: 1;
   text-align: right;
   align-self: flex-end;
-  color: $text-lighter;
+  color: $text-light;
   font-family: $font-family-duration;
 }
 @include mq(small) {
