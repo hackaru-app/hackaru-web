@@ -121,7 +121,7 @@ export default {
   height: 68px;
   display: flex;
   align-items: center;
-  padding: 0 50px;
+  padding: 0 45px;
   padding-right: 40px;
 }
 .duration {

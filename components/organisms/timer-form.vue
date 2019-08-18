@@ -286,7 +286,7 @@ export default {
   display: flex;
   height: 100%;
   max-width: 120px;
-  padding: 0 50px;
+  padding: 0 45px;
   align-items: center;
 }
 .description {
