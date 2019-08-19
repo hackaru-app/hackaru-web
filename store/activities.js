@@ -9,7 +9,7 @@ import {
 } from 'date-fns';
 
 export const actions = {
-  async search({ dispatch, commit }, q) {
+  async search({ dispatch }, q) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
