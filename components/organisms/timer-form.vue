@@ -127,7 +127,7 @@ export default {
       working: 'activities/working'
     }),
     suggests() {
-      return this.$store.getters['activities/search'](this.description);
+      return this.$store.getters['suggestions/all'];
     }
   },
   watch: {
@@ -188,7 +188,7 @@ export default {
     },
     search: debounce(function() {
       if (!this.id) {
-        this.$store.dispatch('activities/search', this.description);
+        this.$store.dispatch('suggestions/fetch', this.description);
       }
     }, 1000),
     showModal() {
