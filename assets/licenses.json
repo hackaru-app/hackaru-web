@@ -59,6 +59,12 @@
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
         "parents": "Hackaru"
     },
+    "lodash.groupby": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lodash/lodash",
+        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "Hackaru"
+    },
     "lodash.merge": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",

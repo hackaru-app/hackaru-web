@@ -4,15 +4,16 @@
   <section class="index">
     <timer-form class="timer-form" />
     <div class="content">
-      <p v-if="empty" class="empty-message">
+      <p v-if="weekly.length <= 0" class="empty-message">
         {{ $t('empty') }}
       </p>
       <activity-day-group
-        v-for="ago in 7"
+        v-for="(activities, day, index) in weekly"
         v-else
-        :key="ago"
-        :day="`${addDays(new Date(), -(ago - 1))}`"
-        :first="ago === 1"
+        :key="day"
+        :day="day"
+        :activities="activities"
+        :first="index === 0"
         class="day"
       />
     </div>
@@ -26,6 +27,7 @@ import BaseButton from '@/components/atoms/base-button';
 import ActivityDayGroup from '@/components/organisms/activity-day-group';
 import Icon from '@/components/atoms/icon';
 import { startOfDay, endOfDay, addDays, format } from 'date-fns';
+import { mapGetters } from 'vuex';
 
 const weekly = {
   start: startOfDay(addDays(new Date(), -7)),
@@ -50,12 +52,9 @@ export default {
     title: 'Timer'
   },
   computed: {
-    empty() {
-      return (
-        this.$store.getters['activities/getByRange'](weekly.start, weekly.end)
-          .length <= 0
-      );
-    }
+    ...mapGetters({
+      weekly: 'activities/weekly'
+    })
   },
   mounted() {
     this.$store.dispatch('activities/fetchByRange', {

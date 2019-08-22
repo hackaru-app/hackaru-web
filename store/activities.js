@@ -1,10 +1,12 @@
 import { activity } from '@/schemas';
+import groupBy from 'lodash.groupby';
 import {
   isWithinRange,
   startOfDay,
   areRangesOverlapping,
   addMinutes,
-  compareDesc
+  compareDesc,
+  isSameWeek
 } from 'date-fns';
 
 export const actions = {
@@ -123,6 +125,13 @@ export const getters = {
       .filter(({ stoppedAt }) => stoppedAt)
       .filter(({ startedAt }) => isWithinRange(startedAt, start, end))
       .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
+  },
+  weekly: (state, getters) => {
+    const weekly = getters.all
+      .filter(({ stoppedAt }) => stoppedAt)
+      .filter(({ startedAt }) => isSameWeek(startedAt, new Date()))
+      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
+    return groupBy(weekly, ({ startedAt }) => startOfDay(startedAt));
   },
   getCalendar: (state, getters) => (date, toMin) => {
     const rows = [];
