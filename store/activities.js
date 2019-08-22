@@ -120,12 +120,6 @@ export const getters = {
   working(state, getters) {
     return getters.all.find(({ stoppedAt }) => !stoppedAt);
   },
-  getByRange: (state, getters) => (start, end) => {
-    return getters.all
-      .filter(({ stoppedAt }) => stoppedAt)
-      .filter(({ startedAt }) => isWithinRange(startedAt, start, end))
-      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
-  },
   weekly: (state, getters) => {
     const weekly = getters.all
       .filter(({ stoppedAt }) => stoppedAt)
