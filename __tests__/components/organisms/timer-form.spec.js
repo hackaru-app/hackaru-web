@@ -2,7 +2,6 @@ import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import TimerForm from '@/components/organisms/timer-form';
-import Tooltip from '@/plugins/v-tooltip';
 
 describe('TimerForm', () => {
   let wrapper;
@@ -10,11 +9,10 @@ describe('TimerForm', () => {
   MockDate.set('2019-01-31T01:23:45');
 
   const localVue = createLocalVue();
-  localVue.directive('tooltip', Tooltip);
+  localVue.directive('tooltip', () => {});
 
   const $modal = { show: jest.fn() };
   const $store = new Store({
-    localVue,
     getters: {
       'activities/working': [],
       'suggestions/all': [
@@ -32,6 +30,7 @@ describe('TimerForm', () => {
 
   const factory = () =>
     shallowMount(TimerForm, {
+      localVue,
       mocks: {
         $store,
         $modal

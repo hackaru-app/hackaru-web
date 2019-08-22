@@ -1,17 +1,15 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import CoachTooltip from '@/components/atoms/coach-tooltip';
-import Tooltip from '@/plugins/v-tooltip';
 
 describe('CoachTooltip', () => {
   let wrapper;
 
   const localVue = createLocalVue();
-  localVue.directive('tooltip', Tooltip);
+  localVue.directive('tooltip', () => {});
 
   const factory = () =>
     shallowMount(CoachTooltip, {
       localVue,
-      stubs: ['v-tooltip'],
       propsData: {
         name: 'example'
       }
