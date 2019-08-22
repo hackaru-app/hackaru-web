@@ -60,20 +60,20 @@
       </div>
       <transition>
         <div
-          v-if="focused && !id && suggests.length > 0"
-          class="suggest-list-wrapper"
+          v-if="focused && !id && suggestions.length > 0"
+          class="suggestion-list-wrapper"
         >
-          <div class="suggest-list">
+          <div class="suggestion-list">
             <ul>
               <li
-                v-for="activity in suggests"
-                :key="activity.id"
-                class="suggest-item"
-                @click="clickSuggest(activity)"
+                v-for="suggestion in suggestions"
+                :key="suggestion.id"
+                class="suggestion"
+                @click="clickSuggestion(suggestion)"
               >
                 <project-name
-                  v-bind="activity.project"
-                  :name="activity.description"
+                  v-bind="suggestion.project"
+                  :name="suggestion.description"
                 />
               </li>
             </ul>
@@ -124,11 +124,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      working: 'activities/working'
-    }),
-    suggests() {
-      return this.$store.getters['suggestions/all'];
-    }
+      working: 'activities/working',
+      suggestions: 'suggestions/all'
+    })
   },
   watch: {
     working() {
@@ -186,17 +184,16 @@ export default {
         this.$store.dispatch('toast/success', this.$t('started'));
       }
     },
-    search: debounce(function() {
-      if (!this.id) {
-        this.$store.dispatch('suggestions/fetch', this.description);
-      }
+    fetchSuggestions: debounce(function() {
+      if (this.id) return;
+      this.$store.dispatch('suggestions/fetch', this.description);
     }, 1000),
     showModal() {
       this.$modal.show('project-list');
     },
     input(e) {
       this.description = e.target.value;
-      this.search();
+      this.fetchSuggestions();
     },
     focus() {
       this.focused = true;
@@ -207,9 +204,9 @@ export default {
     change() {
       if (this.id) this.updateActivity();
     },
-    clickSuggest(activity) {
-      this.description = activity.description;
-      this.project = activity.project;
+    clickSuggestion({ description, project }) {
+      this.description = description;
+      this.project = project;
       this.startActivity();
     }
   }
@@ -304,7 +301,7 @@ export default {
 .dot-only {
   display: none;
 }
-.suggest-list-wrapper {
+.suggestion-list-wrapper {
   position: absolute;
   animation-duration: 100ms;
   width: 100%;
@@ -314,7 +311,7 @@ export default {
   max-width: calc(100vw - #{$side-bar-min-width});
   background-color: #00000030;
 }
-.suggest-list {
+.suggestion-list {
   overflow-y: scroll;
   box-sizing: border-box;
   background-color: $white;
@@ -324,11 +321,11 @@ export default {
   box-shadow: 0 3px 5px #00000015;
   -webkit-overflow-scrolling: touch;
 }
-.suggest-list ul {
+.suggestion-list ul {
   margin: 0;
   padding: 0;
 }
-.suggest-list ul li {
+.suggestion-list ul li {
   display: flex;
   cursor: pointer;
   list-style-position: inside;
@@ -415,7 +412,7 @@ export default {
     margin-right: 25px;
     display: none;
   }
-  .suggest-list-wrapper {
+  .suggestion-list-wrapper {
     position: absolute;
     top: 80px;
     border: 0;
@@ -425,7 +422,7 @@ export default {
     width: 100%;
     background: none;
   }
-  .suggest-list {
+  .suggestion-list {
     border-radius: 0;
     height: 100vh;
     border-top: 0;
@@ -434,10 +431,10 @@ export default {
     max-width: 100vw;
     box-shadow: 0 3px 3px #00000005 inset;
   }
-  .suggest-list ul {
+  .suggestion-list ul {
     min-height: 110vh;
   }
-  .suggest-list ul li {
+  .suggestion-list ul li {
     height: 75px;
     padding: 0 35px;
     border-bottom: 1px $grey-f5f5f5 solid;
