@@ -13,11 +13,7 @@
     </template>
     <section class="activity" @click="showModal">
       <div class="content">
-        <project-name
-          v-bind="project"
-          :name="description || (project ? project.name : undefined)"
-          class="project-name"
-        />
+        <activity-name :project="project" :description="description" />
       </div>
       <ticker
         :started-at="startedAt"
@@ -43,7 +39,7 @@
 <script>
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
-import ProjectName from '@/components/molecules/project-name';
+import ActivityName from '@/components/molecules/activity-name';
 import Ticker from '@/components/atoms/ticker';
 import SwipeMenu from '@/components/molecules/swipe-menu';
 
@@ -52,7 +48,7 @@ export default {
     BaseButton,
     SwipeMenu,
     Icon,
-    ProjectName,
+    ActivityName,
     Ticker
   },
   props: {

@@ -66,15 +66,12 @@
           <div class="suggestion-list">
             <ul>
               <li
-                v-for="suggestion in suggestions"
-                :key="suggestion.id"
+                v-for="(suggestion, index) in suggestions"
+                :key="index"
                 class="suggestion"
                 @click="clickSuggestion(suggestion)"
               >
-                <project-name
-                  v-bind="suggestion.project"
-                  :name="suggestion.description"
-                />
+                <activity-name v-bind="suggestion" />
               </li>
             </ul>
           </div>
@@ -88,6 +85,7 @@
 import NavModal from '@/components/organisms/nav-modal';
 import ProjectList from '@/components/organisms/project-list';
 import ProjectName from '@/components/molecules/project-name';
+import ActivityName from '@/components/molecules/activity-name';
 import CoachTooltip from '@/components/atoms/coach-tooltip';
 import Ticker from '@/components/atoms/ticker';
 import BaseButton from '@/components/atoms/base-button';
@@ -109,6 +107,7 @@ export default {
     Ticker,
     CoachTooltip,
     ProjectName,
+    ActivityName,
     Icon,
     BaseButton
   },
