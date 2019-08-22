@@ -38,44 +38,69 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call getByRange', () => {
+  describe('when call weekly', () => {
     const mockGetters = {
       all: [
         {
           id: 1,
-          startedAt: '2019-01-01T00:00:00',
-          stoppedAt: '2019-01-01T01:00:00',
+          startedAt: '2019-01-31T00:00:00',
+          stoppedAt: '2019-01-31T01:00:00',
           duration: 3600
         },
         {
           id: 2,
-          startedAt: '2019-01-02T00:00:00',
-          stoppedAt: '2019-01-02T01:00:00',
+          startedAt: '2019-02-01T00:00:00',
+          stoppedAt: '2019-02-01T01:00:00',
           duration: 3600
         },
         {
           id: 3,
-          startedAt: '2019-01-03T00:00:00',
-          stoppedAt: '2019-01-04T00:00:00',
-          duration: 86400
+          startedAt: '2019-02-01T03:00:00',
+          stoppedAt: '2019-02-01T04:00:00',
+          duration: 3600
+        },
+        {
+          id: 4,
+          startedAt: '2019-05-01T00:00:00',
+          stoppedAt: '2019-05-01T01:00:00',
+          duration: 3600
         }
       ]
     };
 
     beforeEach(() => {
-      result = getters.getByRange({}, mockGetters, {}, {})(
-        parse('2019-01-02T00:00:00'),
-        parse('2019-01-03T00:00:00')
-      );
+      result = getters.weekly({}, mockGetters, {}, {});
     });
 
-    it('returns activities in range', () => {
-      expect(result.length).toBe(2);
+    it('group by day', () => {
+      expect(result).toEqual({
+        [parse('2019-01-31')]: [
+          {
+            id: 1,
+            startedAt: '2019-01-31T00:00:00',
+            stoppedAt: '2019-01-31T01:00:00',
+            duration: 3600
+          }
+        ],
+        [parse('2019-02-01')]: [
+          {
+            id: 3,
+            startedAt: '2019-02-01T03:00:00',
+            stoppedAt: '2019-02-01T04:00:00',
+            duration: 3600
+          },
+          {
+            id: 2,
+            startedAt: '2019-02-01T00:00:00',
+            stoppedAt: '2019-02-01T01:00:00',
+            duration: 3600
+          }
+        ]
+      });
     });
 
-    it('returns activities in descending order of startedAt', () => {
-      expect(result[0].id).toBe(3);
-      expect(result[1].id).toBe(2);
+    it('does not contains out of range', () => {
+      expect(result[parse('2019-05-01')]).toBeUndefined();
     });
   });
 
