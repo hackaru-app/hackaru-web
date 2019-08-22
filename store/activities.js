@@ -1,5 +1,4 @@
 import { activity } from '@/schemas';
-import uniqBy from 'lodash.uniqby';
 import {
   isWithinRange,
   startOfDay,
@@ -9,25 +8,6 @@ import {
 } from 'date-fns';
 
 export const actions = {
-  async search({ dispatch }, q) {
-    try {
-      const { data } = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/search',
-          params: { q }
-        },
-        { root: true }
-      );
-      await dispatch(
-        'entities/merge',
-        { json: data, schema: [activity] },
-        { root: true }
-      );
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-    }
-  },
   async fetchWorking({ dispatch }) {
     try {
       const { data } = await dispatch(
@@ -137,22 +117,6 @@ export const getters = {
   },
   working(state, getters) {
     return getters.all.find(({ stoppedAt }) => !stoppedAt);
-  },
-  search: (state, getters, rootState, rootGetters) => text => {
-    if (!text) return [];
-
-    const matched = getters.all
-      .filter(({ description }) => description)
-      .filter(({ description }) => description.indexOf(text) >= 0)
-      .sort((a, b) => compareDesc(a.startedAt, b.startedAt))
-      .slice(0, 6);
-
-    return uniqBy(matched, ({ project, description }) =>
-      JSON.stringify({
-        project: project,
-        description: description
-      })
-    );
   },
   getByRange: (state, getters) => (start, end) => {
     return getters.all

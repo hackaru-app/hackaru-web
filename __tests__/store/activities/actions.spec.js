@@ -3,36 +3,6 @@ import { activity } from '@/schemas';
 import { parse } from 'date-fns';
 
 describe('Actions', () => {
-  describe('when dispatch search', () => {
-    const dispatch = jest.fn(() => ({ data: {} }));
-
-    beforeEach(() => {
-      actions.search({ dispatch }, 'query');
-    });
-
-    it('dispatch auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/search',
-          params: { q: 'query' }
-        },
-        { root: true }
-      );
-    });
-
-    it('dispatch entities/merge', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'entities/merge',
-        {
-          json: {},
-          schema: [activity]
-        },
-        { root: true }
-      );
-    });
-  });
-
   describe('when dispatch fetchWorking', () => {
     const dispatch = jest.fn(() => ({ data: {} }));
 
