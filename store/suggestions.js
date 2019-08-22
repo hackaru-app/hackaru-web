@@ -11,7 +11,10 @@ export const actions = {
         'auth-api/request',
         {
           url: '/v1/suggestions',
-          params: { q }
+          params: {
+            q,
+            limit: 6
+          }
         },
         { root: true }
       );

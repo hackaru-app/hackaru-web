@@ -14,7 +14,10 @@ describe('Actions', () => {
         'auth-api/request',
         {
           url: '/v1/suggestions',
-          params: { q: 'query' }
+          params: {
+            q: 'query',
+            limit: 6
+          }
         },
         { root: true }
       );
