@@ -334,7 +334,7 @@ export default {
   text-align: center;
   align-items: center;
   height: 65px;
-  padding: 0 50px;
+  padding: 0 45px;
   border-bottom: 1px $grey-f5f5f5 solid;
   &:last-child {
     border-bottom: 0;
