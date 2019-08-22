@@ -25,6 +25,7 @@ export default {
   display: flex;
   flex-direction: column;
   background: $background;
+  width: 100%;
   min-height: 100vh;
 }
 .content {
