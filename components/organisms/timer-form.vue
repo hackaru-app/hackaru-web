@@ -197,6 +197,7 @@ export default {
     },
     focus() {
       this.focused = true;
+      this.fetchSuggestions();
     },
     blur() {
       this.focused = false;
