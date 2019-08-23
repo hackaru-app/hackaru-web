@@ -39,7 +39,7 @@ export default {
       links: [
         {
           path: 'index',
-          icon: 'home-icon'
+          icon: 'clock-icon'
         },
         {
           path: 'calendar',
@@ -73,8 +73,8 @@ export default {
   height: 100vh;
   box-sizing: border-box;
   background-color: $background-dark;
+  z-index: index($z, side-bar);
   padding-left: env(safe-area-inset-left);
-  z-index: 9;
   /deep/ + * {
     margin-left: $side-bar-min-width;
   }
@@ -110,8 +110,7 @@ ul {
   padding: 0;
   margin: 0;
 }
-li a,
-li button {
+li a {
   cursor: pointer;
   transition: all 0.1s ease;
   display: flex;
@@ -120,21 +119,19 @@ li button {
   box-sizing: border-box;
   border: 0;
   border-left: 2px #00000000 solid;
-  padding: 11px 0;
-  margin: 5px 0;
+  padding: 16px 0;
   padding-right: 4px;
   text-decoration: none;
   background-color: none;
   .icon {
     color: $grey-f5f5f5;
   }
-  &:hover {
-    background-color: darken($background-dark, 5%);
-    border-left-color: $red;
-  }
-  &:active {
-    transform: scale(0.95);
-  }
+}
+li a:hover {
+  background-color: darken($background-dark, 5%);
+}
+li.selected a {
+  border-left-color: $red;
 }
 li:first-child a {
   margin-top: 0;
@@ -148,8 +145,7 @@ li:first-child a {
     align-items: center;
     width: 100%;
     border: 0;
-    z-index: index($z, side-bar);
-    padding: 0 30px;
+    padding: 0 32px;
     padding-top: env(safe-area-inset-top);
     height: auto;
     box-sizing: border-box;
@@ -173,7 +169,7 @@ li:first-child a {
     display: flex;
     margin: 0;
     flex-direction: row;
-    margin-right: -5px;
+    margin-right: -15px;
   }
   li a,
   li button {

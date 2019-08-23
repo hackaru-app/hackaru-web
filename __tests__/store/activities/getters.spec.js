@@ -21,7 +21,7 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call workings', () => {
+  describe('when call working', () => {
     const mockGetters = {
       all: [
         { id: 1, stoppedAt: '2019-01-01T01:23:45' },
@@ -30,11 +30,11 @@ describe('Getters', () => {
     };
 
     beforeEach(() => {
-      result = getters.workings({}, mockGetters, {}, {});
+      result = getters.working({}, mockGetters, {}, {});
     });
 
-    it('returns unstopped activites', () => {
-      expect(result.length).toBe(1);
+    it('returns unstopped activity', () => {
+      expect(result.id).toBe(2);
     });
   });
 
@@ -49,14 +49,20 @@ describe('Getters', () => {
         },
         {
           id: 2,
-          startedAt: '2019-01-24T00:00:00',
-          stoppedAt: '2019-01-24T01:00:00',
+          startedAt: '2019-02-01T00:00:00',
+          stoppedAt: '2019-02-01T01:00:00',
           duration: 3600
         },
         {
           id: 3,
-          startedAt: '2019-01-31T00:00:00',
-          stoppedAt: undefined,
+          startedAt: '2019-02-01T03:00:00',
+          stoppedAt: '2019-02-01T04:00:00',
+          duration: 3600
+        },
+        {
+          id: 4,
+          startedAt: '2019-05-01T00:00:00',
+          stoppedAt: '2019-05-01T01:00:00',
           duration: 3600
         }
       ]
@@ -66,15 +72,35 @@ describe('Getters', () => {
       result = getters.weekly({}, mockGetters, {}, {});
     });
 
-    it('returns correctly', () => {
-      expect(result).toEqual([
-        {
-          id: 1,
-          startedAt: '2019-01-31T00:00:00',
-          stoppedAt: '2019-01-31T01:00:00',
-          duration: 3600
-        }
-      ]);
+    it('group by day', () => {
+      expect(result).toEqual({
+        [parse('2019-01-31')]: [
+          {
+            id: 1,
+            startedAt: '2019-01-31T00:00:00',
+            stoppedAt: '2019-01-31T01:00:00',
+            duration: 3600
+          }
+        ],
+        [parse('2019-02-01')]: [
+          {
+            id: 3,
+            startedAt: '2019-02-01T03:00:00',
+            stoppedAt: '2019-02-01T04:00:00',
+            duration: 3600
+          },
+          {
+            id: 2,
+            startedAt: '2019-02-01T00:00:00',
+            stoppedAt: '2019-02-01T01:00:00',
+            duration: 3600
+          }
+        ]
+      });
+    });
+
+    it('does not contains out of range', () => {
+      expect(result[parse('2019-05-01')]).toBeUndefined();
     });
   });
 

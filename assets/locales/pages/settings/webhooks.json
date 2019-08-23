@@ -1,6 +1,6 @@
 {
   "en": {
-    "modalTitle": "Add Webhook",
+    "modalTitle": "Add webhook",
     "title": "Webhooks",
     "event": "When",
     "targetUrl": "Send to",
@@ -19,7 +19,7 @@
     },
     "added": "Webhook created",
     "deleted": "Webhook deleted",
-    "empty": "No Webhooks."
+    "empty": "No webhooks."
   },
   "ja": {
     "modalTitle": "Webhookを追加",

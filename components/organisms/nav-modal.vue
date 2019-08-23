@@ -15,9 +15,10 @@
           ref="current"
           :is="current"
           :params="params"
+          :pop-enabled="stack.length > 0"
           class="current"
           @push="push"
-          @pop="pop"
+          @pop="popOrClose"
         />
       </keep-alive>
     </transition>
@@ -46,7 +47,7 @@ export default {
     },
     keepAlives: {
       type: Array,
-      required: true
+      default: () => []
     }
   },
   data() {
@@ -56,17 +57,20 @@ export default {
         leave: ''
       },
       params: {},
-      current: undefined
+      current: undefined,
+      stack: []
     };
   },
   methods: {
     beforeOpen({ params = {} }) {
       this.current = this.initialComponent;
+      this.stack = [];
       this.params = params;
       this.animation.enter = '';
       this.animation.leave = '';
     },
     push({ component, params = {} }) {
+      this.stack.push(this.current);
       this.animation.enter = 'fadeInRight';
       this.animation.leave = 'fadeOutLeft';
       this.current = component;
@@ -77,6 +81,18 @@ export default {
       this.animation.leave = 'fadeOutRight';
       this.current = component;
       this.params = params;
+    },
+    popOrClose(params = {}) {
+      const prev = this.stack.pop();
+      if (prev) {
+        this.pop({
+          component: prev,
+          params
+        });
+      } else {
+        this.$emit('close', params);
+        this.$modal.hide(this.name);
+      }
     }
   }
 };

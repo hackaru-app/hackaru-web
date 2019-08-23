@@ -99,14 +99,12 @@ describe('NavModal', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ current: initialComponent });
-      wrapper.find('.current').vm.$emit('pop', {
-        component: nextComponent,
-        params: { foo: 'bar' }
-      });
+      wrapper.find('.current').vm.$emit('push', { component: nextComponent });
+      wrapper.find('.current').vm.$emit('pop', { foo: 'bar' });
     });
 
-    it('set current component', () => {
-      expect(wrapper.find('.current').is(nextComponent)).toBe(true);
+    it('move to previous component', () => {
+      expect(wrapper.find('.current').is(initialComponent)).toBe(true);
     });
 
     it('set animations', () => {
@@ -127,9 +125,8 @@ describe('NavModal', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ current: initialComponent });
-      wrapper.find('.current').vm.$emit('pop', {
-        component: nextComponent
-      });
+      wrapper.find('.current').vm.$emit('push', { component: nextComponent });
+      wrapper.find('.current').vm.$emit('pop');
     });
 
     it('reset params', () => {

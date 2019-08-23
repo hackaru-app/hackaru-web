@@ -7,22 +7,22 @@
 <style scoped lang="scss">
 .base-button {
   cursor: pointer;
-  transition: all 0.2s ease;
   padding: 0 15px;
-  height: 41px;
+  height: 42px;
   justify-content: center;
   align-items: center;
   display: flex;
-  line-height: 1.5em;
+  line-height: 1;
   border-radius: 3px;
   background: none;
   border: 0;
-  &:active {
-    transform: scale(0.9);
-  }
 }
 .base-button.is-primary {
   background-color: $cyan;
+  color: #fff;
+}
+.base-button.is-danger {
+  background-color: $red;
   color: #fff;
 }
 .base-button.is-circle {

@@ -89,7 +89,7 @@ export default {
     },
     minHeight: {
       type: Number,
-      default: 20
+      default: 30
     },
     project: {
       type: Object,
@@ -111,7 +111,9 @@ export default {
   },
   computed: {
     title() {
-      return this.project ? this.project.name : 'No Project';
+      return (
+        this.description || (this.project ? this.project.name : 'No Project')
+      );
     },
     color() {
       return this.project ? this.project.color : '#cccfd9';
@@ -228,6 +230,7 @@ export default {
   overflow: hidden;
   pointer-events: auto;
   transition: box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 3px 3px #00000008;
   &:hover,
   &:active {
     opacity: 0.8;

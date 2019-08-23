@@ -1,14 +1,5 @@
 <template>
-  <div
-    v-tooltip="{
-      trigger: 'manual',
-      content: content,
-      show: opened,
-      offset: offset,
-      placement: placement
-    }"
-    @click="hide"
-  >
+  <div v-tooltip="params" @click="hide">
     <slot />
   </div>
 </template>
@@ -41,15 +32,26 @@ export default {
   },
   data() {
     return {
-      opened: false
+      show: false
     };
   },
+  computed: {
+    params() {
+      return {
+        trigger: 'manual',
+        content: this.content,
+        show: this.show,
+        offset: this.offset,
+        placement: this.placement
+      };
+    }
+  },
   mounted() {
-    this.opened = !localStorage.getItem(`coach-tooltip/${this.name}`);
+    this.show = !localStorage.getItem(`coach-tooltip/${this.name}`);
   },
   methods: {
     hide() {
-      this.opened = false;
+      this.show = false;
       localStorage.setItem(`coach-tooltip/${this.name}`, true);
     }
   }

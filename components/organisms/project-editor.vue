@@ -3,9 +3,12 @@
 <template>
   <section>
     <modal-header>
-      <base-button type="button" class="has-icon" @click="pop">
-        <icon name="chevron-left-icon" class="is-large" />
-      </base-button>
+      <template slot="left">
+        <base-button type="button" class="has-icon" @click="pop">
+          <icon name="chevron-left-icon" class="is-large" />
+        </base-button>
+      </template>
+
       <h1>{{ $t(`titles.${id ? 'update' : 'add'}`) }}</h1>
     </modal-header>
 
@@ -49,7 +52,6 @@ import ModalFooter from '@/components/molecules/modal-footer';
 import Icon from '@/components/atoms/icon';
 import ColorSelect from '@/components/molecules/color-select';
 import BaseButton from '@/components/atoms/base-button';
-import ProjectList from '@/components/organisms/project-list';
 
 export default {
   components: {
@@ -91,7 +93,7 @@ export default {
         color: this.color
       });
       if (success) {
-        this.pop();
+        this.$emit('pop');
         this.$ga.event('project', 'addProject');
         this.$store.dispatch('toast/success', this.$t('added'));
       }
@@ -103,7 +105,7 @@ export default {
         color: this.color
       });
       if (success) {
-        this.pop();
+        this.$emit('pop');
         this.$ga.event('project', 'updateProject');
         this.$store.dispatch('toast/success', this.$t('updated'));
       }
@@ -112,13 +114,13 @@ export default {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       const success = await this.$store.dispatch('projects/delete', this.id);
       if (success) {
-        this.pop();
+        this.$emit('pop');
         this.$ga.event('project', 'deleteProject');
         this.$store.dispatch('toast/success', this.$t('deleted'));
       }
     },
     pop() {
-      this.$emit('pop', { component: ProjectList });
+      this.$emit('pop');
     }
   }
 };

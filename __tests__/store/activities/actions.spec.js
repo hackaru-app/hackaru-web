@@ -3,22 +3,17 @@ import { activity } from '@/schemas';
 import { parse } from 'date-fns';
 
 describe('Actions', () => {
-  describe('when dispatch fetchWorkings', () => {
+  describe('when dispatch fetchWorking', () => {
     const dispatch = jest.fn(() => ({ data: {} }));
 
     beforeEach(() => {
-      actions.fetchWorkings({ dispatch });
+      actions.fetchWorking({ dispatch });
     });
 
     it('dispatch auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
-        {
-          url: '/v1/activities',
-          params: {
-            working: true
-          }
-        },
+        { url: '/v1/activities/working' },
         { root: true }
       );
     });
@@ -28,7 +23,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: [activity]
+          schema: activity
         },
         { root: true }
       );

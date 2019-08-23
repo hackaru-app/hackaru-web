@@ -75,7 +75,7 @@ export default {
     return {
       format,
       ghostTop: 0,
-      ghostHeight: 20,
+      ghostHeight: 30,
       ghostVisibility: false
     };
   },

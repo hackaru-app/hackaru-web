@@ -2,94 +2,93 @@
 
 <template>
   <section class="index">
-    <content-header class="sticky">
-      <heading>Timers</heading>
-      <coach-tooltip
-        :offset="10"
-        :content="$t('startTimer')"
-        name="start-activity"
-        placement="bottom"
-      >
-        <base-button
-          type="button"
-          class="is-primary is-circle add-button"
-          @click="showModal"
-        >
-          <icon name="plus-icon" class="icon" />
-        </base-button>
-      </coach-tooltip>
-    </content-header>
-    <activity
-      v-for="(activity, index) in activities"
-      :key="activity.id"
-      v-bind="activity"
-      :class="{ tutorial: !activity.stoppedAt && index === 0 }"
-    />
-    <p v-if="activities.length <= 0" class="empty-message">
-      {{ $t('empty') }}
-    </p>
+    <timer-form class="timer-form" />
+    <div class="content">
+      <p v-if="weekly.length <= 0" class="empty-message">
+        {{ $t('empty') }}
+      </p>
+      <activity-day-group
+        v-for="(activities, day, index) in weekly"
+        v-else
+        :key="day"
+        :day="day"
+        :activities="activities"
+        :first="index === 0"
+        class="day"
+      />
+    </div>
   </section>
 </template>
 
 <script>
-import Dot from '@/components/atoms/dot';
+import TimerForm from '@/components/organisms/timer-form';
 import ProjectName from '@/components/molecules/project-name';
-import CoachTooltip from '@/components/atoms/coach-tooltip';
-import ContentHeader from '@/components/organisms/content-header';
-import Heading from '@/components/atoms/heading';
 import BaseButton from '@/components/atoms/base-button';
+import ActivityDayGroup from '@/components/organisms/activity-day-group';
 import Icon from '@/components/atoms/icon';
-import Activity from '@/components/organisms/activity';
-import { addDays } from 'date-fns';
+import { startOfDay, endOfDay, addDays, format } from 'date-fns';
+import { mapGetters } from 'vuex';
+
+const weekly = {
+  start: startOfDay(addDays(new Date(), -7)),
+  end: endOfDay(new Date())
+};
 
 export default {
   components: {
-    Dot,
-    CoachTooltip,
-    ContentHeader,
+    TimerForm,
     ProjectName,
-    Heading,
     Icon,
     BaseButton,
-    Activity
-  },
-  head: {
-    title: 'Timers'
+    ActivityDayGroup
   },
   data() {
     return {
-      addDays
+      addDays,
+      format
     };
   },
+  head: {
+    title: 'Timer'
+  },
   computed: {
-    activities() {
-      return [
-        ...this.$store.getters['activities/workings'],
-        ...this.$store.getters['activities/weekly']
-      ];
-    }
+    ...mapGetters({
+      weekly: 'activities/weekly'
+    })
   },
   mounted() {
-    this.$store.dispatch('activities/fetchWorkings');
     this.$store.dispatch('activities/fetchByRange', {
-      start: addDays(new Date(), -7),
-      end: new Date()
+      start: weekly.start,
+      end: weekly.end
     });
-  },
-  methods: {
-    showModal() {
-      this.$modal.show('activity');
-    }
   }
 };
 </script>
 
 <style scoped lang="scss">
-.empty-message {
-  margin-top: 45px;
-  justify-content: center;
+.index {
   display: flex;
+  flex-direction: column;
   width: 100%;
+  align-items: center;
+}
+.timer-form {
+  width: 100%;
+}
+.content {
+  width: 100%;
+  margin-top: 90px;
+}
+.empty-message {
+  display: flex;
+  justify-content: center;
+  margin: 60px 30px;
+  text-align: center;
   color: $text-lighter;
+}
+@include mq(small) {
+  .empty-message {
+    height: calc(100vh - #{$side-bar-min-height});
+  }
 }
 </style>

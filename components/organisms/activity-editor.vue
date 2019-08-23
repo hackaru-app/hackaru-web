@@ -183,7 +183,6 @@ export default {
 <style scoped lang="scss">
 .project-button {
   cursor: pointer;
-  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   border: 0;
@@ -191,9 +190,6 @@ export default {
   height: 40px;
   width: 100%;
   background: none;
-  &:active {
-    transform: scale(0.9);
-  }
 }
 .icons {
   display: flex;

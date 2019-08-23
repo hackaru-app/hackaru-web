@@ -1,12 +1,12 @@
 {
   "en": {
     "modal": {
-      "title": "Delete Your Account",
+      "title": "Delete your account",
       "warning": "Delete your account, activities, and projects. You can't cancel after executed.",
       "delete": "Delete",
       "currentPassword": "Enter your current password"
     },
-    "title": "Delete Account",
+    "title": "Delete account",
     "deleteButton": "Delete",
     "confirms": "Are you sure you want to delete your account?"
   },

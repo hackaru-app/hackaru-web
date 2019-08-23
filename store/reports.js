@@ -61,6 +61,9 @@ export const getters = {
       };
     }, {});
   },
+  empty: state => {
+    return Object.values(state.summary).reduce((acc, cur) => acc + cur, 0) <= 0;
+  },
   barChartLabels: (state, getter) => {
     return {
       hour: [...Array(24).keys()].map(hour => `${hour}:00`),

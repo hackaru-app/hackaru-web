@@ -1,5 +1,5 @@
 // Color
-$grey-333: #3f4961;
+$grey-333: #333C4F;
 $grey-666: #68757d;
 $grey-999: #9aa5ab;
 $grey-ccc: #cdd0d1;
@@ -8,7 +8,8 @@ $grey-f0f0f0: #f0f1f2;
 $grey-f5f5f5: #f5f6f7;
 $grey-fafafa: #fafafc;
 $grey-fdfdfd: #fdfdfd;
-$cyan: #2daec4;
+$cyan: #1aa7ba;
+$green: #7da87b;
 $cyan-dark: darken($cyan, 5%);
 $yellow: #ffd96a;
 $red: #eb4f34;
@@ -22,7 +23,7 @@ $text-lighter: $grey-999;
 // Font
 $font-size: 16px;
 $font-family: system-ui, -apple-system, sans-serif;
-$font-family-duration: 'Arial', sans-serif;
+$font-family-duration: 'Roboto', 'Arial', sans-serif;
 $line-height: 1.5;
 
 // Border
@@ -30,7 +31,7 @@ $border: $grey-f0f0f0;
 
 // background
 $background: $white;
-$background-dark: $grey-333;
+$background-dark: #3f4961;
 
 // Animation
 $animation-duration: .25s;
@@ -42,15 +43,16 @@ $breakpoints: (
 
 // ZIndex
 $z:
-  calendar-dragging-activity,
+  calendar-dragging-activity, // low
   calendar-ruler,
   content-header,
   calendar-day-header,
-  tooltip,
-  pwa-popover,
-  modal,
-  toast,
+  timer-form,
   side-bar,
+  pwa-popover,
+  tooltip,
+  modal,
+  toast, // high
 ;
 
 // Sidebar

@@ -10,14 +10,14 @@
         v-model="password"
         :placeholder="$t('password')"
         type="password"
-        class="password has-underline"
+        class="password has-border"
         required
       />
       <base-input
         v-model="passwordConfirmation"
         :placeholder="$t('passwordConfirmation')"
         type="password"
-        class="password-confirmation has-underline"
+        class="password-confirmation has-border"
         required
       />
       <base-button type="submit" class="button is-rounded is-primary">

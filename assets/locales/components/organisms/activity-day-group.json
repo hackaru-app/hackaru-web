@@ -1,0 +1,30 @@
+{
+  "en": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "ago": " days",
+    "weeks": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  "ja": {
+    "today": "今日",
+    "yesterday": "昨日",
+    "ago": "日前",
+    "weeks": [
+      "日曜日",
+      "月曜日",
+      "火曜日",
+      "水曜日",
+      "木曜日",
+      "金曜日",
+      "土曜日"
+    ]
+  }
+}

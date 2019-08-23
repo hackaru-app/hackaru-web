@@ -3,8 +3,8 @@
     <side-bar :show-menu="false" />
     <div class="content">
       <nuxt />
-      <toast />
     </div>
+    <toast />
   </div>
 </template>
 
@@ -25,6 +25,8 @@ export default {
   display: flex;
   flex-direction: column;
   background: $background;
+  width: 100%;
+  min-height: 100vh;
 }
 .content {
   flex: 1;

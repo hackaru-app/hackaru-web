@@ -10,9 +10,9 @@
 
     <div class="content">
       <div class="doughnut-chart-wrapper">
-        <p v-if="isEmpty" class="doughnut-chart-empty" />
+        <p v-if="empty" class="doughnut-chart-empty" />
         <doughnut-chart
-          v-if="!isEmpty"
+          v-if="!empty"
           :chart-data="doughnutChartData"
           class="doughnut-chart"
         />
@@ -33,6 +33,7 @@
 import ProjectName from '@/components/molecules/project-name';
 import DoughnutChart from '@/components/atoms/doughnut-chart';
 import BarChart from '@/components/atoms/bar-chart';
+import { mapGetters } from 'vuex';
 import { fromS } from 'hh-mm-ss';
 
 export default {
@@ -65,11 +66,9 @@ export default {
     };
   },
   computed: {
-    isEmpty() {
-      return (
-        Object.values(this.summary).reduce((acc, cur) => acc + cur, 0) <= 0
-      );
-    }
+    ...mapGetters({
+      empty: 'reports/empty'
+    })
   }
 };
 </script>
@@ -146,7 +145,7 @@ export default {
   flex: 1;
   text-align: right;
   align-self: flex-end;
-  color: $text-lighter;
+  color: $text-light;
   font-family: $font-family-duration;
 }
 @include mq(small) {

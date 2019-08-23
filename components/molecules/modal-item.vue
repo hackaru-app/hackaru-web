@@ -17,6 +17,9 @@
     min-height: 40px;
     display: flex;
     border: 0;
+    background: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   label {
     min-width: 110px;

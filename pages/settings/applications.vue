@@ -144,13 +144,9 @@ ul {
     height: 100%;
     width: 100%;
     align-items: center;
-    transition: all 0.2s ease;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    &:active {
-      transform: scale(0.97);
-    }
   }
 }
 .empty-message {

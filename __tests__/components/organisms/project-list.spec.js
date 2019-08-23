@@ -1,7 +1,6 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import ProjectList from '@/components/organisms/project-list';
-import ActivityEditor from '@/components/organisms/activity-editor';
 import ProjectEditor from '@/components/organisms/project-editor';
 
 describe('ProjectList', () => {
@@ -36,13 +35,12 @@ describe('ProjectList', () => {
   describe('when click left-arrow-button', () => {
     beforeEach(() => {
       wrapper = factory();
+      wrapper.setProps({ popEnabled: true });
       wrapper.find('.left-arrow-button').vm.$emit('click');
     });
 
     it('emit pop', () => {
-      expect(wrapper.emitted('pop')[0][0]).toEqual({
-        component: ActivityEditor
-      });
+      expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
 
@@ -91,13 +89,10 @@ describe('ProjectList', () => {
 
     it('emit pop', () => {
       expect(wrapper.emitted('pop')[0][0]).toEqual({
-        component: ActivityEditor,
-        params: {
-          project: {
-            id: 2,
-            name: 'Review',
-            color: '#f00'
-          }
+        project: {
+          id: 2,
+          name: 'Review',
+          color: '#f00'
         }
       });
     });

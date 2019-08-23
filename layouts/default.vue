@@ -8,7 +8,7 @@
     />
     <side-bar />
     <login-guard class="content">
-      <nuxt />
+      <nuxt keep-alive />
       <toast />
       <no-ssr>
         <pwa-popover />
@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      activities: 'activities/workings'
+      working: 'activities/working'
     }),
     titleTemplate() {
       return this.duration && `${this.duration}・%s`;
@@ -73,15 +73,9 @@ export default {
   },
   methods: {
     updateDuration() {
-      this.duration =
-        this.activities.length > 0
-          ? fromS(
-              differenceInSeconds(
-                parse(Date.now()),
-                this.activities[0].startedAt
-              )
-            )
-          : undefined;
+      this.duration = this.working
+        ? fromS(differenceInSeconds(parse(Date.now()), this.working.startedAt))
+        : undefined;
     }
   }
 };

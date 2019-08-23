@@ -1,30 +1,25 @@
 import { activity } from '@/schemas';
+import groupBy from 'lodash.groupby';
 import {
   isWithinRange,
   startOfDay,
-  isAfter,
   areRangesOverlapping,
   addMinutes,
   compareDesc,
-  addDays
+  isSameWeek
 } from 'date-fns';
 
 export const actions = {
-  async fetchWorkings({ dispatch }) {
+  async fetchWorking({ dispatch }) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
-        {
-          url: '/v1/activities',
-          params: {
-            working: true
-          }
-        },
+        { url: '/v1/activities/working' },
         { root: true }
       );
       dispatch(
         'entities/merge',
-        { json: data, schema: [activity] },
+        { json: data, schema: activity },
         { root: true }
       );
     } catch (e) {
@@ -122,18 +117,15 @@ export const getters = {
   all(state, getters, rootState, rootGetters) {
     return rootGetters['entities/getEntities']('activities', [activity]);
   },
-  workings(state, getters) {
-    return getters.all
-      .filter(({ stoppedAt }) => !stoppedAt)
-      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
+  working(state, getters) {
+    return getters.all.find(({ stoppedAt }) => !stoppedAt);
   },
   weekly: (state, getters) => {
-    return getters.all
+    const weekly = getters.all
       .filter(({ stoppedAt }) => stoppedAt)
-      .filter(({ startedAt }) =>
-        isAfter(startedAt, startOfDay(addDays(new Date(), -7)))
-      )
+      .filter(({ startedAt }) => isSameWeek(startedAt, new Date()))
       .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
+    return groupBy(weekly, ({ startedAt }) => startOfDay(startedAt));
   },
   getCalendar: (state, getters) => (date, toMin) => {
     const rows = [];

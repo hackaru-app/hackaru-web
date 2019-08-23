@@ -11,8 +11,10 @@ export const state = () => ({
 
 export const actions = {
   merge({ commit }, { json, schema }) {
-    const { entities } = normalize(json, schema);
+    if (Object.keys(json).length <= 0) return [];
+    const { entities, result } = normalize(json, schema);
     commit(MERGE_ENTITIES, entities);
+    return result;
   },
   delete({ commit }, { name, id }) {
     commit(DELETE_ENTITY, { name, id });

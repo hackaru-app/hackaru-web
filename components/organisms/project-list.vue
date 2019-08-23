@@ -3,21 +3,28 @@
 <template>
   <section>
     <modal-header>
-      <base-button
-        class="left-arrow-button has-icon"
-        type="button"
-        @click="pop"
-      >
-        <icon name="chevron-left-icon" class="is-large" />
-      </base-button>
+      <template slot="left">
+        <base-button
+          v-if="popEnabled"
+          class="left-arrow-button has-icon"
+          type="button"
+          @click="pop"
+        >
+          <icon name="chevron-left-icon" class="is-large" />
+        </base-button>
+      </template>
+
       <h1>{{ $t('title') }}</h1>
-      <base-button
-        class="add-button has-icon"
-        type="button"
-        @click="createProject"
-      >
-        <icon name="plus-icon" />
-      </base-button>
+
+      <template slot="right">
+        <base-button
+          class="add-button has-icon"
+          type="button"
+          @click="createProject"
+        >
+          <icon name="plus-icon" />
+        </base-button>
+      </template>
     </modal-header>
 
     <div v-for="project in projects" :key="project.id" class="item">
@@ -42,7 +49,6 @@ import ModalHeader from '@/components/molecules/modal-header';
 import ProjectName from '@/components/molecules/project-name';
 import Icon from '@/components/atoms/icon';
 import BaseButton from '@/components/atoms/base-button';
-import ActivityEditor from '@/components/organisms/activity-editor';
 import ProjectEditor from '@/components/organisms/project-editor';
 
 export default {
@@ -59,6 +65,10 @@ export default {
       default: () => ({
         selected: null
       })
+    },
+    popEnabled: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -71,7 +81,7 @@ export default {
   },
   methods: {
     pop() {
-      this.$emit('pop', { component: ActivityEditor });
+      this.$emit('pop');
     },
     createProject() {
       this.$emit('push', { component: ProjectEditor });
@@ -83,12 +93,7 @@ export default {
       });
     },
     selectProject(project) {
-      this.$emit('pop', {
-        component: ActivityEditor,
-        params: {
-          project
-        }
-      });
+      this.$emit('pop', { project });
     }
   }
 };
@@ -109,13 +114,9 @@ export default {
 .project-content {
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.2s ease;
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
-  &:active {
-    transform: scale(0.9);
-  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <input :value="value" class="base-input" @input="input" />
+  <input :value="value" class="base-input" v-on="listeners" />
 </template>
 
 <script>
@@ -10,9 +10,14 @@ export default {
       default: ''
     }
   },
-  methods: {
-    input(e) {
-      this.$emit('input', e.target.value);
+  computed: {
+    listeners() {
+      return {
+        ...this.$listeners,
+        input: e => {
+          this.$emit('input', e.target.value);
+        }
+      };
     }
   }
 };
