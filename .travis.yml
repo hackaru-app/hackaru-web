@@ -30,7 +30,7 @@ script:
   - yarn test
   - docker-compose build
   - docker tag hackaru-web:latest hackaru-web:${COMMIT}
-  - ./trivy --exit-code 0 --severity HIGH --quiet --auto-refresh hackaru-web:${COMMIT}
+  - ./trivy --exit-code 1 --severity HIGH --quiet --auto-refresh hackaru-web:${COMMIT}
   - ./trivy --exit-code 1 --severity CRITICAL --quiet --auto-refresh hackaru-web:${COMMIT}
 cache:
   directories:
