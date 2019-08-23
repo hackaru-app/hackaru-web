@@ -4,7 +4,8 @@
       "activities:read": "Read your activities",
       "activities:write": "Update your activities",
       "projects:read": "Read your projects",
-      "projects:write": "Update your projects"
+      "projects:write": "Update your projects",
+      "suggestion:read": "Read your suggestions"
     }
   },
   "ja": {
@@ -12,7 +13,8 @@
       "activities:read": "アクティビティの読み取り",
       "activities:write": "アクティビティの変更",
       "projects:read": "プロジェクトの読み取り",
-      "projects:write": "プロジェクトの変更"
+      "projects:write": "プロジェクトの変更",
+      "suggestion:read": "検索候補の読み取り"
     }
   }
 }
