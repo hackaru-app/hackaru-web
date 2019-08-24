@@ -3391,7 +3391,7 @@ collection-visit@^1.0.0:
     map-visit "^1.0.0"
     object-visit "^1.0.0"
 
-color-convert@^0.5.3:
+color-convert@^0.5.3, color-convert@~0.5.0:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-0.5.3.tgz#bdb6c69ce660fadffe0b0007cc447e1b9f7282bd"
   integrity sha1-vbbGnOZg+t/+CwAHzER+G59ygr0=
@@ -3847,6 +3847,11 @@ cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
+
+cssfontparser@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/cssfontparser/-/cssfontparser-1.2.1.tgz#f4022fc8f9700c68029d542084afbaf425a3f3e3"
+  integrity sha1-9AIvyPlwDGgCnVQghK+69CWj8+M=
 
 cssnano-preset-default@^4.0.7:
   version "4.0.7"
@@ -6230,10 +6235,13 @@ istanbul-reports@^2.2.6:
   dependencies:
     handlebars "^4.1.2"
 
-jest-canvas-mock@^1.1.1-beta.1:
-  version "1.1.1-beta.1"
-  resolved "https://registry.yarnpkg.com/jest-canvas-mock/-/jest-canvas-mock-1.1.1-beta.1.tgz#c000ba94ada2e0b5131245a5d5076d7a9f2a9893"
-  integrity sha512-Bn2HHIeEuqTY23hoNiMCmuHLmSkravLOsiU+ZKGd0vMDpn8NSgZ7FcdtAqZBxO+uOaOV8CUg/gdp61EA+py/Aw==
+jest-canvas-mock@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/jest-canvas-mock/-/jest-canvas-mock-2.1.1.tgz#fc59b16b093620345c7865f34ef1a16940eec784"
+  integrity sha512-FK/xAFYJmMwyY8IpVrpoHq8Od/99Jmc3g6pnmkhFkYQJoq1Y0ZtEZjs80cREKlxjQxcTMvPpoyGLOmt8KLjlSQ==
+  dependencies:
+    cssfontparser "^1.2.1"
+    parse-color "^1.0.0"
 
 jest-changed-files@^24.9.0:
   version "24.9.0"
@@ -8299,6 +8307,13 @@ parse-bmfont-xml@^1.1.4:
   dependencies:
     xml-parse-from-string "^1.0.0"
     xml2js "^0.4.5"
+
+parse-color@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/parse-color/-/parse-color-1.0.0.tgz#7b748b95a83f03f16a94f535e52d7f3d94658619"
+  integrity sha1-e3SLlag/A/FqlPU15S1/PZRlhhk=
+  dependencies:
+    color-convert "~0.5.0"
 
 parse-headers@^2.0.0:
   version "2.0.2"
