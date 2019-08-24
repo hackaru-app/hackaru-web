@@ -37,7 +37,7 @@
     "normalizr": "^3.2.4",
     "nuxt": "^2.7.1",
     "nuxt-env": "^0.1.0",
-    "nuxt-i18n": "^5.4.4",
+    "nuxt-i18n": "^6.0.2",
     "sass-loader": "^7.1.0",
     "snakecase-keys": "^1.2.0",
     "style-loader": "^0.23.1",
