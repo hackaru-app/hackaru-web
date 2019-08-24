@@ -1,21 +1,31 @@
-sudo: false
+sudo: required
 language: node_js
+services:
+  - docker
 node_js:
   - '8'
-branches:
-  only:
-    - master
-cache:
-  directories:
-    - node_modules
+env:
+  - COMMIT=${TRAVIS_COMMIT::8}
+before_install:
+  # trivy
+  - export VERSION=$(curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+  - wget https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
+  - tar zxvf trivy_${VERSION}_Linux-64bit.tar.gz
 install:
   - yarn
 before_script:
+  # codeclimate
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
   - yarn lint .
   - yarn test
+  - docker build . -t hackaru-web:${COMMIT}
+  - ./trivy --exit-code 1 --severity HIGH --quiet --auto-refresh hackaru-web:${COMMIT}
+  - ./trivy --exit-code 1 --severity CRITICAL --quiet --auto-refresh hackaru-web:${COMMIT}
+cache:
+  directories:
+    - $HOME/.cache/trivy
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

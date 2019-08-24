@@ -51,13 +51,13 @@ describe('SwipeMenu', () => {
 
     it('set left style', () => {
       expect(wrapper.find('.left.menu').attributes().style).toBe(
-        'width: 100px;'
+        'width: 100px; animation-name: none;'
       );
     });
 
     it('unset right style', () => {
       expect(wrapper.find('.right.menu').attributes().style).toBe(
-        'width: 0px;'
+        'width: 0px; animation-name: none;'
       );
     });
   });
@@ -70,12 +70,14 @@ describe('SwipeMenu', () => {
     });
 
     it('unset left style', () => {
-      expect(wrapper.find('.left.menu').attributes().style).toBe('width: 0px;');
+      expect(wrapper.find('.left.menu').attributes().style).toBe(
+        'width: 0px; animation-name: none;'
+      );
     });
 
     it('set right style', () => {
       expect(wrapper.find('.right.menu').attributes().style).toBe(
-        'width: 100px;'
+        'width: 100px; animation-name: none;'
       );
     });
   });
@@ -91,7 +93,7 @@ describe('SwipeMenu', () => {
 
     it('set left style', () => {
       expect(wrapper.find('.left.menu').attributes().style).toBe(
-        'width: 100%;'
+        'width: 100%; animation-name: none; transition: width 300ms;'
       );
     });
 
@@ -111,7 +113,7 @@ describe('SwipeMenu', () => {
 
     it('set right style', () => {
       expect(wrapper.find('.right.menu').attributes().style).toBe(
-        'width: 100%;'
+        'width: 100%; animation-name: none; transition: width 300ms;'
       );
     });
 
@@ -129,12 +131,14 @@ describe('SwipeMenu', () => {
     });
 
     it('unset left style', () => {
-      expect(wrapper.find('.left.menu').attributes().style).toBe('width: 0px;');
+      expect(wrapper.find('.left.menu').attributes().style).toBe(
+        'width: 0px; animation-name: none; transition: width 300ms;'
+      );
     });
 
     it('unset right style', () => {
       expect(wrapper.find('.right.menu').attributes().style).toBe(
-        'width: 0px;'
+        'width: 0px; animation-name: none; transition: width 300ms;'
       );
     });
   });
