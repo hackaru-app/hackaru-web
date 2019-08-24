@@ -5,14 +5,8 @@ services:
 node_js:
   - '8'
 env:
-  - DOCKER_COMPOSE_VERSION=1.23.2 COMPOSE_FILE=docker-compose.yml
-    COMMIT=${TRAVIS_COMMIT::8}
+  - COMMIT=${TRAVIS_COMMIT::8}
 before_install:
-  # docker-compose
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
   # trivy
   - export VERSION=$(curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
   - wget https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
@@ -27,8 +21,7 @@ before_script:
 script:
   - yarn lint .
   - yarn test
-  - docker-compose build
-  - docker tag hackaru-web:latest hackaru-web:${COMMIT}
+  - docker build . -t hackaru-web:${COMMIT}
   - ./trivy --exit-code 1 --severity HIGH --quiet --auto-refresh hackaru-web:${COMMIT}
   - ./trivy --exit-code 1 --severity CRITICAL --quiet --auto-refresh hackaru-web:${COMMIT}
 cache:
