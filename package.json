@@ -39,7 +39,7 @@
     "nuxt-env": "^0.1.0",
     "nuxt-i18n": "^6.0.2",
     "sass-loader": "^7.1.0",
-    "snakecase-keys": "^1.2.0",
+    "snakecase-keys": "^3.1.0",
     "style-loader": "^0.23.1",
     "v-calendar": "^0.9.7",
     "v-tooltip": "^2.0.2",
