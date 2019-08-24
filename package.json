@@ -18,7 +18,7 @@
   "dependencies": {
     "@nuxtjs/pwa": "^2.6.0",
     "axios": "^0.18.0",
-    "camelcase-keys": "^4.2.0",
+    "camelcase-keys": "^6.0.1",
     "chart.js": "^2.7.2",
     "color": "^3.1.0",
     "date-fns": "^1.29.0",
