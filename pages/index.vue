@@ -4,7 +4,7 @@
   <section class="index">
     <timer-form class="timer-form" />
     <div class="content">
-      <p v-if="weekly.length <= 0" class="empty-message">
+      <p v-if="Object.keys(weekly).length <= 0" class="empty-message">
         {{ $t('empty') }}
       </p>
       <activity-day-group
