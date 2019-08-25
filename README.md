@@ -7,8 +7,8 @@
 
 <p align="center">
   <p align="center"><img src="./docs/images/architecture.png" width="500" /></p>
-  <p align="center" style="color: #666;">Hackaru Web</p>
-  <p align="center" style="color: #999;">Communicates with the <a href="https://github.com/ktmouk/hackaru-api">API server</a> via RESTful and returns HTML/JavaScript/CSS to the web browser.</p>
+  <p align="center">Hackaru web</p>
+  <p align="center">Communicates with the <a href="https://github.com/ktmouk/hackaru-api">API server</a> via RESTful <br>and returns response to the web browser.</p>
 </p>
 
 ## Contributing
