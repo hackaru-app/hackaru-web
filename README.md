@@ -21,3 +21,6 @@
 1. Run linter and test. `yarn lint . && yarn test`
 1. Push branch. `git push origin new-feature`
 1. Create a new pull request.
+
+## License
+- [MIT](./LICENSE)
