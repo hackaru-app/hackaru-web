@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/ktmouk/hackaru-web.svg?branch=master)](https://travis-ci.org/ktmouk/hackaru-web)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fd01121360a3fd652411/maintainability)](https://codeclimate.com/github/ktmouk/hackaru-web/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/fd01121360a3fd652411/test_coverage)](https://codeclimate.com/github/ktmouk/hackaru-web/test_coverage)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <p align="center">
   <p align="center"><img src="./docs/images/architecture.png" width="500" /></p>
@@ -20,7 +21,3 @@
 1. Run linter and test. `yarn lint . && yarn test`
 1. Push branch. `git push origin new-feature`
 1. Create a new pull request.
-
-## License
-
-- [MIT](./LICENSE)
