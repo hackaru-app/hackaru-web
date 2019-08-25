@@ -16,6 +16,7 @@
 1. [Fork](https://github.com/ktmouk/hackaru-web/fork) and clone this repository.
 1. Check out new branch. `git checkout -b new-feature`
 1. Start API server. See [ktmouk/hackaru-api](https://github.com/ktmouk/hackaru-api).
+1. Copy env file from the sample file. `cp .env.sample .env.development`
 1. Start dev server. `docker-compose -f docker-compose.yml -f docker-compose.dev.yml`
 1. Improve codes.
 1. Run linter and test. `yarn lint . && yarn test`
