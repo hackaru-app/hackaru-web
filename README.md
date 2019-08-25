@@ -5,6 +5,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/fd01121360a3fd652411/test_coverage)](https://codeclimate.com/github/ktmouk/hackaru-web/test_coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+<br>
 <p align="center">
   <p align="center"><img src="./docs/images/architecture.png" width="500" /></p>
   <p align="center">Hackaru web</p>
