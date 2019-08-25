@@ -49,6 +49,9 @@ export default {
   mounted() {
     this.show = !localStorage.getItem(`coach-tooltip/${this.name}`);
   },
+  deactivated() {
+    this.hide();
+  },
   methods: {
     hide() {
       this.show = false;
