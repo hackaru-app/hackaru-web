@@ -10,9 +10,9 @@
     <login-guard class="content">
       <nuxt keep-alive />
       <toast />
-      <no-ssr>
+      <client-only>
         <pwa-popover />
-      </no-ssr>
+      </client-only>
     </login-guard>
   </div>
 </template>
