@@ -11526,10 +11526,10 @@ vue-timers@^1.10.0:
   resolved "https://registry.yarnpkg.com/vue-timers/-/vue-timers-1.10.0.tgz#96031623d8388eb6b70e97bfed067a34b9cafe3f"
   integrity sha512-hxGDUSsKFPFxNtg6sp3ELO7ZqQ10kddvrld5vepXZIeQrg7ScIAYlx7Dk9UJNU1Dny1OlIl9URJocz/nhx2j9w==
 
-vue2-animate@^2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/vue2-animate/-/vue2-animate-2.1.1.tgz#808729695244debb3a09b06e04b9709714baa56b"
-  integrity sha512-28/tUzf/x+4qABALynWFPDkB8PP3xhmI7FZBqOaTPK2vIk5WemA6zIclPyu4zc9idLMCcjuu8c3PIjLPuCwyYg==
+vue2-animate@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/vue2-animate/-/vue2-animate-2.1.2.tgz#8b7e0947228f1eb19c2b1605de125141d3358d22"
+  integrity sha512-5vPnmF5JMSBCpNRkj7no52/ACfwMzBJXbYwtARLahI+NTbgrcBjlj2TzMRQ1SDH/4FaALlfdjxS7uocW2FHP6Q==
 
 vue@^2.5.0, vue@^2.6.10:
   version "2.6.10"
