@@ -91,7 +91,7 @@
     "npm-license-crawler": "mwittig/npm-license-crawler#master",
     "prettier": "^1.16.1",
     "vue-jest": "^3.0.2",
-    "vuex-mock-store": "^0.0.6"
+    "vuex-mock-store": "^0.0.7"
   },
   "jest": {
     "setupFiles": [

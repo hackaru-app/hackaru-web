@@ -11566,10 +11566,10 @@ vue@^2.5.0, vue@^2.6.10:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
 
-vuex-mock-store@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/vuex-mock-store/-/vuex-mock-store-0.0.6.tgz#7d69d5e096514d0c268824a25c0d2025b373c764"
-  integrity sha512-cye3rEbOiax5rr/gzuE2HNdqHKdGKneQagRkrAAF63r487t0P5oLYZKkDsn4M62ei8w/9WhDTK78/qwpQDnQtQ==
+vuex-mock-store@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/vuex-mock-store/-/vuex-mock-store-0.0.7.tgz#b18c529bc48b23dc596fdf9e0739676ae16dd7d1"
+  integrity sha512-Hd8q/lab+U/b0o0YvGvUWbxtrFbRTxwTMp+VL8qPQ1l2wmhJOMBwb086yil5dn1i2qLiF8Y5UtgKqCMcLzShKQ==
   dependencies:
     lodash.clonedeep "^4.5.0"
 
