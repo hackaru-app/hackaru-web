@@ -6,11 +6,6 @@ node_js:
   - '8'
 env:
   - COMMIT=${TRAVIS_COMMIT::8}
-before_install:
-  # trivy
-  - export VERSION=0.1.6
-  - wget https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
-  - tar zxvf trivy_${VERSION}_Linux-64bit.tar.gz
 install:
   - yarn
 before_script:
@@ -22,10 +17,5 @@ script:
   - yarn lint .
   - yarn test
   - docker build . -t hackaru-web:${COMMIT}
-  - ./trivy --exit-code 1 --severity HIGH --quiet --auto-refresh hackaru-web:${COMMIT}
-  - ./trivy --exit-code 1 --severity CRITICAL --quiet --auto-refresh hackaru-web:${COMMIT}
-cache:
-  directories:
-    - $HOME/.cache/trivy
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
