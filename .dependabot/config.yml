@@ -13,3 +13,6 @@ update_configs:
       - match:
           dependency_type: production
           update_type: semver:patch
+  - package_manager: docker
+    directory: /
+    update_schedule: daily
