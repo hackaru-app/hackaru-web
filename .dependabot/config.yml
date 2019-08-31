@@ -12,7 +12,7 @@ update_configs:
           update_type: all
       - match:
           dependency_type: production
-          update_type: semver:patch
+          update_type: all
   - package_manager: docker
     directory: /
     update_schedule: weekly
