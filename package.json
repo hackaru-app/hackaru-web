@@ -35,7 +35,7 @@
     "node-sass": "^4.12.0",
     "normalize.css": "^8.0.1",
     "normalizr": "^3.2.4",
-    "nuxt": "^2.7.1",
+    "nuxt": "^2.9.2",
     "nuxt-env": "^0.1.0",
     "nuxt-i18n": "^6.0.2",
     "sass-loader": "^7.1.0",
