@@ -8064,10 +8064,10 @@ nuxt-env@^0.1.0:
   resolved "https://registry.yarnpkg.com/nuxt-env/-/nuxt-env-0.1.0.tgz#8ac50b9ff45391ad3044ea932cbd05f06a585f87"
   integrity sha512-7mTao3qG0zfN0hahk3O6SuDy0KEwYmNojammWQsMwhqMn3aUjX4nMYnWDa0pua+2/rwAY9oG53jQtLgJdG7f9w==
 
-nuxt-i18n@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.0.2.tgz#aa771ca46957c42dbb2d31308ff46cff31b34c11"
-  integrity sha512-3jlsDwGBWz9TEoRxzVAurX5UwgUSJjkZ3DFh4yw7EhpJ0AOKu2nckGMvTN1sTGV39eOXn+I6nKOfPDmsJYM6dg==
+nuxt-i18n@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.1.1.tgz#f496b1281e63ab5eb92fb22fc384b764122dc3b4"
+  integrity sha512-FzOFWCacbknPvu0r5/5fLOhhdxv4i3HLJEufeHxGb1VzHuMhSw85VZgQUdGiRacDFBYUAeE7iQTGo1GBaNUX2w==
   dependencies:
     "@kazupon/vue-i18n-loader" "^0.4.0"
     acorn "^7.0.0"
