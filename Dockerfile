@@ -1,11 +1,11 @@
-FROM node:8.16.1-alpine as builder
+FROM node:12.9.1-alpine as builder
 ENV WEB_DIR /hackaru
 WORKDIR $WEB_DIR
 COPY package.json yarn.lock $WEB_DIR/
 RUN apk add --update --no-cache git && yarn install
 
 
-FROM node:8.16.1-alpine
+FROM node:12.9.1-alpine
 ENV WEB_DIR /hackaru
 WORKDIR $WEB_DIR
 RUN addgroup hackaru \
