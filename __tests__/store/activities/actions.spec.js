@@ -1,6 +1,6 @@
 import { actions } from '@/store/activities';
 import { activity } from '@/schemas';
-import { parse } from 'date-fns';
+import { parseISO } from 'date-fns';
 
 describe('Actions', () => {
   describe('when dispatch fetchWorking', () => {
@@ -37,8 +37,8 @@ describe('Actions', () => {
       actions.fetchByRange(
         { dispatch },
         {
-          start: parse('2019-01-01T01:23:45'),
-          end: parse('2019-01-01T02:23:45')
+          start: parseISO('2019-01-01T01:23:45'),
+          end: parseISO('2019-01-01T02:23:45')
         }
       );
     });
@@ -49,8 +49,8 @@ describe('Actions', () => {
         {
           url: '/v1/activities',
           params: {
-            start: parse('2019-01-01T01:23:45'),
-            end: parse('2019-01-01T02:23:45')
+            start: parseISO('2019-01-01T01:23:45'),
+            end: parseISO('2019-01-01T02:23:45')
           }
         },
         { root: true }

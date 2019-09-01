@@ -2,7 +2,7 @@ import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Calendar from '@/pages/calendar';
-import { parse } from 'date-fns';
+import { parseISO } from 'date-fns';
 
 describe('Calendar', () => {
   let wrapper;
@@ -24,8 +24,8 @@ describe('Calendar', () => {
   it('dispatch activities/fetchByRange', () => {
     wrapper = factory();
     expect($store.dispatch).toHaveBeenCalledWith('activities/fetchByRange', {
-      start: parse('2019-01-27T00:00:00'),
-      end: parse('2019-02-02T23:59:59.999')
+      start: parseISO('2019-01-27T00:00:00'),
+      end: parseISO('2019-02-02T23:59:59.999')
     });
   });
 
@@ -36,7 +36,7 @@ describe('Calendar', () => {
     });
 
     it('set days correctly', () => {
-      expect(wrapper.vm.days).toEqual([parse('2019-01-31T00:00:00')]);
+      expect(wrapper.vm.days).toEqual([parseISO('2019-01-31T00:00:00')]);
     });
   });
 
@@ -48,13 +48,13 @@ describe('Calendar', () => {
 
     it('set days correctly', () => {
       expect(wrapper.vm.days).toEqual([
-        parse('2019-01-27T00:00:00'),
-        parse('2019-01-28T00:00:00'),
-        parse('2019-01-29T00:00:00'),
-        parse('2019-01-30T00:00:00'),
-        parse('2019-01-31T00:00:00'),
-        parse('2019-02-01T00:00:00'),
-        parse('2019-02-02T00:00:00')
+        parseISO('2019-01-27T00:00:00'),
+        parseISO('2019-01-28T00:00:00'),
+        parseISO('2019-01-29T00:00:00'),
+        parseISO('2019-01-30T00:00:00'),
+        parseISO('2019-01-31T00:00:00'),
+        parseISO('2019-02-01T00:00:00'),
+        parseISO('2019-02-02T00:00:00')
       ]);
     });
   });
@@ -68,13 +68,13 @@ describe('Calendar', () => {
 
     it('set prev weeks', () => {
       expect(wrapper.vm.days).toEqual([
-        parse('2019-01-20T00:00:00'),
-        parse('2019-01-21T00:00:00'),
-        parse('2019-01-22T00:00:00'),
-        parse('2019-01-23T00:00:00'),
-        parse('2019-01-24T00:00:00'),
-        parse('2019-01-25T00:00:00'),
-        parse('2019-01-26T00:00:00')
+        parseISO('2019-01-20T00:00:00'),
+        parseISO('2019-01-21T00:00:00'),
+        parseISO('2019-01-22T00:00:00'),
+        parseISO('2019-01-23T00:00:00'),
+        parseISO('2019-01-24T00:00:00'),
+        parseISO('2019-01-25T00:00:00'),
+        parseISO('2019-01-26T00:00:00')
       ]);
     });
   });
@@ -88,13 +88,13 @@ describe('Calendar', () => {
 
     it('set next weeks', () => {
       expect(wrapper.vm.days).toEqual([
-        parse('2019-02-03T00:00:00'),
-        parse('2019-02-04T00:00:00'),
-        parse('2019-02-05T00:00:00'),
-        parse('2019-02-06T00:00:00'),
-        parse('2019-02-07T00:00:00'),
-        parse('2019-02-08T00:00:00'),
-        parse('2019-02-09T00:00:00')
+        parseISO('2019-02-03T00:00:00'),
+        parseISO('2019-02-04T00:00:00'),
+        parseISO('2019-02-05T00:00:00'),
+        parseISO('2019-02-06T00:00:00'),
+        parseISO('2019-02-07T00:00:00'),
+        parseISO('2019-02-08T00:00:00'),
+        parseISO('2019-02-09T00:00:00')
       ]);
     });
   });
@@ -109,13 +109,13 @@ describe('Calendar', () => {
 
     it('set today weeks', () => {
       expect(wrapper.vm.days).toEqual([
-        parse('2019-01-27T00:00:00'),
-        parse('2019-01-28T00:00:00'),
-        parse('2019-01-29T00:00:00'),
-        parse('2019-01-30T00:00:00'),
-        parse('2019-01-31T00:00:00'),
-        parse('2019-02-01T00:00:00'),
-        parse('2019-02-02T00:00:00')
+        parseISO('2019-01-27T00:00:00'),
+        parseISO('2019-01-28T00:00:00'),
+        parseISO('2019-01-29T00:00:00'),
+        parseISO('2019-01-30T00:00:00'),
+        parseISO('2019-01-31T00:00:00'),
+        parseISO('2019-02-01T00:00:00'),
+        parseISO('2019-02-02T00:00:00')
       ]);
     });
   });

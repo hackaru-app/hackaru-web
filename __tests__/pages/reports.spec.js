@@ -2,7 +2,7 @@ import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Reports from '@/pages/reports';
-import { parse } from 'date-fns';
+import { parseISO } from 'date-fns';
 
 describe('Reports', () => {
   let wrapper;
@@ -35,8 +35,8 @@ describe('Reports', () => {
 
     it('dispatch reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parse('2019-01-31T00:00:00'),
-        end: parse('2019-01-31T23:59:59.999'),
+        start: parseISO('2019-01-31T00:00:00'),
+        end: parseISO('2019-01-31T23:59:59.999'),
         period: 'hour'
       });
     });
@@ -50,8 +50,8 @@ describe('Reports', () => {
 
     it('dispatch reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parse('2019-01-27T00:00:00'),
-        end: parse('2019-02-02T23:59:59.999'),
+        start: parseISO('2019-01-27T00:00:00'),
+        end: parseISO('2019-02-02T23:59:59.999'),
         period: 'day'
       });
     });
@@ -65,8 +65,8 @@ describe('Reports', () => {
 
     it('dispatch reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parse('2019-01-01T00:00:00'),
-        end: parse('2019-01-31T23:59:59.999'),
+        start: parseISO('2019-01-01T00:00:00'),
+        end: parseISO('2019-01-31T23:59:59.999'),
         period: 'day'
       });
     });
@@ -80,8 +80,8 @@ describe('Reports', () => {
 
     it('dispatch reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parse('2019-01-01T00:00:00'),
-        end: parse('2019-12-31T23:59:59.999'),
+        start: parseISO('2019-01-01T00:00:00'),
+        end: parseISO('2019-12-31T23:59:59.999'),
         period: 'month'
       });
     });
@@ -96,8 +96,8 @@ describe('Reports', () => {
 
     it('set prev weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parse('2019-01-20T00:00:00'),
-        end: parse('2019-01-26T23:59:59.999'),
+        start: parseISO('2019-01-20T00:00:00'),
+        end: parseISO('2019-01-26T23:59:59.999'),
         period: 'day'
       });
     });
@@ -112,8 +112,8 @@ describe('Reports', () => {
 
     it('set next weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parse('2019-02-03T00:00:00'),
-        end: parse('2019-02-09T23:59:59.999'),
+        start: parseISO('2019-02-03T00:00:00'),
+        end: parseISO('2019-02-09T23:59:59.999'),
         period: 'day'
       });
     });
@@ -129,8 +129,8 @@ describe('Reports', () => {
 
     it('set today weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parse('2019-01-27T00:00:00'),
-        end: parse('2019-02-02T23:59:59.999'),
+        start: parseISO('2019-01-27T00:00:00'),
+        end: parseISO('2019-02-02T23:59:59.999'),
         period: 'day'
       });
     });

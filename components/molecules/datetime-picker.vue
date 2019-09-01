@@ -22,7 +22,10 @@
 </template>
 
 <script>
-import { parse, format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
+
+const dateFormat = 'yyyy-MM-dd';
+const timeFormat = 'HH:mm:ss';
 
 export default {
   props: {
@@ -33,20 +36,23 @@ export default {
   },
   computed: {
     date() {
-      return this.value && format(this.value, 'YYYY-MM-DD');
+      return this.value && format(parseISO(this.value), dateFormat);
     },
     time() {
-      return this.value && format(this.value, 'HH:mm:ss');
+      return this.value && format(parseISO(this.value), timeFormat);
     }
   },
   methods: {
     update() {
-      const date = parse(`${this.$refs.date.value} ${this.$refs.time.value}`);
-      this.$emit('input', isNaN(date) ? undefined : `${date}`);
+      const date = parseISO(
+        [this.$refs.date.value, this.$refs.time.value].join(' ')
+      );
+      const formatString = `${dateFormat} ${timeFormat} XXX`;
+      this.$emit('input', isNaN(date) ? undefined : format(date, formatString));
     },
     setCurrent() {
-      this.$refs.date.value = this.date || format(new Date(), 'YYYY-MM-DD');
-      this.$refs.time.value = this.time || format(new Date(), 'HH:mm:ss');
+      this.$refs.date.value = this.date || format(new Date(), dateFormat);
+      this.$refs.time.value = this.time || format(new Date(), timeFormat);
       this.update();
     }
   }

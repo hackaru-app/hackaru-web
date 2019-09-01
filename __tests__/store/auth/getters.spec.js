@@ -1,6 +1,6 @@
 import MockDate from 'mockdate';
 import { getters } from '@/store/auth';
-import { parse } from 'date-fns';
+import { parseISO } from 'date-fns';
 import jwt from 'jsonwebtoken';
 
 describe('Getters', () => {
@@ -79,7 +79,7 @@ describe('Getters', () => {
   });
 
   describe('when call validateToken', () => {
-    const exp = parse('2019-02-01T00:00:00').getTime() / 1000;
+    const exp = parseISO('2019-02-01T00:00:00').getTime() / 1000;
     const state = { accessToken: jwt.sign({ exp }, 'secret') };
 
     beforeEach(() => {
@@ -92,7 +92,7 @@ describe('Getters', () => {
   });
 
   describe('when call validateToken but token expired', () => {
-    const exp = parse('2018-12-31T00:00:00').getTime() / 1000;
+    const exp = parseISO('2018-12-31T00:00:00').getTime() / 1000;
     const state = { accessToken: jwt.sign({ exp }, 'secret') };
 
     beforeEach(() => {

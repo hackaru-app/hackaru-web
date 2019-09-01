@@ -18,11 +18,11 @@
     <calendar-day
       v-for="day in days"
       ref="days"
-      :data-day="day"
-      :class="['day', { overlapped: isSameDay(overlappedDay, day) }]"
+      :class="['day', { overlapped: isOverlapped(day) }]"
       :overlapped-day="overlappedDay"
-      :key="`${day}`"
-      :day="`${day}`"
+      :data-day="`${format(day, 'yyyy-MM-dd')}`"
+      :key="`${format(day, 'yyyy-MM-dd HH:mm:ss')}`"
+      :day="`${format(day, 'yyyy-MM-dd HH:mm:ss')}`"
       @dragging="dragging"
       @drop="drop"
     />
@@ -39,10 +39,10 @@ import {
   isToday,
   getHours,
   getMinutes,
-  parse
+  parseISO
 } from 'date-fns';
 
-function getMaxIndex(values) {
+function getMaxValueIndex(values) {
   const maxValue = Math.max(...values.filter(value => !!value));
   return values.indexOf(maxValue);
 }
@@ -69,15 +69,15 @@ export default {
   data() {
     return {
       format,
-      isSameDay,
+      parseISO,
       guideRulerTop: undefined,
       overlappedDay: undefined,
-      currentDate: parse(Date.now())
+      currentDate: new Date()
     };
   },
   computed: {
     hasToday() {
-      return this.days.find(isToday);
+      return this.days.find(day => isToday(day));
     },
     currentTimeLineTop() {
       return this.$toPx(
@@ -86,15 +86,18 @@ export default {
     }
   },
   methods: {
+    isOverlapped(day) {
+      return isSameDay(parseISO(this.overlappedDay), day);
+    },
     updateCurrentDate() {
-      this.currentDate = parse(Date.now());
+      this.currentDate = new Date();
     },
     getOverlappedDay(el) {
       if (!el) return;
       const days = this.$refs.days;
       const getWidth = $el => (this.$mezr.intersection($el, el) || {}).width;
-      const maxIndex = getMaxIndex(days.map(({ $el }) => getWidth($el)));
-      if (maxIndex >= 0) return days[maxIndex].$el.dataset.day;
+      const index = getMaxValueIndex(days.map(({ $el }) => getWidth($el)));
+      if (index >= 0) return days[index].$el.dataset.day;
     },
     dragging({ el, guideRulerTop }) {
       this.overlappedDay = this.getOverlappedDay(el);

@@ -1,6 +1,6 @@
 import MockDate from 'mockdate';
 import { getters } from '@/store/activities';
-import { parse } from 'date-fns';
+import { parseISO } from 'date-fns';
 
 describe('Getters', () => {
   let result;
@@ -74,7 +74,7 @@ describe('Getters', () => {
 
     it('group by day', () => {
       expect(result).toEqual({
-        [parse('2019-01-31')]: [
+        '2019-01-31': [
           {
             id: 1,
             startedAt: '2019-01-31T00:00:00',
@@ -82,7 +82,7 @@ describe('Getters', () => {
             duration: 3600
           }
         ],
-        [parse('2019-02-01')]: [
+        '2019-02-01': [
           {
             id: 3,
             startedAt: '2019-02-01T03:00:00',
@@ -100,7 +100,7 @@ describe('Getters', () => {
     });
 
     it('does not contains out of range', () => {
-      expect(result[parse('2019-05-01')]).toBeUndefined();
+      expect(result[parseISO('2019-05-01')]).toBeUndefined();
     });
   });
 
@@ -137,7 +137,7 @@ describe('Getters', () => {
 
     beforeEach(() => {
       result = getters.getCalendar({}, mockGetters, {}, {})(
-        parse('2019-01-01T00:00:00'),
+        '2019-01-01T00:00:00',
         toMin
       );
     });

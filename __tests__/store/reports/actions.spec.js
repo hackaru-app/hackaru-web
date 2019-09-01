@@ -1,5 +1,5 @@
 import { actions } from '@/store/reports';
-import { parse } from 'date-fns';
+import { parseISO } from 'date-fns';
 
 describe('Actions', () => {
   Intl.DateTimeFormat = () => ({
@@ -21,8 +21,8 @@ describe('Actions', () => {
       actions.fetch(
         { dispatch, commit },
         {
-          start: parse('2019-01-01T00:00:00'),
-          end: parse('2019-01-03T00:00:00'),
+          start: parseISO('2019-01-01T00:00:00'),
+          end: parseISO('2019-01-03T00:00:00'),
           period: 'day'
         }
       );
@@ -34,8 +34,8 @@ describe('Actions', () => {
         {
           url: '/v1/reports',
           params: {
-            start: parse('2019-01-01T00:00:00'),
-            end: parse('2019-01-03T00:00:00'),
+            start: parseISO('2019-01-01T00:00:00'),
+            end: parseISO('2019-01-03T00:00:00'),
             period: 'day',
             timeZone: 'America/New_York'
           }
@@ -49,8 +49,8 @@ describe('Actions', () => {
         period: 'day',
         projects: [],
         summary: [],
-        start: parse('2019-01-01T00:00:00'),
-        end: parse('2019-01-03T00:00:00')
+        start: parseISO('2019-01-01T00:00:00'),
+        end: parseISO('2019-01-03T00:00:00')
       });
     });
   });

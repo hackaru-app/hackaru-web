@@ -1,12 +1,14 @@
 import { activity } from '@/schemas';
 import groupBy from 'lodash.groupby';
 import {
-  isWithinRange,
+  isWithinInterval,
   startOfDay,
-  areRangesOverlapping,
+  areIntervalsOverlapping,
   addMinutes,
   compareDesc,
-  isSameWeek
+  isSameWeek,
+  parseISO,
+  format
 } from 'date-fns';
 
 export const actions = {
@@ -122,10 +124,13 @@ export const getters = {
   },
   weekly: (state, getters) => {
     const weekly = getters.all
-      .filter(({ stoppedAt }) => stoppedAt)
-      .filter(({ startedAt }) => isSameWeek(startedAt, new Date()))
-      .sort((a, b) => compareDesc(a.startedAt, b.startedAt));
-    return groupBy(weekly, ({ startedAt }) => startOfDay(startedAt));
+      .filter(({ startedAt }) => isSameWeek(parseISO(startedAt), new Date()))
+      .sort((a, b) =>
+        compareDesc(parseISO(a.startedAt), parseISO(b.startedAt))
+      );
+    return groupBy(weekly, ({ startedAt }) =>
+      format(parseISO(startedAt), 'yyyy-MM-dd')
+    );
   },
   getCalendar: (state, getters) => (date, toMin) => {
     const rows = [];
@@ -143,23 +148,20 @@ export const getters = {
 };
 
 function isRange({ startedAt, stoppedAt }, date) {
+  const start = startOfDay(parseISO(startedAt));
+  const end = startOfDay(parseISO(stoppedAt));
   return (
-    stoppedAt &&
-    isWithinRange(
-      startOfDay(date),
-      startOfDay(startedAt),
-      startOfDay(stoppedAt)
-    )
+    stoppedAt && isWithinInterval(startOfDay(parseISO(date)), { start, end })
   );
 }
 
 function isOverlapped(a, b, toMin) {
-  return areRangesOverlapping(
-    a.startedAt,
-    addMinutes(a.startedAt, Math.max(toMin(20), a.duration / 60)),
-    b.startedAt,
-    addMinutes(b.startedAt, Math.max(toMin(20), b.duration / 60))
-  );
+  const toRange = activity => {
+    const start = parseISO(activity.startedAt);
+    const duration = Math.max(toMin(20), activity.duration / 60);
+    return { start, end: addMinutes(start, duration) };
+  };
+  return areIntervalsOverlapping(toRange(a), toRange(b));
 }
 
 function findOverppedRow(rows, b, toMin) {

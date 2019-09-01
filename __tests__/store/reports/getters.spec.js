@@ -1,4 +1,5 @@
 import { getters } from '@/store/reports';
+import { parseISO } from 'date-fns';
 
 describe('Getters', () => {
   let result;
@@ -138,8 +139,8 @@ describe('Getters', () => {
   describe('when call barChartLabels and period is day', () => {
     const state = {
       period: 'day',
-      start: '2019-01-01',
-      end: '2019-01-03'
+      start: parseISO('2019-01-01'),
+      end: parseISO('2019-01-03')
     };
 
     beforeEach(() => {

@@ -1,6 +1,6 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import { parse } from 'date-fns';
+import { parseISO } from 'date-fns';
 import CalendarActivity from '@/components/organisms/calendar-activity';
 
 describe('CalendarActivity', () => {
@@ -113,8 +113,8 @@ describe('CalendarActivity', () => {
     it('dispatch activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
-        startedAt: parse('2019-01-02T01:23:00'),
-        stoppedAt: parse('2019-01-02T02:23:00')
+        startedAt: parseISO('2019-01-02T01:23:00'),
+        stoppedAt: parseISO('2019-01-02T02:23:00')
       });
     });
   });
@@ -177,7 +177,7 @@ describe('CalendarActivity', () => {
     it('dispatch activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
-        stoppedAt: parse('2019-01-01T02:23:45')
+        stoppedAt: parseISO('2019-01-01T02:23:45')
       });
     });
   });

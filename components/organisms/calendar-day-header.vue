@@ -1,14 +1,14 @@
 <i18n src="@/assets/locales/components/organisms/calendar-day-header.json" />
 
 <template>
-  <header :class="['calendar-day-header', { today: isToday(day) }]">
-    <h1>{{ format(day, 'DD') }}</h1>
-    <small>{{ $t(`weeks[${format(day, 'd')}]`) }}</small>
+  <header :class="['calendar-day-header', { today: today }]">
+    <h1>{{ title }}</h1>
+    <small>{{ week }}</small>
   </header>
 </template>
 
 <script>
-import { format, isToday } from 'date-fns';
+import { format, isToday, parseISO } from 'date-fns';
 
 export default {
   props: {
@@ -17,11 +17,16 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      format,
-      isToday
-    };
+  computed: {
+    today() {
+      return isToday(parseISO(this.day));
+    },
+    title() {
+      return format(parseISO(this.day), 'dd');
+    },
+    week() {
+      return this.$t(`weeks[${format(parseISO(this.day), 'i') - 1}]`);
+    }
   }
 };
 </script>
