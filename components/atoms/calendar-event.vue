@@ -14,7 +14,7 @@
 
 <script>
 import Color from 'color';
-import { distanceInWordsStrict } from 'date-fns';
+import { formatDistanceStrict } from 'date-fns';
 
 export default {
   props: {
@@ -40,7 +40,7 @@ export default {
       return (
         this.startedAt &&
         this.stoppedAt &&
-        distanceInWordsStrict(this.startedAt, this.stoppedAt)
+        formatDistanceStrict(this.startedAt, this.stoppedAt)
       );
     },
     backgroundColor() {
