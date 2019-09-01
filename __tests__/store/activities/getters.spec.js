@@ -74,7 +74,7 @@ describe('Getters', () => {
 
     it('group by day', () => {
       expect(result).toEqual({
-        [parseISO('2019-01-31')]: [
+        '2019-01-31': [
           {
             id: 1,
             startedAt: '2019-01-31T00:00:00',
@@ -82,7 +82,7 @@ describe('Getters', () => {
             duration: 3600
           }
         ],
-        [parseISO('2019-02-01')]: [
+        '2019-02-01': [
           {
             id: 3,
             startedAt: '2019-02-01T03:00:00',

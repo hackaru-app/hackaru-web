@@ -135,7 +135,8 @@ export default {
       return periods[this.currentPeriod];
     },
     title() {
-      return format(this.date, this.$t(`${this.currentPeriod}.format`));
+      const formatString = this.$t(`${this.currentPeriod}.format`);
+      return format(this.date, formatString || 'yyyy/MM/dd');
     },
     hasToday() {
       return isEqual(
