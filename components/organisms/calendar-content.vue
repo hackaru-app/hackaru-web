@@ -18,11 +18,11 @@
     <calendar-day
       v-for="day in days"
       ref="days"
-      :data-day="day"
       :class="['day', { overlapped: isOverlapped(day) }]"
       :overlapped-day="overlappedDay"
-      :key="`${day}`"
-      :day="`${day}`"
+      :data-day="`${format(day, 'yyyy-MM-dd')}`"
+      :key="`${format(day, 'yyyy-MM-dd HH:mm:ss')}`"
+      :day="`${format(day, 'yyyy-MM-dd HH:mm:ss')}`"
       @dragging="dragging"
       @drop="drop"
     />
@@ -69,6 +69,7 @@ export default {
   data() {
     return {
       format,
+      parseISO,
       guideRulerTop: undefined,
       overlappedDay: undefined,
       currentDate: new Date()

@@ -164,6 +164,7 @@ export default {
       if (!this.overlappedDay) {
         return this.resetPosition();
       }
+      console.log(this.overlappedDay);
       const date = addMinutes(
         startOfDay(parseISO(this.overlappedDay)),
         this.$toMin(this.top)

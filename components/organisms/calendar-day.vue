@@ -35,7 +35,7 @@
           v-for="activity in pack"
           v-bind="activity"
           :key="activity.id"
-          :day="`${day}`"
+          :day="day"
           :overlapped-day="overlappedDay"
           @dragging="dragging"
           @drop="drop"
