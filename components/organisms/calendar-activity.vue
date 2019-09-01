@@ -48,7 +48,8 @@ import {
   startOfDay,
   addSeconds,
   differenceInMinutes,
-  addMinutes
+  addMinutes,
+  parseISO
 } from 'date-fns';
 
 export default {
@@ -130,7 +131,10 @@ export default {
   methods: {
     getInitialTop() {
       return this.$toPx(
-        differenceInMinutes(this.startedAt, startOfDay(this.day))
+        differenceInMinutes(
+          parseISO(this.startedAt),
+          startOfDay(parseISO(this.day))
+        )
       );
     },
     getInitialHeight() {
@@ -161,7 +165,7 @@ export default {
         return this.resetPosition();
       }
       const date = addMinutes(
-        startOfDay(this.overlappedDay),
+        startOfDay(parseISO(this.overlappedDay)),
         this.$toMin(this.top)
       );
 
@@ -182,7 +186,10 @@ export default {
     },
     resizeEnd(e) {
       this.$emit('drop');
-      const stoppedAt = addMinutes(this.startedAt, this.$toMin(this.height));
+      const stoppedAt = addMinutes(
+        parseISO(this.startedAt),
+        this.$toMin(this.height)
+      );
       this.update({ stoppedAt });
     },
     resizeCancel(e) {
