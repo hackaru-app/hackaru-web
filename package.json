@@ -1,7 +1,6 @@
 {
-  "name": "Hackaru",
-  "version": "1.1.0",
-  "description": "Simple and open source time tracking app.",
+  "name": "hackaru-web",
+  "description": "Hackaru web server",
   "author": "ktmouk <ktmouk@gmail.com>",
   "private": true,
   "scripts": {

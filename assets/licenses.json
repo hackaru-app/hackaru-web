@@ -3,204 +3,204 @@
         "licenses": "MIT",
         "repository": "https://github.com/nuxt-community/pwa-module",
         "licenseUrl": "https://github.com/nuxt-community/pwa-module/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "axios": {
         "licenses": "MIT",
         "repository": "https://github.com/axios/axios",
         "licenseUrl": "https://github.com/axios/axios/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "camelcase-keys": {
         "licenses": "MIT",
         "repository": "https://github.com/sindresorhus/camelcase-keys",
         "licenseUrl": "https://github.com/sindresorhus/camelcase-keys/raw/master/license",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "chart.js": {
         "licenses": "MIT",
         "repository": "https://github.com/chartjs/Chart.js",
         "licenseUrl": "https://github.com/chartjs/Chart.js/raw/master/LICENSE.md",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "color": {
         "licenses": "MIT",
         "repository": "https://github.com/Qix-/color",
         "licenseUrl": "https://github.com/Qix-/color/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "date-fns": {
         "licenses": "MIT",
         "repository": "https://github.com/date-fns/date-fns",
         "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "hh-mm-ss": {
         "licenses": "MIT",
         "repository": "https://github.com/Goldob/hh-mm-ss",
         "licenseUrl": "https://github.com/Goldob/hh-mm-ss/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "jwt-decode": {
         "licenses": "MIT",
         "repository": "https://github.com/auth0/jwt-decode",
         "licenseUrl": "https://github.com/auth0/jwt-decode/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "lodash.debounce": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "lodash.get": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "lodash.groupby": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "lodash.merge": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "lodash.omit": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "lodash.union": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "lodash.uniqby": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "mezr": {
         "licenses": "MIT",
         "repository": "https://github.com/niklasramo/mezr",
         "licenseUrl": "https://github.com/niklasramo/mezr/raw/master/LICENSE.md",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "node-sass": {
         "licenses": "MIT",
         "repository": "https://github.com/sass/node-sass",
         "licenseUrl": "https://github.com/sass/node-sass/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "normalize.css": {
         "licenses": "MIT",
         "repository": "https://github.com/necolas/normalize.css",
         "licenseUrl": "https://github.com/necolas/normalize.css/raw/master/LICENSE.md",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "normalizr": {
         "licenses": "MIT",
         "repository": "https://github.com/paularmstrong/normalizr",
         "licenseUrl": "https://github.com/paularmstrong/normalizr/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "nuxt-env": {
         "licenses": "MIT",
         "repository": "https://github.com/samtgarson/nuxt-env",
         "licenseUrl": "https://github.com/samtgarson/nuxt-env",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "nuxt-i18n": {
         "licenses": "MIT",
         "repository": "https://github.com/nuxt-community/nuxt-i18n",
         "licenseUrl": "https://github.com/nuxt-community/nuxt-i18n/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "nuxt": {
         "licenses": "MIT",
         "repository": "https://github.com/nuxt/nuxt.js",
         "licenseUrl": "https://github.com/nuxt/nuxt.js/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "sass-loader": {
         "licenses": "MIT",
         "repository": "https://github.com/webpack-contrib/sass-loader",
         "licenseUrl": "https://github.com/webpack-contrib/sass-loader/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "snakecase-keys": {
         "licenses": "MIT",
         "repository": "https://github.com/bendrucker/snakecase-keys",
         "licenseUrl": "https://github.com/bendrucker/snakecase-keys/raw/master/license",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "style-loader": {
         "licenses": "MIT",
         "repository": "https://github.com/webpack-contrib/style-loader",
         "licenseUrl": "https://github.com/webpack-contrib/style-loader/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "v-calendar": {
         "licenses": "MIT",
         "repository": "https://github.com/nathanreyes/v-calendar",
         "licenseUrl": "https://github.com/nathanreyes/v-calendar/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "v-tooltip": {
         "licenses": "ISC",
         "repository": "https://github.com/Akryum/vue-tooltip",
         "licenseUrl": "https://github.com/Akryum/vue-tooltip/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "vue-analytics": {
         "licenses": "MIT",
         "repository": "https://github.com/MatteoGabriele/vue-analytics",
         "licenseUrl": "https://github.com/MatteoGabriele/vue-analytics/raw/master/LICENCE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "vue-chartjs": {
         "licenses": "MIT",
         "repository": "https://github.com:apertureless/vue-chartjs",
         "licenseUrl": "https://github.com:apertureless/vue-chartjs/raw/master/LICENSE.txt",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "vue-feather-icons": {
         "licenses": "MIT",
         "repository": "https://github.com/egoist/vue-feather-icons",
         "licenseUrl": "https://github.com/egoist/vue-feather-icons/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "vue-js-modal": {
         "licenses": "MIT",
         "repository": "https://github.com/euvl/vue-js-modal",
         "licenseUrl": "https://github.com/euvl/vue-js-modal/raw/master/LICENSE.md",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "vue-timers": {
         "licenses": "MIT",
         "repository": "https://github.com/kelin2025/vue-timers",
         "licenseUrl": "https://github.com/kelin2025/vue-timers/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "vue2-animate": {
         "licenses": "MIT",
         "repository": "https://github.com/asika32764/vue2-animate",
         "licenseUrl": "https://github.com/asika32764/vue2-animate/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     },
     "vuex-persistedstate": {
         "licenses": "MIT",
         "repository": "https://github.com/robinvdvleuten/vuex-persistedstate",
         "licenseUrl": "https://github.com/robinvdvleuten/vuex-persistedstate/raw/master/LICENSE",
-        "parents": "Hackaru"
+        "parents": "hackaru-web"
     }
 }
