@@ -14,7 +14,7 @@
 
 <script>
 import Color from 'color';
-import { formatDistanceStrict } from 'date-fns';
+import { parseISO, formatDistanceStrict } from 'date-fns';
 
 export default {
   props: {
@@ -40,7 +40,7 @@ export default {
       return (
         this.startedAt &&
         this.stoppedAt &&
-        formatDistanceStrict(this.startedAt, this.stoppedAt)
+        formatDistanceStrict(parseISO(this.startedAt), parseISO(this.stoppedAt))
       );
     },
     backgroundColor() {
