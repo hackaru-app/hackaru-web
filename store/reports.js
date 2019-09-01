@@ -1,4 +1,4 @@
-import { eachDay, format } from 'date-fns';
+import { eachDayOfInterval, parseISO, format } from 'date-fns';
 
 export const SET_REPORTS = 'SET_REPORTS';
 
@@ -67,7 +67,10 @@ export const getters = {
   barChartLabels: (state, getter) => {
     return {
       hour: [...Array(24).keys()].map(hour => `${hour}:00`),
-      day: eachDay(state.start, state.end).map(date => format(date, 'DD')),
+      day: eachDayOfInterval({
+        start: state.start ? parseISO(state.start) : new Date(),
+        end: state.end ? parseISO(state.end) : new Date()
+      }).map(date => format(date, 'dd')),
       month: [
         'Jan',
         'Feb',
