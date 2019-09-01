@@ -1,4 +1,4 @@
-import { eachDayOfInterval, parseISO, format } from 'date-fns';
+import { eachDayOfInterval, format } from 'date-fns';
 
 export const SET_REPORTS = 'SET_REPORTS';
 
@@ -68,8 +68,8 @@ export const getters = {
     return {
       hour: [...Array(24).keys()].map(hour => `${hour}:00`),
       day: eachDayOfInterval({
-        start: state.start ? parseISO(state.start) : new Date(),
-        end: state.end ? parseISO(state.end) : new Date()
+        start: state.start || new Date(),
+        end: state.end || new Date()
       }).map(date => format(date, 'dd')),
       month: [
         'Jan',
