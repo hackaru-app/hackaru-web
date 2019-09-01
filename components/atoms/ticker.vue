@@ -28,7 +28,7 @@ export default {
     return {
       fromS,
       started: parseISO(this.startedAt),
-      stopped: parseISO(this.stoppedAt || `${new Date()}`)
+      stopped: this.stoppedAt ? parseISO(this.stoppedAt) : new Date()
     };
   },
   computed: {
@@ -48,7 +48,7 @@ export default {
     updateDuration() {
       if (this.stoppedAt) this.$timer.stop('updateDuration');
       this.started = parseISO(this.startedAt);
-      this.stopped = parseISO(this.stoppedAt || `${new Date()}`);
+      this.stopped = this.stoppedAt ? parseISO(this.stoppedAt) : new Date();
     }
   }
 };
