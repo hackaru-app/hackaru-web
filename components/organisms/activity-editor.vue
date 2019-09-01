@@ -81,7 +81,7 @@ import ProjectName from '@/components/molecules/project-name';
 import DatetimePicker from '@/components/molecules/datetime-picker';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
-import { distanceInWordsStrict } from 'date-fns';
+import { formatDistanceStrict, parseISO } from 'date-fns';
 
 export default {
   name: 'ActivityEditor',
@@ -167,7 +167,10 @@ export default {
       });
     },
     share() {
-      const duration = distanceInWordsStrict(this.startedAt, this.stoppedAt);
+      const duration = formatDistanceStrict(
+        parseISO(this.startedAt),
+        parseISO(this.stoppedAt)
+      );
       const title = [this.project.name, this.description]
         .filter(v => v)
         .join(' - ');
