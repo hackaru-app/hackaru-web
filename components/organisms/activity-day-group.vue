@@ -16,7 +16,7 @@
 
 <script>
 import ActivityItem from '@/components/organisms/activity-item';
-import { differenceInDays, format } from 'date-fns';
+import { differenceInDays, startOfDay, parseISO, format } from 'date-fns';
 
 export default {
   components: {
@@ -38,18 +38,14 @@ export default {
   },
   computed: {
     title() {
-      const diff = differenceInDays(new Date(), this.day);
-      switch (diff) {
-        case 0:
-          return this.$t('today');
-        case 1:
-          return this.$t('yesterday');
-        default:
-          return `${diff}${this.$t('ago')}`;
-      }
+      const diff = differenceInDays(startOfDay(new Date()), parseISO(this.day));
+      if (diff === 0) return this.$t('today');
+      if (diff === 1) return this.$t('yesterday');
+      if (diff < 0) return `${Math.abs(diff)}${this.$t('later')}`;
+      if (diff > 0) return `${diff}${this.$t('ago')}`;
     },
     week() {
-      return this.$t(`weeks[${format(this.day, 'd')}]`);
+      return this.$t(`weeks[${format(parseISO(this.day), 'i') - 1}]`);
     }
   }
 };

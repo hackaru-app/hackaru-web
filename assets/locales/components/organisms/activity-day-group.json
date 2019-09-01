@@ -3,6 +3,7 @@
     "today": "Today",
     "yesterday": "Yesterday",
     "ago": " days",
+    "later": " days later",
     "weeks": [
       "Sunday",
       "Monday",
@@ -17,6 +18,7 @@
     "today": "今日",
     "yesterday": "昨日",
     "ago": "日前",
+    "later": "日後",
     "weeks": [
       "日曜日",
       "月曜日",

@@ -7,7 +7,8 @@ import {
   addMinutes,
   compareDesc,
   isSameWeek,
-  parseISO
+  parseISO,
+  format
 } from 'date-fns';
 
 export const actions = {
@@ -123,12 +124,13 @@ export const getters = {
   },
   weekly: (state, getters) => {
     const weekly = getters.all
-      .filter(({ stoppedAt }) => parseISO(stoppedAt))
       .filter(({ startedAt }) => isSameWeek(parseISO(startedAt), new Date()))
       .sort((a, b) =>
         compareDesc(parseISO(a.startedAt), parseISO(b.startedAt))
       );
-    return groupBy(weekly, ({ startedAt }) => startOfDay(parseISO(startedAt)));
+    return groupBy(weekly, ({ startedAt }) =>
+      format(parseISO(startedAt), 'yyyy-MM-dd')
+    );
   },
   getCalendar: (state, getters) => (date, toMin) => {
     const rows = [];
