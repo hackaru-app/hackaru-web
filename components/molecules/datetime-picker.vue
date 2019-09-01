@@ -45,12 +45,10 @@ export default {
   methods: {
     update() {
       const date = parseISO(
-        `${this.$refs.date.value} ${this.$refs.time.value}`
+        [this.$refs.date.value, this.$refs.time.value].join(' ')
       );
-      this.$emit(
-        'input',
-        isNaN(date) ? undefined : format(date, `${dateFormat} ${timeFormat}`)
-      );
+      const formatString = `${dateFormat} ${timeFormat} XXX`;
+      this.$emit('input', isNaN(date) ? undefined : format(date, formatString));
     },
     setCurrent() {
       this.$refs.date.value = this.date || format(new Date(), dateFormat);
