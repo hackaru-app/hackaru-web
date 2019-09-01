@@ -160,16 +160,13 @@ export default {
     },
     moveEnd(e) {
       this.$emit('drop');
-
       if (!this.overlappedDay) {
         return this.resetPosition();
       }
-      console.log(this.overlappedDay);
       const date = addMinutes(
         startOfDay(parseISO(this.overlappedDay)),
         this.$toMin(this.top)
       );
-
       this.update({
         startedAt: date,
         stoppedAt: addSeconds(date, this.duration)
