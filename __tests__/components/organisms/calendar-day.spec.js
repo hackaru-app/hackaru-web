@@ -1,6 +1,6 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import { parse } from 'date-fns';
+import { parseISO } from 'date-fns';
 import CalendarDay from '@/components/organisms/calendar-day';
 
 describe('CalendarDay', () => {
@@ -109,8 +109,8 @@ describe('CalendarDay', () => {
 
     it('dispatch activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
-        startedAt: parse('2019-01-01T01:00:00'),
-        stoppedAt: parse('2019-01-01T01:20:00')
+        startedAt: parseISO('2019-01-01T01:00:00'),
+        stoppedAt: parseISO('2019-01-01T01:20:00')
       });
     });
   });
@@ -132,8 +132,8 @@ describe('CalendarDay', () => {
 
     it('dispatch activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
-        startedAt: parse('2019-01-01T01:00:00'),
-        stoppedAt: parse('2019-01-01T01:20:00')
+        startedAt: parseISO('2019-01-01T01:00:00'),
+        stoppedAt: parseISO('2019-01-01T01:20:00')
       });
     });
   });

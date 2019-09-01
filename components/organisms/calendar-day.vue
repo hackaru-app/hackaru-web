@@ -49,7 +49,7 @@
 import Resizer from '@/components/atoms/resizer';
 import CalendarEvent from '@/components/atoms/calendar-event';
 import CalendarActivity from '@/components/organisms/calendar-activity';
-import { format, startOfDay, addMinutes } from 'date-fns';
+import { format, startOfDay, addMinutes, parseISO } from 'date-fns';
 
 export default {
   components: {
@@ -120,7 +120,7 @@ export default {
     },
     async addActivity() {
       const startedAt = addMinutes(
-        startOfDay(this.day),
+        startOfDay(parseISO(this.day)),
         this.$toMin(this.ghostTop)
       );
       await this.$store.dispatch('activities/add', {
