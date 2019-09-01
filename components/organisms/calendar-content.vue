@@ -77,7 +77,7 @@ export default {
   },
   computed: {
     hasToday() {
-      return this.days.find(day => isToday(parseISO(day)));
+      return this.days.find(day => isToday(day));
     },
     currentTimeLineTop() {
       return this.$toPx(
@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     isOverlapped(day) {
-      return isSameDay(parseISO(this.overlappedDay), parseISO(day));
+      return isSameDay(parseISO(this.overlappedDay), day);
     },
     updateCurrentDate() {
       this.currentDate = new Date();
