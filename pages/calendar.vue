@@ -25,8 +25,8 @@
         <div :style="slideStyle" class="headers-wrapper">
           <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
             <calendar-day-header
-              v-for="day in getDays(period.add(date, page))"
-              :day="`${day}`"
+              v-for="day in getDays(page)"
+              :day="`${format(day, 'yyyy-MM-dd HH:mm:ss')}`"
               :key="`${day}`"
             />
           </div>
@@ -63,14 +63,14 @@ import CalendarDayHeader from '@/components/organisms/calendar-day-header';
 import {
   startOfDay,
   endOfDay,
-  isEqual,
+  isSameDay,
   startOfWeek,
   endOfWeek,
   addWeeks,
   isToday,
   format,
   addDays,
-  eachDay
+  eachDayOfInterval
 } from 'date-fns';
 
 const periods = {
@@ -116,10 +116,10 @@ export default {
       return format(this.date, this.$t(`${this.currentPeriod}.format`));
     },
     days() {
-      return this.getDays(this.date);
+      return this.getDays(0);
     },
     hasToday() {
-      return isEqual(
+      return isSameDay(
         this.period.startOf(new Date()),
         this.period.startOf(this.date)
       );
@@ -138,8 +138,12 @@ export default {
         end: this.period.endOf(this.date)
       });
     },
-    getDays(date) {
-      return eachDay(this.period.startOf(date), this.period.endOf(date));
+    getDays(page) {
+      const baseDate = this.period.add(this.date, page);
+      return eachDayOfInterval({
+        start: this.period.startOf(baseDate),
+        end: this.period.endOf(baseDate)
+      });
     },
     slideLeft() {
       this.$refs.slider.slideLeft();
