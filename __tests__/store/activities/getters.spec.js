@@ -38,61 +38,61 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call weekly', () => {
+  describe('when call pastWeek', () => {
     const mockGetters = {
       all: [
         {
           id: 1,
+          startedAt: '2019-01-30T00:00:00',
+          stoppedAt: '2019-01-30T01:00:00',
+          duration: 3600
+        },
+        {
+          id: 2,
           startedAt: '2019-01-31T00:00:00',
           stoppedAt: '2019-01-31T01:00:00',
           duration: 3600
         },
         {
-          id: 2,
-          startedAt: '2019-02-01T00:00:00',
-          stoppedAt: '2019-02-01T01:00:00',
-          duration: 3600
-        },
-        {
           id: 3,
-          startedAt: '2019-02-01T03:00:00',
-          stoppedAt: '2019-02-01T04:00:00',
+          startedAt: '2019-01-31T03:00:00',
+          stoppedAt: '2019-01-31T04:00:00',
           duration: 3600
         },
         {
           id: 4,
-          startedAt: '2019-05-01T00:00:00',
-          stoppedAt: '2019-05-01T01:00:00',
+          startedAt: '2019-02-01T00:00:00',
+          stoppedAt: '2019-02-01T01:00:00',
           duration: 3600
         }
       ]
     };
 
     beforeEach(() => {
-      result = getters.weekly({}, mockGetters, {}, {});
+      result = getters.pastWeek({}, mockGetters, {}, {});
     });
 
     it('group by day', () => {
       expect(result).toEqual({
         '2019-01-31': [
           {
-            id: 1,
+            id: 3,
+            startedAt: '2019-01-31T03:00:00',
+            stoppedAt: '2019-01-31T04:00:00',
+            duration: 3600
+          },
+          {
+            id: 2,
             startedAt: '2019-01-31T00:00:00',
             stoppedAt: '2019-01-31T01:00:00',
             duration: 3600
           }
         ],
-        '2019-02-01': [
+        '2019-01-30': [
           {
-            id: 3,
-            startedAt: '2019-02-01T03:00:00',
-            stoppedAt: '2019-02-01T04:00:00',
-            duration: 3600
-          },
-          {
-            id: 2,
-            startedAt: '2019-02-01T00:00:00',
-            stoppedAt: '2019-02-01T01:00:00',
+            id: 1,
+            startedAt: '2019-01-30T00:00:00',
+            stoppedAt: '2019-01-30T01:00:00',
             duration: 3600
           }
         ]
@@ -100,7 +100,7 @@ describe('Getters', () => {
     });
 
     it('does not contains out of range', () => {
-      expect(result[parseISO('2019-05-01')]).toBeUndefined();
+      expect(result[parseISO('2019-02-01')]).toBeUndefined();
     });
   });
 
