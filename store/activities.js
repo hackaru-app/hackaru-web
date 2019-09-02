@@ -124,6 +124,7 @@ export const getters = {
   },
   weekly: (state, getters) => {
     const weekly = getters.all
+      .filter(({ stoppedAt }) => stoppedAt)
       .filter(({ startedAt }) => isSameWeek(parseISO(startedAt), new Date()))
       .sort((a, b) =>
         compareDesc(parseISO(a.startedAt), parseISO(b.startedAt))
