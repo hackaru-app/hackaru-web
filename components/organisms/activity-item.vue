@@ -18,7 +18,7 @@
       <ticker
         :started-at="startedAt"
         :stopped-at="stoppedAt"
-        class="duration"
+        :class="['duration', { stopped: stoppedAt }]"
       />
       <base-button
         v-tooltip="$t('duplicate')"
@@ -121,8 +121,10 @@ export default {
   padding-right: 40px;
 }
 .duration {
-  color: $text-light;
   font-family: $font-family-duration;
+}
+.duration.stopped {
+  color: $text-light;
 }
 .content {
   align-items: center;
