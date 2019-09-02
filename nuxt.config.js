@@ -157,6 +157,7 @@ module.exports = {
   },
   manifest: {
     name: 'Hackaru',
+    short_name: 'Hackaru',
     lang: 'ja'
   },
   meta: {
