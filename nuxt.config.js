@@ -86,7 +86,6 @@ module.exports = {
    ** Plugins
    */
   plugins: [
-    { src: '~/plugins/customs/i18n-cacher', ssr: false },
     { src: '~/plugins/customs/mezr', ssr: false },
     { src: '~/plugins/customs/platform', ssr: false },
     { src: '~/plugins/customs/px-min' },
@@ -138,7 +137,10 @@ module.exports = {
       {
         locales: [{ code: 'ja', iso: 'ja' }, { code: 'en', iso: 'en-US' }],
         defaultLocale: 'en',
-        vueI18nLoader: true
+        vueI18nLoader: true,
+        detectBrowserLanguage: {
+          alwaysRedirect: true
+        }
       }
     ],
     [
