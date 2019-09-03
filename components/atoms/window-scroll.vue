@@ -6,7 +6,8 @@
 export default {
   data() {
     return {
-      endTimer: undefined
+      endTimer: undefined,
+      started: false
     };
   },
   mounted() {
@@ -17,11 +18,18 @@ export default {
   },
   methods: {
     scroll(e) {
+      if (!this.started) this.start();
       this.$emit('scroll', e);
       clearInterval(this.endTimer);
-      this.endTimer = setTimeout(() => {
-        this.$emit('end');
-      }, 100);
+      this.endTimer = setTimeout(() => this.end(), 100);
+    },
+    start() {
+      this.$emit('start');
+      this.started = true;
+    },
+    end() {
+      this.$emit('end');
+      this.started = false;
     }
   }
 };

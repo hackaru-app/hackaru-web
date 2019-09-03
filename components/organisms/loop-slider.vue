@@ -5,7 +5,12 @@
     @move="dragging"
     @end="drop"
   >
-    <window-scroll class="window-scroll" @scroll="scroll" @end="scrollEnd">
+    <window-scroll
+      class="window-scroll"
+      @scroll="scroll"
+      @start="startScroll"
+      @end="endScroll"
+    >
       <slot :slideStyle="slideStyle" />
     </window-scroll>
   </drag-drop>
@@ -44,14 +49,17 @@ export default {
     }
   },
   methods: {
+    startScroll() {
+      this.slideReset();
+    },
     scroll() {
       this.scrolling = true;
     },
-    scrollEnd() {
+    endScroll() {
       this.scrolling = false;
     },
     dragging({ e, distance }) {
-      const wasTooLowDrag = Math.abs(distance.x) < 10;
+      const wasTooLowDrag = Math.abs(distance.x) < 20;
       if (this.slideTimer || wasTooLowDrag) return;
       this.speed = 0;
       this.offset = `-${this.$mezr.width(this.$el) - distance.x}px`;

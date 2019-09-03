@@ -3,12 +3,13 @@ import groupBy from 'lodash.groupby';
 import {
   isWithinInterval,
   startOfDay,
+  endOfDay,
   areIntervalsOverlapping,
   addMinutes,
   compareDesc,
-  isSameWeek,
   parseISO,
-  format
+  format,
+  addDays
 } from 'date-fns';
 
 export const actions = {
@@ -122,9 +123,10 @@ export const getters = {
   working(state, getters) {
     return getters.all.find(({ stoppedAt }) => !stoppedAt);
   },
-  weekly: (state, getters) => {
+  pastWeek: (state, getters) => {
     const weekly = getters.all
-      .filter(({ startedAt }) => isSameWeek(parseISO(startedAt), new Date()))
+      .filter(({ stoppedAt }) => stoppedAt)
+      .filter(({ startedAt }) => isWithinPastWeek(parseISO(startedAt)))
       .sort((a, b) =>
         compareDesc(parseISO(a.startedAt), parseISO(b.startedAt))
       );
@@ -146,6 +148,13 @@ export const getters = {
     return rows;
   }
 };
+
+function isWithinPastWeek(date) {
+  return isWithinInterval(date, {
+    start: startOfDay(addDays(new Date(), -7)),
+    end: endOfDay(new Date())
+  });
+}
 
 function isRange({ startedAt, stoppedAt }, date) {
   const start = startOfDay(parseISO(startedAt));

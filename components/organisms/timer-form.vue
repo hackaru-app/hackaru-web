@@ -11,19 +11,13 @@
     />
     <form class="form" @submit.prevent="submit">
       <div class="form-content">
-        <coach-tooltip
-          :content="$t('selectProject')"
-          name="select-project"
-          placement="bottom"
-        >
-          <div class="project-wrapper" @click="showModal">
-            <project-name v-bind="project" class="selected-project" />
-            <dot
-              :color="project ? project.color : '#ccc'"
-              class="dot-only is-medium"
-            />
-          </div>
-        </coach-tooltip>
+        <div class="project-wrapper" @click="showModal">
+          <project-name v-bind="project" class="selected-project" />
+          <dot
+            :color="project ? project.color : '#ccc'"
+            class="dot-only is-medium"
+          />
+        </div>
         <input
           :value="description"
           :placeholder="$t('description')"

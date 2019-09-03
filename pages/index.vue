@@ -4,11 +4,11 @@
   <section class="index">
     <timer-form class="timer-form" />
     <div class="content">
-      <p v-if="Object.keys(weekly).length <= 0" class="empty-message">
+      <p v-if="Object.keys(pastWeek).length <= 0" class="empty-message">
         {{ $t('empty') }}
       </p>
       <activity-day-group
-        v-for="(activities, day, index) in weekly"
+        v-for="(activities, day, index) in pastWeek"
         v-else
         :key="day"
         :day="day"
@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      weekly: 'activities/weekly'
+      pastWeek: 'activities/pastWeek'
     })
   },
   mounted() {

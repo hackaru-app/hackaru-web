@@ -32,6 +32,7 @@ export default {
   },
   methods: {
     change(locale) {
+      this.$i18n.setLocaleCookie(locale);
       this.$router.push(this.switchLocalePath(locale));
     }
   }
