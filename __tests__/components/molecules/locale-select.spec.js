@@ -6,6 +6,7 @@ describe('LocaleSelect', () => {
   let wrapper;
 
   const switchLocalePath = jest.fn();
+  const setLocaleCookie = jest.fn();
   const $router = { push: jest.fn() };
 
   beforeEach(() => {
@@ -14,7 +15,10 @@ describe('LocaleSelect', () => {
         mocks: {
           switchLocalePath,
           $router,
-          $i18n: { locale: 'en' }
+          $i18n: {
+            locale: 'en',
+            setLocaleCookie
+          }
         }
       });
   });
@@ -27,6 +31,7 @@ describe('LocaleSelect', () => {
 
     it('change locale', () => {
       expect(switchLocalePath).toHaveBeenCalledWith('ja');
+      expect(setLocaleCookie).toHaveBeenCalledWith('ja');
       expect($router.push).toHaveBeenCalled();
     });
   });
