@@ -12,10 +12,16 @@ describe('WindowScroll', () => {
     beforeEach(() => {
       wrapper = factory();
       window.dispatchEvent(new CustomEvent('scroll'));
+      window.dispatchEvent(new CustomEvent('scroll'));
+      window.dispatchEvent(new CustomEvent('scroll'));
+    });
+
+    it('emit start only once', () => {
+      expect(wrapper.emitted('start').length).toBe(1);
     });
 
     it('emit scroll', () => {
-      expect(wrapper.emitted('scroll')).toBeTruthy();
+      expect(wrapper.emitted('scroll').length).toBe(3);
     });
   });
 

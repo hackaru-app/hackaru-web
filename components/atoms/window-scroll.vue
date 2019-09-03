@@ -21,15 +21,15 @@ export default {
       if (!this.started) this.start();
       this.$emit('scroll', e);
       clearInterval(this.endTimer);
-      this.endTimer = setTimeout(() => this.end, 100);
+      this.endTimer = setTimeout(() => this.end(), 100);
     },
     start() {
       this.$emit('start');
-      this.this.started = true;
+      this.started = true;
     },
     end() {
       this.$emit('end');
-      this.this.started = false;
+      this.started = false;
     }
   }
 };
