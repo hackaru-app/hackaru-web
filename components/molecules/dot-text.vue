@@ -28,7 +28,7 @@ export default {
 <style scoped lang="scss">
 .dot-text {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   overflow: hidden;
 }
 p {
