@@ -197,8 +197,8 @@ export default {
 .icons {
   display: flex;
   flex-direction: row;
-  button {
-    margin-left: 15px;
+  .delete-button {
+    margin-left: 10px;
   }
 }
 </style>
