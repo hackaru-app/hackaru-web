@@ -308,7 +308,7 @@ export default {
 .suggestion-list {
   overflow-y: scroll;
   box-sizing: border-box;
-  background-color: #fffffff0;
+  background-color: $white;
   border-top: 1px $border solid;
   overflow: hidden;
   overflow-y: scroll;
@@ -423,6 +423,7 @@ export default {
     border-left: 0;
     margin: 0;
     max-width: 100vw;
+    background-color: #fffffff0;
     box-shadow: 0 3px 3px #00000005 inset;
   }
   .suggestion-list ul {
@@ -439,6 +440,9 @@ export default {
     &:last-child {
       border-bottom: 1px $grey-f5f5f5 solid;
       padding-bottom: 0;
+    }
+    &:hover {
+      background: none;
     }
   }
 }
