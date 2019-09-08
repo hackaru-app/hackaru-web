@@ -175,8 +175,8 @@ export default {
         .filter(v => v)
         .join(' - ');
       navigator.share({
-        title: 'Hackaru',
-        text: `「${title}」を計測しました！ - ${duration} #hackaru`
+        title: this.$t('share.title'),
+        text: this.$t('share.text', { title, duration })
       });
     }
   }
