@@ -308,7 +308,7 @@ export default {
 .suggestion-list {
   overflow-y: scroll;
   box-sizing: border-box;
-  background-color: $white;
+  background-color: #fffffff0;
   border-top: 1px $border solid;
   overflow: hidden;
   overflow-y: scroll;
