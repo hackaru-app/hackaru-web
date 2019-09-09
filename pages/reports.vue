@@ -147,12 +147,14 @@ export default {
   },
   watch: {
     period: {
-      handler: 'fetchReport',
-      immediate: true
+      handler: 'fetchReport'
     },
     date: {
       handler: 'fetchReport'
     }
+  },
+  activated() {
+    this.fetchReport();
   },
   methods: {
     fetchReport() {
