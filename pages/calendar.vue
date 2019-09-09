@@ -128,9 +128,11 @@ export default {
   },
   watch: {
     date: {
-      handler: 'fetchActivities',
-      immediate: true
+      handler: 'fetchActivities'
     }
+  },
+  activated() {
+    this.fetchActivities();
   },
   methods: {
     async fetchActivities() {

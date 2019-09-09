@@ -56,7 +56,7 @@ export default {
       pastWeek: 'activities/pastWeek'
     })
   },
-  mounted() {
+  activated() {
     this.$store.dispatch('activities/fetchByRange', {
       start: weekly.start,
       end: weekly.end
