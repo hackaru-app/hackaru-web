@@ -13,6 +13,10 @@
     "saved": "Timer updated",
     "started": "Timer started",
     "deleted": "Timer deleted",
+    "share": {
+      "title": "Hackaru",
+      "text": "Worked on {title} for {duration} #hackaru"
+    },
     "confirms": {
       "delete":  "Are you sure you want to delete the timer?"
     }
@@ -31,6 +35,10 @@
     "saved": "計測を更新しました",
     "started": "計測を開始しました",
     "deleted": "計測を削除しました",
+    "share": {
+      "title": "Hackaru",
+      "text": "「{title}」を計測しました！ {duration} #hackaru"
+    },
     "confirms": {
       "delete":  "計測を削除しますか？"
     }

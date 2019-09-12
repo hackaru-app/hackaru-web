@@ -30,6 +30,7 @@ describe('Reports', () => {
   describe('when change period to day', () => {
     beforeEach(() => {
       wrapper = factory();
+      wrapper.setData({ currentPeriod: 'week' });
       wrapper.setData({ currentPeriod: 'day' });
     });
 

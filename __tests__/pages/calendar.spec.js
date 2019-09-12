@@ -21,11 +21,17 @@ describe('Calendar', () => {
     $store.reset();
   });
 
-  it('dispatch activities/fetchByRange', () => {
-    wrapper = factory();
-    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchByRange', {
-      start: parseISO('2019-01-27T00:00:00'),
-      end: parseISO('2019-02-02T23:59:59.999')
+  describe('when change date', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setData({ date: parseISO('2019-03-01T01:23:45') });
+    });
+
+    it('dispatch activities/fetchByRange', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/fetchByRange', {
+        start: parseISO('2019-02-24T00:00:00'),
+        end: parseISO('2019-03-02T23:59:59.999')
+      });
     });
   });
 

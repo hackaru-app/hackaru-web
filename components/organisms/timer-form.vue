@@ -222,7 +222,7 @@ export default {
 .duration.stopped {
   color: $text-light;
 }
-.control-button {
+.base-button.control-button {
   display: flex;
   align-self: center;
   flex-shrink: 0;
@@ -232,13 +232,14 @@ export default {
   border-radius: 50%;
   margin-right: 40px;
   pointer-events: auto;
+  border-radius: 50%;
   box-shadow: 0 3px 3px #00000010;
 }
-.control-button .icon {
+.base-button.control-button .icon {
   width: 22px;
   height: 22px;
 }
-.control-button.start .icon {
+.base-button.control-button.start .icon {
   padding-left: 3px;
 }
 .form {
@@ -269,13 +270,12 @@ export default {
 .project-wrapper {
   display: flex;
   align-items: center;
-  height: 100%;
+  min-height: 100%;
   border-right: 1px $border solid;
 }
 .selected-project {
   cursor: pointer;
   display: flex;
-  height: 100%;
   max-width: 120px;
   padding: 0 45px;
   align-items: center;
@@ -367,7 +367,7 @@ export default {
     min-width: 80px;
     height: 100%;
   }
-  .selected-project {
+  .project-wrapper .selected-project {
     display: none;
   }
   .dot-only {
@@ -385,15 +385,15 @@ export default {
     border-bottom: 1px $border solid;
     box-shadow: 0 3px 3px #00000005;
   }
-  .control-button {
+  .base-button.control-button {
     width: 48px;
     height: 48px;
     margin-right: 16px;
   }
-  .control-button.start .icon {
+  .base-button.control-button.start .icon {
     padding-left: 3px;
   }
-  .control-button .icon {
+  .base-button.control-button .icon {
     width: 20px;
     height: 20px;
   }
@@ -423,6 +423,7 @@ export default {
     border-left: 0;
     margin: 0;
     max-width: 100vw;
+    background-color: #fffffff0;
     box-shadow: 0 3px 3px #00000005 inset;
   }
   .suggestion-list ul {
@@ -439,6 +440,9 @@ export default {
     &:last-child {
       border-bottom: 1px $grey-f5f5f5 solid;
       padding-bottom: 0;
+    }
+    &:hover {
+      background: none;
     }
   }
 }
