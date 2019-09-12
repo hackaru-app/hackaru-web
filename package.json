@@ -46,7 +46,7 @@
     "vue-chartjs": "^3.4.0",
     "vue-feather-icons": "^5.0.0",
     "vue-js-modal": "^1.3.27",
-    "vue-timers": "^2.0.2",
+    "vue-timers": "^2.0.4",
     "vue2-animate": "^2.1.2",
     "vuex-persistedstate": "^2.5.4"
   },
