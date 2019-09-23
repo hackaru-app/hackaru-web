@@ -47,7 +47,7 @@ export default {
     }
   },
   mounted() {
-    this.show = !localStorage.getItem(`coach-tooltip/${this.name}`);
+    this.show = !localStorage.getItem(`coachTooltip/${this.name}`);
   },
   deactivated() {
     this.hide();
@@ -55,7 +55,7 @@ export default {
   methods: {
     hide() {
       this.show = false;
-      localStorage.setItem(`coach-tooltip/${this.name}`, true);
+      localStorage.setItem(`coachTooltip/${this.name}`, true);
     }
   }
 };

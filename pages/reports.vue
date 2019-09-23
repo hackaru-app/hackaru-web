@@ -14,7 +14,7 @@
       @right="slideRight"
     />
 
-    <coach-tooltip :content="$t('moveToNextPage')" name="swipe-report">
+    <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
       <loop-slider
         v-slot="{ slideStyle }"
         ref="slider"

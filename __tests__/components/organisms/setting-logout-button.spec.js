@@ -35,6 +35,10 @@ describe('SettingLogoutButton', () => {
     it('redirect to index', () => {
       expect(location).toHaveBeenCalledWith('/en/index');
     });
+
+    it('removes user id', () => {
+      expect(localStorage.removeItem).toHaveBeenCalledWith('userId');
+    });
   });
 
   describe('click logout-button but confirm is false', () => {
@@ -46,6 +50,10 @@ describe('SettingLogoutButton', () => {
 
     it('does not dispatch ', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('does not remove user id', () => {
+      expect(localStorage.removeItem).not.toHaveBeenCalledWith('userId');
     });
   });
 });

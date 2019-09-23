@@ -35,7 +35,7 @@
 
       <coach-tooltip
         :content="$t('addActivityByLongPress')"
-        name="add-calendar-activity"
+        name="addCalendarActivity"
       >
         <section class="contents-wrapper">
           <section :style="slideStyle" class="contents">

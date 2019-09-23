@@ -90,9 +90,9 @@ module.exports = {
     { src: '~/plugins/customs/platform', ssr: false },
     { src: '~/plugins/customs/px-min' },
     { src: '~/plugins/vue-timers', ssr: false },
+    { src: '~/plugins/vue-gtm', ssr: false },
     { src: '~/plugins/v-calendar', ssr: false },
     { src: '~/plugins/persist-state.js', ssr: false },
-    { src: '~/plugins/vue-analytics.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
     { src: '~/plugins/vue-js-modal' }
   ],
@@ -149,7 +149,7 @@ module.exports = {
         keys: [
           { key: 'HACKARU_API_URL' },
           { key: 'HACKARU_TOS_AND_PRIVACY_URL' },
-          { key: 'GOOGLE_ANALYTICS_TRACKING_ID' }
+          { key: 'GOOGLE_TAG_MANAGER_ID' }
         ]
       }
     ]

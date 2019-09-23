@@ -126,9 +126,13 @@ export default {
         password: this.password
       });
       if (success) {
+        localStorage.setItem('userId', this.$store.getters['auth/userId']);
+        this.$gtm.trackEvent({
+          category: 'Auth',
+          action: 'login',
+          label: this.$route.fullPath
+        });
         this.goBack();
-        this.$ga.set('userId', this.$store.getters['auth/userId']);
-        this.$ga.event('auth', 'login');
       }
     },
     async signUp() {
@@ -138,9 +142,13 @@ export default {
         passwordConfirmation: this.passwordConfirmation
       });
       if (success) {
+        localStorage.setItem('userId', this.$store.getters['auth/userId']);
+        this.$gtm.trackEvent({
+          category: 'Auth',
+          action: 'signUp',
+          label: this.$route.fullPath
+        });
         this.goBack();
-        this.$ga.set('userId', this.$store.getters['auth/userId']);
-        this.$ga.event('auth', 'signUp');
       }
     },
     goBack() {

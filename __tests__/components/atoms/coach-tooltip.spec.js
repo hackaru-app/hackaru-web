@@ -21,7 +21,7 @@ describe('CoachTooltip', () => {
 
   describe('when user already seen', () => {
     beforeEach(() => {
-      localStorage.setItem('coach-tooltip/example', true);
+      localStorage.setItem('coachTooltip/example', true);
       wrapper = factory();
     });
 
@@ -52,7 +52,7 @@ describe('CoachTooltip', () => {
 
     it('store hidden flag to local-storage', () => {
       expect(localStorage.setItem).toHaveBeenCalledWith(
-        'coach-tooltip/example',
+        'coachTooltip/example',
         true
       );
     });

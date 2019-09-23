@@ -17,6 +17,7 @@ describe('Auth', () => {
 
   beforeEach(() => {
     sessionStorage.clear();
+    localStorage.clear();
     $store.reset();
     $route.query['sign-up'] = false;
     factory = () =>

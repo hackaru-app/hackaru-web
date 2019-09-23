@@ -11474,11 +11474,6 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
   integrity sha512-iq+S7vZJE60yejDYM0ek6zg308+UZsdtPExWP9VZoCFCz1zkJoXFnAX7aZfd/ZwrkidzdUZL0C/ryW+JwAiIGw==
 
-vue-analytics@^5.16.4:
-  version "5.17.2"
-  resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.17.2.tgz#5a43cbd907a8b5d2c27e3df5046245604fa8c83e"
-  integrity sha512-Vfbn5laOG8OVetrBNRfV64y/N5VVyw1PPC4LiowZFh58UOsfsGH8w+ZZn0pyMelSZmz9uxkgG5dNnce4bwJ6jg==
-
 vue-chartjs@^3.4.0:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-3.4.2.tgz#0323e6a99a10a68f38d426899c3994f48596fd23"
@@ -11507,6 +11502,11 @@ vue-feather-icons@^5.0.0:
   integrity sha512-uvi2l3i0aeRRzG3vX24/AH+8BkcXkSJboAv8XkUZ6aPkEC9n6LXDcKp5/ho+3moVQ9wlga3N6BjL89pmkHBzPw==
   dependencies:
     babel-helper-vue-jsx-merge-props "^2.0.2"
+
+vue-gtm@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/vue-gtm/-/vue-gtm-2.2.0.tgz#7b96cce86eb1318d37f55e761cb3253b5369c312"
+  integrity sha512-DsypU2nqN7xc8GbdAxOatzj+LCCkM9F4Lz5m0FhGLw1Cs+ENgHt7ieHIRD41pu8g0QbJiIMkpcnwPQEBe2Sg0w==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"

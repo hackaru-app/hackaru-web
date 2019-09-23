@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import CoachTooltip from '@/components/atoms/coach-tooltip';
 import Dragger from '@/components/atoms/dragger';
 import Resizer from '@/components/atoms/resizer';
 import CalendarEvent from '@/components/atoms/calendar-event';
@@ -54,7 +53,6 @@ import {
 
 export default {
   components: {
-    CoachTooltip,
     CalendarEvent,
     Dragger,
     Resizer
@@ -218,7 +216,11 @@ export default {
         id: this.id,
         ...payload
       });
-      this.$ga.event('activity', 'updateActivity');
+      this.$gtm.trackEvent({
+        category: 'Activity',
+        action: 'update',
+        label: this.$route.fullPath
+      });
     }
   }
 };

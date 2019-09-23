@@ -31,8 +31,13 @@ export default {
   methods: {
     async logout() {
       if (!window.confirm(this.$t('confirms'))) return;
-      this.$ga.event('auth', 'logout');
+      this.$gtm.trackEvent({
+        category: 'Auth',
+        action: 'logout',
+        label: this.$route.fullPath
+      });
       await this.$store.dispatch('auth/logout');
+      localStorage.removeItem('userId');
       window.location.assign(this.localePath('index'));
     }
   }
