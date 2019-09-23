@@ -97,7 +97,7 @@ export default {
       this.$gtm.trackEvent({
         category: 'OAuth',
         action: 'delete',
-        label: 'Settings/Applications'
+        label: 'Pages/Settings/Applications'
       });
       this.$store.dispatch('toast/success', this.$t('deleted'));
     },
