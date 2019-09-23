@@ -133,7 +133,7 @@ export default {
         this.$gtm.trackEvent({
           category: 'Auth',
           action: 'login',
-          label: 'Pages/Auth'
+          label: this.$route.fullPath
         });
       }
     },
@@ -151,7 +151,7 @@ export default {
         this.$gtm.trackEvent({
           category: 'Auth',
           action: 'signUp',
-          label: 'Pages/Auth'
+          label: this.$route.fullPath
         });
       }
     },

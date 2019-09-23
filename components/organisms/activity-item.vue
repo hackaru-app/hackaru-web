@@ -97,7 +97,7 @@ export default {
       this.$gtm.trackEvent({
         category: 'Activity',
         action: 'delete',
-        label: 'ActivityItem'
+        label: this.$route.fullPath
       });
     },
     async duplicateActivity() {
@@ -109,7 +109,7 @@ export default {
       this.$gtm.trackEvent({
         category: 'Activity',
         action: 'duplicate',
-        label: 'ActivityItem'
+        label: this.$route.fullPath
       });
       if (success) {
         this.$refs.swipeMenu.reset();

@@ -127,7 +127,7 @@ export default {
         this.$gtm.trackEvent({
           category: 'Webhook',
           action: 'add',
-          label: 'Pages/Settings/Webhooks'
+          label: this.$route.fullPath
         });
         this.$store.dispatch('toast/success', this.$t('added'));
       }
@@ -138,7 +138,7 @@ export default {
       this.$gtm.trackEvent({
         category: 'Webhook',
         action: 'delete',
-        label: 'Pages/Settings/Webhooks'
+        label: this.$route.fullPath
       });
       this.$store.dispatch('toast/success', this.$t('deleted'));
     },

@@ -130,7 +130,7 @@ export default {
       this.$gtm.trackEvent({
         category: 'Activity',
         action: 'add',
-        label: 'CalendarDay'
+        label: this.$route.fullPath
       });
     }
   }

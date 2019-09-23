@@ -34,7 +34,7 @@ export default {
       this.$gtm.trackEvent({
         category: 'Auth',
         action: 'logout',
-        label: 'SettingLogoutButton'
+        label: this.$route.fullPath
       });
       await this.$store.dispatch('auth/logout');
       window.location.assign(this.localePath('index'));

@@ -97,7 +97,7 @@ export default {
         this.$gtm.trackEvent({
           category: 'Project',
           action: 'add',
-          label: 'ProjectEditor'
+          label: this.$route.fullPath
         });
         this.$store.dispatch('toast/success', this.$t('added'));
       }
@@ -113,7 +113,7 @@ export default {
         this.$gtm.trackEvent({
           category: 'Project',
           action: 'update',
-          label: 'ProjectEditor'
+          label: this.$route.fullPath
         });
         this.$store.dispatch('toast/success', this.$t('updated'));
       }
@@ -126,7 +126,7 @@ export default {
         this.$gtm.trackEvent({
           category: 'Project',
           action: 'delete',
-          label: 'ProjectEditor'
+          label: this.$route.fullPath
         });
         this.$store.dispatch('toast/success', this.$t('deleted'));
       }

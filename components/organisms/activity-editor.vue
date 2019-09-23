@@ -153,7 +153,7 @@ export default {
         this.$gtm.trackEvent({
           category: 'Activity',
           action,
-          label: 'ActivityEditor'
+          label: this.$route.fullPath
         });
       }
     },
@@ -164,7 +164,7 @@ export default {
       this.$gtm.trackEvent({
         category: 'Activity',
         action: 'delete',
-        label: 'ActivityEditor'
+        label: this.$route.fullPath
       });
       this.$modal.hide('activity');
     },

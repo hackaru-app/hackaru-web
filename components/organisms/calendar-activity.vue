@@ -221,7 +221,7 @@ export default {
       this.$gtm.trackEvent({
         category: 'Activity',
         action: 'update',
-        label: 'CalendarActivity'
+        label: this.$route.fullPath
       });
     }
   }

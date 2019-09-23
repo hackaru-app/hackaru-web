@@ -84,7 +84,7 @@ export default {
         this.$gtm.trackEvent({
           category: 'Auth',
           action: 'delete',
-          label: 'SettingDeleteAccountButton'
+          label: this.$route.fullPath
         });
         window.location.assign(this.localePath('index'));
       }

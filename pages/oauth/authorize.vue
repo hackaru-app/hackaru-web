@@ -89,7 +89,7 @@ export default {
       this.$gtm.trackEvent({
         category: 'OAuth',
         action,
-        label: 'Pages/OAuth/Authorize'
+        label: this.$route.fullPath
       });
       const data = await this.$store.dispatch(`oauth/${action}`, {
         clientId: this.$route.query['client_id'],
