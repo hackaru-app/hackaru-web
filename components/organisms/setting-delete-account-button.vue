@@ -81,7 +81,7 @@ export default {
         currentPassword: this.currentPassword
       });
       if (success) {
-        this.$ga.event('auth', 'deleteAccount');
+        // this.$ga.event('auth', 'deleteAccount');
         window.location.assign(this.localePath('index'));
       }
     }

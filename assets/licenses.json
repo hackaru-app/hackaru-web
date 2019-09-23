@@ -1,4 +1,10 @@
 {
+    "@nuxtjs/google-tag-manager": {
+        "licenses": "MIT",
+        "repository": "https://github.com/nuxt-community/modules",
+        "licenseUrl": "https://github.com/nuxt-community/modules/raw/master/LICENSE.md",
+        "parents": "hackaru-web"
+    },
     "@nuxtjs/pwa": {
         "licenses": "MIT",
         "repository": "https://github.com/nuxt-community/pwa-module",

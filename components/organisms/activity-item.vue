@@ -94,7 +94,7 @@ export default {
       }
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
-      this.$ga.event('activity', 'deleteActivity');
+      // this.$ga.event('activity', 'deleteActivity');
     },
     async duplicateActivity() {
       const success = await this.$store.dispatch('activities/add', {

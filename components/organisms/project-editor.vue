@@ -94,7 +94,7 @@ export default {
       });
       if (success) {
         this.$emit('pop');
-        this.$ga.event('project', 'addProject');
+        // this.$ga.event('project', 'addProject');
         this.$store.dispatch('toast/success', this.$t('added'));
       }
     },
@@ -106,7 +106,7 @@ export default {
       });
       if (success) {
         this.$emit('pop');
-        this.$ga.event('project', 'updateProject');
+        // this.$ga.event('project', 'updateProject');
         this.$store.dispatch('toast/success', this.$t('updated'));
       }
     },
@@ -115,7 +115,7 @@ export default {
       const success = await this.$store.dispatch('projects/delete', this.id);
       if (success) {
         this.$emit('pop');
-        this.$ga.event('project', 'deleteProject');
+        // this.$ga.event('project', 'deleteProject');
         this.$store.dispatch('toast/success', this.$t('deleted'));
       }
     },

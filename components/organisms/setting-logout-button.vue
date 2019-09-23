@@ -31,7 +31,7 @@ export default {
   methods: {
     async logout() {
       if (!window.confirm(this.$t('confirms'))) return;
-      this.$ga.event('auth', 'logout');
+      // this.$ga.event('auth', 'logout');
       await this.$store.dispatch('auth/logout');
       window.location.assign(this.localePath('index'));
     }

@@ -127,8 +127,8 @@ export default {
       });
       if (success) {
         this.goBack();
-        this.$ga.set('userId', this.$store.getters['auth/userId']);
-        this.$ga.event('auth', 'login');
+        // this.$ga.set('userId', this.$store.getters['auth/userId']);
+        // this.$ga.event('auth', 'login');
       }
     },
     async signUp() {
@@ -139,8 +139,8 @@ export default {
       });
       if (success) {
         this.goBack();
-        this.$ga.set('userId', this.$store.getters['auth/userId']);
-        this.$ga.event('auth', 'signUp');
+        // this.$ga.set('userId', this.$store.getters['auth/userId']);
+        // this.$ga.event('auth', 'signUp');
       }
     },
     goBack() {

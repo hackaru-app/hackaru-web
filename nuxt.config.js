@@ -132,6 +132,7 @@ module.exports = {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
+    ['@nuxtjs/google-tag-manager', { id: process.env.GOOGLE_TAG_MANAGER_ID }],
     [
       'nuxt-i18n',
       {
@@ -148,8 +149,7 @@ module.exports = {
       {
         keys: [
           { key: 'HACKARU_API_URL' },
-          { key: 'HACKARU_TOS_AND_PRIVACY_URL' },
-          { key: 'GOOGLE_ANALYTICS_TRACKING_ID' }
+          { key: 'HACKARU_TOS_AND_PRIVACY_URL' }
         ]
       }
     ]

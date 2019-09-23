@@ -218,7 +218,7 @@ export default {
         id: this.id,
         ...payload
       });
-      this.$ga.event('activity', 'updateActivity');
+      // this.$ga.event('activity', 'updateActivity');
     }
   }
 };
