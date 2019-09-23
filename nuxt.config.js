@@ -75,7 +75,6 @@ module.exports = {
   css: [
     { src: 'normalize.css' },
     { src: '~/assets/sass/main.scss' },
-    { src: 'v-calendar/lib/v-calendar.min.css' },
     { src: 'vue-js-modal/dist/styles.css' }
   ],
   /*
@@ -91,7 +90,6 @@ module.exports = {
     { src: '~/plugins/customs/px-min' },
     { src: '~/plugins/vue-timers', ssr: false },
     { src: '~/plugins/vue-gtm', ssr: false },
-    { src: '~/plugins/v-calendar', ssr: false },
     { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
     { src: '~/plugins/vue-js-modal' }
