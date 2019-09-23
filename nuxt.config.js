@@ -92,7 +92,6 @@ module.exports = {
     { src: '~/plugins/vue-timers', ssr: false },
     { src: '~/plugins/v-calendar', ssr: false },
     { src: '~/plugins/persist-state.js', ssr: false },
-    { src: '~/plugins/vue-analytics.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
     { src: '~/plugins/vue-js-modal' }
   ],
