@@ -1389,11 +1389,6 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^4.0.0"
 
-"@nuxtjs/google-tag-manager@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/google-tag-manager/-/google-tag-manager-2.2.1.tgz#8029953dcc1d09a430fc5f961a48555017c875d0"
-  integrity sha512-1JpV8NRpdTd58FQiPyZUdFdYxfhrt6/a0UUQcoFMBbM3+pELho2RlOj52NE+OYY0IPR0D736ULBHXLhwv1CKdw==
-
 "@nuxtjs/icon@^2.6.0":
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/icon/-/icon-2.6.0.tgz#65295ee059794f01e41a52c4141c06e898e798bc"
@@ -11507,6 +11502,11 @@ vue-feather-icons@^5.0.0:
   integrity sha512-uvi2l3i0aeRRzG3vX24/AH+8BkcXkSJboAv8XkUZ6aPkEC9n6LXDcKp5/ho+3moVQ9wlga3N6BjL89pmkHBzPw==
   dependencies:
     babel-helper-vue-jsx-merge-props "^2.0.2"
+
+vue-gtm@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/vue-gtm/-/vue-gtm-2.2.0.tgz#7b96cce86eb1318d37f55e761cb3253b5369c312"
+  integrity sha512-DsypU2nqN7xc8GbdAxOatzj+LCCkM9F4Lz5m0FhGLw1Cs+ENgHt7ieHIRD41pu8g0QbJiIMkpcnwPQEBe2Sg0w==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.3"
