@@ -218,7 +218,11 @@ export default {
         id: this.id,
         ...payload
       });
-      // this.$ga.event('activity', 'updateActivity');
+      this.$gtm.trackEvent({
+        category: 'Activity',
+        action: 'update',
+        label: 'CalendarActivity'
+      });
     }
   }
 };

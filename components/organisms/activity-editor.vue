@@ -150,14 +150,22 @@ export default {
           this.$t(this.id || this.stoppedAt ? 'saved' : 'started')
         );
         this.$modal.hide('activity');
-        // this.$ga.event('activity', action);
+        this.$gtm.trackEvent({
+          category: 'Activity',
+          action,
+          label: 'ActivityEditor'
+        });
       }
     },
     deleteActivity() {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
-      // this.$ga.event('activity', 'deleteActivity');
+      this.$gtm.trackEvent({
+        category: 'Activity',
+        action: 'delete',
+        label: 'ActivityEditor'
+      });
       this.$modal.hide('activity');
     },
     editProject() {

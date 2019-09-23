@@ -128,7 +128,11 @@ export default {
       if (success) {
         this.goBack();
         // this.$ga.set('userId', this.$store.getters['auth/userId']);
-        // this.$ga.event('auth', 'login');
+        this.$gtm.trackEvent({
+          category: 'Auth',
+          action: 'login',
+          label: 'Pages/Auth'
+        });
       }
     },
     async signUp() {
@@ -140,7 +144,11 @@ export default {
       if (success) {
         this.goBack();
         // this.$ga.set('userId', this.$store.getters['auth/userId']);
-        // this.$ga.event('auth', 'signUp');
+        this.$gtm.trackEvent({
+          category: 'Auth',
+          action: 'signUp',
+          label: 'Pages/Auth'
+        });
       }
     },
     goBack() {

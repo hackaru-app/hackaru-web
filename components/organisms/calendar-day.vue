@@ -127,7 +127,11 @@ export default {
         startedAt,
         stoppedAt: addMinutes(startedAt, this.$toMin(this.ghostHeight))
       });
-      // this.$ga.event('activity', 'addActivity');
+      this.$gtm.trackEvent({
+        category: 'Activity',
+        action: 'add',
+        label: 'CalendarDay'
+      });
     }
   }
 };
