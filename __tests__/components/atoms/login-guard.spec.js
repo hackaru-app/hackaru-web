@@ -17,6 +17,7 @@ describe('LoginGuard', () => {
 
   beforeEach(() => {
     sessionStorage.clear();
+    localStorage.clear();
     $store.reset();
   });
 
@@ -41,11 +42,16 @@ describe('LoginGuard', () => {
   describe('when user is logged-in', () => {
     beforeEach(() => {
       $store.getters['auth/loggedIn'] = true;
+      $store.getters['auth/userId'] = 1;
       factory();
     });
 
     it('does not redirect', () => {
       expect($router.replace).not.toHaveBeenCalled();
+    });
+
+    it('save user id', () => {
+      expect(localStorage.setItem).toHaveBeenCalledWith('userId', 1);
     });
   });
 });

@@ -126,13 +126,13 @@ export default {
         password: this.password
       });
       if (success) {
-        this.goBack();
         localStorage.setItem('userId', this.$store.getters['auth/userId']);
         this.$gtm.trackEvent({
           category: 'Auth',
           action: 'login',
           label: this.$route.fullPath
         });
+        this.goBack();
       }
     },
     async signUp() {
@@ -142,13 +142,13 @@ export default {
         passwordConfirmation: this.passwordConfirmation
       });
       if (success) {
-        this.goBack();
         localStorage.setItem('userId', this.$store.getters['auth/userId']);
         this.$gtm.trackEvent({
           category: 'Auth',
           action: 'signUp',
           label: this.$route.fullPath
         });
+        this.goBack();
       }
     },
     goBack() {
