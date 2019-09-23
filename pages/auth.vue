@@ -127,9 +127,7 @@ export default {
       });
       if (success) {
         this.goBack();
-        this.$gtm
-          .dataLayer()
-          .push({ userId: this.$store.getters['auth/userId'] });
+        localStorage.setItem('userId', this.$store.getters['auth/userId']);
         this.$gtm.trackEvent({
           category: 'Auth',
           action: 'login',
@@ -145,9 +143,7 @@ export default {
       });
       if (success) {
         this.goBack();
-        this.$gtm
-          .dataLayer()
-          .push({ userId: this.$store.getters['auth/userId'] });
+        localStorage.setItem('userId', this.$store.getters['auth/userId']);
         this.$gtm.trackEvent({
           category: 'Auth',
           action: 'signUp',

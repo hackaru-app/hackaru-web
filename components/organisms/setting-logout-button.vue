@@ -37,6 +37,7 @@ export default {
         label: this.$route.fullPath
       });
       await this.$store.dispatch('auth/logout');
+      localStorage.removeItem('userId');
       window.location.assign(this.localePath('index'));
     }
   }

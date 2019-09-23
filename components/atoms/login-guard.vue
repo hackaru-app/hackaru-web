@@ -8,7 +8,7 @@
 export default {
   mounted() {
     if (!this.$store.getters['auth/loggedIn']) return this.redirect();
-    this.$gtm.dataLayer().push({ userId: this.$store.getters['auth/userId'] });
+    localStorage.setItem('userId', this.$store.getters['auth/userId']);
   },
   methods: {
     redirect() {
