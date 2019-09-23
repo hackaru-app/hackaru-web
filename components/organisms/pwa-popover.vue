@@ -42,7 +42,7 @@ export default {
     };
   },
   mounted() {
-    const learned = localStorage.getItem('pwa-popover');
+    const learned = localStorage.getItem('pwaPopover');
     const pwa = this.$platform.isPWA();
     const ios = this.$platform.isIOS();
     this.opened = !learned && !pwa && ios;
@@ -50,7 +50,7 @@ export default {
   methods: {
     hide() {
       this.opened = false;
-      localStorage.setItem('pwa-popover', true);
+      localStorage.setItem('pwaPopover', true);
     }
   }
 };

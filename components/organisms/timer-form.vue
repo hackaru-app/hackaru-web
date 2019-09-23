@@ -80,7 +80,6 @@ import NavModal from '@/components/organisms/nav-modal';
 import ProjectList from '@/components/organisms/project-list';
 import ProjectName from '@/components/molecules/project-name';
 import ActivityName from '@/components/molecules/activity-name';
-import CoachTooltip from '@/components/atoms/coach-tooltip';
 import Ticker from '@/components/atoms/ticker';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
@@ -99,7 +98,6 @@ export default {
     Dot,
     NavModal,
     Ticker,
-    CoachTooltip,
     ProjectName,
     ActivityName,
     Icon,

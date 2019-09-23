@@ -59,7 +59,7 @@ describe('PwaPopover', () => {
     beforeEach(() => {
       $platform.isIOS = () => true;
       $platform.isPWA = () => false;
-      localStorage.setItem('pwa-popover', true);
+      localStorage.setItem('pwaPopover', true);
       wrapper = factory();
     });
 
