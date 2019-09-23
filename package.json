@@ -40,7 +40,6 @@
     "sass-loader": "^7.1.0",
     "snakecase-keys": "^3.1.0",
     "style-loader": "^0.23.1",
-    "v-calendar": "^0.9.7",
     "v-tooltip": "^2.0.2",
     "vue-chartjs": "^3.4.0",
     "vue-feather-icons": "^5.0.0",
