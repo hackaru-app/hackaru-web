@@ -5,13 +5,17 @@ import LoginGuard from '@/components/atoms/login-guard';
 describe('LoginGuard', () => {
   const $store = new Store({});
   const $router = { replace: jest.fn() };
+  const scope = { setUser: jest.fn() };
 
   const factory = () =>
     shallowMount(LoginGuard, {
       mocks: {
         $store,
         $router,
-        $route: { fullPath: '/secure' }
+        $route: { fullPath: '/secure' },
+        $sentry: {
+          configureScope: fn => fn(scope)
+        }
       }
     });
 
@@ -50,8 +54,12 @@ describe('LoginGuard', () => {
       expect($router.replace).not.toHaveBeenCalled();
     });
 
-    it('save user id', () => {
+    it('save user id to localStorage', () => {
       expect(localStorage.setItem).toHaveBeenCalledWith('userId', 1);
+    });
+
+    it('save user id to sentry', () => {
+      expect(scope.setUser).toHaveBeenCalledWith({ id: 1 });
     });
   });
 });
