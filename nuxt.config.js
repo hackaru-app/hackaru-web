@@ -92,6 +92,7 @@ module.exports = {
     { src: '~/plugins/vue-gtm', ssr: false },
     { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
+    { src: '~/plugins/sentry-client', ssr: false },
     { src: '~/plugins/vue-js-modal' }
   ],
   /*
@@ -161,6 +162,9 @@ module.exports = {
     name: 'Hackaru',
     short_name: 'Hackaru',
     lang: 'ja'
+  },
+  sentry: {
+    disableClientSide: true
   },
   meta: {
     appleStatusBarStyle: 'black-translucent',

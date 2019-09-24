@@ -1465,7 +1465,7 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@sentry/browser@^5.2.0":
+"@sentry/browser@^5.2.0", "@sentry/browser@^5.6.3":
   version "5.6.3"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.6.3.tgz#5cc37b0443eba55ad13c13d34d6b95ff30dfbfe3"
   integrity sha512-bP1LTbcKPOkkmfJOAM6c7WZ0Ov0ZEW6B9keVZ9wH9fw/lBPd9UyDMDCwJ+FAYKz9M9S5pxQeJ4Ebd7WUUrGVAQ==
@@ -1507,7 +1507,7 @@
     "@sentry/utils" "5.6.1"
     tslib "^1.9.3"
 
-"@sentry/integrations@^5.2.0":
+"@sentry/integrations@^5.2.0", "@sentry/integrations@^5.6.1":
   version "5.6.1"
   resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.6.1.tgz#fcee1a6e5535a07fdefd365178662283279ce0d7"
   integrity sha512-bPtJbmhLDH9Exy0luIKxjlfqmuyAjUPTHZ2CLIw6YlhA5WgK9aYyyjLHTmWK+E9baZBqSp0ShVPAgue2jfpQmQ==
