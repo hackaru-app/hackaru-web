@@ -92,6 +92,7 @@ module.exports = {
     { src: '~/plugins/vue-gtm', ssr: false },
     { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
+    { src: '~/plugins/sentry-client', ssr: false },
     { src: '~/plugins/vue-js-modal' }
   ],
   /*
@@ -130,6 +131,7 @@ module.exports = {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
+    '@nuxtjs/sentry',
     [
       'nuxt-i18n',
       {
@@ -147,7 +149,8 @@ module.exports = {
         keys: [
           { key: 'HACKARU_API_URL' },
           { key: 'HACKARU_TOS_AND_PRIVACY_URL' },
-          { key: 'GOOGLE_TAG_MANAGER_ID' }
+          { key: 'GOOGLE_TAG_MANAGER_ID' },
+          { key: 'SENTRY_DSN' }
         ]
       }
     ]
@@ -159,6 +162,9 @@ module.exports = {
     name: 'Hackaru',
     short_name: 'Hackaru',
     lang: 'ja'
+  },
+  sentry: {
+    disableClientSide: true
   },
   meta: {
     appleStatusBarStyle: 'black-translucent',

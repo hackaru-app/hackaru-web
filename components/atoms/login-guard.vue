@@ -9,6 +9,11 @@ export default {
   mounted() {
     if (!this.$store.getters['auth/loggedIn']) return this.redirect();
     localStorage.setItem('userId', this.$store.getters['auth/userId']);
+    this.$sentry.configureScope(scope => {
+      scope.setUser({
+        id: this.$store.getters['auth/userId']
+      });
+    });
   },
   methods: {
     redirect() {

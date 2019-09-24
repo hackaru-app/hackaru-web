@@ -5,6 +5,24 @@
         "licenseUrl": "https://github.com/nuxt-community/pwa-module/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
+    "@nuxtjs/sentry": {
+        "licenses": "MIT",
+        "repository": "https://github.com/nuxt-community/sentry-module",
+        "licenseUrl": "https://github.com/nuxt-community/sentry-module/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
+    "@sentry/browser": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/getsentry/sentry-javascript",
+        "licenseUrl": "https://github.com/getsentry/sentry-javascript/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
+    "@sentry/integrations": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/getsentry/sentry-javascript",
+        "licenseUrl": "https://github.com/getsentry/sentry-javascript/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
     "axios": {
         "licenses": "MIT",
         "repository": "https://github.com/axios/axios",
