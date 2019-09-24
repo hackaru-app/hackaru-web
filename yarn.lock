@@ -11426,13 +11426,6 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
 
-v-calendar@^0.9.7:
-  version "0.9.7"
-  resolved "https://registry.yarnpkg.com/v-calendar/-/v-calendar-0.9.7.tgz#a0c770d9132ada9dea1684f18f7a35c0da7f9838"
-  integrity sha512-xwSS7i81WGKkQfbNQ0SFdjPBKuXVK4F4y2rT1SGI8oiQbYyoI0PgT1NT0RZ+8FaFeEog6pms6ZMUAswrUe8QHg==
-  dependencies:
-    vue "^2.5.0"
-
 v-tooltip@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/v-tooltip/-/v-tooltip-2.0.2.tgz#8610d9eece2cc44fd66c12ef2f12eec6435cab9b"
@@ -11622,7 +11615,7 @@ vue2-animate@^2.1.2:
   resolved "https://registry.yarnpkg.com/vue2-animate/-/vue2-animate-2.1.2.tgz#8b7e0947228f1eb19c2b1605de125141d3358d22"
   integrity sha512-5vPnmF5JMSBCpNRkj7no52/ACfwMzBJXbYwtARLahI+NTbgrcBjlj2TzMRQ1SDH/4FaALlfdjxS7uocW2FHP6Q==
 
-vue@^2.5.0, vue@^2.6.10:
+vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
