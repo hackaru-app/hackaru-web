@@ -38,16 +38,16 @@ export default {
   },
   watch: {
     startedAt: function(val) {
-      this.started = parseISO(val);
+      this.started = val ? parseISO(val) : new Date();
     },
     stoppedAt: function(val) {
-      this.stopped = parseISO(val);
+      this.stopped = val ? parseISO(val) : new Date();
     }
   },
   methods: {
     updateDuration() {
       if (this.stoppedAt) this.$timer.stop('updateDuration');
-      this.started = parseISO(this.startedAt);
+      this.started = this.startedAt ? parseISO(this.startedAt) : new Date();
       this.stopped = this.stoppedAt ? parseISO(this.stoppedAt) : new Date();
     }
   }

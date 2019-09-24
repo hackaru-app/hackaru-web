@@ -26,7 +26,7 @@ import NavModal from '@/components/organisms/nav-modal';
 import ActivityEditor from '@/components/organisms/activity-editor';
 import { mapGetters } from 'vuex';
 import { fromS } from 'hh-mm-ss';
-import { differenceInSeconds, parse } from 'date-fns';
+import { differenceInSeconds, parseISO } from 'date-fns';
 
 export default {
   timers: {
@@ -74,7 +74,9 @@ export default {
   methods: {
     updateDuration() {
       this.duration = this.working
-        ? fromS(differenceInSeconds(parse(Date.now()), this.working.startedAt))
+        ? fromS(
+            differenceInSeconds(new Date(), parseISO(this.working.startedAt))
+          )
         : undefined;
     }
   }

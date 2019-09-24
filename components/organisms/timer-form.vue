@@ -154,6 +154,11 @@ export default {
       if (success) {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('updated'));
+        this.$gtm.trackEvent({
+          category: 'Activity',
+          action: 'update',
+          label: this.$route.fullPath
+        });
       }
     },
     async stopActivity() {
@@ -161,6 +166,11 @@ export default {
       await this.$store.dispatch('activities/update', {
         id: this.id,
         stoppedAt: `${new Date()}`
+      });
+      this.$gtm.trackEvent({
+        category: 'Activity',
+        action: 'stop',
+        label: this.$route.fullPath
       });
       this.setWorkingProps();
     },
@@ -173,6 +183,11 @@ export default {
       if (success) {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('started'));
+        this.$gtm.trackEvent({
+          category: 'Activity',
+          action: 'start',
+          label: this.$route.fullPath
+        });
       }
     },
     fetchSuggestions: debounce(function() {
