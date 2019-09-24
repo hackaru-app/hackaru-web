@@ -5,6 +5,12 @@
         "licenseUrl": "https://github.com/nuxt-community/pwa-module/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
+    "@nuxtjs/sentry": {
+        "licenses": "MIT",
+        "repository": "https://github.com/nuxt-community/sentry-module",
+        "licenseUrl": "https://github.com/nuxt-community/sentry-module/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
     "axios": {
         "licenses": "MIT",
         "repository": "https://github.com/axios/axios",
