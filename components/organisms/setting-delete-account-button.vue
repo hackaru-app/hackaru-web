@@ -82,6 +82,7 @@ export default {
       });
       if (success) {
         this.$gtm.trackEvent({
+          name: 'delete_account',
           category: 'Auth',
           action: 'delete',
           label: this.$route.fullPath

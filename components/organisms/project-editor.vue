@@ -95,6 +95,7 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.trackEvent({
+          name: 'add_project',
           category: 'Project',
           action: 'add',
           label: this.$route.fullPath
@@ -111,6 +112,7 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.trackEvent({
+          name: 'update_project',
           category: 'Project',
           action: 'update',
           label: this.$route.fullPath
@@ -124,6 +126,7 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.trackEvent({
+          name: 'delete_project',
           category: 'Project',
           action: 'delete',
           label: this.$route.fullPath

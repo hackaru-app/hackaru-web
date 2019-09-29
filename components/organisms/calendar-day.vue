@@ -128,6 +128,7 @@ export default {
         stoppedAt: addMinutes(startedAt, this.$toMin(this.ghostHeight))
       });
       this.$gtm.trackEvent({
+        name: 'add_activity',
         category: 'Activity',
         action: 'add',
         label: this.$route.fullPath

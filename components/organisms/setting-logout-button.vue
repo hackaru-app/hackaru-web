@@ -32,6 +32,7 @@ export default {
     async logout() {
       if (!window.confirm(this.$t('confirms'))) return;
       this.$gtm.trackEvent({
+        name: 'logout',
         category: 'Auth',
         action: 'logout',
         label: this.$route.fullPath

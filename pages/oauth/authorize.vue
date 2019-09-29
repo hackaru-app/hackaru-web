@@ -87,6 +87,7 @@ export default {
   methods: {
     async decide(action) {
       this.$gtm.trackEvent({
+        name: `${action}_oauth`,
         category: 'OAuth',
         action,
         label: this.$route.fullPath

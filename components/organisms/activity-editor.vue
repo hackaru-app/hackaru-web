@@ -151,6 +151,7 @@ export default {
         );
         this.$modal.hide('activity');
         this.$gtm.trackEvent({
+          name: 'add_activity',
           category: 'Activity',
           action,
           label: this.$route.fullPath
@@ -162,6 +163,7 @@ export default {
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$gtm.trackEvent({
+        name: 'delete_activity',
         category: 'Activity',
         action: 'delete',
         label: this.$route.fullPath
