@@ -155,9 +155,8 @@ export default {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('updated'));
         this.$gtm.trackEvent({
-          category: 'Activity',
-          action: 'update',
-          label: this.$route.fullPath
+          name: 'update_activity',
+          component: 'timer_form'
         });
       }
     },
@@ -168,9 +167,8 @@ export default {
         stoppedAt: `${new Date()}`
       });
       this.$gtm.trackEvent({
-        category: 'Activity',
-        action: 'stop',
-        label: this.$route.fullPath
+        name: 'stop_activity',
+        component: 'timer_form'
       });
       this.setWorkingProps();
     },
@@ -184,9 +182,8 @@ export default {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('started'));
         this.$gtm.trackEvent({
-          category: 'Activity',
-          action: 'start',
-          label: this.$route.fullPath
+          name: 'start_activity',
+          component: 'timer_form'
         });
       }
     },

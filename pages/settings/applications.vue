@@ -94,11 +94,7 @@ export default {
     deleteApplication(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('applications/delete', id);
-      this.$gtm.trackEvent({
-        category: 'OAuth',
-        action: 'delete',
-        label: this.$route.fullPath
-      });
+      this.$gtm.trackEvent({ name: 'delete_application' });
       this.$store.dispatch('toast/success', this.$t('deleted'));
     },
     showModal(application) {

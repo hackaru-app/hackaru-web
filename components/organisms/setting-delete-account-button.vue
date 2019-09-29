@@ -82,9 +82,8 @@ export default {
       });
       if (success) {
         this.$gtm.trackEvent({
-          category: 'Auth',
-          action: 'delete',
-          label: this.$route.fullPath
+          name: 'delete_account',
+          component: 'setting_delete_account_button'
         });
         window.location.assign(this.localePath('index'));
       }

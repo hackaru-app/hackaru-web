@@ -32,9 +32,8 @@ export default {
     async logout() {
       if (!window.confirm(this.$t('confirms'))) return;
       this.$gtm.trackEvent({
-        category: 'Auth',
-        action: 'logout',
-        label: this.$route.fullPath
+        name: 'logout',
+        component: 'setting_logout_button'
       });
       await this.$store.dispatch('auth/logout');
       localStorage.removeItem('userId');

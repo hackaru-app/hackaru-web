@@ -217,9 +217,8 @@ export default {
         ...payload
       });
       this.$gtm.trackEvent({
-        category: 'Activity',
-        action: 'update',
-        label: this.$route.fullPath
+        name: 'update_activity',
+        component: 'calendar_activity'
       });
     }
   }

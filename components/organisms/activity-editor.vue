@@ -151,9 +151,8 @@ export default {
         );
         this.$modal.hide('activity');
         this.$gtm.trackEvent({
-          category: 'Activity',
-          action,
-          label: this.$route.fullPath
+          name: `${action}_activity`,
+          component: 'activity_editor'
         });
       }
     },
@@ -162,9 +161,8 @@ export default {
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$gtm.trackEvent({
-        category: 'Activity',
-        action: 'delete',
-        label: this.$route.fullPath
+        name: 'delete_activity',
+        component: 'activity_editor'
       });
       this.$modal.hide('activity');
     },
@@ -185,6 +183,10 @@ export default {
       navigator.share({
         title: this.$t('share.title'),
         text: this.$t('share.text', { title, duration })
+      });
+      this.$gtm.trackEvent({
+        name: 'share',
+        component: 'activity_editor'
       });
     }
   }

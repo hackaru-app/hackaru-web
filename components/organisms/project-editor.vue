@@ -95,9 +95,8 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.trackEvent({
-          category: 'Project',
-          action: 'add',
-          label: this.$route.fullPath
+          name: 'add_project',
+          component: 'project_editor'
         });
         this.$store.dispatch('toast/success', this.$t('added'));
       }
@@ -111,9 +110,8 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.trackEvent({
-          category: 'Project',
-          action: 'update',
-          label: this.$route.fullPath
+          name: 'update_project',
+          component: 'project_editor'
         });
         this.$store.dispatch('toast/success', this.$t('updated'));
       }
@@ -124,9 +122,8 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.trackEvent({
-          category: 'Project',
-          action: 'delete',
-          label: this.$route.fullPath
+          name: 'delete_project',
+          component: 'project_editor'
         });
         this.$store.dispatch('toast/success', this.$t('deleted'));
       }

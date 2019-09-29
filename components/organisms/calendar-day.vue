@@ -128,9 +128,8 @@ export default {
         stoppedAt: addMinutes(startedAt, this.$toMin(this.ghostHeight))
       });
       this.$gtm.trackEvent({
-        category: 'Activity',
-        action: 'add',
-        label: this.$route.fullPath
+        name: 'add_activity',
+        component: 'calendar_day'
       });
     }
   }
