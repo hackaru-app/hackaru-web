@@ -184,6 +184,10 @@ export default {
         title: this.$t('share.title'),
         text: this.$t('share.text', { title, duration })
       });
+      this.$gtm.trackEvent({
+        name: 'share',
+        component: 'activity_editor'
+      });
     }
   }
 };
