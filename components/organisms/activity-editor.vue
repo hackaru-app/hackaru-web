@@ -151,10 +151,8 @@ export default {
         );
         this.$modal.hide('activity');
         this.$gtm.trackEvent({
-          name: 'add_activity',
-          category: 'Activity',
-          action,
-          label: this.$route.fullPath
+          name: `${action}_activity`,
+          component: 'activity_editor'
         });
       }
     },
@@ -164,9 +162,7 @@ export default {
       this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$gtm.trackEvent({
         name: 'delete_activity',
-        category: 'Activity',
-        action: 'delete',
-        label: this.$route.fullPath
+        component: 'activity_editor'
       });
       this.$modal.hide('activity');
     },

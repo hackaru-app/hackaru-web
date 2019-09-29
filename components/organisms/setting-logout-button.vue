@@ -33,9 +33,7 @@ export default {
       if (!window.confirm(this.$t('confirms'))) return;
       this.$gtm.trackEvent({
         name: 'logout',
-        category: 'Auth',
-        action: 'logout',
-        label: this.$route.fullPath
+        component: 'setting_logout_button'
       });
       await this.$store.dispatch('auth/logout');
       localStorage.removeItem('userId');

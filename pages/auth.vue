@@ -127,13 +127,7 @@ export default {
       });
       if (success) {
         localStorage.setItem('userId', this.$store.getters['auth/userId']);
-        this.$gtm.trackEvent({
-          name: 'login',
-          method: 'email',
-          category: 'Auth',
-          action: 'login',
-          label: this.$route.fullPath
-        });
+        this.$gtm.trackEvent({ name: 'login', method: 'email' });
         this.goBack();
       }
     },
@@ -145,13 +139,7 @@ export default {
       });
       if (success) {
         localStorage.setItem('userId', this.$store.getters['auth/userId']);
-        this.$gtm.trackEvent({
-          name: 'sign_up',
-          method: 'email',
-          category: 'Auth',
-          action: 'signUp',
-          label: this.$route.fullPath
-        });
+        this.$gtm.trackEvent({ name: 'sign_up', method: 'email' });
         this.goBack();
       }
     },

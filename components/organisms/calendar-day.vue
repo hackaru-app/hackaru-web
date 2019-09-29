@@ -129,9 +129,7 @@ export default {
       });
       this.$gtm.trackEvent({
         name: 'add_activity',
-        category: 'Activity',
-        action: 'add',
-        label: this.$route.fullPath
+        component: 'calendar_day'
       });
     }
   }

@@ -96,9 +96,7 @@ export default {
       this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$gtm.trackEvent({
         name: 'delete_activity',
-        category: 'Activity',
-        action: 'delete',
-        label: this.$route.fullPath
+        component: 'activity_item'
       });
     },
     async duplicateActivity() {
@@ -109,9 +107,7 @@ export default {
       });
       this.$gtm.trackEvent({
         name: 'duplicate_activity',
-        category: 'Activity',
-        action: 'duplicate',
-        label: this.$route.fullPath
+        component: 'activity_item'
       });
       if (success) {
         this.$refs.swipeMenu.reset();

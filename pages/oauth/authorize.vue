@@ -86,12 +86,7 @@ export default {
   },
   methods: {
     async decide(action) {
-      this.$gtm.trackEvent({
-        name: `${action}_oauth`,
-        category: 'OAuth',
-        action,
-        label: this.$route.fullPath
-      });
+      this.$gtm.trackEvent({ name: `${action}_oauth` });
       const data = await this.$store.dispatch(`oauth/${action}`, {
         clientId: this.$route.query['client_id'],
         responseType: this.$route.query['response_type'],
