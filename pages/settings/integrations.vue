@@ -4,20 +4,30 @@
   <section>
     <setting-box>
       <template v-slot:heading>
-        <heading class="is-small">
-          <icon name="calendar-icon" />
-          {{ $t('title') }}
-        </heading>
+        <icon name="calendar-icon" />
+        {{ $t('title') }}
       </template>
 
       <div class="calendar-buttons">
-        <base-button class="is-rounded is-marshmallow" type="button">
+        <base-button
+          class="is-rounded is-marshmallow"
+          type="button"
+          @click="addGoogleCalendar"
+        >
           {{ $t('googleCalendar') }}
         </base-button>
-        <base-button class="is-rounded is-marshmallow" type="button">
+        <base-button
+          class="is-rounded is-marshmallow"
+          type="button"
+          @click="addOtherCalendar"
+        >
           {{ $t('appleCalendar') }}
         </base-button>
-        <base-button class="is-rounded is-marshmallow" type="button">
+        <base-button
+          class="is-rounded is-marshmallow"
+          type="button"
+          @click="addOtherCalendar"
+        >
           {{ $t('outlook') }}
         </base-button>
       </div>
@@ -31,6 +41,7 @@ import Icon from '@/components/atoms/icon';
 import BaseInput from '@/components/atoms/base-input';
 import BaseButton from '@/components/atoms/base-button';
 import SettingBox from '@/components/molecules/setting-box';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -39,6 +50,25 @@ export default {
     SettingBox,
     Icon,
     BaseButton
+  },
+  computed: {
+    ...mapGetters({
+      googleCalendarUrl: 'activity-calendar/googleCalendarUrl',
+      webcalUrl: 'activity-calendar/webcalUrl'
+    })
+  },
+  methods: {
+    async createUrl() {
+      return this.$store.dispatch('activity-calendar/createUrl');
+    },
+    async addGoogleCalendar() {
+      if (!(await this.createUrl())) return;
+      window.location.assign(this.googleCalendarUrl);
+    },
+    async addOtherCalendar() {
+      if (!(await this.createUrl())) return;
+      window.location.assign(this.webcalUrl);
+    }
   }
 };
 </script>
