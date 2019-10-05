@@ -9,6 +9,12 @@ describe('Integrations', () => {
     .spyOn(window.location, 'assign')
     .mockImplementation(() => {});
 
+  const childWindow = {
+    location: {
+      assign: jest.fn()
+    }
+  };
+
   const $store = new Store({
     getters: {
       'activity-calendar/googleCalendarUrl': 'https://example.com',
@@ -22,6 +28,7 @@ describe('Integrations', () => {
     });
 
   beforeEach(() => {
+    window.open = () => childWindow;
     $store.reset();
   });
 
@@ -39,7 +46,9 @@ describe('Integrations', () => {
     });
 
     it('navigate to google calendar url', () => {
-      expect(location).toHaveBeenCalledWith('https://example.com');
+      expect(childWindow.location.assign).toHaveBeenCalledWith(
+        'https://example.com'
+      );
     });
   });
 

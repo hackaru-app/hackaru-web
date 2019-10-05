@@ -65,8 +65,9 @@ export default {
       return this.$store.dispatch('activity-calendar/createUrl');
     },
     async addGoogleCalendar() {
+      const childWindow = window.open('about:blank');
       if (!(await this.createUrl())) return;
-      window.location.assign(this.googleCalendarUrl);
+      childWindow.location.assign(this.googleCalendarUrl);
     },
     async addOtherCalendar() {
       if (!(await this.createUrl())) return;
