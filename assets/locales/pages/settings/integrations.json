@@ -1,0 +1,14 @@
+{
+  "en": {
+    "title": "Link with Calendar",
+    "googleCalendar": "Google Calendar",
+    "appleCalendar": "Apple Calendar",
+    "outlook": "Outlook"
+  },
+  "ja": {
+    "title": "カレンダーと連携",
+    "googleCalendar": "Google カレンダー",
+    "appleCalendar": "Apple カレンダー",
+    "outlook": "Outlook"
+  }
+}

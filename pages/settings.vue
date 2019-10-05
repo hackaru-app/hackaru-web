@@ -25,11 +25,12 @@ export default {
     return {
       names: [
         this.$t('account'),
+        this.$t('integrations'),
         this.$t('applications'),
         this.$t('webhooks'),
         this.$t('licenses')
       ],
-      paths: ['', 'applications', 'webhooks', 'licenses']
+      paths: ['', 'integrations', 'applications', 'webhooks', 'licenses']
     };
   },
   computed: {

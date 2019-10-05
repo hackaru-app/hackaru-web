@@ -43,6 +43,7 @@
 .base-button.is-marshmallow {
   height: 43px;
   border: 1px $grey-eee solid;
+  box-shadow: 0 3px 8px #00000005;
 }
 .base-button.has-icon {
   line-height: normal;

@@ -1,12 +1,14 @@
 {
   "en": {
     "account": "Account",
+    "integrations": "Integrations",
     "webhooks": "Webhooks",
     "applications": "Authorized apps",
     "licenses": "Licenses"
   },
   "ja": {
     "account": "アカウント設定",
+    "integrations": "連携機能",
     "webhooks": "Webhooks",
     "applications": "認証済みアプリ",
     "licenses": "謝辞"
