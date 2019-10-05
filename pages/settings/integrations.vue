@@ -12,7 +12,7 @@
         <base-button
           class="google-calendar-button is-rounded is-marshmallow"
           type="button"
-          @click="addGoogleCalendar"
+          @click="addToGoogleCalendar"
         >
           {{ $t('googleCalendar') }}
           <icon class="is-primary" name="external-link-icon" />
@@ -20,7 +20,7 @@
         <base-button
           class="apple-calendar-button is-rounded is-marshmallow"
           type="button"
-          @click="addOtherCalendar"
+          @click="addToAppleCalendar"
         >
           {{ $t('appleCalendar') }}
           <icon class="is-primary" name="external-link-icon" />
@@ -28,7 +28,7 @@
         <base-button
           class="outlook-button is-rounded is-marshmallow"
           type="button"
-          @click="addOtherCalendar"
+          @click="addToOutlook"
         >
           {{ $t('outlook') }}
           <icon class="is-primary" name="external-link-icon" />
@@ -64,14 +64,23 @@ export default {
     async createUrl() {
       return this.$store.dispatch('activity-calendar/createUrl');
     },
-    async addGoogleCalendar() {
+    async addToGoogleCalendar() {
+      this.$gtm.trackEvent({ name: 'add_to_google_calendar' });
       const childWindow = window.open('about:blank');
       if (!(await this.createUrl())) return;
       childWindow.location.assign(this.googleCalendarUrl);
     },
-    async addOtherCalendar() {
+    async navigateWebcal() {
       if (!(await this.createUrl())) return;
       window.location.assign(this.webcalUrl);
+    },
+    addToAppleCalendar() {
+      this.$gtm.trackEvent({ name: 'add_to_apple_calendar' });
+      this.navigateWebcal();
+    },
+    addToOutlook() {
+      this.$gtm.trackEvent({ name: 'add_to_outlook' });
+      this.navigateWebcal();
     }
   }
 };
