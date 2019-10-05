@@ -80,11 +80,23 @@ export default {
 <style scoped lang="scss">
 .calendar-buttons {
   display: flex;
+  flex-wrap: wrap;
   button {
+    margin: 5px 0;
     margin-right: 10px;
   }
   .icon {
     margin-left: 5px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .calendar-buttons {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    button {
+      width: 100%;
+    }
   }
 }
 </style>
