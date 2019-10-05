@@ -10,7 +10,7 @@
 
       <div class="calendar-buttons">
         <base-button
-          class="is-rounded is-marshmallow"
+          class="google-calendar-button is-rounded is-marshmallow"
           type="button"
           @click="addGoogleCalendar"
         >
@@ -18,7 +18,7 @@
           <icon name="external-link-icon" />
         </base-button>
         <base-button
-          class="is-rounded is-marshmallow"
+          class="apple-calendar-button is-rounded is-marshmallow"
           type="button"
           @click="addOtherCalendar"
         >
@@ -26,7 +26,7 @@
           <icon name="external-link-icon" />
         </base-button>
         <base-button
-          class="is-rounded is-marshmallow"
+          class="outlook-button is-rounded is-marshmallow"
           type="button"
           @click="addOtherCalendar"
         >
