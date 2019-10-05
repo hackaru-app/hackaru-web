@@ -28,7 +28,7 @@ export const actions = {
 
 export const mutations = {
   [SET_TOKEN_AND_USER_ID](state, payload) {
-    state.baseUrl = this.$env.HACKARU_API_URL.replace(/https?/, 'webcal');
+    state.baseUrl = this.$env.HACKARU_API_URL.replace(/^https?/, 'webcal');
     state.token = payload.token;
     state.userId = payload.userId;
   }
