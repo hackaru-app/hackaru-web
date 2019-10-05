@@ -15,6 +15,7 @@
           @click="addGoogleCalendar"
         >
           {{ $t('googleCalendar') }}
+          <icon name="external-link-icon" />
         </base-button>
         <base-button
           class="is-rounded is-marshmallow"
@@ -22,6 +23,7 @@
           @click="addOtherCalendar"
         >
           {{ $t('appleCalendar') }}
+          <icon name="external-link-icon" />
         </base-button>
         <base-button
           class="is-rounded is-marshmallow"
@@ -29,6 +31,7 @@
           @click="addOtherCalendar"
         >
           {{ $t('outlook') }}
+          <icon name="external-link-icon" />
         </base-button>
       </div>
     </setting-box>
@@ -80,7 +83,7 @@ export default {
     margin-right: 10px;
   }
   .icon {
-    margin-right: 3px;
+    margin-left: 5px;
   }
 }
 </style>
