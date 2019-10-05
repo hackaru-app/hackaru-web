@@ -15,7 +15,7 @@
           @click="addGoogleCalendar"
         >
           {{ $t('googleCalendar') }}
-          <icon name="external-link-icon" />
+          <icon class="is-primary" name="external-link-icon" />
         </base-button>
         <base-button
           class="apple-calendar-button is-rounded is-marshmallow"
@@ -23,7 +23,7 @@
           @click="addOtherCalendar"
         >
           {{ $t('appleCalendar') }}
-          <icon name="external-link-icon" />
+          <icon class="is-primary" name="external-link-icon" />
         </base-button>
         <base-button
           class="outlook-button is-rounded is-marshmallow"
@@ -31,7 +31,7 @@
           @click="addOtherCalendar"
         >
           {{ $t('outlook') }}
-          <icon name="external-link-icon" />
+          <icon class="is-primary" name="external-link-icon" />
         </base-button>
       </div>
     </setting-box>
@@ -81,12 +81,15 @@ export default {
 .calendar-buttons {
   display: flex;
   flex-wrap: wrap;
-  button {
+  .base-button {
+    display: flex;
+    justify-content: space-between;
     margin: 5px 0;
     margin-right: 10px;
+    height: 50px;
   }
   .icon {
-    margin-left: 5px;
+    margin-left: 10px;
   }
 }
 @media screen and (max-width: 640px) {
@@ -94,7 +97,8 @@ export default {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    button {
+    .base-button {
+      height: 52px;
       width: 100%;
     }
   }
