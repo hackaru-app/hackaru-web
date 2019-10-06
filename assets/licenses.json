@@ -149,6 +149,12 @@
         "licenseUrl": "https://github.com/nuxt/nuxt.js/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
+    "query-string": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sindresorhus/query-string",
+        "licenseUrl": "https://github.com/sindresorhus/query-string/raw/master/license",
+        "parents": "hackaru-web"
+    },
     "sass-loader": {
         "licenses": "MIT",
         "repository": "https://github.com/webpack-contrib/sass-loader",
@@ -165,12 +171,6 @@
         "licenses": "MIT",
         "repository": "https://github.com/webpack-contrib/style-loader",
         "licenseUrl": "https://github.com/webpack-contrib/style-loader/raw/master/LICENSE",
-        "parents": "hackaru-web"
-    },
-    "v-calendar": {
-        "licenses": "MIT",
-        "repository": "https://github.com/nathanreyes/v-calendar",
-        "licenseUrl": "https://github.com/nathanreyes/v-calendar/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
     "v-tooltip": {
