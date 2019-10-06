@@ -1,3 +1,5 @@
+import { stringify } from 'query-string';
+
 export const SET_TOKEN_AND_USER_ID = 'SET_TOKEN_AND_USER_ID';
 
 export const state = () => ({
@@ -36,10 +38,14 @@ export const mutations = {
 
 export const getters = {
   webcalUrl: (state, getter) => {
-    const url = `${state.baseUrl}/v1/activity_calendar`;
-    return `${url}?token=${state.token}&user_id=${state.userId}`;
+    return `${state.baseUrl}/v1/activity_calendar?${stringify({
+      token: state.token,
+      user_id: state.userId
+    })}`;
   },
   googleCalendarUrl: (state, getter) => {
-    return `https://www.google.com/calendar/render?cid=${getter.webcalUrl}`;
+    return `https://www.google.com/calendar/render?${stringify({
+      cid: getter.webcalUrl
+    })}`;
   }
 };
