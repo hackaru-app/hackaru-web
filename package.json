@@ -92,7 +92,7 @@
     "mockdate": "^2.0.2",
     "npm-license-crawler": "mwittig/npm-license-crawler#master",
     "prettier": "^1.16.1",
-    "vue-jest": "^3.0.2",
+    "vue-jest": "^3.0.5",
     "vuex-mock-store": "^0.0.7"
   },
   "jest": {
