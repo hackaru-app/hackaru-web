@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/date-header.json" />
+<i18n src="@/assets/locales/components/organisms/date-header.json"></i18n>
 
 <template>
   <content-header class="date-header">

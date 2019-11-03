@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/activity-item.json" />
+<i18n src="@/assets/locales/components/organisms/activity-item.json"></i18n>
 
 <template>
   <swipe-menu

@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/settings/integrations.json" />
+<i18n src="@/assets/locales/pages/settings/integrations.json"></i18n>
 
 <template>
   <section>

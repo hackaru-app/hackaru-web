@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/pwa-popover.json" />
+<i18n src="@/assets/locales/components/organisms/pwa-popover.json"></i18n>
 
 <template>
   <section class="pwa-popover">
