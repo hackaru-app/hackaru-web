@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/settings/licenses.json" />
+<i18n src="@/assets/locales/pages/settings/licenses.json"></i18n>
 
 <template>
   <setting-box>

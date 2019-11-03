@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/timer-form.json" />
+<i18n src="@/assets/locales/components/organisms/timer-form.json"></i18n>
 
 <template>
   <section class="timer-form">

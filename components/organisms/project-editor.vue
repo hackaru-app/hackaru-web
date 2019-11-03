@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/project-editor.json" />
+<i18n src="@/assets/locales/components/organisms/project-editor.json"></i18n>
 
 <template>
   <section>
