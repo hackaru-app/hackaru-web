@@ -1,4 +1,6 @@
-<i18n src="@/assets/locales/components/organisms/setting-email-editor.json" />
+<i18n
+  src="@/assets/locales/components/organisms/setting-email-editor.json"
+></i18n>
 
 <template>
   <setting-box>
