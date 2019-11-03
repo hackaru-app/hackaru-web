@@ -1,4 +1,6 @@
-<i18n src="@/assets/locales/components/organisms/setting-logout-button.json" />
+<i18n
+  src="@/assets/locales/components/organisms/setting-logout-button.json"
+></i18n>
 
 <template>
   <setting-box>
