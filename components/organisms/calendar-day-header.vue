@@ -1,4 +1,6 @@
-<i18n src="@/assets/locales/components/organisms/calendar-day-header.json" />
+<i18n
+  src="@/assets/locales/components/organisms/calendar-day-header.json"
+></i18n>
 
 <template>
   <header :class="['calendar-day-header', { today: today }]">
