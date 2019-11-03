@@ -57,7 +57,7 @@ export const getters = {
     return state.totals;
   },
   empty: state => {
-    return Object.values(state.totals).reduce((acc, cur) => acc + cur, 0) <= 0;
+    return !Object.values(state.totals).find(value => value > 0);
   },
   barChartData: state => {
     return {
