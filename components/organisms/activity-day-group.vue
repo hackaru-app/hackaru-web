@@ -1,4 +1,6 @@
-<i18n src="@/assets/locales/components/organisms/activity-day-group.json" />
+<i18n
+  src="@/assets/locales/components/organisms/activity-day-group.json"
+></i18n>
 
 <template>
   <section v-if="activities" class="activity-day-group">

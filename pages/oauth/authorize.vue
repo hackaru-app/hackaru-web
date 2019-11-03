@@ -1,5 +1,5 @@
-<i18n src="@/assets/locales/common/scopes.json" />
-<i18n src="@/assets/locales/pages/oauth/authorize.json" />
+<i18n src="@/assets/locales/common/scopes.json"></i18n>
+<i18n src="@/assets/locales/pages/oauth/authorize.json"></i18n>
 
 <template>
   <login-guard>

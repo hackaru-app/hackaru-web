@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/calendar-activity.json" />
+<i18n src="@/assets/locales/components/organisms/calendar-activity.json"></i18n>
 
 <template>
   <dragger
