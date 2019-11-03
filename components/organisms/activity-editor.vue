@@ -172,7 +172,7 @@ export default {
         params: { selected: this.project.id }
       });
     },
-    share() {
+    async share() {
       const duration = formatDistanceStrict(
         parseISO(this.startedAt),
         parseISO(this.stoppedAt)
@@ -180,14 +180,19 @@ export default {
       const title = [this.project.name, this.description]
         .filter(v => v)
         .join(' - ');
-      navigator.share({
-        title: this.$t('share.title'),
-        text: this.$t('share.text', { title, duration })
-      });
-      this.$gtm.trackEvent({
-        name: 'share',
-        component: 'activity_editor'
-      });
+      try {
+        await navigator.share({
+          title: this.$t('share.title'),
+          text: this.$t('share.text', { title, duration })
+        });
+        this.$gtm.trackEvent({
+          name: 'share',
+          component: 'activity_editor'
+        });
+      } catch (e) {
+        if (e.name === 'AbortError') return;
+        throw e;
+      }
     }
   }
 };
