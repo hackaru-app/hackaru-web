@@ -28,7 +28,7 @@
               <report-content
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
+                :totals="totals"
                 :projects="projects"
                 chart-id="prev"
               />
@@ -37,7 +37,7 @@
               <report-content
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
+                :totals="totals"
                 :projects="projects"
                 chart-id="current"
               />
@@ -46,7 +46,7 @@
               <report-content
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
+                :totals="totals"
                 :projects="projects"
                 chart-id="next"
               />
@@ -128,7 +128,7 @@ export default {
     ...mapGetters({
       doughnutChartData: 'reports/doughnutChartData',
       barChartData: 'reports/barChartData',
-      summary: 'reports/summary',
+      totals: 'reports/totals',
       projects: 'reports/projects'
     }),
     period() {
@@ -160,8 +160,7 @@ export default {
     fetchReport() {
       this.$store.dispatch('reports/fetch', {
         start: this.period.startOf(this.date),
-        end: this.period.endOf(this.date),
-        period: this.period.barChartPeriod
+        end: this.period.endOf(this.date)
       });
     },
     slideLeft() {

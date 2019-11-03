@@ -21,7 +21,7 @@
         <li v-for="project in projects" :key="project.id">
           <project-name :name="project.name" :color="project.color" />
           <time class="duration">
-            {{ fromS(summary[project.id] || 0, 'hh:mm:ss') }}
+            {{ fromS(totals[project.id], 'hh:mm:ss') }}
           </time>
         </li>
       </ul>
@@ -51,7 +51,7 @@ export default {
       type: Object,
       required: true
     },
-    summary: {
+    totals: {
       type: Object,
       required: true
     },
