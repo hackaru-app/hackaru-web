@@ -34,7 +34,7 @@
     "lodash.union": "^4.6.0",
     "lodash.uniqby": "^4.7.0",
     "mezr": "^0.6.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "normalize.css": "^8.0.1",
     "normalizr": "^3.2.4",
     "nuxt": "^2.9.2",
