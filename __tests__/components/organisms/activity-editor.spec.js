@@ -130,4 +130,32 @@ describe('ActivityEditor', () => {
       expect(window.navigator.share).toHaveBeenCalled();
     });
   });
+
+  describe('when click share button but cancelled', () => {
+    beforeEach(() => {
+      window.navigator.share = jest.fn(() => {
+        const error = new Error();
+        error.name = 'AbortError';
+        throw error;
+      });
+      wrapper = factory();
+    });
+
+    it('does not throw error', () => {
+      return expect(wrapper.vm.share()).resolves.toBe(undefined);
+    });
+  });
+
+  describe('when click share button but throw unknown error', () => {
+    beforeEach(() => {
+      window.navigator.share = jest.fn(() => {
+        throw new Error('UnknownError');
+      });
+      wrapper = factory();
+    });
+
+    it('throws Error', () => {
+      return expect(wrapper.vm.share()).rejects.toThrow('UnknownError');
+    });
+  });
 });
