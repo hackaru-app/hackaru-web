@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/password-reset/index.json" />
+<i18n src="@/assets/locales/pages/password-reset/index.json"></i18n>
 
 <template>
   <section>

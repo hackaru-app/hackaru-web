@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/reports.json" />
+<i18n src="@/assets/locales/pages/reports.json"></i18n>
 
 <template>
   <section>
