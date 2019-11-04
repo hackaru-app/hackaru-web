@@ -12,7 +12,6 @@ export const actions = {
     const res = await axios.request(
       merge(
         {
-          responseType: 'json',
           ...config,
           data: snakecaseKeys(config.data || {}),
           params: snakecaseKeys(config.params || {})
