@@ -85,26 +85,22 @@ const periods = {
   day: {
     startOf: startOfDay,
     endOf: endOfDay,
-    add: addDays,
-    barChartPeriod: 'hour'
+    add: addDays
   },
   week: {
     startOf: startOfWeek,
     endOf: endOfWeek,
-    add: addWeeks,
-    barChartPeriod: 'day'
+    add: addWeeks
   },
   month: {
     startOf: startOfMonth,
     endOf: endOfMonth,
-    add: addMonths,
-    barChartPeriod: 'day'
+    add: addMonths
   },
   year: {
     startOf: startOfYear,
     endOf: endOfYear,
-    add: addYears,
-    barChartPeriod: 'month'
+    add: addYears
   }
 };
 
