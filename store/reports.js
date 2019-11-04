@@ -4,7 +4,7 @@ export const state = () => ({
   projects: [],
   totals: {},
   labels: [],
-  data: {},
+  sums: {},
   start: undefined,
   end: undefined
 });
@@ -28,7 +28,7 @@ export const actions = {
         projects: res.data.projects,
         totals: res.data.totals,
         labels: res.data.labels,
-        data: res.data.data,
+        sums: res.data.sums,
         start: payload.start,
         end: payload.end
       });
@@ -43,7 +43,7 @@ export const mutations = {
     state.projects = payload.projects;
     state.totals = payload.totals;
     state.labels = payload.labels;
-    state.data = payload.data;
+    state.sums = payload.sums;
     state.start = payload.start;
     state.end = payload.end;
   }
@@ -65,7 +65,7 @@ export const getters = {
       datasets: state.projects.map(project => ({
         label: project.name,
         backgroundColor: project.color,
-        data: state.data[project.id]
+        data: state.sums[project.id]
       }))
     };
   },
