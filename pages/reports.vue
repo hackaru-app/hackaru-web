@@ -13,6 +13,7 @@
       @left="slideLeft"
       @right="slideRight"
     />
+    <button @click="openPdf">PDF</button>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
       <loop-slider
@@ -158,6 +159,15 @@ export default {
         start: this.period.startOf(this.date),
         end: this.period.endOf(this.date)
       });
+    },
+    async openPdf() {
+      const childWindow = window.open('about:blank');
+      const data = await this.$store.dispatch('reports/fetchPdf', {
+        start: this.period.startOf(this.date),
+        end: this.period.endOf(this.date)
+      });
+      const url = URL.createObjectURL(data);
+      childWindow.location.assign(url);
     },
     slideLeft() {
       this.$refs.slider.slideLeft();

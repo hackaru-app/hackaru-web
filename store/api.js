@@ -3,11 +3,16 @@ import axios from 'axios';
 import camelcaseKeys from 'camelcase-keys';
 import snakecaseKeys from 'snakecase-keys';
 
+function isJsonType(responseType) {
+  return !responseType || responseType === 'json';
+}
+
 export const actions = {
   async request(state, config) {
     const res = await axios.request(
       merge(
         {
+          responseType: 'json',
           ...config,
           data: snakecaseKeys(config.data || {}),
           params: snakecaseKeys(config.params || {})
@@ -19,9 +24,12 @@ export const actions = {
         }
       )
     );
-    return {
-      data: camelcaseKeys(res.data || {}, { deep: true }),
-      headers: res.headers
-    };
+    if (isJsonType(config.responseType)) {
+      return {
+        data: camelcaseKeys(res.data || {}, { deep: true }),
+        headers: res.headers
+      };
+    }
+    return res;
   }
 };
