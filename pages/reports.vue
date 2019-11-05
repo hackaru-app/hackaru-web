@@ -13,7 +13,11 @@
       @left="slideLeft"
       @right="slideRight"
     />
-    <button @click="openPdf">PDF</button>
+    <div class="tools">
+      <button @click="openPdf">
+        PDF
+      </button>
+    </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
       <loop-slider
@@ -60,9 +64,11 @@
 </template>
 
 <script>
+import Icon from '@/components/atoms/icon';
 import CoachTooltip from '@/components/atoms/coach-tooltip';
 import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
+import ContentHeader from '@/components/organisms/content-header';
 import ReportContent from '@/components/organisms/report-content';
 import { mapGetters } from 'vuex';
 import {
@@ -107,10 +113,12 @@ const periods = {
 
 export default {
   components: {
+    Icon,
     CoachTooltip,
     LoopSlider,
     ReportContent,
-    DateHeader
+    DateHeader,
+    ContentHeader
   },
   head: {
     title: 'Reports'
@@ -202,6 +210,31 @@ export default {
   min-width: 100%;
   min-height: 100vh;
   box-shadow: -3px 0 3px #00000005;
+}
+.tools {
+  display: flex;
+  padding: 0 40px;
+  border-bottom: 1px $border solid;
+  background-color: #fff;
+  box-shadow: 0 3px 3px #00000005;
+  button {
+    display: flex;
+    align-items: center;
+    background: none;
+    padding: 16px 20px;
+    border: 1px $border solid;
+    border-top: 0;
+    border-bottom: 0;
+    cursor: pointer;
+    .icon {
+      margin-right: 6px;
+    }
+  }
+}
+@media screen and (max-width: 640px) {
+  .tools {
+    padding: 0;
+  }
 }
 @media print {
   .slider-item {
