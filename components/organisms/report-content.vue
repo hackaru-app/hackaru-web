@@ -184,25 +184,4 @@ export default {
     width: auto;
   }
 }
-@media print {
-  .bar-chart-wrapper {
-    display: none;
-  }
-  .bar-chart-wrapper.printer {
-    position: static;
-    display: flex;
-    padding: 30px;
-  }
-  .report-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    justify-content: center;
-    box-sizing: border-box;
-  }
-  .duration {
-    color: #000;
-  }
-}
 </style>

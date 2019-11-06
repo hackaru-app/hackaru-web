@@ -28,10 +28,4 @@ export default {
   min-width: 14px;
   min-height: 14px;
 }
-@media print {
-  .dot {
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
-  }
-}
 </style>

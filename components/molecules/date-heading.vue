@@ -48,9 +48,4 @@ export default {
   margin: 0 15px;
   margin-bottom: 2px;
 }
-@media print {
-  .arrow-button {
-    display: none;
-  }
-}
 </style>

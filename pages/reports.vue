@@ -236,10 +236,4 @@ export default {
     padding: 0;
   }
 }
-@media print {
-  .slider-item {
-    height: auto;
-    box-shadow: none;
-  }
-}
 </style>
