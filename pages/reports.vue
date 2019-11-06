@@ -14,7 +14,7 @@
       @right="slideRight"
     />
     <div class="tools">
-      <button @click="openPdf">
+      <button class="pdf-button" @click="openPdf">
         PDF
       </button>
     </div>

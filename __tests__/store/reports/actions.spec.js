@@ -59,7 +59,7 @@ describe('Actions', () => {
   describe('when dispatch fetchPdf', () => {
     let result;
 
-    const dispatch = jest.fn(() => ({ data: '%PDF' }));
+    const dispatch = jest.fn(() => ({ data: '%PDF-' }));
 
     beforeEach(async () => {
       result = await actions.fetchPdf(
@@ -88,7 +88,7 @@ describe('Actions', () => {
     });
 
     it('retuns data', () => {
-      expect(result).toBe('%PDF');
+      expect(result).toBe('%PDF-');
     });
   });
 });

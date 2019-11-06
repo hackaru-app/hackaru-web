@@ -124,4 +124,32 @@ describe('Reports', () => {
       });
     });
   });
+
+  describe('when click pdf-button', () => {
+    const assign = jest.fn();
+
+    beforeEach(() => {
+      $store.dispatch.mockReturnValue('%PDF-');
+      window.open = () => ({ location: { assign } });
+      URL.createObjectURL = jest.fn(() => 'blob:');
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'day' });
+      wrapper.find('.pdf-button').trigger('click');
+    });
+
+    it('dispatch reports/fetchPdf', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetchPdf', {
+        start: parseISO('2019-01-31T00:00:00'),
+        end: parseISO('2019-01-31T23:59:59.999')
+      });
+    });
+
+    it('create object url', () => {
+      expect(URL.createObjectURL).toHaveBeenCalledWith('%PDF-');
+    });
+
+    it('assign object url', () => {
+      expect(assign).toHaveBeenCalledWith('blob:');
+    });
+  });
 });
