@@ -21,7 +21,7 @@
         <li v-for="project in projects" :key="project.id">
           <project-name :name="project.name" :color="project.color" />
           <time class="duration">
-            {{ fromS(summary[project.id] || 0, 'hh:mm:ss') }}
+            {{ fromS(totals[project.id], 'hh:mm:ss') }}
           </time>
         </li>
       </ul>
@@ -51,7 +51,7 @@ export default {
       type: Object,
       required: true
     },
-    summary: {
+    totals: {
       type: Object,
       required: true
     },
@@ -182,27 +182,6 @@ export default {
     margin: 0;
     padding: 35px 30px;
     width: auto;
-  }
-}
-@media print {
-  .bar-chart-wrapper {
-    display: none;
-  }
-  .bar-chart-wrapper.printer {
-    position: static;
-    display: flex;
-    padding: 30px;
-  }
-  .report-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    justify-content: center;
-    box-sizing: border-box;
-  }
-  .duration {
-    color: #000;
   }
 }
 </style>

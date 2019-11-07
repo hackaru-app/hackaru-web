@@ -49,20 +49,59 @@ describe('Actions', () => {
     });
   });
 
-  describe('when response data', () => {
+  describe('when content-type is json', () => {
     beforeEach(async () => {
       mock
         .onGet('http://localhost/example')
         .reply(200, { foo_bar: 'baz', foo: { bar_baz: 'foo' } });
-      result = await actions.request({}, { url: '/example' });
+      result = await actions.request(
+        {},
+        {
+          url: '/example',
+          responseType: 'json'
+        }
+      );
     });
 
-    it('convert to camelcase', () => {
+    it('convert response to camelcase', () => {
       expect(result.data.fooBar).toBe('baz');
+      expect(result.data.foo.barBaz).toBe('foo');
+    });
+  });
+
+  describe('when content-type is undefined', () => {
+    beforeEach(async () => {
+      mock
+        .onGet('http://localhost/example')
+        .reply(200, { foo_bar: 'baz', foo: { bar_baz: 'foo' } });
+      result = await actions.request(
+        {},
+        {
+          url: '/example'
+        }
+      );
     });
 
-    it('convert to camelcase deeply', () => {
+    it('convert response to camelcase', () => {
+      expect(result.data.fooBar).toBe('baz');
       expect(result.data.foo.barBaz).toBe('foo');
+    });
+  });
+
+  describe('when content-type is not json', () => {
+    beforeEach(async () => {
+      mock.onGet('http://localhost/example').reply(200, { foo_bar: 'baz' });
+      result = await actions.request(
+        {},
+        {
+          url: '/example',
+          responseType: 'blob'
+        }
+      );
+    });
+
+    it('does not convert response', () => {
+      expect(result.data.foo_bar).toBe('baz');
     });
   });
 

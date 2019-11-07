@@ -1,11 +1,10 @@
-import { eachDayOfInterval, format } from 'date-fns';
-
 export const SET_REPORTS = 'SET_REPORTS';
 
 export const state = () => ({
   projects: [],
-  summary: [],
-  period: '',
+  totals: {},
+  labels: [],
+  sums: {},
   start: undefined,
   end: undefined
 });
@@ -16,11 +15,10 @@ export const actions = {
       const res = await dispatch(
         'auth-api/request',
         {
-          url: '/v1/reports',
+          url: '/v1/report',
           params: {
             start: payload.start,
             end: payload.end,
-            period: payload.period,
             timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
           }
         },
@@ -28,11 +26,32 @@ export const actions = {
       );
       commit(SET_REPORTS, {
         projects: res.data.projects,
-        summary: res.data.summary,
-        period: payload.period,
+        totals: res.data.totals,
+        labels: res.data.labels,
+        sums: res.data.sums,
         start: payload.start,
         end: payload.end
       });
+    } catch (e) {
+      dispatch('toast/error', e, { root: true });
+    }
+  },
+  async fetchPdf({ dispatch }, payload) {
+    try {
+      const res = await dispatch(
+        'auth-api/request',
+        {
+          url: '/v1/report.pdf',
+          responseType: 'blob',
+          params: {
+            start: payload.start,
+            end: payload.end,
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+          }
+        },
+        { root: true }
+      );
+      return res.data;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
@@ -42,71 +61,42 @@ export const actions = {
 export const mutations = {
   [SET_REPORTS](state, payload) {
     state.projects = payload.projects;
-    state.summary = payload.summary;
-    state.period = payload.period;
+    state.totals = payload.totals;
+    state.labels = payload.labels;
+    state.sums = payload.sums;
     state.start = payload.start;
     state.end = payload.end;
   }
 };
 
 export const getters = {
-  projects: (state, getter) => {
+  projects: state => {
     return state.projects;
   },
-  summary: (state, getter) => {
-    return state.summary.reduce((acc, cur) => {
-      return {
-        ...acc,
-        [cur.projectId]: (acc[cur.projectId] || 0) + cur.duration
-      };
-    }, {});
+  totals: state => {
+    return state.totals;
   },
   empty: state => {
-    return Object.values(state.summary).reduce((acc, cur) => acc + cur, 0) <= 0;
+    return !Object.values(state.totals).find(value => value > 0);
   },
-  barChartLabels: (state, getter) => {
+  barChartData: state => {
     return {
-      hour: [...Array(24).keys()].map(hour => `${hour}:00`),
-      day: eachDayOfInterval({
-        start: state.start || new Date(),
-        end: state.end || new Date()
-      }).map(date => format(date, 'dd')),
-      month: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-      ]
-    }[state.period];
-  },
-  barChartData: (state, getters) => {
-    return {
-      labels: getters.barChartLabels,
+      labels: state.labels,
       datasets: state.projects.map(project => ({
         label: project.name,
         backgroundColor: project.color,
-        data: state.summary
-          .filter(({ projectId }) => project.id === projectId)
-          .map(({ duration }) => duration)
+        data: state.sums[project.id]
       }))
     };
   },
-  doughnutChartData: (state, getters) => {
+  doughnutChartData: state => {
     const projects = state.projects;
     return {
-      labels: projects.map(project => project.name),
+      labels: projects.map(({ name }) => name),
       datasets: [
         {
-          data: projects.map(project => getters.summary[project.id] || 0),
-          backgroundColor: projects.map(project => project.color)
+          data: Object.values(state.totals),
+          backgroundColor: projects.map(({ color }) => color)
         }
       ]
     };

@@ -45,18 +45,6 @@ button:focus {
 $animationDuration: $animation-duration;
 @import "../../node_modules/vue2-animate/src/sass/vue2-animate.scss";
 
-// Print
-@media print {
-  body {
-    margin: 30px auto;
-    max-width: 172mm;
-    background-color: #fff;
-  }
-  body, select, input, button {
-    color: #000;
-  }
-}
-
 // Tooltip
 // https://github.com/Akryum/v-tooltip#style-examples
 .tooltip {

@@ -13,7 +13,9 @@ describe('Actions', () => {
     const dispatch = jest.fn(() => ({
       data: {
         projects: [],
-        summary: []
+        sums: [],
+        totals: {},
+        labels: []
       }
     }));
 
@@ -22,8 +24,7 @@ describe('Actions', () => {
         { dispatch, commit },
         {
           start: parseISO('2019-01-01T00:00:00'),
-          end: parseISO('2019-01-03T00:00:00'),
-          period: 'day'
+          end: parseISO('2019-01-03T00:00:00')
         }
       );
     });
@@ -32,11 +33,10 @@ describe('Actions', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
-          url: '/v1/reports',
+          url: '/v1/report',
           params: {
             start: parseISO('2019-01-01T00:00:00'),
             end: parseISO('2019-01-03T00:00:00'),
-            period: 'day',
             timeZone: 'America/New_York'
           }
         },
@@ -46,12 +46,49 @@ describe('Actions', () => {
 
     it('commit SET_REPORTS', () => {
       expect(commit).toHaveBeenCalledWith('SET_REPORTS', {
-        period: 'day',
         projects: [],
-        summary: [],
+        sums: [],
+        totals: {},
+        labels: [],
         start: parseISO('2019-01-01T00:00:00'),
         end: parseISO('2019-01-03T00:00:00')
       });
+    });
+  });
+
+  describe('when dispatch fetchPdf', () => {
+    let result;
+
+    const dispatch = jest.fn(() => ({ data: '%PDF-' }));
+
+    beforeEach(async () => {
+      result = await actions.fetchPdf(
+        { dispatch },
+        {
+          start: parseISO('2019-01-01T00:00:00'),
+          end: parseISO('2019-01-03T00:00:00')
+        }
+      );
+    });
+
+    it('dispatch auth-api/request', () => {
+      expect(dispatch).toHaveBeenCalledWith(
+        'auth-api/request',
+        {
+          url: '/v1/report.pdf',
+          responseType: 'blob',
+          params: {
+            start: parseISO('2019-01-01T00:00:00'),
+            end: parseISO('2019-01-03T00:00:00'),
+            timeZone: 'America/New_York'
+          }
+        },
+        { root: true }
+      );
+    });
+
+    it('retuns data', () => {
+      expect(result).toBe('%PDF-');
     });
   });
 });

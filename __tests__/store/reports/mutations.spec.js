@@ -4,18 +4,18 @@ import { parseISO } from 'date-fns';
 describe('Mutations', () => {
   describe('when commit SET_REPORTS', () => {
     const state = {
-      start: undefined,
-      end: undefined,
       projects: [],
-      summary: [],
-      unit: ''
+      totals: {},
+      labels: [],
+      sums: {},
+      start: undefined,
+      end: undefined
     };
 
     beforeEach(() => {
       mutations['SET_REPORTS'](state, {
         start: parseISO('2019-01-01'),
         end: parseISO('2019-01-03'),
-        period: 'hour',
         projects: [
           {
             id: 1,
@@ -23,13 +23,13 @@ describe('Mutations', () => {
             color: '#f95959'
           }
         ],
-        summary: [
-          {
-            projectId: 1,
-            duration: 100,
-            date: '2019-01-01T00:00:00.000Z'
-          }
-        ]
+        totals: {
+          1: 100
+        },
+        labels: ['Jan', 'Feb'],
+        sums: {
+          1: [100, 200]
+        }
       });
     });
 
@@ -43,8 +43,8 @@ describe('Mutations', () => {
       ]);
     });
 
-    it('set period', () => {
-      expect(state.period).toBe('hour');
+    it('set labels', () => {
+      expect(state.labels).toEqual(['Jan', 'Feb']);
     });
 
     it('set start', () => {
@@ -55,14 +55,10 @@ describe('Mutations', () => {
       expect(state.end).toEqual(parseISO('2019-01-03'));
     });
 
-    it('set summary', () => {
-      expect(state.summary).toEqual([
-        {
-          projectId: 1,
-          duration: 100,
-          date: '2019-01-01T00:00:00.000Z'
-        }
-      ]);
+    it('set sums', () => {
+      expect(state.sums).toEqual({
+        1: [100, 200]
+      });
     });
   });
 });

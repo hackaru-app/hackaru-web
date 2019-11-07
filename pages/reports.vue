@@ -13,6 +13,11 @@
       @left="slideLeft"
       @right="slideRight"
     />
+    <div class="tools">
+      <button class="pdf-button" @click="openPdf">
+        PDF
+      </button>
+    </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
       <loop-slider
@@ -28,7 +33,7 @@
               <report-content
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
+                :totals="totals"
                 :projects="projects"
                 chart-id="prev"
               />
@@ -37,7 +42,7 @@
               <report-content
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
+                :totals="totals"
                 :projects="projects"
                 chart-id="current"
               />
@@ -46,7 +51,7 @@
               <report-content
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
-                :summary="summary"
+                :totals="totals"
                 :projects="projects"
                 chart-id="next"
               />
@@ -59,9 +64,11 @@
 </template>
 
 <script>
+import Icon from '@/components/atoms/icon';
 import CoachTooltip from '@/components/atoms/coach-tooltip';
 import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
+import ContentHeader from '@/components/organisms/content-header';
 import ReportContent from '@/components/organisms/report-content';
 import { mapGetters } from 'vuex';
 import {
@@ -85,35 +92,33 @@ const periods = {
   day: {
     startOf: startOfDay,
     endOf: endOfDay,
-    add: addDays,
-    barChartPeriod: 'hour'
+    add: addDays
   },
   week: {
     startOf: startOfWeek,
     endOf: endOfWeek,
-    add: addWeeks,
-    barChartPeriod: 'day'
+    add: addWeeks
   },
   month: {
     startOf: startOfMonth,
     endOf: endOfMonth,
-    add: addMonths,
-    barChartPeriod: 'day'
+    add: addMonths
   },
   year: {
     startOf: startOfYear,
     endOf: endOfYear,
-    add: addYears,
-    barChartPeriod: 'month'
+    add: addYears
   }
 };
 
 export default {
   components: {
+    Icon,
     CoachTooltip,
     LoopSlider,
     ReportContent,
-    DateHeader
+    DateHeader,
+    ContentHeader
   },
   head: {
     title: 'Reports'
@@ -128,7 +133,7 @@ export default {
     ...mapGetters({
       doughnutChartData: 'reports/doughnutChartData',
       barChartData: 'reports/barChartData',
-      summary: 'reports/summary',
+      totals: 'reports/totals',
       projects: 'reports/projects'
     }),
     period() {
@@ -160,9 +165,19 @@ export default {
     fetchReport() {
       this.$store.dispatch('reports/fetch', {
         start: this.period.startOf(this.date),
-        end: this.period.endOf(this.date),
-        period: this.period.barChartPeriod
+        end: this.period.endOf(this.date)
       });
+    },
+    async openPdf() {
+      const childWindow = window.open('about:blank');
+      const data = await this.$store.dispatch('reports/fetchPdf', {
+        start: this.period.startOf(this.date),
+        end: this.period.endOf(this.date)
+      });
+      if (data) {
+        const url = URL.createObjectURL(data);
+        childWindow.location.assign(url);
+      }
     },
     slideLeft() {
       this.$refs.slider.slideLeft();
@@ -198,10 +213,29 @@ export default {
   min-height: 100vh;
   box-shadow: -3px 0 3px #00000005;
 }
-@media print {
-  .slider-item {
-    height: auto;
-    box-shadow: none;
+.tools {
+  display: flex;
+  padding: 0 40px;
+  border-bottom: 1px $border solid;
+  background-color: #fff;
+  box-shadow: 0 3px 3px #00000005;
+  button {
+    display: flex;
+    align-items: center;
+    background: none;
+    padding: 16px 20px;
+    border: 1px $border solid;
+    border-top: 0;
+    border-bottom: 0;
+    cursor: pointer;
+    .icon {
+      margin-right: 6px;
+    }
+  }
+}
+@media screen and (max-width: 640px) {
+  .tools {
+    padding: 0;
   }
 }
 </style>
