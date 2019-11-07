@@ -152,4 +152,25 @@ describe('Reports', () => {
       expect(assign).toHaveBeenCalledWith('blob:');
     });
   });
+
+  describe('when click pdf-button but response is undefined', () => {
+    const assign = jest.fn();
+
+    beforeEach(() => {
+      $store.dispatch.mockReturnValue(undefined);
+      window.open = () => ({ location: { assign } });
+      URL.createObjectURL = jest.fn();
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'day' });
+      wrapper.find('.pdf-button').trigger('click');
+    });
+
+    it('does not create object url', () => {
+      expect(URL.createObjectURL).not.toHaveBeenCalled();
+    });
+
+    it('does not assign object url', () => {
+      expect(assign).not.toHaveBeenCalled();
+    });
+  });
 });
