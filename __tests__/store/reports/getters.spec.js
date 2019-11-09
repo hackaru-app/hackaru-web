@@ -110,6 +110,11 @@ describe('Getters', () => {
     const state = {
       projects: [
         {
+          id: 3,
+          name: 'Working',
+          color: '#f0f'
+        },
+        {
           id: 1,
           name: 'Development',
           color: '#ff0'
@@ -122,6 +127,7 @@ describe('Getters', () => {
       ],
       totals: {
         1: 100,
+        3: 300,
         2: 200
       }
     };
@@ -132,11 +138,11 @@ describe('Getters', () => {
 
     it('returns chart data', () => {
       expect(result).toEqual({
-        labels: ['Development', 'Review'],
+        labels: ['Working', 'Development', 'Review'],
         datasets: [
           {
-            data: [100, 200],
-            backgroundColor: ['#ff0', '#f00']
+            data: [300, 100, 200],
+            backgroundColor: ['#f0f', '#ff0', '#f00']
           }
         ]
       });
