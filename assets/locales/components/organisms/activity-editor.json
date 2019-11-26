@@ -26,8 +26,7 @@
       "update": "計測を編集",
       "start": "計測を開始"
     },
-    "project": "プロジェクト",
-    "description": "作業内容",
+    "description": "作業内容や補足を入力",
     "startedAt": "開始時間",
     "stoppedAt": "終了時間",
     "update": "更新",

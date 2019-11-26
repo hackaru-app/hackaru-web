@@ -20,6 +20,7 @@
     background: none;
     text-overflow: ellipsis;
     overflow: hidden;
+    padding: 0;
   }
   label {
     min-width: 110px;

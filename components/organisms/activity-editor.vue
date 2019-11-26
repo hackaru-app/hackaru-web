@@ -8,18 +8,12 @@
 
     <form @submit.prevent="saveActivity">
       <modal-item>
-        <label>
-          {{ $t('project') }}
-        </label>
         <button type="button" class="project-button" @click="editProject">
           <project-name :name="project.name" :color="project.color" />
         </button>
       </modal-item>
 
       <modal-item>
-        <label>
-          {{ $t('description') }}
-        </label>
         <input
           v-model="description"
           :placeholder="$t('description')"
