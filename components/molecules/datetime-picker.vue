@@ -1,21 +1,19 @@
 <template>
   <div class="datetime-picker">
     <input
-      ref="date"
       :value="date"
       class="date"
       type="date"
       step="1"
-      @input="update"
+      @input="updateDate"
       @focus="setCurrent"
     />
     <input
-      ref="time"
       :value="time"
       class="time"
       type="time"
       step="1"
-      @input="update"
+      @input="updateTime"
       @focus="setCurrent"
     />
   </div>
@@ -34,26 +32,42 @@ export default {
       default: undefined
     }
   },
-  computed: {
-    date() {
-      return this.value && format(parseISO(this.value), dateFormat);
-    },
-    time() {
-      return this.value && format(parseISO(this.value), timeFormat);
+  data() {
+    return {
+      date: '',
+      time: ''
+    };
+  },
+  watch: {
+    value: {
+      immediate: true,
+      handler() {
+        if (!this.value) return;
+        this.date = format(parseISO(this.value), dateFormat);
+        this.time = format(parseISO(this.value), timeFormat);
+      }
     }
   },
   methods: {
-    update() {
-      const date = parseISO(
-        [this.$refs.date.value, this.$refs.time.value].join(' ')
-      );
+    update(date, time) {
+      const datetime = parseISO([date, time].join(' '));
       const formatString = `${dateFormat} ${timeFormat} XXX`;
-      this.$emit('input', isNaN(date) ? undefined : format(date, formatString));
+      this.$emit(
+        'input',
+        isNaN(datetime) ? undefined : format(datetime, formatString)
+      );
+    },
+    updateDate(e) {
+      this.update(e.target.value, this.time);
+    },
+    updateTime(e) {
+      this.update(this.date, e.target.value);
     },
     setCurrent() {
-      this.$refs.date.value = this.date || format(new Date(), dateFormat);
-      this.$refs.time.value = this.time || format(new Date(), timeFormat);
-      this.update();
+      this.update(
+        this.date || format(new Date(), dateFormat),
+        this.time || format(new Date(), timeFormat)
+      );
     }
   }
 };
