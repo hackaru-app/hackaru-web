@@ -37,7 +37,7 @@
     "node-sass": "^4.13.0",
     "normalize.css": "^8.0.1",
     "normalizr": "^3.2.4",
-    "nuxt": "^2.9.2",
+    "nuxt": "^2.10.2",
     "nuxt-env": "^0.1.0",
     "nuxt-i18n": "^6.3.0",
     "query-string": "^6.8.3",
@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-env": "^7.7.4",
     "@nuxtjs/style-resources": "^0.1.2",
     "@vue/test-utils": "^1.0.0-beta.29",
     "axios-mock-adapter": "^1.16.0",
