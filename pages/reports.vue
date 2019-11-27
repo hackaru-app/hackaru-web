@@ -174,10 +174,8 @@ export default {
         start: this.period.startOf(this.date),
         end: this.period.endOf(this.date)
       });
-      if (data) {
-        const url = URL.createObjectURL(data);
-        childWindow.location.assign(url);
-      }
+      if (childWindow.closed) return;
+      if (data) childWindow.location.assign(URL.createObjectURL(data));
     },
     slideLeft() {
       this.$refs.slider.slideLeft();

@@ -68,7 +68,9 @@ export default {
       this.$gtm.trackEvent({ name: 'add_to_google_calendar' });
       const childWindow = window.open('about:blank');
       if (!(await this.createUrl())) return;
-      childWindow.location.assign(this.googleCalendarUrl);
+      if (childWindow.closed) {
+        childWindow.location.assign(this.googleCalendarUrl);
+      }
     },
     async navigateWebcal() {
       if (!(await this.createUrl())) return;
