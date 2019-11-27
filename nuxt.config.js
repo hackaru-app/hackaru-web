@@ -156,7 +156,7 @@ module.exports = {
     ]
   ],
   styleResources: {
-    sass: ['~/assets/sass/modules/*.scss']
+    scss: ['./assets/sass/modules/*.scss']
   },
   manifest: {
     name: 'Hackaru',
