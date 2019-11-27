@@ -76,4 +76,32 @@ describe('DatetimePicker', () => {
       expect(wrapper.emitted('input')[1]).toEqual([undefined]);
     });
   });
+
+  describe('when input date is valid', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setProps({ value: '2019-03-03T11:22:33' });
+      wrapper.find('.date').setValue('2019-01-01');
+    });
+
+    it('emit input with datetime', () => {
+      expect(wrapper.emitted('input')[0]).toEqual([
+        format(parseISO('2019-01-01 11:22:33'), 'yyyy-MM-dd HH:mm:ss XXX')
+      ]);
+    });
+  });
+
+  describe('when input time is valid', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setProps({ value: '2019-03-03T11:22:33' });
+      wrapper.find('.time').setValue('22:33:44');
+    });
+
+    it('emit input with datetime', () => {
+      expect(wrapper.emitted('input')[0]).toEqual([
+        format(parseISO('2019-03-03 22:33:44'), 'yyyy-MM-dd HH:mm:ss XXX')
+      ]);
+    });
+  });
 });
