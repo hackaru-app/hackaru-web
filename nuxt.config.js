@@ -74,7 +74,7 @@ module.exports = {
   },
   css: [
     { src: 'normalize.css' },
-    { src: '~/assets/sass/main.scss' },
+    { src: '~/assets/scss/main.scss' },
     { src: 'vue-js-modal/dist/styles.css' }
   ],
   /*
@@ -156,7 +156,7 @@ module.exports = {
     ]
   ],
   styleResources: {
-    scss: ['./assets/sass/modules/*.scss']
+    scss: ['./assets/scss/modules/*.scss']
   },
   manifest: {
     name: 'Hackaru',
