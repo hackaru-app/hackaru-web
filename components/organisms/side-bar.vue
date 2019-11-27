@@ -75,9 +75,6 @@ export default {
   background-color: $background-dark;
   z-index: index($z, side-bar);
   padding-left: env(safe-area-inset-left);
-  /deep/ + * {
-    margin-left: $side-bar-min-width;
-  }
 }
 .url {
   display: none;
@@ -149,10 +146,6 @@ li:first-child a {
     padding-top: env(safe-area-inset-top);
     height: auto;
     box-sizing: border-box;
-    /deep/ + * {
-      margin-left: 0;
-      margin-top: $side-bar-min-height;
-    }
   }
   .side-bar.android {
     box-shadow: 0 1px 6px 2px #00000020;

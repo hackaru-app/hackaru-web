@@ -32,5 +32,12 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin-left: $side-bar-min-width;
+}
+@include mq(small) {
+  .content {
+    margin-left: 0;
+    margin-top: $side-bar-min-height;
+  }
 }
 </style>
