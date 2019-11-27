@@ -9,12 +9,6 @@ describe('Integrations', () => {
     .spyOn(window.location, 'assign')
     .mockImplementation(() => {});
 
-  const childWindow = {
-    location: {
-      assign: jest.fn()
-    }
-  };
-
   const $store = new Store({
     getters: {
       'activity-calendar/googleCalendarUrl': 'https://example.com',
@@ -28,13 +22,15 @@ describe('Integrations', () => {
     });
 
   beforeEach(() => {
-    window.open = () => childWindow;
     $store.reset();
   });
 
   describe('when click google calendar button', () => {
+    const assign = jest.fn();
+
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
+      window.open = () => ({ location: { assign }, closed: false });
       wrapper = factory();
       wrapper.find('.google-calendar-button').vm.$emit('click');
     });
@@ -46,9 +42,22 @@ describe('Integrations', () => {
     });
 
     it('navigate to google calendar url', () => {
-      expect(childWindow.location.assign).toHaveBeenCalledWith(
-        'https://example.com'
-      );
+      expect(assign).toHaveBeenCalledWith('https://example.com');
+    });
+  });
+
+  describe('when click google calendar button but child window closed', () => {
+    const assign = jest.fn();
+
+    beforeEach(() => {
+      $store.dispatch.mockReturnValue(true);
+      window.open = () => ({ location: { assign }, closed: true });
+      wrapper = factory();
+      wrapper.find('.google-calendar-button').vm.$emit('click');
+    });
+
+    it('does not navigate', () => {
+      expect(assign).not.toHaveBeenCalled();
     });
   });
 

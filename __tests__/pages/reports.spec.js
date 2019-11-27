@@ -130,7 +130,7 @@ describe('Reports', () => {
 
     beforeEach(() => {
       $store.dispatch.mockReturnValue('%PDF-');
-      window.open = () => ({ location: { assign } });
+      window.open = () => ({ location: { assign }, closed: false });
       URL.createObjectURL = jest.fn(() => 'blob:');
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'day' });
@@ -153,12 +153,29 @@ describe('Reports', () => {
     });
   });
 
+  describe('when click google calendar button but child window closed', () => {
+    const assign = jest.fn();
+
+    beforeEach(() => {
+      $store.dispatch.mockReturnValue('%PDF-');
+      window.open = () => ({ location: { assign }, closed: true });
+      URL.createObjectURL = jest.fn(() => 'blob:');
+      wrapper = factory();
+      wrapper.setData({ currentPeriod: 'day' });
+      wrapper.find('.pdf-button').trigger('click');
+    });
+
+    it('does not navigate', () => {
+      expect(assign).not.toHaveBeenCalled();
+    });
+  });
+
   describe('when click pdf-button but response is undefined', () => {
     const assign = jest.fn();
 
     beforeEach(() => {
       $store.dispatch.mockReturnValue(undefined);
-      window.open = () => ({ location: { assign } });
+      window.open = () => ({ location: { assign }, closed: false });
       URL.createObjectURL = jest.fn();
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'day' });
