@@ -115,7 +115,7 @@ li a {
   justify-content: center;
   box-sizing: border-box;
   border: 0;
-  border-left: 2px #00000000 solid;
+  border-left: 2px transparent solid;
   padding: 16px 0;
   padding-right: 4px;
   text-decoration: none;
@@ -148,7 +148,7 @@ li:first-child a {
     box-sizing: border-box;
   }
   .side-bar.android {
-    box-shadow: 0 1px 6px 2px #00000020;
+    box-shadow: 0 1px 6px 2px $shadow-darker;
   }
   h1 a {
     padding: 0;

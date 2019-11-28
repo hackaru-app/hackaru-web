@@ -63,7 +63,7 @@ export default {
   margin-right: 5px;
   background: 0;
   padding: 0;
-  border: 1px #fff solid;
+  border: 1px $white solid;
   border-radius: 50%;
   width: 26px;
   height: 26px;
@@ -72,7 +72,7 @@ export default {
   margin-bottom: 5px;
   &:hover,
   &.selected {
-    box-shadow: 0 2px 3px #cccfd9;
+    box-shadow: 0 2px 3px $shadow-darker;
   }
 }
 </style>

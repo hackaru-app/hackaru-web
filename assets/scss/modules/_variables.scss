@@ -14,6 +14,11 @@ $cyan-dark: darken($cyan, 5%);
 $yellow: #ffd96a;
 $red: #eb4f34;
 $white: #fff;
+$white-light: #fffffff5;
+$white-lighter: #fffffff0;
+
+// Backdrop
+$backdrop-color: #00000030;
 
 // Text
 $text: $grey-333;
@@ -23,6 +28,7 @@ $text-lighter: $grey-999;
 // Shadow
 $shadow: #00000005;
 $shadow-dark: #00000008;
+$shadow-darker: #00000030;
 
 // Font
 $font-size: 16px;

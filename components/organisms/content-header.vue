@@ -16,12 +16,6 @@
   justify-content: space-between;
   box-shadow: 0 3px 3px $shadow;
 }
-.content-header.sticky {
-  position: sticky;
-  top: 0;
-  background-color: #ffffffee;
-  z-index: index($z, content-header);
-}
 @include mq(small) {
   .content-header {
     padding: 0 30px;

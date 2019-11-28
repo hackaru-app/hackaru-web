@@ -221,7 +221,7 @@ export default {
 .timer-form {
   display: flex;
   position: fixed;
-  background-color: #fffffff5;
+  background-color: $white-light;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -313,7 +313,7 @@ export default {
   top: 90px;
   box-sizing: border-box;
   max-width: calc(100vw - #{$side-bar-min-width});
-  background-color: #00000030;
+  background-color: $backdrop-color;
 }
 .suggestion-list {
   overflow-y: scroll;
@@ -322,7 +322,7 @@ export default {
   border-top: 1px $border solid;
   overflow: hidden;
   overflow-y: scroll;
-  box-shadow: 0 3px 5px #00000015;
+  box-shadow: 0 3px 5px $shadow-darker;
   -webkit-overflow-scrolling: touch;
 }
 .suggestion-list ul {
@@ -433,7 +433,7 @@ export default {
     border-left: 0;
     margin: 0;
     max-width: 100vw;
-    background-color: #fffffff0;
+    background-color: $white-lighter;
     box-shadow: 0 3px 3px $shadow inset;
   }
   .suggestion-list ul {
