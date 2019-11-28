@@ -243,7 +243,7 @@ export default {
   margin-right: 40px;
   pointer-events: auto;
   border-radius: 50%;
-  box-shadow: 0 3px 3px #00000010;
+  box-shadow: 0 3px 3px $shadow-dark;
 }
 .base-button.control-button .icon {
   width: 22px;
@@ -275,7 +275,7 @@ export default {
   flex: 1;
   border-bottom: 1px $border solid;
   border-right: 0;
-  box-shadow: 0 3px 3px #00000005;
+  box-shadow: 0 3px 3px $shadow;
 }
 .project-wrapper {
   display: flex;
@@ -393,7 +393,7 @@ export default {
     height: 80px;
     box-sizing: border-box;
     border-bottom: 1px $border solid;
-    box-shadow: 0 3px 3px #00000005;
+    box-shadow: 0 3px 3px $shadow;
   }
   .base-button.control-button {
     width: 48px;
@@ -434,7 +434,7 @@ export default {
     margin: 0;
     max-width: 100vw;
     background-color: #fffffff0;
-    box-shadow: 0 3px 3px #00000005 inset;
+    box-shadow: 0 3px 3px $shadow inset;
   }
   .suggestion-list ul {
     min-height: 110vh;

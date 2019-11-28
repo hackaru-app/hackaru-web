@@ -236,7 +236,7 @@ export default {
   overflow: hidden;
   pointer-events: auto;
   transition: box-shadow 0.2s, opacity 0.2s;
-  box-shadow: 0 3px 3px #00000008;
+  box-shadow: 0 3px 3px $shadow-dark;
   &:hover,
   &:active {
     opacity: 0.8;
@@ -245,7 +245,7 @@ export default {
 .calendar-activity.dragging {
   cursor: grabbing;
   opacity: 1;
-  box-shadow: 0 7px 10px #00000010;
+  box-shadow: 0 7px 10px $shadow-dark;
   z-index: index($z, calendar-dragging-activity);
 }
 .calendar-activity h1 {

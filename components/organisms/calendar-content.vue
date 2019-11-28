@@ -118,6 +118,6 @@ export default {
   display: flex;
   pointer-events: auto;
   position: relative;
-  box-shadow: -3px 0 3px #00000005;
+  box-shadow: -3px 0 3px $shadow;
 }
 </style>
