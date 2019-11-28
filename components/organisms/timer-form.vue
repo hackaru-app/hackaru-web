@@ -221,13 +221,12 @@ export default {
 .timer-form {
   display: flex;
   position: fixed;
-  background-color: $white-light;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   max-width: calc(100vw - #{$side-bar-min-width});
   z-index: index($z, timer-form);
-  height: 91px;
+  height: 90px;
 }
 .duration.stopped {
   color: $text-light;
@@ -276,6 +275,7 @@ export default {
   border-bottom: 1px $border solid;
   border-right: 0;
   box-shadow: 0 3px 3px $shadow;
+  background-color: $background-light;
 }
 .project-wrapper {
   display: flex;
@@ -318,8 +318,7 @@ export default {
 .suggestion-list {
   overflow-y: scroll;
   box-sizing: border-box;
-  background-color: $white;
-  border-top: 1px $border solid;
+  background-color: $background;
   overflow: hidden;
   overflow-y: scroll;
   box-shadow: 0 3px 5px $shadow-darker;
@@ -338,7 +337,7 @@ export default {
   align-items: center;
   height: 65px;
   padding: 0 45px;
-  border-bottom: 1px $grey-f5f5f5 solid;
+  border-bottom: 1px $border solid;
   &:last-child {
     border-bottom: 0;
     padding-bottom: 10px;
@@ -347,7 +346,7 @@ export default {
     padding-top: 10px;
   }
   &:hover {
-    background-color: $grey-fdfdfd;
+    background-color: $background-hover;
   }
 }
 @include mq(small) {
@@ -433,27 +432,38 @@ export default {
     border-left: 0;
     margin: 0;
     max-width: 100vw;
-    background-color: $white-lighter;
+    background-color: $background-light;
     box-shadow: 0 3px 3px $shadow inset;
   }
   .suggestion-list ul {
-    min-height: 110vh;
+    min-height: 130vh;
   }
   .suggestion-list ul li {
     height: 75px;
     padding: 0 35px;
-    border-bottom: 1px $grey-f5f5f5 solid;
+    border-bottom: 1px $border solid;
     border-radius: 0;
     &:first-child {
       padding-top: 0;
     }
     &:last-child {
-      border-bottom: 1px $grey-f5f5f5 solid;
+      border-bottom: 1px $border solid;
       padding-bottom: 0;
     }
     &:hover {
       background: none;
     }
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .form-content {
+    border-bottom: 0;
+  }
+  .suggestion-list {
+    background-color: $background;
+  }
+  .project-wrapper {
+    border-right: 2px $background solid;
   }
 }
 </style>

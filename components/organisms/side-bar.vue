@@ -1,11 +1,10 @@
 <template>
-  <section :class="['side-bar', { android: isAndroid }]">
+  <section class="side-bar">
     <h1>
       <nuxt-link :to="localePath('index')">
         <img src="@/assets/logo.svg" class="logo-icon" />
       </nuxt-link>
     </h1>
-    <span class="url">www.hackaru.app</span>
     <ul v-if="showMenu">
       <li
         v-for="link in links"
@@ -125,7 +124,7 @@ li a {
   }
 }
 li a:hover {
-  background-color: darken($background-dark, 5%);
+  background-color: $background-dark-hover;
 }
 li.selected a {
   border-left-color: $red;
@@ -146,9 +145,6 @@ li:first-child a {
     padding-top: env(safe-area-inset-top);
     height: auto;
     box-sizing: border-box;
-  }
-  .side-bar.android {
-    box-shadow: 0 1px 6px 2px $shadow-darker;
   }
   h1 a {
     padding: 0;
@@ -178,7 +174,7 @@ li:first-child a {
     border: 0;
   }
   li.selected a {
-    background-color: darken($background-dark, 5%);
+    background-color: darken(#262b38, 5%);
   }
 }
 </style>

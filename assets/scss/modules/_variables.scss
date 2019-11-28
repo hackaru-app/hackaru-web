@@ -17,13 +17,57 @@ $white: #fff;
 $white-light: #fffffff5;
 $white-lighter: #fffffff0;
 
+// Light
+:root {
+  // Background
+  --background-light: #fffffff5;
+  --background: #{$white};
+  --background-hover: #{$grey-fafafa};
+  --background-dark: #3f4961;
+  --background-dark-hover: #353d52;
+
+  // Text
+  --text: #{$grey-333};
+  --text-light: #{$grey-666};
+  --text-lighter: #{$grey-999};
+
+  // Input
+  --placeholder: #{$grey-999};
+
+  // Border
+  --border: #{$grey-f0f0f0};
+}
+
+// Dark
+:root {
+  @media (prefers-color-scheme: dark) {
+    // Background
+    --background-light: #303748;
+    --background: #2c3241;
+    --background-hover: #2a303e;
+    --background-dark: #262b38;
+    --background-dark-hover: #1c1f29;
+
+    // Text
+    --text: #{$grey-eee};
+    --text-light: #{$grey-ccc};
+    --text-lighter: #{$grey-999};
+
+    // Input
+    --placeholder: #{$grey-666};
+
+    // Border
+    --border: #262b38;
+  }
+}
+
 // Backdrop
 $backdrop-color: #00000030;
 
 // Text
-$text: $grey-333;
-$text-light: $grey-666;
-$text-lighter: $grey-999;
+$text: var(--text);
+$text-light: var(--text-light);
+$text-lighter: var(--text-lighter);
 
 // Shadow
 $shadow: #00000005;
@@ -36,12 +80,18 @@ $font-family: system-ui, -apple-system, sans-serif;
 $font-family-duration: 'Roboto', 'Arial', sans-serif;
 $line-height: 1.5;
 
+// Input
+$placeholder: var(--placeholder);
+
 // Border
-$border: $grey-f0f0f0;
+$border: var(--border);
 
 // Background
-$background: $white;
-$background-dark: #3f4961;
+$background-light: var(--background-light);
+$background: var(--background);
+$background-hover: var(--background-hover);
+$background-dark: var(--background-dark);
+$background-dark-hover: var(--background-dark-hover);
 
 // Animation
 $animation-duration: .25s;

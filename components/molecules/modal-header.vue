@@ -15,7 +15,7 @@
   position: sticky;
   top: 0;
   border-radius: 3px 3px 0 0;
-  background-color: $white;
+  background-color: $background;
   display: flex;
   width: 100%;
   height: 60px;

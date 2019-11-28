@@ -21,6 +21,9 @@
     text-overflow: ellipsis;
     overflow: hidden;
     padding: 0;
+    &::placeholder {
+      color: $placeholder;
+    }
   }
   label {
     min-width: 110px;

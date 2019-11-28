@@ -108,7 +108,7 @@ export default {
   justify-content: space-between;
   border-bottom: 1px $border solid;
   &:hover {
-    background: $grey-fdfdfd;
+    background: $background-hover;
   }
 }
 .project-content {
