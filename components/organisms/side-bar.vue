@@ -171,7 +171,7 @@ li:first-child a {
     border: 0;
   }
   li.selected a {
-    background-color: darken(#262b38, 5%);
+    background-color: $background-dark-hover;
   }
 }
 </style>
