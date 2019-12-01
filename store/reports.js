@@ -96,6 +96,7 @@ export const getters = {
       datasets: [
         {
           data: projects.map(({ id }) => state.totals[id]),
+          borderWidth: 0,
           backgroundColor: projects.map(({ color }) => color)
         }
       ]
