@@ -14,8 +14,7 @@ module.exports = {
         hid: 'description',
         name: 'description',
         content: 'Simple and open source time tracking app.'
-      },
-      { hid: 'theme-color', name: 'theme-color', content: '#3f4961' }
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -161,7 +160,8 @@ module.exports = {
   manifest: {
     name: 'Hackaru',
     short_name: 'Hackaru',
-    lang: 'ja'
+    lang: 'ja',
+    theme_color: '#262b38'
   },
   sentry: {
     disableClientSide: true
