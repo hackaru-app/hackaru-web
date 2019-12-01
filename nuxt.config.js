@@ -79,8 +79,9 @@ module.exports = {
   ],
   /*
    ** Customize the progress bar color
+   ** TEMP: https://bugs.chromium.org/p/chromium/issues/detail?id=980790
    */
-  loading: { color: '#ffd96a' },
+  loading: { color: '#262b38' },
   /*
    ** Plugins
    */
