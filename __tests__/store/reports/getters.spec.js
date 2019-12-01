@@ -142,6 +142,7 @@ describe('Getters', () => {
         datasets: [
           {
             data: [300, 100, 200],
+            borderWidth: 0,
             backgroundColor: ['#f0f', '#ff0', '#f00']
           }
         ]
