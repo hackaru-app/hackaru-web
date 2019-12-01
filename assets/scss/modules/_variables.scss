@@ -26,6 +26,9 @@ $white-lighter: #fffffff0;
   --background-dark: #3f4961;
   --background-dark-hover: #353d52;
 
+  // Backgrop
+  --backdrop-color: #00000030;
+
   // Text
   --text: #{$grey-333};
   --text-light: #{$grey-666};
@@ -49,8 +52,11 @@ $white-lighter: #fffffff0;
     --background-dark: #262b38;
     --background-dark-hover: #1c1f29;
 
+    // Backgrop
+    --backdrop-color: #00000050;
+
     // Text
-    --text: #{$grey-eee};
+    --text: #{$grey-ccc};
     --text-light: #{$grey-ccc};
     --text-lighter: #{$grey-999};
     --text-primary: #{$cyan};
@@ -64,7 +70,7 @@ $white-lighter: #fffffff0;
 }
 
 // Backdrop
-$backdrop-color: #00000030;
+$backdrop-color: var(--backdrop-color);
 
 // Text
 $text: var(--text);

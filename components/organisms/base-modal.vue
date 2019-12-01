@@ -23,6 +23,7 @@
 .v--modal-overlay {
   z-index: index($z, modal);
   padding-top: env(safe-area-inset-top);
+  background: $backdrop-color;
 }
 </style>
 
