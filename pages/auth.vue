@@ -194,7 +194,7 @@ export default {
 }
 .toggle-button {
   box-sizing: border-box;
-  color: $cyan-dark;
+  color: $text-primary;
   text-decoration: none;
   width: 200px;
   padding: 10px 0;

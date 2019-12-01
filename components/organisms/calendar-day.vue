@@ -144,7 +144,7 @@ export default {
   user-select: none;
   max-width: 100%;
   &.overlapped {
-    background: $grey-fafafa;
+    background: $background-hover;
   }
 }
 .events {

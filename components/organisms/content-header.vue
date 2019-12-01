@@ -11,7 +11,7 @@
   align-items: center;
   height: 90px;
   padding: 0 40px;
-  background-color: $white;
+  background-color: $background;
   border-bottom: 1px $border solid;
   justify-content: space-between;
   box-shadow: 0 3px 3px $shadow;

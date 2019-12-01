@@ -26,7 +26,7 @@
     left: 0;
     width: 100vw;
     content: '';
-    border-top: 1px $grey-eee dashed;
+    border-top: 1px $border dashed;
   }
   &:first-child::before {
     display: none;

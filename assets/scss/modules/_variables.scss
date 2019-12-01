@@ -30,6 +30,7 @@ $white-lighter: #fffffff0;
   --text: #{$grey-333};
   --text-light: #{$grey-666};
   --text-lighter: #{$grey-999};
+  --text-primary: #{$cyan};
 
   // Input
   --placeholder: #{$grey-999};
@@ -52,6 +53,7 @@ $white-lighter: #fffffff0;
     --text: #{$grey-eee};
     --text-light: #{$grey-ccc};
     --text-lighter: #{$grey-999};
+    --text-primary: #{$cyan};
 
     // Input
     --placeholder: #{$grey-666};
@@ -68,6 +70,7 @@ $backdrop-color: #00000030;
 $text: var(--text);
 $text-light: var(--text-light);
 $text-lighter: var(--text-lighter);
+$text-primary: var(--text-primary);
 
 // Shadow
 $shadow: #00000005;

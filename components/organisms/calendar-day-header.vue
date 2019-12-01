@@ -62,7 +62,7 @@ export default {
 }
 .calendar-day-header.today h1,
 .calendar-day-header.today small {
-  color: $cyan-dark;
+  color: $text-primary;
 }
 @include mq(small) {
   .calendar-day-header h1 {

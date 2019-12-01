@@ -97,4 +97,9 @@ export default {
     margin-left: 5px;
   }
 }
+@media (prefers-color-scheme: dark) {
+  .calendar-event {
+    opacity: 0.8;
+  }
+}
 </style>
