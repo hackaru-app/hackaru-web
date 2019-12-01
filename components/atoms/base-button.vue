@@ -42,7 +42,7 @@
 }
 .base-button.is-marshmallow {
   height: 43px;
-  border: 1px $grey-eee solid;
+  border: 1px $border solid;
   box-shadow: 0 3px 8px $shadow;
 }
 .base-button.has-icon {
@@ -52,5 +52,11 @@
   margin: -20px;
   background: none;
   border: 0;
+}
+@media (prefers-color-scheme: dark) {
+  .base-button.is-marshmallow {
+    background-color: $background-dark;
+    border-color: transparent;
+  }
 }
 </style>
