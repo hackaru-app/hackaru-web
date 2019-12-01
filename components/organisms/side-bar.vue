@@ -54,9 +54,6 @@ export default {
         }
       ]
     };
-  },
-  mounted() {
-    this.isAndroid = this.$platform.isAndroid();
   }
 };
 </script>
