@@ -32,7 +32,8 @@ export default {
   height: 50px;
   font-size: $font-size;
   line-height: 1;
-  border: 1px $grey-eee solid;
+  background: none;
+  border: 1px $border solid;
   transition: border-color 0.2s;
   margin-bottom: 15px;
   box-shadow: none;
@@ -44,10 +45,16 @@ export default {
     border-color: $yellow;
   }
   &:placeholder-shown {
-    border-color: $grey-eee;
+    border-color: $border;
   }
   &:placeholder-shown:focus {
     border-color: $yellow;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .base-input.has-border {
+    background-color: $background-dark;
+    border-color: transparent;
   }
 }
 </style>
