@@ -184,4 +184,9 @@ export default {
     width: auto;
   }
 }
+@media (prefers-color-scheme: dark) {
+  .doughnut-chart-empty:before {
+    border-color: $background-dark;
+  }
+}
 </style>

@@ -215,7 +215,7 @@ export default {
   display: flex;
   padding: 0 40px;
   border-bottom: 1px $border solid;
-  background-color: $white;
+  background-color: $background-light;
   box-shadow: 0 3px 3px $shadow;
   button {
     display: flex;
