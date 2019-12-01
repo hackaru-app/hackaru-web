@@ -8,6 +8,6 @@
 .highlight {
   padding: 20px 25px;
   border-radius: 8px;
-  background: $grey-fafafa;
+  background: $background-light;
 }
 </style>
