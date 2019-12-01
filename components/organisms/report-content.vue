@@ -1,12 +1,12 @@
 <template>
   <article class="report-content">
-    <div class="bar-chart-wrapper printer">
-      <bar-chart :chart-data="barChartData" class="bar-chart" />
-    </div>
-
-    <div class="bar-chart-wrapper">
-      <bar-chart :chart-data="barChartData" class="bar-chart" />
-    </div>
+    <color-scheme v-slot="{ isDark }" class="bar-chart-wrapper">
+      <bar-chart
+        :chart-data="barChartData"
+        :is-dark="isDark"
+        class="bar-chart"
+      />
+    </color-scheme>
 
     <div class="content">
       <div class="doughnut-chart-wrapper">
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import ColorScheme from '@/components/atoms/color-scheme';
 import ProjectName from '@/components/molecules/project-name';
 import DoughnutChart from '@/components/atoms/doughnut-chart';
 import BarChart from '@/components/atoms/bar-chart';
@@ -38,6 +39,7 @@ import { fromS } from 'hh-mm-ss';
 
 export default {
   components: {
+    ColorScheme,
     DoughnutChart,
     BarChart,
     ProjectName
@@ -182,6 +184,11 @@ export default {
     margin: 0;
     padding: 35px 30px;
     width: auto;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .doughnut-chart-empty:before {
+    border-color: $background-dark;
   }
 }
 </style>

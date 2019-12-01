@@ -23,7 +23,6 @@ export default {
 article {
   margin: 0 40px;
   padding-bottom: 40px;
-  background-color: $white;
   border-bottom: 1px $border solid;
   h1 {
     display: flex;

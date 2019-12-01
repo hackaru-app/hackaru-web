@@ -51,7 +51,7 @@ export default {
 }
 .ruler time {
   width: 60px;
-  color: #fff;
+  color: $white;
   display: flex;
   justify-content: center;
   line-height: 20px;

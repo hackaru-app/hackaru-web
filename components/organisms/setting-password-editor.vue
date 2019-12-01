@@ -1,6 +1,6 @@
 <i18n
   src="@/assets/locales/components/organisms/setting-password-editor.json"
-/>
+></i18n>
 
 <template>
   <setting-box>

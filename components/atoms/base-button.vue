@@ -19,11 +19,11 @@
 }
 .base-button.is-primary {
   background-color: $cyan;
-  color: #fff;
+  color: $white;
 }
 .base-button.is-danger {
   background-color: $red;
-  color: #fff;
+  color: $white;
 }
 .base-button.is-circle {
   width: 36px;
@@ -33,7 +33,7 @@
 }
 .base-button.is-danger {
   background-color: $red;
-  color: #fff;
+  color: $white;
 }
 .base-button.is-rounded {
   border-radius: 99px;
@@ -42,8 +42,8 @@
 }
 .base-button.is-marshmallow {
   height: 43px;
-  border: 1px $grey-eee solid;
-  box-shadow: 0 3px 8px #00000005;
+  border: 1px $border solid;
+  box-shadow: 0 3px 8px $shadow;
 }
 .base-button.has-icon {
   line-height: normal;
@@ -52,5 +52,11 @@
   margin: -20px;
   background: none;
   border: 0;
+}
+@media (prefers-color-scheme: dark) {
+  .base-button.is-marshmallow {
+    background-color: $background-dark;
+    border-color: transparent;
+  }
 }
 </style>

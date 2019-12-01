@@ -134,7 +134,7 @@ ul {
 }
 .deny-button {
   background: $background-dark;
-  color: #fff;
+  color: $white;
 }
 .footer {
   display: flex;

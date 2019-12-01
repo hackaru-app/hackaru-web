@@ -41,7 +41,7 @@ export default {
   height: 24px;
 }
 .icon.is-primary {
-  color: $cyan-dark;
+  color: $text-primary;
 }
 .icon.is-danger {
   color: $red;

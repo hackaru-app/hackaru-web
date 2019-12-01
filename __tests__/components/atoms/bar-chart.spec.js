@@ -5,6 +5,7 @@ describe('BarChart', () => {
   const factory = () =>
     shallowMount(BarChart, {
       propsData: {
+        isDark: false,
         chartData: {
           labels: ['Jan', 'Feb', 'Mar'],
           datasets: [

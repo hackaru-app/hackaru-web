@@ -209,14 +209,14 @@ export default {
   align-items: flex-start;
   min-width: 100%;
   min-height: 100vh;
-  box-shadow: -3px 0 3px #00000005;
+  box-shadow: -3px 0 3px $shadow;
 }
 .tools {
   display: flex;
   padding: 0 40px;
   border-bottom: 1px $border solid;
-  background-color: #fff;
-  box-shadow: 0 3px 3px #00000005;
+  background-color: $background-light;
+  box-shadow: 0 3px 3px $shadow;
   button {
     display: flex;
     align-items: center;

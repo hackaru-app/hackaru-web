@@ -145,11 +145,11 @@ export default {
 }
 .swipe-menu-item.is-primary {
   background-color: $cyan;
-  color: #fff;
+  color: $white;
 }
 .swipe-menu-item.is-danger {
   background-color: $red;
-  color: #fff;
+  color: $white;
 }
 @include mq(small) {
   .tutorial .right {

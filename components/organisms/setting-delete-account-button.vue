@@ -1,6 +1,6 @@
 <i18n
   src="@/assets/locales/components/organisms/setting-delete-account-button.json"
-/>
+></i18n>
 
 <template>
   <setting-box>

@@ -11,16 +11,10 @@
   align-items: center;
   height: 90px;
   padding: 0 40px;
-  background-color: $white;
+  background-color: $background;
   border-bottom: 1px $border solid;
   justify-content: space-between;
-  box-shadow: 0 3px 3px #00000005;
-}
-.content-header.sticky {
-  position: sticky;
-  top: 0;
-  background-color: #ffffffee;
-  z-index: index($z, content-header);
+  box-shadow: 0 3px 3px $shadow;
 }
 @include mq(small) {
   .content-header {
