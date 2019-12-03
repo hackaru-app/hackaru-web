@@ -99,7 +99,7 @@ export default {
 }
 @media (prefers-color-scheme: dark) {
   .calendar-event {
-    opacity: 0.8;
+    filter: saturate(70%);
   }
 }
 </style>
