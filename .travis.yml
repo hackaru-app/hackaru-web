@@ -1,21 +1,43 @@
-sudo: required
-language: node_js
-services:
-  - docker
-node_js:
-  - 12
-env:
-  - COMMIT=${TRAVIS_COMMIT::8}
-install:
-  - yarn
-before_script:
-  # codeclimate
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-script:
-  - yarn lint .
-  - yarn test
-  - docker build . -t hackaru-web:${COMMIT}
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+jobs:
+  include:
+    - stage: lint
+      language: node_js
+      node_js:
+        - 12
+      cache: yarn
+      script: yarn lint .
+
+    - stage: test
+      language: node_js
+      node_js:
+        - 12
+      cache: yarn
+      before_script:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
+      script:
+        - yarn test
+      after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+    - stage: push
+      language: minimal
+      if: tag =~ ^v AND branch = master
+      env:
+        - IMAGE_NAME=ktmouk/hackaru-web
+      services:
+        - docker
+      script:
+        - docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+        - |
+          TAGS=(
+            "latest" \
+            "$(echo "$TRAVIS_TAG" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1/')" \
+            "$(echo "$TRAVIS_TAG" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2/')" \
+            "$(echo "$TRAVIS_TAG" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2.\3/')" \
+          )
+          for TAG in ${TAGS[@]}; do
+            docker build . -t "$IMAGE_NAME:$TAG"
+            docker push "$IMAGE_NAME:$TAG"
+          done
