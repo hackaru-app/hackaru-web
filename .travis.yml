@@ -23,7 +23,7 @@ jobs:
 
     - stage: push
       language: minimal
-      if: tag =~ ^v AND branch = master
+      if: tag =~ ^v
       env:
         - IMAGE_NAME=ktmouk/hackaru-web
       services:
