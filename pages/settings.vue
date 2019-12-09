@@ -13,6 +13,8 @@
 import Tabs from '@/components/molecules/tabs';
 import ContentHeader from '@/components/organisms/content-header';
 
+const paths = ['', 'integrations', 'applications', 'webhooks', 'licenses'];
+
 export default {
   components: {
     ContentHeader,
@@ -23,24 +25,20 @@ export default {
   },
   data() {
     return {
+      index: paths.indexOf(this.$route.path.split('/').pop()),
       names: [
         this.$t('account'),
         this.$t('integrations'),
         this.$t('applications'),
         this.$t('webhooks'),
         this.$t('licenses')
-      ],
-      paths: ['', 'integrations', 'applications', 'webhooks', 'licenses']
+      ]
     };
-  },
-  computed: {
-    index() {
-      return this.paths.indexOf(this.$route.path.split('/').pop());
-    }
   },
   methods: {
     change(index) {
-      this.$router.push(`./${this.paths[index]}`);
+      this.$router.push(`./${paths[index]}`);
+      this.index = index;
     }
   }
 };

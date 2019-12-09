@@ -16,12 +16,11 @@ describe('Settings', () => {
   describe('when change selected tab', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ paths: ['home', 'settings'] });
       wrapper.find('.tabs').vm.$emit('change', 1);
     });
 
     it('move to selected page', () => {
-      expect($router.push).toHaveBeenCalledWith('./settings');
+      expect($router.push).toHaveBeenCalledWith('./integrations');
     });
   });
 });
