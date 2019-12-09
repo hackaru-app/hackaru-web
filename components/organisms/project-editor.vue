@@ -95,6 +95,8 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.trackEvent({
+          eventCategory: 'Projects',
+          eventAction: 'add',
           name: 'add_project',
           component: 'project_editor'
         });
@@ -110,6 +112,8 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.trackEvent({
+          eventCategory: 'Projects',
+          eventAction: 'update',
           name: 'update_project',
           component: 'project_editor'
         });
@@ -122,6 +126,8 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.trackEvent({
+          eventCategory: 'Projects',
+          eventAction: 'delete',
           name: 'delete_project',
           component: 'project_editor'
         });

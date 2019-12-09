@@ -124,14 +124,22 @@ export default {
       });
       if (success) {
         this.$modal.hide('webhook');
-        this.$gtm.trackEvent({ name: 'add_webhook' });
+        this.$gtm.trackEvent({
+          eventCategory: 'Webhooks',
+          eventAction: 'add',
+          name: 'add_webhook'
+        });
         this.$store.dispatch('toast/success', this.$t('added'));
       }
     },
     deleteWebhook(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('webhooks/delete', id);
-      this.$gtm.trackEvent({ name: 'delete_webhook' });
+      this.$gtm.trackEvent({
+        eventCategory: 'Webhooks',
+        eventAction: 'delete',
+        name: 'delete_webhook'
+      });
       this.$store.dispatch('toast/success', this.$t('deleted'));
     },
     showModal() {

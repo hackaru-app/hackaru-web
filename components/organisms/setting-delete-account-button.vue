@@ -82,6 +82,8 @@ export default {
       });
       if (success) {
         this.$gtm.trackEvent({
+          eventCategory: 'Accounts',
+          eventAction: 'delete',
           name: 'delete_account',
           component: 'setting_delete_account_button'
         });
