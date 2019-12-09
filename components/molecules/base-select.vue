@@ -37,7 +37,8 @@ export default {
 }
 .base-select select {
   position: absolute;
-  background: none;
+  background: $background;
+  color: $text;
   top: 0;
   height: 42px;
   opacity: 0;
