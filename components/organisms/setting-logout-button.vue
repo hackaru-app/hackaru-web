@@ -34,6 +34,8 @@ export default {
     async logout() {
       if (!window.confirm(this.$t('confirms'))) return;
       this.$gtm.trackEvent({
+        eventCategory: 'Accounts',
+        eventAction: 'logout',
         name: 'logout',
         component: 'setting_logout_button'
       });

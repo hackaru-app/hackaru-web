@@ -155,6 +155,8 @@ export default {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('updated'));
         this.$gtm.trackEvent({
+          eventCategory: 'Activities',
+          eventAction: 'update',
           name: 'update_activity',
           component: 'timer_form'
         });
@@ -167,6 +169,8 @@ export default {
         stoppedAt: `${new Date()}`
       });
       this.$gtm.trackEvent({
+        eventCategory: 'Activities',
+        eventAction: 'stop',
         name: 'stop_activity',
         component: 'timer_form'
       });
@@ -182,6 +186,8 @@ export default {
         this.setWorkingProps();
         this.$store.dispatch('toast/success', this.$t('started'));
         this.$gtm.trackEvent({
+          eventCategory: 'Activities',
+          eventAction: 'start',
           name: 'start_activity',
           component: 'timer_form'
         });

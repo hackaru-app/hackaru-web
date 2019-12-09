@@ -145,6 +145,8 @@ export default {
         );
         this.$modal.hide('activity');
         this.$gtm.trackEvent({
+          eventCategory: 'Activities',
+          eventAction: action,
           name: `${action}_activity`,
           component: 'activity_editor'
         });
@@ -155,6 +157,8 @@ export default {
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$gtm.trackEvent({
+        eventCategory: 'Activities',
+        eventAction: 'delete',
         name: 'delete_activity',
         component: 'activity_editor'
       });
@@ -180,6 +184,8 @@ export default {
           text: this.$t('share.text', { title, duration })
         });
         this.$gtm.trackEvent({
+          eventCategory: 'Activities',
+          eventAction: 'share',
           name: 'share',
           component: 'activity_editor'
         });

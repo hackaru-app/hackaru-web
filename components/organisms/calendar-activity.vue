@@ -217,6 +217,8 @@ export default {
         ...payload
       });
       this.$gtm.trackEvent({
+        eventCategory: 'Activities',
+        eventAction: 'update',
         name: 'update_activity',
         component: 'calendar_activity'
       });
