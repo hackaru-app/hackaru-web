@@ -92,6 +92,7 @@ module.exports = {
     { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
     { src: '~/plugins/sentry-client', ssr: false },
+    { src: '~/plugins/load-script', ssr: false },
     { src: '~/plugins/vue-js-modal' }
   ],
   /*
@@ -149,7 +150,8 @@ module.exports = {
           { key: 'HACKARU_API_URL' },
           { key: 'HACKARU_TOS_AND_PRIVACY_URL' },
           { key: 'GOOGLE_TAG_MANAGER_ID' },
-          { key: 'SENTRY_DSN' }
+          { key: 'SENTRY_DSN' },
+          { key: 'DELIGHTED_TOKEN' }
         ]
       }
     ]

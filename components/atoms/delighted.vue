@@ -1,0 +1,25 @@
+<script>
+const libraryUrl =
+  'https://d2yyd1h5u9mauk.cloudfront.net/integrations/web/v1/library';
+
+export default {
+  async mounted() {
+    if (!this.$env.DELIGHTED_TOKEN) return;
+    window.delighted = [];
+    await this.$loadScript(
+      `${libraryUrl}/${this.$env.DELIGHTED_TOKEN}/delighted.js`
+    );
+    this.survey();
+  },
+  methods: {
+    survey() {
+      window.delighted.survey({
+        name: this.$store.getters['auth/userId']
+      });
+    }
+  },
+  render(h) {
+    return h();
+  }
+};
+</script>
