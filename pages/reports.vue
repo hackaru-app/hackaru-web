@@ -179,7 +179,7 @@ export default {
         this.$gtm.trackEvent({
           eventCategory: 'ReportPdf',
           eventAction: 'export',
-          name: 'export_report_pdf'
+          name: 'export_report_to_pdf'
         });
       }
     },
