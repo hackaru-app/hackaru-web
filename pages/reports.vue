@@ -71,7 +71,7 @@ import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
 import ContentHeader from '@/components/organisms/content-header';
 import ReportContent from '@/components/organisms/report-content';
-import Delighted from '@/components/atoms/delighted';
+import Delighted from '@/components/molecules/delighted';
 import { mapGetters } from 'vuex';
 import {
   format,
