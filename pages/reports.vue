@@ -14,7 +14,7 @@
       @right="slideRight"
     />
     <div class="tools">
-      <button class="pdf-button" @click="openPdf">
+      <button class="pdf-button" @click="exportPdf">
         PDF
       </button>
     </div>
@@ -168,14 +168,20 @@ export default {
         end: this.period.endOf(this.date)
       });
     },
-    async openPdf() {
+    async exportPdf() {
       const childWindow = window.open('about:blank');
       const data = await this.$store.dispatch('reports/fetchPdf', {
         start: this.period.startOf(this.date),
         end: this.period.endOf(this.date)
       });
-      if (childWindow.closed) return;
-      if (data) childWindow.location.assign(URL.createObjectURL(data));
+      if (!childWindow.closed && data) {
+        childWindow.location.assign(URL.createObjectURL(data));
+        this.$gtm.trackEvent({
+          eventCategory: 'ReportPdf',
+          eventAction: 'export',
+          name: 'export_report_pdf'
+        });
+      }
     },
     slideLeft() {
       this.$refs.slider.slideLeft();
