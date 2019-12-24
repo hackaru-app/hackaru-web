@@ -203,6 +203,12 @@
         "licenseUrl": "https://github.com/euvl/vue-js-modal/raw/master/LICENSE.md",
         "parents": "hackaru-web"
     },
+    "vue-plugin-load-script": {
+        "licenses": "MIT",
+        "repository": "https://github.com/tserkov/vue-plugin-load-script",
+        "licenseUrl": "https://github.com/tserkov/vue-plugin-load-script/raw/master/LICENSE.md",
+        "parents": "hackaru-web"
+    },
     "vue-timers": {
         "licenses": "MIT",
         "repository": "https://github.com/kelin2025/vue-timers",
