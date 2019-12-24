@@ -60,7 +60,7 @@ describe('Auth', () => {
     });
   });
 
-  describe('when service has terms-and-privacy', () => {
+  describe('when service has HACKARU_TOS_AND_PRIVACY_URL', () => {
     beforeEach(() => {
       $route.query['sign-up'] = true;
       $env.HACKARU_TOS_AND_PRIVACY_URL = 'example.com';
@@ -72,7 +72,7 @@ describe('Auth', () => {
     });
   });
 
-  describe('when service does not have terms-and-privacy', () => {
+  describe('when service does not have HACKARU_TOS_AND_PRIVACY_URL', () => {
     beforeEach(() => {
       $route.query['sign-up'] = true;
       $env.HACKARU_TOS_AND_PRIVACY_URL = undefined;

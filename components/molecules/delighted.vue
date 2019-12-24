@@ -5,13 +5,16 @@ const libraryUrl =
 export default {
   async mounted() {
     if (!this.$env.DELIGHTED_TOKEN) return;
-    window.delighted = [];
-    await this.$loadScript(
-      `${libraryUrl}/${this.$env.DELIGHTED_TOKEN}/delighted.js`
-    );
+    await this.load();
     this.survey();
   },
   methods: {
+    async load() {
+      window.delighted = window.delighted || {};
+      await this.$loadScript(
+        `${libraryUrl}/${this.$env.DELIGHTED_TOKEN}/delighted.js`
+      );
+    },
     survey() {
       window.delighted.survey({
         name: this.$store.getters['auth/userId']
