@@ -17,7 +17,10 @@ export default {
     },
     survey() {
       window.delighted.survey({
-        name: this.$store.getters['auth/userId']
+        name: this.$store.getters['auth/userId'],
+        properties: {
+          locale: this.$i18n.locale
+        }
       });
     }
   },

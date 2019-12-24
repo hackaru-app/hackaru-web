@@ -17,6 +17,9 @@ describe('Delighted', () => {
       mocks: {
         $env,
         $store,
+        $i18n: {
+          locale: 'en'
+        },
         $loadScript: () => {}
       }
     });
@@ -30,7 +33,10 @@ describe('Delighted', () => {
 
     it('show survey', () => {
       expect(window.delighted.survey).toHaveBeenCalledWith({
-        name: 1
+        name: 1,
+        properties: {
+          locale: 'en'
+        }
       });
     });
   });
