@@ -23,6 +23,9 @@
           <time class="duration">
             {{ fromS(totals[project.id], 'hh:mm:ss') }}
           </time>
+          <div class="rate decrease">
+            <icon class="down-icon icon" name="arrow-left-icon" />
+          </div>
         </li>
       </ul>
     </div>
@@ -30,6 +33,7 @@
 </template>
 
 <script>
+import Icon from '@/components/atoms/icon';
 import ColorScheme from '@/components/atoms/color-scheme';
 import ProjectName from '@/components/molecules/project-name';
 import DoughnutChart from '@/components/atoms/doughnut-chart';
@@ -39,6 +43,7 @@ import { fromS } from 'hh-mm-ss';
 
 export default {
   components: {
+    Icon,
     ColorScheme,
     DoughnutChart,
     BarChart,
@@ -141,6 +146,18 @@ export default {
     list-style-type: none;
     list-style-position: inside;
     padding: 5px 0;
+  }
+}
+.rate {
+  display: flex;
+  justify-content: center;
+  color: $grey-999;
+  margin-left: 10px;
+  .increase {
+    color: $green;
+  }
+  .decrease {
+    color: $red;
   }
 }
 .duration {
