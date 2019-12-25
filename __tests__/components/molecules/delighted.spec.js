@@ -51,4 +51,18 @@ describe('Delighted', () => {
       expect(window.delighted.survey).not.toHaveBeenCalled();
     });
   });
+
+  describe('when window.delighted is undefined', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      window.delighted = undefined;
+      $env.DELIGHTED_TOKEN = 'token';
+      wrapper = factory();
+    });
+
+    it('does not throw error', async () => {
+      expect(wrapper.vm.survey).not.toThrow();
+    });
+  });
 });
