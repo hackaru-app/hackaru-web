@@ -16,6 +16,7 @@ export default {
       );
     },
     survey() {
+      if (!window.delighted.survey) return;
       window.delighted.survey({
         name: this.$store.getters['auth/userId']
       });
