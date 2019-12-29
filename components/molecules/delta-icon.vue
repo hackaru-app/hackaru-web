@@ -45,7 +45,7 @@ export default {
   transform: rotate(-360deg);
 }
 .icon.even {
-  color: $grey-999;
+  color: $text-light;
 }
 .icon.up {
   color: $green;
