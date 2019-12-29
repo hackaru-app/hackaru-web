@@ -23,9 +23,10 @@
           <time class="duration">
             {{ fromS(totals[project.id], 'hh:mm:ss') }}
           </time>
-          <div class="rate decrease">
-            <icon class="down-icon icon" name="arrow-left-icon" />
-          </div>
+          <delta-icon
+            :current="totals[project.id]"
+            :previous="previousTotals[project.id]"
+          />
         </li>
       </ul>
     </div>
@@ -34,6 +35,7 @@
 
 <script>
 import Icon from '@/components/atoms/icon';
+import DeltaIcon from '@/components/molecules/delta-icon';
 import ColorScheme from '@/components/atoms/color-scheme';
 import ProjectName from '@/components/molecules/project-name';
 import DoughnutChart from '@/components/atoms/doughnut-chart';
@@ -44,6 +46,7 @@ import { fromS } from 'hh-mm-ss';
 export default {
   components: {
     Icon,
+    DeltaIcon,
     ColorScheme,
     DoughnutChart,
     BarChart,
@@ -59,6 +62,10 @@ export default {
       required: true
     },
     totals: {
+      type: Object,
+      required: true
+    },
+    previousTotals: {
       type: Object,
       required: true
     },
@@ -146,18 +153,6 @@ export default {
     list-style-type: none;
     list-style-position: inside;
     padding: 5px 0;
-  }
-}
-.rate {
-  display: flex;
-  justify-content: center;
-  color: $grey-999;
-  margin-left: 10px;
-  .increase {
-    color: $green;
-  }
-  .decrease {
-    color: $red;
   }
 }
 .duration {
