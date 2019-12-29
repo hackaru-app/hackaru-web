@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     delta() {
-      if (this.current === this.previous) return '';
+      if (this.current === this.previous) return 'even';
       return this.current < this.previous ? 'down' : 'up';
     },
     iconName() {
@@ -39,11 +39,13 @@ export default {
   display: flex;
   justify-content: center;
   margin-left: 10px;
-  color: $grey-999;
 }
 .icon {
   transition: transform 0.4s ease;
   transform: rotate(-360deg);
+}
+.icon.even {
+  color: $grey-999;
 }
 .icon.up {
   color: $green;
