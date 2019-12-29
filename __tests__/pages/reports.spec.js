@@ -159,7 +159,6 @@ describe('Reports', () => {
           start: parseISO('2019-01-27T00:00:00'),
           end: parseISO('2019-02-02T23:59:59.999')
         },
-
         previous: {
           start: parseISO('2019-01-20T00:00:00'),
           end: parseISO('2019-01-26T23:59:59.999')
