@@ -27,8 +27,8 @@ export default {
       return this.current < this.previous ? 'down' : 'up';
     },
     iconName() {
-      if (this.delta === '') return 'minus-icon';
-      return `arrow-${this.delta}-icon`;
+      if (this.current === this.previous) return 'minus-icon';
+      return 'arrow-up-icon';
     }
   }
 };
@@ -41,10 +41,16 @@ export default {
   margin-left: 10px;
   color: $grey-999;
 }
-.up {
-  color: $green;
+.icon {
+  transition: transform 0.4s ease;
+  transform: rotate(-360deg);
 }
-.down {
+.icon.up {
+  color: $green;
+  transform: rotate(0);
+}
+.icon.down {
   color: $red;
+  transform: rotate(-180deg);
 }
 </style>
