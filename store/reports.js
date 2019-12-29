@@ -28,16 +28,16 @@ export const actions = {
           { root: true }
         );
 
-      const current = await request({
-        start: payload.current.start,
-        end: payload.current.end
-      });
-
-      const previous = await request({
-        start: payload.previous.start,
-        end: payload.previous.end
-      });
-
+      const [current, previous] = await Promise.all([
+        await request({
+          start: payload.current.start,
+          end: payload.current.end
+        }),
+        await request({
+          start: payload.previous.start,
+          end: payload.previous.end
+        })
+      ]);
       commit(SET_REPORTS, {
         projects: current.data.projects,
         totals: current.data.totals,
@@ -46,7 +46,9 @@ export const actions = {
         start: payload.start,
         end: payload.end
       });
-      commit(SET_PREVIOUS_TOTALS, previous.data.totals);
+      commit(SET_PREVIOUS_TOTALS, {
+        totals: previous.data.totals
+      });
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
@@ -83,7 +85,7 @@ export const mutations = {
     state.end = payload.end;
   },
   [SET_PREVIOUS_TOTALS](state, payload) {
-    state.previousTotals = payload;
+    state.previousTotals = payload.totals;
   }
 };
 
