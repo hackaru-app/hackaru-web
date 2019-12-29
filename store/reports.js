@@ -6,9 +6,7 @@ export const state = () => ({
   totals: {},
   previousTotals: {},
   labels: [],
-  sums: {},
-  start: undefined,
-  end: undefined
+  sums: {}
 });
 
 export const actions = {
@@ -42,9 +40,7 @@ export const actions = {
         projects: current.data.projects,
         totals: current.data.totals,
         labels: current.data.labels,
-        sums: current.data.sums,
-        start: payload.start,
-        end: payload.end
+        sums: current.data.sums
       });
       commit(SET_PREVIOUS_TOTALS, {
         totals: previous.data.totals

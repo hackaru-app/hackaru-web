@@ -1,5 +1,4 @@
 import { mutations } from '@/store/reports';
-import { parseISO } from 'date-fns';
 
 describe('Mutations', () => {
   describe('when commit SET_REPORTS', () => {
@@ -7,15 +6,11 @@ describe('Mutations', () => {
       projects: [],
       totals: {},
       labels: [],
-      sums: {},
-      start: undefined,
-      end: undefined
+      sums: {}
     };
 
     beforeEach(() => {
       mutations['SET_REPORTS'](state, {
-        start: parseISO('2019-01-01'),
-        end: parseISO('2019-01-03'),
         projects: [
           {
             id: 1,
@@ -43,21 +38,42 @@ describe('Mutations', () => {
       ]);
     });
 
+    it('set totals', () => {
+      expect(state.totals).toEqual({
+        1: 100
+      });
+    });
+
     it('set labels', () => {
       expect(state.labels).toEqual(['Jan', 'Feb']);
-    });
-
-    it('set start', () => {
-      expect(state.start).toEqual(parseISO('2019-01-01'));
-    });
-
-    it('set end', () => {
-      expect(state.end).toEqual(parseISO('2019-01-03'));
     });
 
     it('set sums', () => {
       expect(state.sums).toEqual({
         1: [100, 200]
+      });
+    });
+  });
+
+  describe('when commit SET_PREVIOUS_TOTALS', () => {
+    const state = {
+      projects: [],
+      totals: {},
+      labels: [],
+      sums: {}
+    };
+
+    beforeEach(() => {
+      mutations['SET_PREVIOUS_TOTALS'](state, {
+        totals: {
+          1: 100
+        }
+      });
+    });
+
+    it('set previousTotals', () => {
+      expect(state.previousTotals).toEqual({
+        1: 100
       });
     });
   });
