@@ -1,4 +1,5 @@
 export const SET_REPORTS = 'SET_REPORTS';
+export const SET_PREVIOUS_TOTALS = 'SET_PREVIOUS_TOTALS';
 
 export const state = () => ({
   projects: [],
@@ -13,27 +14,39 @@ export const state = () => ({
 export const actions = {
   async fetch({ commit, dispatch }, payload) {
     try {
-      const res = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/report',
-          params: {
-            start: payload.start,
-            end: payload.end,
-            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-          }
-        },
-        { root: true }
-      );
+      const request = async payload =>
+        dispatch(
+          'auth-api/request',
+          {
+            url: '/v1/report',
+            params: {
+              start: payload.start,
+              end: payload.end,
+              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+            }
+          },
+          { root: true }
+        );
+
+      const current = await request({
+        start: payload.current.start,
+        end: payload.current.end
+      });
+
+      const previous = await request({
+        start: payload.previous.start,
+        end: payload.previous.end
+      });
+
       commit(SET_REPORTS, {
-        projects: res.data.projects,
-        totals: res.data.totals,
-        previousTotals: res.data.previousTotals,
-        labels: res.data.labels,
-        sums: res.data.sums,
+        projects: current.data.projects,
+        totals: current.data.totals,
+        labels: current.data.labels,
+        sums: current.data.sums,
         start: payload.start,
         end: payload.end
       });
+      commit(SET_PREVIOUS_TOTALS, previous.data.totals);
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
@@ -64,11 +77,13 @@ export const mutations = {
   [SET_REPORTS](state, payload) {
     state.projects = payload.projects;
     state.totals = payload.totals;
-    state.previousTotals = payload.previousTotals;
     state.labels = payload.labels;
     state.sums = payload.sums;
     state.start = payload.start;
     state.end = payload.end;
+  },
+  [SET_PREVIOUS_TOTALS](state, payload) {
+    state.previousTotals = payload;
   }
 };
 

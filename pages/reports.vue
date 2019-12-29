@@ -171,8 +171,14 @@ export default {
   methods: {
     fetchReport() {
       this.$store.dispatch('reports/fetch', {
-        start: this.period.startOf(this.date),
-        end: this.period.endOf(this.date)
+        current: {
+          start: this.period.startOf(this.date),
+          end: this.period.endOf(this.date)
+        },
+        previous: {
+          start: this.period.startOf(this.period.add(this.date, -1)),
+          end: this.period.endOf(this.period.add(this.date, -1))
+        }
       });
     },
     async exportPdf() {
