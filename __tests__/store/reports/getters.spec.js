@@ -26,7 +26,21 @@ describe('Getters', () => {
       result = getters.totals(state);
     });
 
-    it('returns summary', () => {
+    it('returns totals', () => {
+      expect(result).toEqual({});
+    });
+  });
+
+  describe('when call previousTotals', () => {
+    const state = {
+      previousTotals: {}
+    };
+
+    beforeEach(() => {
+      result = getters.previousTotals(state);
+    });
+
+    it('returns previousTotals', () => {
       expect(result).toEqual({});
     });
   });
@@ -45,7 +59,7 @@ describe('Getters', () => {
     });
   });
 
-  describe('when call empty and summary is not empty', () => {
+  describe('when call empty and totals is not empty', () => {
     const state = {
       totals: {
         1: 100

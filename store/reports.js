@@ -1,36 +1,49 @@
 export const SET_REPORTS = 'SET_REPORTS';
+export const SET_PREVIOUS_TOTALS = 'SET_PREVIOUS_TOTALS';
 
 export const state = () => ({
   projects: [],
   totals: {},
+  previousTotals: {},
   labels: [],
-  sums: {},
-  start: undefined,
-  end: undefined
+  sums: {}
 });
 
 export const actions = {
   async fetch({ commit, dispatch }, payload) {
     try {
-      const res = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/report',
-          params: {
-            start: payload.start,
-            end: payload.end,
-            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-          }
-        },
-        { root: true }
-      );
+      const request = async payload =>
+        dispatch(
+          'auth-api/request',
+          {
+            url: '/v1/report',
+            params: {
+              start: payload.start,
+              end: payload.end,
+              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+            }
+          },
+          { root: true }
+        );
+
+      const [current, previous] = await Promise.all([
+        await request({
+          start: payload.current.start,
+          end: payload.current.end
+        }),
+        await request({
+          start: payload.previous.start,
+          end: payload.previous.end
+        })
+      ]);
       commit(SET_REPORTS, {
-        projects: res.data.projects,
-        totals: res.data.totals,
-        labels: res.data.labels,
-        sums: res.data.sums,
-        start: payload.start,
-        end: payload.end
+        projects: current.data.projects,
+        totals: current.data.totals,
+        labels: current.data.labels,
+        sums: current.data.sums
+      });
+      commit(SET_PREVIOUS_TOTALS, {
+        totals: previous.data.totals
       });
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -66,6 +79,9 @@ export const mutations = {
     state.sums = payload.sums;
     state.start = payload.start;
     state.end = payload.end;
+  },
+  [SET_PREVIOUS_TOTALS](state, payload) {
+    state.previousTotals = payload.totals;
   }
 };
 
@@ -75,6 +91,9 @@ export const getters = {
   },
   totals: state => {
     return state.totals;
+  },
+  previousTotals: state => {
+    return state.previousTotals;
   },
   empty: state => {
     return !Object.values(state.totals).find(value => value > 0);

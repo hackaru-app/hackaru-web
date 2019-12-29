@@ -31,8 +31,14 @@ describe('Reports', () => {
 
     it('dispatch reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parseISO('2019-01-31T00:00:00'),
-        end: parseISO('2019-01-31T23:59:59.999')
+        current: {
+          start: parseISO('2019-01-31T00:00:00'),
+          end: parseISO('2019-01-31T23:59:59.999')
+        },
+        previous: {
+          start: parseISO('2019-01-30T00:00:00'),
+          end: parseISO('2019-01-30T23:59:59.999')
+        }
       });
     });
   });
@@ -45,8 +51,14 @@ describe('Reports', () => {
 
     it('dispatch reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parseISO('2019-01-27T00:00:00'),
-        end: parseISO('2019-02-02T23:59:59.999')
+        current: {
+          start: parseISO('2019-01-27T00:00:00'),
+          end: parseISO('2019-02-02T23:59:59.999')
+        },
+        previous: {
+          start: parseISO('2019-01-20T00:00:00'),
+          end: parseISO('2019-01-26T23:59:59.999')
+        }
       });
     });
   });
@@ -59,8 +71,14 @@ describe('Reports', () => {
 
     it('dispatch reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parseISO('2019-01-01T00:00:00'),
-        end: parseISO('2019-01-31T23:59:59.999')
+        current: {
+          start: parseISO('2019-01-01T00:00:00'),
+          end: parseISO('2019-01-31T23:59:59.999')
+        },
+        previous: {
+          start: parseISO('2018-12-01T00:00:00'),
+          end: parseISO('2018-12-31T23:59:59.999')
+        }
       });
     });
   });
@@ -73,8 +91,14 @@ describe('Reports', () => {
 
     it('dispatch reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parseISO('2019-01-01T00:00:00'),
-        end: parseISO('2019-12-31T23:59:59.999')
+        current: {
+          start: parseISO('2019-01-01T00:00:00'),
+          end: parseISO('2019-12-31T23:59:59.999')
+        },
+        previous: {
+          start: parseISO('2018-01-01T00:00:00'),
+          end: parseISO('2018-12-31T23:59:59.999')
+        }
       });
     });
   });
@@ -88,8 +112,14 @@ describe('Reports', () => {
 
     it('set prev weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parseISO('2019-01-20T00:00:00'),
-        end: parseISO('2019-01-26T23:59:59.999')
+        current: {
+          start: parseISO('2019-01-20T00:00:00'),
+          end: parseISO('2019-01-26T23:59:59.999')
+        },
+        previous: {
+          start: parseISO('2019-01-13T00:00:00'),
+          end: parseISO('2019-01-19T23:59:59.999')
+        }
       });
     });
   });
@@ -103,8 +133,14 @@ describe('Reports', () => {
 
     it('set next weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parseISO('2019-02-03T00:00:00'),
-        end: parseISO('2019-02-09T23:59:59.999')
+        current: {
+          start: parseISO('2019-02-03T00:00:00'),
+          end: parseISO('2019-02-09T23:59:59.999')
+        },
+        previous: {
+          start: parseISO('2019-01-27T00:00:00'),
+          end: parseISO('2019-02-02T23:59:59.999')
+        }
       });
     });
   });
@@ -119,8 +155,14 @@ describe('Reports', () => {
 
     it('set today weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
-        start: parseISO('2019-01-27T00:00:00'),
-        end: parseISO('2019-02-02T23:59:59.999')
+        current: {
+          start: parseISO('2019-01-27T00:00:00'),
+          end: parseISO('2019-02-02T23:59:59.999')
+        },
+        previous: {
+          start: parseISO('2019-01-20T00:00:00'),
+          end: parseISO('2019-01-26T23:59:59.999')
+        }
       });
     });
   });
