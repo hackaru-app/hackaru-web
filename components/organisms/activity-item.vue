@@ -131,7 +131,7 @@ export default {
   padding: 0 45px;
   padding-right: 40px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.1s ease;
   &:hover {
     background-color: $background-hover;
   }

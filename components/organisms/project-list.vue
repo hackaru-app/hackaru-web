@@ -107,7 +107,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px $border solid;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.1s ease;
   &:hover {
     background: $background-hover;
   }
