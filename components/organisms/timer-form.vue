@@ -288,9 +288,9 @@ export default {
   align-items: center;
   min-height: 100%;
   border-right: 1px $border-dark solid;
+  cursor: pointer;
 }
 .selected-project {
-  cursor: pointer;
   display: flex;
   max-width: 120px;
   padding: 0 45px;
@@ -344,6 +344,7 @@ export default {
   height: 65px;
   padding: 0 45px;
   border-bottom: 1px $border solid;
+  transition: background-color 0.1s ease;
   &:last-child {
     border-bottom: 0;
     padding-bottom: 10px;

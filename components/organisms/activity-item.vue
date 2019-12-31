@@ -130,6 +130,11 @@ export default {
   align-items: center;
   padding: 0 45px;
   padding-right: 40px;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+  &:hover {
+    background-color: $background-hover;
+  }
 }
 .duration {
   font-family: $font-family-duration;
