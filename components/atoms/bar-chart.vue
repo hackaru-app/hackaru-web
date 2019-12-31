@@ -48,7 +48,7 @@ options.dark = merge({}, options.default, {
           fontColor: '#cdd0d1'
         },
         gridLines: {
-          color: '#262b38'
+          color: '#3a4357'
         }
       }
     ]

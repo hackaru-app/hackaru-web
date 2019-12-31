@@ -55,6 +55,9 @@ export default {
   .base-input.has-border {
     background-color: $background-dark;
     border-color: transparent;
+    &:placeholder-shown {
+      border-color: transparent;
+    }
   }
 }
 </style>
