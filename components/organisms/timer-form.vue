@@ -278,7 +278,7 @@ export default {
 .form-content {
   display: flex;
   flex: 1;
-  border-bottom: 1px $border solid;
+  border-bottom: 1px $border-dark solid;
   border-right: 0;
   box-shadow: 0 3px 3px $shadow;
   background-color: $background-light;
@@ -287,7 +287,7 @@ export default {
   display: flex;
   align-items: center;
   min-height: 100%;
-  border-right: 1px $border solid;
+  border-right: 1px $border-dark solid;
 }
 .selected-project {
   cursor: pointer;
@@ -397,7 +397,7 @@ export default {
     border: 0;
     height: 80px;
     box-sizing: border-box;
-    border-bottom: 1px $border solid;
+    border-bottom: 1px $border-dark solid;
     box-shadow: 0 3px 3px $shadow;
   }
   .base-button.control-button {
@@ -459,17 +459,6 @@ export default {
     &:hover {
       background: none;
     }
-  }
-}
-@media (prefers-color-scheme: dark) {
-  .form-content {
-    border-bottom: 0;
-  }
-  .suggestion-list {
-    background-color: $background;
-  }
-  .project-wrapper {
-    border-right: 2px $background solid;
   }
 }
 </style>
