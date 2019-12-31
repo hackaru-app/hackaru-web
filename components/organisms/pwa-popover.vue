@@ -108,7 +108,7 @@ export default {
     font-size: 13px;
     padding-right: 10px;
     display: flex;
-    color: $text-light;
+    color: $grey-666;
   }
 }
 .share-icon {
