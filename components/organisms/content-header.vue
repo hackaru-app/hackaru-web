@@ -12,7 +12,7 @@
   height: 90px;
   padding: 0 40px;
   background-color: $background;
-  border-bottom: 1px $border solid;
+  border-bottom: 1px $border-dark solid;
   justify-content: space-between;
   box-shadow: 0 3px 3px $shadow;
 }

@@ -51,6 +51,7 @@ export default {
   list-style-type: none;
   list-style-position: inside;
   padding: 10px 15px;
+  padding-top: 2px;
   align-items: center;
   color: $text-light;
   transition: all 0.2s ease;

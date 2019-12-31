@@ -44,7 +44,7 @@ export default {
   height: 65px;
   line-height: 1;
   box-sizing: border-box;
-  border-left: 1px $border solid;
+  border-left: 1px $border-dark solid;
 }
 .calendar-day-header h1 {
   display: flex;
