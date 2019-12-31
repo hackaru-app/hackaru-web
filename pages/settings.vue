@@ -2,7 +2,7 @@
 
 <template>
   <section>
-    <content-header>
+    <content-header class="content-header">
       <tabs :items="names" :index="index" class="tabs" @change="change" />
     </content-header>
     <nuxt-child keep-alive />
@@ -43,3 +43,9 @@ export default {
   }
 };
 </script>
+
+<style scoped lang="scss">
+.content-header {
+  background-color: $background-light;
+}
+</style>
