@@ -233,7 +233,7 @@ export default {
 .tools {
   display: flex;
   padding: 0 40px;
-  border-bottom: 1px $border solid;
+  border-bottom: 1px $border-dark solid;
   background-color: $background-light;
   box-shadow: 0 3px 3px $shadow;
   button {
@@ -241,7 +241,7 @@ export default {
     align-items: center;
     background: none;
     padding: 16px 20px;
-    border: 1px $border solid;
+    border: 1px $border-dark solid;
     border-top: 0;
     border-bottom: 0;
     cursor: pointer;

@@ -39,6 +39,7 @@ $white-lighter: #fffffff0;
 
   // Border
   --border: #{$grey-f0f0f0};
+  --border-dark: #{$grey-f0f0f0};
 }
 
 // Dark
@@ -65,6 +66,7 @@ $white-lighter: #fffffff0;
 
     // Border
     --border: #3a4357;
+    --border-dark: #262b38;
   }
 }
 
@@ -93,6 +95,7 @@ $placeholder: var(--placeholder);
 
 // Border
 $border: var(--border);
+$border-dark: var(--border-dark);
 
 // Background
 $background-light: var(--background-light);

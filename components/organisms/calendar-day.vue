@@ -141,7 +141,7 @@ export default {
 <style scoped lang="scss">
 .calendar-day {
   flex: 1;
-  border-left: 1px $border solid;
+  border-left: 1px $border-dark solid;
   box-sizing: border-box;
   user-select: none;
   max-width: 100%;
