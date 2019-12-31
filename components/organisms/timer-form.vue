@@ -288,9 +288,9 @@ export default {
   align-items: center;
   min-height: 100%;
   border-right: 1px $border-dark solid;
+  cursor: pointer;
 }
 .selected-project {
-  cursor: pointer;
   display: flex;
   max-width: 120px;
   padding: 0 45px;
