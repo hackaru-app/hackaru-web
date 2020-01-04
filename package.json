@@ -21,7 +21,7 @@
     "@sentry/integrations": "^5.6.1",
     "axios": "^0.19.0",
     "camelcase-keys": "^6.0.1",
-    "chart.js": "^2.7.2",
+    "chart.js": "^2.9.3",
     "color": "^3.1.0",
     "date-fns": "^2.2.1",
     "hh-mm-ss": "^1.2.0",
