@@ -13,7 +13,14 @@
 import Tabs from '@/components/molecules/tabs';
 import ContentHeader from '@/components/organisms/content-header';
 
-const paths = ['', 'integrations', 'applications', 'webhooks', 'licenses'];
+const paths = [
+  '',
+  'notifications',
+  'integrations',
+  'applications',
+  'webhooks',
+  'licenses'
+];
 
 export default {
   components: {
@@ -28,6 +35,7 @@ export default {
       index: paths.indexOf(this.$route.path.split('/').pop()),
       names: [
         this.$t('account'),
+        this.$t('notifications'),
         this.$t('integrations'),
         this.$t('applications'),
         this.$t('webhooks'),
