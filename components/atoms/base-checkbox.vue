@@ -17,12 +17,11 @@ export default {
 
 <style scoped lang="scss">
 .checkbox {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: flex-start;
   width: 50px;
-  height: 26px;
-  padding: 0 5px;
+  padding: 6px;
   box-sizing: border-box;
   border-radius: 99px;
   border: 1px $grey-eee solid;
@@ -32,6 +31,7 @@ export default {
   display: block;
   width: 14px;
   height: 14px;
+  border-radius: 50%;
   background-color: $grey-666;
 }
 .checkbox.enabled {
