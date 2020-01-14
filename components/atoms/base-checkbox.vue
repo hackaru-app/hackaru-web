@@ -1,11 +1,16 @@
 <template>
   <div :class="['checkbox', { enabled: enabled }]">
-    <span class="dot" />
+    <icon class="icon" name="check-icon" />
   </div>
 </template>
 
 <script>
+import Icon from '@/components/atoms/icon';
+
 export default {
+  components: {
+    Icon
+  },
   props: {
     enabled: {
       type: Boolean,
@@ -19,25 +24,22 @@ export default {
 .checkbox {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
-  width: 50px;
-  padding: 6px;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
   box-sizing: border-box;
-  border-radius: 99px;
+  border-radius: 4px;
   border: 1px $grey-eee solid;
   box-shadow: 0 3px $shadow inset;
 }
-.dot {
-  display: block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: $grey-666;
-}
 .checkbox.enabled {
-  justify-content: flex-end;
-}
-.checkbox.enabled .dot {
   background-color: $cyan;
+  border-color: $white;
+}
+.checkbox .icon {
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  color: $white;
 }
 </style>

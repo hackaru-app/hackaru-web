@@ -7,8 +7,8 @@
       </template>
 
       <div class="checkboxies">
-        <p><base-checkbox class="checkbox" />週次レポートを受信</p>
-        <p><base-checkbox class="checkbox" />月次レポートを受信</p>
+        <p><base-checkbox class="checkbox" />週次レポートを受信する</p>
+        <p><base-checkbox class="checkbox" />月次レポートを受信する</p>
       </div>
     </setting-box>
   </section>
@@ -31,7 +31,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+p {
+  display: flex;
+  align-items: center;
+}
 .checkbox {
-  margin-right: 20px;
+  margin-right: 15px;
 }
 </style>
