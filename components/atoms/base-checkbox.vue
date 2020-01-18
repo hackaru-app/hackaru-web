@@ -14,7 +14,7 @@ export default {
   props: {
     enabled: {
       type: Boolean,
-      default: true
+      default: false
     }
   }
 };
@@ -25,12 +25,12 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 23px;
-  height: 23px;
+  width: 21px;
+  height: 21px;
   box-sizing: border-box;
   border-radius: 4px;
   border: 1px $grey-eee solid;
-  box-shadow: 0 3px $shadow inset;
+  box-shadow: 0 3px 0 $shadow inset;
 }
 .checkbox.enabled {
   background-color: $cyan;
