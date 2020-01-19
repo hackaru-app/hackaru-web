@@ -1,25 +1,29 @@
+<i18n src="@/assets/locales/pages/settings/notification.json"></i18n>
+
 <template>
   <section>
     <setting-box>
       <template v-slot:heading>
         <icon name="mail-icon" />
-        メール配信を設定
+        {{ $t('title') }}
       </template>
 
       <div class="checkboxies">
         <label
           ><input
-            v-model="receive_week_report"
+            :checked="receiveWeekReport"
             type="checkbox"
             class="checkbox"
-          />週次レポートを受信する</label
+            @change="changeReceiveWeekReport"
+          />{{ $t('receiveWeekReport') }}</label
         >
         <label
           ><input
-            v-model="receive_month_report"
+            :checked="receiveMonthReport"
             type="checkbox"
             class="checkbox"
-          />月次レポートを受信する</label
+            @change="changeReceiveMonthReport"
+          />{{ $t('receiveMonthReport') }}</label
         >
       </div>
     </setting-box>
@@ -30,6 +34,7 @@
 import Heading from '@/components/atoms/heading';
 import Icon from '@/components/atoms/icon';
 import SettingBox from '@/components/molecules/setting-box';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -37,11 +42,25 @@ export default {
     SettingBox,
     Icon
   },
-  data() {
-    return {
-      receive_week_report: true,
-      receive_month_report: true
-    };
+  computed: {
+    ...mapGetters({
+      receiveWeekReport: 'user-setting/receiveWeekReport',
+      receiveMonthReport: 'user-setting/receiveMonthReport'
+    })
+  },
+  methods: {
+    changeReceiveWeekReport(e) {
+      this.$store.dispatch('user-setting/update', {
+        receiveWeekReport: e.target.checked
+      });
+      this.$store.dispatch('toast/success', this.$t('updated'));
+    },
+    changeReceiveMonthReport(e) {
+      this.$store.dispatch('user-setting/update', {
+        receiveMonthReport: e.target.checked
+      });
+      this.$store.dispatch('toast/success', this.$t('updated'));
+    }
   }
 };
 </script>

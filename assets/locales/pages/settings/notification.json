@@ -1,0 +1,14 @@
+{
+  "en": {
+    "title": "Notification",
+    "receiveWeekReport": "Receive weekly report",
+    "receiveMonthReport": "Receive monthly report",
+    "updated": "Notification updated"
+  },
+  "ja": {
+    "title": "メール配信を設定",
+    "receiveWeekReport": "週次レポートを受信する",
+    "receiveMonthReport": "月次レポートを受信する",
+    "updated": "設定を更新しました"
+  }
+}
