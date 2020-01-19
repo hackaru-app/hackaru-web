@@ -281,7 +281,7 @@ export default {
   border-bottom: 1px $border-dark solid;
   border-right: 0;
   box-shadow: 0 3px 3px $shadow;
-  background-color: $background-light;
+  background-color: $background-translucent;
 }
 .project-wrapper {
   display: flex;
@@ -439,7 +439,7 @@ export default {
     border-left: 0;
     margin: 0;
     max-width: 100vw;
-    background-color: $background-light;
+    background-color: $background-translucent;
     box-shadow: 0 3px 3px $shadow inset;
   }
   .suggestion-list ul {

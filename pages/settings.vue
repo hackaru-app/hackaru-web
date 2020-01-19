@@ -54,6 +54,6 @@ export default {
 
 <style scoped lang="scss">
 .content-header {
-  background-color: $background-light;
+  background-color: $background-translucent;
 }
 </style>
