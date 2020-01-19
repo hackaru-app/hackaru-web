@@ -54,8 +54,8 @@ describe('Actions', () => {
       });
     });
 
-    it('commit SET_USER', () => {
-      expect(commit).toHaveBeenCalledWith('SET_USER', {
+    it('commit SET_ID_AND_EMAIL', () => {
+      expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
         id: 1,
         email: 'example@example.com'
       });
@@ -161,8 +161,8 @@ describe('Actions', () => {
       });
     });
 
-    it('commit SET_USER', () => {
-      expect(commit).toHaveBeenCalledWith('SET_USER', {
+    it('commit SET_ID_AND_EMAIL', () => {
+      expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
         id: 1,
         email: 'example@example.com'
       });
@@ -216,8 +216,8 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_USER', () => {
-      expect(commit).toHaveBeenCalledWith('SET_USER', {
+    it('commit SET_ID_AND_EMAIL', () => {
+      expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
         id: 1,
         email: 'changed@example.com'
       });
@@ -372,8 +372,8 @@ describe('Actions', () => {
       );
     });
 
-    it('commit CLEAR_TOKENS_AND_USER', () => {
-      expect(commit).toHaveBeenCalledWith('CLEAR_TOKENS_AND_USER');
+    it('commit CLEAR_TOKENS', () => {
+      expect(commit).toHaveBeenCalledWith('CLEAR_TOKENS');
     });
   });
 
@@ -409,8 +409,8 @@ describe('Actions', () => {
     it('returns true', () => {
       expect(result).toBe(true);
     });
-    it('commit CLEAR_TOKENS_AND_USER', () => {
-      expect(commit).toHaveBeenCalledWith('CLEAR_TOKENS_AND_USER');
+    it('commit CLEAR_TOKENS', () => {
+      expect(commit).toHaveBeenCalledWith('CLEAR_TOKENS');
     });
   });
 });
