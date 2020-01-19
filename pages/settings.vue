@@ -15,8 +15,8 @@ import ContentHeader from '@/components/organisms/content-header';
 
 const paths = [
   '',
-  'notifications',
   'integrations',
+  'notifications',
   'applications',
   'webhooks',
   'licenses'
@@ -35,8 +35,8 @@ export default {
       index: paths.indexOf(this.$route.path.split('/').pop()),
       names: [
         this.$t('account'),
-        this.$t('notifications'),
         this.$t('integrations'),
+        this.$t('notifications'),
         this.$t('applications'),
         this.$t('webhooks'),
         this.$t('licenses')
