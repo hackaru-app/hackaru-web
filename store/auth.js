@@ -1,9 +1,9 @@
 import decodeJwt from 'jwt-decode';
 
-const SET_USER = 'SET_USER';
+const SET_ID_AND_EMAIL = 'SET_ID_AND_EMAIL';
 const SET_REFRESH_TOKEN = 'SET_REFRESH_TOKEN';
 const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
-const CLEAR_TOKENS_AND_USER = 'CLEAR_TOKENS_AND_USER';
+const CLEAR_TOKENS = 'CLEAR_TOKENS';
 
 export const state = () => ({
   id: undefined,
@@ -30,7 +30,7 @@ export const actions = {
         },
         { root: true }
       );
-      commit(SET_USER, res.data);
+      commit(SET_ID_AND_EMAIL, res.data);
       commit(SET_REFRESH_TOKEN, {
         refreshToken: res.headers['x-refresh-token'],
         clientId: res.headers['x-client-id']
@@ -55,7 +55,7 @@ export const actions = {
         },
         { root: true }
       );
-      commit(SET_USER, res.data);
+      commit(SET_ID_AND_EMAIL, res.data);
       commit(SET_ACCESS_TOKEN, res.headers['x-access-token']);
       return true;
     } catch (e) {
@@ -83,7 +83,7 @@ export const actions = {
         },
         { root: true }
       );
-      commit(SET_USER, res.data);
+      commit(SET_ID_AND_EMAIL, res.data);
       commit(SET_REFRESH_TOKEN, {
         refreshToken: res.headers['x-refresh-token'],
         clientId: res.headers['x-client-id']
@@ -110,7 +110,7 @@ export const actions = {
         },
         { root: true }
       );
-      commit(SET_USER, res.data);
+      commit(SET_ID_AND_EMAIL, res.data);
       return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -204,7 +204,7 @@ export const actions = {
       },
       { root: true }
     );
-    commit(CLEAR_TOKENS_AND_USER);
+    commit(CLEAR_TOKENS);
   },
   async deleteAccount({ commit, dispatch }, { currentPassword }) {
     try {
@@ -221,7 +221,7 @@ export const actions = {
         },
         { root: true }
       );
-      commit(CLEAR_TOKENS_AND_USER);
+      commit(CLEAR_TOKENS);
       return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -238,11 +238,11 @@ export const mutations = {
   [SET_ACCESS_TOKEN](state, payload) {
     state.accessToken = payload;
   },
-  [SET_USER](state, payload) {
+  [SET_ID_AND_EMAIL](state, payload) {
     state.id = payload.id;
     state.email = payload.email;
   },
-  [CLEAR_TOKENS_AND_USER](state) {
+  [CLEAR_TOKENS](state) {
     state.id = undefined;
     state.email = '';
     state.refreshToken = '';

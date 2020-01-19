@@ -1,4 +1,4 @@
-const SET_USER_SETTING = 'SET_USER_SETTING';
+const SET_USER = 'SET_USER';
 
 export const state = () => ({
   receiveWeekReport: false,
@@ -11,12 +11,12 @@ export const actions = {
       const res = await dispatch(
         'auth-api/request',
         {
-          url: '/v1/user_setting',
+          url: '/v1/user',
           method: 'get'
         },
         { root: true }
       );
-      commit(SET_USER_SETTING, res.data);
+      commit(SET_USER, res.data);
       return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -28,13 +28,13 @@ export const actions = {
       const res = await dispatch(
         'auth-api/request',
         {
-          url: '/v1/user_setting',
+          url: '/v1/user',
           method: 'put',
           data: data
         },
         { root: true }
       );
-      commit(SET_USER_SETTING, res.data);
+      commit(SET_USER, res.data);
       return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -44,7 +44,7 @@ export const actions = {
 };
 
 export const mutations = {
-  [SET_USER_SETTING](state, payload) {
+  [SET_USER](state, payload) {
     state.receiveWeekReport = payload.receiveWeekReport;
     state.receiveMonthReport = payload.receiveMonthReport;
   }

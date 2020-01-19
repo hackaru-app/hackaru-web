@@ -70,7 +70,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('projects/fetch');
-    this.$store.dispatch('user-setting/fetch');
+    this.$store.dispatch('user/fetch');
   },
   methods: {
     updateDuration() {

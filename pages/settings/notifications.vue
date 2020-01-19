@@ -44,19 +44,19 @@ export default {
   },
   computed: {
     ...mapGetters({
-      receiveWeekReport: 'user-setting/receiveWeekReport',
-      receiveMonthReport: 'user-setting/receiveMonthReport'
+      receiveWeekReport: 'user/receiveWeekReport',
+      receiveMonthReport: 'user/receiveMonthReport'
     })
   },
   methods: {
     changeReceiveWeekReport(e) {
-      this.$store.dispatch('user-setting/update', {
+      this.$store.dispatch('user/update', {
         receiveWeekReport: e.target.checked
       });
       this.$store.dispatch('toast/success', this.$t('updated'));
     },
     changeReceiveMonthReport(e) {
-      this.$store.dispatch('user-setting/update', {
+      this.$store.dispatch('user/update', {
         receiveMonthReport: e.target.checked
       });
       this.$store.dispatch('toast/success', this.$t('updated'));
