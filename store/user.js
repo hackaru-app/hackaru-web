@@ -31,7 +31,9 @@ export const actions = {
         {
           url: '/v1/user',
           method: 'put',
-          data: data
+          data: {
+            user: data
+          }
         },
         { root: true }
       );
