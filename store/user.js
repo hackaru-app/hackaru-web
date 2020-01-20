@@ -1,6 +1,7 @@
 const SET_USER = 'SET_USER';
 
 export const state = () => ({
+  timeZone: 'Etc/UTC',
   receiveWeekReport: false,
   receiveMonthReport: false
 });
@@ -45,12 +46,16 @@ export const actions = {
 
 export const mutations = {
   [SET_USER](state, payload) {
+    state.timeZone = payload.timeZone;
     state.receiveWeekReport = payload.receiveWeekReport;
     state.receiveMonthReport = payload.receiveMonthReport;
   }
 };
 
 export const getters = {
+  timeZone: state => {
+    return state.timeZone;
+  },
   receiveWeekReport: state => {
     return state.receiveWeekReport;
   },
