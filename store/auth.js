@@ -77,7 +77,8 @@ export const actions = {
             user: {
               email,
               password,
-              passwordConfirmation
+              passwordConfirmation,
+              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
             }
           }
         },

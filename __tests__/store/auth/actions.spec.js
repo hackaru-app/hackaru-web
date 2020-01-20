@@ -3,6 +3,12 @@ import { actions } from '@/store/auth';
 describe('Actions', () => {
   let result;
 
+  Intl.DateTimeFormat = () => ({
+    resolvedOptions: () => ({
+      timeZone: 'America/New_York'
+    })
+  });
+
   beforeEach(() => {
     localStorage.clear();
   });
@@ -146,7 +152,8 @@ describe('Actions', () => {
             user: {
               email: 'example@example.com',
               password: 'password',
-              passwordConfirmation: 'passwordConfirmation'
+              passwordConfirmation: 'passwordConfirmation',
+              timeZone: 'America/New_York'
             }
           }
         },
