@@ -19,14 +19,17 @@ $white-lighter: #fffffff0;
 // Light
 :root {
   // Background
-  --background-light: #fffffff5;
+  --background-translucent: #fffffff5;
   --background: #{$white};
   --background-hover: #{$grey-fafafa};
   --background-dark: #3f4961;
   --background-dark-hover: #353d52;
 
-  // Backgrop
+  // Backdrop
   --backdrop-color: #00000030;
+
+  // Highlight
+  --highlight-background: #{$grey-fafafa};
 
   // Text
   --text: #{$grey-333};
@@ -46,13 +49,17 @@ $white-lighter: #fffffff0;
 :root {
   @media (prefers-color-scheme: dark) {
     // Background
+    --background-translucent: #303748;
     --background-light: #303748;
     --background: #2c3241;
     --background-hover: #2a303e;
     --background-dark: #262b38;
     --background-dark-hover: #1c1f29;
 
-    // Backgrop
+    // Highlight
+    --highlight-background: #303748;
+
+    // Backdrop
     --backdrop-color: #00000050;
 
     // Text
@@ -97,7 +104,11 @@ $placeholder: var(--placeholder);
 $border: var(--border);
 $border-dark: var(--border-dark);
 
+// Highlight
+$highlight-background: var(--highlight-background);
+
 // Background
+$background-translucent: var(--background-translucent);
 $background-light: var(--background-light);
 $background: var(--background);
 $background-hover: var(--background-hover);

@@ -13,7 +13,14 @@
 import Tabs from '@/components/molecules/tabs';
 import ContentHeader from '@/components/organisms/content-header';
 
-const paths = ['', 'integrations', 'applications', 'webhooks', 'licenses'];
+const paths = [
+  '',
+  'integrations',
+  'notifications',
+  'applications',
+  'webhooks',
+  'licenses'
+];
 
 export default {
   components: {
@@ -29,6 +36,7 @@ export default {
       names: [
         this.$t('account'),
         this.$t('integrations'),
+        this.$t('notifications'),
         this.$t('applications'),
         this.$t('webhooks'),
         this.$t('licenses')
@@ -46,6 +54,6 @@ export default {
 
 <style scoped lang="scss">
 .content-header {
-  background-color: $background-light;
+  background-color: $background-translucent;
 }
 </style>

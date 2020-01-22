@@ -174,7 +174,7 @@ export default {
   overflow: hidden;
   z-index: index($z, calendar-day-header);
   border-bottom: 1px $border-dark solid;
-  background-color: $background-light;
+  background-color: $background-translucent;
   box-shadow: 0 3px 3px $shadow;
 }
 .headers-wrapper {

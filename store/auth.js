@@ -1,9 +1,9 @@
 import decodeJwt from 'jwt-decode';
 
-const SET_USER = 'SET_USER';
+const SET_ID_AND_EMAIL = 'SET_ID_AND_EMAIL';
 const SET_REFRESH_TOKEN = 'SET_REFRESH_TOKEN';
 const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
-const CLEAR_TOKENS_AND_USER = 'CLEAR_TOKENS_AND_USER';
+const CLEAR_TOKENS = 'CLEAR_TOKENS';
 
 export const state = () => ({
   id: undefined,
@@ -30,7 +30,7 @@ export const actions = {
         },
         { root: true }
       );
-      commit(SET_USER, res.data);
+      commit(SET_ID_AND_EMAIL, res.data);
       commit(SET_REFRESH_TOKEN, {
         refreshToken: res.headers['x-refresh-token'],
         clientId: res.headers['x-client-id']
@@ -41,7 +41,7 @@ export const actions = {
       return false;
     }
   },
-  async fetchAccessToken({ state, commit, dispatch, getters }) {
+  async fetchAccessToken({ state, commit, dispatch }) {
     try {
       const res = await dispatch(
         'api/request',
@@ -55,6 +55,7 @@ export const actions = {
         },
         { root: true }
       );
+      commit(SET_ID_AND_EMAIL, res.data);
       commit(SET_ACCESS_TOKEN, res.headers['x-access-token']);
       return true;
     } catch (e) {
@@ -76,13 +77,14 @@ export const actions = {
             user: {
               email,
               password,
-              passwordConfirmation
+              passwordConfirmation,
+              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
             }
           }
         },
         { root: true }
       );
-      commit(SET_USER, res.data);
+      commit(SET_ID_AND_EMAIL, res.data);
       commit(SET_REFRESH_TOKEN, {
         refreshToken: res.headers['x-refresh-token'],
         clientId: res.headers['x-client-id']
@@ -93,7 +95,7 @@ export const actions = {
       return false;
     }
   },
-  async changeEmail({ state, commit, dispatch }, { email, currentPassword }) {
+  async changeEmail({ commit, dispatch }, { email, currentPassword }) {
     try {
       const res = await dispatch(
         'auth-api/request',
@@ -109,7 +111,7 @@ export const actions = {
         },
         { root: true }
       );
-      commit(SET_USER, res.data);
+      commit(SET_ID_AND_EMAIL, res.data);
       return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -117,7 +119,7 @@ export const actions = {
     }
   },
   async changePassword(
-    { state, commit, dispatch },
+    { dispatch },
     { password, passwordConfirmation, currentPassword }
   ) {
     try {
@@ -142,7 +144,7 @@ export const actions = {
       return false;
     }
   },
-  async sendPasswordResetEmail({ state, commit, dispatch }, { email }) {
+  async sendPasswordResetEmail({ dispatch }, { email }) {
     try {
       await dispatch(
         'api/request',
@@ -164,7 +166,7 @@ export const actions = {
     }
   },
   async resetPassword(
-    { state, commit, dispatch },
+    { dispatch },
     { password, passwordConfirmation, token, id }
   ) {
     try {
@@ -203,7 +205,7 @@ export const actions = {
       },
       { root: true }
     );
-    commit(CLEAR_TOKENS_AND_USER);
+    commit(CLEAR_TOKENS);
   },
   async deleteAccount({ commit, dispatch }, { currentPassword }) {
     try {
@@ -220,7 +222,7 @@ export const actions = {
         },
         { root: true }
       );
-      commit(CLEAR_TOKENS_AND_USER);
+      commit(CLEAR_TOKENS);
       return true;
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -237,11 +239,11 @@ export const mutations = {
   [SET_ACCESS_TOKEN](state, payload) {
     state.accessToken = payload;
   },
-  [SET_USER](state, payload) {
+  [SET_ID_AND_EMAIL](state, payload) {
     state.id = payload.id;
     state.email = payload.email;
   },
-  [CLEAR_TOKENS_AND_USER](state, payload) {
+  [CLEAR_TOKENS](state) {
     state.id = undefined;
     state.email = '';
     state.refreshToken = '';
@@ -260,10 +262,10 @@ export const getters = {
   userId: state => {
     return state.id;
   },
-  loggedIn: (state, getters) => {
+  loggedIn: state => {
     return state.clientId && state.refreshToken;
   },
-  validateToken: (state, getters) => () => {
+  validateToken: state => () => {
     if (!state.accessToken) return false;
     try {
       return Date.now().valueOf() / 1000 < decodeJwt(state.accessToken).exp;

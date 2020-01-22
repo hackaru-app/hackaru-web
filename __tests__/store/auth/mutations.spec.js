@@ -29,11 +29,14 @@ describe('Mutations', () => {
     });
   });
 
-  describe('when commit SET_USER', () => {
+  describe('when commit SET_ID_AND_EMAIL', () => {
     const state = { id: undefined, email: '' };
 
     beforeEach(() => {
-      mutations['SET_USER'](state, { id: 1, email: 'example@example.com' });
+      mutations['SET_ID_AND_EMAIL'](state, {
+        id: 1,
+        email: 'example@example.com'
+      });
     });
 
     it('set user', () => {
@@ -42,7 +45,7 @@ describe('Mutations', () => {
     });
   });
 
-  describe('when commit CLEAR_TOKENS_AND_USER', () => {
+  describe('when commit CLEAR_TOKENS', () => {
     const state = {
       id: 1,
       email: 'example@example.com',
@@ -52,7 +55,7 @@ describe('Mutations', () => {
     };
 
     beforeEach(() => {
-      mutations['CLEAR_TOKENS_AND_USER'](state);
+      mutations['CLEAR_TOKENS'](state);
     });
 
     it('clear state', () => {
