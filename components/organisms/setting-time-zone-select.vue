@@ -174,7 +174,7 @@ export default {
           'Pacific/Fakaofo',
           'Pacific/Chatham',
           'Pacific/Apia'
-        ];
+        ].sort();
       }
     }
   },
