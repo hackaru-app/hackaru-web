@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/reports.json"></i18n>
+<i18n src="@/assets/locales/pages/reports/index.json"></i18n>
 
 <template>
   <section>
@@ -15,9 +15,7 @@
       @right="slideRight"
     />
     <div class="tools">
-      <button class="pdf-button" @click="exportPdf">
-        PDF
-      </button>
+      <a :href="pdfPath" class="pdf-link" target="_blank">PDF</a>
     </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
@@ -76,6 +74,7 @@ import ContentHeader from '@/components/organisms/content-header';
 import ReportContent from '@/components/organisms/report-content';
 import Delighted from '@/components/molecules/delighted';
 import { mapGetters } from 'vuex';
+import { stringify } from 'query-string';
 import {
   format,
   isEqual,
@@ -155,6 +154,13 @@ export default {
         this.period.startOf(new Date()),
         this.period.startOf(this.date)
       );
+    },
+    pdfPath() {
+      const query = stringify({
+        start: this.period.startOf(this.date),
+        end: this.period.endOf(this.date)
+      });
+      return `${this.localePath('reports')}/pdf/?${query}`;
     }
   },
   watch: {
@@ -180,21 +186,6 @@ export default {
           end: this.period.endOf(this.period.add(this.date, -1))
         }
       });
-    },
-    async exportPdf() {
-      const childWindow = window.open('about:blank');
-      const data = await this.$store.dispatch('reports/fetchPdf', {
-        start: this.period.startOf(this.date),
-        end: this.period.endOf(this.date)
-      });
-      if (!childWindow.closed && data) {
-        childWindow.location.assign(URL.createObjectURL(data));
-        this.$gtm.trackEvent({
-          eventCategory: 'ReportPdf',
-          eventAction: 'export',
-          name: 'export_report_to_pdf'
-        });
-      }
     },
     slideLeft() {
       this.$refs.slider.slideLeft();
@@ -236,11 +227,13 @@ export default {
   border-bottom: 1px $border-dark solid;
   background-color: $background-translucent;
   box-shadow: 0 3px 3px $shadow;
-  button {
+  a {
     display: flex;
     align-items: center;
     background: none;
-    padding: 16px 20px;
+    text-decoration: none;
+    color: $text;
+    padding: 13px 20px;
     border: 1px $border-dark solid;
     border-top: 0;
     border-bottom: 0;
