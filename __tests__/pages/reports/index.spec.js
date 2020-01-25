@@ -1,8 +1,9 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Reports from '@/pages/reports';
+import Reports from '@/pages/reports/index';
 import { parseISO } from 'date-fns';
+import { stringify } from 'query-string';
 
 describe('Reports', () => {
   let wrapper;
@@ -40,6 +41,14 @@ describe('Reports', () => {
           end: parseISO('2019-01-30T23:59:59.999')
         }
       });
+    });
+
+    it('has pdf link correctly', () => {
+      const path = `/en/reports/pdf/?${stringify({
+        start: parseISO('2019-01-31T00:00:00'),
+        end: parseISO('2019-01-31T23:59:59.999')
+      })}`;
+      expect(wrapper.find('.pdf-link').attributes().href).toEqual(path);
     });
   });
 
@@ -164,72 +173,6 @@ describe('Reports', () => {
           end: parseISO('2019-01-26T23:59:59.999')
         }
       });
-    });
-  });
-
-  describe('when click pdf-button', () => {
-    const assign = jest.fn();
-
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue('%PDF-');
-      window.open = () => ({ location: { assign }, closed: false });
-      URL.createObjectURL = jest.fn(() => 'blob:');
-      wrapper = factory();
-      wrapper.setData({ currentPeriod: 'day' });
-      wrapper.find('.pdf-button').trigger('click');
-    });
-
-    it('dispatch reports/fetchPdf', () => {
-      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetchPdf', {
-        start: parseISO('2019-01-31T00:00:00'),
-        end: parseISO('2019-01-31T23:59:59.999')
-      });
-    });
-
-    it('create object url', () => {
-      expect(URL.createObjectURL).toHaveBeenCalledWith('%PDF-');
-    });
-
-    it('assign object url', () => {
-      expect(assign).toHaveBeenCalledWith('blob:');
-    });
-  });
-
-  describe('when click google calendar button but child window closed', () => {
-    const assign = jest.fn();
-
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue('%PDF-');
-      window.open = () => ({ location: { assign }, closed: true });
-      URL.createObjectURL = jest.fn(() => 'blob:');
-      wrapper = factory();
-      wrapper.setData({ currentPeriod: 'day' });
-      wrapper.find('.pdf-button').trigger('click');
-    });
-
-    it('does not navigate', () => {
-      expect(assign).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('when click pdf-button but response is undefined', () => {
-    const assign = jest.fn();
-
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue(undefined);
-      window.open = () => ({ location: { assign }, closed: false });
-      URL.createObjectURL = jest.fn();
-      wrapper = factory();
-      wrapper.setData({ currentPeriod: 'day' });
-      wrapper.find('.pdf-button').trigger('click');
-    });
-
-    it('does not create object url', () => {
-      expect(URL.createObjectURL).not.toHaveBeenCalled();
-    });
-
-    it('does not assign object url', () => {
-      expect(assign).not.toHaveBeenCalled();
     });
   });
 });

@@ -15,7 +15,7 @@
       @right="slideRight"
     />
     <div class="tools">
-      <a :href="pdfPath" target="_blank">PDF</a>
+      <a :href="pdfPath" class="pdf-link" target="_blank">PDF</a>
     </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
