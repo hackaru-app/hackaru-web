@@ -108,11 +108,13 @@ describe('Getters', () => {
       expect(result.datasets).toEqual([
         {
           label: 'Development',
+          maxBarThickness: 40,
           backgroundColor: '#ff0',
           data: [100, 200]
         },
         {
           label: 'Review',
+          maxBarThickness: 40,
           backgroundColor: '#f00',
           data: [300, 400]
         }

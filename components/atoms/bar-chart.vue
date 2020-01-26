@@ -29,7 +29,6 @@ const options = {
             fontSize: 13
           },
           offset: true,
-          maxBarThickness: 40,
           stacked: true,
           gridLines: {
             color: '#eee'
