@@ -102,6 +102,7 @@ export const getters = {
     return {
       labels: state.labels,
       datasets: state.projects.map(project => ({
+        maxBarThickness: 40,
         label: project.name,
         backgroundColor: project.color,
         data: state.sums[project.id]
