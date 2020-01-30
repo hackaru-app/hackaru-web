@@ -1,6 +1,7 @@
 version: '3'
 services:
   web:
+    build: .
     command: yarn dev
     env_file: .env.development
     volumes:
