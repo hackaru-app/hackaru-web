@@ -15,7 +15,8 @@
       @right="slideRight"
     />
     <div class="tools">
-      <a :href="pdfPath" class="pdf-link" target="_blank">PDF</a>
+      <a :href="exportPath('pdf')" class="pdf-link" target="_blank">PDF</a>
+      <a :href="exportPath('csv')" class="csv-link" target="_blank">CSV</a>
     </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
@@ -154,13 +155,6 @@ export default {
         this.period.startOf(new Date()),
         this.period.startOf(this.date)
       );
-    },
-    pdfPath() {
-      const query = stringify({
-        start: this.period.startOf(this.date),
-        end: this.period.endOf(this.date)
-      });
-      return `${this.localePath('reports')}/pdf/?${query}`;
     }
   },
   watch: {
@@ -201,6 +195,13 @@ export default {
     },
     next() {
       this.date = this.period.add(this.period.startOf(this.date), 1);
+    },
+    exportPath(type) {
+      const query = stringify({
+        start: this.period.startOf(this.date),
+        end: this.period.endOf(this.date)
+      });
+      return `${this.localePath('reports')}/${type}/?${query}`;
     }
   }
 };
@@ -234,12 +235,15 @@ export default {
     text-decoration: none;
     color: $text;
     padding: 13px 20px;
-    border: 1px $border-dark solid;
+    border-right: 1px $border-dark solid;
     border-top: 0;
     border-bottom: 0;
     cursor: pointer;
     .icon {
       margin-right: 6px;
+    }
+    &:first-child {
+      border-left: 1px $border-dark solid;
     }
   }
 }
