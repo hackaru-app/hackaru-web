@@ -1,6 +1,23 @@
+<template>
+  <loading v-if="loading" />
+</template>
+
 <script>
+import Loading from '@/components/molecules/loading';
+
 export default {
-  layout: 'loading',
+  layout: 'none',
+  components: {
+    Loading
+  },
+  head: {
+    title: 'Loading'
+  },
+  data() {
+    return {
+      loading: true
+    };
+  },
   mounted() {
     this.exportCsv();
   },
@@ -11,6 +28,7 @@ export default {
         end: this.$route.query.end
       });
       if (data) {
+        this.loading = false;
         this.$gtm.trackEvent({
           eventCategory: 'ReportCsv',
           eventAction: 'export',
@@ -19,9 +37,6 @@ export default {
         location.assign(URL.createObjectURL(data));
       }
     }
-  },
-  render(h) {
-    return h();
   }
 };
 </script>

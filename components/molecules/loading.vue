@@ -2,25 +2,8 @@
   <section class="loading" ontouchstart="">
     <div class="loader" />
     Loading
-    <nuxt />
-    <toast />
   </section>
 </template>
-
-<script>
-import Toast from '@/components/molecules/toast';
-import Icon from '@/components/atoms/icon';
-
-export default {
-  components: {
-    Toast,
-    Icon
-  },
-  head: {
-    title: 'Loading'
-  }
-};
-</script>
 
 <style scoped lang="scss">
 .loading {
