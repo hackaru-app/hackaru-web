@@ -2,13 +2,10 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Csv from '@/pages/reports/csv';
 import { parseISO } from 'date-fns';
+import fileSaver from 'file-saver';
 
 describe('Csv', () => {
   const $store = new Store();
-
-  const location = jest
-    .spyOn(window.location, 'assign')
-    .mockImplementation(() => {});
 
   const factory = () =>
     shallowMount(Csv, {
@@ -30,7 +27,7 @@ describe('Csv', () => {
   describe('when mounted', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue('example,example');
-      URL.createObjectURL = jest.fn(() => 'blob:');
+      fileSaver.saveAs = jest.fn();
       factory();
     });
 
@@ -41,12 +38,8 @@ describe('Csv', () => {
       });
     });
 
-    it('create object url', () => {
-      expect(URL.createObjectURL).toHaveBeenCalledWith('example,example');
-    });
-
-    it('assign object url', () => {
-      expect(location).toHaveBeenCalledWith('blob:');
+    it('save csv', () => {
+      expect(fileSaver.saveAs).toHaveBeenCalledWith(new Blob(), 'report.csv');
     });
   });
 });

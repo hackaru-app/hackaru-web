@@ -2,13 +2,10 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Pdf from '@/pages/reports/pdf';
 import { parseISO } from 'date-fns';
+import fileSaver from 'file-saver';
 
 describe('Pdf', () => {
   const $store = new Store();
-
-  const location = jest
-    .spyOn(window.location, 'assign')
-    .mockImplementation(() => {});
 
   const factory = () =>
     shallowMount(Pdf, {
@@ -30,7 +27,7 @@ describe('Pdf', () => {
   describe('when mounted', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue('%PDF-');
-      URL.createObjectURL = jest.fn(() => 'blob:');
+      fileSaver.saveAs = jest.fn();
       factory();
     });
 
@@ -41,12 +38,8 @@ describe('Pdf', () => {
       });
     });
 
-    it('create object url', () => {
-      expect(URL.createObjectURL).toHaveBeenCalledWith('%PDF-');
-    });
-
-    it('assign object url', () => {
-      expect(location).toHaveBeenCalledWith('blob:');
+    it('save pdf', () => {
+      expect(fileSaver.saveAs).toHaveBeenCalledWith(new Blob(), 'report.pdf');
     });
   });
 });

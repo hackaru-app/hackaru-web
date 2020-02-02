@@ -35,7 +35,7 @@ export default {
           eventAction: 'export',
           name: 'export_report_to_pdf'
         });
-        const blob = new Blob([data], { type: 'data:application/pdf' });
+        const blob = new Blob([data], { type: 'application/pdf' });
         saveAs(blob, 'report.pdf');
       }
     }
