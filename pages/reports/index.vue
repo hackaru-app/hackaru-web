@@ -15,7 +15,8 @@
       @right="slideRight"
     />
     <div class="tools">
-      <a :href="pdfPath" class="pdf-link" target="_blank">PDF</a>
+      <button class="pdf-button" @click="exportReport('pdf')">PDF</button>
+      <button class="csv-button" @click="exportReport('csv')">CSV</button>
     </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
@@ -77,6 +78,7 @@ import { mapGetters } from 'vuex';
 import { stringify } from 'query-string';
 import {
   format,
+  formatISO,
   isEqual,
   addDays,
   addWeeks,
@@ -154,13 +156,6 @@ export default {
         this.period.startOf(new Date()),
         this.period.startOf(this.date)
       );
-    },
-    pdfPath() {
-      const query = stringify({
-        start: this.period.startOf(this.date),
-        end: this.period.endOf(this.date)
-      });
-      return `${this.localePath('reports')}/pdf/?${query}`;
     }
   },
   watch: {
@@ -201,6 +196,14 @@ export default {
     },
     next() {
       this.date = this.period.add(this.period.startOf(this.date), 1);
+    },
+    exportReport(type) {
+      window.open(
+        `${this.localePath('reports')}/${type}/?${stringify({
+          start: formatISO(this.period.startOf(this.date)),
+          end: formatISO(this.period.endOf(this.date))
+        })}`
+      );
     }
   }
 };
@@ -227,19 +230,20 @@ export default {
   border-bottom: 1px $border-dark solid;
   background-color: $background-translucent;
   box-shadow: 0 3px 3px $shadow;
-  a {
+  button {
     display: flex;
     align-items: center;
     background: none;
-    text-decoration: none;
     color: $text;
-    padding: 13px 20px;
-    border: 1px $border-dark solid;
-    border-top: 0;
-    border-bottom: 0;
+    padding: 15px 20px;
+    border: 0;
+    border-right: 1px $border-dark solid;
     cursor: pointer;
     .icon {
       margin-right: 6px;
+    }
+    &:first-child {
+      border-left: 1px $border-dark solid;
     }
   }
 }

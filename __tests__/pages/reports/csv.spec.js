@@ -1,9 +1,9 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Pdf from '@/pages/reports/pdf';
+import Csv from '@/pages/reports/csv';
 import { parseISO } from 'date-fns';
 
-describe('Pdf', () => {
+describe('Csv', () => {
   const $store = new Store();
 
   const location = jest
@@ -11,7 +11,7 @@ describe('Pdf', () => {
     .mockImplementation(() => {});
 
   const factory = () =>
-    shallowMount(Pdf, {
+    shallowMount(Csv, {
       mocks: {
         $store,
         $route: {
@@ -29,20 +29,20 @@ describe('Pdf', () => {
 
   describe('when mounted', () => {
     beforeEach(() => {
-      $store.dispatch.mockReturnValue('%PDF-');
+      $store.dispatch.mockReturnValue('example,example');
       URL.createObjectURL = jest.fn(() => 'blob:');
       factory();
     });
 
-    it('dispatch reports/fetchPdf', () => {
-      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetchPdf', {
+    it('dispatch reports/fetchCsv', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetchCsv', {
         start: parseISO('2019-01-31T00:00:00'),
         end: parseISO('2019-01-31T23:59:59.999')
       });
     });
 
     it('create object url', () => {
-      expect(URL.createObjectURL).toHaveBeenCalledWith('%PDF-');
+      expect(URL.createObjectURL).toHaveBeenCalledWith('example,example');
     });
 
     it('assign object url', () => {

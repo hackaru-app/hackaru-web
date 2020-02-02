@@ -19,20 +19,20 @@ export default {
     };
   },
   mounted() {
-    this.exportPdf();
+    this.exportCsv();
   },
   methods: {
-    async exportPdf() {
-      const data = await this.$store.dispatch('reports/fetchPdf', {
+    async exportCsv() {
+      const data = await this.$store.dispatch('reports/fetchCsv', {
         start: this.$route.query.start,
         end: this.$route.query.end
       });
       if (data) {
         this.loading = false;
         this.$gtm.trackEvent({
-          eventCategory: 'ReportPdf',
+          eventCategory: 'ReportCsv',
           eventAction: 'export',
-          name: 'export_report_to_pdf'
+          name: 'export_report_to_csv'
         });
         location.assign(URL.createObjectURL(data));
       }

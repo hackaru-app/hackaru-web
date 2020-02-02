@@ -68,6 +68,26 @@ export const actions = {
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
+  },
+  async fetchCsv({ dispatch }, payload) {
+    try {
+      const res = await dispatch(
+        'auth-api/request',
+        {
+          url: '/v1/report.csv',
+          responseType: 'blob',
+          params: {
+            start: payload.start,
+            end: payload.end,
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+          }
+        },
+        { root: true }
+      );
+      return res.data;
+    } catch (e) {
+      dispatch('toast/error', e, { root: true });
+    }
   }
 };
 

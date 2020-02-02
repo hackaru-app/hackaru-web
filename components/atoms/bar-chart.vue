@@ -31,6 +31,7 @@ const options = {
           offset: true,
           stacked: true,
           gridLines: {
+            zeroLineColor: '#eee',
             color: '#eee'
           }
         }

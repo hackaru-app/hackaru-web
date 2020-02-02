@@ -116,4 +116,40 @@ describe('Actions', () => {
       expect(result).toBe('%PDF-');
     });
   });
+
+  describe('when dispatch fetchCsv', () => {
+    let result;
+
+    const dispatch = jest.fn(() => ({ data: 'example,example' }));
+
+    beforeEach(async () => {
+      result = await actions.fetchCsv(
+        { dispatch },
+        {
+          start: parseISO('2019-01-01T00:00:00'),
+          end: parseISO('2019-01-03T00:00:00')
+        }
+      );
+    });
+
+    it('dispatch auth-api/request', () => {
+      expect(dispatch).toHaveBeenCalledWith(
+        'auth-api/request',
+        {
+          url: '/v1/report.csv',
+          responseType: 'blob',
+          params: {
+            start: parseISO('2019-01-01T00:00:00'),
+            end: parseISO('2019-01-03T00:00:00'),
+            timeZone: 'America/New_York'
+          }
+        },
+        { root: true }
+      );
+    });
+
+    it('retuns data', () => {
+      expect(result).toBe('example,example');
+    });
+  });
 });
