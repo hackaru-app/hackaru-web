@@ -5,7 +5,7 @@ import Reports from '@/pages/reports/index';
 import { parseISO, formatISO } from 'date-fns';
 import { stringify } from 'query-string';
 
-describe('Reports', () => {
+describe('Index', () => {
   let wrapper;
 
   MockDate.set('2019-01-31T01:23:45');
