@@ -2,7 +2,7 @@ import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Reports from '@/pages/reports/index';
-import { parseISO } from 'date-fns';
+import { parseISO, formatISO } from 'date-fns';
 import { stringify } from 'query-string';
 
 describe('Reports', () => {
@@ -42,13 +42,39 @@ describe('Reports', () => {
         }
       });
     });
+  });
 
-    it('has pdf link correctly', () => {
-      const path = `/en/reports/pdf/?${stringify({
-        start: parseISO('2019-01-31T00:00:00'),
-        end: parseISO('2019-01-31T23:59:59.999')
-      })}`;
-      expect(wrapper.find('.pdf-link').attributes().href).toEqual(path);
+  describe('when click pdf button', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      window.open = jest.fn();
+      wrapper.find('.pdf-button').trigger('click');
+    });
+
+    it('open pdf url', () => {
+      expect(window.open).toHaveBeenLastCalledWith(
+        `/en/reports/pdf/?${stringify({
+          start: formatISO(parseISO('2019-01-31T00:00:00')),
+          end: formatISO(parseISO('2019-01-31T23:59:59.999'))
+        })}`
+      );
+    });
+  });
+
+  describe('when click csv button', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      window.open = jest.fn();
+      wrapper.find('.csv-button').trigger('click');
+    });
+
+    it('open csv url', () => {
+      expect(window.open).toHaveBeenLastCalledWith(
+        `/en/reports/csv/?${stringify({
+          start: formatISO(parseISO('2019-01-31T00:00:00')),
+          end: formatISO(parseISO('2019-01-31T23:59:59.999'))
+        })}`
+      );
     });
   });
 

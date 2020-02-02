@@ -15,8 +15,8 @@
       @right="slideRight"
     />
     <div class="tools">
-      <button class="pdf-link" @click="exportReport('pdf')">PDF</button>
-      <button class="csv-link" @click="exportReport('csv')">CSV</button>
+      <button class="pdf-button" @click="exportReport('pdf')">PDF</button>
+      <button class="csv-button" @click="exportReport('csv')">CSV</button>
     </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
