@@ -235,7 +235,7 @@ export default {
     align-items: center;
     background: none;
     color: $text;
-    padding: 13px 20px;
+    padding: 15px 20px;
     border: 0;
     border-right: 1px $border-dark solid;
     cursor: pointer;
