@@ -53,6 +53,12 @@
         "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
         "parents": "hackaru-web"
     },
+    "file-saver": {
+        "licenses": "MIT",
+        "repository": "https://github.com/eligrey/FileSaver.js",
+        "licenseUrl": "https://github.com/eligrey/FileSaver.js/raw/master/LICENSE.md",
+        "parents": "hackaru-web"
+    },
     "hh-mm-ss": {
         "licenses": "MIT",
         "repository": "https://github.com/Goldob/hh-mm-ss",

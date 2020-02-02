@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { saveAs } from 'file-saver';
 import Loading from '@/components/molecules/loading';
 
 export default {
@@ -34,7 +35,8 @@ export default {
           eventAction: 'export',
           name: 'export_report_to_csv'
         });
-        location.assign(URL.createObjectURL(data));
+        const blob = new Blob([data], { type: 'text/csv' });
+        saveAs(blob, 'report.csv');
       }
     }
   }
