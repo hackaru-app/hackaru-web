@@ -20,9 +20,9 @@
       ref="days"
       :class="['day', { overlapped: isOverlapped(day) }]"
       :overlapped-day="overlappedDay"
-      :data-day="`${format(day, 'yyyy-MM-dd')}`"
-      :key="`${format(day, 'yyyy-MM-dd HH:mm:ss')}`"
-      :day="`${format(day, 'yyyy-MM-dd HH:mm:ss')}`"
+      :data-day="formatISO(day, { representation: 'date' })"
+      :key="formatISO(day)"
+      :day="formatISO(day)"
       @dragging="dragging"
       @drop="drop"
     />
@@ -34,7 +34,7 @@ import CalendarHours from '@/components/organisms/calendar-hours';
 import CalendarRuler from '@/components/organisms/calendar-ruler';
 import CalendarDay from '@/components/organisms/calendar-day';
 import {
-  format,
+  formatISO,
   isSameDay,
   isToday,
   getHours,
@@ -68,7 +68,7 @@ export default {
   },
   data() {
     return {
-      format,
+      formatISO,
       parseISO,
       guideRulerTop: undefined,
       overlappedDay: undefined,

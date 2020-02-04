@@ -26,7 +26,7 @@ import ProjectName from '@/components/molecules/project-name';
 import BaseButton from '@/components/atoms/base-button';
 import ActivityDayGroup from '@/components/organisms/activity-day-group';
 import Icon from '@/components/atoms/icon';
-import { startOfDay, endOfDay, addDays, format } from 'date-fns';
+import { startOfDay, endOfDay, addDays } from 'date-fns';
 import { mapGetters } from 'vuex';
 
 const weekly = {
@@ -44,8 +44,7 @@ export default {
   },
   data() {
     return {
-      addDays,
-      format
+      addDays
     };
   },
   head: {
