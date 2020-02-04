@@ -26,8 +26,8 @@
           <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
             <calendar-day-header
               v-for="day in getDays(page)"
-              :day="format(day, 'yyyy-MM-dd HH:mm:ss')"
-              :key="format(day, 'yyyy-MM-dd HH:mm:ss')"
+              :day="formatISO(day)"
+              :key="formatISO(day)"
             />
           </div>
         </div>
@@ -69,6 +69,7 @@ import {
   addWeeks,
   isToday,
   format,
+  formatISO,
   addDays,
   eachDayOfInterval
 } from 'date-fns';
@@ -100,7 +101,7 @@ export default {
   data() {
     return {
       addDays,
-      format,
+      formatISO,
       isToday,
       sliderEnabled: true,
       date: new Date(),

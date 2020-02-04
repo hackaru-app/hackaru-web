@@ -8,7 +8,7 @@ import {
   addMinutes,
   compareDesc,
   parseISO,
-  format,
+  formatISO,
   addDays
 } from 'date-fns';
 
@@ -131,7 +131,7 @@ export const getters = {
         compareDesc(parseISO(a.startedAt), parseISO(b.startedAt))
       );
     return groupBy(weekly, ({ startedAt }) =>
-      format(parseISO(startedAt), 'yyyy-MM-dd')
+      formatISO(parseISO(startedAt), { representation: 'date' })
     );
   },
   getCalendar: (state, getters) => (date, toMin) => {
