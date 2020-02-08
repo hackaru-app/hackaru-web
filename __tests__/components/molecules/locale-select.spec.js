@@ -1,3 +1,4 @@
+import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import LocaleSelect from '@/components/molecules/locale-select';
 
@@ -5,6 +6,7 @@ describe('LocaleSelect', () => {
   let factory;
   let wrapper;
 
+  const $store = new Store({});
   const switchLocalePath = jest.fn();
   const setLocaleCookie = jest.fn();
   const $router = { push: jest.fn() };
@@ -13,6 +15,7 @@ describe('LocaleSelect', () => {
     factory = () =>
       shallowMount(LocaleSelect, {
         mocks: {
+          $store,
           switchLocalePath,
           $router,
           $i18n: {
@@ -29,10 +32,10 @@ describe('LocaleSelect', () => {
       wrapper.find({ ref: 'base-select' }).vm.$emit('change', 'ja');
     });
 
-    it('change locale', () => {
-      expect(switchLocalePath).toHaveBeenCalledWith('ja');
-      expect(setLocaleCookie).toHaveBeenCalledWith('ja');
-      expect($router.push).toHaveBeenCalled();
+    it('dispatch user/update', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('user/update', {
+        locale: 'ja'
+      });
     });
   });
 });
