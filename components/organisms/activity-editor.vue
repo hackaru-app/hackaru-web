@@ -10,6 +10,7 @@
       <modal-item>
         <button type="button" class="project-button" @click="editProject">
           <project-name :name="project.name" :color="project.color" />
+          <icon name="chevron-right-icon" class="is-large" />
         </button>
       </modal-item>
 
@@ -202,6 +203,7 @@ export default {
 .project-button {
   cursor: pointer;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   border: 0;
   padding: 0;
