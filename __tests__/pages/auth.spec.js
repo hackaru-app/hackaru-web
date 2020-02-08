@@ -22,7 +22,15 @@ describe('Auth', () => {
     $route.query['sign-up'] = false;
     factory = () =>
       shallowMount(Auth, {
-        mocks: { $store, $route, $router, $env }
+        mocks: {
+          $store,
+          $route,
+          $router,
+          $env,
+          $i18n: {
+            locale: 'en'
+          }
+        }
       });
   });
 
@@ -114,7 +122,8 @@ describe('Auth', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/signUp', {
         email: 'example@example.com',
         password: 'password',
-        passwordConfirmation: 'confirmation'
+        passwordConfirmation: 'confirmation',
+        locale: 'en'
       });
     });
   });

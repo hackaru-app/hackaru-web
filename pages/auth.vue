@@ -140,7 +140,8 @@ export default {
       const success = await this.$store.dispatch('auth/signUp', {
         email: this.email,
         password: this.password,
-        passwordConfirmation: this.passwordConfirmation
+        passwordConfirmation: this.passwordConfirmation,
+        locale: this.$i18n.locale
       });
       if (success) {
         localStorage.setItem('userId', this.$store.getters['auth/userId']);

@@ -1,3 +1,5 @@
+<i18n src="@/assets/locales/components/molecules/locale-select.json"></i18n>
+
 <template>
   <base-select
     ref="base-select"
@@ -31,9 +33,9 @@ export default {
     };
   },
   methods: {
-    change(locale) {
-      this.$i18n.setLocaleCookie(locale);
-      this.$router.push(this.switchLocalePath(locale));
+    async change(locale) {
+      const success = await this.$store.dispatch('user/update', { locale });
+      if (success) this.$store.dispatch('toast/success', this.$t('changed'));
     }
   }
 };
