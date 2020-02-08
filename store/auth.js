@@ -65,7 +65,7 @@ export const actions = {
   },
   async signUp(
     { commit, dispatch },
-    { email, password, passwordConfirmation }
+    { email, password, passwordConfirmation, locale }
   ) {
     try {
       const res = await dispatch(
@@ -78,6 +78,7 @@ export const actions = {
               email,
               password,
               passwordConfirmation,
+              locale,
               timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
             }
           }
