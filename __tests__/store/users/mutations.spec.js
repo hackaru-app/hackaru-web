@@ -9,10 +9,15 @@ describe('Mutations', () => {
     };
 
     beforeEach(() => {
+      mutations.$i18n = {
+        setLocaleCookie: jest.fn(),
+        locale: 'en'
+      };
       mutations['SET_USER'](state, {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
-        receiveMonthReport: true
+        receiveMonthReport: true,
+        locale: 'ja'
       });
     });
 
@@ -20,6 +25,11 @@ describe('Mutations', () => {
       expect(state.timeZone).toBe('Asia/Tokyo');
       expect(state.receiveWeekReport).toBe(true);
       expect(state.receiveMonthReport).toBe(true);
+    });
+
+    it('set locale', () => {
+      expect(mutations.$i18n.setLocaleCookie).toHaveBeenCalledWith('ja');
+      expect(mutations.$i18n.locale).toBe('ja');
     });
   });
 });
