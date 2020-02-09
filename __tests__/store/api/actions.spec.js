@@ -1,6 +1,11 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { actions } from '@/store/api';
+import translations from '@/assets/locales/store/api.json';
+import Vue from 'vue';
+import VueI18n from 'vue-i18n';
+
+Vue.use(VueI18n);
 
 describe('Actions', () => {
   let result;
@@ -11,6 +16,7 @@ describe('Actions', () => {
     mock.reset();
     actions.$env = { HACKARU_API_URL: 'http://localhost' };
     actions.app = { i18n: { locale: 'en' } };
+    actions.$i18n = new VueI18n({ locale: 'en', messages: translations });
   });
 
   describe('when dispatch request', () => {
@@ -113,6 +119,44 @@ describe('Actions', () => {
 
     it('returns empty data', () => {
       expect(result.data).toEqual({});
+    });
+  });
+
+  describe('when request is Network Error', () => {
+    beforeEach(() => {
+      mock.onGet('http://localhost/').networkError();
+    });
+
+    it('catch Error with english message', async () => {
+      const request = actions.request({}, { url: '/' });
+      expect(request).rejects.toThrow('Network Error');
+    });
+  });
+
+  describe('when request is Timeout', () => {
+    beforeEach(() => {
+      mock.onGet('http://localhost/').timeout();
+    });
+
+    it('catch Error with english message', async () => {
+      const request = actions.request({}, { url: '/' });
+      expect(request).rejects.toThrow('Timeout Error');
+    });
+  });
+
+  describe('when request aborted', () => {
+    beforeEach(() => {
+      // axios-mock-adapterでRequest abortedのテストを書きたいけど、以下のURLにあるような関数が定義されていないので、
+      // 自前でエラーを発生させる。
+      // https://github.com/ctimmerm/axios-mock-adapter/blob/master/src/index.js#L97
+      mock.onGet('http://localhost/').reply(config => {
+        throw new Error('Request aborted');
+      });
+    });
+
+    it('catch Error with english message', async () => {
+      const request = actions.request({}, { url: '/' });
+      expect(request).rejects.toThrow('Request aborted');
     });
   });
 });
