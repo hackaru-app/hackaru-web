@@ -18,7 +18,7 @@ export const actions = {
         },
         {
           baseURL: this.$env.HACKARU_API_URL,
-          timeout: 10000,
+          timeout: this.$env.HACKARU_API_TIMEOUT || 0,
           headers: { 'Accept-Language': this.app.i18n.locale }
         }
       )
