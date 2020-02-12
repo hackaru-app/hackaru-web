@@ -7,27 +7,38 @@ describe('LocaleSelect', () => {
   let wrapper;
 
   const $store = new Store({});
-  const switchLocalePath = jest.fn();
-  const setLocaleCookie = jest.fn();
-  const $router = { push: jest.fn() };
+  const setLocale = jest.fn();
 
   beforeEach(() => {
     factory = () =>
       shallowMount(LocaleSelect, {
         mocks: {
           $store,
-          switchLocalePath,
-          $router,
           $i18n: {
+            setLocale,
             locale: 'en',
-            setLocaleCookie
+            locales: [
+              {
+                code: 'en',
+                name: 'English'
+              },
+              {
+                code: 'ja',
+                name: '日本語'
+              }
+            ]
           }
         }
       });
   });
 
-  describe('when select', () => {
+  it('has selected value correctly', () => {
+    expect(factory().find({ ref: 'base-select' }).vm.value).toEqual('English');
+  });
+
+  describe('when select and user is logged in', () => {
     beforeEach(() => {
+      $store.getters['auth/loggedIn'] = true;
       wrapper = factory();
       wrapper.find({ ref: 'base-select' }).vm.$emit('change', 'ja');
     });
@@ -36,6 +47,18 @@ describe('LocaleSelect', () => {
       expect($store.dispatch).toHaveBeenCalledWith('user/update', {
         locale: 'ja'
       });
+    });
+  });
+
+  describe('when select and user is not logged in', () => {
+    beforeEach(() => {
+      $store.getters['auth/loggedIn'] = false;
+      wrapper = factory();
+      wrapper.find({ ref: 'base-select' }).vm.$emit('change', 'ja');
+    });
+
+    it('set locale', () => {
+      expect(setLocale).toHaveBeenCalledWith('ja');
     });
   });
 });
