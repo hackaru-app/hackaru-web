@@ -15,7 +15,6 @@ describe('Actions', () => {
   beforeEach(() => {
     mock.reset();
     actions.$env = { HACKARU_API_URL: 'http://localhost' };
-    actions.app = { i18n: { locale: 'en' } };
     actions.$i18n = new VueI18n({ locale: 'en', messages: translations });
   });
 

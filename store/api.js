@@ -32,7 +32,7 @@ export const actions = {
           {
             baseURL: this.$env.HACKARU_API_URL,
             timeout: 10000,
-            headers: { 'Accept-Language': this.app.i18n.locale }
+            headers: { 'Accept-Language': this.$i18n.locale }
           }
         )
       );
