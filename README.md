@@ -1,8 +1,8 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
 [![Build Status](https://travis-ci.org/ktmouk/hackaru-web.svg?branch=master)](https://travis-ci.org/ktmouk/hackaru-web)
-[![Maintainability](https://api.codeclimate.com/v1/badges/fd01121360a3fd652411/maintainability)](https://codeclimate.com/github/ktmouk/hackaru-web/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/fd01121360a3fd652411/test_coverage)](https://codeclimate.com/github/ktmouk/hackaru-web/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f3acee4ccf10e43f8cd7/maintainability)](https://codeclimate.com/github/hackaru-app/hackaru-web/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f3acee4ccf10e43f8cd7/test_coverage)](https://codeclimate.com/github/hackaru-app/hackaru-web/test_coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 <br>
