@@ -24,8 +24,6 @@ jobs:
     - stage: push
       language: minimal
       if: tag =~ ^v
-      env:
-        - IMAGE_NAME=ktmouk/hackaru-web
       services:
         - docker
       script:
@@ -38,6 +36,6 @@ jobs:
             "$(echo "$TRAVIS_TAG" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2.\3/')" \
           )
           for TAG in ${TAGS[@]}; do
-            docker build . -t "$IMAGE_NAME:$TAG"
-            docker push "$IMAGE_NAME:$TAG"
+            docker build . -t "$DOCKER_REPO_NAME:$TAG"
+            docker push "$DOCKER_REPO_NAME:$TAG"
           done
