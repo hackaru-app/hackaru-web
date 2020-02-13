@@ -10,8 +10,7 @@ describe('Mutations', () => {
 
     beforeEach(() => {
       mutations.$i18n = {
-        setLocaleCookie: jest.fn(),
-        locale: 'en'
+        setLocale: jest.fn()
       };
       mutations['SET_USER'](state, {
         timeZone: 'Asia/Tokyo',
@@ -28,8 +27,7 @@ describe('Mutations', () => {
     });
 
     it('set locale', () => {
-      expect(mutations.$i18n.setLocaleCookie).toHaveBeenCalledWith('ja');
-      expect(mutations.$i18n.locale).toBe('ja');
+      expect(mutations.$i18n.setLocale).toHaveBeenCalledWith('ja');
     });
   });
 });

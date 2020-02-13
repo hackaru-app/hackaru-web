@@ -135,13 +135,23 @@ module.exports = {
     [
       'nuxt-i18n',
       {
-        locales: ['ja', 'en'],
+        locales: [
+          {
+            code: 'ja',
+            name: '日本語'
+          },
+          {
+            code: 'en',
+            name: 'English'
+          }
+        ],
         defaultLocale: 'en',
         vueI18nLoader: true,
         vueI18n: {
           fallbackLocale: 'en'
         },
         detectBrowserLanguage: {
+          useCookie: true,
           alwaysRedirect: true
         }
       }
