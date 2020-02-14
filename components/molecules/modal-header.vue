@@ -23,7 +23,6 @@
   align-items: center;
   border-bottom: 1px $border solid;
   padding: 0px 30px;
-  padding-left: 25px;
   margin-bottom: 0;
   box-sizing: border-box;
   justify-content: space-between;

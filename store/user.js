@@ -51,8 +51,7 @@ export const mutations = {
     state.timeZone = payload.timeZone;
     state.receiveWeekReport = payload.receiveWeekReport;
     state.receiveMonthReport = payload.receiveMonthReport;
-    this.$i18n.setLocaleCookie(payload.locale);
-    this.$i18n.locale = payload.locale;
+    this.$i18n.setLocale(payload.locale);
   }
 };
 

@@ -46,4 +46,11 @@ export default {
 .icon.is-danger {
   color: $red;
 }
+
+.feather-chevron-left {
+  margin-left: -5px;
+}
+.feather-chevron-right {
+  margin-right: -5px;
+}
 </style>

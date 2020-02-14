@@ -10,7 +10,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  padding: 20px 25px;
+  padding: 20px 30px;
   align-items: center;
   justify-content: space-between;
 }
