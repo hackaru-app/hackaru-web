@@ -3491,10 +3491,10 @@ camelcase-keys@^2.0.0:
     camelcase "^2.0.0"
     map-obj "^1.0.0"
 
-camelcase-keys@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-6.0.1.tgz#a0d1a03cab5499a7ddcc62b23b4874399ca1dfaf"
-  integrity sha512-Pet+fVo99HMVy183qJuyTiQECQlb0dCXg89qhixcud88j4BSns+gzhSrjRT0ustEYSWJqKMO42arm1cS1VG5FA==
+camelcase-keys@^6.1.2:
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-6.1.2.tgz#531a289aeea93249b63ec1249db9265f305041f7"
+  integrity sha512-QfFrU0CIw2oltVvpndW32kuJ/9YOJwUnmWrjlXt1nnJZHCaS9i6bfOpg9R4Lw8aZjStkJWM+jc0cdXjWBgVJSw==
   dependencies:
     camelcase "^5.3.1"
     map-obj "^4.0.0"
