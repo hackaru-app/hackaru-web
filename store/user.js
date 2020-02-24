@@ -3,7 +3,8 @@ const SET_USER = 'SET_USER';
 export const state = () => ({
   timeZone: 'Etc/UTC',
   receiveWeekReport: false,
-  receiveMonthReport: false
+  receiveMonthReport: false,
+  receiveReminder: false
 });
 
 export const actions = {
@@ -51,6 +52,7 @@ export const mutations = {
     state.timeZone = payload.timeZone;
     state.receiveWeekReport = payload.receiveWeekReport;
     state.receiveMonthReport = payload.receiveMonthReport;
+    state.receiveReminder = payload.receiveReminder;
     this.$i18n.setLocale(payload.locale);
   }
 };
@@ -64,5 +66,8 @@ export const getters = {
   },
   receiveMonthReport: state => {
     return state.receiveMonthReport;
+  },
+  receiveReminder: state => {
+    return state.receiveReminder;
   }
 };

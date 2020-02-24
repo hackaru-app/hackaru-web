@@ -9,7 +9,8 @@ describe('Actions', () => {
       data: {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
-        receiveMonthReport: true
+        receiveMonthReport: true,
+        receiveReminder: true
       }
     }));
 
@@ -32,7 +33,8 @@ describe('Actions', () => {
       expect(commit).toHaveBeenCalledWith('SET_USER', {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
-        receiveMonthReport: true
+        receiveMonthReport: true,
+        receiveReminder: true
       });
     });
 
@@ -47,7 +49,8 @@ describe('Actions', () => {
       data: {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
-        receiveMonthReport: true
+        receiveMonthReport: true,
+        receiveReminder: true
       }
     }));
 
@@ -57,7 +60,8 @@ describe('Actions', () => {
         {
           timeZone: 'Asia/Tokyo',
           receiveWeekReport: true,
-          receiveMonthReport: true
+          receiveMonthReport: true,
+          receiveReminder: true
         }
       );
     });
@@ -72,7 +76,8 @@ describe('Actions', () => {
             user: {
               timeZone: 'Asia/Tokyo',
               receiveWeekReport: true,
-              receiveMonthReport: true
+              receiveMonthReport: true,
+              receiveReminder: true
             }
           }
         },
@@ -84,7 +89,8 @@ describe('Actions', () => {
       expect(commit).toHaveBeenCalledWith('SET_USER', {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
-        receiveMonthReport: true
+        receiveMonthReport: true,
+        receiveReminder: true
       });
     });
 

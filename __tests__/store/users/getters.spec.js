@@ -38,4 +38,16 @@ describe('Getters', () => {
       expect(result).toBe(true);
     });
   });
+
+  describe('when call receiveReminder', () => {
+    const state = { receiveReminder: true };
+
+    beforeEach(() => {
+      result = getters.receiveReminder(state);
+    });
+
+    it('returns receiveReminder', () => {
+      expect(result).toBe(true);
+    });
+  });
 });

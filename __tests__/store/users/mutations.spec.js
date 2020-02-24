@@ -5,7 +5,8 @@ describe('Mutations', () => {
     const state = {
       timeZone: 'Etc/UTC',
       receiveWeekReport: false,
-      receiveMonthReport: false
+      receiveMonthReport: false,
+      receiveReminder: false
     };
 
     beforeEach(() => {
@@ -16,6 +17,7 @@ describe('Mutations', () => {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
         receiveMonthReport: true,
+        receiveReminder: true,
         locale: 'ja'
       });
     });
@@ -24,6 +26,7 @@ describe('Mutations', () => {
       expect(state.timeZone).toBe('Asia/Tokyo');
       expect(state.receiveWeekReport).toBe(true);
       expect(state.receiveMonthReport).toBe(true);
+      expect(state.receiveReminder).toBe(true);
     });
 
     it('set locale', () => {

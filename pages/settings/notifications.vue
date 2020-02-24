@@ -25,6 +25,14 @@
             @change="changeReceiveMonthReport"
           />{{ $t('receiveMonthReport') }}</label
         >
+        <label
+          ><input
+            :checked="receiveReminder"
+            type="checkbox"
+            class="checkbox"
+            @change="changeReceiveReminder"
+          />{{ $t('receiveReminder') }}</label
+        >
       </div>
     </setting-box>
   </section>
@@ -45,7 +53,8 @@ export default {
   computed: {
     ...mapGetters({
       receiveWeekReport: 'user/receiveWeekReport',
-      receiveMonthReport: 'user/receiveMonthReport'
+      receiveMonthReport: 'user/receiveMonthReport',
+      receiveReminder: 'user/receiveReminder'
     })
   },
   methods: {
@@ -58,6 +67,12 @@ export default {
     changeReceiveMonthReport(e) {
       this.$store.dispatch('user/update', {
         receiveMonthReport: e.target.checked
+      });
+      this.$store.dispatch('toast/success', this.$t('updated'));
+    },
+    changeReceiveReminder(e) {
+      this.$store.dispatch('user/update', {
+        receiveReminder: e.target.checked
       });
       this.$store.dispatch('toast/success', this.$t('updated'));
     }
