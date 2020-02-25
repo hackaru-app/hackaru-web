@@ -9,6 +9,43 @@
     </color-scheme>
 
     <div class="content">
+      <div class="projects">
+        <article v-for="project in projects" :key="project.id" class="project">
+          <header class="project-header">
+            <icon name="chevron-down-icon" class="icon" />
+            <project-name :name="project.name" :color="project.color" />
+            <time class="duration">
+              {{ fromS(totals[project.id], 'hh:mm:ss') }}
+            </time>
+            <delta-icon
+              :current="totals[project.id]"
+              :previous="previousTotals[project.id]"
+            />
+          </header>
+          <ul>
+            <li>
+              <project-name :color="project.color" name="テスト" />
+              <time class="duration">
+                {{ fromS(3600, 'hh:mm:ss') }}
+              </time>
+              <delta-icon
+                :current="totals[project.id]"
+                :previous="previousTotals[project.id]"
+              />
+            </li>
+            <li>
+              <project-name :color="project.color" name="テスト" />
+              <time class="duration">
+                {{ fromS(3600, 'hh:mm:ss') }}
+              </time>
+              <delta-icon
+                :current="totals[project.id]"
+                :previous="previousTotals[project.id]"
+              />
+            </li>
+          </ul>
+        </article>
+      </div>
       <div class="doughnut-chart-wrapper">
         <p v-if="empty" class="doughnut-chart-empty" />
         <doughnut-chart
@@ -17,18 +54,6 @@
           class="doughnut-chart"
         />
       </div>
-      <ul class="projects">
-        <li v-for="project in projects" :key="project.id">
-          <project-name :name="project.name" :color="project.color" />
-          <time class="duration">
-            {{ fromS(totals[project.id], 'hh:mm:ss') }}
-          </time>
-          <delta-icon
-            :current="totals[project.id]"
-            :previous="previousTotals[project.id]"
-          />
-        </li>
-      </ul>
     </div>
   </article>
 </template>
@@ -95,11 +120,6 @@ export default {
   padding: 40px;
   box-sizing: border-box;
 }
-.bar-chart-wrapper.printer {
-  position: absolute;
-  top: -100vh;
-  width: 170mm;
-}
 .bar-chart-wrapper {
   max-width: 100%;
   min-width: 200px;
@@ -143,22 +163,52 @@ export default {
   flex-direction: column;
   padding: 0;
   width: 100%;
-  width: 400px;
-  justify-content: center;
+  max-width: 600px;
   margin: 0;
-  margin-left: 40px;
-  li {
-    display: flex;
-    align-items: center;
-    list-style-type: none;
-    list-style-position: inside;
-    padding: 5px 0;
+  margin-right: 50px;
+  box-shadow: 0 3px 5px $shadow;
+  border: 1px $border solid;
+  border-radius: 3px;
+}
+.project {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid $border;
+  &:first-child {
+    border: 0;
   }
+}
+.project-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style-type: none;
+  list-style-position: inside;
+  justify-content: center;
+  padding: 0 20px;
+  height: 60px;
+  .icon {
+    margin-right: 20px;
+  }
+}
+.project ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  box-shadow: 0 3px 5px $shadow inset;
+}
+.project li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid $border;
+  height: 60px;
+  padding-left: 60px;
+  padding-right: 20px;
 }
 .duration {
   flex: 1;
   text-align: right;
-  align-self: flex-end;
   color: $text-light;
   font-family: $font-family-duration;
 }
@@ -184,9 +234,10 @@ export default {
     display: flex;
     justify-content: center;
     padding: 30px 0;
-    border-bottom: 1px $border solid;
+    order: 0;
   }
   .projects {
+    order: 1;
     display: flex;
     flex-grow: 1;
     overflow: hidden;
@@ -194,8 +245,13 @@ export default {
     flex-direction: column;
     box-sizing: border-box;
     margin: 0;
-    padding: 35px 30px;
     width: auto;
+  }
+  .project-header {
+    height: 65px;
+  }
+  .project li {
+    height: 65px;
   }
 }
 @media (prefers-color-scheme: dark) {
