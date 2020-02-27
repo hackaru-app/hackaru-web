@@ -53,17 +53,20 @@ export default {
     previousTotal: {
       type: Number,
       required: true
+    },
+    opened: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      fromS,
-      opened: false
+      fromS
     };
   },
   methods: {
     toggle() {
-      this.opened = !this.opened;
+      this.$emit('toggle', !this.opened);
     },
     leave(el) {
       el.style.height = `${el.scrollHeight}px`;
@@ -98,7 +101,7 @@ export default {
 }
 .project .icon {
   margin-right: 20px;
-  transition: transform 0.1s ease;
+  transition: transform 0.4s ease;
 }
 .project .icon.opened {
   transform: rotate(90deg);

@@ -11,11 +11,13 @@
     <div class="content">
       <div class="accordion">
         <report-accordion-item
-          v-for="project in projects"
+          v-for="(project, index) in projects"
           :key="project.id"
           :project="project"
+          :opened="opened[index]"
           :total="totals[project.id]"
           :previous-total="previousTotals[project.id]"
+          @toggle="opened => toggle(opened, index)"
         />
       </div>
       <div class="doughnut-chart-wrapper">
@@ -69,6 +71,10 @@ export default {
     projects: {
       type: Array,
       required: true
+    },
+    opened: {
+      type: Object,
+      required: true
     }
   },
   data() {
@@ -80,6 +86,14 @@ export default {
     ...mapGetters({
       empty: 'reports/empty'
     })
+  },
+  methods: {
+    toggle(opened, index) {
+      this.$emit('update:opened', {
+        ...this.opened,
+        [index]: opened
+      });
+    }
   }
 };
 </script>

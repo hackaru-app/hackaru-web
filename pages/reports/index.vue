@@ -36,6 +36,7 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
+                :opened="opened"
                 chart-id="prev"
               />
             </div>
@@ -46,6 +47,7 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
+                :opened.sync="opened"
                 chart-id="current"
               />
             </div>
@@ -56,6 +58,7 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
+                :opened="opened"
                 chart-id="next"
               />
             </div>
@@ -133,7 +136,8 @@ export default {
   data() {
     return {
       date: new Date(),
-      currentPeriod: 'day'
+      currentPeriod: 'day',
+      opened: {}
     };
   },
   computed: {
