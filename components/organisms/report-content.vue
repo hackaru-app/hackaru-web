@@ -9,42 +9,14 @@
     </color-scheme>
 
     <div class="content">
-      <div class="projects">
-        <article v-for="project in projects" :key="project.id" class="project">
-          <header class="project-header">
-            <icon name="chevron-down-icon" class="icon" />
-            <project-name :name="project.name" :color="project.color" />
-            <time class="duration">
-              {{ fromS(totals[project.id], 'hh:mm:ss') }}
-            </time>
-            <delta-icon
-              :current="totals[project.id]"
-              :previous="previousTotals[project.id]"
-            />
-          </header>
-          <ul>
-            <li>
-              <project-name :color="project.color" name="テスト" />
-              <time class="duration">
-                {{ fromS(3600, 'hh:mm:ss') }}
-              </time>
-              <delta-icon
-                :current="totals[project.id]"
-                :previous="previousTotals[project.id]"
-              />
-            </li>
-            <li>
-              <project-name :color="project.color" name="テスト" />
-              <time class="duration">
-                {{ fromS(3600, 'hh:mm:ss') }}
-              </time>
-              <delta-icon
-                :current="totals[project.id]"
-                :previous="previousTotals[project.id]"
-              />
-            </li>
-          </ul>
-        </article>
+      <div class="accordion">
+        <report-accordion-item
+          v-for="project in projects"
+          :key="project.id"
+          :project="project"
+          :total="totals[project.id]"
+          :previous-total="previousTotals[project.id]"
+        />
       </div>
       <div class="doughnut-chart-wrapper">
         <p v-if="empty" class="doughnut-chart-empty" />
@@ -60,7 +32,7 @@
 
 <script>
 import Icon from '@/components/atoms/icon';
-import DeltaIcon from '@/components/molecules/delta-icon';
+import ReportAccordionItem from '@/components/molecules/report-accordion-item';
 import ColorScheme from '@/components/atoms/color-scheme';
 import ProjectName from '@/components/molecules/project-name';
 import DoughnutChart from '@/components/atoms/doughnut-chart';
@@ -71,7 +43,7 @@ import { fromS } from 'hh-mm-ss';
 export default {
   components: {
     Icon,
-    DeltaIcon,
+    ReportAccordionItem,
     ColorScheme,
     DoughnutChart,
     BarChart,
@@ -158,7 +130,7 @@ export default {
     border-radius: 50%;
   }
 }
-.projects {
+.accordion {
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -169,48 +141,6 @@ export default {
   box-shadow: 0 3px 5px $shadow;
   border: 1px $border solid;
   border-radius: 3px;
-}
-.project {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid $border;
-  &:first-child {
-    border: 0;
-  }
-}
-.project-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style-type: none;
-  list-style-position: inside;
-  justify-content: center;
-  padding: 0 20px;
-  height: 60px;
-  .icon {
-    margin-right: 20px;
-  }
-}
-.project ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  box-shadow: 0 3px 5px $shadow inset;
-}
-.project li {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border-top: 1px solid $border;
-  height: 60px;
-  padding-left: 60px;
-  padding-right: 20px;
-}
-.duration {
-  flex: 1;
-  text-align: right;
-  color: $text-light;
-  font-family: $font-family-duration;
 }
 @include mq(small) {
   .report-content {
@@ -236,7 +166,7 @@ export default {
     padding: 30px 0;
     order: 0;
   }
-  .projects {
+  .accordion {
     order: 1;
     display: flex;
     flex-grow: 1;
@@ -246,12 +176,6 @@ export default {
     box-sizing: border-box;
     margin: 0;
     width: auto;
-  }
-  .project-header {
-    height: 65px;
-  }
-  .project li {
-    height: 65px;
   }
 }
 @media (prefers-color-scheme: dark) {
