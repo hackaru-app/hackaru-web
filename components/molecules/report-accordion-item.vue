@@ -1,29 +1,31 @@
 <template>
   <article class="report-accordion-item">
-    <header class="project">
-      <icon name="chevron-down-icon" class="icon" />
+    <header class="project" @click="toggle">
+      <icon :class="['icon', { opened: opened }]" name="chevron-right-icon" />
       <project-name :name="project.name" :color="project.color" />
       <time class="duration">
         {{ fromS(total, 'hh:mm:ss') }}
       </time>
       <delta-icon :current="total" :previous="previousTotal" />
     </header>
-    <ul class="descriptions">
-      <li>
-        <project-name :color="project.color" name="テスト" />
-        <time class="duration">
-          {{ fromS(3600, 'hh:mm:ss') }}
-        </time>
-        <delta-icon :current="total" :previous="previousTotal" />
-      </li>
-      <li>
-        <project-name :color="project.color" name="テスト" />
-        <time class="duration">
-          {{ fromS(3600, 'hh:mm:ss') }}
-        </time>
-        <delta-icon :current="total" :previous="previousTotal" />
-      </li>
-    </ul>
+    <transition @enter="enter" @leave="leave">
+      <ul v-if="opened" class="content">
+        <li>
+          <project-name :color="project.color" name="テスト" />
+          <time class="duration">
+            {{ fromS(3600, 'hh:mm:ss') }}
+          </time>
+          <delta-icon :current="total" :previous="previousTotal" />
+        </li>
+        <li>
+          <project-name :color="project.color" name="テスト" />
+          <time class="duration">
+            {{ fromS(3600, 'hh:mm:ss') }}
+          </time>
+          <delta-icon :current="total" :previous="previousTotal" />
+        </li>
+      </ul>
+    </transition>
   </article>
 </template>
 
@@ -55,8 +57,22 @@ export default {
   },
   data() {
     return {
-      fromS
+      fromS,
+      opened: false
     };
+  },
+  methods: {
+    toggle() {
+      this.opened = !this.opened;
+    },
+    leave(el) {
+      el.style.height = `${el.scrollHeight}px`;
+      el.style.height = '0';
+    },
+    enter(el) {
+      el.style.height = '0';
+      el.style.height = `${el.scrollHeight}px`;
+    }
   }
 };
 </script>
@@ -79,17 +95,24 @@ export default {
   justify-content: center;
   padding: 0 20px;
   height: 58px;
-  .icon {
-    margin-right: 20px;
-  }
 }
-.descriptions {
+.project .icon {
+  margin-right: 20px;
+  transition: transform 0.1s ease;
+}
+.project .icon.opened {
+  transform: rotate(90deg);
+}
+.content {
   margin: 0;
   padding: 0;
+  overflow: hidden;
   list-style-type: none;
   box-shadow: 0 3px 5px $shadow inset;
+  transition: all 0.15s ease;
+  background-color: $grey-fdfdfd;
 }
-.descriptions li {
+.content li {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -119,7 +142,7 @@ export default {
   .header {
     height: 65px;
   }
-  .descriptions li {
+  .content li {
     height: 65px;
   }
 }
