@@ -45,7 +45,7 @@
     "sass-loader": "^8.0.0",
     "snakecase-keys": "^3.1.1",
     "style-loader": "^0.23.1",
-    "v-tooltip": "^2.0.2",
+    "v-tooltip": "^2.0.3",
     "vue-chartjs": "^3.5.0",
     "vue-feather-icons": "^5.0.0",
     "vue-gtm": "^2.2.0",
