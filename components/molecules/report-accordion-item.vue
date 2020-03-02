@@ -10,19 +10,11 @@
     </header>
     <transition @enter="enter" @leave="leave">
       <ul v-if="opened" class="content">
-        <li>
-          <project-name :color="project.color" name="テスト" />
+        <li v-for="(activity, index) in groupedActivities[project.id]" :key="index">
+          <project-name :color="project.color" :name="activity.description" />
           <time class="duration">
-            {{ fromS(3600, 'hh:mm:ss') }}
+            {{ fromS(activity.duration, 'hh:mm:ss') }}
           </time>
-          <delta-icon :current="total" :previous="previousTotal" />
-        </li>
-        <li>
-          <project-name :color="project.color" name="テスト" />
-          <time class="duration">
-            {{ fromS(3600, 'hh:mm:ss') }}
-          </time>
-          <delta-icon :current="total" :previous="previousTotal" />
         </li>
       </ul>
     </transition>
@@ -43,6 +35,10 @@ export default {
   },
   props: {
     project: {
+      type: Object,
+      required: true
+    },
+    groupedActivities: {
       type: Object,
       required: true
     },
@@ -122,7 +118,7 @@ export default {
   border-top: 1px solid $border;
   height: 58px;
   padding-left: 60px;
-  padding-right: 20px;
+  padding-right: 50px;
 }
 .duration {
   flex: 1;

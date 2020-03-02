@@ -36,6 +36,7 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
+                :grouped-activities="groupedActivities"
                 :opened="opened"
                 chart-id="prev"
               />
@@ -47,6 +48,7 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
+                :grouped-activities="groupedActivities"
                 :opened.sync="opened"
                 chart-id="current"
               />
@@ -58,6 +60,7 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
+                :grouped-activities="groupedActivities"
                 :opened="opened"
                 chart-id="next"
               />
@@ -146,7 +149,8 @@ export default {
       barChartData: 'reports/barChartData',
       totals: 'reports/totals',
       previousTotals: 'reports/previousTotals',
-      projects: 'reports/projects'
+      projects: 'reports/projects',
+      groupedActivities: 'reports/groupedActivities'
     }),
     period() {
       return periods[this.currentPeriod];
