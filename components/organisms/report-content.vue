@@ -17,7 +17,7 @@
           :opened="opened[index]"
           :total="totals[project.id]"
           :previous-total="previousTotals[project.id]"
-          :grouped-activities="groupedActivities"
+          :activity-groups="activityGroups"
           @toggle="opened => toggle(opened, index)"
         />
       </div>
@@ -73,7 +73,7 @@ export default {
       type: Array,
       required: true
     },
-    groupedActivities: {
+    activityGroups: {
       type: Object,
       required: true
     },

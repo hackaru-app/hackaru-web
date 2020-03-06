@@ -9,11 +9,11 @@
       <delta-icon :current="total" :previous="previousTotal" />
     </header>
     <transition @enter="enter" @leave="leave">
-      <ul v-if="opened" class="content">
-        <li v-for="(activity, index) in groupedActivities[project.id]" :key="index">
-          <project-name :color="project.color" :name="activity.description" />
+      <ul v-if="opened && activityGroups[project.id]" class="content">
+        <li v-for="(group, index) in activityGroups[project.id]" :key="index">
+          <project-name :color="project.color" :name="group.description" />
           <time class="duration">
-            {{ fromS(activity.duration, 'hh:mm:ss') }}
+            {{ fromS(group.duration, 'hh:mm:ss') }}
           </time>
         </li>
       </ul>
@@ -38,7 +38,7 @@ export default {
       type: Object,
       required: true
     },
-    groupedActivities: {
+    activityGroups: {
       type: Object,
       required: true
     },

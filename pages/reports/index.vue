@@ -36,7 +36,7 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
-                :grouped-activities="groupedActivities"
+                :activity-groups="activityGroups"
                 :opened="opened"
                 chart-id="prev"
               />
@@ -48,7 +48,7 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
-                :grouped-activities="groupedActivities"
+                :activity-groups="activityGroups"
                 :opened.sync="opened"
                 chart-id="current"
               />
@@ -60,7 +60,7 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
-                :grouped-activities="groupedActivities"
+                :activity-groups="activityGroups"
                 :opened="opened"
                 chart-id="next"
               />
@@ -150,7 +150,7 @@ export default {
       totals: 'reports/totals',
       previousTotals: 'reports/previousTotals',
       projects: 'reports/projects',
-      groupedActivities: 'reports/groupedActivities'
+      activityGroups: 'reports/activityGroups'
     }),
     period() {
       return periods[this.currentPeriod];

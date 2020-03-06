@@ -1,3 +1,5 @@
+import groupBy from 'lodash.groupby';
+
 export const SET_REPORTS = 'SET_REPORTS';
 export const SET_PREVIOUS_TOTALS = 'SET_PREVIOUS_TOTALS';
 
@@ -7,8 +9,7 @@ export const state = () => ({
   previousTotals: {},
   labels: [],
   sums: {},
-  groupedActivities: {},
-  previousGroupedActivities: {},
+  activityGroups: {}
 });
 
 export const actions = {
@@ -43,11 +44,10 @@ export const actions = {
         totals: current.data.totals,
         labels: current.data.labels,
         sums: current.data.sums,
-        groupedActivities: current.data.groupedActivities
+        activityGroups: current.data.activityGroups
       });
       commit(SET_PREVIOUS_TOTALS, {
-        totals: previous.data.totals,
-        groupedActivities: current.data.groupedActivities
+        totals: previous.data.totals
       });
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -103,11 +103,10 @@ export const mutations = {
     state.sums = payload.sums;
     state.start = payload.start;
     state.end = payload.end;
-    state.groupedActivities = payload.groupedActivities;
+    state.activityGroups = payload.activityGroups;
   },
   [SET_PREVIOUS_TOTALS](state, payload) {
     state.previousTotals = payload.totals;
-    state.previousGroupedActivities = payload.groupedActivities;
   }
 };
 
@@ -121,8 +120,8 @@ export const getters = {
   previousTotals: state => {
     return state.previousTotals;
   },
-  groupedActivities: state => {
-    return state.groupedActivities;
+  activityGroups: state => {
+    return groupBy(state.activityGroups, 'project.id');
   },
   empty: state => {
     return !Object.values(state.totals).find(value => value > 0);
