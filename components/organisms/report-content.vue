@@ -9,6 +9,14 @@
     </color-scheme>
 
     <div class="content">
+      <div class="doughnut-chart-wrapper">
+        <p v-if="empty" class="doughnut-chart-empty" />
+        <doughnut-chart
+          v-if="!empty"
+          :chart-data="doughnutChartData"
+          class="doughnut-chart"
+        />
+      </div>
       <div class="accordion">
         <report-accordion-item
           v-for="(project, index) in projects"
@@ -19,14 +27,6 @@
           :previous-total="previousTotals[project.id]"
           :activity-groups="activityGroups"
           @toggle="opened => toggle(opened, index)"
-        />
-      </div>
-      <div class="doughnut-chart-wrapper">
-        <p v-if="empty" class="doughnut-chart-empty" />
-        <doughnut-chart
-          v-if="!empty"
-          :chart-data="doughnutChartData"
-          class="doughnut-chart"
         />
       </div>
     </div>
@@ -126,7 +126,12 @@ export default {
   margin-top: 50px;
 }
 .doughnut-chart-wrapper {
-  margin: 0 20px;
+  margin-right: 40px;
+  align-self: start;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 3px 5px $shadow;
+  border: 1px $border solid;
 }
 .doughnut-chart,
 .doughnut-chart-empty {

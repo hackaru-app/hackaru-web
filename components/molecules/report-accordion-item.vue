@@ -1,23 +1,28 @@
 <template>
   <article class="report-accordion-item">
     <header class="project" @click="toggle">
-      <icon :class="['icon', { opened: opened }]" name="chevron-right-icon" />
+      <icon
+        :class="[
+          'icon',
+          { empty: !activityGroups[project.id] },
+          { opened: opened }
+        ]"
+        name="chevron-right-icon"
+      />
       <project-name :name="project.name" :color="project.color" />
       <time class="duration">
         {{ fromS(total, 'hh:mm:ss') }}
       </time>
       <delta-icon :current="total" :previous="previousTotal" />
     </header>
-    <transition @enter="enter" @leave="leave">
-      <ul v-if="opened && activityGroups[project.id]" class="content">
-        <li v-for="(group, index) in activityGroups[project.id]" :key="index">
-          <project-name :color="project.color" :name="group.description" />
-          <time class="duration">
-            {{ fromS(group.duration, 'hh:mm:ss') }}
-          </time>
-        </li>
-      </ul>
-    </transition>
+    <ul v-if="opened && activityGroups[project.id]" class="content">
+      <li v-for="(group, index) in activityGroups[project.id]" :key="index">
+        <project-name :color="project.color" :name="group.description" />
+        <time class="duration">
+          {{ fromS(group.duration, 'hh:mm:ss') }}
+        </time>
+      </li>
+    </ul>
   </article>
 </template>
 
@@ -97,10 +102,13 @@ export default {
 }
 .project .icon {
   margin-right: 20px;
-  transition: transform 0.4s ease;
+  transition: transform 0.1s ease;
 }
 .project .icon.opened {
   transform: rotate(90deg);
+}
+.project .icon.empty {
+  color: $text-lighter;
 }
 .content {
   margin: 0;
