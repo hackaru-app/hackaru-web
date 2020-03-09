@@ -119,6 +119,7 @@ export default {
   list-style-type: none;
   box-shadow: 0 3px 5px $shadow inset;
   transition: all 0.15s ease;
+  background-color: $grey-fdfdfd;
 }
 .content li {
   display: flex;
@@ -155,6 +156,11 @@ export default {
   }
   .content li {
     height: 65px;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .content {
+    background-color: $background-hover;
   }
 }
 </style>
