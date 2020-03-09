@@ -161,7 +161,6 @@ export default {
   width: 100%;
   max-width: 600px;
   margin: 0;
-  margin-right: 50px;
   box-shadow: 0 3px 5px $shadow;
   border: 1px $border solid;
   border-radius: 3px;

@@ -15,14 +15,16 @@
       </time>
       <delta-icon :current="total" :previous="previousTotal" />
     </header>
-    <ul v-if="opened && activityGroups[project.id]" class="content">
-      <li v-for="(group, index) in activityGroups[project.id]" :key="index">
-        <project-name :color="project.color" :name="group.description" />
-        <time class="duration">
-          {{ fromS(group.duration, 'hh:mm:ss') }}
-        </time>
-      </li>
-    </ul>
+    <transition @enter="enter" @leave="leave">
+      <ul v-if="opened && activityGroups[project.id]" class="content">
+        <li v-for="(group, index) in activityGroups[project.id]" :key="index">
+          <project-name :color="project.color" :name="group.description" />
+          <time class="duration">
+            {{ fromS(group.duration, 'hh:mm:ss') }}
+          </time>
+        </li>
+      </ul>
+    </transition>
   </article>
 </template>
 
