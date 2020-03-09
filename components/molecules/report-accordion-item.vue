@@ -100,7 +100,7 @@ export default {
   list-style-position: inside;
   justify-content: center;
   padding: 0 20px;
-  height: 58px;
+  height: 60px;
 }
 .project .icon {
   margin-right: 20px;
@@ -119,14 +119,13 @@ export default {
   list-style-type: none;
   box-shadow: 0 3px 5px $shadow inset;
   transition: all 0.15s ease;
-  background-color: $grey-fdfdfd;
 }
 .content li {
   display: flex;
   flex-direction: row;
   align-items: center;
   border-top: 1px solid $border;
-  height: 58px;
+  height: 65px;
   padding-left: 60px;
   padding-right: 50px;
 }
@@ -149,6 +148,9 @@ export default {
     width: auto;
   }
   .header {
+    height: 65px;
+  }
+  .project {
     height: 65px;
   }
   .content li {

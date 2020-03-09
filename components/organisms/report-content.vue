@@ -159,7 +159,7 @@ export default {
   flex-direction: column;
   padding: 0;
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
   margin: 0;
   box-shadow: 0 3px 5px $shadow;
   border: 1px $border solid;
@@ -185,9 +185,13 @@ export default {
   }
   .doughnut-chart-wrapper {
     display: flex;
+    align-self: center;
     justify-content: center;
     padding: 30px 0;
     order: 0;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
   }
   .accordion {
     order: 1;
@@ -199,6 +203,9 @@ export default {
     box-sizing: border-box;
     margin: 0;
     width: auto;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
   }
 }
 @media (prefers-color-scheme: dark) {
