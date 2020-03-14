@@ -32,7 +32,6 @@ export default {
   overflow: hidden;
 }
 p {
-  width: 100%;
   display: inline;
   margin: 0;
   text-overflow: ellipsis;

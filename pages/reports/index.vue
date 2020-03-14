@@ -232,6 +232,17 @@ export default {
   min-height: 100vh;
   box-shadow: -3px 0 3px $shadow;
 }
+.containers {
+  display: flex;
+  flex-direction: row;
+}
+.slider-item {
+  display: flex;
+  align-items: flex-start;
+  min-width: 100%;
+  min-height: 100vh;
+  box-shadow: -3px 0 3px $shadow;
+}
 .tools {
   display: flex;
   padding: 0 40px;
