@@ -15,7 +15,8 @@ describe('Actions', () => {
         projects: [],
         sums: [],
         totals: {},
-        labels: []
+        labels: [],
+        activityGroups: []
       }
     }));
 
@@ -70,7 +71,8 @@ describe('Actions', () => {
         projects: [],
         sums: [],
         totals: {},
-        labels: []
+        labels: [],
+        activityGroups: []
       });
     });
 
