@@ -265,6 +265,9 @@ export default {
     border: 0;
     box-shadow: none;
   }
+  .details article {
+    height: 70px;
+  }
   .details header {
     background: none;
   }

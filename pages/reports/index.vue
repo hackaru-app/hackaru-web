@@ -9,7 +9,7 @@
       :current-period.sync="currentPeriod"
       :title="title"
       :has-today="hasToday"
-      class="date-header"
+      class="date-header sticky"
       @today="today"
       @left="slideLeft"
       @right="slideRight"
@@ -256,6 +256,9 @@ export default {
   }
 }
 @media screen and (max-width: 640px) {
+  .date-header {
+    top: $side-bar-min-height;
+  }
   .tools {
     padding: 0;
   }
