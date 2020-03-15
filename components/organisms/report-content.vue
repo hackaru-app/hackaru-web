@@ -215,7 +215,7 @@ export default {
   min-width: 1px;
   border-bottom: 1px solid $border;
   justify-content: space-between;
-  height: 62px;
+  height: 65px;
   padding: 0 30px;
   &:last-child {
     border: 0;
@@ -266,7 +266,10 @@ export default {
     box-shadow: none;
   }
   .details article {
-    height: 60px;
+    height: 70px;
+  }
+  .details header {
+    background: none;
   }
 }
 @media (prefers-color-scheme: dark) {

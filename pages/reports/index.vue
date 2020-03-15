@@ -9,7 +9,7 @@
       :current-period.sync="currentPeriod"
       :title="title"
       :has-today="hasToday"
-      class="date-header"
+      class="date-header sticky"
       @today="today"
       @left="slideLeft"
       @right="slideRight"
