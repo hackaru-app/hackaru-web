@@ -9,60 +9,58 @@
     </color-scheme>
 
     <div class="content">
-      <div class="doughnut-chart-wrapper">
+      <section class="doughnut-chart-wrapper">
         <p v-if="empty" class="doughnut-chart-empty" />
         <doughnut-chart
           v-if="!empty"
           :chart-data="doughnutChartData"
           class="doughnut-chart"
         />
-      </div>
-      <div class="accordion">
-        <div class="tabs-wrapper">
+      </section>
+      <section class="details">
+        <header>
           <tabs
             :items="['プロジェクト', '計測']"
             :index="selectedIndex"
             class="tabs"
             @change="change"
           />
-        </div>
-        <div v-if="selectedIndex == 0" class="projects">
-          <report-accordion-item
-            v-for="(project, index) in projects"
-            :key="project.id"
-            :project="project"
-            :opened="opened[index]"
-            :total="totals[project.id]"
-            :previous-total="previousTotals[project.id]"
-            @toggle="opened => toggle(opened, index)"
-          />
-        </div>
-        <div v-if="selectedIndex == 1" class="activities">
+        </header>
+        <section v-if="selectedIndex == 0">
+          <article v-for="project in projects" :key="project.id">
+            <project-name :name="project.name" :color="project.color" />
+            <time class="duration">
+              {{ fromS(totals[project.id], 'hh:mm:ss') }}
+            </time>
+            <delta-icon
+              :current="totals[project.id]"
+              :previous="previousTotals[project.id]"
+            />
+          </article>
+        </section>
+        <section v-if="selectedIndex == 1">
           <article
             v-for="activityGroup in activityGroups"
             :key="activityGroup.id"
-            class="report-accordion-item"
           >
-            <header class="project">
-              <project-name
-                :name="activityGroup.description"
-                :color="activityGroup.project.color"
-              />
-              <time class="duration">
-                {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
-              </time>
-            </header>
+            <project-name
+              :name="activityGroup.description"
+              :color="activityGroup.project.color"
+            />
+            <time class="duration">
+              {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
+            </time>
           </article>
-        </div>
-      </div>
+        </section>
+      </section>
     </div>
   </article>
 </template>
 
 <script>
 import Tabs from '@/components/molecules/tabs';
+import DeltaIcon from '@/components/molecules/delta-icon';
 import Icon from '@/components/atoms/icon';
-import ReportAccordionItem from '@/components/molecules/report-accordion-item';
 import ColorScheme from '@/components/atoms/color-scheme';
 import ProjectName from '@/components/molecules/project-name';
 import DoughnutChart from '@/components/atoms/doughnut-chart';
@@ -74,7 +72,7 @@ export default {
   components: {
     Icon,
     Tabs,
-    ReportAccordionItem,
+    DeltaIcon,
     ColorScheme,
     DoughnutChart,
     BarChart,
@@ -140,20 +138,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.tabs-wrapper {
-  padding: 20px;
-  padding-bottom: 20px;
-  list-style-type: none;
-  box-shadow: 0 3px 5px $shadow;
-  display: flex;
-  border-bottom: 1px solid $border;
-  li {
-    background: #f5f5f5;
-    padding: 10px 15px;
-    margin-right: 10px;
-    border-radius: 5px;
-  }
-}
 .report-content {
   display: flex;
   flex-direction: column;
@@ -173,7 +157,6 @@ export default {
   height: 100%;
 }
 .content {
-  // width: 100%;
   display: flex;
   margin-top: 50px;
 }
@@ -208,7 +191,7 @@ export default {
     border-radius: 50%;
   }
 }
-.accordion {
+.details {
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -220,37 +203,16 @@ export default {
   border: 1px $border solid;
   border-radius: 3px;
 }
-
-.report-accordion-item {
+.details header {
+  padding: 20px;
+  list-style-type: none;
+  box-shadow: 0 3px 5px $shadow;
+  display: flex;
+  border-bottom: 1px solid $border;
+}
+.details article {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid $border;
-  &:last-child {
-    border: 0;
-  }
-}
-.project {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style-type: none;
-  list-style-position: inside;
-  justify-content: center;
-  padding: 0 30px;
-  height: 60px;
-}
-.project .icon {
-  margin-right: 20px;
-  transition: transform 0.1s linear;
-}
-.project .icon.opened {
-  transform: rotate(90deg);
-}
-.project .icon.empty {
-  color: $text-lighter;
-}
-.content li {
-  display: flex;
   overflow: hidden;
   box-sizing: border-box;
   flex-direction: row;
@@ -259,51 +221,15 @@ export default {
   border-bottom: 1px solid $border;
   justify-content: space-between;
   height: 65px;
-  margin-left: 60px;
-  padding-right: 50px;
+  padding: 0 30px;
   &:last-child {
-    margin-left: 0;
-    padding-left: 60px;
-    padding-bottom: 30px;
+    border: 0;
   }
   .duration {
-    padding-left: 20px;
-  }
-}
-.duration {
-  flex: 1;
-  text-align: right;
-  color: $text-light;
-  font-family: $font-family-duration;
-}
-@include mq(small) {
-  .accordion {
-    box-shadow: none;
-  }
-  .report-accordion-item {
-    order: 1;
-    display: flex;
-    flex-grow: 1;
-    overflow: hidden;
-    overflow-y: scroll;
-    flex-direction: column;
-    box-sizing: border-box;
-    margin: 0;
-    width: auto;
-  }
-  .header {
-    height: 65px;
-  }
-  .project {
-    height: 65px;
-  }
-  .content li {
-    height: 65px;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  .content {
-    background-color: $background-hover;
+    flex: 1;
+    text-align: right;
+    color: $text-light;
+    font-family: $font-family-duration;
   }
 }
 @include mq(small) {
@@ -335,17 +261,7 @@ export default {
     border: 0;
     box-shadow: none;
   }
-  .accordion {
-    order: 1;
-    display: flex;
-    flex-grow: 1;
-    overflow: hidden;
-    overflow-y: scroll;
-    flex-direction: column;
-    box-sizing: border-box;
-    margin: 0;
-    width: auto;
-    border-radius: 0;
+  .details {
     border-left: 0;
     border-right: 0;
   }
