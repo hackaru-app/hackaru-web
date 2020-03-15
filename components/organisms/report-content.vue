@@ -166,8 +166,8 @@ export default {
 .doughnut-chart,
 .doughnut-chart-empty {
   display: flex;
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
 }
 .doughnut-chart-empty {
   display: flex;
