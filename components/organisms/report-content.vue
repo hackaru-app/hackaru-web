@@ -215,7 +215,7 @@ export default {
   min-width: 1px;
   border-bottom: 1px solid $border;
   justify-content: space-between;
-  height: 65px;
+  height: 62px;
   padding: 0 30px;
   &:last-child {
     border: 0;
@@ -257,10 +257,9 @@ export default {
     box-shadow: none;
   }
   .details {
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
+    border: 0;
     box-shadow: none;
+    height: 60px;
   }
 }
 @media (prefers-color-scheme: dark) {
