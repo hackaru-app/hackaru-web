@@ -37,6 +37,7 @@
                 :previous-totals="previousTotals"
                 :projects="projects"
                 :activity-groups="activityGroups"
+                :selected-index.sync="selectedIndex"
                 :opened="opened"
                 chart-id="prev"
               />
@@ -49,6 +50,7 @@
                 :previous-totals="previousTotals"
                 :projects="projects"
                 :activity-groups="activityGroups"
+                :selected-index.sync="selectedIndex"
                 :opened.sync="opened"
                 chart-id="current"
               />
@@ -61,6 +63,7 @@
                 :previous-totals="previousTotals"
                 :projects="projects"
                 :activity-groups="activityGroups"
+                :selected-index.sync="selectedIndex"
                 :opened="opened"
                 chart-id="next"
               />
@@ -140,7 +143,8 @@ export default {
     return {
       date: new Date(),
       currentPeriod: 'day',
-      opened: {}
+      opened: {},
+      selectedIndex: 0
     };
   },
   computed: {

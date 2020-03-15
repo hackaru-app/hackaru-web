@@ -108,12 +108,15 @@ export default {
     opened: {
       type: Object,
       required: true
+    },
+    selectedIndex: {
+      type: Number,
+      required: true
     }
   },
   data() {
     return {
-      fromS,
-      selectedIndex: 0
+      fromS
     };
   },
   computed: {
@@ -129,7 +132,8 @@ export default {
       });
     },
     change(index) {
-      this.selectedIndex = index;
+      this.$emit('update:selectedIndex', index);
+      // this.selectedIndex = index;
     }
   }
 };
