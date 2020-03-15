@@ -196,6 +196,7 @@ export default {
 }
 .details header {
   padding: 20px;
+  padding-top: 18px;
   list-style-type: none;
   box-shadow: 0 3px 5px $shadow;
   display: flex;
