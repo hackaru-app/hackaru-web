@@ -209,6 +209,7 @@ export default {
   box-shadow: 0 3px 5px $shadow;
   display: flex;
   border-bottom: 1px solid $border;
+  background-color: $background-translucent;
 }
 .details article {
   display: flex;
@@ -264,6 +265,7 @@ export default {
   .details {
     border-left: 0;
     border-right: 0;
+    border-bottom: 0;
   }
 }
 @media (prefers-color-scheme: dark) {
