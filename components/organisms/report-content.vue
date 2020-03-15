@@ -103,10 +103,6 @@ export default {
       type: Array,
       required: true
     },
-    opened: {
-      type: Object,
-      required: true
-    },
     selectedIndex: {
       type: Number,
       required: true
@@ -123,15 +119,8 @@ export default {
     })
   },
   methods: {
-    toggle(opened, index) {
-      this.$emit('update:opened', {
-        ...this.opened,
-        [index]: opened
-      });
-    },
     change(index) {
       this.$emit('update:selectedIndex', index);
-      // this.selectedIndex = index;
     }
   }
 };
@@ -230,6 +219,7 @@ export default {
     flex: 1;
     text-align: right;
     color: $text-light;
+    padding-left: 20px;
     font-family: $font-family-duration;
   }
 }
@@ -252,7 +242,6 @@ export default {
     flex-direction: column;
   }
   .doughnut-chart-wrapper {
-    position: static;
     display: flex;
     align-self: center;
     justify-content: center;

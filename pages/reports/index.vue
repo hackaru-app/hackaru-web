@@ -38,7 +38,6 @@
                 :projects="projects"
                 :activity-groups="activityGroups"
                 :selected-index.sync="selectedIndex"
-                :opened="opened"
                 chart-id="prev"
               />
             </div>
@@ -51,7 +50,6 @@
                 :projects="projects"
                 :activity-groups="activityGroups"
                 :selected-index.sync="selectedIndex"
-                :opened.sync="opened"
                 chart-id="current"
               />
             </div>
@@ -64,7 +62,6 @@
                 :projects="projects"
                 :activity-groups="activityGroups"
                 :selected-index.sync="selectedIndex"
-                :opened="opened"
                 chart-id="next"
               />
             </div>
@@ -143,7 +140,6 @@ export default {
     return {
       date: new Date(),
       currentPeriod: 'day',
-      opened: {},
       selectedIndex: 0
     };
   },
@@ -224,17 +220,6 @@ export default {
 <style scoped lang="scss">
 .reports-wrapper {
   overflow: hidden;
-}
-.containers {
-  display: flex;
-  flex-direction: row;
-}
-.slider-item {
-  display: flex;
-  align-items: flex-start;
-  min-width: 100%;
-  min-height: 100vh;
-  box-shadow: -3px 0 3px $shadow;
 }
 .containers {
   display: flex;
