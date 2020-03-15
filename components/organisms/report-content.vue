@@ -166,8 +166,8 @@ export default {
 .doughnut-chart,
 .doughnut-chart-empty {
   display: flex;
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
 }
 .doughnut-chart-empty {
   display: flex;
@@ -238,6 +238,11 @@ export default {
     padding: 0 0;
     align-self: center;
   }
+  .doughnut-chart,
+  .doughnut-chart-empty {
+    width: 160px;
+    height: 160px;
+  }
   .bar-chart-wrapper {
     height: 130px;
   }
@@ -259,6 +264,8 @@ export default {
   .details {
     border: 0;
     box-shadow: none;
+  }
+  .details article {
     height: 60px;
   }
 }
