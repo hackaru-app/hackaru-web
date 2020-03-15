@@ -45,9 +45,9 @@
             v-for="activityGroup in activityGroups"
             :key="activityGroup.id"
           >
-            <project-name
-              :name="activityGroup.description"
-              :color="activityGroup.project.color"
+            <activity-name
+              :description="activityGroup.description"
+              :project="activityGroup.project"
             />
             <time class="duration">
               {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
@@ -65,6 +65,7 @@ import DeltaIcon from '@/components/molecules/delta-icon';
 import Icon from '@/components/atoms/icon';
 import ColorScheme from '@/components/atoms/color-scheme';
 import ProjectName from '@/components/molecules/project-name';
+import ActivityName from '@/components/molecules/activity-name';
 import DoughnutChart from '@/components/atoms/doughnut-chart';
 import BarChart from '@/components/atoms/bar-chart';
 import { mapGetters } from 'vuex';
@@ -78,7 +79,8 @@ export default {
     ColorScheme,
     DoughnutChart,
     BarChart,
-    ProjectName
+    ProjectName,
+    ActivityName
   },
   props: {
     barChartData: {
