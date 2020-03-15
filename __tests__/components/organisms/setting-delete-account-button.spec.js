@@ -5,10 +5,6 @@ import SettingDeleteAccountButton from '@/components/organisms/setting-delete-ac
 describe('SettingDeleteAccountButton', () => {
   let wrapper;
 
-  const location = jest
-    .spyOn(window.location, 'assign')
-    .mockImplementation(() => {});
-
   const $store = new Store({});
   const $modal = { show: jest.fn() };
   const factory = () =>
@@ -18,6 +14,9 @@ describe('SettingDeleteAccountButton', () => {
         $modal
       }
     });
+
+  delete window.location;
+  window.location = { assign: jest.fn() };
 
   beforeEach(() => {
     $store.reset();
@@ -50,7 +49,7 @@ describe('SettingDeleteAccountButton', () => {
     });
 
     it('redirect to index', () => {
-      expect(location).toHaveBeenCalledWith('/en/index');
+      expect(window.location.assign).toHaveBeenCalledWith('/en/index');
     });
   });
 
