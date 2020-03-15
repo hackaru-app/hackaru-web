@@ -1,3 +1,5 @@
+<i18n src="@/assets/locales/components/organisms/report-content.json"></i18n>
+
 <template>
   <article class="report-content">
     <color-scheme v-slot="{ isDark }" class="bar-chart-wrapper">
@@ -20,7 +22,7 @@
       <section class="details">
         <header>
           <tabs
-            :items="['プロジェクト', '計測']"
+            :items="[$t('projects'), $t('activities')]"
             :index="selectedIndex"
             class="tabs"
             @change="change"
@@ -255,6 +257,7 @@ export default {
     border-left: 0;
     border-right: 0;
     border-bottom: 0;
+    box-shadow: none;
   }
 }
 @media (prefers-color-scheme: dark) {
