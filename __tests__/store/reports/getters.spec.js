@@ -45,6 +45,20 @@ describe('Getters', () => {
     });
   });
 
+  describe('when call activityGroups', () => {
+    const state = {
+      activityGroups: []
+    };
+
+    beforeEach(() => {
+      result = getters.activityGroups(state);
+    });
+
+    it('returns previousTotals', () => {
+      expect(result).toEqual([]);
+    });
+  });
+
   describe('when call empty and totals is empty', () => {
     const state = {
       totals: {}

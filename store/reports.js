@@ -6,7 +6,8 @@ export const state = () => ({
   totals: {},
   previousTotals: {},
   labels: [],
-  sums: {}
+  sums: {},
+  activityGroups: []
 });
 
 export const actions = {
@@ -40,7 +41,8 @@ export const actions = {
         projects: current.data.projects,
         totals: current.data.totals,
         labels: current.data.labels,
-        sums: current.data.sums
+        sums: current.data.sums,
+        activityGroups: current.data.activityGroups
       });
       commit(SET_PREVIOUS_TOTALS, {
         totals: previous.data.totals
@@ -99,6 +101,7 @@ export const mutations = {
     state.sums = payload.sums;
     state.start = payload.start;
     state.end = payload.end;
+    state.activityGroups = payload.activityGroups;
   },
   [SET_PREVIOUS_TOTALS](state, payload) {
     state.previousTotals = payload.totals;
@@ -114,6 +117,9 @@ export const getters = {
   },
   previousTotals: state => {
     return state.previousTotals;
+  },
+  activityGroups: state => {
+    return state.activityGroups;
   },
   empty: state => {
     return !Object.values(state.totals).find(value => value > 0);

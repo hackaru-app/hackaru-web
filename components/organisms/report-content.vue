@@ -1,3 +1,5 @@
+<i18n src="@/assets/locales/components/organisms/report-content.json"></i18n>
+
 <template>
   <article class="report-content">
     <color-scheme v-slot="{ isDark }" class="bar-chart-wrapper">
@@ -9,33 +11,58 @@
     </color-scheme>
 
     <div class="content">
-      <div class="doughnut-chart-wrapper">
+      <section class="doughnut-chart-wrapper">
         <p v-if="empty" class="doughnut-chart-empty" />
         <doughnut-chart
           v-if="!empty"
           :chart-data="doughnutChartData"
           class="doughnut-chart"
         />
-      </div>
-      <ul class="projects">
-        <li v-for="project in projects" :key="project.id">
-          <project-name :name="project.name" :color="project.color" />
-          <time class="duration">
-            {{ fromS(totals[project.id], 'hh:mm:ss') }}
-          </time>
-          <delta-icon
-            :current="totals[project.id]"
-            :previous="previousTotals[project.id]"
+      </section>
+      <section class="details">
+        <header>
+          <tabs
+            :items="[$t('projects'), $t('activities')]"
+            :index="selectedIndex"
+            class="tabs"
+            @change="change"
           />
-        </li>
-      </ul>
+        </header>
+        <section v-if="selectedIndex == 0">
+          <article v-for="project in projects" :key="project.id">
+            <project-name :name="project.name" :color="project.color" />
+            <time class="duration">
+              {{ fromS(totals[project.id], 'hh:mm:ss') }}
+            </time>
+            <delta-icon
+              :current="totals[project.id]"
+              :previous="previousTotals[project.id]"
+            />
+          </article>
+        </section>
+        <section v-if="selectedIndex == 1">
+          <article
+            v-for="activityGroup in activityGroups"
+            :key="activityGroup.id"
+          >
+            <project-name
+              :name="activityGroup.description"
+              :color="activityGroup.project.color"
+            />
+            <time class="duration">
+              {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
+            </time>
+          </article>
+        </section>
+      </section>
     </div>
   </article>
 </template>
 
 <script>
-import Icon from '@/components/atoms/icon';
+import Tabs from '@/components/molecules/tabs';
 import DeltaIcon from '@/components/molecules/delta-icon';
+import Icon from '@/components/atoms/icon';
 import ColorScheme from '@/components/atoms/color-scheme';
 import ProjectName from '@/components/molecules/project-name';
 import DoughnutChart from '@/components/atoms/doughnut-chart';
@@ -46,6 +73,7 @@ import { fromS } from 'hh-mm-ss';
 export default {
   components: {
     Icon,
+    Tabs,
     DeltaIcon,
     ColorScheme,
     DoughnutChart,
@@ -72,6 +100,14 @@ export default {
     projects: {
       type: Array,
       required: true
+    },
+    activityGroups: {
+      type: Array,
+      required: true
+    },
+    selectedIndex: {
+      type: Number,
+      required: true
     }
   },
   data() {
@@ -83,6 +119,11 @@ export default {
     ...mapGetters({
       empty: 'reports/empty'
     })
+  },
+  methods: {
+    change(index) {
+      this.$emit('update:selectedIndex', index);
+    }
   }
 };
 </script>
@@ -93,12 +134,8 @@ export default {
   flex-direction: column;
   width: 100%;
   padding: 40px;
+  padding-bottom: 45px;
   box-sizing: border-box;
-}
-.bar-chart-wrapper.printer {
-  position: absolute;
-  top: -100vh;
-  width: 170mm;
 }
 .bar-chart-wrapper {
   max-width: 100%;
@@ -115,13 +152,20 @@ export default {
   margin-top: 50px;
 }
 .doughnut-chart-wrapper {
-  margin: 0 20px;
+  position: sticky;
+  top: 40px;
+  margin-right: 40px;
+  align-self: start;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 3px 5px $shadow;
+  border: 1px $border solid;
 }
 .doughnut-chart,
 .doughnut-chart-empty {
   display: flex;
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
 }
 .doughnut-chart-empty {
   display: flex;
@@ -138,29 +182,48 @@ export default {
     border-radius: 50%;
   }
 }
-.projects {
+.details {
   display: flex;
   flex-direction: column;
   padding: 0;
-  width: 100%;
-  width: 400px;
-  justify-content: center;
-  margin: 0;
-  margin-left: 40px;
-  li {
-    display: flex;
-    align-items: center;
-    list-style-type: none;
-    list-style-position: inside;
-    padding: 5px 0;
-  }
-}
-.duration {
+  min-width: 1px;
+  max-width: 650px;
   flex: 1;
-  text-align: right;
-  align-self: flex-end;
-  color: $text-light;
-  font-family: $font-family-duration;
+  margin: 0;
+  box-shadow: 0 3px 5px $shadow;
+  border: 1px $border solid;
+  border-radius: 3px;
+}
+.details header {
+  padding: 20px;
+  list-style-type: none;
+  box-shadow: 0 3px 5px $shadow;
+  display: flex;
+  border-bottom: 1px solid $border;
+  background-color: $background-translucent;
+}
+.details article {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+  min-width: 1px;
+  border-bottom: 1px solid $border;
+  justify-content: space-between;
+  height: 65px;
+  padding: 0 30px;
+  &:last-child {
+    border: 0;
+  }
+  .duration {
+    flex: 1;
+    text-align: right;
+    color: $text-light;
+    padding-left: 20px;
+    font-family: $font-family-duration;
+  }
 }
 @include mq(small) {
   .report-content {
@@ -182,20 +245,19 @@ export default {
   }
   .doughnut-chart-wrapper {
     display: flex;
+    align-self: center;
     justify-content: center;
     padding: 30px 0;
-    border-bottom: 1px $border solid;
-  }
-  .projects {
-    display: flex;
-    flex-grow: 1;
-    overflow: hidden;
-    overflow-y: scroll;
-    flex-direction: column;
-    box-sizing: border-box;
+    order: 0;
     margin: 0;
-    padding: 35px 30px;
-    width: auto;
+    border: 0;
+    box-shadow: none;
+  }
+  .details {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    box-shadow: none;
   }
 }
 @media (prefers-color-scheme: dark) {

@@ -36,6 +36,8 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
+                :activity-groups="activityGroups"
+                :selected-index.sync="selectedIndex"
                 chart-id="prev"
               />
             </div>
@@ -46,6 +48,8 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
+                :activity-groups="activityGroups"
+                :selected-index.sync="selectedIndex"
                 chart-id="current"
               />
             </div>
@@ -56,6 +60,8 @@
                 :totals="totals"
                 :previous-totals="previousTotals"
                 :projects="projects"
+                :activity-groups="activityGroups"
+                :selected-index.sync="selectedIndex"
                 chart-id="next"
               />
             </div>
@@ -133,7 +139,8 @@ export default {
   data() {
     return {
       date: new Date(),
-      currentPeriod: 'day'
+      currentPeriod: 'day',
+      selectedIndex: 0
     };
   },
   computed: {
@@ -142,7 +149,8 @@ export default {
       barChartData: 'reports/barChartData',
       totals: 'reports/totals',
       previousTotals: 'reports/previousTotals',
-      projects: 'reports/projects'
+      projects: 'reports/projects',
+      activityGroups: 'reports/activityGroups'
     }),
     period() {
       return periods[this.currentPeriod];

@@ -6,7 +6,8 @@ describe('Mutations', () => {
       projects: [],
       totals: {},
       labels: [],
-      sums: {}
+      sums: {},
+      activityGroups: []
     };
 
     beforeEach(() => {
@@ -24,7 +25,18 @@ describe('Mutations', () => {
         labels: ['Jan', 'Feb'],
         sums: {
           1: [100, 200]
-        }
+        },
+        activityGroups: [
+          {
+            description: 'Review code',
+            duration: 3600,
+            project: {
+              id: 1,
+              name: 'Review',
+              color: '#f95959'
+            }
+          }
+        ]
       });
     });
 
@@ -52,6 +64,20 @@ describe('Mutations', () => {
       expect(state.sums).toEqual({
         1: [100, 200]
       });
+    });
+
+    it('set activityGroups', () => {
+      expect(state.activityGroups).toEqual([
+        {
+          description: 'Review code',
+          duration: 3600,
+          project: {
+            id: 1,
+            name: 'Review',
+            color: '#f95959'
+          }
+        }
+      ]);
     });
   });
 
