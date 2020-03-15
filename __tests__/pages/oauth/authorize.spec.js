@@ -36,9 +36,8 @@ describe('Authorize', () => {
       }
     });
 
-  const location = jest
-    .spyOn(window.location, 'assign')
-    .mockImplementation(() => {});
+  delete window.location;
+  window.location = { assign: jest.fn() };
 
   beforeEach(() => {
     $store.reset();
@@ -67,7 +66,9 @@ describe('Authorize', () => {
     });
 
     it('redirect to callback url', () => {
-      expect(location).toHaveBeenCalledWith('http://example.com/callback');
+      expect(window.location.assign).toHaveBeenCalledWith(
+        'http://example.com/callback'
+      );
     });
   });
 
@@ -103,7 +104,9 @@ describe('Authorize', () => {
     });
 
     it('redirect to callback url', () => {
-      expect(location).toHaveBeenCalledWith('http://example.com/callback');
+      expect(window.location.assign).toHaveBeenCalledWith(
+        'http://example.com/callback'
+      );
     });
   });
 
@@ -140,7 +143,9 @@ describe('Authorize', () => {
     });
 
     it('redirect to callback url', () => {
-      expect(location).toHaveBeenCalledWith('http://example.com/callback');
+      expect(window.location.assign).toHaveBeenCalledWith(
+        'http://example.com/callback'
+      );
     });
   });
 

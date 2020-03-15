@@ -5,9 +5,8 @@ import Integrations from '@/pages/settings/integrations';
 describe('Integrations', () => {
   let wrapper;
 
-  const location = jest
-    .spyOn(window.location, 'assign')
-    .mockImplementation(() => {});
+  delete window.location;
+  window.location = { assign: jest.fn() };
 
   const $store = new Store({
     getters: {
@@ -57,7 +56,7 @@ describe('Integrations', () => {
     });
 
     it('does not navigate', () => {
-      expect(assign).not.toHaveBeenCalled();
+      expect(window.location.assign).not.toHaveBeenCalled();
     });
   });
 
@@ -75,7 +74,9 @@ describe('Integrations', () => {
     });
 
     it('navigate to webcal url', () => {
-      expect(location).toHaveBeenCalledWith('webcal://example.com');
+      expect(window.location.assign).toHaveBeenCalledWith(
+        'webcal://example.com'
+      );
     });
   });
 
@@ -93,7 +94,9 @@ describe('Integrations', () => {
     });
 
     it('navigate to webcal url', () => {
-      expect(location).toHaveBeenCalledWith('webcal://example.com');
+      expect(window.location.assign).toHaveBeenCalledWith(
+        'webcal://example.com'
+      );
     });
   });
 });

@@ -5,9 +5,8 @@ import SettingLogoutButton from '@/components/organisms/setting-logout-button';
 describe('SettingLogoutButton', () => {
   let wrapper;
 
-  const location = jest
-    .spyOn(window.location, 'assign')
-    .mockImplementation(() => {});
+  delete window.location;
+  window.location = { assign: jest.fn() };
 
   const $store = new Store({});
   const factory = () =>
@@ -33,7 +32,7 @@ describe('SettingLogoutButton', () => {
     });
 
     it('redirect to index', () => {
-      expect(location).toHaveBeenCalledWith('/en/index');
+      expect(window.location.assign).toHaveBeenCalledWith('/en/index');
     });
 
     it('removes user id', () => {
