@@ -28,32 +28,34 @@
             @change="change"
           />
         </header>
-        <section v-if="selectedIndex == 0">
-          <article v-for="project in projects" :key="project.id">
-            <project-name :name="project.name" :color="project.color" />
-            <time class="duration">
-              {{ fromS(totals[project.id], 'hh:mm:ss') }}
-            </time>
-            <delta-icon
-              :current="totals[project.id]"
-              :previous="previousTotals[project.id]"
-            />
-          </article>
-        </section>
-        <section v-if="selectedIndex == 1">
-          <article
-            v-for="activityGroup in activityGroups"
-            :key="activityGroup.id"
-          >
-            <activity-name
-              :description="activityGroup.description"
-              :project="activityGroup.project"
-            />
-            <time class="duration">
-              {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
-            </time>
-          </article>
-        </section>
+        <transition name="fade" mode="out-in">
+          <section v-if="selectedIndex == 0" key="projects">
+            <article v-for="project in projects" :key="project.id">
+              <project-name :name="project.name" :color="project.color" />
+              <time class="duration">
+                {{ fromS(totals[project.id], 'hh:mm:ss') }}
+              </time>
+              <delta-icon
+                :current="totals[project.id]"
+                :previous="previousTotals[project.id]"
+              />
+            </article>
+          </section>
+          <section v-else key="activityGroups">
+            <article
+              v-for="activityGroup in activityGroups"
+              :key="`${activityGroup.project.id}-${activityGroup.description}`"
+            >
+              <activity-name
+                :description="activityGroup.description"
+                :project="activityGroup.project"
+              />
+              <time class="duration">
+                {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
+              </time>
+            </article>
+          </section>
+        </transition>
       </section>
     </div>
   </article>
@@ -124,6 +126,7 @@ export default {
   },
   methods: {
     change(index) {
+      this.$scrollTo('body', 300, { offset: 50 });
       this.$emit('update:selectedIndex', index);
     }
   }
@@ -197,13 +200,16 @@ export default {
   border-radius: 3px;
 }
 .details header {
-  padding: 20px;
-  padding-top: 18px;
+  padding: 25px 20px;
+  padding-bottom: 15px;
   list-style-type: none;
-  box-shadow: 0 3px 5px $shadow;
   display: flex;
-  border-bottom: 1px solid $border;
   background-color: $background-translucent;
+}
+.details section {
+  animation-delay: 305ms;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
 }
 .details article {
   display: flex;
@@ -213,18 +219,19 @@ export default {
   flex-direction: row;
   align-items: center;
   min-width: 1px;
-  border-bottom: 1px solid $border;
   justify-content: space-between;
+  border-bottom: 1px $border solid;
   height: 65px;
   padding: 0 30px;
   &:last-child {
     border: 0;
+    margin-bottom: 15px;
   }
   .duration {
     flex: 1;
     text-align: right;
     color: $text-light;
-    padding-left: 20px;
+    padding-left: 25px;
     font-family: $font-family-duration;
   }
 }
@@ -266,10 +273,12 @@ export default {
     box-shadow: none;
   }
   .details article {
-    height: 70px;
+    height: 65px;
   }
   .details header {
     background: none;
+    padding-bottom: 20px;
+    border-bottom: 1px $border solid;
   }
 }
 @media (prefers-color-scheme: dark) {
