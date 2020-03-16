@@ -126,7 +126,10 @@ export default {
   },
   methods: {
     change(index) {
-      this.$emit('update:selectedIndex', index);
+      this.$scrollTo('body', {
+        offset: 50,
+        onDone: () => this.$emit('update:selectedIndex', index)
+      });
     }
   }
 };

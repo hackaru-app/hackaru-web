@@ -132,6 +132,7 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     '@nuxtjs/sentry',
+    'vue-scrollto/nuxt',
     [
       'nuxt-i18n',
       {

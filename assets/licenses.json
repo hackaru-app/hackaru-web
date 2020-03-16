@@ -215,6 +215,12 @@
         "licenseUrl": "https://github.com/tserkov/vue-plugin-load-script/raw/master/LICENSE.md",
         "parents": "hackaru-web"
     },
+    "vue-scrollto": {
+        "licenses": "MIT",
+        "repository": "https://github.com/rigor789/vue-scrollto",
+        "licenseUrl": "https://github.com/rigor789/vue-scrollto/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
     "vue-timers": {
         "licenses": "MIT",
         "repository": "https://github.com/kelin2025/vue-timers",

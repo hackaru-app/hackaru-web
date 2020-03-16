@@ -63,7 +63,6 @@ export default {
   color: $text;
 }
 .tabs li:active {
-  border-bottom-color: $border;
   color: $text-lighter;
 }
 </style>
