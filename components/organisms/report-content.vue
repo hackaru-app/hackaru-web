@@ -126,10 +126,8 @@ export default {
   },
   methods: {
     change(index) {
-      this.$scrollTo('body', {
-        offset: 50,
-        onDone: () => this.$emit('update:selectedIndex', index)
-      });
+      this.$scrollTo('body', 300, { offset: 50 });
+      this.$emit('update:selectedIndex', index);
     }
   }
 };
@@ -209,6 +207,7 @@ export default {
   background-color: $background-translucent;
 }
 .details section {
+  animation-delay: 305ms;
   animation-duration: 0.1s;
   animation-timing-function: linear;
 }
