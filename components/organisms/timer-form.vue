@@ -329,6 +329,7 @@ export default {
   overflow-y: scroll;
   box-shadow: 0 3px 5px $shadow-darker;
   -webkit-overflow-scrolling: touch;
+  max-height: 395px;
 }
 .suggestion-list ul {
   margin: 0;
@@ -345,13 +346,6 @@ export default {
   padding: 0 45px;
   border-bottom: 1px $border solid;
   transition: background-color 0.1s ease;
-  &:last-child {
-    border-bottom: 0;
-    padding-bottom: 10px;
-  }
-  &:first-child {
-    padding-top: 10px;
-  }
   &:hover {
     background-color: $background-hover;
   }
