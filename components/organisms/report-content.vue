@@ -28,32 +28,34 @@
             @change="change"
           />
         </header>
-        <section v-if="selectedIndex == 0">
-          <article v-for="project in projects" :key="project.id">
-            <project-name :name="project.name" :color="project.color" />
-            <time class="duration">
-              {{ fromS(totals[project.id], 'hh:mm:ss') }}
-            </time>
-            <delta-icon
-              :current="totals[project.id]"
-              :previous="previousTotals[project.id]"
-            />
-          </article>
-        </section>
-        <section v-if="selectedIndex == 1">
-          <article
-            v-for="activityGroup in activityGroups"
-            :key="activityGroup.id"
-          >
-            <activity-name
-              :description="activityGroup.description"
-              :project="activityGroup.project"
-            />
-            <time class="duration">
-              {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
-            </time>
-          </article>
-        </section>
+        <transition name="fade" mode="out-in">
+          <section v-if="selectedIndex == 0" key="projects">
+            <article v-for="project in projects" :key="project.id">
+              <project-name :name="project.name" :color="project.color" />
+              <time class="duration">
+                {{ fromS(totals[project.id], 'hh:mm:ss') }}
+              </time>
+              <delta-icon
+                :current="totals[project.id]"
+                :previous="previousTotals[project.id]"
+              />
+            </article>
+          </section>
+          <section v-else key="activityGroups">
+            <article
+              v-for="activityGroup in activityGroups"
+              :key="`${activityGroup.project.id}-${activityGroup.description}`"
+            >
+              <activity-name
+                :description="activityGroup.description"
+                :project="activityGroup.project"
+              />
+              <time class="duration">
+                {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
+              </time>
+            </article>
+          </section>
+        </transition>
       </section>
     </div>
   </article>
@@ -202,6 +204,10 @@ export default {
   list-style-type: none;
   display: flex;
   background-color: $background-translucent;
+}
+.details section {
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
 }
 .details article {
   display: flex;
