@@ -278,6 +278,7 @@ export default {
   }
   .details header {
     background: none;
+    padding-bottom: 20px;
     border-bottom: 1px $border solid;
   }
 }
