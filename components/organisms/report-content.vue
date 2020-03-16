@@ -197,12 +197,10 @@ export default {
   border-radius: 3px;
 }
 .details header {
-  padding: 20px;
-  padding-top: 18px;
+  padding: 25px 20px;
+  padding-bottom: 15px;
   list-style-type: none;
-  box-shadow: 0 3px 5px $shadow;
   display: flex;
-  border-bottom: 1px solid $border;
   background-color: $background-translucent;
 }
 .details article {
@@ -213,18 +211,19 @@ export default {
   flex-direction: row;
   align-items: center;
   min-width: 1px;
-  border-bottom: 1px solid $border;
   justify-content: space-between;
+  border-bottom: 1px $border solid;
   height: 65px;
   padding: 0 30px;
   &:last-child {
     border: 0;
+    margin-bottom: 15px;
   }
   .duration {
     flex: 1;
     text-align: right;
     color: $text-light;
-    padding-left: 20px;
+    padding-left: 25px;
     font-family: $font-family-duration;
   }
 }
@@ -266,10 +265,11 @@ export default {
     box-shadow: none;
   }
   .details article {
-    height: 70px;
+    height: 65px;
   }
   .details header {
     background: none;
+    border-bottom: 1px $border solid;
   }
 }
 @media (prefers-color-scheme: dark) {
