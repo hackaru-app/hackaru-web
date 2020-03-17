@@ -3,8 +3,6 @@
 <template>
   <section>
     <date-header
-      :periods="['day', 'week']"
-      :current-period.sync="currentPeriod"
       :title="title"
       :has-today="hasToday"
       class="date-header"

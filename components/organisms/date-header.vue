@@ -15,7 +15,12 @@
         </base-button>
       </transition>
 
-      <base-select :value="$t(`${currentPeriod}.label`)" @change="change">
+      <base-select
+        v-if="periods.length"
+        :value="$t(`${currentPeriod}.label`)"
+        class="period-button"
+        @change="change"
+      >
         <option
           v-for="period in periods"
           :key="period"
@@ -55,11 +60,11 @@ export default {
     },
     periods: {
       type: Array,
-      required: true
+      default: () => []
     },
     currentPeriod: {
       type: String,
-      required: true
+      default: ''
     }
   },
   methods: {
@@ -84,7 +89,9 @@ export default {
   display: flex;
 }
 .today-button {
-  margin-right: 15px;
   padding: 0 13px;
+}
+.period-button {
+  margin-left: 15px;
 }
 </style>

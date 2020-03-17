@@ -53,6 +53,7 @@ export default {
   justify-content: flex-start;
   display: flex;
   padding: 7px;
+  padding-bottom: 8px;
   padding-top: 0;
   height: 100%;
   border-left-width: 2px;
