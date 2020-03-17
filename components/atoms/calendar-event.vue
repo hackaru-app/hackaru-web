@@ -8,13 +8,11 @@
     class="calendar-event"
   >
     <h1>{{ title }}</h1>
-    <p class="duration">{{ duration }}</p>
   </article>
 </template>
 
 <script>
 import Color from 'color';
-import { parseISO, formatDistanceStrict } from 'date-fns';
 
 export default {
   props: {
@@ -36,13 +34,6 @@ export default {
     }
   },
   computed: {
-    duration() {
-      return (
-        this.startedAt &&
-        this.stoppedAt &&
-        formatDistanceStrict(parseISO(this.startedAt), parseISO(this.stoppedAt))
-      );
-    },
     backgroundColor() {
       return Color(this.color).mix(Color('white'), 0.666);
     },
@@ -60,41 +51,34 @@ export default {
   position: relative;
   box-sizing: border-box;
   justify-content: flex-start;
-  align-items: center;
   display: flex;
-  padding: 0;
-  padding-left: 10px;
+  padding: 7px;
+  padding-top: 0;
   height: 100%;
   border-left-width: 2px;
   border-left-style: solid;
   overflow: hidden;
-  border-radius: 0 3px 3px 0;
-  box-shadow: 0 3px 3px $shadow;
+  font-weight: normal;
 }
 .calendar-event h1 {
   flex-shrink: 1;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 14px;
   padding: 0;
-  font-weight: normal;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.calendar-event p {
-  flex-shrink: 9999;
-  font-size: 13px;
-  opacity: 0.6;
   margin: 0;
-  margin-left: 10px;
-  white-space: nowrap;
+  margin-top: 4px;
+  font-weight: normal;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 @include mq(small) {
-  .calendar-event p {
+  .calendar-event {
+    padding: 0;
+    padding-bottom: 8px;
+  }
+  .calendar-event h1 {
+    height: 100%;
+    padding: 0 4px;
     font-size: 10px;
-    margin-left: 5px;
+    line-height: 1.2;
   }
 }
 @media (prefers-color-scheme: dark) {

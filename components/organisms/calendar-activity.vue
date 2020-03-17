@@ -238,10 +238,13 @@ export default {
   overflow: hidden;
   pointer-events: auto;
   transition: box-shadow 0.2s, opacity 0.2s;
-  box-shadow: 0 3px 3px $shadow-dark;
+  box-shadow: 0 3px 2px $shadow-dark;
+  border: 1px $white solid;
+  border-left: 0;
+  border-bottom: 0;
   &:hover,
   &:active {
-    opacity: 0.8;
+    cursor: pointer;
   }
 }
 .calendar-activity.dragging {
@@ -252,7 +255,6 @@ export default {
 }
 .calendar-activity h1 {
   font-size: 12px;
-  line-height: 20px;
   margin: 0;
   padding: 0 10px;
   font-weight: normal;
@@ -287,10 +289,6 @@ export default {
   align-items: center;
 }
 @include mq(small) {
-  h1 {
-    font-size: 9px;
-    padding: 0 5px;
-  }
   .handler {
     left: auto;
     right: 0;
