@@ -3,8 +3,6 @@
 <template>
   <section>
     <date-header
-      :periods="['day', 'week']"
-      :current-period.sync="currentPeriod"
       :title="title"
       :has-today="hasToday"
       class="date-header"
@@ -61,8 +59,6 @@ import LoopSlider from '@/components/organisms/loop-slider';
 import CalendarContent from '@/components/organisms/calendar-content';
 import CalendarDayHeader from '@/components/organisms/calendar-day-header';
 import {
-  startOfDay,
-  endOfDay,
   isSameDay,
   startOfWeek,
   endOfWeek,
@@ -73,19 +69,6 @@ import {
   addDays,
   eachDayOfInterval
 } from 'date-fns';
-
-const periods = {
-  day: {
-    startOf: startOfDay,
-    endOf: endOfDay,
-    add: addDays
-  },
-  week: {
-    startOf: startOfWeek,
-    endOf: endOfWeek,
-    add: addWeeks
-  }
-};
 
 export default {
   components: {
@@ -105,26 +88,18 @@ export default {
       isToday,
       sliderEnabled: true,
       date: new Date(),
-      currentPeriod: 'week',
       sliding: undefined
     };
   },
   computed: {
-    period() {
-      return periods[this.currentPeriod];
-    },
     title() {
-      const formatString = this.$t(`${this.currentPeriod}.format`);
-      return format(this.date, formatString || 'yyyy/MM');
+      return format(this.date, this.$t('format') || 'yyyy/MM');
     },
     days() {
       return this.getDays(0);
     },
     hasToday() {
-      return isSameDay(
-        this.period.startOf(new Date()),
-        this.period.startOf(this.date)
-      );
+      return isSameDay(startOfWeek(new Date()), startOfWeek(this.date));
     }
   },
   watch: {
@@ -138,15 +113,15 @@ export default {
   methods: {
     async fetchActivities() {
       await this.$store.dispatch('activities/fetchByRange', {
-        start: this.period.startOf(this.date),
-        end: this.period.endOf(this.date)
+        start: startOfWeek(this.date),
+        end: endOfWeek(this.date)
       });
     },
     getDays(page) {
-      const baseDate = this.period.add(this.date, page);
+      const baseDate = addWeeks(this.date, page);
       return eachDayOfInterval({
-        start: this.period.startOf(baseDate),
-        end: this.period.endOf(baseDate)
+        start: startOfWeek(baseDate),
+        end: endOfWeek(baseDate)
       });
     },
     slideLeft() {
@@ -156,10 +131,10 @@ export default {
       this.$refs.slider.slideRight();
     },
     prev() {
-      this.date = this.period.add(this.period.startOf(this.date), -1);
+      this.date = addWeeks(startOfWeek(this.date), -1);
     },
     next() {
-      this.date = this.period.add(this.period.startOf(this.date), 1);
+      this.date = addWeeks(startOfWeek(this.date), 1);
     },
     today() {
       this.date = new Date();

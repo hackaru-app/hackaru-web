@@ -35,21 +35,9 @@ describe('Calendar', () => {
     });
   });
 
-  describe('when change period to day', () => {
+  describe('when mounted', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ currentPeriod: 'day' });
-    });
-
-    it('set days correctly', () => {
-      expect(wrapper.vm.days).toEqual([parseISO('2019-01-31T00:00:00')]);
-    });
-  });
-
-  describe('when change period to week', () => {
-    beforeEach(() => {
-      wrapper = factory();
-      wrapper.setData({ currentPeriod: 'week' });
     });
 
     it('set days correctly', () => {
@@ -68,7 +56,6 @@ describe('Calendar', () => {
   describe('when slide left', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ currentPeriod: 'week' });
       wrapper.find('.loop-slider').vm.$emit('slide-left');
     });
 
@@ -88,7 +75,6 @@ describe('Calendar', () => {
   describe('when slide right', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ currentPeriod: 'week' });
       wrapper.find('.loop-slider').vm.$emit('slide-right');
     });
 
@@ -108,7 +94,6 @@ describe('Calendar', () => {
   describe('when click today-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ currentPeriod: 'week' });
       wrapper.find('.loop-slider').vm.$emit('slide-right');
       wrapper.find('.date-header').vm.$emit('today');
     });

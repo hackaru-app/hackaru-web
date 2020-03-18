@@ -1,32 +1,10 @@
 {
   "en": {
-    "day": {
-      "format": "dd/MM/yyyy"
-    },
-    "week": {
-      "format": "MM/yyyy"
-    },
-    "month": {
-      "format": "MM/yyyy"
-    },
-    "year": {
-      "format": "yyyy"
-    },
+    "format": "MM/yyyy",
     "addActivityByLongPress": "You can add a record using long press."
   },
   "ja": {
-    "day": {
-      "format": "yyyy/MM/dd"
-    },
-    "week": {
-      "format": "yyyy/MM"
-    },
-    "month": {
-      "format": "yyyy/MM"
-    },
-    "year": {
-      "format": "yyyy"
-    },
+    "format": "yyyy/MM",
     "addActivityByLongPress": "長押しで記録を追加できます"
   }
 }
