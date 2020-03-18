@@ -93,7 +93,7 @@ export default {
   },
   computed: {
     title() {
-      return format(this.date, this.$t('format'));
+      return format(this.date, this.$t('format') || 'yyyy/MM');
     },
     days() {
       return this.getDays(0);
