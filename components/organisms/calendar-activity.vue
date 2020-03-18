@@ -239,7 +239,7 @@ export default {
   pointer-events: auto;
   transition: box-shadow 0.2s, opacity 0.2s;
   box-shadow: 0 3px 2px $shadow-dark;
-  border: 1px $white solid;
+  border: 1px $background solid;
   border-left: 0;
   border-bottom: 0;
   &:hover,
