@@ -253,15 +253,6 @@ export default {
   box-shadow: 0 7px 10px $shadow-dark;
   z-index: index($z, calendar-dragging-activity);
 }
-.calendar-activity h1 {
-  font-size: 12px;
-  margin: 0;
-  padding: 0 10px;
-  font-weight: normal;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 .event {
   height: 100%;
 }
