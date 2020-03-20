@@ -8,18 +8,18 @@
 
     <form @submit.prevent="saveActivity">
       <modal-item>
-        <button type="button" class="project-button" @click="editProject">
-          <project-name :name="project.name" :color="project.color" />
-          <icon name="chevron-right-icon" class="is-large" />
-        </button>
-      </modal-item>
-
-      <modal-item>
         <input
           v-model="description"
           :placeholder="$t('description')"
           type="text"
         />
+      </modal-item>
+
+      <modal-item>
+        <button type="button" class="project-button" @click="editProject">
+          <project-name :name="project.name" :color="project.color" />
+          <icon name="chevron-right-icon" class="is-large" />
+        </button>
       </modal-item>
 
       <modal-item>
