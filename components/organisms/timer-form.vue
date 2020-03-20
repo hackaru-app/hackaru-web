@@ -435,6 +435,7 @@ export default {
     max-width: 100vw;
     background-color: $background-translucent;
     box-shadow: 0 3px 3px $shadow inset;
+    max-height: 100%;
   }
   .suggestion-list ul {
     min-height: 130vh;
