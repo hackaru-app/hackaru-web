@@ -204,7 +204,6 @@ export default {
   padding-bottom: 15px;
   list-style-type: none;
   display: flex;
-  background-color: $background-translucent;
 }
 .details section {
   animation-delay: 305ms;
