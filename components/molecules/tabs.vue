@@ -43,7 +43,7 @@ export default {
     content: '';
     width: 100px;
     height: 100%;
-    background: linear-gradient(to right, transparent, $white);
+    background: linear-gradient(to right, transparent, $background-light);
     pointer-events: none;
   }
 }
