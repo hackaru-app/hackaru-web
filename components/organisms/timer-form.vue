@@ -329,7 +329,7 @@ export default {
   overflow-y: scroll;
   box-shadow: 0 3px 5px $shadow-darker;
   -webkit-overflow-scrolling: touch;
-  max-height: 395px;
+  max-height: 415px;
 }
 .suggestion-list ul {
   margin: 0;
