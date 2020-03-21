@@ -32,7 +32,7 @@ export const mutations = {
 };
 
 export const getters = {
-  all(state, getters, rootState, rootGetters) {
+  all(state) {
     return state.data;
   }
 };

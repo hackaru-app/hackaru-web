@@ -264,7 +264,7 @@ export default {
   animation-duration: 100ms;
   width: 100%;
   box-shadow: 0 8px 5px -5px $shadow-dark inset;
-  background-color: $background-translucent;
+  background-color: $background;
 }
 .suggestion-list ul {
   width: 100%;
@@ -272,7 +272,6 @@ export default {
   list-style-position: inside;
   padding: 0;
   margin: 0;
-  min-height: 100vh;
   padding-bottom: 200px;
 }
 .suggestion-list li {
