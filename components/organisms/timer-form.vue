@@ -203,13 +203,16 @@ export default {
     input(e) {
       this.description = e.target.value;
       this.fetchSuggestions();
+      document.body.classList.add('fixed');
     },
     focus() {
       this.focused = true;
       this.fetchSuggestions();
+      document.body.classList.add('fixed');
     },
     blur() {
       this.focused = false;
+      document.body.classList.remove('fixed');
     },
     change() {
       if (this.id) this.updateActivity();
@@ -222,6 +225,13 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+body.fixed {
+  overflow: hidden;
+  width: 100vw;
+}
+</style>
 
 <style scoped lang="scss">
 .timer-form {

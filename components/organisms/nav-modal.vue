@@ -98,7 +98,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .current {
   animation-delay: 0.15s;
   animation-duration: 0.35s;
