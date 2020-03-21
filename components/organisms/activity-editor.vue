@@ -12,8 +12,26 @@
           v-model="description"
           :placeholder="$t('description')"
           type="text"
+          @focus="focus"
+          @blur="blur"
+          @input="input"
         />
       </modal-item>
+
+      <transition>
+        <div v-if="focused" class="suggestion-list">
+          <ul>
+            <li
+              v-for="(suggestion, index) in suggestions"
+              :key="index"
+              class="suggestion"
+              @click="clickSuggestion(suggestion)"
+            >
+              <activity-name v-bind="suggestion" />
+            </li>
+          </ul>
+        </div>
+      </transition>
 
       <modal-item>
         <button type="button" class="project-button" @click="editProject">
@@ -68,6 +86,7 @@
 </template>
 
 <script>
+import ActivityName from '@/components/molecules/activity-name';
 import ProjectList from '@/components/organisms/project-list';
 import ModalItem from '@/components/molecules/modal-item';
 import ModalHeader from '@/components/molecules/modal-header';
@@ -77,10 +96,13 @@ import DatetimePicker from '@/components/molecules/datetime-picker';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import { formatDistanceStrict, parseISO } from 'date-fns';
+import { mapGetters } from 'vuex';
+import debounce from 'lodash.debounce';
 
 export default {
   name: 'ActivityEditor',
   components: {
+    ActivityName,
     ProjectName,
     DatetimePicker,
     ModalHeader,
@@ -106,10 +128,14 @@ export default {
         color: '#cccfd9'
       },
       startedAt: `${new Date()}`,
-      stoppedAt: undefined
+      stoppedAt: undefined,
+      focused: false
     };
   },
   computed: {
+    ...mapGetters({
+      suggestions: 'suggestions/all'
+    }),
     isSharedSupported() {
       return navigator.share !== undefined;
     }
@@ -194,6 +220,25 @@ export default {
         if (e.name === 'AbortError') return;
         throw e;
       }
+    },
+    fetchSuggestions: debounce(function() {
+      this.$store.dispatch('suggestions/fetch', this.description);
+    }, 1000),
+    input(e) {
+      this.description = e.target.value;
+      this.fetchSuggestions();
+    },
+    focus(e) {
+      this.focused = true;
+      e.target.select();
+      this.fetchSuggestions();
+    },
+    blur() {
+      this.focused = false;
+    },
+    clickSuggestion({ description, project }) {
+      this.description = description;
+      this.project = project;
     }
   }
 };
@@ -210,6 +255,36 @@ export default {
   height: 40px;
   width: 100%;
   background: none;
+}
+.suggestion-list {
+  height: 310px;
+  overflow: hidden;
+  overflow: scroll;
+  position: absolute;
+  animation-duration: 100ms;
+  width: 100%;
+  box-shadow: 0 8px 5px -5px $shadow-dark inset;
+  background-color: $background-translucent;
+}
+.suggestion-list ul {
+  width: 100%;
+  list-style-type: none;
+  list-style-position: inside;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  padding-bottom: 200px;
+}
+.suggestion-list li {
+  display: flex;
+  padding: 0 30px;
+  height: 65px;
+  align-items: center;
+  border-bottom: 1px solid $border;
+  transition: background-color 0.1s ease;
+  &:hover {
+    background-color: $background-hover;
+  }
 }
 .icons {
   display: flex;
