@@ -74,7 +74,6 @@ export default {
     },
     focus(e) {
       this.focused = true;
-      e.target.select();
       this.fetchSuggestions('');
     },
     blur(e) {
