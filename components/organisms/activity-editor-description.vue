@@ -36,7 +36,6 @@
 import ActivityName from '@/components/molecules/activity-name';
 import ModalItem from '@/components/molecules/modal-item';
 import { mapGetters } from 'vuex';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import debounce from 'lodash.debounce';
 
 export default {
@@ -76,11 +75,9 @@ export default {
       this.focused = true;
       e.target.select();
       this.fetchSuggestions('');
-      disableBodyScroll(e.target);
     },
     blur(e) {
       this.focused = false;
-      enableBodyScroll(e.target);
     },
     clickSuggestion({ description, project }) {
       this.$emit('update:description', description);
@@ -107,6 +104,7 @@ export default {
   list-style-position: inside;
   padding: 0;
   margin: 0;
+  min-height: 100vh;
   padding-bottom: 200px;
 }
 .suggestions li {
