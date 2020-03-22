@@ -196,7 +196,7 @@ describe('TimerForm', () => {
     });
 
     it('show suggestions', () => {
-      expect(wrapper.find('.suggestions-wrapper').exists()).toBe(true);
+      expect(wrapper.find('.suggestions-wrapper').isVisible()).toBe(true);
     });
   });
 
@@ -208,7 +208,7 @@ describe('TimerForm', () => {
     });
 
     it('hide suggestions', () => {
-      expect(wrapper.find('.suggestions-wrapper').exists()).toBe(false);
+      expect(wrapper.find('.suggestions-wrapper').isVisible()).toBe(false);
     });
   });
 
