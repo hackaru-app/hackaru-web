@@ -54,10 +54,10 @@
       </div>
       <transition>
         <div
-          v-if="focused && !id && suggestions.length > 0"
+          v-show="focused && !id && suggestions.length > 0"
           class="suggestions-wrapper"
         >
-          <div class="suggestions">
+          <div ref="suggestions" class="suggestions">
             <ul>
               <li
                 v-for="(suggestion, index) in suggestions"
@@ -129,7 +129,7 @@ export default {
     await this.$store.dispatch('activities/fetchWorking');
   },
   deactivated() {
-    enableBodyScroll(this.$el);
+    enableBodyScroll(this.$refs.suggestions);
   },
   methods: {
     setWorkingProps() {
@@ -210,12 +210,12 @@ export default {
     },
     focus(e) {
       this.focused = true;
-      disableBodyScroll(this.$el);
+      disableBodyScroll(this.$refs.suggestions);
       this.fetchSuggestions();
     },
     blur(e) {
       this.focused = false;
-      enableBodyScroll(this.$el);
+      enableBodyScroll(this.$refs.suggestions);
     },
     change() {
       if (this.id) this.updateActivity();
