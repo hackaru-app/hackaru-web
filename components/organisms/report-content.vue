@@ -242,6 +242,17 @@ export default {
     padding: 0;
     margin: 0;
   }
+  .doughnut-chart-wrapper {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    padding: 30px 0;
+    order: 0;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+    background-color: $background;
+  }
   .doughnut-chart {
     padding: 0 0;
     align-self: center;
@@ -259,19 +270,10 @@ export default {
     margin: 0;
     flex-direction: column;
   }
-  .doughnut-chart-wrapper {
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    padding: 30px 0;
-    order: 0;
-    margin: 0;
-    border: 0;
-    box-shadow: none;
-  }
   .details {
     border: 0;
     box-shadow: none;
+    background-color: $background;
   }
   .details article {
     height: 65px;
