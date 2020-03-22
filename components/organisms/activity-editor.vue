@@ -221,17 +221,17 @@ export default {
         throw e;
       }
     },
-    fetchSuggestions: debounce(function() {
-      this.$store.dispatch('suggestions/fetch', this.description);
+    fetchSuggestions: debounce(function(text) {
+      this.$store.dispatch('suggestions/fetch', text);
     }, 1000),
     input(e) {
       this.description = e.target.value;
-      this.fetchSuggestions();
+      this.fetchSuggestions(this.description);
     },
     focus(e) {
       this.focused = true;
       e.target.select();
-      this.fetchSuggestions();
+      this.fetchSuggestions('');
     },
     blur() {
       this.focused = false;
