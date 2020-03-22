@@ -118,9 +118,4 @@ export default {
     background-color: $background-hover;
   }
 }
-@media (prefers-color-scheme: dark) {
-  .suggestions {
-    box-shadow: 0 8px 5px -5px $shadow-darker inset;
-  }
-}
 </style>
