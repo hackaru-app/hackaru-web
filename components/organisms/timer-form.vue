@@ -282,6 +282,7 @@ export default {
   display: block;
 }
 .form-content {
+  z-index: 1;
   display: flex;
   flex: 1;
   border-bottom: 1px $border-dark solid;
