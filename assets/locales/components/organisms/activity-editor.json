@@ -5,7 +5,6 @@
       "start": "Start Timer"
     },
     "project": "Project",
-    "description": "Description",
     "startedAt": "Started at",
     "stoppedAt": "Stopped at",
     "update": "Update",
@@ -26,7 +25,6 @@
       "update": "計測を編集",
       "start": "計測を開始"
     },
-    "description": "作業内容や補足を入力",
     "startedAt": "開始時間",
     "stoppedAt": "終了時間",
     "update": "更新",
