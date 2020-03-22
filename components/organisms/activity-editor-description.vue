@@ -16,7 +16,7 @@
     </modal-item>
 
     <transition>
-      <div v-if="focused" class="suggestion-list">
+      <div v-if="focused" class="suggestions">
         <ul>
           <li
             v-for="(suggestion, index) in suggestions"
@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.suggestion-list {
+.suggestions {
   height: 310px;
   overflow: hidden;
   overflow: scroll;
@@ -101,7 +101,7 @@ export default {
   box-shadow: 0 8px 5px -5px $shadow-dark inset;
   background-color: $background;
 }
-.suggestion-list ul {
+.suggestions ul {
   width: 100%;
   list-style-type: none;
   list-style-position: inside;
@@ -109,7 +109,7 @@ export default {
   margin: 0;
   padding-bottom: 200px;
 }
-.suggestion-list li {
+.suggestions li {
   display: flex;
   padding: 0 30px;
   height: 65px;

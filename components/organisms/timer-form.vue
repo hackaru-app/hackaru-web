@@ -55,9 +55,9 @@
       <transition>
         <div
           v-if="focused && !id && suggestions.length > 0"
-          class="suggestion-list-wrapper"
+          class="suggestions-wrapper"
         >
-          <div class="suggestion-list">
+          <div class="suggestions">
             <ul>
               <li
                 v-for="(suggestion, index) in suggestions"
@@ -315,7 +315,7 @@ export default {
 .dot-only {
   display: none;
 }
-.suggestion-list-wrapper {
+.suggestions-wrapper {
   position: absolute;
   animation-duration: 100ms;
   width: 100%;
@@ -325,7 +325,7 @@ export default {
   max-width: calc(100vw - #{$side-bar-min-width});
   background-color: $backdrop-color;
 }
-.suggestion-list {
+.suggestions {
   overflow-y: scroll;
   box-sizing: border-box;
   background-color: $background;
@@ -335,11 +335,11 @@ export default {
   -webkit-overflow-scrolling: touch;
   max-height: 415px;
 }
-.suggestion-list ul {
+.suggestions ul {
   margin: 0;
   padding: 0;
 }
-.suggestion-list ul li {
+.suggestions ul li {
   display: flex;
   cursor: pointer;
   list-style-position: inside;
@@ -420,7 +420,7 @@ export default {
     margin-right: 25px;
     display: none;
   }
-  .suggestion-list-wrapper {
+  .suggestions-wrapper {
     position: absolute;
     top: 80px;
     border: 0;
@@ -430,7 +430,7 @@ export default {
     width: 100%;
     background: none;
   }
-  .suggestion-list {
+  .suggestions {
     border-radius: 0;
     height: 100vh;
     border-top: 0;
@@ -440,10 +440,10 @@ export default {
     background-color: $background-translucent;
     box-shadow: 0 3px 3px $shadow inset;
   }
-  .suggestion-list ul {
+  .suggestions ul {
     min-height: 130vh;
   }
-  .suggestion-list ul li {
+  .suggestions ul li {
     height: 75px;
     padding: 0 35px;
     border-bottom: 1px $border solid;
