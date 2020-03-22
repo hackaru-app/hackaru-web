@@ -85,6 +85,7 @@ import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import Dot from '@/components/atoms/dot';
 import { mapGetters } from 'vuex';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import debounce from 'lodash.debounce';
 
 function getRandI18n(t) {
@@ -203,16 +204,16 @@ export default {
     input(e) {
       this.description = e.target.value;
       this.fetchSuggestions();
-      document.body.classList.add('fixed');
+      disableBodyScroll(e.target);
     },
-    focus() {
+    focus(e) {
       this.focused = true;
       this.fetchSuggestions();
-      document.body.classList.add('fixed');
+      disableBodyScroll(e.target);
     },
-    blur() {
+    blur(e) {
       this.focused = false;
-      document.body.classList.remove('fixed');
+      enableBodyScroll(e.target);
     },
     change() {
       if (this.id) this.updateActivity();
@@ -225,13 +226,6 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-body.fixed {
-  overflow: hidden;
-  width: 100vw;
-}
-</style>
 
 <style scoped lang="scss">
 .timer-form {

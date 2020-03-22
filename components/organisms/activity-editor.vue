@@ -97,6 +97,7 @@ import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import { formatDistanceStrict, parseISO } from 'date-fns';
 import { mapGetters } from 'vuex';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import debounce from 'lodash.debounce';
 
 export default {
@@ -232,9 +233,11 @@ export default {
       this.focused = true;
       e.target.select();
       this.fetchSuggestions('');
+      disableBodyScroll(e.target);
     },
-    blur() {
+    blur(e) {
       this.focused = false;
+      enableBodyScroll(e.target);
     },
     clickSuggestion({ description, project }) {
       this.description = description;
