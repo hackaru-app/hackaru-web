@@ -96,7 +96,7 @@ export default {
   animation-duration: 100ms;
   width: 100%;
   box-shadow: 0 8px 5px -5px $shadow-dark inset;
-  background-color: $background-translucent;
+  background-color: $background;
 }
 .suggestions ul {
   width: 100%;
@@ -120,7 +120,7 @@ export default {
 }
 @media (prefers-color-scheme: dark) {
   .suggestions {
-    background-color: $background-dark;
+    box-shadow: 0 8px 5px -5px $shadow-darker inset;
   }
 }
 </style>
