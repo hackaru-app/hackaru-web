@@ -6,8 +6,9 @@
   <div>
     <modal-item>
       <input
-        v-model="description"
+        :value="description"
         :placeholder="$t('description')"
+        class="description"
         type="text"
         @focus="focus"
         @blur="blur"
@@ -16,7 +17,7 @@
     </modal-item>
 
     <transition>
-      <div v-if="focused" class="suggestions">
+      <div v-if="focused && suggestions.length" class="suggestions">
         <ul>
           <li
             v-for="(suggestion, index) in suggestions"
@@ -68,7 +69,7 @@ export default {
       this.$store.dispatch('suggestions/fetch', text);
     }, 1000),
     input(e) {
-      this.description = e.target.value;
+      this.$emit('update:description', e.target.value);
       this.fetchSuggestions(this.description);
     },
     focus(e) {
