@@ -236,7 +236,7 @@ export default {
   justify-content: center;
   max-width: calc(100vw - #{$side-bar-min-width});
   z-index: index($z, timer-form);
-  height: 90px;
+  height: 91px;
 }
 .duration.stopped {
   color: $text-light;
@@ -320,7 +320,7 @@ export default {
   animation-duration: 100ms;
   width: 100%;
   height: 100vh;
-  top: 90px;
+  top: 91px;
   box-sizing: border-box;
   max-width: calc(100vw - #{$side-bar-min-width});
   background-color: $backdrop-color;
@@ -439,6 +439,8 @@ export default {
     max-width: 100vw;
     background-color: $background-translucent;
     box-shadow: 0 3px 3px $shadow inset;
+    max-height: 100%;
+    padding-bottom: 550px;
   }
   .suggestions ul {
     min-height: 130vh;
