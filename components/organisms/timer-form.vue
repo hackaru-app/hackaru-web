@@ -208,12 +208,12 @@ export default {
       this.description = e.target.value;
       this.fetchSuggestions();
     },
-    focus(e) {
+    focus() {
       this.focused = true;
       disableBodyScroll(this.$refs.suggestions);
       this.fetchSuggestions();
     },
-    blur(e) {
+    blur() {
       this.focused = false;
       enableBodyScroll(this.$refs.suggestions);
     },
