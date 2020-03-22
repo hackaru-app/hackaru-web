@@ -164,7 +164,8 @@ export default {
   padding: 20px;
   border-radius: 3px;
   box-shadow: 0 3px 5px $shadow;
-  border: 1px $border solid;
+  border: 1px $border-dark solid;
+  background-color: $background-translucent;
 }
 .doughnut-chart,
 .doughnut-chart-empty {
@@ -196,8 +197,9 @@ export default {
   flex: 1;
   margin: 0;
   box-shadow: 0 3px 5px $shadow;
-  border: 1px $border solid;
   border-radius: 3px;
+  border: 1px $border-dark solid;
+  background-color: $background-translucent;
 }
 .details header {
   padding: 25px 20px;
