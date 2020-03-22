@@ -57,7 +57,7 @@
           v-if="focused && !id && suggestions.length > 0"
           class="suggestions-wrapper"
         >
-          <div ref="suggestions" class="suggestions">
+          <div class="suggestions">
             <ul>
               <li
                 v-for="(suggestion, index) in suggestions"
@@ -127,6 +127,9 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch('activities/fetchWorking');
+  },
+  deactivated() {
+    enableBodyScroll(this.$el);
   },
   methods: {
     setWorkingProps() {
@@ -207,12 +210,12 @@ export default {
     },
     focus(e) {
       this.focused = true;
-      disableBodyScroll(this.$refs.suggestions);
+      disableBodyScroll(this.$el);
       this.fetchSuggestions();
     },
     blur(e) {
-      enableBodyScroll(this.$refs.suggestions);
       this.focused = false;
+      enableBodyScroll(this.$el);
     },
     change() {
       if (this.id) this.updateActivity();
