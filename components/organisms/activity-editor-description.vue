@@ -70,7 +70,7 @@ export default {
     }, 1000),
     input(e) {
       this.$emit('update:description', e.target.value);
-      this.fetchSuggestions(this.description);
+      this.fetchSuggestions(e.target.value);
     },
     focus(e) {
       this.focused = true;
@@ -90,14 +90,14 @@ export default {
 
 <style scoped lang="scss">
 .suggestions {
-  height: 310px;
+  height: 317px;
   overflow: hidden;
   overflow: scroll;
   position: absolute;
   animation-duration: 100ms;
   width: 100%;
   box-shadow: 0 8px 5px -5px $shadow-dark inset;
-  background-color: $background;
+  background-color: $background-translucent;
 }
 .suggestions ul {
   width: 100%;
@@ -117,6 +117,11 @@ export default {
   transition: background-color 0.1s ease;
   &:hover {
     background-color: $background-hover;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .suggestions {
+    background-color: $background-dark;
   }
 }
 </style>
