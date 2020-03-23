@@ -7,19 +7,16 @@
     </modal-header>
 
     <form @submit.prevent="saveActivity">
+      <activity-editor-description
+        :description.sync="description"
+        :project.sync="project"
+      />
+
       <modal-item>
         <button type="button" class="project-button" @click="editProject">
           <project-name :name="project.name" :color="project.color" />
           <icon name="chevron-right-icon" class="is-large" />
         </button>
-      </modal-item>
-
-      <modal-item>
-        <input
-          v-model="description"
-          :placeholder="$t('description')"
-          type="text"
-        />
       </modal-item>
 
       <modal-item>
@@ -68,6 +65,7 @@
 </template>
 
 <script>
+import ActivityEditorDescription from '@/components/organisms/activity-editor-description';
 import ProjectList from '@/components/organisms/project-list';
 import ModalItem from '@/components/molecules/modal-item';
 import ModalHeader from '@/components/molecules/modal-header';
@@ -77,10 +75,12 @@ import DatetimePicker from '@/components/molecules/datetime-picker';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import { formatDistanceStrict, parseISO } from 'date-fns';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'ActivityEditor',
   components: {
+    ActivityEditorDescription,
     ProjectName,
     DatetimePicker,
     ModalHeader,
@@ -106,10 +106,14 @@ export default {
         color: '#cccfd9'
       },
       startedAt: `${new Date()}`,
-      stoppedAt: undefined
+      stoppedAt: undefined,
+      focused: false
     };
   },
   computed: {
+    ...mapGetters({
+      suggestions: 'suggestions/all'
+    }),
     isSharedSupported() {
       return navigator.share !== undefined;
     }

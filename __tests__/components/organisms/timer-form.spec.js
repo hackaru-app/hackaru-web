@@ -195,8 +195,8 @@ describe('TimerForm', () => {
       wrapper.find('.description').trigger('focus');
     });
 
-    it('show suggestion-list', () => {
-      expect(wrapper.find('.suggestion-list-wrapper').exists()).toBe(true);
+    it('show suggestions', () => {
+      expect(wrapper.find('.suggestions-wrapper').isVisible()).toBe(true);
     });
   });
 
@@ -207,8 +207,8 @@ describe('TimerForm', () => {
       wrapper.find('.description').trigger('blur');
     });
 
-    it('hide suggestion-list', () => {
-      expect(wrapper.find('.suggestion-list-wrapper').exists()).toBe(false);
+    it('hide suggestions', () => {
+      expect(wrapper.find('.suggestions-wrapper').isVisible()).toBe(false);
     });
   });
 

@@ -6,6 +6,7 @@
     :name="name"
     :pivot-y="0.5"
     :height="height"
+    :scrollable="true"
     transition="fade"
     width="95%"
     @before-open="beforeOpen"

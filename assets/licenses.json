@@ -29,6 +29,12 @@
         "licenseUrl": "https://github.com/axios/axios/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
+    "body-scroll-lock": {
+        "licenses": "MIT",
+        "repository": "https://github.com/willmcpo/body-scroll-lock",
+        "licenseUrl": "https://github.com/willmcpo/body-scroll-lock/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
     "camelcase-keys": {
         "licenses": "MIT",
         "repository": "https://github.com/sindresorhus/camelcase-keys",
