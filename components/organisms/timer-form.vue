@@ -441,7 +441,6 @@ export default {
     margin: 0;
     max-width: 100vw;
     background-color: $background-translucent;
-    box-shadow: 0 3px 3px $shadow inset;
     max-height: 100%;
     padding-bottom: 550px;
   }
