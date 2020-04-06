@@ -15,8 +15,13 @@
       @right="slideRight"
     />
     <div class="tools">
-      <button class="pdf-button" @click="exportReport('pdf')">PDF</button>
-      <button class="csv-button" @click="exportReport('csv')">CSV</button>
+      <div class="exports">
+        <button class="pdf-button" @click="exportReport('pdf')">PDF</button>
+        <button class="csv-button" @click="exportReport('csv')">CSV</button>
+      </div>
+      <button class="filter-button">
+        <icon name="filter-icon" class="icon" />
+      </button>
     </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
@@ -234,22 +239,27 @@ export default {
 }
 .tools {
   display: flex;
+  justify-content: space-between;
   padding: 0 40px;
   border-bottom: 1px $border-dark solid;
   background-color: $background-translucent;
   box-shadow: 0 3px 3px $shadow;
   button {
     display: flex;
-    align-items: center;
     background: none;
     color: $text;
     padding: 15px 20px;
     border: 0;
-    border-right: 1px $border-dark solid;
+    border: 1px $border-dark solid;
+    border-top: 0;
+    border-bottom: 0;
     cursor: pointer;
-    .icon {
-      margin-right: 6px;
-    }
+  }
+}
+.exports {
+  display: flex;
+  button {
+    border-left: 0;
     &:first-child {
       border-left: 1px $border-dark solid;
     }
