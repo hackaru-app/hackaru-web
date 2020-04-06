@@ -269,5 +269,9 @@ export default {
   .tools {
     padding: 0;
   }
+  .filter-button {
+    margin-right: 30px;
+    border-right: 1px $border-dark solid;
+  }
 }
 </style>
