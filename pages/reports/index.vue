@@ -19,9 +19,27 @@
         <button class="pdf-button" @click="exportReport('pdf')">PDF</button>
         <button class="csv-button" @click="exportReport('csv')">CSV</button>
       </div>
-      <button class="filter-button">
-        <icon name="filter-icon" class="icon" />
-      </button>
+      <v-popover>
+        <button class="tooltip-target filter-button">
+          <icon name="filter-icon" class="icon" />
+        </button>
+        <template slot="popover">
+          <div class="popover-wrapper">
+            <div class="project-item">
+              <project-name name="開発" color="#0f0" class="project-name" />
+              <input type="checkbox" class="checkbox" />
+            </div>
+            <div class="project-item">
+              <project-name name="開発" color="#0f0" class="project-name" />
+              <input type="checkbox" class="checkbox" />
+            </div>
+            <div class="project-item">
+              <project-name name="開発" color="#0f0" class="project-name" />
+              <input type="checkbox" class="checkbox" />
+            </div>
+          </div>
+        </template>
+      </v-popover>
     </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
@@ -79,6 +97,7 @@
 
 <script>
 import Icon from '@/components/atoms/icon';
+import ProjectName from '@/components/molecules/project-name';
 import CoachTooltip from '@/components/atoms/coach-tooltip';
 import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
@@ -131,6 +150,7 @@ const periods = {
 export default {
   components: {
     Delighted,
+    ProjectName,
     Icon,
     CoachTooltip,
     LoopSlider,
@@ -263,6 +283,21 @@ export default {
     &:first-child {
       border-left: 1px $border-dark solid;
     }
+  }
+}
+.popover-wrapper {
+  padding: 10px;
+}
+.project-item {
+  display: flex;
+  padding: 0 15px;
+  height: 45px;
+  min-width: 130px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  &:hover {
+    background-color: $background-hover;
   }
 }
 @media screen and (max-width: 640px) {
