@@ -27,7 +27,7 @@
           <template slot="popover">
             <section class="popover-wrapper">
               <label
-                v-for="project in projects"
+                v-for="project in allProjects"
                 :key="project.id"
                 :for="`popover-wrapper-${project.id}`"
                 class="project-item"
@@ -35,7 +35,8 @@
                 <project-name v-bind="project" />
                 <input
                   :id="`popover-wrapper-${project.id}`"
-                  v-model="checkedProjects"
+                  v-model="projectIds"
+                  :value="project.id"
                   type="checkbox"
                   class="checkbox"
                 />
@@ -169,7 +170,8 @@ export default {
     return {
       date: new Date(),
       currentPeriod: 'day',
-      selectedIndex: 0
+      selectedIndex: 0,
+      projectIds: []
     };
   },
   computed: {
@@ -179,6 +181,7 @@ export default {
       totals: 'reports/totals',
       previousTotals: 'reports/previousTotals',
       projects: 'reports/projects',
+      allProjects: 'projects/all',
       activityGroups: 'reports/activityGroups'
     }),
     period() {
@@ -196,6 +199,9 @@ export default {
     }
   },
   watch: {
+    projectIds: {
+      handler: 'fetchReport'
+    },
     period: {
       handler: 'fetchReport'
     },
@@ -211,11 +217,13 @@ export default {
       this.$store.dispatch('reports/fetch', {
         current: {
           start: this.period.startOf(this.date),
-          end: this.period.endOf(this.date)
+          end: this.period.endOf(this.date),
+          projectIds: this.projectIds
         },
         previous: {
           start: this.period.startOf(this.period.add(this.date, -1)),
-          end: this.period.endOf(this.period.add(this.date, -1))
+          end: this.period.endOf(this.period.add(this.date, -1)),
+          projectIds: this.projectIds
         }
       });
     },
