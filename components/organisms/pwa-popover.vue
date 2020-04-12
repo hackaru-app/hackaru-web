@@ -73,7 +73,7 @@ export default {
   justify-content: center;
   display: flex;
   box-sizing: border-box;
-  background: $white;
+  padding: 20px;
 }
 .logo {
   flex-shrink: 0;

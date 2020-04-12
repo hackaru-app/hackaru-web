@@ -26,7 +26,8 @@ export default {
     async exportPdf() {
       const data = await this.$store.dispatch('reports/fetchPdf', {
         start: this.$route.query.start,
-        end: this.$route.query.end
+        end: this.$route.query.end,
+        projectIds: this.$route.query.projectIds
       });
       if (data) {
         this.loading = false;

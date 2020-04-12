@@ -74,14 +74,14 @@
 }
 .tooltip.popover {
   .popover-inner {
-    background: $white;
-    color: black;
-    padding: 15px;
+    background: $background-light;
+    color: $text;
+    padding: 0;
     border-radius: 5px;
     box-shadow: 0 5px 30px rgba(black, .1);
   }
   .popover-arrow {
-    border-color: $white;
+    border-color: $background-light;
   }
 }
 .tooltip[aria-hidden='true'] {

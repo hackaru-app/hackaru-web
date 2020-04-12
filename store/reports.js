@@ -21,6 +21,7 @@ export const actions = {
             params: {
               start: payload.start,
               end: payload.end,
+              projectIds: payload.projectIds,
               timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
             }
           },
@@ -30,11 +31,13 @@ export const actions = {
       const [current, previous] = await Promise.all([
         await request({
           start: payload.current.start,
-          end: payload.current.end
+          end: payload.current.end,
+          projectIds: payload.current.projectIds
         }),
         await request({
           start: payload.previous.start,
-          end: payload.previous.end
+          end: payload.previous.end,
+          projectIds: payload.previous.projectIds
         })
       ]);
       commit(SET_REPORTS, {
@@ -61,6 +64,7 @@ export const actions = {
           params: {
             start: payload.start,
             end: payload.end,
+            projectIds: payload.projectIds,
             timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
           }
         },
@@ -81,6 +85,7 @@ export const actions = {
           params: {
             start: payload.start,
             end: payload.end,
+            projectIds: payload.projectIds,
             timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
           }
         },

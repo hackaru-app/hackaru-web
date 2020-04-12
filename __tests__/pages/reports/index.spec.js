@@ -10,7 +10,17 @@ describe('Index', () => {
 
   MockDate.set('2019-01-31T01:23:45');
 
-  const $store = new Store();
+  const $store = new Store({
+    getters: {
+      'projects/all': [
+        {
+          id: 1,
+          name: 'Review',
+          color: '#ff0'
+        }
+      ]
+    }
+  });
 
   const factory = () =>
     shallowMount(Reports, {
@@ -34,11 +44,13 @@ describe('Index', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-31T00:00:00'),
-          end: parseISO('2019-01-31T23:59:59.999')
+          end: parseISO('2019-01-31T23:59:59.999'),
+          projectIds: []
         },
         previous: {
           start: parseISO('2019-01-30T00:00:00'),
-          end: parseISO('2019-01-30T23:59:59.999')
+          end: parseISO('2019-01-30T23:59:59.999'),
+          projectIds: []
         }
       });
     });
@@ -52,12 +64,12 @@ describe('Index', () => {
     });
 
     it('open pdf url', () => {
-      expect(window.open).toHaveBeenLastCalledWith(
-        `/en/reports/pdf/?${stringify({
-          start: formatISO(parseISO('2019-01-31T00:00:00')),
-          end: formatISO(parseISO('2019-01-31T23:59:59.999'))
-        })}`
-      );
+      const query = stringify({
+        start: formatISO(parseISO('2019-01-31T00:00:00')),
+        end: formatISO(parseISO('2019-01-31T23:59:59.999')),
+        projectIds: []
+      });
+      expect(window.open).toHaveBeenLastCalledWith(`/en/reports/pdf/?${query}`);
     });
   });
 
@@ -69,12 +81,12 @@ describe('Index', () => {
     });
 
     it('open csv url', () => {
-      expect(window.open).toHaveBeenLastCalledWith(
-        `/en/reports/csv/?${stringify({
-          start: formatISO(parseISO('2019-01-31T00:00:00')),
-          end: formatISO(parseISO('2019-01-31T23:59:59.999'))
-        })}`
-      );
+      const query = stringify({
+        start: formatISO(parseISO('2019-01-31T00:00:00')),
+        end: formatISO(parseISO('2019-01-31T23:59:59.999')),
+        projectIds: []
+      });
+      expect(window.open).toHaveBeenLastCalledWith(`/en/reports/csv/?${query}`);
     });
   });
 
@@ -88,11 +100,13 @@ describe('Index', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-27T00:00:00'),
-          end: parseISO('2019-02-02T23:59:59.999')
+          end: parseISO('2019-02-02T23:59:59.999'),
+          projectIds: []
         },
         previous: {
           start: parseISO('2019-01-20T00:00:00'),
-          end: parseISO('2019-01-26T23:59:59.999')
+          end: parseISO('2019-01-26T23:59:59.999'),
+          projectIds: []
         }
       });
     });
@@ -108,11 +122,13 @@ describe('Index', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-01T00:00:00'),
-          end: parseISO('2019-01-31T23:59:59.999')
+          end: parseISO('2019-01-31T23:59:59.999'),
+          projectIds: []
         },
         previous: {
           start: parseISO('2018-12-01T00:00:00'),
-          end: parseISO('2018-12-31T23:59:59.999')
+          end: parseISO('2018-12-31T23:59:59.999'),
+          projectIds: []
         }
       });
     });
@@ -128,11 +144,13 @@ describe('Index', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-01T00:00:00'),
-          end: parseISO('2019-12-31T23:59:59.999')
+          end: parseISO('2019-12-31T23:59:59.999'),
+          projectIds: []
         },
         previous: {
           start: parseISO('2018-01-01T00:00:00'),
-          end: parseISO('2018-12-31T23:59:59.999')
+          end: parseISO('2018-12-31T23:59:59.999'),
+          projectIds: []
         }
       });
     });
@@ -149,11 +167,13 @@ describe('Index', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-20T00:00:00'),
-          end: parseISO('2019-01-26T23:59:59.999')
+          end: parseISO('2019-01-26T23:59:59.999'),
+          projectIds: []
         },
         previous: {
           start: parseISO('2019-01-13T00:00:00'),
-          end: parseISO('2019-01-19T23:59:59.999')
+          end: parseISO('2019-01-19T23:59:59.999'),
+          projectIds: []
         }
       });
     });
@@ -170,11 +190,13 @@ describe('Index', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-02-03T00:00:00'),
-          end: parseISO('2019-02-09T23:59:59.999')
+          end: parseISO('2019-02-09T23:59:59.999'),
+          projectIds: []
         },
         previous: {
           start: parseISO('2019-01-27T00:00:00'),
-          end: parseISO('2019-02-02T23:59:59.999')
+          end: parseISO('2019-02-02T23:59:59.999'),
+          projectIds: []
         }
       });
     });
@@ -192,11 +214,35 @@ describe('Index', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-27T00:00:00'),
-          end: parseISO('2019-02-02T23:59:59.999')
+          end: parseISO('2019-02-02T23:59:59.999'),
+          projectIds: []
         },
         previous: {
           start: parseISO('2019-01-20T00:00:00'),
-          end: parseISO('2019-01-26T23:59:59.999')
+          end: parseISO('2019-01-26T23:59:59.999'),
+          projectIds: []
+        }
+      });
+    });
+  });
+
+  describe('when projectIds changed', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setData({ projectIds: [1] });
+    });
+
+    it('dispatch reports/fetch', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
+        current: {
+          start: parseISO('2019-01-31T00:00:00'),
+          end: parseISO('2019-01-31T23:59:59.999'),
+          projectIds: [1]
+        },
+        previous: {
+          start: parseISO('2019-01-30T00:00:00'),
+          end: parseISO('2019-01-30T23:59:59.999'),
+          projectIds: [1]
         }
       });
     });
