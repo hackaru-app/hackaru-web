@@ -10,7 +10,17 @@ describe('Index', () => {
 
   MockDate.set('2019-01-31T01:23:45');
 
-  const $store = new Store();
+  const $store = new Store({
+    getters: {
+      'projects/all': [
+        {
+          id: 1,
+          name: 'Review',
+          color: '#ff0'
+        }
+      ]
+    }
+  });
 
   const factory = () =>
     shallowMount(Reports, {
@@ -211,6 +221,28 @@ describe('Index', () => {
           start: parseISO('2019-01-20T00:00:00'),
           end: parseISO('2019-01-26T23:59:59.999'),
           projectIds: []
+        }
+      });
+    });
+  });
+
+  describe('when projectIds changed', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setData({ projectIds: [1] });
+    });
+
+    it('dispatch reports/fetch', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
+        current: {
+          start: parseISO('2019-01-31T00:00:00'),
+          end: parseISO('2019-01-31T23:59:59.999'),
+          projectIds: [1]
+        },
+        previous: {
+          start: parseISO('2019-01-30T00:00:00'),
+          end: parseISO('2019-01-30T23:59:59.999'),
+          projectIds: [1]
         }
       });
     });
