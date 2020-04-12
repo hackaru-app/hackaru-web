@@ -20,6 +20,7 @@ $white-lighter: #fffffff0;
 :root {
   // Background
   --background-translucent: #fffffff5;
+  --background-light: #{$white};
   --background: #{$white};
   --background-hover: #{$grey-fafafa};
   --background-dark: #3f4961;
