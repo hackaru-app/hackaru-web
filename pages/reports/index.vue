@@ -246,14 +246,11 @@ export default {
       this.date = this.period.add(this.period.startOf(this.date), 1);
     },
     exportReport(type) {
-      const query = stringify(
-        {
-          start: formatISO(this.period.startOf(this.date)),
-          end: formatISO(this.period.endOf(this.date)),
-          projectIds: this.projectIds
-        },
-        { arrayFormat: 'bracket' }
-      );
+      const query = stringify({
+        start: formatISO(this.period.startOf(this.date)),
+        end: formatISO(this.period.endOf(this.date)),
+        projectIds: this.projectIds
+      });
       window.open(`${this.localePath('reports')}/${type}/?${query}`);
     }
   }

@@ -26,7 +26,8 @@ export default {
     async exportCsv() {
       const data = await this.$store.dispatch('reports/fetchCsv', {
         start: this.$route.query.start,
-        end: this.$route.query.end
+        end: this.$route.query.end,
+        projectIds: this.$route.query.projectIds
       });
       if (data) {
         this.loading = false;
