@@ -64,6 +64,7 @@ export const actions = {
           params: {
             start: payload.start,
             end: payload.end,
+            projectIds: payload.projectIds,
             timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
           }
         },
@@ -84,6 +85,7 @@ export const actions = {
           params: {
             start: payload.start,
             end: payload.end,
+            projectIds: payload.projectIds,
             timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
           }
         },
