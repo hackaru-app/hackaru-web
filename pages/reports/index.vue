@@ -19,11 +19,13 @@
         <button class="pdf-button" @click="exportReport('pdf')">PDF</button>
         <button class="csv-button" @click="exportReport('csv')">CSV</button>
       </div>
-      <project-popover :projects="projects">
-        <button class="tooltip-target filter-button">
-          <icon name="filter-icon" class="icon" />
-        </button>
-      </project-popover>
+      <client-only>
+        <project-popover :projects="projects">
+          <button class="tooltip-target filter-button">
+            <icon name="filter-icon" class="icon" />
+          </button>
+        </project-popover>
+      </client-only>
     </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">

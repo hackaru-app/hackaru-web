@@ -2,12 +2,16 @@
   <v-popover>
     <slot />
     <template slot="popover">
-      <div class="popover-wrapper">
-        <div v-for="project in projects" :key="project.id" class="project-item">
+      <section class="popover-wrapper">
+        <article
+          v-for="project in projects"
+          :key="project.id"
+          class="project-item"
+        >
           <project-name v-bind="project" />
           <input type="checkbox" class="checkbox" />
-        </div>
-      </div>
+        </article>
+      </section>
     </template>
   </v-popover>
 </template>
