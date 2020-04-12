@@ -26,11 +26,13 @@ describe('Actions', () => {
         {
           current: {
             start: parseISO('2019-01-01T00:00:00'),
-            end: parseISO('2019-01-03T00:00:00')
+            end: parseISO('2019-01-03T00:00:00'),
+            projectIds: [1]
           },
           previous: {
             start: parseISO('2019-12-29T00:00:00'),
-            end: parseISO('2019-01-31T00:00:00')
+            end: parseISO('2019-01-31T00:00:00'),
+            projectIds: [1]
           }
         }
       );
@@ -44,6 +46,7 @@ describe('Actions', () => {
           params: {
             start: parseISO('2019-01-01T00:00:00'),
             end: parseISO('2019-01-03T00:00:00'),
+            projectIds: [1],
             timeZone: 'America/New_York'
           }
         },
@@ -59,6 +62,7 @@ describe('Actions', () => {
           params: {
             start: parseISO('2019-12-29T00:00:00'),
             end: parseISO('2019-01-31T00:00:00'),
+            projectIds: [1],
             timeZone: 'America/New_York'
           }
         },
@@ -93,7 +97,8 @@ describe('Actions', () => {
         { dispatch },
         {
           start: parseISO('2019-01-01T00:00:00'),
-          end: parseISO('2019-01-03T00:00:00')
+          end: parseISO('2019-01-03T00:00:00'),
+          projectIds: [1]
         }
       );
     });
@@ -107,6 +112,7 @@ describe('Actions', () => {
           params: {
             start: parseISO('2019-01-01T00:00:00'),
             end: parseISO('2019-01-03T00:00:00'),
+            projectIds: [1],
             timeZone: 'America/New_York'
           }
         },
@@ -129,7 +135,8 @@ describe('Actions', () => {
         { dispatch },
         {
           start: parseISO('2019-01-01T00:00:00'),
-          end: parseISO('2019-01-03T00:00:00')
+          end: parseISO('2019-01-03T00:00:00'),
+          projectIds: [1]
         }
       );
     });
@@ -143,6 +150,7 @@ describe('Actions', () => {
           params: {
             start: parseISO('2019-01-01T00:00:00'),
             end: parseISO('2019-01-03T00:00:00'),
+            projectIds: [1],
             timeZone: 'America/New_York'
           }
         },
