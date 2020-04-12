@@ -20,11 +20,29 @@
         <button class="csv-button" @click="exportReport('csv')">CSV</button>
       </div>
       <client-only>
-        <project-popover :projects="projects">
+        <v-popover>
           <button class="tooltip-target filter-button">
             <icon name="filter-icon" class="icon" />
           </button>
-        </project-popover>
+          <template slot="popover">
+            <section class="popover-wrapper">
+              <label
+                v-for="project in projects"
+                :key="project.id"
+                :for="`popover-wrapper-${project.id}`"
+                class="project-item"
+              >
+                <project-name v-bind="project" />
+                <input
+                  :id="`popover-wrapper-${project.id}`"
+                  v-model="checkedProjects"
+                  type="checkbox"
+                  class="checkbox"
+                />
+              </label>
+            </section>
+          </template>
+        </v-popover>
       </client-only>
     </div>
 
@@ -83,7 +101,7 @@
 
 <script>
 import Icon from '@/components/atoms/icon';
-import ProjectPopover from '@/components/molecules/project-popover';
+import ProjectName from '@/components/molecules/project-name';
 import CoachTooltip from '@/components/atoms/coach-tooltip';
 import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
@@ -142,7 +160,7 @@ export default {
     ReportContent,
     DateHeader,
     ContentHeader,
-    ProjectPopover
+    ProjectName
   },
   head: {
     title: 'Reports'
@@ -260,6 +278,21 @@ export default {
     border-top: 0;
     border-bottom: 0;
     cursor: pointer;
+  }
+}
+.popover-wrapper {
+  padding: 10px;
+}
+.project-item {
+  display: flex;
+  padding: 0 15px;
+  height: 45px;
+  min-width: 130px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  &:hover {
+    background-color: $background-hover;
   }
 }
 .exports {
