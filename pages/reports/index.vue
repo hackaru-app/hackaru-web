@@ -301,6 +301,8 @@ export default {
 }
 .popover-wrapper {
   padding: 10px;
+  max-height: 260px;
+  overflow: scroll;
 }
 .project-item {
   display: flex;
