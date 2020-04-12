@@ -20,33 +20,35 @@
         <button class="csv-button" @click="exportReport('csv')">CSV</button>
       </div>
       <client-only>
-        <v-popover>
-          <button class="tooltip-target filter-button">
-            <icon
-              :class="['icon', { 'is-primary': projectIds.length }]"
-              name="filter-icon"
-            />
-          </button>
-          <template slot="popover">
-            <section class="popover-wrapper">
-              <label
-                v-for="project in allProjects"
-                :key="project.id"
-                :for="`popover-wrapper-${project.id}`"
-                class="project-item"
-              >
-                <project-name v-bind="project" />
-                <input
-                  :id="`popover-wrapper-${project.id}`"
-                  v-model="projectIds"
-                  :value="project.id"
-                  type="checkbox"
-                  class="checkbox"
-                />
-              </label>
-            </section>
-          </template>
-        </v-popover>
+        <window-scroll @scroll="scroll">
+          <v-popover :open.sync="openPopover">
+            <button class="tooltip-target filter-button">
+              <icon
+                :class="['icon', { 'is-primary': projectIds.length }]"
+                name="filter-icon"
+              />
+            </button>
+            <template slot="popover">
+              <section class="popover-wrapper">
+                <label
+                  v-for="project in allProjects"
+                  :key="project.id"
+                  :for="`popover-wrapper-${project.id}`"
+                  class="project-item"
+                >
+                  <project-name v-bind="project" />
+                  <input
+                    :id="`popover-wrapper-${project.id}`"
+                    v-model="projectIds"
+                    :value="project.id"
+                    type="checkbox"
+                    class="checkbox"
+                  />
+                </label>
+              </section>
+            </template>
+          </v-popover>
+        </window-scroll>
       </client-only>
     </div>
 
@@ -104,6 +106,7 @@
 </template>
 
 <script>
+import WindowScroll from '@/components/atoms/window-scroll';
 import Icon from '@/components/atoms/icon';
 import ProjectName from '@/components/molecules/project-name';
 import CoachTooltip from '@/components/atoms/coach-tooltip';
@@ -164,7 +167,8 @@ export default {
     ReportContent,
     DateHeader,
     ContentHeader,
-    ProjectName
+    ProjectName,
+    WindowScroll
   },
   head: {
     title: 'Reports'
@@ -174,7 +178,8 @@ export default {
       date: new Date(),
       currentPeriod: 'day',
       selectedIndex: 0,
-      projectIds: []
+      projectIds: [],
+      openPopover: false
     };
   },
   computed: {
@@ -252,6 +257,9 @@ export default {
         projectIds: this.projectIds
       });
       window.open(`${this.localePath('reports')}/${type}/?${query}`);
+    },
+    scroll() {
+      this.openPopover = false;
     }
   }
 };
