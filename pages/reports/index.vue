@@ -36,7 +36,7 @@
                   :for="`popover-wrapper-${project.id}`"
                   class="project-item"
                 >
-                  <project-name v-bind="project" />
+                  <project-name v-bind="project" class="project-name" />
                   <input
                     :id="`popover-wrapper-${project.id}`"
                     v-model="projectIds"
@@ -311,7 +311,6 @@ export default {
   display: flex;
   padding: 0 15px;
   height: 45px;
-  min-width: 130px;
   align-items: center;
   justify-content: space-between;
   border-radius: 5px;
@@ -319,6 +318,10 @@ export default {
   &:hover {
     background-color: $background-hover;
   }
+}
+.project-name {
+  max-width: 150px;
+  padding-right: 10px;
 }
 .exports {
   display: flex;

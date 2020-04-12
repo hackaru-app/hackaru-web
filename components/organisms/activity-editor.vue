@@ -14,7 +14,11 @@
 
       <modal-item>
         <button type="button" class="project-button" @click="editProject">
-          <project-name :name="project.name" :color="project.color" />
+          <project-name
+            :name="project.name"
+            :color="project.color"
+            class="project-name"
+          />
           <icon name="chevron-right-icon" class="is-large" />
         </button>
       </modal-item>
@@ -215,8 +219,14 @@ export default {
   width: 100%;
   background: none;
 }
+.project-name {
+  flex: 1;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
 .icons {
   display: flex;
+  flex-shrink: 0;
   flex-direction: row;
   .delete-button {
     margin-left: 10px;
