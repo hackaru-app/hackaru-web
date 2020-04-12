@@ -22,7 +22,10 @@
       <client-only>
         <v-popover>
           <button class="tooltip-target filter-button">
-            <icon name="filter-icon" class="icon" />
+            <icon
+              :class="['icon', { 'is-primary': projectIds.length }]"
+              name="filter-icon"
+            />
           </button>
           <template slot="popover">
             <section class="popover-wrapper">
