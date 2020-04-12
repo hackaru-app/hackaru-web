@@ -116,7 +116,7 @@ export default {
   justify-content: space-between;
   cursor: pointer;
   height: 100%;
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
 }

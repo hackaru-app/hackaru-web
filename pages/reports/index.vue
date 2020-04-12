@@ -15,8 +15,41 @@
       @right="slideRight"
     />
     <div class="tools">
-      <button class="pdf-button" @click="exportReport('pdf')">PDF</button>
-      <button class="csv-button" @click="exportReport('csv')">CSV</button>
+      <div class="exports">
+        <button class="pdf-button" @click="exportReport('pdf')">PDF</button>
+        <button class="csv-button" @click="exportReport('csv')">CSV</button>
+      </div>
+      <client-only>
+        <window-scroll @scroll="scroll">
+          <v-popover :open.sync="openPopover">
+            <button class="tooltip-target filter-button">
+              <icon
+                :class="['icon', { 'is-primary': projectIds.length }]"
+                name="filter-icon"
+              />
+            </button>
+            <template slot="popover">
+              <section class="popover-wrapper">
+                <label
+                  v-for="project in allProjects"
+                  :key="project.id"
+                  :for="`popover-wrapper-${project.id}`"
+                  class="project-item"
+                >
+                  <project-name v-bind="project" class="project-name" />
+                  <input
+                    :id="`popover-wrapper-${project.id}`"
+                    v-model="projectIds"
+                    :value="project.id"
+                    type="checkbox"
+                    class="checkbox"
+                  />
+                </label>
+              </section>
+            </template>
+          </v-popover>
+        </window-scroll>
+      </client-only>
     </div>
 
     <coach-tooltip :content="$t('moveToNextPage')" name="swipeReport">
@@ -73,7 +106,9 @@
 </template>
 
 <script>
+import WindowScroll from '@/components/atoms/window-scroll';
 import Icon from '@/components/atoms/icon';
+import ProjectName from '@/components/molecules/project-name';
 import CoachTooltip from '@/components/atoms/coach-tooltip';
 import LoopSlider from '@/components/organisms/loop-slider';
 import DateHeader from '@/components/organisms/date-header';
@@ -131,7 +166,9 @@ export default {
     LoopSlider,
     ReportContent,
     DateHeader,
-    ContentHeader
+    ContentHeader,
+    ProjectName,
+    WindowScroll
   },
   head: {
     title: 'Reports'
@@ -140,7 +177,9 @@ export default {
     return {
       date: new Date(),
       currentPeriod: 'day',
-      selectedIndex: 0
+      selectedIndex: 0,
+      projectIds: [],
+      openPopover: false
     };
   },
   computed: {
@@ -150,6 +189,7 @@ export default {
       totals: 'reports/totals',
       previousTotals: 'reports/previousTotals',
       projects: 'reports/projects',
+      allProjects: 'projects/all',
       activityGroups: 'reports/activityGroups'
     }),
     period() {
@@ -167,6 +207,9 @@ export default {
     }
   },
   watch: {
+    projectIds: {
+      handler: 'fetchReport'
+    },
     period: {
       handler: 'fetchReport'
     },
@@ -182,11 +225,13 @@ export default {
       this.$store.dispatch('reports/fetch', {
         current: {
           start: this.period.startOf(this.date),
-          end: this.period.endOf(this.date)
+          end: this.period.endOf(this.date),
+          projectIds: this.projectIds
         },
         previous: {
           start: this.period.startOf(this.period.add(this.date, -1)),
-          end: this.period.endOf(this.period.add(this.date, -1))
+          end: this.period.endOf(this.period.add(this.date, -1)),
+          projectIds: this.projectIds
         }
       });
     },
@@ -206,12 +251,15 @@ export default {
       this.date = this.period.add(this.period.startOf(this.date), 1);
     },
     exportReport(type) {
-      window.open(
-        `${this.localePath('reports')}/${type}/?${stringify({
-          start: formatISO(this.period.startOf(this.date)),
-          end: formatISO(this.period.endOf(this.date))
-        })}`
-      );
+      const query = stringify({
+        start: formatISO(this.period.startOf(this.date)),
+        end: formatISO(this.period.endOf(this.date)),
+        projectIds: this.projectIds
+      });
+      window.open(`${this.localePath('reports')}/${type}/?${query}`);
+    },
+    scroll() {
+      this.openPopover = false;
     }
   }
 };
@@ -234,22 +282,51 @@ export default {
 }
 .tools {
   display: flex;
+  justify-content: space-between;
   padding: 0 40px;
+  height: 50px;
+  box-sizing: border-box;
   border-bottom: 1px $border-dark solid;
   background-color: $background-translucent;
   box-shadow: 0 3px 3px $shadow;
   button {
     display: flex;
-    align-items: center;
     background: none;
     color: $text;
-    padding: 15px 20px;
+    padding: 0 20px;
+    height: 50px;
     border: 0;
-    border-right: 1px $border-dark solid;
+    border: 1px $border-dark solid;
+    border-top: 0;
+    border-bottom: 0;
     cursor: pointer;
-    .icon {
-      margin-right: 6px;
-    }
+  }
+}
+.popover-wrapper {
+  padding: 10px;
+  max-height: 260px;
+  overflow: scroll;
+}
+.project-item {
+  display: flex;
+  padding: 0 15px;
+  height: 45px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  transition: background-color 0.15s;
+  &:hover {
+    background-color: $background-hover;
+  }
+}
+.project-name {
+  max-width: 150px;
+  padding-right: 10px;
+}
+.exports {
+  display: flex;
+  button {
+    border-left: 0;
     &:first-child {
       border-left: 1px $border-dark solid;
     }
@@ -258,6 +335,10 @@ export default {
 @media screen and (max-width: 640px) {
   .tools {
     padding: 0;
+  }
+  .filter-button {
+    margin-right: 30px;
+    border-right: 1px $border-dark solid;
   }
 }
 </style>
