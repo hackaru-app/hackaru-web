@@ -284,6 +284,8 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 0 40px;
+  height: 50px;
+  box-sizing: border-box;
   border-bottom: 1px $border-dark solid;
   background-color: $background-translucent;
   box-shadow: 0 3px 3px $shadow;
@@ -291,7 +293,8 @@ export default {
     display: flex;
     background: none;
     color: $text;
-    padding: 15px 20px;
+    padding: 0 20px;
+    height: 50px;
     border: 0;
     border: 1px $border-dark solid;
     border-top: 0;
