@@ -44,7 +44,7 @@
     "nuxt-i18n": "^6.4.1",
     "query-string": "^6.8.3",
     "sass-loader": "^8.0.2",
-    "snakecase-keys": "^3.1.1",
+    "snakecase-keys": "^3.1.2",
     "style-loader": "^0.23.1",
     "v-tooltip": "^2.0.3",
     "vue-chartjs": "^3.5.0",
