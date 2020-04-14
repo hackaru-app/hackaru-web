@@ -304,7 +304,7 @@ export default {
 }
 .popover-wrapper {
   padding: 10px;
-  max-height: 260px;
+  max-height: 270px;
   overflow: scroll;
 }
 .project-item {
@@ -321,7 +321,7 @@ export default {
 }
 .project-name {
   max-width: 150px;
-  padding-right: 10px;
+  padding-right: 30px;
 }
 .exports {
   display: flex;
