@@ -91,9 +91,6 @@ h1 {
     color: $yellow;
     transition: filter 0.2s;
   }
-  a:hover .logo-icon {
-    filter: drop-shadow(0 0 4px rgba($yellow, 0.3));
-  }
 }
 ul {
   display: flex;
@@ -144,7 +141,8 @@ li:first-child a {
     box-sizing: border-box;
   }
   h1 a {
-    padding: 0;
+    padding: 20px;
+    margin-left: -22px;
     height: auto;
   }
   h1 a .logo-icon {
