@@ -18,7 +18,7 @@
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/sentry": "^3.2.4",
     "@sentry/browser": "^5.6.3",
-    "@sentry/integrations": "^5.12.0",
+    "@sentry/integrations": "^5.15.4",
     "axios": "^0.19.2",
     "body-scroll-lock": "^3.0.1",
     "camelcase-keys": "^6.1.2",
@@ -70,7 +70,7 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.6.4",
+    "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.7.7",
     "@nuxtjs/style-resources": "^1.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
