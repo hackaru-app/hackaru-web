@@ -13,7 +13,7 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.scroll, { passive: true });
   },
-  destoryed() {
+  destroyed() {
     window.removeEventListener('scroll', this.scroll);
   },
   methods: {
