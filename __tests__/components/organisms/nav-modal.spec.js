@@ -12,8 +12,8 @@ describe('NavModal', () => {
       propsData: {
         name: 'example',
         initialComponent,
-        keepAlives: []
-      }
+        keepAlives: [],
+      },
     });
 
   describe('when emit before-open', () => {
@@ -31,13 +31,13 @@ describe('NavModal', () => {
     it('reset animations', () => {
       expect(wrapper.vm.animation).toEqual({
         enter: '',
-        leave: ''
+        leave: '',
       });
     });
 
     it('set params', () => {
       expect(wrapper.vm.params).toEqual({
-        foo: 'bar'
+        foo: 'bar',
       });
     });
   });
@@ -59,7 +59,7 @@ describe('NavModal', () => {
       wrapper.setData({ current: initialComponent });
       wrapper.find('.current').vm.$emit('push', {
         component: nextComponent,
-        params: { foo: 'bar' }
+        params: { foo: 'bar' },
       });
     });
 
@@ -70,13 +70,13 @@ describe('NavModal', () => {
     it('set animations', () => {
       expect(wrapper.vm.animation).toEqual({
         enter: 'fadeInRight',
-        leave: 'fadeOutLeft'
+        leave: 'fadeOutLeft',
       });
     });
 
     it('set params', () => {
       expect(wrapper.vm.params).toEqual({
-        foo: 'bar'
+        foo: 'bar',
       });
     });
   });
@@ -86,7 +86,7 @@ describe('NavModal', () => {
       wrapper = factory();
       wrapper.setData({ current: initialComponent });
       wrapper.find('.current').vm.$emit('push', {
-        component: nextComponent
+        component: nextComponent,
       });
     });
 
@@ -110,13 +110,13 @@ describe('NavModal', () => {
     it('set animations', () => {
       expect(wrapper.vm.animation).toEqual({
         enter: 'fadeInLeft',
-        leave: 'fadeOutRight'
+        leave: 'fadeOutRight',
       });
     });
 
     it('set params', () => {
       expect(wrapper.vm.params).toEqual({
-        foo: 'bar'
+        foo: 'bar',
       });
     });
   });

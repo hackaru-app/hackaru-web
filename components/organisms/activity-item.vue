@@ -49,33 +49,33 @@ export default {
     SwipeMenu,
     Icon,
     ActivityName,
-    Ticker
+    Ticker,
   },
   props: {
     id: {
       type: Number,
-      required: true
+      required: true,
     },
     duration: {
       type: Number,
-      default: 0
+      default: 0,
     },
     description: {
       type: String,
-      required: true
+      required: true,
     },
     startedAt: {
       type: String,
-      required: true
+      required: true,
     },
     stoppedAt: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     project: {
       type: Object,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   methods: {
     showModal(params) {
@@ -84,7 +84,7 @@ export default {
         description: this.description,
         startedAt: this.startedAt,
         stoppedAt: this.stoppedAt,
-        project: this.project || undefined
+        project: this.project || undefined,
       });
     },
     deleteActivity() {
@@ -98,27 +98,27 @@ export default {
         eventCategory: 'Activities',
         eventAction: 'delete',
         name: 'delete_activity',
-        component: 'activity_item'
+        component: 'activity_item',
       });
     },
     async duplicateActivity() {
       const success = await this.$store.dispatch('activities/add', {
         description: this.description,
         projectId: this.project && this.project.id,
-        startedAt: `${new Date()}`
+        startedAt: `${new Date()}`,
       });
       this.$gtm.trackEvent({
         eventCategory: 'Activities',
         eventAction: 'duplicate',
         name: 'duplicate_activity',
-        component: 'activity_item'
+        component: 'activity_item',
       });
       if (success) {
         this.$refs.swipeMenu.reset();
         this.$store.dispatch('toast/success', this.$t('duplicated'));
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

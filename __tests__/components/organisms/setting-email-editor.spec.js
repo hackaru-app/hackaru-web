@@ -9,8 +9,8 @@ describe('SettingEmailEditor', () => {
   const factory = () =>
     shallowMount(SettingEmailEditor, {
       mocks: {
-        $store
-      }
+        $store,
+      },
     });
 
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe('SettingEmailEditor', () => {
     it('dispatch auth/changeEmail', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/changeEmail', {
         email: 'example@example.com',
-        currentPassword: 'password'
+        currentPassword: 'password',
       });
     });
   });

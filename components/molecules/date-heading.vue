@@ -21,13 +21,13 @@ export default {
   components: {
     BaseButton,
     Icon,
-    Heading
+    Heading,
   },
   props: {
     title: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     left() {
@@ -35,8 +35,8 @@ export default {
     },
     right() {
       this.$emit('right');
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -14,8 +14,8 @@ import Heading from '@/components/atoms/heading';
 export default {
   components: {
     Icon,
-    Heading
-  }
+    Heading,
+  },
 };
 </script>
 

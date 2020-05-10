@@ -51,7 +51,7 @@ describe('Getters', () => {
   describe('when call loggedIn', () => {
     const state = {
       refreshToken: 'refreshToken',
-      clientId: 'clientId'
+      clientId: 'clientId',
     };
 
     beforeEach(() => {
@@ -66,7 +66,7 @@ describe('Getters', () => {
   describe('when call loggedIn but user does not have token', () => {
     const state = {
       refreshToken: '',
-      clientId: ''
+      clientId: '',
     };
 
     beforeEach(() => {

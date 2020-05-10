@@ -8,14 +8,14 @@ describe('Default', () => {
 
   const $store = new Store({
     getters: {
-      'activities/getWorkingActivities': () => []
-    }
+      'activities/getWorkingActivities': () => [],
+    },
   });
 
   const factory = () =>
     shallowMount(Default, {
       stubs: ['nuxt', 'client-only'],
-      mocks: { $store }
+      mocks: { $store },
     });
 
   beforeEach(() => {

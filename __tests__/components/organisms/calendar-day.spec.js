@@ -16,8 +16,8 @@ describe('CalendarDay', () => {
             startedAt: '2019-01-01T01:30:00',
             stoppedAt: '2019-01-01T02:30:00',
             duration: 3600,
-            project: null
-          }
+            project: null,
+          },
         ],
         [
           {
@@ -29,12 +29,12 @@ describe('CalendarDay', () => {
             project: {
               id: 2,
               name: 'Development',
-              color: '#ff0'
-            }
-          }
-        ]
-      ]
-    }
+              color: '#ff0',
+            },
+          },
+        ],
+      ],
+    },
   });
 
   const factory = () =>
@@ -43,13 +43,13 @@ describe('CalendarDay', () => {
         $store,
         $mezr: {
           offset: () => ({
-            top: 50
-          })
-        }
+            top: 50,
+          }),
+        },
       },
       propsData: {
-        day: '2019-01-01'
-      }
+        day: '2019-01-01',
+      },
     });
 
   beforeEach(() => {
@@ -72,7 +72,7 @@ describe('CalendarDay', () => {
     it('emit dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
-        guideRulerTop: 100 - 50 + 20
+        guideRulerTop: 100 - 50 + 20,
       });
     });
   });
@@ -87,7 +87,7 @@ describe('CalendarDay', () => {
     it('emit dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
-        guideRulerTop: 50 + 20
+        guideRulerTop: 50 + 20,
       });
     });
   });
@@ -110,7 +110,7 @@ describe('CalendarDay', () => {
     it('dispatch activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         startedAt: parseISO('2019-01-01T01:00:00'),
-        stoppedAt: parseISO('2019-01-01T01:20:00')
+        stoppedAt: parseISO('2019-01-01T01:20:00'),
       });
     });
   });
@@ -133,7 +133,7 @@ describe('CalendarDay', () => {
     it('dispatch activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         startedAt: parseISO('2019-01-01T01:00:00'),
-        stoppedAt: parseISO('2019-01-01T01:20:00')
+        stoppedAt: parseISO('2019-01-01T01:20:00'),
       });
     });
   });

@@ -64,11 +64,11 @@ export default {
     BaseModal,
     ModalItem,
     ModalHeader,
-    ModalFooter
+    ModalFooter,
   },
   data() {
     return {
-      currentPassword: ''
+      currentPassword: '',
     };
   },
   methods: {
@@ -78,19 +78,19 @@ export default {
     async deleteAccount() {
       if (!window.confirm(this.$t('confirms'))) return;
       const success = await this.$store.dispatch('auth/deleteAccount', {
-        currentPassword: this.currentPassword
+        currentPassword: this.currentPassword,
       });
       if (success) {
         this.$gtm.trackEvent({
           eventCategory: 'Accounts',
           eventAction: 'delete',
           name: 'delete_account',
-          component: 'setting_delete_account_button'
+          component: 'setting_delete_account_button',
         });
         window.location.assign(this.localePath('index'));
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

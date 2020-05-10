@@ -11,8 +11,8 @@ describe('CoachTooltip', () => {
     shallowMount(CoachTooltip, {
       localVue,
       propsData: {
-        name: 'example'
-      }
+        name: 'example',
+      },
     });
 
   beforeEach(() => {

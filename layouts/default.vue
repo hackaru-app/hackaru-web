@@ -33,40 +33,40 @@ export default {
     updateDuration: {
       time: 500,
       autostart: true,
-      repeat: true
-    }
+      repeat: true,
+    },
   },
   components: {
     Toast,
     LoginGuard,
     NavModal,
     SideBar,
-    PwaPopover
+    PwaPopover,
   },
   head() {
     return {
-      titleTemplate: this.titleTemplate
+      titleTemplate: this.titleTemplate,
     };
   },
   props: {
     showSideMenu: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
       ActivityEditor,
-      duration: undefined
+      duration: undefined,
     };
   },
   computed: {
     ...mapGetters({
-      working: 'activities/working'
+      working: 'activities/working',
     }),
     titleTemplate() {
       return this.duration && `${this.duration}・%s`;
-    }
+    },
   },
   mounted() {
     this.$store.dispatch('projects/fetch');
@@ -79,8 +79,8 @@ export default {
             differenceInSeconds(new Date(), parseISO(this.working.startedAt))
           )
         : undefined;
-    }
-  }
+    },
+  },
 };
 </script>
 

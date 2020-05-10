@@ -48,56 +48,56 @@ import {
   addSeconds,
   differenceInMinutes,
   addMinutes,
-  parseISO
+  parseISO,
 } from 'date-fns';
 
 export default {
   components: {
     CalendarEvent,
     Dragger,
-    Resizer
+    Resizer,
   },
   props: {
     id: {
       type: Number,
-      required: true
+      required: true,
     },
     description: {
       type: String,
-      required: true
+      required: true,
     },
     startedAt: {
       type: String,
-      required: true
+      required: true,
     },
     stoppedAt: {
       type: String,
-      required: true
+      required: true,
     },
     day: {
       type: String,
-      required: true
+      required: true,
     },
     overlappedDay: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     duration: {
       type: Number,
-      required: true
+      required: true,
     },
     minHeight: {
       type: Number,
-      default: 30
+      default: 30,
     },
     project: {
       type: Object,
-      default: () => undefined
+      default: () => undefined,
     },
     guideTop: {
       type: Number,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   data() {
     return {
@@ -105,7 +105,7 @@ export default {
       resized: false,
       top: this.getInitialTop(),
       height: this.getInitialHeight(),
-      left: 0
+      left: 0,
     };
   },
   computed: {
@@ -116,15 +116,15 @@ export default {
     },
     color() {
       return this.project ? this.project.color : '#cccfd9';
-    }
+    },
   },
   watch: {
-    startedAt: function() {
+    startedAt: function () {
       this.resetPosition();
     },
-    duration: function() {
+    duration: function () {
       this.resetPosition();
-    }
+    },
   },
   methods: {
     getInitialTop() {
@@ -147,13 +147,13 @@ export default {
       this.dragged = true;
       this.$emit('dragging', {
         el: this.$el,
-        guideRulerTop: this.top
+        guideRulerTop: this.top,
       });
     },
     moving(e) {
       this.$emit('dragging', {
         el: this.$el,
-        guideRulerTop: this.top
+        guideRulerTop: this.top,
       });
     },
     moveEnd(e) {
@@ -167,7 +167,7 @@ export default {
       );
       this.update({
         startedAt: date,
-        stoppedAt: addSeconds(date, this.duration)
+        stoppedAt: addSeconds(date, this.duration),
       });
     },
     moveCancel(e) {
@@ -177,7 +177,7 @@ export default {
       this.resized = true;
       this.$emit('dragging', {
         el: this.$el,
-        guideRulerTop: this.top + this.height
+        guideRulerTop: this.top + this.height,
       });
     },
     resizeEnd(e) {
@@ -208,22 +208,22 @@ export default {
         startedAt: this.startedAt,
         stoppedAt: this.stoppedAt,
         duration: this.duration,
-        project: this.project
+        project: this.project,
       });
     },
     async update(payload) {
       await this.$store.dispatch('activities/update', {
         id: this.id,
-        ...payload
+        ...payload,
       });
       this.$gtm.trackEvent({
         eventCategory: 'Activities',
         eventAction: 'update',
         name: 'update_activity',
-        component: 'calendar_activity'
+        component: 'calendar_activity',
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

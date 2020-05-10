@@ -7,13 +7,13 @@ export const state = () => ({
   previousTotals: {},
   labels: [],
   sums: {},
-  activityGroups: []
+  activityGroups: [],
 });
 
 export const actions = {
   async fetch({ commit, dispatch }, payload) {
     try {
-      const request = async payload =>
+      const request = async (payload) =>
         dispatch(
           'auth-api/request',
           {
@@ -22,8 +22,8 @@ export const actions = {
               start: payload.start,
               end: payload.end,
               projectIds: payload.projectIds,
-              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-            }
+              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            },
           },
           { root: true }
         );
@@ -32,23 +32,23 @@ export const actions = {
         await request({
           start: payload.current.start,
           end: payload.current.end,
-          projectIds: payload.current.projectIds
+          projectIds: payload.current.projectIds,
         }),
         await request({
           start: payload.previous.start,
           end: payload.previous.end,
-          projectIds: payload.previous.projectIds
-        })
+          projectIds: payload.previous.projectIds,
+        }),
       ]);
       commit(SET_REPORTS, {
         projects: current.data.projects,
         totals: current.data.totals,
         labels: current.data.labels,
         sums: current.data.sums,
-        activityGroups: current.data.activityGroups
+        activityGroups: current.data.activityGroups,
       });
       commit(SET_PREVIOUS_TOTALS, {
-        totals: previous.data.totals
+        totals: previous.data.totals,
       });
     } catch (e) {
       dispatch('toast/error', e, { root: true });
@@ -65,8 +65,8 @@ export const actions = {
             start: payload.start,
             end: payload.end,
             projectIds: payload.projectIds,
-            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-          }
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          },
         },
         { root: true }
       );
@@ -86,8 +86,8 @@ export const actions = {
             start: payload.start,
             end: payload.end,
             projectIds: payload.projectIds,
-            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-          }
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          },
         },
         { root: true }
       );
@@ -95,7 +95,7 @@ export const actions = {
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
-  }
+  },
 };
 
 export const mutations = {
@@ -110,37 +110,37 @@ export const mutations = {
   },
   [SET_PREVIOUS_TOTALS](state, payload) {
     state.previousTotals = payload.totals;
-  }
+  },
 };
 
 export const getters = {
-  projects: state => {
+  projects: (state) => {
     return state.projects;
   },
-  totals: state => {
+  totals: (state) => {
     return state.totals;
   },
-  previousTotals: state => {
+  previousTotals: (state) => {
     return state.previousTotals;
   },
-  activityGroups: state => {
+  activityGroups: (state) => {
     return state.activityGroups;
   },
-  empty: state => {
-    return !Object.values(state.totals).find(value => value > 0);
+  empty: (state) => {
+    return !Object.values(state.totals).find((value) => value > 0);
   },
-  barChartData: state => {
+  barChartData: (state) => {
     return {
       labels: state.labels,
-      datasets: state.projects.map(project => ({
+      datasets: state.projects.map((project) => ({
         maxBarThickness: 40,
         label: project.name,
         backgroundColor: project.color,
-        data: state.sums[project.id]
-      }))
+        data: state.sums[project.id],
+      })),
     };
   },
-  doughnutChartData: state => {
+  doughnutChartData: (state) => {
     const projects = state.projects;
     return {
       labels: projects.map(({ name }) => name),
@@ -148,9 +148,9 @@ export const getters = {
         {
           data: projects.map(({ id }) => state.totals[id]),
           borderWidth: 0,
-          backgroundColor: projects.map(({ color }) => color)
-        }
-      ]
+          backgroundColor: projects.map(({ color }) => color),
+        },
+      ],
     };
-  }
+  },
 };

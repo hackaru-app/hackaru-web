@@ -90,11 +90,11 @@ export default {
     Heading,
     BaseInput,
     BaseButton,
-    LocaleSelect
+    LocaleSelect,
   },
   head() {
     return {
-      title: this.hasAccount ? 'Login' : 'SignUp'
+      title: this.hasAccount ? 'Login' : 'SignUp',
     };
   },
   data() {
@@ -103,13 +103,13 @@ export default {
       password: '',
       passwordConfirmation: '',
       agreement: false,
-      hasAccount: !this.$route.query['sign-up']
+      hasAccount: !this.$route.query['sign-up'],
     };
   },
   computed: {
     isShowAgreement() {
       return !this.hasAccount && this.$env.HACKARU_TOS_AND_PRIVACY_URL;
-    }
+    },
   },
   mounted() {
     if (this.$store.getters['auth/loggedIn']) {
@@ -123,7 +123,7 @@ export default {
     async login() {
       const success = await this.$store.dispatch('auth/fetchRefreshToken', {
         email: this.email,
-        password: this.password
+        password: this.password,
       });
       if (success) {
         localStorage.setItem('userId', this.$store.getters['auth/userId']);
@@ -131,7 +131,7 @@ export default {
           eventCategory: 'Account',
           eventAction: 'login',
           name: 'login',
-          method: 'email'
+          method: 'email',
         });
         this.goBack();
       }
@@ -141,7 +141,7 @@ export default {
         email: this.email,
         password: this.password,
         passwordConfirmation: this.passwordConfirmation,
-        locale: this.$i18n.locale
+        locale: this.$i18n.locale,
       });
       if (success) {
         localStorage.setItem('userId', this.$store.getters['auth/userId']);
@@ -149,7 +149,7 @@ export default {
           eventCategory: 'Account',
           eventAction: 'signUp',
           name: 'sign_up',
-          method: 'email'
+          method: 'email',
         });
         this.goBack();
       }
@@ -158,8 +158,8 @@ export default {
       const prev = sessionStorage.getItem('previousPath');
       this.$router.replace(prev || this.localePath('index'));
       sessionStorage.removeItem('previousPath');
-    }
-  }
+    },
+  },
 };
 </script>
 

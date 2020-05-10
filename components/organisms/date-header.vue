@@ -47,25 +47,25 @@ export default {
     ContentHeader,
     DateHeading,
     BaseButton,
-    BaseSelect
+    BaseSelect,
   },
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     hasToday: {
       type: Boolean,
-      required: true
+      required: true,
     },
     periods: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     currentPeriod: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   methods: {
     left() {
@@ -79,8 +79,8 @@ export default {
     },
     change(period) {
       this.$emit('update:currentPeriod', period);
-    }
-  }
+    },
+  },
 };
 </script>
 

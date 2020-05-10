@@ -11,13 +11,13 @@ describe('Integrations', () => {
   const $store = new Store({
     getters: {
       'activity-calendar/googleCalendarUrl': 'https://example.com',
-      'activity-calendar/webcalUrl': 'webcal://example.com'
-    }
+      'activity-calendar/webcalUrl': 'webcal://example.com',
+    },
   });
 
   const factory = () =>
     shallowMount(Integrations, {
-      mocks: { $store }
+      mocks: { $store },
     });
 
   beforeEach(() => {

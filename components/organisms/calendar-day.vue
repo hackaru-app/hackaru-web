@@ -16,7 +16,7 @@
           v-show="ghostVisibility"
           :style="{
             top: `${ghostTop}px`,
-            height: `${ghostHeight}px`
+            height: `${ghostHeight}px`,
           }"
           class="ghost-activity"
           title="No Project"
@@ -55,28 +55,28 @@ export default {
   components: {
     Resizer,
     CalendarEvent,
-    CalendarActivity
+    CalendarActivity,
   },
   props: {
     day: {
       type: String,
-      required: true
+      required: true,
     },
     minHeight: {
       type: Number,
-      default: 20
+      default: 20,
     },
     overlappedDay: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   data() {
     return {
       format,
       ghostTop: 0,
       ghostHeight: 30,
-      ghostVisibility: false
+      ghostVisibility: false,
     };
   },
   computed: {
@@ -85,7 +85,7 @@ export default {
         this.day,
         this.$toMin
       );
-    }
+    },
   },
   methods: {
     ghostDrag(e) {
@@ -94,13 +94,13 @@ export default {
       this.ghostTop = pageY - this.$mezr.offset(this.$el).top;
       this.dragging({
         el: this.$el,
-        guideRulerTop: this.ghostTop + this.ghostHeight
+        guideRulerTop: this.ghostTop + this.ghostHeight,
       });
     },
     ghostDragging(e) {
       this.dragging({
         el: this.$el,
-        guideRulerTop: this.ghostTop + this.ghostHeight
+        guideRulerTop: this.ghostTop + this.ghostHeight,
       });
     },
     async ghostDrop(e) {
@@ -112,7 +112,7 @@ export default {
     dragging({ el, guideRulerTop }) {
       this.$emit('dragging', {
         el,
-        guideRulerTop
+        guideRulerTop,
       });
     },
     drop(el) {
@@ -125,16 +125,16 @@ export default {
       );
       await this.$store.dispatch('activities/add', {
         startedAt,
-        stoppedAt: addMinutes(startedAt, this.$toMin(this.ghostHeight))
+        stoppedAt: addMinutes(startedAt, this.$toMin(this.ghostHeight)),
       });
       this.$gtm.trackEvent({
         eventCategory: 'Activities',
         eventAction: 'add',
         name: 'add_activity',
-        component: 'calendar_day'
+        component: 'calendar_day',
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

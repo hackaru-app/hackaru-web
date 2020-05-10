@@ -12,8 +12,8 @@ describe('SettingLogoutButton', () => {
   const factory = () =>
     shallowMount(SettingLogoutButton, {
       mocks: {
-        $store
-      }
+        $store,
+      },
     });
 
   beforeEach(() => {

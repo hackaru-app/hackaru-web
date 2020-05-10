@@ -10,10 +10,7 @@ describe('ColorSelect', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setProps({ colors: ['#ff0', '#f00', '#0ff'] });
-      wrapper
-        .findAll('button')
-        .at(2)
-        .trigger('click');
+      wrapper.findAll('button').at(2).trigger('click');
     });
 
     it('emit update:value', () => {

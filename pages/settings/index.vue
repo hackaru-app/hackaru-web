@@ -24,7 +24,7 @@ export default {
     SettingTimeZoneSelect,
     SettingLocaleSelect,
     SettingLogoutButton,
-    SettingDeleteAccountButton
-  }
+    SettingDeleteAccountButton,
+  },
 };
 </script>

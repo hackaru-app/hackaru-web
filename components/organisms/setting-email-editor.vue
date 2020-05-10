@@ -43,22 +43,22 @@ export default {
     Icon,
     BaseButton,
     BaseInput,
-    SettingBox
+    SettingBox,
   },
   data() {
     return {
       email: this.$store.getters['auth/email'],
-      currentPassword: ''
+      currentPassword: '',
     };
   },
   methods: {
     async changeEmail({ store }) {
       const success = await this.$store.dispatch('auth/changeEmail', {
         email: this.email,
-        currentPassword: this.currentPassword
+        currentPassword: this.currentPassword,
       });
       if (success) this.$store.dispatch('toast/success', this.$t('changed'));
-    }
-  }
+    },
+  },
 };
 </script>

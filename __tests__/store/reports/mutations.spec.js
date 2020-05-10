@@ -7,7 +7,7 @@ describe('Mutations', () => {
       totals: {},
       labels: [],
       sums: {},
-      activityGroups: []
+      activityGroups: [],
     };
 
     beforeEach(() => {
@@ -16,15 +16,15 @@ describe('Mutations', () => {
           {
             id: 1,
             name: 'Review',
-            color: '#f95959'
-          }
+            color: '#f95959',
+          },
         ],
         totals: {
-          1: 100
+          1: 100,
         },
         labels: ['Jan', 'Feb'],
         sums: {
-          1: [100, 200]
+          1: [100, 200],
         },
         activityGroups: [
           {
@@ -33,10 +33,10 @@ describe('Mutations', () => {
             project: {
               id: 1,
               name: 'Review',
-              color: '#f95959'
-            }
-          }
-        ]
+              color: '#f95959',
+            },
+          },
+        ],
       });
     });
 
@@ -45,14 +45,14 @@ describe('Mutations', () => {
         {
           id: 1,
           name: 'Review',
-          color: '#f95959'
-        }
+          color: '#f95959',
+        },
       ]);
     });
 
     it('set totals', () => {
       expect(state.totals).toEqual({
-        1: 100
+        1: 100,
       });
     });
 
@@ -62,7 +62,7 @@ describe('Mutations', () => {
 
     it('set sums', () => {
       expect(state.sums).toEqual({
-        1: [100, 200]
+        1: [100, 200],
       });
     });
 
@@ -74,9 +74,9 @@ describe('Mutations', () => {
           project: {
             id: 1,
             name: 'Review',
-            color: '#f95959'
-          }
-        }
+            color: '#f95959',
+          },
+        },
       ]);
     });
   });
@@ -86,20 +86,20 @@ describe('Mutations', () => {
       projects: [],
       totals: {},
       labels: [],
-      sums: {}
+      sums: {},
     };
 
     beforeEach(() => {
       mutations['SET_PREVIOUS_TOTALS'](state, {
         totals: {
-          1: 100
-        }
+          1: 100,
+        },
       });
     });
 
     it('set previousTotals', () => {
       expect(state.previousTotals).toEqual({
-        1: 100
+        1: 100,
       });
     });
   });

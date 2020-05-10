@@ -82,54 +82,54 @@ export default {
     DoughnutChart,
     BarChart,
     ProjectName,
-    ActivityName
+    ActivityName,
   },
   props: {
     barChartData: {
       type: Object,
-      required: true
+      required: true,
     },
     doughnutChartData: {
       type: Object,
-      required: true
+      required: true,
     },
     totals: {
       type: Object,
-      required: true
+      required: true,
     },
     previousTotals: {
       type: Object,
-      required: true
+      required: true,
     },
     projects: {
       type: Array,
-      required: true
+      required: true,
     },
     activityGroups: {
       type: Array,
-      required: true
+      required: true,
     },
     selectedIndex: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      fromS
+      fromS,
     };
   },
   computed: {
     ...mapGetters({
-      empty: 'reports/empty'
-    })
+      empty: 'reports/empty',
+    }),
   },
   methods: {
     change(index) {
       this.$scrollTo('body', 300, { offset: 50 });
       this.$emit('update:selectedIndex', index);
-    }
-  }
+    },
+  },
 };
 </script>
 

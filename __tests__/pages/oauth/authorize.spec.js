@@ -12,9 +12,9 @@ describe('Authorize', () => {
         name: 'ExampleApp',
         scopes: ['activities:read'],
         responseType: 'token',
-        state: 'state'
-      }
-    }
+        state: 'state',
+      },
+    },
   });
 
   const $router = { push: jest.fn() };
@@ -30,10 +30,10 @@ describe('Authorize', () => {
             redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
             state: 'state',
             response_type: 'token',
-            scope: ['activities:read']
-          }
-        }
-      }
+            scope: ['activities:read'],
+          },
+        },
+      },
     });
 
   delete window.location;
@@ -54,7 +54,7 @@ describe('Authorize', () => {
         scope: ['activities:read'],
         responseType: 'token',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        state: 'state'
+        state: 'state',
       });
     });
   });
@@ -81,7 +81,7 @@ describe('Authorize', () => {
     it('redirect to default callback url', () => {
       expect($router.push).toHaveBeenCalledWith({
         path: '/oauth/callback',
-        query: { error_description: 'denied' }
+        query: { error_description: 'denied' },
       });
     });
   });
@@ -99,7 +99,7 @@ describe('Authorize', () => {
         scope: ['activities:read'],
         responseType: 'token',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        state: 'state'
+        state: 'state',
       });
     });
 
@@ -120,7 +120,7 @@ describe('Authorize', () => {
     it('redirect to default callback url', () => {
       expect($router.push).toHaveBeenCalledWith({
         path: '/oauth/callback',
-        query: { access_token: 'accessToken' }
+        query: { access_token: 'accessToken' },
       });
     });
   });
@@ -138,7 +138,7 @@ describe('Authorize', () => {
         scope: ['activities:read'],
         responseType: 'token',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        state: 'state'
+        state: 'state',
       });
     });
 
@@ -162,14 +162,14 @@ describe('Authorize', () => {
         scope: ['activities:read'],
         responseType: 'token',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        state: 'state'
+        state: 'state',
       });
     });
 
     it('redirect to default callback url', () => {
       expect($router.push).toHaveBeenCalledWith({
         path: '/oauth/callback',
-        query: { error_description: 'denied' }
+        query: { error_description: 'denied' },
       });
     });
   });

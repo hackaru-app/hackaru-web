@@ -5,7 +5,7 @@ describe('Getters', () => {
 
   describe('when call all', () => {
     const state = {
-      data: {}
+      data: {},
     };
 
     beforeEach(() => {

@@ -11,7 +11,7 @@ describe('Ticker', () => {
   const factory = () =>
     shallowMount(Ticker, {
       propsData: { startedAt: '2019-01-31T02:23:45' },
-      mocks: { $timer }
+      mocks: { $timer },
     });
 
   describe('when stoppedAt is empty', () => {
@@ -19,7 +19,7 @@ describe('Ticker', () => {
       wrapper = factory();
       wrapper.setProps({
         startedAt: '2019-01-31T00:23:45',
-        stoppedAt: undefined
+        stoppedAt: undefined,
       });
       wrapper.vm.updateDuration();
     });
@@ -34,7 +34,7 @@ describe('Ticker', () => {
       wrapper = factory();
       wrapper.setProps({
         startedAt: '2019-01-31T02:23:45',
-        stoppedAt: '2019-01-31T04:23:45'
+        stoppedAt: '2019-01-31T04:23:45',
       });
       wrapper.vm.updateDuration();
     });

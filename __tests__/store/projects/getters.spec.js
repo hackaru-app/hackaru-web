@@ -5,7 +5,7 @@ describe('Getters', () => {
 
   describe('when call all', () => {
     const rootGetters = {
-      'entities/getEntities': jest.fn(() => ({}))
+      'entities/getEntities': jest.fn(() => ({})),
     };
 
     beforeEach(() => {

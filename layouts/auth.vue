@@ -15,8 +15,8 @@ import SideBar from '@/components/organisms/side-bar';
 export default {
   components: {
     Toast,
-    SideBar
-  }
+    SideBar,
+  },
 };
 </script>
 

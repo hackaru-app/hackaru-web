@@ -31,7 +31,7 @@ export default {
   components: {
     Icon,
     BaseSelect,
-    SettingBox
+    SettingBox,
   },
   props: {
     timeZones: {
@@ -173,21 +173,21 @@ export default {
           'Pacific/Tongatapu',
           'Pacific/Fakaofo',
           'Pacific/Chatham',
-          'Pacific/Apia'
+          'Pacific/Apia',
         ].sort();
-      }
-    }
+      },
+    },
   },
   computed: {
     ...mapGetters({
-      selected: 'user/timeZone'
-    })
+      selected: 'user/timeZone',
+    }),
   },
   methods: {
     async change(timeZone) {
       const success = await this.$store.dispatch('user/update', { timeZone });
       if (success) this.$store.dispatch('toast/success', this.$t('changed'));
-    }
-  }
+    },
+  },
 };
 </script>

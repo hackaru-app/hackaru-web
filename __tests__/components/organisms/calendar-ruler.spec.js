@@ -8,8 +8,8 @@ describe('CalendarRuler', () => {
     shallowMount(CalendarRuler, {
       propsData: {
         top: 90,
-        color: '#ff0'
-      }
+        color: '#ff0',
+      },
     });
 
   describe('when showTime is true', () => {

@@ -9,14 +9,14 @@ import Loading from '@/components/molecules/loading';
 export default {
   layout: 'none',
   components: {
-    Loading
+    Loading,
   },
   head: {
-    title: 'Loading'
+    title: 'Loading',
   },
   data() {
     return {
-      loading: true
+      loading: true,
     };
   },
   mounted() {
@@ -27,19 +27,19 @@ export default {
       const data = await this.$store.dispatch('reports/fetchPdf', {
         start: this.$route.query.start,
         end: this.$route.query.end,
-        projectIds: this.$route.query.projectIds
+        projectIds: this.$route.query.projectIds,
       });
       if (data) {
         this.loading = false;
         this.$gtm.trackEvent({
           eventCategory: 'ReportPdf',
           eventAction: 'export',
-          name: 'export_report_to_pdf'
+          name: 'export_report_to_pdf',
         });
         const blob = new Blob([data], { type: 'application/pdf' });
         saveAs(blob, 'report.pdf');
       }
-    }
-  }
+    },
+  },
 };
 </script>

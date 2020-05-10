@@ -12,16 +12,16 @@ describe('BarChart', () => {
             {
               label: 'Development',
               backgroundColor: '#ff0',
-              data: [10, 10, 10]
+              data: [10, 10, 10],
             },
             {
               label: 'Review',
               backgroundColor: '#ff0',
-              data: [10, 10, 10]
-            }
-          ]
-        }
-      }
+              data: [10, 10, 10],
+            },
+          ],
+        },
+      },
     });
 
   it('show tooltip label correctly', () => {

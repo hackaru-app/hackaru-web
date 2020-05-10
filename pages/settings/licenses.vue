@@ -27,13 +27,13 @@ export default {
   components: {
     Icon,
     Heading,
-    SettingBox
+    SettingBox,
   },
   data() {
     return {
-      licenses
+      licenses,
     };
-  }
+  },
 };
 </script>
 

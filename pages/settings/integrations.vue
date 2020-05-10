@@ -52,13 +52,13 @@ export default {
     BaseInput,
     SettingBox,
     Icon,
-    BaseButton
+    BaseButton,
   },
   computed: {
     ...mapGetters({
       googleCalendarUrl: 'activity-calendar/googleCalendarUrl',
-      webcalUrl: 'activity-calendar/webcalUrl'
-    })
+      webcalUrl: 'activity-calendar/webcalUrl',
+    }),
   },
   methods: {
     async createUrl() {
@@ -68,7 +68,7 @@ export default {
       this.$gtm.trackEvent({
         eventCategory: 'GoogleCalendars',
         eventAction: 'add',
-        name: 'add_to_google_calendar'
+        name: 'add_to_google_calendar',
       });
       const childWindow = window.open('about:blank');
       if (!(await this.createUrl())) return;
@@ -84,7 +84,7 @@ export default {
       this.$gtm.trackEvent({
         eventCategory: 'AppleCalendars',
         eventAction: 'add',
-        name: 'add_to_apple_calendar'
+        name: 'add_to_apple_calendar',
       });
       this.navigateWebcal();
     },
@@ -92,11 +92,11 @@ export default {
       this.$gtm.trackEvent({
         eventCategory: 'OutlookCalendars',
         eventAction: 'add',
-        name: 'add_to_outlook'
+        name: 'add_to_outlook',
       });
       this.navigateWebcal();
-    }
-  }
+    },
+  },
 };
 </script>
 

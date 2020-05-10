@@ -9,7 +9,7 @@ describe('Mutations', () => {
         clientName: 'Hackaru for Desktop',
         scope: 'activity:create activity:update',
         responseType: 'token',
-        state: 'state'
+        state: 'state',
       });
     });
 
@@ -18,7 +18,7 @@ describe('Mutations', () => {
         name: 'Hackaru for Desktop',
         scopes: ['activity:create', 'activity:update'],
         responseType: 'token',
-        state: 'state'
+        state: 'state',
       });
     });
   });

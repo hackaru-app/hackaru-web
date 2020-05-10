@@ -102,7 +102,7 @@ export default {
     ProjectName,
     ActivityName,
     Icon,
-    BaseButton
+    BaseButton,
   },
   data() {
     return {
@@ -111,19 +111,19 @@ export default {
       description: '',
       project: undefined,
       startedAt: undefined,
-      focused: false
+      focused: false,
     };
   },
   computed: {
     ...mapGetters({
       working: 'activities/working',
-      suggestions: 'suggestions/all'
-    })
+      suggestions: 'suggestions/all',
+    }),
   },
   watch: {
     working() {
       this.setWorkingProps();
-    }
+    },
   },
   async mounted() {
     await this.$store.dispatch('activities/fetchWorking');
@@ -153,7 +153,7 @@ export default {
       const success = await this.$store.dispatch('activities/update', {
         id: this.id,
         description: this.description,
-        projectId: this.project && this.project.id
+        projectId: this.project && this.project.id,
       });
       if (success) {
         this.setWorkingProps();
@@ -162,7 +162,7 @@ export default {
           eventCategory: 'Activities',
           eventAction: 'update',
           name: 'update_activity',
-          component: 'timer_form'
+          component: 'timer_form',
         });
       }
     },
@@ -170,13 +170,13 @@ export default {
       this.$store.dispatch('toast/success', getRandI18n(this.$t('stopped')));
       await this.$store.dispatch('activities/update', {
         id: this.id,
-        stoppedAt: `${new Date()}`
+        stoppedAt: `${new Date()}`,
       });
       this.$gtm.trackEvent({
         eventCategory: 'Activities',
         eventAction: 'stop',
         name: 'stop_activity',
-        component: 'timer_form'
+        component: 'timer_form',
       });
       this.setWorkingProps();
     },
@@ -184,7 +184,7 @@ export default {
       const success = await this.$store.dispatch('activities/add', {
         description: this.description,
         projectId: this.project && this.project.id,
-        startedAt: `${new Date()}`
+        startedAt: `${new Date()}`,
       });
       if (success) {
         this.setWorkingProps();
@@ -193,11 +193,11 @@ export default {
           eventCategory: 'Activities',
           eventAction: 'start',
           name: 'start_activity',
-          component: 'timer_form'
+          component: 'timer_form',
         });
       }
     },
-    fetchSuggestions: debounce(function() {
+    fetchSuggestions: debounce(function () {
       if (this.id) return;
       this.$store.dispatch('suggestions/fetch', this.description);
     }, 1000),
@@ -224,8 +224,8 @@ export default {
       this.description = description;
       this.project = project;
       this.startActivity();
-    }
-  }
+    },
+  },
 };
 </script>
 

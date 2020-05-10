@@ -132,30 +132,30 @@ import {
   endOfDay,
   endOfWeek,
   endOfMonth,
-  endOfYear
+  endOfYear,
 } from 'date-fns';
 
 const periods = {
   day: {
     startOf: startOfDay,
     endOf: endOfDay,
-    add: addDays
+    add: addDays,
   },
   week: {
     startOf: startOfWeek,
     endOf: endOfWeek,
-    add: addWeeks
+    add: addWeeks,
   },
   month: {
     startOf: startOfMonth,
     endOf: endOfMonth,
-    add: addMonths
+    add: addMonths,
   },
   year: {
     startOf: startOfYear,
     endOf: endOfYear,
-    add: addYears
-  }
+    add: addYears,
+  },
 };
 
 export default {
@@ -168,10 +168,10 @@ export default {
     DateHeader,
     ContentHeader,
     ProjectName,
-    WindowScroll
+    WindowScroll,
   },
   head: {
-    title: 'Reports'
+    title: 'Reports',
   },
   data() {
     return {
@@ -179,7 +179,7 @@ export default {
       currentPeriod: 'day',
       selectedIndex: 0,
       projectIds: [],
-      openPopover: false
+      openPopover: false,
     };
   },
   computed: {
@@ -190,7 +190,7 @@ export default {
       previousTotals: 'reports/previousTotals',
       projects: 'reports/projects',
       allProjects: 'projects/all',
-      activityGroups: 'reports/activityGroups'
+      activityGroups: 'reports/activityGroups',
     }),
     period() {
       return periods[this.currentPeriod];
@@ -204,18 +204,18 @@ export default {
         this.period.startOf(new Date()),
         this.period.startOf(this.date)
       );
-    }
+    },
   },
   watch: {
     projectIds: {
-      handler: 'fetchReport'
+      handler: 'fetchReport',
     },
     period: {
-      handler: 'fetchReport'
+      handler: 'fetchReport',
     },
     date: {
-      handler: 'fetchReport'
-    }
+      handler: 'fetchReport',
+    },
   },
   activated() {
     this.fetchReport();
@@ -226,13 +226,13 @@ export default {
         current: {
           start: this.period.startOf(this.date),
           end: this.period.endOf(this.date),
-          projectIds: this.projectIds
+          projectIds: this.projectIds,
         },
         previous: {
           start: this.period.startOf(this.period.add(this.date, -1)),
           end: this.period.endOf(this.period.add(this.date, -1)),
-          projectIds: this.projectIds
-        }
+          projectIds: this.projectIds,
+        },
       });
     },
     slideLeft() {
@@ -254,14 +254,14 @@ export default {
       const query = stringify({
         start: formatISO(this.period.startOf(this.date)),
         end: formatISO(this.period.endOf(this.date)),
-        projectIds: this.projectIds
+        projectIds: this.projectIds,
       });
       window.open(`${this.localePath('reports')}/${type}/?${query}`);
     },
     scroll() {
       this.openPopover = false;
-    }
-  }
+    },
+  },
 };
 </script>
 

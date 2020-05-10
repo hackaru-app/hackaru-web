@@ -10,8 +10,8 @@ import Toast from '@/components/molecules/toast';
 
 export default {
   components: {
-    Toast
-  }
+    Toast,
+  },
 };
 </script>
 

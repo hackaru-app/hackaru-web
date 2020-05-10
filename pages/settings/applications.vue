@@ -75,17 +75,17 @@ export default {
     ModalItem,
     ModalFooter,
 
-    Highlight
+    Highlight,
   },
   data() {
     return {
-      selected: {}
+      selected: {},
     };
   },
   computed: {
     ...mapGetters({
-      applications: 'applications/all'
-    })
+      applications: 'applications/all',
+    }),
   },
   async mounted() {
     await this.$store.dispatch('applications/fetch');
@@ -97,15 +97,15 @@ export default {
       this.$gtm.trackEvent({
         eventCategory: 'Applications',
         eventAction: 'delete',
-        name: 'delete_application'
+        name: 'delete_application',
       });
       this.$store.dispatch('toast/success', this.$t('deleted'));
     },
     showModal(application) {
       this.selected = application;
       this.$modal.show('application');
-    }
-  }
+    },
+  },
 };
 </script>
 

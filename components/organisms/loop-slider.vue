@@ -23,13 +23,13 @@ import DragDrop from '@/components/atoms/drag-drop';
 export default {
   components: {
     WindowScroll,
-    DragDrop
+    DragDrop,
   },
   props: {
     enabled: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
@@ -37,16 +37,16 @@ export default {
       offset: '-100%',
       speed: 0,
       slideTimer: undefined,
-      scrollEndTimer: undefined
+      scrollEndTimer: undefined,
     };
   },
   computed: {
     slideStyle() {
       return {
         transform: `translateX(${this.offset})`,
-        transition: this.speed ? `transform ${this.speed}ms` : 'none'
+        transition: this.speed ? `transform ${this.speed}ms` : 'none',
       };
-    }
+    },
   },
   methods: {
     startScroll() {
@@ -90,7 +90,7 @@ export default {
         this.slideTimer = undefined;
         this.$emit(eventName);
       }, this.speed + wait);
-    }
-  }
+    },
+  },
 };
 </script>

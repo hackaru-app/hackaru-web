@@ -17,16 +17,16 @@ import BaseSelect from '@/components/molecules/base-select';
 
 export default {
   components: {
-    BaseSelect
+    BaseSelect,
   },
   computed: {
     ...mapGetters({
-      loggedIn: 'auth/loggedIn'
+      loggedIn: 'auth/loggedIn',
     }),
     selectedLocale() {
       return this.$i18n.locales.find(({ code }) => this.$i18n.locale === code)
         .name;
-    }
+    },
   },
   methods: {
     change(locale) {
@@ -35,7 +35,7 @@ export default {
       } else {
         this.$i18n.setLocale(locale);
       }
-    }
-  }
+    },
+  },
 };
 </script>

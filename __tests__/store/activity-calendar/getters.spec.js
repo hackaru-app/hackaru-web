@@ -7,7 +7,7 @@ describe('Getters', () => {
     const state = {
       baseUrl: 'webcal://localhost',
       token: 'token',
-      userId: 1
+      userId: 1,
     };
 
     beforeEach(() => {
@@ -23,7 +23,8 @@ describe('Getters', () => {
 
   describe('when call googleCalendarUrl', () => {
     const mockGetters = {
-      webcalUrl: 'webcal://localhost/v1/activity_calendar?token=token&user_id=1'
+      webcalUrl:
+        'webcal://localhost/v1/activity_calendar?token=token&user_id=1',
     };
 
     beforeEach(() => {

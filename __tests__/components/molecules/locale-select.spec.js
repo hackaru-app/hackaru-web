@@ -20,15 +20,15 @@ describe('LocaleSelect', () => {
             locales: [
               {
                 code: 'en',
-                name: 'English'
+                name: 'English',
               },
               {
                 code: 'ja',
-                name: '日本語'
-              }
-            ]
-          }
-        }
+                name: '日本語',
+              },
+            ],
+          },
+        },
       });
   });
 
@@ -45,7 +45,7 @@ describe('LocaleSelect', () => {
 
     it('dispatch user/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('user/update', {
-        locale: 'ja'
+        locale: 'ja',
       });
     });
   });

@@ -13,7 +13,7 @@ describe('Actions', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
-          url: '/v1/projects'
+          url: '/v1/projects',
         },
         { root: true }
       );
@@ -24,7 +24,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: [project]
+          schema: [project],
         },
         { root: true }
       );
@@ -45,8 +45,8 @@ describe('Actions', () => {
           url: '/v1/projects',
           method: 'post',
           data: {
-            project: {}
-          }
+            project: {},
+          },
         },
         { root: true }
       );
@@ -57,7 +57,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: project
+          schema: project,
         },
         { root: true }
       );
@@ -84,7 +84,7 @@ describe('Actions', () => {
         'auth-api/request',
         {
           url: '/v1/projects/1',
-          method: 'delete'
+          method: 'delete',
         },
         { root: true }
       );
@@ -105,8 +105,8 @@ describe('Actions', () => {
           url: '/v1/projects/1',
           method: 'put',
           data: {
-            project: { id: 1 }
-          }
+            project: { id: 1 },
+          },
         },
         { root: true }
       );
@@ -117,7 +117,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: project
+          schema: project,
         },
         { root: true }
       );

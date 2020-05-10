@@ -7,14 +7,14 @@ import * as icons from 'vue-feather-icons';
 
 export default {
   components: {
-    ...icons
+    ...icons,
   },
   props: {
     name: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 

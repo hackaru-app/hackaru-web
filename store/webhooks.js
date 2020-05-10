@@ -6,7 +6,7 @@ export const actions = {
       const { data } = await dispatch(
         'auth-api/request',
         {
-          url: '/v1/webhooks'
+          url: '/v1/webhooks',
         },
         { root: true }
       );
@@ -27,8 +27,8 @@ export const actions = {
           url: '/v1/webhooks',
           method: 'post',
           data: {
-            webhook: payload
-          }
+            webhook: payload,
+          },
         },
         { root: true }
       );
@@ -50,7 +50,7 @@ export const actions = {
         'auth-api/request',
         {
           url: `/v1/webhooks/${id}`,
-          method: 'delete'
+          method: 'delete',
         },
         { root: true }
       );
@@ -59,11 +59,11 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
       return false;
     }
-  }
+  },
 };
 
 export const getters = {
   all(state, getters, rootState, rootGetters) {
     return rootGetters['entities/getEntities']('webhooks', [webhook]);
-  }
+  },
 };

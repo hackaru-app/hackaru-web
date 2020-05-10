@@ -14,9 +14,9 @@ describe('LoginGuard', () => {
         $router,
         $route: { fullPath: '/secure' },
         $sentry: {
-          configureScope: fn => fn(scope)
-        }
-      }
+          configureScope: (fn) => fn(scope),
+        },
+      },
     });
 
   beforeEach(() => {

@@ -18,16 +18,16 @@ describe('Applications', () => {
           createdAt: '2019-01-22T07:06:53.159Z',
           updatedAt: '2019-01-22T07:06:53.159Z',
           ownerId: null,
-          ownerType: null
-        }
-      ]
-    }
+          ownerType: null,
+        },
+      ],
+    },
   });
 
   const $modal = { show: jest.fn() };
   const factory = () =>
     shallowMount(Applications, {
-      mocks: { $store, $modal }
+      mocks: { $store, $modal },
     });
 
   beforeEach(() => {
@@ -43,10 +43,7 @@ describe('Applications', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
-      wrapper
-        .findAll('.delete-button')
-        .at(0)
-        .vm.$emit('click');
+      wrapper.findAll('.delete-button').at(0).vm.$emit('click');
     });
 
     it('dispatch applications/delete', () => {
@@ -58,10 +55,7 @@ describe('Applications', () => {
     beforeEach(() => {
       global.confirm = () => false;
       wrapper = factory();
-      wrapper
-        .findAll('.delete-button')
-        .at(0)
-        .vm.$emit('click');
+      wrapper.findAll('.delete-button').at(0).vm.$emit('click');
     });
 
     it('does not dispatch', () => {
@@ -75,10 +69,7 @@ describe('Applications', () => {
   describe('when click application', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper
-        .findAll('.application h1')
-        .at(0)
-        .trigger('click');
+      wrapper.findAll('.application h1').at(0).trigger('click');
     });
 
     it('show modal', () => {

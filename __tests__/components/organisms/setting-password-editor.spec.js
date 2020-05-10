@@ -9,8 +9,8 @@ describe('SettingPasswordEditor', () => {
   const factory = () =>
     shallowMount(SettingPasswordEditor, {
       mocks: {
-        $store
-      }
+        $store,
+      },
     });
 
   beforeEach(() => {
@@ -31,7 +31,7 @@ describe('SettingPasswordEditor', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/changePassword', {
         password: 'password',
         currentPassword: 'current',
-        passwordConfirmation: 'confirmation'
+        passwordConfirmation: 'confirmation',
       });
     });
   });

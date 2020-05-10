@@ -7,7 +7,7 @@ export const state = () => ({
   text: '',
   type: '',
   rand: 0,
-  duration: 0
+  duration: 0,
 });
 
 export const actions = {
@@ -20,7 +20,7 @@ export const actions = {
   },
   success({ commit }, payload) {
     commit(SHOW_SUCCESS, payload);
-  }
+  },
 };
 
 export const mutations = {
@@ -35,7 +35,7 @@ export const mutations = {
     state.type = 'success';
     state.duration = 3000;
     state.rand = Math.random();
-  }
+  },
 };
 
 export const getters = {
@@ -44,7 +44,7 @@ export const getters = {
       text: state.text,
       type: state.type,
       rand: state.rand,
-      duration: state.duration
+      duration: state.duration,
     };
-  }
+  },
 };

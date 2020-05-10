@@ -7,9 +7,9 @@ describe('DoughnutChart', () => {
       propsData: {
         chartData: {
           labels: ['Review', 'Development'],
-          datasets: [{ data: [50, 50], backgroundColor: ['#ff0', '#0ff'] }]
-        }
-      }
+          datasets: [{ data: [50, 50], backgroundColor: ['#ff0', '#0ff'] }],
+        },
+      },
     });
 
   it('show tooltip label correctly', () => {

@@ -13,8 +13,8 @@ describe('Calendar', () => {
   const factory = () =>
     shallowMount(Calendar, {
       mocks: {
-        $store
-      }
+        $store,
+      },
     });
 
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe('Calendar', () => {
     it('dispatch activities/fetchByRange', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/fetchByRange', {
         start: parseISO('2019-02-24T00:00:00'),
-        end: parseISO('2019-03-02T23:59:59.999')
+        end: parseISO('2019-03-02T23:59:59.999'),
       });
     });
   });
@@ -48,7 +48,7 @@ describe('Calendar', () => {
         parseISO('2019-01-30T00:00:00'),
         parseISO('2019-01-31T00:00:00'),
         parseISO('2019-02-01T00:00:00'),
-        parseISO('2019-02-02T00:00:00')
+        parseISO('2019-02-02T00:00:00'),
       ]);
     });
   });
@@ -67,7 +67,7 @@ describe('Calendar', () => {
         parseISO('2019-01-23T00:00:00'),
         parseISO('2019-01-24T00:00:00'),
         parseISO('2019-01-25T00:00:00'),
-        parseISO('2019-01-26T00:00:00')
+        parseISO('2019-01-26T00:00:00'),
       ]);
     });
   });
@@ -86,7 +86,7 @@ describe('Calendar', () => {
         parseISO('2019-02-06T00:00:00'),
         parseISO('2019-02-07T00:00:00'),
         parseISO('2019-02-08T00:00:00'),
-        parseISO('2019-02-09T00:00:00')
+        parseISO('2019-02-09T00:00:00'),
       ]);
     });
   });
@@ -106,7 +106,7 @@ describe('Calendar', () => {
         parseISO('2019-01-30T00:00:00'),
         parseISO('2019-01-31T00:00:00'),
         parseISO('2019-02-01T00:00:00'),
-        parseISO('2019-02-02T00:00:00')
+        parseISO('2019-02-02T00:00:00'),
       ]);
     });
   });

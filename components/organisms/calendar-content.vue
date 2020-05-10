@@ -39,11 +39,11 @@ import {
   isToday,
   getHours,
   getMinutes,
-  parseISO
+  parseISO,
 } from 'date-fns';
 
 function getMaxValueIndex(values) {
-  const maxValue = Math.max(...values.filter(value => !!value));
+  const maxValue = Math.max(...values.filter((value) => !!value));
   return values.indexOf(maxValue);
 }
 
@@ -51,20 +51,20 @@ export default {
   components: {
     CalendarHours,
     CalendarDay,
-    CalendarRuler
+    CalendarRuler,
   },
   timers: {
     updateCurrentDate: {
       time: 500,
       autostart: true,
-      repeat: true
-    }
+      repeat: true,
+    },
   },
   props: {
     days: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -72,18 +72,18 @@ export default {
       parseISO,
       guideRulerTop: undefined,
       overlappedDay: undefined,
-      currentDate: new Date()
+      currentDate: new Date(),
     };
   },
   computed: {
     hasToday() {
-      return this.days.find(day => isToday(day));
+      return this.days.find((day) => isToday(day));
     },
     currentTimeLineTop() {
       return this.$toPx(
         getHours(this.currentDate) * 60 + getMinutes(this.currentDate)
       );
-    }
+    },
   },
   methods: {
     isOverlapped(day) {
@@ -95,7 +95,7 @@ export default {
     getOverlappedDay(el) {
       if (!el) return;
       const days = this.$refs.days;
-      const getWidth = $el => (this.$mezr.intersection($el, el) || {}).width;
+      const getWidth = ($el) => (this.$mezr.intersection($el, el) || {}).width;
       const index = getMaxValueIndex(days.map(({ $el }) => getWidth($el)));
       if (index >= 0) return days[index].$el.dataset.day;
     },
@@ -108,8 +108,8 @@ export default {
       this.overlappedDay = undefined;
       this.guideRulerTop = undefined;
       this.$emit('drop', el);
-    }
-  }
+    },
+  },
 };
 </script>
 

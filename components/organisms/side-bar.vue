@@ -24,13 +24,13 @@ import Icon from '@/components/atoms/icon';
 
 export default {
   components: {
-    Icon
+    Icon,
   },
   props: {
     showMenu: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
@@ -38,23 +38,23 @@ export default {
       links: [
         {
           path: 'index',
-          icon: 'clock-icon'
+          icon: 'clock-icon',
         },
         {
           path: 'calendar',
-          icon: 'calendar-icon'
+          icon: 'calendar-icon',
         },
         {
           path: 'reports',
-          icon: 'bar-chart-icon'
+          icon: 'bar-chart-icon',
         },
         {
           path: 'settings',
-          icon: 'settings-icon'
-        }
-      ]
+          icon: 'settings-icon',
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 

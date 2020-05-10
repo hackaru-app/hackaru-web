@@ -43,17 +43,17 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     height: {
       type: String,
-      default: 'auto'
-    }
+      default: 'auto',
+    },
   },
   methods: {
     beforeOpen(e) {
       this.$emit('before-open', e);
-    }
-  }
+    },
+  },
 };
 </script>

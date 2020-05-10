@@ -8,7 +8,7 @@ describe('ProjectEditor', () => {
   const $store = new Store({});
   const factory = () =>
     shallowMount(ProjectEditor, {
-      mocks: { $store }
+      mocks: { $store },
     });
 
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe('ProjectEditor', () => {
       wrapper.setData({
         id: 1,
         name: 'Development',
-        color: '#ff0'
+        color: '#ff0',
       });
       wrapper.find('form').trigger('submit.prevent');
     });
@@ -31,7 +31,7 @@ describe('ProjectEditor', () => {
       expect($store.dispatch).toHaveBeenCalledWith('projects/update', {
         id: 1,
         name: 'Development',
-        color: '#ff0'
+        color: '#ff0',
       });
     });
 
@@ -46,7 +46,7 @@ describe('ProjectEditor', () => {
       wrapper = factory();
       wrapper.setData({
         name: 'Development',
-        color: '#ff0'
+        color: '#ff0',
       });
       wrapper.find('form').trigger('submit.prevent');
     });
@@ -54,7 +54,7 @@ describe('ProjectEditor', () => {
     it('dispatch projects/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('projects/add', {
         name: 'Development',
-        color: '#ff0'
+        color: '#ff0',
       });
     });
 
@@ -71,7 +71,7 @@ describe('ProjectEditor', () => {
       wrapper.setData({
         id: 1,
         name: 'Development',
-        color: '#ff0'
+        color: '#ff0',
       });
       wrapper.find('.delete-button').vm.$emit('click');
     });
@@ -92,7 +92,7 @@ describe('ProjectEditor', () => {
       wrapper.setData({
         id: 1,
         name: 'Development',
-        color: '#ff0'
+        color: '#ff0',
       });
       wrapper.find('.delete-button').vm.$emit('click');
     });

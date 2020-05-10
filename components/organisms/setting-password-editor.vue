@@ -52,13 +52,13 @@ export default {
     Icon,
     BaseButton,
     BaseInput,
-    SettingBox
+    SettingBox,
   },
   data() {
     return {
       password: '',
       currentPassword: '',
-      passwordConfirmation: ''
+      passwordConfirmation: '',
     };
   },
   methods: {
@@ -66,10 +66,10 @@ export default {
       const success = await this.$store.dispatch('auth/changePassword', {
         currentPassword: this.currentPassword,
         password: this.password,
-        passwordConfirmation: this.passwordConfirmation
+        passwordConfirmation: this.passwordConfirmation,
       });
       if (success) this.$store.dispatch('toast/success', this.$t('changed'));
-    }
-  }
+    },
+  },
 };
 </script>

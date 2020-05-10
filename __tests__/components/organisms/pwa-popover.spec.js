@@ -6,13 +6,13 @@ describe('PwaPopover', () => {
 
   const $platform = {
     isIOS: () => false,
-    isPWA: () => false
+    isPWA: () => false,
   };
 
   const factory = () =>
     shallowMount(PwaPopover, {
       stubs: ['i18n', 'v-popover'],
-      mocks: { $platform }
+      mocks: { $platform },
     });
 
   beforeEach(() => {
