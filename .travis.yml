@@ -9,6 +9,13 @@ jobs:
         - yarn lint .
         - curl -L https://git.io/misspell | bash && git ls-files | xargs bin/misspell --error
 
+    - stage: build
+      language: minimal
+      services:
+        - docker
+      script:
+        - docker-compose build
+
     - stage: test
       language: node_js
       node_js:
