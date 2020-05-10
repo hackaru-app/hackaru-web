@@ -10,18 +10,18 @@ import Dot from '@/components/atoms/dot';
 
 export default {
   components: {
-    Dot
+    Dot,
   },
   props: {
     color: {
       type: String,
-      required: true
+      required: true,
     },
     text: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 

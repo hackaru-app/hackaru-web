@@ -8,36 +8,36 @@ const options = {
     responsive: true,
     maintainAspectRatio: false,
     legend: {
-      display: false
+      display: false,
     },
     tooltips: {
       callbacks: {
-        label: ({ yLabel }) => fromS(yLabel)
-      }
+        label: ({ yLabel }) => fromS(yLabel),
+      },
     },
     scales: {
       yAxes: [
         {
           stacked: true,
-          display: false
-        }
+          display: false,
+        },
       ],
       xAxes: [
         {
           ticks: {
             maxRotation: 0,
-            fontSize: 13
+            fontSize: 13,
           },
           offset: true,
           stacked: true,
           gridLines: {
             zeroLineColor: '#eee',
-            color: '#eee'
-          }
-        }
-      ]
-    }
-  }
+            color: '#eee',
+          },
+        },
+      ],
+    },
+  },
 };
 
 options.dark = merge({}, options.default, {
@@ -45,15 +45,15 @@ options.dark = merge({}, options.default, {
     xAxes: [
       {
         ticks: {
-          fontColor: '#cdd0d1'
+          fontColor: '#cdd0d1',
         },
         gridLines: {
           zeroLineColor: '#3a4357',
-          color: '#3a4357'
-        }
-      }
-    ]
-  }
+          color: '#3a4357',
+        },
+      },
+    ],
+  },
 });
 
 export default {
@@ -62,23 +62,23 @@ export default {
   props: {
     chartData: {
       type: Object,
-      required: true
+      required: true,
     },
     isDark: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     options() {
       return this.isDark ? options.dark : options.default;
-    }
+    },
   },
   watch: {
     isDark() {
       this.$data._chart.destroy();
       this.renderBarChart();
-    }
+    },
   },
   mounted() {
     this.renderBarChart();
@@ -86,7 +86,7 @@ export default {
   methods: {
     renderBarChart() {
       this.renderChart(this.chartData, this.options);
-    }
-  }
+    },
+  },
 };
 </script>

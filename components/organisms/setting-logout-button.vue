@@ -28,7 +28,7 @@ export default {
   components: {
     Icon,
     BaseButton,
-    SettingBox
+    SettingBox,
   },
   methods: {
     async logout() {
@@ -37,12 +37,12 @@ export default {
         eventCategory: 'Accounts',
         eventAction: 'logout',
         name: 'logout',
-        component: 'setting_logout_button'
+        component: 'setting_logout_button',
       });
       await this.$store.dispatch('auth/logout');
       localStorage.removeItem('userId');
       window.location.assign(this.localePath('index'));
-    }
-  }
+    },
+  },
 };
 </script>

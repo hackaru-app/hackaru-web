@@ -9,8 +9,8 @@ describe('Actions', () => {
       data: {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
-        receiveMonthReport: true
-      }
+        receiveMonthReport: true,
+      },
     }));
 
     beforeEach(async () => {
@@ -22,7 +22,7 @@ describe('Actions', () => {
         'auth-api/request',
         {
           url: '/v1/user',
-          method: 'get'
+          method: 'get',
         },
         { root: true }
       );
@@ -32,7 +32,7 @@ describe('Actions', () => {
       expect(commit).toHaveBeenCalledWith('SET_USER', {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
-        receiveMonthReport: true
+        receiveMonthReport: true,
       });
     });
 
@@ -47,8 +47,8 @@ describe('Actions', () => {
       data: {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
-        receiveMonthReport: true
-      }
+        receiveMonthReport: true,
+      },
     }));
 
     beforeEach(async () => {
@@ -57,7 +57,7 @@ describe('Actions', () => {
         {
           timeZone: 'Asia/Tokyo',
           receiveWeekReport: true,
-          receiveMonthReport: true
+          receiveMonthReport: true,
         }
       );
     });
@@ -72,9 +72,9 @@ describe('Actions', () => {
             user: {
               timeZone: 'Asia/Tokyo',
               receiveWeekReport: true,
-              receiveMonthReport: true
-            }
-          }
+              receiveMonthReport: true,
+            },
+          },
         },
         { root: true }
       );
@@ -84,7 +84,7 @@ describe('Actions', () => {
       expect(commit).toHaveBeenCalledWith('SET_USER', {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
-        receiveMonthReport: true
+        receiveMonthReport: true,
       });
     });
 

@@ -20,9 +20,9 @@ describe('Actions', () => {
         {
           response: {
             data: {
-              error_description: 'message'
-            }
-          }
+              error_description: 'message',
+            },
+          },
         }
       );
     });
@@ -39,9 +39,9 @@ describe('Actions', () => {
         {
           response: {
             data: {
-              message: 'message'
-            }
-          }
+              message: 'message',
+            },
+          },
         }
       );
     });

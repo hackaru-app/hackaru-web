@@ -22,21 +22,21 @@ import { differenceInDays, startOfDay, parseISO, format } from 'date-fns';
 
 export default {
   components: {
-    ActivityItem
+    ActivityItem,
   },
   props: {
     first: {
       type: Boolean,
-      required: true
+      required: true,
     },
     day: {
       type: String,
-      required: true
+      required: true,
     },
     activities: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     title() {
@@ -48,8 +48,8 @@ export default {
     },
     week() {
       return this.$t(`weeks[${format(parseISO(this.day), 'i') - 1}]`);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -16,29 +16,29 @@ import DragDrop from '@/components/atoms/drag-drop';
 
 export default {
   components: {
-    DragDrop
+    DragDrop,
   },
   props: {
     delay: {
       type: Number,
-      default: 50
+      default: 50,
     },
     height: {
       type: Number,
-      default: 0
+      default: 0,
     },
     minHeight: {
       type: Number,
-      default: 0
+      default: 0,
     },
     enabled: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
-      startedHeight: this.height
+      startedHeight: this.height,
     };
   },
   methods: {
@@ -55,7 +55,7 @@ export default {
     drop({ e, distance }) {
       const resized = distance.y !== 0;
       this.$emit(resized ? 'end' : 'cancel', e);
-    }
-  }
+    },
+  },
 };
 </script>

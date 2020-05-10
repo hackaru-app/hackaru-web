@@ -5,8 +5,8 @@ describe('Actions', () => {
 
   Intl.DateTimeFormat = () => ({
     resolvedOptions: () => ({
-      timeZone: 'America/New_York'
-    })
+      timeZone: 'America/New_York',
+    }),
   });
 
   beforeEach(() => {
@@ -18,12 +18,12 @@ describe('Actions', () => {
     const dispatch = jest.fn(() => ({
       headers: {
         'x-refresh-token': 'refreshToken',
-        'x-client-id': 'clientId'
+        'x-client-id': 'clientId',
       },
       data: {
         id: 1,
-        email: 'example@example.com'
-      }
+        email: 'example@example.com',
+      },
     }));
 
     beforeEach(async () => {
@@ -31,7 +31,7 @@ describe('Actions', () => {
         { commit, dispatch },
         {
           email: 'example@example.com',
-          password: 'password'
+          password: 'password',
         }
       );
     });
@@ -45,9 +45,9 @@ describe('Actions', () => {
           data: {
             user: {
               email: 'example@example.com',
-              password: 'password'
-            }
-          }
+              password: 'password',
+            },
+          },
         },
         { root: true }
       );
@@ -56,14 +56,14 @@ describe('Actions', () => {
     it('commit SET_REFRESH_TOKEN', () => {
       expect(commit).toHaveBeenCalledWith('SET_REFRESH_TOKEN', {
         refreshToken: 'refreshToken',
-        clientId: 'clientId'
+        clientId: 'clientId',
       });
     });
 
     it('commit SET_ID_AND_EMAIL', () => {
       expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
         id: 1,
-        email: 'example@example.com'
+        email: 'example@example.com',
       });
     });
 
@@ -75,19 +75,19 @@ describe('Actions', () => {
   describe('when dispatch fetchAccessToken', () => {
     const state = {
       clientId: 'clientId',
-      refreshToken: 'refreshToken'
+      refreshToken: 'refreshToken',
     };
 
     const commit = jest.fn();
 
     const dispatch = jest.fn(() => ({
       headers: {
-        'x-access-token': 'accessToken'
+        'x-access-token': 'accessToken',
       },
       data: {
         id: 1,
-        email: 'example@example.com'
-      }
+        email: 'example@example.com',
+      },
     }));
 
     beforeEach(async () => {
@@ -102,8 +102,8 @@ describe('Actions', () => {
           method: 'post',
           headers: {
             'x-refresh-token': 'refreshToken',
-            'x-client-id': 'clientId'
-          }
+            'x-client-id': 'clientId',
+          },
         },
         { root: true }
       );
@@ -123,12 +123,12 @@ describe('Actions', () => {
     const dispatch = jest.fn(() => ({
       headers: {
         'x-refresh-token': 'refreshToken',
-        'x-client-id': 'clientId'
+        'x-client-id': 'clientId',
       },
       data: {
         id: 1,
-        email: 'example@example.com'
-      }
+        email: 'example@example.com',
+      },
     }));
 
     beforeEach(async () => {
@@ -137,7 +137,7 @@ describe('Actions', () => {
         {
           email: 'example@example.com',
           password: 'password',
-          passwordConfirmation: 'passwordConfirmation'
+          passwordConfirmation: 'passwordConfirmation',
         }
       );
     });
@@ -153,9 +153,9 @@ describe('Actions', () => {
               email: 'example@example.com',
               password: 'password',
               passwordConfirmation: 'passwordConfirmation',
-              timeZone: 'America/New_York'
-            }
-          }
+              timeZone: 'America/New_York',
+            },
+          },
         },
         { root: true }
       );
@@ -164,14 +164,14 @@ describe('Actions', () => {
     it('commit SET_REFRESH_TOKEN', () => {
       expect(commit).toHaveBeenCalledWith('SET_REFRESH_TOKEN', {
         refreshToken: 'refreshToken',
-        clientId: 'clientId'
+        clientId: 'clientId',
       });
     });
 
     it('commit SET_ID_AND_EMAIL', () => {
       expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
         id: 1,
-        email: 'example@example.com'
+        email: 'example@example.com',
       });
     });
 
@@ -183,8 +183,8 @@ describe('Actions', () => {
   describe('when dispatch changeEmail', () => {
     const state = {
       user: {
-        email: 'example@example.com'
-      }
+        email: 'example@example.com',
+      },
     };
 
     const commit = jest.fn();
@@ -192,8 +192,8 @@ describe('Actions', () => {
     const dispatch = jest.fn(() => ({
       data: {
         id: 1,
-        email: 'changed@example.com'
-      }
+        email: 'changed@example.com',
+      },
     }));
 
     beforeEach(async () => {
@@ -201,7 +201,7 @@ describe('Actions', () => {
         { state, dispatch, commit },
         {
           email: 'changed@example.com',
-          currentPassword: 'password'
+          currentPassword: 'password',
         }
       );
     });
@@ -215,9 +215,9 @@ describe('Actions', () => {
           data: {
             user: {
               email: 'changed@example.com',
-              currentPassword: 'password'
-            }
-          }
+              currentPassword: 'password',
+            },
+          },
         },
         { root: true }
       );
@@ -226,7 +226,7 @@ describe('Actions', () => {
     it('commit SET_ID_AND_EMAIL', () => {
       expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
         id: 1,
-        email: 'changed@example.com'
+        email: 'changed@example.com',
       });
     });
 
@@ -237,14 +237,14 @@ describe('Actions', () => {
 
   describe('when dispatch changePassword', () => {
     const state = {
-      email: 'example@example.com'
+      email: 'example@example.com',
     };
 
     const dispatch = jest.fn(() => ({
       data: {
         id: 1,
-        email: 'example@example.com'
-      }
+        email: 'example@example.com',
+      },
     }));
 
     beforeEach(async () => {
@@ -253,7 +253,7 @@ describe('Actions', () => {
         {
           currentPassword: 'currentPassword',
           password: 'password',
-          passwordConfirmation: 'passwordConfirmation'
+          passwordConfirmation: 'passwordConfirmation',
         }
       );
     });
@@ -268,9 +268,9 @@ describe('Actions', () => {
             user: {
               currentPassword: 'currentPassword',
               password: 'password',
-              passwordConfirmation: 'passwordConfirmation'
-            }
-          }
+              passwordConfirmation: 'passwordConfirmation',
+            },
+          },
         },
         { root: true }
       );
@@ -288,7 +288,7 @@ describe('Actions', () => {
       result = await actions.sendPasswordResetEmail(
         { dispatch },
         {
-          email: 'example@example.com'
+          email: 'example@example.com',
         }
       );
     });
@@ -301,9 +301,9 @@ describe('Actions', () => {
           method: 'post',
           data: {
             user: {
-              email: 'example@example.com'
-            }
-          }
+              email: 'example@example.com',
+            },
+          },
         },
         { root: true }
       );
@@ -323,7 +323,7 @@ describe('Actions', () => {
         {
           token: 'passwordResetToken',
           password: 'password',
-          passwordConfirmation: 'passwordConfirmation'
+          passwordConfirmation: 'passwordConfirmation',
         }
       );
     });
@@ -338,9 +338,9 @@ describe('Actions', () => {
             user: {
               token: 'passwordResetToken',
               password: 'password',
-              passwordConfirmation: 'passwordConfirmation'
-            }
-          }
+              passwordConfirmation: 'passwordConfirmation',
+            },
+          },
         },
         { root: true }
       );
@@ -354,7 +354,7 @@ describe('Actions', () => {
   describe('when dispatch logout', () => {
     const state = {
       clientId: 'clientId',
-      refreshToken: 'refreshToken'
+      refreshToken: 'refreshToken',
     };
 
     const commit = jest.fn();
@@ -372,8 +372,8 @@ describe('Actions', () => {
           method: 'delete',
           headers: {
             'x-client-id': 'clientId',
-            'x-refresh-token': 'refreshToken'
-          }
+            'x-refresh-token': 'refreshToken',
+          },
         },
         { root: true }
       );
@@ -392,7 +392,7 @@ describe('Actions', () => {
       result = await actions.deleteAccount(
         { dispatch, commit },
         {
-          currentPassword: 'currentPassword'
+          currentPassword: 'currentPassword',
         }
       );
     });
@@ -405,9 +405,9 @@ describe('Actions', () => {
           method: 'delete',
           data: {
             user: {
-              currentPassword: 'currentPassword'
-            }
-          }
+              currentPassword: 'currentPassword',
+            },
+          },
         },
         { root: true }
       );

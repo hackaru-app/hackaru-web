@@ -17,12 +17,12 @@ export default {
   props: {
     delay: {
       type: Number,
-      default: 0
+      default: 0,
     },
     enabled: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
@@ -31,16 +31,16 @@ export default {
       currentX: 0,
       currentY: 0,
       delayTimer: undefined,
-      triggered: false
+      triggered: false,
     };
   },
   computed: {
     distance() {
       return {
         x: this.currentX - this.startedX,
-        y: this.currentY - this.startedY
+        y: this.currentY - this.startedY,
       };
-    }
+    },
   },
   mounted() {
     document.addEventListener('mousemove', this.move, { passive: false });
@@ -77,7 +77,7 @@ export default {
     emitIfEnabled(name, e) {
       if (!this.triggered || !this.enabled) return;
       this.$emit(name, { e, distance: this.distance });
-    }
-  }
+    },
+  },
 };
 </script>

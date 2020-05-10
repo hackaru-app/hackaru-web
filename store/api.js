@@ -27,19 +27,19 @@ export const actions = {
           {
             ...config,
             data: snakecaseKeys(config.data || {}),
-            params: snakecaseKeys(config.params || {})
+            params: snakecaseKeys(config.params || {}),
           },
           {
             baseURL: this.$env.HACKARU_API_URL,
             timeout: this.$env.HACKARU_API_TIMEOUT || 0,
-            headers: { 'Accept-Language': this.$i18n.locale }
+            headers: { 'Accept-Language': this.$i18n.locale },
           }
         )
       );
       if (isJsonType(config.responseType)) {
         return {
           data: camelcaseKeys(res.data || {}, { deep: true }),
-          headers: res.headers
+          headers: res.headers,
         };
       }
       return res;
@@ -47,5 +47,5 @@ export const actions = {
       error.message = localizeErrorMessage(error.message, this.$i18n);
       throw error;
     }
-  }
+  },
 };

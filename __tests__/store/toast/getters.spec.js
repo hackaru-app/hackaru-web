@@ -8,7 +8,7 @@ describe('Getters', () => {
       text: 'text',
       type: 'success',
       rand: 123,
-      duration: 3000
+      duration: 3000,
     };
 
     beforeEach(() => {
@@ -20,7 +20,7 @@ describe('Getters', () => {
         text: 'text',
         type: 'success',
         rand: 123,
-        duration: 3000
+        duration: 3000,
       });
     });
   });

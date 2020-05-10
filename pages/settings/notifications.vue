@@ -40,28 +40,28 @@ export default {
   components: {
     Heading,
     SettingBox,
-    Icon
+    Icon,
   },
   computed: {
     ...mapGetters({
       receiveWeekReport: 'user/receiveWeekReport',
-      receiveMonthReport: 'user/receiveMonthReport'
-    })
+      receiveMonthReport: 'user/receiveMonthReport',
+    }),
   },
   methods: {
     changeReceiveWeekReport(e) {
       this.$store.dispatch('user/update', {
-        receiveWeekReport: e.target.checked
+        receiveWeekReport: e.target.checked,
       });
       this.$store.dispatch('toast/success', this.$t('updated'));
     },
     changeReceiveMonthReport(e) {
       this.$store.dispatch('user/update', {
-        receiveMonthReport: e.target.checked
+        receiveMonthReport: e.target.checked,
       });
       this.$store.dispatch('toast/success', this.$t('updated'));
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -3,7 +3,7 @@ const SET_USER = 'SET_USER';
 export const state = () => ({
   timeZone: 'Etc/UTC',
   receiveWeekReport: false,
-  receiveMonthReport: false
+  receiveMonthReport: false,
 });
 
 export const actions = {
@@ -13,7 +13,7 @@ export const actions = {
         'auth-api/request',
         {
           url: '/v1/user',
-          method: 'get'
+          method: 'get',
         },
         { root: true }
       );
@@ -32,8 +32,8 @@ export const actions = {
           url: '/v1/user',
           method: 'put',
           data: {
-            user: data
-          }
+            user: data,
+          },
         },
         { root: true }
       );
@@ -43,7 +43,7 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
       return false;
     }
-  }
+  },
 };
 
 export const mutations = {
@@ -52,17 +52,17 @@ export const mutations = {
     state.receiveWeekReport = payload.receiveWeekReport;
     state.receiveMonthReport = payload.receiveMonthReport;
     this.$i18n.setLocale(payload.locale);
-  }
+  },
 };
 
 export const getters = {
-  timeZone: state => {
+  timeZone: (state) => {
     return state.timeZone;
   },
-  receiveWeekReport: state => {
+  receiveWeekReport: (state) => {
     return state.receiveWeekReport;
   },
-  receiveMonthReport: state => {
+  receiveMonthReport: (state) => {
     return state.receiveMonthReport;
-  }
+  },
 };

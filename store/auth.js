@@ -10,7 +10,7 @@ export const state = () => ({
   email: '',
   refreshToken: '',
   clientId: '',
-  accessToken: ''
+  accessToken: '',
 });
 
 export const actions = {
@@ -24,16 +24,16 @@ export const actions = {
           data: {
             user: {
               email,
-              password
-            }
-          }
+              password,
+            },
+          },
         },
         { root: true }
       );
       commit(SET_ID_AND_EMAIL, res.data);
       commit(SET_REFRESH_TOKEN, {
         refreshToken: res.headers['x-refresh-token'],
-        clientId: res.headers['x-client-id']
+        clientId: res.headers['x-client-id'],
       });
       return true;
     } catch (e) {
@@ -50,8 +50,8 @@ export const actions = {
           method: 'post',
           headers: {
             'x-client-id': state.clientId,
-            'x-refresh-token': state.refreshToken
-          }
+            'x-refresh-token': state.refreshToken,
+          },
         },
         { root: true }
       );
@@ -79,16 +79,16 @@ export const actions = {
               password,
               passwordConfirmation,
               locale,
-              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-            }
-          }
+              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            },
+          },
         },
         { root: true }
       );
       commit(SET_ID_AND_EMAIL, res.data);
       commit(SET_REFRESH_TOKEN, {
         refreshToken: res.headers['x-refresh-token'],
-        clientId: res.headers['x-client-id']
+        clientId: res.headers['x-client-id'],
       });
       return true;
     } catch (e) {
@@ -106,9 +106,9 @@ export const actions = {
           data: {
             user: {
               email,
-              currentPassword
-            }
-          }
+              currentPassword,
+            },
+          },
         },
         { root: true }
       );
@@ -133,9 +133,9 @@ export const actions = {
             user: {
               password,
               passwordConfirmation,
-              currentPassword
-            }
-          }
+              currentPassword,
+            },
+          },
         },
         { root: true }
       );
@@ -154,9 +154,9 @@ export const actions = {
           method: 'post',
           data: {
             user: {
-              email
-            }
-          }
+              email,
+            },
+          },
         },
         { root: true }
       );
@@ -181,9 +181,9 @@ export const actions = {
               id,
               token,
               password,
-              passwordConfirmation
-            }
-          }
+              passwordConfirmation,
+            },
+          },
         },
         { root: true }
       );
@@ -201,8 +201,8 @@ export const actions = {
         method: 'delete',
         headers: {
           'x-client-id': state.clientId,
-          'x-refresh-token': state.refreshToken
-        }
+          'x-refresh-token': state.refreshToken,
+        },
       },
       { root: true }
     );
@@ -217,9 +217,9 @@ export const actions = {
           method: 'delete',
           data: {
             user: {
-              currentPassword: currentPassword
-            }
-          }
+              currentPassword: currentPassword,
+            },
+          },
         },
         { root: true }
       );
@@ -229,7 +229,7 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
       return false;
     }
-  }
+  },
 };
 
 export const mutations = {
@@ -250,28 +250,28 @@ export const mutations = {
     state.refreshToken = '';
     state.clientId = '';
     state.accessToken = '';
-  }
+  },
 };
 
 export const getters = {
-  accessToken: state => {
+  accessToken: (state) => {
     return state.accessToken;
   },
-  email: state => {
+  email: (state) => {
     return state.email;
   },
-  userId: state => {
+  userId: (state) => {
     return state.id;
   },
-  loggedIn: state => {
+  loggedIn: (state) => {
     return state.clientId && state.refreshToken;
   },
-  validateToken: state => () => {
+  validateToken: (state) => () => {
     if (!state.accessToken) return false;
     try {
       return Date.now().valueOf() / 1000 < decodeJwt(state.accessToken).exp;
     } catch (e) {
       return false;
     }
-  }
+  },
 };

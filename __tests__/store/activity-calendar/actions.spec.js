@@ -6,8 +6,8 @@ describe('Actions', () => {
     const dispatch = jest.fn(() => ({
       data: {
         token: 'token',
-        userId: 1
-      }
+        userId: 1,
+      },
     }));
 
     beforeEach(() => {
@@ -19,7 +19,7 @@ describe('Actions', () => {
         'auth-api/request',
         {
           url: '/v1/activity_calendar',
-          method: 'put'
+          method: 'put',
         },
         { root: true }
       );
@@ -28,7 +28,7 @@ describe('Actions', () => {
     it('commit SET_TOKEN_AND_USER_ID', () => {
       expect(commit).toHaveBeenCalledWith('SET_TOKEN_AND_USER_ID', {
         token: 'token',
-        userId: 1
+        userId: 1,
       });
     });
   });

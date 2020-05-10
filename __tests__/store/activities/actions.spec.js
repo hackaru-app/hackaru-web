@@ -23,7 +23,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: activity
+          schema: activity,
         },
         { root: true }
       );
@@ -38,7 +38,7 @@ describe('Actions', () => {
         { dispatch },
         {
           start: parseISO('2019-01-01T01:23:45'),
-          end: parseISO('2019-01-01T02:23:45')
+          end: parseISO('2019-01-01T02:23:45'),
         }
       );
     });
@@ -50,8 +50,8 @@ describe('Actions', () => {
           url: '/v1/activities',
           params: {
             start: parseISO('2019-01-01T01:23:45'),
-            end: parseISO('2019-01-01T02:23:45')
-          }
+            end: parseISO('2019-01-01T02:23:45'),
+          },
         },
         { root: true }
       );
@@ -62,7 +62,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: [activity]
+          schema: [activity],
         },
         { root: true }
       );
@@ -83,8 +83,8 @@ describe('Actions', () => {
           url: '/v1/activities',
           method: 'post',
           data: {
-            activity: {}
-          }
+            activity: {},
+          },
         },
         { root: true }
       );
@@ -95,7 +95,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: activity
+          schema: activity,
         },
         { root: true }
       );
@@ -122,7 +122,7 @@ describe('Actions', () => {
         'auth-api/request',
         {
           url: '/v1/activities/1',
-          method: 'delete'
+          method: 'delete',
         },
         { root: true }
       );
@@ -143,8 +143,8 @@ describe('Actions', () => {
           url: '/v1/activities/1',
           method: 'put',
           data: {
-            activity: { id: 1 }
-          }
+            activity: { id: 1 },
+          },
         },
         { root: true }
       );
@@ -155,7 +155,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: activity
+          schema: activity,
         },
         { root: true }
       );

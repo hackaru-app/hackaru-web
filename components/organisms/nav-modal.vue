@@ -30,35 +30,35 @@ import BaseModal from '@/components/organisms/base-modal';
 
 export default {
   components: {
-    BaseModal
+    BaseModal,
   },
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     height: {
       type: String,
-      default: 'auto'
+      default: 'auto',
     },
     initialComponent: {
       type: Object,
-      required: true
+      required: true,
     },
     keepAlives: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
       animation: {
         enter: '',
-        leave: ''
+        leave: '',
       },
       params: {},
       current: undefined,
-      stack: []
+      stack: [],
     };
   },
   methods: {
@@ -87,14 +87,14 @@ export default {
       if (prev) {
         this.pop({
           component: prev,
-          params
+          params,
         });
       } else {
         this.$emit('close', params);
         this.$modal.hide(this.name);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

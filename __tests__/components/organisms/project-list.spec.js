@@ -12,20 +12,20 @@ describe('ProjectList', () => {
         {
           id: 1,
           name: 'Development',
-          color: '#ff0'
+          color: '#ff0',
         },
         {
           id: 2,
           name: 'Review',
-          color: '#f00'
-        }
-      ]
-    }
+          color: '#f00',
+        },
+      ],
+    },
   });
 
   const factory = () =>
     shallowMount(ProjectList, {
-      mocks: { $store }
+      mocks: { $store },
     });
 
   beforeEach(() => {
@@ -52,7 +52,7 @@ describe('ProjectList', () => {
 
     it('emit push', () => {
       expect(wrapper.emitted('push')[0][0]).toEqual({
-        component: ProjectEditor
+        component: ProjectEditor,
       });
     });
   });
@@ -60,10 +60,7 @@ describe('ProjectList', () => {
   describe('when click edit-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper
-        .findAll('.edit-button')
-        .at(1)
-        .vm.$emit('click');
+      wrapper.findAll('.edit-button').at(1).vm.$emit('click');
     });
 
     it('emit push', () => {
@@ -72,8 +69,8 @@ describe('ProjectList', () => {
         params: {
           id: 2,
           name: 'Review',
-          color: '#f00'
-        }
+          color: '#f00',
+        },
       });
     });
   });
@@ -81,10 +78,7 @@ describe('ProjectList', () => {
   describe('when click project-content', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper
-        .findAll('.project-content')
-        .at(2)
-        .trigger('click');
+      wrapper.findAll('.project-content').at(2).trigger('click');
     });
 
     it('emit pop', () => {
@@ -92,8 +86,8 @@ describe('ProjectList', () => {
         project: {
           id: 2,
           name: 'Review',
-          color: '#f00'
-        }
+          color: '#f00',
+        },
       });
     });
   });

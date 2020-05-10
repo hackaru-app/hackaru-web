@@ -14,20 +14,20 @@ describe('Webhooks', () => {
           targetUrl: 'http://www.example.com',
           event: 'activity:updated',
           createdAt: '2019-02-06T10:23:24.199Z',
-          updatedAt: '2019-02-06T10:23:24.199Z'
-        }
-      ]
-    }
+          updatedAt: '2019-02-06T10:23:24.199Z',
+        },
+      ],
+    },
   });
 
   const $modal = {
     show: jest.fn(),
-    hide: jest.fn()
+    hide: jest.fn(),
   };
 
   const factory = () =>
     shallowMount(Webhooks, {
-      mocks: { $store, $modal }
+      mocks: { $store, $modal },
     });
 
   beforeEach(() => {
@@ -43,10 +43,7 @@ describe('Webhooks', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
-      wrapper
-        .findAll('.delete-button')
-        .at(0)
-        .vm.$emit('click');
+      wrapper.findAll('.delete-button').at(0).vm.$emit('click');
     });
 
     it('dispatch webhooks/delete', () => {
@@ -58,10 +55,7 @@ describe('Webhooks', () => {
     beforeEach(() => {
       global.confirm = () => false;
       wrapper = factory();
-      wrapper
-        .findAll('.delete-button')
-        .at(0)
-        .vm.$emit('click');
+      wrapper.findAll('.delete-button').at(0).vm.$emit('click');
     });
 
     it('does not dispatch webhooks/delete', () => {
@@ -84,11 +78,7 @@ describe('Webhooks', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
       wrapper = factory();
-      wrapper
-        .find('.event-select')
-        .findAll('option')
-        .at(0)
-        .setSelected();
+      wrapper.find('.event-select').findAll('option').at(0).setSelected();
       wrapper.find('.target-url').setValue('http://example.com');
       wrapper.find('form').trigger('submit.prevent');
     });
@@ -96,7 +86,7 @@ describe('Webhooks', () => {
     it('dispatch webhooks/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('webhooks/add', {
         event: 'activity:created',
-        targetUrl: 'http://example.com'
+        targetUrl: 'http://example.com',
       });
     });
 

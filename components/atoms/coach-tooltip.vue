@@ -9,30 +9,30 @@ export default {
   timers: {
     hide: {
       time: 5000,
-      autostart: true
-    }
+      autostart: true,
+    },
   },
   props: {
     placement: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     offset: {
       type: Number,
-      default: undefined
+      default: undefined,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     content: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   data() {
     return {
-      show: false
+      show: false,
     };
   },
   computed: {
@@ -42,9 +42,9 @@ export default {
         content: this.content,
         show: this.show,
         offset: this.offset,
-        placement: this.placement
+        placement: this.placement,
       };
-    }
+    },
   },
   mounted() {
     this.show = !localStorage.getItem(`coachTooltip/${this.name}`);
@@ -56,7 +56,7 @@ export default {
     hide() {
       this.show = false;
       localStorage.setItem(`coachTooltip/${this.name}`, true);
-    }
-  }
+    },
+  },
 };
 </script>

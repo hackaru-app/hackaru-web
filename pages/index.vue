@@ -31,7 +31,7 @@ import { mapGetters } from 'vuex';
 
 const weekly = {
   start: startOfDay(addDays(new Date(), -7)),
-  end: endOfDay(new Date())
+  end: endOfDay(new Date()),
 };
 
 export default {
@@ -40,27 +40,27 @@ export default {
     ProjectName,
     Icon,
     BaseButton,
-    ActivityDayGroup
+    ActivityDayGroup,
   },
   data() {
     return {
-      addDays
+      addDays,
     };
   },
   head: {
-    title: 'Timer'
+    title: 'Timer',
   },
   computed: {
     ...mapGetters({
-      pastWeek: 'activities/pastWeek'
-    })
+      pastWeek: 'activities/pastWeek',
+    }),
   },
   activated() {
     this.$store.dispatch('activities/fetchByRange', {
       start: weekly.start,
-      end: weekly.end
+      end: weekly.end,
     });
-  }
+  },
 };
 </script>
 

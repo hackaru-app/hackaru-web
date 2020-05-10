@@ -6,7 +6,7 @@ export const actions = {
       const { data } = await dispatch(
         'auth-api/request',
         {
-          url: '/v1/projects'
+          url: '/v1/projects',
         },
         { root: true }
       );
@@ -27,8 +27,8 @@ export const actions = {
           url: '/v1/projects',
           method: 'post',
           data: {
-            project: payload
-          }
+            project: payload,
+          },
         },
         { root: true }
       );
@@ -51,8 +51,8 @@ export const actions = {
           url: `/v1/projects/${payload.id}`,
           method: 'put',
           data: {
-            project: payload
-          }
+            project: payload,
+          },
         },
         { root: true }
       );
@@ -74,7 +74,7 @@ export const actions = {
         'auth-api/request',
         {
           url: `/v1/projects/${id}`,
-          method: 'delete'
+          method: 'delete',
         },
         { root: true }
       );
@@ -83,11 +83,11 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
       return false;
     }
-  }
+  },
 };
 
 export const getters = {
   all(state, getters, rootState, rootGetters) {
     return rootGetters['entities/getEntities']('projects', [project]);
-  }
+  },
 };

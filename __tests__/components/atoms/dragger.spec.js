@@ -7,7 +7,7 @@ describe('Dragger', () => {
   const factory = () => shallowMount(Dragger);
   const dragEvent = (x, y) => ({
     e: { preventDefault: () => {} },
-    distance: { x, y }
+    distance: { x, y },
   });
 
   describe('when drag', () => {

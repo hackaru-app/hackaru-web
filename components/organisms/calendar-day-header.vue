@@ -16,8 +16,8 @@ export default {
   props: {
     day: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     today() {
@@ -28,8 +28,8 @@ export default {
     },
     week() {
       return this.$t(`weeks[${format(parseISO(this.day), 'i') - 1}]`);
-    }
-  }
+    },
+  },
 };
 </script>
 

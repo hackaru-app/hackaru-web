@@ -5,18 +5,18 @@ describe('Mutations', () => {
     const state = {
       timeZone: 'Etc/UTC',
       receiveWeekReport: false,
-      receiveMonthReport: false
+      receiveMonthReport: false,
     };
 
     beforeEach(() => {
       mutations.$i18n = {
-        setLocale: jest.fn()
+        setLocale: jest.fn(),
       };
       mutations['SET_USER'](state, {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
         receiveMonthReport: true,
-        locale: 'ja'
+        locale: 'ja',
       });
     });
 

@@ -4,8 +4,8 @@ import { parseISO } from 'date-fns';
 describe('Actions', () => {
   Intl.DateTimeFormat = () => ({
     resolvedOptions: () => ({
-      timeZone: 'America/New_York'
-    })
+      timeZone: 'America/New_York',
+    }),
   });
 
   describe('when dispatch fetch', () => {
@@ -16,8 +16,8 @@ describe('Actions', () => {
         sums: [],
         totals: {},
         labels: [],
-        activityGroups: []
-      }
+        activityGroups: [],
+      },
     }));
 
     beforeEach(() => {
@@ -27,13 +27,13 @@ describe('Actions', () => {
           current: {
             start: parseISO('2019-01-01T00:00:00'),
             end: parseISO('2019-01-03T00:00:00'),
-            projectIds: [1]
+            projectIds: [1],
           },
           previous: {
             start: parseISO('2019-12-29T00:00:00'),
             end: parseISO('2019-01-31T00:00:00'),
-            projectIds: [1]
-          }
+            projectIds: [1],
+          },
         }
       );
     });
@@ -47,8 +47,8 @@ describe('Actions', () => {
             start: parseISO('2019-01-01T00:00:00'),
             end: parseISO('2019-01-03T00:00:00'),
             projectIds: [1],
-            timeZone: 'America/New_York'
-          }
+            timeZone: 'America/New_York',
+          },
         },
         { root: true }
       );
@@ -63,8 +63,8 @@ describe('Actions', () => {
             start: parseISO('2019-12-29T00:00:00'),
             end: parseISO('2019-01-31T00:00:00'),
             projectIds: [1],
-            timeZone: 'America/New_York'
-          }
+            timeZone: 'America/New_York',
+          },
         },
         { root: true }
       );
@@ -76,13 +76,13 @@ describe('Actions', () => {
         sums: [],
         totals: {},
         labels: [],
-        activityGroups: []
+        activityGroups: [],
       });
     });
 
     it('commit SET_PREVIOUS_TOTALS', () => {
       expect(commit).toHaveBeenCalledWith('SET_PREVIOUS_TOTALS', {
-        totals: {}
+        totals: {},
       });
     });
   });
@@ -98,7 +98,7 @@ describe('Actions', () => {
         {
           start: parseISO('2019-01-01T00:00:00'),
           end: parseISO('2019-01-03T00:00:00'),
-          projectIds: [1]
+          projectIds: [1],
         }
       );
     });
@@ -113,8 +113,8 @@ describe('Actions', () => {
             start: parseISO('2019-01-01T00:00:00'),
             end: parseISO('2019-01-03T00:00:00'),
             projectIds: [1],
-            timeZone: 'America/New_York'
-          }
+            timeZone: 'America/New_York',
+          },
         },
         { root: true }
       );
@@ -136,7 +136,7 @@ describe('Actions', () => {
         {
           start: parseISO('2019-01-01T00:00:00'),
           end: parseISO('2019-01-03T00:00:00'),
-          projectIds: [1]
+          projectIds: [1],
         }
       );
     });
@@ -151,8 +151,8 @@ describe('Actions', () => {
             start: parseISO('2019-01-01T00:00:00'),
             end: parseISO('2019-01-03T00:00:00'),
             projectIds: [1],
-            timeZone: 'America/New_York'
-          }
+            timeZone: 'America/New_York',
+          },
         },
         { root: true }
       );

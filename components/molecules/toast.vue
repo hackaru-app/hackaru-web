@@ -15,13 +15,13 @@ export default {
   data() {
     return {
       opened: false,
-      hideTimer: undefined
+      hideTimer: undefined,
     };
   },
   computed: {
     ...mapGetters({
-      message: 'toast/message'
-    })
+      message: 'toast/message',
+    }),
   },
   watch: {
     message() {
@@ -31,8 +31,8 @@ export default {
         () => (this.opened = false),
         this.message.duration
       );
-    }
-  }
+    },
+  },
 };
 </script>
 

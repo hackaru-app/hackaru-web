@@ -6,13 +6,13 @@ describe('Mutations', () => {
 
     beforeEach(() => {
       mutations['SET_SUGGESTIONS'](state, [
-        { project: undefined, description: 'Review' }
+        { project: undefined, description: 'Review' },
       ]);
     });
 
     it('set suggestions', () => {
       expect(state.data).toEqual([
-        { project: undefined, description: 'Review' }
+        { project: undefined, description: 'Review' },
       ]);
     });
   });

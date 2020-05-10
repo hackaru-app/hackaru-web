@@ -17,12 +17,12 @@ import Dot from '@/components/atoms/dot';
 
 export default {
   components: {
-    Dot
+    Dot,
   },
   props: {
     value: {
       type: String,
-      default: '#cccfd9'
+      default: '#cccfd9',
     },
     colors: {
       type: Array,
@@ -36,15 +36,15 @@ export default {
         '#ff9f68',
         '#facf5a',
         '#616161',
-        '#8ea6b4'
-      ]
-    }
+        '#8ea6b4',
+      ],
+    },
   },
   methods: {
     changeColor(color) {
       this.$emit('update:value', color);
-    }
-  }
+    },
+  },
 };
 </script>
 

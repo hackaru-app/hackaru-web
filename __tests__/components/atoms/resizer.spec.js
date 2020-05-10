@@ -7,7 +7,7 @@ describe('Resizer', () => {
   const factory = () => shallowMount(Resizer);
   const dragEvent = (x, y) => ({
     e: { preventDefault: () => {} },
-    distance: { x, y }
+    distance: { x, y },
   });
 
   describe('when drag', () => {

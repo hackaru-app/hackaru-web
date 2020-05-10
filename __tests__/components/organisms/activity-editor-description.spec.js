@@ -12,27 +12,27 @@ describe('ActivityEditorDescription', () => {
           project: {
             id: 2,
             name: 'Review',
-            color: '#ff0'
+            color: '#ff0',
           },
-          description: 'Review my tasks'
-        }
-      ]
-    }
+          description: 'Review my tasks',
+        },
+      ],
+    },
   });
 
   const factory = () =>
     shallowMount(ActivityEditorDescription, {
       mocks: {
-        $store
+        $store,
       },
       propsData: {
         description: 'Create a database.',
         project: {
           id: null,
           name: 'No Project',
-          color: '#cccfd9'
-        }
-      }
+          color: '#cccfd9',
+        },
+      },
     });
 
   beforeEach(() => {
@@ -93,7 +93,7 @@ describe('ActivityEditorDescription', () => {
       expect(wrapper.emitted('update:project')[0][0]).toEqual({
         id: 2,
         name: 'Review',
-        color: '#ff0'
+        color: '#ff0',
       });
     });
   });

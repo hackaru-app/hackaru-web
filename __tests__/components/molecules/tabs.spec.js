@@ -7,17 +7,14 @@ describe('Tabs', () => {
   const factory = () =>
     shallowMount(Tabs, {
       propsData: {
-        items: ['Home', 'Reports', 'Calendar']
-      }
+        items: ['Home', 'Reports', 'Calendar'],
+      },
     });
 
   describe('when click item', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper
-        .findAll('li')
-        .at(1)
-        .trigger('click');
+      wrapper.findAll('li').at(1).trigger('click');
     });
 
     it('emit change', () => {

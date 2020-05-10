@@ -3,7 +3,7 @@ import { schema } from 'normalizr';
 
 describe('Actions', () => {
   const user = new schema.Entity('users', {
-    comment: new schema.Entity('comments')
+    comment: new schema.Entity('comments'),
   });
 
   describe('when dispatch merge', () => {
@@ -19,9 +19,9 @@ describe('Actions', () => {
             name: 'John',
             comment: {
               id: 2,
-              description: 'Hello'
-            }
-          }
+              description: 'Hello',
+            },
+          },
         }
       );
     });
@@ -32,15 +32,15 @@ describe('Actions', () => {
           1: {
             id: 1,
             comment: 2,
-            name: 'John'
-          }
+            name: 'John',
+          },
         },
         comments: {
           2: {
             id: 2,
-            description: 'Hello'
-          }
-        }
+            description: 'Hello',
+          },
+        },
       });
     });
   });

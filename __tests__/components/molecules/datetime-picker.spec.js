@@ -18,7 +18,7 @@ describe('DatetimePicker', () => {
 
     it('emit input with current date', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
-        format(parseISO('2019-01-31 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX')
+        format(parseISO('2019-01-31 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX'),
       ]);
     });
   });
@@ -32,7 +32,7 @@ describe('DatetimePicker', () => {
 
     it('emit input with inputted date', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
-        format(parseISO('2018-03-03 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX')
+        format(parseISO('2018-03-03 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX'),
       ]);
     });
   });
@@ -45,7 +45,7 @@ describe('DatetimePicker', () => {
 
     it('emit input with current date', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
-        format(parseISO('2019-01-31 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX')
+        format(parseISO('2019-01-31 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX'),
       ]);
     });
   });
@@ -59,7 +59,7 @@ describe('DatetimePicker', () => {
 
     it('emit input with inputted date', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
-        format(parseISO('2018-03-03 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX')
+        format(parseISO('2018-03-03 01:23:45'), 'yyyy-MM-dd HH:mm:ss XXX'),
       ]);
     });
   });
@@ -86,7 +86,7 @@ describe('DatetimePicker', () => {
 
     it('emit input with datetime', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
-        format(parseISO('2019-01-01 11:22:33'), 'yyyy-MM-dd HH:mm:ss XXX')
+        format(parseISO('2019-01-01 11:22:33'), 'yyyy-MM-dd HH:mm:ss XXX'),
       ]);
     });
   });
@@ -100,7 +100,7 @@ describe('DatetimePicker', () => {
 
     it('emit input with datetime', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
-        format(parseISO('2019-03-03 22:33:44'), 'yyyy-MM-dd HH:mm:ss XXX')
+        format(parseISO('2019-03-03 22:33:44'), 'yyyy-MM-dd HH:mm:ss XXX'),
       ]);
     });
   });

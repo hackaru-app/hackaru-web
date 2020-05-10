@@ -5,7 +5,7 @@ describe('Getters', () => {
 
   describe('when call projects', () => {
     const state = {
-      projects: []
+      projects: [],
     };
 
     beforeEach(() => {
@@ -19,7 +19,7 @@ describe('Getters', () => {
 
   describe('when call totals', () => {
     const state = {
-      totals: {}
+      totals: {},
     };
 
     beforeEach(() => {
@@ -33,7 +33,7 @@ describe('Getters', () => {
 
   describe('when call previousTotals', () => {
     const state = {
-      previousTotals: {}
+      previousTotals: {},
     };
 
     beforeEach(() => {
@@ -47,7 +47,7 @@ describe('Getters', () => {
 
   describe('when call activityGroups', () => {
     const state = {
-      activityGroups: []
+      activityGroups: [],
     };
 
     beforeEach(() => {
@@ -61,7 +61,7 @@ describe('Getters', () => {
 
   describe('when call empty and totals is empty', () => {
     const state = {
-      totals: {}
+      totals: {},
     };
 
     beforeEach(() => {
@@ -76,8 +76,8 @@ describe('Getters', () => {
   describe('when call empty and totals is not empty', () => {
     const state = {
       totals: {
-        1: 100
-      }
+        1: 100,
+      },
     };
 
     beforeEach(() => {
@@ -95,19 +95,19 @@ describe('Getters', () => {
         {
           id: 1,
           name: 'Development',
-          color: '#ff0'
+          color: '#ff0',
         },
         {
           id: 2,
           name: 'Review',
-          color: '#f00'
-        }
+          color: '#f00',
+        },
       ],
       labels: ['Jan', 'Feb'],
       sums: {
         1: [100, 200],
-        2: [300, 400]
-      }
+        2: [300, 400],
+      },
     };
 
     beforeEach(() => {
@@ -124,14 +124,14 @@ describe('Getters', () => {
           label: 'Development',
           maxBarThickness: 40,
           backgroundColor: '#ff0',
-          data: [100, 200]
+          data: [100, 200],
         },
         {
           label: 'Review',
           maxBarThickness: 40,
           backgroundColor: '#f00',
-          data: [300, 400]
-        }
+          data: [300, 400],
+        },
       ]);
     });
   });
@@ -142,24 +142,24 @@ describe('Getters', () => {
         {
           id: 3,
           name: 'Working',
-          color: '#f0f'
+          color: '#f0f',
         },
         {
           id: 1,
           name: 'Development',
-          color: '#ff0'
+          color: '#ff0',
         },
         {
           id: 2,
           name: 'Review',
-          color: '#f00'
-        }
+          color: '#f00',
+        },
       ],
       totals: {
         1: 100,
         3: 300,
-        2: 200
-      }
+        2: 200,
+      },
     };
 
     beforeEach(() => {
@@ -173,9 +173,9 @@ describe('Getters', () => {
           {
             data: [300, 100, 200],
             borderWidth: 0,
-            backgroundColor: ['#f0f', '#ff0', '#f00']
-          }
-        ]
+            backgroundColor: ['#f0f', '#ff0', '#f00'],
+          },
+        ],
       });
     });
   });

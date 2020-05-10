@@ -28,11 +28,11 @@ describe('Actions', () => {
           method: 'post',
           headers: { 'X-Foo': 'bar' },
           params: {
-            fooBar: 'baz'
+            fooBar: 'baz',
           },
           data: {
-            barBaz: 'baz'
-          }
+            barBaz: 'baz',
+          },
         }
       );
     });
@@ -63,7 +63,7 @@ describe('Actions', () => {
         {},
         {
           url: '/example',
-          responseType: 'json'
+          responseType: 'json',
         }
       );
     });
@@ -82,7 +82,7 @@ describe('Actions', () => {
       result = await actions.request(
         {},
         {
-          url: '/example'
+          url: '/example',
         }
       );
     });
@@ -100,7 +100,7 @@ describe('Actions', () => {
         {},
         {
           url: '/example',
-          responseType: 'blob'
+          responseType: 'blob',
         }
       );
     });
@@ -148,7 +148,7 @@ describe('Actions', () => {
       // axios-mock-adapterでRequest abortedのテストを書きたいけど、以下のURLにあるような関数が定義されていないので、
       // 自前でエラーを発生させる。
       // https://github.com/ctimmerm/axios-mock-adapter/blob/master/src/index.js#L97
-      mock.onGet('http://localhost/').reply(config => {
+      mock.onGet('http://localhost/').reply((config) => {
         throw new Error('Request aborted');
       });
     });

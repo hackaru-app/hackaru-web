@@ -7,9 +7,9 @@ describe('Mutations', () => {
         1: {
           id: 1,
           name: 'Jonh',
-          tags: ['orange']
-        }
-      }
+          tags: ['orange'],
+        },
+      },
     };
 
     const state = { entities };
@@ -20,13 +20,13 @@ describe('Mutations', () => {
           1: {
             name: 'John',
             age: 20,
-            tags: ['apple']
+            tags: ['apple'],
           },
           2: {
             id: 2,
-            name: 'Bob'
-          }
-        }
+            name: 'Bob',
+          },
+        },
       });
     });
 
@@ -58,10 +58,10 @@ describe('Mutations', () => {
           1: {
             id: 1,
             name: 'Jonh',
-            tags: ['orange']
-          }
-        }
-      }
+            tags: ['orange'],
+          },
+        },
+      },
     };
 
     beforeEach(() => {

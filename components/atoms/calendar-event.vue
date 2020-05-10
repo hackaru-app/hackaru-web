@@ -3,7 +3,7 @@
     :style="{
       borderColor: color,
       backgroundColor: backgroundColor,
-      color: textColor
+      color: textColor,
     }"
     class="calendar-event"
   >
@@ -18,20 +18,20 @@ export default {
   props: {
     color: {
       type: String,
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      required: true
+      required: true,
     },
     startedAt: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     stoppedAt: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   computed: {
     backgroundColor() {
@@ -39,8 +39,8 @@ export default {
     },
     textColor() {
       return Color(this.color).darken(0.6);
-    }
-  }
+    },
+  },
 };
 </script>
 

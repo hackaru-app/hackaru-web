@@ -11,8 +11,8 @@ describe('SettingDeleteAccountButton', () => {
     shallowMount(SettingDeleteAccountButton, {
       mocks: {
         $store,
-        $modal
-      }
+        $modal,
+      },
     });
 
   delete window.location;
@@ -44,7 +44,7 @@ describe('SettingDeleteAccountButton', () => {
 
     it('dispatch auth/deleteAccount', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/deleteAccount', {
-        currentPassword: 'password'
+        currentPassword: 'password',
       });
     });
 

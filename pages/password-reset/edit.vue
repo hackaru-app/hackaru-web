@@ -37,15 +37,15 @@ export default {
   components: {
     Heading,
     BaseInput,
-    BaseButton
+    BaseButton,
   },
   head: {
-    title: 'Reset Password'
+    title: 'Reset Password',
   },
   data() {
     return {
       password: '',
-      passwordConfirmation: ''
+      passwordConfirmation: '',
     };
   },
   methods: {
@@ -54,14 +54,14 @@ export default {
         id: this.$route.query['user_id'],
         token: this.$route.query['token'],
         password: this.password,
-        passwordConfirmation: this.passwordConfirmation
+        passwordConfirmation: this.passwordConfirmation,
       });
       if (success) {
         this.$router.push(this.localePath('auth'));
         this.$store.dispatch('toast/success', this.$t('success'));
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

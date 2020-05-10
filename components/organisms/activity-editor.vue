@@ -91,13 +91,13 @@ export default {
     ModalItem,
     ModalFooter,
     BaseButton,
-    Icon
+    Icon,
   },
   props: {
     params: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -107,20 +107,20 @@ export default {
       project: {
         id: null,
         name: 'No Project',
-        color: '#cccfd9'
+        color: '#cccfd9',
       },
       startedAt: `${new Date()}`,
       stoppedAt: undefined,
-      focused: false
+      focused: false,
     };
   },
   computed: {
     ...mapGetters({
-      suggestions: 'suggestions/all'
+      suggestions: 'suggestions/all',
     }),
     isSharedSupported() {
       return navigator.share !== undefined;
-    }
+    },
   },
   watch: {
     params: {
@@ -132,8 +132,8 @@ export default {
         this.startedAt = params.startedAt || this.startedAt;
         this.stoppedAt = params.stoppedAt || this.stoppedAt;
         this.project = params.project || this.project;
-      }
-    }
+      },
+    },
   },
   methods: {
     async saveActivity() {
@@ -144,7 +144,7 @@ export default {
         projectId: this.project.id,
         description: this.description,
         startedAt: this.startedAt,
-        stoppedAt: this.stoppedAt
+        stoppedAt: this.stoppedAt,
       });
       this.disabled = false;
       if (success) {
@@ -157,7 +157,7 @@ export default {
           eventCategory: 'Activities',
           eventAction: action,
           name: `${action}_activity`,
-          component: 'activity_editor'
+          component: 'activity_editor',
         });
       }
     },
@@ -169,14 +169,14 @@ export default {
         eventCategory: 'Activities',
         eventAction: 'delete',
         name: 'delete_activity',
-        component: 'activity_editor'
+        component: 'activity_editor',
       });
       this.$modal.hide('activity');
     },
     editProject() {
       this.$emit('push', {
         component: ProjectList,
-        params: { selected: this.project.id }
+        params: { selected: this.project.id },
       });
     },
     async share() {
@@ -185,25 +185,25 @@ export default {
         parseISO(this.stoppedAt)
       );
       const title = [this.project.name, this.description]
-        .filter(v => v)
+        .filter((v) => v)
         .join(' - ');
       try {
         await navigator.share({
           title: this.$t('share.title'),
-          text: this.$t('share.text', { title, duration })
+          text: this.$t('share.text', { title, duration }),
         });
         this.$gtm.trackEvent({
           eventCategory: 'Activities',
           eventAction: 'share',
           name: 'share',
-          component: 'activity_editor'
+          component: 'activity_editor',
         });
       } catch (e) {
         if (e.name === 'AbortError') return;
         throw e;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

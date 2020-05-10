@@ -20,12 +20,12 @@ describe('TimerForm', () => {
           project: {
             id: 2,
             name: 'Review',
-            color: '#ff0'
+            color: '#ff0',
           },
-          description: 'Review my tasks'
-        }
-      ]
-    }
+          description: 'Review my tasks',
+        },
+      ],
+    },
   });
 
   const factory = () =>
@@ -33,8 +33,8 @@ describe('TimerForm', () => {
       localVue,
       mocks: {
         $store,
-        $modal
-      }
+        $modal,
+      },
     });
 
   beforeEach(() => {
@@ -64,8 +64,8 @@ describe('TimerForm', () => {
         project: {
           id: 1,
           name: 'Review',
-          color: '#ff0'
-        }
+          color: '#ff0',
+        },
       });
     });
 
@@ -84,14 +84,14 @@ describe('TimerForm', () => {
         id: 1,
         project: null,
         startedAt: '2019-01-01T01:23:45',
-        description: 'Review my tasks'
+        description: 'Review my tasks',
       });
       wrapper.find('.nav-modal').vm.$emit('close', {
         project: {
           id: 1,
           name: 'Review',
-          color: '#ff0'
-        }
+          color: '#ff0',
+        },
       });
     });
 
@@ -99,7 +99,7 @@ describe('TimerForm', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         description: 'Review my tasks',
-        projectId: 1
+        projectId: 1,
       });
     });
   });
@@ -111,8 +111,8 @@ describe('TimerForm', () => {
         project: {
           id: 2,
           name: 'Review',
-          color: '#ff0'
-        }
+          color: '#ff0',
+        },
       });
       wrapper.find('.description').setValue('Review my tasks');
       wrapper.find('.form').trigger('submit');
@@ -122,7 +122,7 @@ describe('TimerForm', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         description: 'Review my tasks',
         projectId: 2,
-        startedAt: `${new Date()}`
+        startedAt: `${new Date()}`,
       });
     });
   });
@@ -137,7 +137,7 @@ describe('TimerForm', () => {
     it('dispatch activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
-        stoppedAt: `${new Date()}`
+        stoppedAt: `${new Date()}`,
       });
     });
   });
@@ -150,8 +150,8 @@ describe('TimerForm', () => {
         project: {
           id: 2,
           name: 'Review',
-          color: '#ff0'
-        }
+          color: '#ff0',
+        },
       });
       wrapper.find('.description').setValue('Review my tasks');
       wrapper.find('.description').trigger('keypress.enter');
@@ -161,7 +161,7 @@ describe('TimerForm', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         projectId: 2,
-        description: 'Review my tasks'
+        description: 'Review my tasks',
       });
     });
   });
@@ -173,8 +173,8 @@ describe('TimerForm', () => {
         project: {
           id: 2,
           name: 'Review',
-          color: '#ff0'
-        }
+          color: '#ff0',
+        },
       });
       wrapper.find('.description').setValue('Review my tasks');
       wrapper.find('.description').trigger('keypress.enter');
@@ -184,7 +184,7 @@ describe('TimerForm', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         projectId: 2,
         description: 'Review my tasks',
-        startedAt: `${new Date()}`
+        startedAt: `${new Date()}`,
       });
     });
   });
@@ -235,8 +235,8 @@ describe('TimerForm', () => {
         project: {
           id: 2,
           name: 'Review',
-          color: '#ff0'
-        }
+          color: '#ff0',
+        },
       });
       wrapper.find('.description').setValue('Review my tasks');
       wrapper.find('.description').trigger('change');
@@ -246,7 +246,7 @@ describe('TimerForm', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         projectId: 2,
-        description: 'Review my tasks'
+        description: 'Review my tasks',
       });
     });
   });
@@ -262,7 +262,7 @@ describe('TimerForm', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         projectId: 2,
         description: 'Review my tasks',
-        startedAt: `${new Date()}`
+        startedAt: `${new Date()}`,
       });
     });
   });

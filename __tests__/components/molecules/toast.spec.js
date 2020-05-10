@@ -13,16 +13,16 @@ describe('Toast', () => {
         text: 'message',
         type: 'success',
         rand: 12345,
-        duration: 500
-      }
-    }
+        duration: 500,
+      },
+    },
   });
 
   const factory = () =>
     shallowMount(Toast, {
       mocks: {
-        $store
-      }
+        $store,
+      },
     });
 
   describe('when change message', () => {
@@ -32,7 +32,7 @@ describe('Toast', () => {
         text: 'new message',
         type: 'success',
         rand: 456789,
-        duration: 500
+        duration: 500,
       };
     });
 

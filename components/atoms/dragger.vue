@@ -18,28 +18,28 @@ import DragDrop from '@/components/atoms/drag-drop';
 
 export default {
   components: {
-    DragDrop
+    DragDrop,
   },
   props: {
     top: {
       type: Number,
-      default: 0
+      default: 0,
     },
     left: {
       type: Number,
-      default: 0
+      default: 0,
     },
     enabled: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
       started: {
         top: this.top,
-        left: this.left
-      }
+        left: this.left,
+      },
     };
   },
   methods: {
@@ -57,8 +57,8 @@ export default {
     drop({ e, distance }) {
       const moved = distance.x !== 0 || distance.y !== 0;
       this.$emit(moved ? 'end' : 'cancel', e);
-    }
-  }
+    },
+  },
 };
 </script>
 

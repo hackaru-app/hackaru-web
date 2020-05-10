@@ -13,10 +13,10 @@ describe('Edit', () => {
         $route: {
           query: {
             user_id: 1,
-            token: 'token'
-          }
-        }
-      }
+            token: 'token',
+          },
+        },
+      },
     });
 
   describe('when click submit-button', () => {
@@ -32,7 +32,7 @@ describe('Edit', () => {
         id: 1,
         password: 'password',
         passwordConfirmation: 'confirmation',
-        token: 'token'
+        token: 'token',
       });
     });
   });

@@ -9,17 +9,17 @@ import Icon from '@/components/atoms/icon';
 
 export default {
   components: {
-    Icon
+    Icon,
   },
   props: {
     current: {
       type: Number,
-      required: true
+      required: true,
     },
     previous: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     delta() {
@@ -29,8 +29,8 @@ export default {
     iconName() {
       if (this.current === this.previous) return 'minus-icon';
       return 'arrow-up-icon';
-    }
-  }
+    },
+  },
 };
 </script>
 

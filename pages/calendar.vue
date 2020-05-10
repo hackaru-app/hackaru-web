@@ -67,7 +67,7 @@ import {
   format,
   formatISO,
   addDays,
-  eachDayOfInterval
+  eachDayOfInterval,
 } from 'date-fns';
 
 export default {
@@ -76,10 +76,10 @@ export default {
     LoopSlider,
     CalendarContent,
     CalendarDayHeader,
-    DateHeader
+    DateHeader,
   },
   head: {
-    title: 'Calendar'
+    title: 'Calendar',
   },
   data() {
     return {
@@ -88,7 +88,7 @@ export default {
       isToday,
       sliderEnabled: true,
       date: new Date(),
-      sliding: undefined
+      sliding: undefined,
     };
   },
   computed: {
@@ -100,12 +100,12 @@ export default {
     },
     hasToday() {
       return isSameDay(startOfWeek(new Date()), startOfWeek(this.date));
-    }
+    },
   },
   watch: {
     date: {
-      handler: 'fetchActivities'
-    }
+      handler: 'fetchActivities',
+    },
   },
   activated() {
     this.fetchActivities();
@@ -114,14 +114,14 @@ export default {
     async fetchActivities() {
       await this.$store.dispatch('activities/fetchByRange', {
         start: startOfWeek(this.date),
-        end: endOfWeek(this.date)
+        end: endOfWeek(this.date),
       });
     },
     getDays(page) {
       const baseDate = addWeeks(this.date, page);
       return eachDayOfInterval({
         start: startOfWeek(baseDate),
-        end: endOfWeek(baseDate)
+        end: endOfWeek(baseDate),
       });
     },
     slideLeft() {
@@ -138,8 +138,8 @@ export default {
     },
     today() {
       this.date = new Date();
-    }
-  }
+    },
+  },
 };
 </script>
 
