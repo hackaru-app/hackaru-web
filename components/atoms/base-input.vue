@@ -7,19 +7,19 @@ export default {
   props: {
     value: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   computed: {
     listeners() {
       return {
         ...this.$listeners,
-        input: e => {
+        input: (e) => {
           this.$emit('input', e.target.value);
-        }
+        },
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

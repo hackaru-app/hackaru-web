@@ -20,22 +20,22 @@ export default {
   props: {
     top: {
       type: Number,
-      default: undefined
+      default: undefined,
     },
     color: {
       type: String,
-      required: true
+      required: true,
     },
     showTime: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     time() {
       return fromS(Math.floor(this.$toMin(this.top)));
-    }
-  }
+    },
+  },
 };
 </script>
 

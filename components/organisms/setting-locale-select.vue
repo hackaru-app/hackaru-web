@@ -21,7 +21,7 @@ export default {
   components: {
     Icon,
     LocaleSelect,
-    SettingBox
-  }
+    SettingBox,
+  },
 };
 </script>

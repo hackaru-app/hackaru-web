@@ -57,27 +57,27 @@ export default {
     ModalHeader,
     ModalItem,
     ProjectName,
-    BaseButton
+    BaseButton,
   },
   props: {
     params: {
       type: Object,
       default: () => ({
-        selected: null
-      })
+        selected: null,
+      }),
     },
     popEnabled: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     projects() {
       return [
         { id: null, name: 'No Project', color: '#cccfd9' },
-        ...this.$store.getters['projects/all']
+        ...this.$store.getters['projects/all'],
       ];
-    }
+    },
   },
   methods: {
     pop() {
@@ -89,13 +89,13 @@ export default {
     editProject(project) {
       this.$emit('push', {
         component: ProjectEditor,
-        params: project
+        params: project,
       });
     },
     selectProject(project) {
       this.$emit('pop', { project });
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -10,10 +10,10 @@ export const actions = {
       'api/request',
       merge(config, {
         headers: {
-          'x-access-token': rootGetters['auth/accessToken']
-        }
+          'x-access-token': rootGetters['auth/accessToken'],
+        },
       }),
       { root: true }
     );
-  }
+  },
 };

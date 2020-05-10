@@ -12,8 +12,8 @@ describe('Actions', () => {
         state: 'state',
         responseType: 'token',
         scope: 'activities:read projects:read',
-        clientName: 'Example'
-      }
+        clientName: 'Example',
+      },
     }));
 
     beforeEach(async () => {
@@ -24,7 +24,7 @@ describe('Actions', () => {
           responseType: 'token',
           redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
           scope: 'activities:read projects:read',
-          state: 'state'
+          state: 'state',
         }
       );
     });
@@ -39,8 +39,8 @@ describe('Actions', () => {
             responseType: 'token',
             redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
             scope: 'activities:read projects:read',
-            state: 'state'
-          }
+            state: 'state',
+          },
         },
         { root: true }
       );
@@ -53,7 +53,7 @@ describe('Actions', () => {
         state: 'state',
         responseType: 'token',
         scope: 'activities:read projects:read',
-        clientName: 'Example'
+        clientName: 'Example',
       });
     });
 
@@ -68,8 +68,8 @@ describe('Actions', () => {
       data: {
         status: 'redirect',
         redirectUri:
-          'http://example.com/callback#access_token=accessToken&token_type=Bearer'
-      }
+          'http://example.com/callback#access_token=accessToken&token_type=Bearer',
+      },
     }));
 
     beforeEach(async () => {
@@ -80,7 +80,7 @@ describe('Actions', () => {
           responseType: 'token',
           redirectUri: 'http://example.com/callback',
           scope: 'activities:read projects:read',
-          state: 'state'
+          state: 'state',
         }
       );
     });
@@ -107,7 +107,7 @@ describe('Actions', () => {
           responseType: 'token',
           redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
           scope: 'activities:read projects:read',
-          state: 'state'
+          state: 'state',
         }
       );
     });
@@ -122,8 +122,8 @@ describe('Actions', () => {
       data: {
         status: 'redirect',
         redirectUri:
-          'http://example.com/callback#access_token=accessToken&token_type=Bearer'
-      }
+          'http://example.com/callback#access_token=accessToken&token_type=Bearer',
+      },
     }));
 
     beforeEach(async () => {
@@ -134,7 +134,7 @@ describe('Actions', () => {
           responseType: 'token',
           redirectUri: 'http://example.com/callback',
           scope: 'activities:read projects:read',
-          state: 'state'
+          state: 'state',
         }
       );
     });
@@ -150,8 +150,8 @@ describe('Actions', () => {
             responseType: 'token',
             redirectUri: 'http://example.com/callback',
             scope: 'activities:read projects:read',
-            state: 'state'
-          }
+            state: 'state',
+          },
         },
         { root: true }
       );
@@ -171,9 +171,9 @@ describe('Actions', () => {
         redirectUri: {
           controller: 'doorkeeper/token_info',
           action: 'show',
-          accessToken: 'accessToken'
-        }
-      }
+          accessToken: 'accessToken',
+        },
+      },
     }));
 
     beforeEach(async () => {
@@ -184,7 +184,7 @@ describe('Actions', () => {
           responseType: 'token',
           redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
           scope: 'activities:read projects:read',
-          state: 'state'
+          state: 'state',
         }
       );
     });
@@ -193,7 +193,7 @@ describe('Actions', () => {
       expect(result).toEqual({
         controller: 'doorkeeper/token_info',
         action: 'show',
-        accessToken: 'accessToken'
+        accessToken: 'accessToken',
       });
     });
   });
@@ -209,7 +209,7 @@ describe('Actions', () => {
           responseType: 'token',
           redirectUri: 'http://example.com/callback',
           scope: 'activities:read projects:read',
-          state: 'state'
+          state: 'state',
         }
       );
     });
@@ -227,8 +227,8 @@ describe('Actions', () => {
         data: {
           status: 'redirect',
           redirect_uri:
-            'http://example.com/callback#error=access_denied&error_description=denied'
-        }
+            'http://example.com/callback#error=access_denied&error_description=denied',
+        },
       };
       throw error;
     });
@@ -241,7 +241,7 @@ describe('Actions', () => {
           responseType: 'token',
           redirectUri: 'http://example.com/callback',
           scope: 'activities:read projects:read',
-          state: 'state'
+          state: 'state',
         }
       );
     });
@@ -257,8 +257,8 @@ describe('Actions', () => {
             responseType: 'token',
             redirectUri: 'http://example.com/callback',
             scope: 'activities:read projects:read',
-            state: 'state'
-          }
+            state: 'state',
+          },
         },
         { root: true }
       );
@@ -278,8 +278,8 @@ describe('Actions', () => {
       error.response = {
         data: {
           error: 'access_denied',
-          error_description: 'denied'
-        }
+          error_description: 'denied',
+        },
       };
       throw error;
     });
@@ -292,14 +292,14 @@ describe('Actions', () => {
           responseType: 'token',
           redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
           scope: 'activities:read projects:read',
-          state: 'state'
+          state: 'state',
         }
       );
     });
 
     it('returns error description', () => {
       expect(result).toEqual({
-        errorDescription: 'denied'
+        errorDescription: 'denied',
       });
     });
   });

@@ -29,16 +29,16 @@ export default {
   timers: {
     hide: {
       time: 10000,
-      autostart: true
-    }
+      autostart: true,
+    },
   },
   components: {
     Icon,
-    BaseButton
+    BaseButton,
   },
   data() {
     return {
-      opened: false
+      opened: false,
     };
   },
   mounted() {
@@ -51,8 +51,8 @@ export default {
     hide() {
       this.opened = false;
       localStorage.setItem('pwaPopover', true);
-    }
-  }
+    },
+  },
 };
 </script>
 

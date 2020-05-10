@@ -7,7 +7,7 @@ describe('Mutations', () => {
     beforeEach(() => {
       mutations['SET_REFRESH_TOKEN'](state, {
         refreshToken: 'refreshToken',
-        clientId: 'clientId'
+        clientId: 'clientId',
       });
     });
 
@@ -35,7 +35,7 @@ describe('Mutations', () => {
     beforeEach(() => {
       mutations['SET_ID_AND_EMAIL'](state, {
         id: 1,
-        email: 'example@example.com'
+        email: 'example@example.com',
       });
     });
 
@@ -51,7 +51,7 @@ describe('Mutations', () => {
       email: 'example@example.com',
       refreshToken: 'refreshToken',
       clientId: 'clientId',
-      accessToken: 'accessToken'
+      accessToken: 'accessToken',
     };
 
     beforeEach(() => {
@@ -64,7 +64,7 @@ describe('Mutations', () => {
         email: '',
         refreshToken: '',
         clientId: '',
-        accessToken: ''
+        accessToken: '',
       });
     });
   });

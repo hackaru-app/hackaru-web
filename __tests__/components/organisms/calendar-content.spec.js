@@ -18,16 +18,16 @@ describe('CalendarContent', () => {
             .fn()
             .mockReturnValueOnce({ width: 10 })
             .mockReturnValueOnce({ width: 50 }) // most overlapped
-            .mockReturnValueOnce({ width: 20 })
-        }
+            .mockReturnValueOnce({ width: 20 }),
+        },
       },
       propsData: {
         days: [
           parseISO('2019-01-01'),
           parseISO('2019-01-02'),
-          parseISO('2019-01-03')
-        ]
-      }
+          parseISO('2019-01-03'),
+        ],
+      },
     });
 
   beforeEach(() => {
@@ -73,12 +73,7 @@ describe('CalendarContent', () => {
     });
 
     it('set overlapped class', () => {
-      expect(
-        wrapper
-          .findAll('.day')
-          .at(1)
-          .classes()
-      ).toContain('overlapped');
+      expect(wrapper.findAll('.day').at(1).classes()).toContain('overlapped');
     });
   });
 

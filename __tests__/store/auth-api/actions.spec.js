@@ -8,7 +8,7 @@ describe('Actions', () => {
     const rootGetters = {
       'auth/loggedIn': true,
       'auth/validateToken': () => true,
-      'auth/accessToken': 'accessToken'
+      'auth/accessToken': 'accessToken',
     };
 
     beforeEach(async () => {
@@ -19,11 +19,11 @@ describe('Actions', () => {
           method: 'post',
           headers: { 'X-Foo': 'bar' },
           params: {
-            fooBar: 'baz'
+            fooBar: 'baz',
           },
           data: {
-            barBaz: 'baz'
-          }
+            barBaz: 'baz',
+          },
         }
       );
     });
@@ -36,14 +36,14 @@ describe('Actions', () => {
           method: 'post',
           headers: {
             'X-Foo': 'bar',
-            'x-access-token': 'accessToken'
+            'x-access-token': 'accessToken',
           },
           params: {
-            fooBar: 'baz'
+            fooBar: 'baz',
           },
           data: {
-            barBaz: 'baz'
-          }
+            barBaz: 'baz',
+          },
         },
         { root: true }
       );
@@ -51,14 +51,14 @@ describe('Actions', () => {
 
     it('returns response', () => {
       expect(result).toEqual({
-        foo: 'bar'
+        foo: 'bar',
       });
     });
   });
 
   describe('when user is not logged in', () => {
     const rootGetters = {
-      'auth/loggedIn': false
+      'auth/loggedIn': false,
     };
 
     beforeEach(() => {
@@ -75,7 +75,7 @@ describe('Actions', () => {
     const rootGetters = {
       'auth/loggedIn': true,
       'auth/validateToken': () => false,
-      'auth/accessToken': 'accessToken'
+      'auth/accessToken': 'accessToken',
     };
 
     beforeEach(async () => {
@@ -85,8 +85,8 @@ describe('Actions', () => {
           url: '/example',
           method: 'post',
           data: {
-            barBaz: 'baz'
-          }
+            barBaz: 'baz',
+          },
         }
       );
     });
@@ -106,11 +106,11 @@ describe('Actions', () => {
           url: '/example',
           method: 'post',
           headers: {
-            'x-access-token': 'accessToken'
+            'x-access-token': 'accessToken',
           },
           data: {
-            barBaz: 'baz'
-          }
+            barBaz: 'baz',
+          },
         },
         { root: true }
       );

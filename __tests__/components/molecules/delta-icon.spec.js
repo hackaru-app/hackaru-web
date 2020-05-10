@@ -8,8 +8,8 @@ describe('DeltaIcon', () => {
     shallowMount(DeltaIcon, {
       propsData: {
         current: 0,
-        previous: 0
-      }
+        previous: 0,
+      },
     });
 
   describe('when delta is up', () => {
@@ -17,7 +17,7 @@ describe('DeltaIcon', () => {
       wrapper = factory();
       wrapper.setProps({
         current: 300,
-        previous: 200
+        previous: 200,
       });
     });
 
@@ -37,7 +37,7 @@ describe('DeltaIcon', () => {
       wrapper = factory();
       wrapper.setProps({
         current: 300,
-        previous: 400
+        previous: 400,
       });
     });
 
@@ -57,7 +57,7 @@ describe('DeltaIcon', () => {
       wrapper = factory();
       wrapper.setProps({
         current: 300,
-        previous: 300
+        previous: 300,
       });
     });
 

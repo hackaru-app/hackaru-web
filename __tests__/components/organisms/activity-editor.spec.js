@@ -12,7 +12,7 @@ describe('ActivityEditor', () => {
     shallowMount(ActivityEditor, {
       mocks: {
         $store,
-        $modal
+        $modal,
       },
       data() {
         return {
@@ -20,13 +20,13 @@ describe('ActivityEditor', () => {
           project: {
             id: 2,
             name: 'Development',
-            color: '#ff0'
+            color: '#ff0',
           },
           description: 'Create a database.',
           startedAt: '2019-01-01T00:12:34',
-          stoppedAt: '2019-01-02T00:12:34'
+          stoppedAt: '2019-01-02T00:12:34',
         };
-      }
+      },
     });
 
   beforeEach(() => {
@@ -46,7 +46,7 @@ describe('ActivityEditor', () => {
         projectId: 2,
         description: 'Create a database.',
         startedAt: '2019-01-01T00:12:34',
-        stoppedAt: '2019-01-02T00:12:34'
+        stoppedAt: '2019-01-02T00:12:34',
       });
     });
 
@@ -68,7 +68,7 @@ describe('ActivityEditor', () => {
         projectId: 2,
         description: 'Create a database.',
         startedAt: '2019-01-01T00:12:34',
-        stoppedAt: '2019-01-02T00:12:34'
+        stoppedAt: '2019-01-02T00:12:34',
       });
     });
 
@@ -114,7 +114,7 @@ describe('ActivityEditor', () => {
     it('emit push', () => {
       expect(wrapper.emitted('push')[0][0]).toEqual({
         component: ProjectList,
-        params: { selected: 2 }
+        params: { selected: 2 },
       });
     });
   });

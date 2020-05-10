@@ -34,16 +34,16 @@ export default {
   components: {
     Heading,
     BaseInput,
-    BaseButton
+    BaseButton,
   },
   head() {
     return {
-      title: 'Reset Password'
+      title: 'Reset Password',
     };
   },
   data() {
     return {
-      email: ''
+      email: '',
     };
   },
   methods: {
@@ -54,12 +54,12 @@ export default {
           email: this.email,
           redirectUrl: `${window.location.origin}${this.localePath(
             'password-reset'
-          )}/edit`
+          )}/edit`,
         }
       );
       if (success) this.$store.dispatch('toast/success', this.$t('sent'));
-    }
-  }
+    },
+  },
 };
 </script>
 

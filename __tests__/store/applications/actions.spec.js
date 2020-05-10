@@ -13,7 +13,7 @@ describe('Actions', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
-          url: '/v1/oauth/authorized_applications'
+          url: '/v1/oauth/authorized_applications',
         },
         { root: true }
       );
@@ -24,7 +24,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: [application]
+          schema: [application],
         },
         { root: true }
       );
@@ -51,7 +51,7 @@ describe('Actions', () => {
         'auth-api/request',
         {
           url: '/v1/oauth/authorized_applications/1',
-          method: 'delete'
+          method: 'delete',
         },
         { root: true }
       );

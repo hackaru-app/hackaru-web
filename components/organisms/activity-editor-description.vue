@@ -42,30 +42,30 @@ import debounce from 'lodash.debounce';
 export default {
   components: {
     ActivityName,
-    ModalItem
+    ModalItem,
   },
   props: {
     description: {
       type: String,
-      required: true
+      required: true,
     },
     project: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      focused: false
+      focused: false,
     };
   },
   computed: {
     ...mapGetters({
-      suggestions: 'suggestions/all'
-    })
+      suggestions: 'suggestions/all',
+    }),
   },
   methods: {
-    fetchSuggestions: debounce(function(text) {
+    fetchSuggestions: debounce(function (text) {
       this.$store.dispatch('suggestions/fetch', text);
     }, 1000),
     input(e) {
@@ -82,8 +82,8 @@ export default {
     clickSuggestion({ description, project }) {
       this.$emit('update:description', description);
       this.$emit('update:project', project);
-    }
-  }
+    },
+  },
 };
 </script>
 

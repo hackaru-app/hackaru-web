@@ -5,7 +5,7 @@ describe('Getters', () => {
   let result;
 
   const user = new schema.Entity('users', {
-    comment: new schema.Entity('comments')
+    comment: new schema.Entity('comments'),
   });
 
   describe('when call getEntities', () => {
@@ -15,16 +15,16 @@ describe('Getters', () => {
           1: {
             comment: 2,
             id: 1,
-            name: 'John'
-          }
+            name: 'John',
+          },
         },
         comments: {
           2: {
             id: 2,
-            description: 'Hello'
-          }
-        }
-      }
+            description: 'Hello',
+          },
+        },
+      },
     };
 
     beforeEach(() => {
@@ -38,16 +38,16 @@ describe('Getters', () => {
           name: 'John',
           comment: {
             id: 2,
-            description: 'Hello'
-          }
-        }
+            description: 'Hello',
+          },
+        },
       ]);
     });
   });
 
   describe('when call getEntities but entities is empty', () => {
     const state = {
-      data: {}
+      data: {},
     };
 
     beforeEach(() => {

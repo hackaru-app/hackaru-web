@@ -13,7 +13,7 @@ describe('CalendarActivity', () => {
     shallowMount(CalendarActivity, {
       mocks: {
         $store,
-        $modal
+        $modal,
       },
       propsData: {
         id: 1,
@@ -21,8 +21,8 @@ describe('CalendarActivity', () => {
         startedAt: '2019-01-01T01:23:45',
         stoppedAt: '2019-01-01T02:23:45',
         duration: 3600,
-        day: '2019-01-01'
-      }
+        day: '2019-01-01',
+      },
     });
 
   beforeEach(() => {
@@ -80,7 +80,7 @@ describe('CalendarActivity', () => {
     it('emit dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
-        guideRulerTop: 60 + 23
+        guideRulerTop: 60 + 23,
       });
     });
   });
@@ -94,7 +94,7 @@ describe('CalendarActivity', () => {
     it('emit dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
-        guideRulerTop: 60 + 23
+        guideRulerTop: 60 + 23,
       });
     });
   });
@@ -114,7 +114,7 @@ describe('CalendarActivity', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         startedAt: parseISO('2019-01-02T01:23:00'),
-        stoppedAt: parseISO('2019-01-02T02:23:00')
+        stoppedAt: parseISO('2019-01-02T02:23:00'),
       });
     });
   });
@@ -159,7 +159,7 @@ describe('CalendarActivity', () => {
     it('emit dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
-        guideRulerTop: 60 + 23 + 60
+        guideRulerTop: 60 + 23 + 60,
       });
     });
   });
@@ -177,7 +177,7 @@ describe('CalendarActivity', () => {
     it('dispatch activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
-        stoppedAt: parseISO('2019-01-01T02:23:45')
+        stoppedAt: parseISO('2019-01-01T02:23:45'),
       });
     });
   });
@@ -206,7 +206,7 @@ describe('CalendarActivity', () => {
         description: 'Create a database.',
         duration: 3600,
         startedAt: '2019-01-01T01:23:45',
-        stoppedAt: '2019-01-01T02:23:45'
+        stoppedAt: '2019-01-01T02:23:45',
       });
     });
   });

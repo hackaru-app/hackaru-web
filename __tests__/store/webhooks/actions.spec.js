@@ -13,7 +13,7 @@ describe('Actions', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
-          url: '/v1/webhooks'
+          url: '/v1/webhooks',
         },
         { root: true }
       );
@@ -24,7 +24,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: [webhook]
+          schema: [webhook],
         },
         { root: true }
       );
@@ -45,8 +45,8 @@ describe('Actions', () => {
           url: '/v1/webhooks',
           method: 'post',
           data: {
-            webhook: {}
-          }
+            webhook: {},
+          },
         },
         { root: true }
       );
@@ -57,7 +57,7 @@ describe('Actions', () => {
         'entities/merge',
         {
           json: {},
-          schema: webhook
+          schema: webhook,
         },
         { root: true }
       );
@@ -84,7 +84,7 @@ describe('Actions', () => {
         'auth-api/request',
         {
           url: '/v1/webhooks/1',
-          method: 'delete'
+          method: 'delete',
         },
         { root: true }
       );

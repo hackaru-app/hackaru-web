@@ -14,10 +14,10 @@ describe('Csv', () => {
         $route: {
           query: {
             start: parseISO('2019-01-31T00:00:00'),
-            end: parseISO('2019-01-31T23:59:59.999')
-          }
-        }
-      }
+            end: parseISO('2019-01-31T23:59:59.999'),
+          },
+        },
+      },
     });
 
   beforeEach(() => {
@@ -34,7 +34,7 @@ describe('Csv', () => {
     it('dispatch reports/fetchCsv', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetchCsv', {
         start: parseISO('2019-01-31T00:00:00'),
-        end: parseISO('2019-01-31T23:59:59.999')
+        end: parseISO('2019-01-31T23:59:59.999'),
       });
     });
 

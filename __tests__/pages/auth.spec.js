@@ -11,8 +11,8 @@ describe('Auth', () => {
   const $env = {};
   const $store = new Store({
     getters: {
-      'auth/loggedIn': false
-    }
+      'auth/loggedIn': false,
+    },
   });
 
   beforeEach(() => {
@@ -28,9 +28,9 @@ describe('Auth', () => {
           $router,
           $env,
           $i18n: {
-            locale: 'en'
-          }
-        }
+            locale: 'en',
+          },
+        },
       });
   });
 
@@ -103,7 +103,7 @@ describe('Auth', () => {
     it('dispatch auth/fetchRefreshToken', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/fetchRefreshToken', {
         email: 'example@example.com',
-        password: 'password'
+        password: 'password',
       });
     });
   });
@@ -123,7 +123,7 @@ describe('Auth', () => {
         email: 'example@example.com',
         password: 'password',
         passwordConfirmation: 'confirmation',
-        locale: 'en'
+        locale: 'en',
       });
     });
   });

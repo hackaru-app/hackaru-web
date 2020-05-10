@@ -19,16 +19,16 @@ const paths = [
   'notifications',
   'applications',
   'webhooks',
-  'licenses'
+  'licenses',
 ];
 
 export default {
   components: {
     ContentHeader,
-    Tabs
+    Tabs,
   },
   head: {
-    title: 'Settings'
+    title: 'Settings',
   },
   data() {
     return {
@@ -39,16 +39,16 @@ export default {
         this.$t('notifications'),
         this.$t('applications'),
         this.$t('webhooks'),
-        this.$t('licenses')
-      ]
+        this.$t('licenses'),
+      ],
     };
   },
   methods: {
     change(index) {
       this.$router.push(`./${paths[index]}`);
       this.index = index;
-    }
-  }
+    },
+  },
 };
 </script>
 

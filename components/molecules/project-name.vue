@@ -7,17 +7,17 @@ import DotText from '@/components/molecules/dot-text';
 
 export default {
   components: {
-    DotText
+    DotText,
   },
   props: {
     name: {
       type: String,
-      default: null
+      default: null,
     },
     color: {
       type: String,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 };
 </script>

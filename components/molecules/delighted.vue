@@ -20,13 +20,13 @@ export default {
       window.delighted.survey({
         name: this.$store.getters['auth/userId'],
         properties: {
-          locale: this.$i18n.locale
-        }
+          locale: this.$i18n.locale,
+        },
       });
-    }
+    },
   },
   render(h) {
     return h();
-  }
+  },
 };
 </script>

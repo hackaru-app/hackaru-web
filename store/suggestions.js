@@ -1,7 +1,7 @@
 const SET_SUGGESTIONS = 'SET_SUGGESTIONS';
 
 export const state = () => ({
-  data: []
+  data: [],
 });
 
 export const actions = {
@@ -13,8 +13,8 @@ export const actions = {
           url: '/v1/suggestions',
           params: {
             q,
-            limit: 30
-          }
+            limit: 30,
+          },
         },
         { root: true }
       );
@@ -22,17 +22,17 @@ export const actions = {
     } catch (e) {
       dispatch('toast/error', e, { root: true });
     }
-  }
+  },
 };
 
 export const mutations = {
   [SET_SUGGESTIONS](state, payload) {
     state.data = payload;
-  }
+  },
 };
 
 export const getters = {
   all(state) {
     return state.data;
-  }
+  },
 };

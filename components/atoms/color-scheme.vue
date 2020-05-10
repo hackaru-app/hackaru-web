@@ -10,7 +10,7 @@ function getMedia() {
 export default {
   data() {
     return {
-      isDark: false
+      isDark: false,
     };
   },
   mounted() {
@@ -23,7 +23,7 @@ export default {
   methods: {
     update() {
       this.isDark = getMedia().matches;
-    }
-  }
+    },
+  },
 };
 </script>

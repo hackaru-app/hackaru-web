@@ -16,12 +16,12 @@ export default {
   props: {
     items: {
       type: Array,
-      required: true
+      required: true,
     },
     index: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   methods: {
     change(index) {
@@ -29,8 +29,8 @@ export default {
     },
     isSelected(index) {
       return this.index === index;
-    }
-  }
+    },
+  },
 };
 </script>
 

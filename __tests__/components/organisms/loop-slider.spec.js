@@ -8,14 +8,14 @@ describe('LoopSlider', () => {
 
   const dragEvent = (x, y) => ({
     e: { preventDefault: () => {} },
-    distance: { x, y }
+    distance: { x, y },
   });
 
   const factory = () =>
     shallowMount(LoopSlider, {
       slots: {
-        default: '<p class="content">Content</p>'
-      }
+        default: '<p class="content">Content</p>',
+      },
     });
 
   describe('when scroll window', () => {

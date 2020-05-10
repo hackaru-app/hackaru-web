@@ -8,7 +8,7 @@ describe('SwipeMenu', () => {
 
   const dragEvent = (x, y) => ({
     e: { preventDefault: () => {} },
-    distance: { x, y }
+    distance: { x, y },
   });
 
   const factory = () =>
@@ -16,8 +16,8 @@ describe('SwipeMenu', () => {
       slots: {
         left: '<span>Left</span>',
         default: '<p>Content</p>',
-        right: '<span>Right</span>'
-      }
+        right: '<span>Right</span>',
+      },
     });
 
   describe('when scroll window', () => {

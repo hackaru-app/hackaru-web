@@ -7,7 +7,7 @@ export default {
   data() {
     return {
       endTimer: undefined,
-      started: false
+      started: false,
     };
   },
   mounted() {
@@ -30,7 +30,7 @@ export default {
     end() {
       this.$emit('end');
       this.started = false;
-    }
-  }
+    },
+  },
 };
 </script>

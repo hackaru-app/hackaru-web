@@ -26,25 +26,25 @@ import DragDrop from '@/components/atoms/drag-drop';
 export default {
   components: {
     WindowScroll,
-    DragDrop
+    DragDrop,
   },
   props: {
     speed: {
       type: Number,
-      default: 300
-    }
+      default: 300,
+    },
   },
   data() {
     return {
       scrolling: false,
       rightStyle: {
         transition: '',
-        width: 0
+        width: 0,
       },
       leftStyle: {
         transition: '',
-        width: 0
-      }
+        width: 0,
+      },
     };
   },
   methods: {
@@ -62,24 +62,24 @@ export default {
         this.rightStyle = {
           animationName: 'none',
           transition: '',
-          width: `${-distance.x}px`
+          width: `${-distance.x}px`,
         };
         this.leftStyle = {
           animationName: 'none',
           transition: '',
-          width: 0
+          width: 0,
         };
       }
       if (distance.x > 0) {
         this.leftStyle = {
           animationName: 'none',
           transition: '',
-          width: `${distance.x}px`
+          width: `${distance.x}px`,
         };
         this.rightStyle = {
           animationName: 'none',
           transition: '',
-          width: 0
+          width: 0,
         };
       }
       e.preventDefault();
@@ -94,7 +94,7 @@ export default {
       this.rightStyle = {
         animationName: 'none',
         transition: `width ${this.speed}ms`,
-        width: '100%'
+        width: '100%',
       };
     },
     swipeLeft() {
@@ -102,22 +102,22 @@ export default {
       this.leftStyle = {
         animationName: 'none',
         transition: `width ${this.speed}ms`,
-        width: '100%'
+        width: '100%',
       };
     },
     reset() {
       this.rightStyle = {
         animationName: 'none',
         transition: `width ${this.speed}ms`,
-        width: 0
+        width: 0,
       };
       this.leftStyle = {
         animationName: 'none',
         transition: `width ${this.speed}ms`,
-        width: 0
+        width: 0,
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

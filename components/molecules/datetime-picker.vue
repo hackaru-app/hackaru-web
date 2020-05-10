@@ -29,13 +29,13 @@ export default {
   props: {
     value: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   data() {
     return {
       date: '',
-      time: ''
+      time: '',
     };
   },
   watch: {
@@ -45,8 +45,8 @@ export default {
         if (!this.value) return;
         this.date = format(parseISO(this.value), dateFormat);
         this.time = format(parseISO(this.value), timeFormat);
-      }
-    }
+      },
+    },
   },
   methods: {
     update(date, time) {
@@ -68,8 +68,8 @@ export default {
         this.date || format(new Date(), dateFormat),
         this.time || format(new Date(), timeFormat)
       );
-    }
-  }
+    },
+  },
 };
 </script>
 

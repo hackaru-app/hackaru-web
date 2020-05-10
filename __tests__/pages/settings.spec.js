@@ -9,8 +9,8 @@ describe('Settings', () => {
     shallowMount(Settings, {
       mocks: {
         $router,
-        $route: { path: '/' }
-      }
+        $route: { path: '/' },
+      },
     });
 
   describe('when change selected tab', () => {

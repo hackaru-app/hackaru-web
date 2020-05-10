@@ -7,15 +7,15 @@ describe('SettingTimeZoneSelect', () => {
 
   const $store = new Store({
     getters: {
-      'user/timeZone': 'Etc/UTC'
-    }
+      'user/timeZone': 'Etc/UTC',
+    },
   });
 
   const factory = () =>
     shallowMount(SettingTimeZoneSelect, {
       mocks: {
-        $store
-      }
+        $store,
+      },
     });
 
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe('SettingTimeZoneSelect', () => {
 
     it('change user/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('user/update', {
-        timeZone: 'Asia/Tokyo'
+        timeZone: 'Asia/Tokyo',
       });
     });
   });

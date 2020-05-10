@@ -9,8 +9,8 @@ describe('Index', () => {
   const factory = () =>
     shallowMount(Index, {
       mocks: {
-        $store
-      }
+        $store,
+      },
     });
 
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe('Index', () => {
         'auth/sendPasswordResetEmail',
         {
           email: 'example@example.com',
-          redirectUrl: 'http://localhost/en/password-reset/edit'
+          redirectUrl: 'http://localhost/en/password-reset/edit',
         }
       );
     });

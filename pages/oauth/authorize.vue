@@ -63,16 +63,16 @@ export default {
     ContentHeader,
     BaseButton,
     Heading,
-    Highlight
+    Highlight,
   },
   head: {
-    title: 'Authorize'
+    title: 'Authorize',
   },
   computed: {
     ...mapGetters({
       client: 'oauth/client',
-      email: 'auth/email'
-    })
+      email: 'auth/email',
+    }),
   },
   async mounted() {
     const data = await this.$store.dispatch('oauth/fetchClient', {
@@ -80,7 +80,7 @@ export default {
       responseType: this.$route.query['response_type'],
       redirectUri: this.$route.query['redirect_uri'],
       scope: this.$route.query['scope'],
-      state: this.$route.query.state
+      state: this.$route.query.state,
     });
     this.callback(data);
   },
@@ -89,14 +89,14 @@ export default {
       this.$gtm.trackEvent({
         eventCategory: 'OAuth',
         eventAction: action,
-        name: `${action}_oauth`
+        name: `${action}_oauth`,
       });
       const data = await this.$store.dispatch(`oauth/${action}`, {
         clientId: this.$route.query['client_id'],
         responseType: this.$route.query['response_type'],
         redirectUri: this.$route.query['redirect_uri'],
         scope: this.$route.query['scope'],
-        state: this.$route.query.state
+        state: this.$route.query.state,
       });
       this.callback(data);
     },
@@ -107,13 +107,13 @@ export default {
           path: '/oauth/callback',
           query: {
             access_token: data.accessToken,
-            error_description: data.errorDescription
-          }
+            error_description: data.errorDescription,
+          },
         });
       }
       window.location.assign(data);
-    }
-  }
+    },
+  },
 };
 </script>
 

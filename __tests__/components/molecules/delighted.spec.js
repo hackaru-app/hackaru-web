@@ -8,7 +8,7 @@ describe('Delighted', () => {
 
   beforeEach(() => {
     window.delighted = {
-      survey: jest.fn()
+      survey: jest.fn(),
     };
   });
 
@@ -18,10 +18,10 @@ describe('Delighted', () => {
         $env,
         $store,
         $i18n: {
-          locale: 'en'
+          locale: 'en',
         },
-        $loadScript: () => {}
-      }
+        $loadScript: () => {},
+      },
     });
 
   describe('when env has DELIGHTED_TOKEN', () => {
@@ -35,8 +35,8 @@ describe('Delighted', () => {
       expect(window.delighted.survey).toHaveBeenCalledWith({
         name: 1,
         properties: {
-          locale: 'en'
-        }
+          locale: 'en',
+        },
       });
     });
   });

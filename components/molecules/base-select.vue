@@ -14,19 +14,19 @@ import BaseButton from '@/components/atoms/base-button';
 
 export default {
   components: {
-    BaseButton
+    BaseButton,
   },
   props: {
     value: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     change(e) {
       this.$emit('change', e.target.value);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -60,19 +60,19 @@ export default {
     ModalHeader,
     ModalItem,
     ModalFooter,
-    BaseButton
+    BaseButton,
   },
   props: {
     params: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
       id: undefined,
       name: '',
-      color: '#cccfd9'
+      color: '#cccfd9',
     };
   },
   watch: {
@@ -83,14 +83,14 @@ export default {
         this.id = params.id || this.id;
         this.name = params.name || this.name;
         this.color = params.color || this.color;
-      }
-    }
+      },
+    },
   },
   methods: {
     async addProject() {
       const success = await this.$store.dispatch('projects/add', {
         name: this.name,
-        color: this.color
+        color: this.color,
       });
       if (success) {
         this.$emit('pop');
@@ -98,7 +98,7 @@ export default {
           eventCategory: 'Projects',
           eventAction: 'add',
           name: 'add_project',
-          component: 'project_editor'
+          component: 'project_editor',
         });
         this.$store.dispatch('toast/success', this.$t('added'));
       }
@@ -107,7 +107,7 @@ export default {
       const success = await this.$store.dispatch('projects/update', {
         id: this.id,
         name: this.name,
-        color: this.color
+        color: this.color,
       });
       if (success) {
         this.$emit('pop');
@@ -115,7 +115,7 @@ export default {
           eventCategory: 'Projects',
           eventAction: 'update',
           name: 'update_project',
-          component: 'project_editor'
+          component: 'project_editor',
         });
         this.$store.dispatch('toast/success', this.$t('updated'));
       }
@@ -129,14 +129,14 @@ export default {
           eventCategory: 'Projects',
           eventAction: 'delete',
           name: 'delete_project',
-          component: 'project_editor'
+          component: 'project_editor',
         });
         this.$store.dispatch('toast/success', this.$t('deleted'));
       }
     },
     pop() {
       this.$emit('pop');
-    }
-  }
+    },
+  },
 };
 </script>

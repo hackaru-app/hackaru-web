@@ -6,6 +6,6 @@ export default async ({ app }) => {
     id: app.$env.GOOGLE_TAG_MANAGER_ID,
     enabled: !!app.$env.GOOGLE_TAG_MANAGER_ID,
     debug: process.env.NODE_ENV !== 'production',
-    vueRouter: app.router
+    vueRouter: app.router,
   });
 };

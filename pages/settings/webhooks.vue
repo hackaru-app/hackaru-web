@@ -90,7 +90,7 @@ export default {
     ModalItem,
     ModalHeader,
     ModalFooter,
-    BaseButton
+    BaseButton,
   },
   data() {
     const events = [
@@ -100,18 +100,18 @@ export default {
       'activity:deleted',
       'project:created',
       'project:updated',
-      'project:deleted'
+      'project:deleted',
     ];
     return {
       event: events[0],
       targetUrl: '',
-      events
+      events,
     };
   },
   computed: {
     ...mapGetters({
-      webhooks: 'webhooks/all'
-    })
+      webhooks: 'webhooks/all',
+    }),
   },
   mounted() {
     this.$store.dispatch('webhooks/fetch');
@@ -120,14 +120,14 @@ export default {
     async addWebhook({ store }) {
       const success = await this.$store.dispatch('webhooks/add', {
         event: this.event,
-        targetUrl: this.targetUrl
+        targetUrl: this.targetUrl,
       });
       if (success) {
         this.$modal.hide('webhook');
         this.$gtm.trackEvent({
           eventCategory: 'Webhooks',
           eventAction: 'add',
-          name: 'add_webhook'
+          name: 'add_webhook',
         });
         this.$store.dispatch('toast/success', this.$t('added'));
       }
@@ -138,7 +138,7 @@ export default {
       this.$gtm.trackEvent({
         eventCategory: 'Webhooks',
         eventAction: 'delete',
-        name: 'delete_webhook'
+        name: 'delete_webhook',
       });
       this.$store.dispatch('toast/success', this.$t('deleted'));
     },
@@ -146,8 +146,8 @@ export default {
       this.targetUrl = '';
       this.event = this.events[0];
       this.$modal.show('webhook');
-    }
-  }
+    },
+  },
 };
 </script>
 

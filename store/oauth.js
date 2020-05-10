@@ -3,7 +3,7 @@ import get from 'lodash.get';
 export const SET_CLIENT = 'SET_CLIENT';
 
 export const state = () => ({
-  client: {}
+  client: {},
 });
 
 export const actions = {
@@ -18,8 +18,8 @@ export const actions = {
             responseType: payload.responseType,
             redirectUri: payload.redirectUri,
             scope: payload.scope,
-            state: payload.state
-          }
+            state: payload.state,
+          },
         },
         { root: true }
       );
@@ -41,8 +41,8 @@ export const actions = {
             responseType: payload.responseType,
             redirectUri: payload.redirectUri,
             scope: payload.scope,
-            state: payload.state
-          }
+            state: payload.state,
+          },
         },
         { root: true }
       );
@@ -64,8 +64,8 @@ export const actions = {
             responseType: payload.responseType,
             redirectUri: payload.redirectUri,
             scope: payload.scope,
-            state: payload.state
-          }
+            state: payload.state,
+          },
         },
         { root: true }
       );
@@ -74,7 +74,7 @@ export const actions = {
       if (response) return response;
       dispatch('toast/error', e, { root: true });
     }
-  }
+  },
 };
 
 function getRedirectUriByError(e) {
@@ -92,13 +92,13 @@ export const mutations = {
       name: payload.clientName,
       scopes: payload.scope.split(' '),
       responseType: payload.responseType,
-      state: payload.state
+      state: payload.state,
     };
-  }
+  },
 };
 
 export const getters = {
   client(state) {
     return state.client;
-  }
+  },
 };

@@ -6,7 +6,7 @@ export const actions = {
       const { data } = await dispatch(
         'auth-api/request',
         {
-          url: '/v1/oauth/authorized_applications'
+          url: '/v1/oauth/authorized_applications',
         },
         { root: true }
       );
@@ -26,7 +26,7 @@ export const actions = {
         'auth-api/request',
         {
           url: `/v1/oauth/authorized_applications/${id}`,
-          method: 'delete'
+          method: 'delete',
         },
         { root: true }
       );
@@ -35,11 +35,11 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
       return false;
     }
-  }
+  },
 };
 
 export const getters = {
   all(state, getters, rootState, rootGetters) {
     return rootGetters['entities/getEntities']('applications', [application]);
-  }
+  },
 };

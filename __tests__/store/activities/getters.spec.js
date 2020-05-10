@@ -9,7 +9,7 @@ describe('Getters', () => {
 
   describe('when call all', () => {
     const rootGetters = {
-      'entities/getEntities': jest.fn(() => ({}))
+      'entities/getEntities': jest.fn(() => ({})),
     };
 
     beforeEach(() => {
@@ -25,8 +25,8 @@ describe('Getters', () => {
     const mockGetters = {
       all: [
         { id: 1, stoppedAt: '2019-01-01T01:23:45' },
-        { id: 2, stoppedAt: null }
-      ]
+        { id: 2, stoppedAt: null },
+      ],
     };
 
     beforeEach(() => {
@@ -45,27 +45,27 @@ describe('Getters', () => {
           id: 1,
           startedAt: '2019-01-30T00:00:00',
           stoppedAt: '2019-01-30T01:00:00',
-          duration: 3600
+          duration: 3600,
         },
         {
           id: 2,
           startedAt: '2019-01-31T00:00:00',
           stoppedAt: '2019-01-31T01:00:00',
-          duration: 3600
+          duration: 3600,
         },
         {
           id: 3,
           startedAt: '2019-01-31T03:00:00',
           stoppedAt: '2019-01-31T04:00:00',
-          duration: 3600
+          duration: 3600,
         },
         {
           id: 4,
           startedAt: '2019-02-01T00:00:00',
           stoppedAt: '2019-02-01T01:00:00',
-          duration: 3600
-        }
-      ]
+          duration: 3600,
+        },
+      ],
     };
 
     beforeEach(() => {
@@ -79,23 +79,23 @@ describe('Getters', () => {
             id: 3,
             startedAt: '2019-01-31T03:00:00',
             stoppedAt: '2019-01-31T04:00:00',
-            duration: 3600
+            duration: 3600,
           },
           {
             id: 2,
             startedAt: '2019-01-31T00:00:00',
             stoppedAt: '2019-01-31T01:00:00',
-            duration: 3600
-          }
+            duration: 3600,
+          },
         ],
         '2019-01-30': [
           {
             id: 1,
             startedAt: '2019-01-30T00:00:00',
             stoppedAt: '2019-01-30T01:00:00',
-            duration: 3600
-          }
-        ]
+            duration: 3600,
+          },
+        ],
       });
     });
 
@@ -105,41 +105,43 @@ describe('Getters', () => {
   });
 
   describe('when call getCalendar', () => {
-    const toMin = px => px;
+    const toMin = (px) => px;
     const mockGetters = {
       all: [
         {
           id: 1,
           startedAt: '2019-01-01T01:00:00',
           stoppedAt: '2019-01-01T02:00:00',
-          duration: 3600
+          duration: 3600,
         },
         {
           id: 2,
           startedAt: '2019-01-01T01:00:00',
           stoppedAt: '2019-01-01T03:00:00',
-          duration: 7200
+          duration: 7200,
         },
         {
           id: 3,
           startedAt: '2019-01-01T05:00:00',
           stoppedAt: '2019-01-01T06:00:00',
-          duration: 3600
+          duration: 3600,
         },
         {
           id: 4,
           startedAt: '2019-01-02T01:00:00',
           stoppedAt: '2019-01-02T02:00:00',
-          duration: 3600
-        }
-      ]
+          duration: 3600,
+        },
+      ],
     };
 
     beforeEach(() => {
-      result = getters.getCalendar({}, mockGetters, {}, {})(
-        '2019-01-01T00:00:00',
-        toMin
-      );
+      result = getters.getCalendar(
+        {},
+        mockGetters,
+        {},
+        {}
+      )('2019-01-01T00:00:00', toMin);
     });
 
     it('returns correctly', () => {
@@ -149,23 +151,23 @@ describe('Getters', () => {
             id: 1,
             startedAt: '2019-01-01T01:00:00',
             stoppedAt: '2019-01-01T02:00:00',
-            duration: 3600
+            duration: 3600,
           },
           {
             id: 2,
             startedAt: '2019-01-01T01:00:00',
             stoppedAt: '2019-01-01T03:00:00',
-            duration: 7200
-          }
+            duration: 7200,
+          },
         ],
         [
           {
             id: 3,
             startedAt: '2019-01-01T05:00:00',
             stoppedAt: '2019-01-01T06:00:00',
-            duration: 3600
-          }
-        ]
+            duration: 3600,
+          },
+        ],
       ]);
     });
   });
