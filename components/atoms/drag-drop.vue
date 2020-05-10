@@ -48,7 +48,7 @@ export default {
     document.addEventListener('mouseup', this.end, { passive: false });
     document.addEventListener('touchend', this.end, { passive: false });
   },
-  destoryed() {
+  destroyed() {
     document.removeEventListener('mousemove', this.move);
     document.removeEventListener('touchmove', this.move);
     document.removeEventListener('mouseup', this.end);

@@ -5,7 +5,9 @@ jobs:
       node_js:
         - 12
       cache: yarn
-      script: yarn lint .
+      script:
+        - yarn lint .
+        - curl -L https://git.io/misspell | bash && git ls-files | xargs bin/misspell --error
 
     - stage: test
       language: node_js

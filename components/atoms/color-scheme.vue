@@ -17,7 +17,7 @@ export default {
     this.update();
     getMedia().addListener(this.update);
   },
-  destoryed() {
+  destroyed() {
     getMedia().removeListener(this.update);
   },
   methods: {
