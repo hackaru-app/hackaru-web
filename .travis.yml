@@ -4,7 +4,10 @@ jobs:
       language: node_js
       node_js:
         - 12
-      cache: yarn
+      cache:
+        - yarn: true
+        - directories:
+          - bin
       script:
         - yarn lint .
         - curl -L https://git.io/misspell | bash && git ls-files | xargs bin/misspell --error
