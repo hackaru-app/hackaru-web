@@ -299,6 +299,7 @@ export default {
     border: 1px $border-dark solid;
     border-top: 0;
     border-bottom: 0;
+    align-items: center;
     cursor: pointer;
   }
 }
