@@ -430,7 +430,6 @@ export default {
     position: absolute;
     top: 80px;
     border: 0;
-    left: 0;
     margin: 0;
     padding: 0;
     max-width: 100vw;
