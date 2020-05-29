@@ -361,6 +361,7 @@ export default {
 @include mq(small) {
   .timer-form {
     max-width: 100vw;
+    left: 0;
   }
   .form {
     height: auto;
@@ -429,6 +430,7 @@ export default {
     position: absolute;
     top: 80px;
     border: 0;
+    left: 0;
     margin: 0;
     padding: 0;
     max-width: 100vw;
