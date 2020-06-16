@@ -40,20 +40,20 @@ export default {
 .toast {
   display: flex;
   justify-content: center;
-  position: absolute;
+  align-items: flex-end;
+  position: fixed;
   width: calc(100vw - #{$side-bar-min-width});
+  bottom: 0;
+  pointer-events: none;
+  left: $side-bar-min-width;
+  z-index: index($z, toast);
 }
 .content {
-  display: flex;
-  position: fixed;
-  align-self: center;
-  bottom: 50px;
-  justify-content: center;
   padding: 9px 20px;
+  margin-bottom: 50px;
   color: $white;
   border-radius: 99px;
   text-align: center;
-  z-index: index($z, toast);
 }
 .success {
   background-color: $cyan;
@@ -62,6 +62,10 @@ export default {
   background-color: $red;
 }
 @include mq(small) {
+  .toast {
+    left: 0;
+    width: 100vw;
+  }
   .content {
     padding: 25px 30px;
     padding-bottom: calc(25px + env(safe-area-inset-bottom) * 0.6);
