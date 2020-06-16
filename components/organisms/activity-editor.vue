@@ -47,14 +47,6 @@
         </base-button>
         <div class="icons">
           <base-button
-            v-if="stoppedAt && isSharedSupported"
-            type="button"
-            class="share-button has-icon"
-            @click="share"
-          >
-            <icon name="share-icon" />
-          </base-button>
-          <base-button
             v-if="id"
             type="button"
             class="delete-button has-icon"
@@ -78,7 +70,6 @@ import ProjectName from '@/components/molecules/project-name';
 import DatetimePicker from '@/components/molecules/datetime-picker';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
-import { formatDistanceStrict, parseISO } from 'date-fns';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -118,9 +109,6 @@ export default {
     ...mapGetters({
       suggestions: 'suggestions/all',
     }),
-    isSharedSupported() {
-      return navigator.share !== undefined;
-    },
   },
   watch: {
     params: {
@@ -178,30 +166,6 @@ export default {
         component: ProjectList,
         params: { selected: this.project.id },
       });
-    },
-    async share() {
-      const duration = formatDistanceStrict(
-        parseISO(this.startedAt),
-        parseISO(this.stoppedAt)
-      );
-      const title = [this.project.name, this.description]
-        .filter((v) => v)
-        .join(' - ');
-      try {
-        await navigator.share({
-          title: this.$t('share.title'),
-          text: this.$t('share.text', { title, duration }),
-        });
-        this.$gtm.trackEvent({
-          eventCategory: 'Activities',
-          eventAction: 'share',
-          name: 'share',
-          component: 'activity_editor',
-        });
-      } catch (e) {
-        if (e.name === 'AbortError') return;
-        throw e;
-      }
     },
   },
 };
