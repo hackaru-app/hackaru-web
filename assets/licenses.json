@@ -59,6 +59,12 @@
         "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
         "parents": "hackaru-web"
     },
+    "dayjs": {
+        "licenses": "MIT",
+        "repository": "https://github.com/iamkun/dayjs",
+        "licenseUrl": "https://github.com/iamkun/dayjs/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
     "file-saver": {
         "licenses": "MIT",
         "repository": "https://github.com/eligrey/FileSaver.js",

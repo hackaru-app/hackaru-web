@@ -1,29 +1,26 @@
 <template>
   <div class="datetime-picker">
     <input
+      ref="date"
       :value="date"
       class="date"
       type="date"
       step="1"
-      @input="updateDate"
-      @focus="setCurrent"
+      @input="update"
     />
     <input
+      ref="time"
       :value="time"
       class="time"
       type="time"
       step="1"
-      @input="updateTime"
-      @focus="setCurrent"
+      @input="update"
     />
   </div>
 </template>
 
 <script>
-import { format, parseISO } from 'date-fns';
-
-const dateFormat = 'yyyy-MM-dd';
-const timeFormat = 'HH:mm:ss';
+import dayjs from 'dayjs';
 
 export default {
   props: {
@@ -43,31 +40,23 @@ export default {
       immediate: true,
       handler() {
         if (!this.value) return;
-        this.date = format(parseISO(this.value), dateFormat);
-        this.time = format(parseISO(this.value), timeFormat);
+        if (this.getDayJs().isSame(this.value)) return;
+        this.date = dayjs(this.value).format('YYYY-MM-DD');
+        this.time = dayjs(this.value).format('HH:mm:ss');
       },
     },
   },
   methods: {
-    update(date, time) {
-      const datetime = parseISO([date, time].join(' '));
-      const formatString = `${dateFormat} ${timeFormat} XXX`;
-      this.$emit(
-        'input',
-        isNaN(datetime) ? undefined : format(datetime, formatString)
-      );
+    getDayJs() {
+      if (this.$refs.date && this.$refs.time) {
+        return dayjs([this.$refs.date.value, this.$refs.time.value].join(' '));
+      } else {
+        return dayjs();
+      }
     },
-    updateDate(e) {
-      this.update(e.target.value, this.time);
-    },
-    updateTime(e) {
-      this.update(this.date, e.target.value);
-    },
-    setCurrent() {
-      this.update(
-        this.date || format(new Date(), dateFormat),
-        this.time || format(new Date(), timeFormat)
-      );
+    update() {
+      const date = this.getDayJs();
+      this.$emit('input', date.isValid() ? date.format() : undefined);
     },
   },
 };
