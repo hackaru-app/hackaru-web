@@ -18,7 +18,6 @@ const paths = [
   'integrations',
   'notifications',
   'applications',
-  'webhooks',
   'licenses',
 ];
 
@@ -38,7 +37,6 @@ export default {
         this.$t('integrations'),
         this.$t('notifications'),
         this.$t('applications'),
-        this.$t('webhooks'),
         this.$t('licenses'),
       ],
     };

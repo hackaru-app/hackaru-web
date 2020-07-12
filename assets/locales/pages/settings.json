@@ -3,7 +3,6 @@
     "account": "Account",
     "notifications": "Notifications",
     "integrations": "Integrations",
-    "webhooks": "Webhooks",
     "applications": "Authorized apps",
     "licenses": "Licenses"
   },
@@ -11,7 +10,6 @@
     "account": "アカウント設定",
     "notifications": "配信設定",
     "integrations": "連携機能",
-    "webhooks": "Webhooks",
     "applications": "認証済みアプリ",
     "licenses": "謝辞"
   }
