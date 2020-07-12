@@ -13,13 +13,7 @@
 import Tabs from '@/components/molecules/tabs';
 import ContentHeader from '@/components/organisms/content-header';
 
-const paths = [
-  '',
-  'integrations',
-  'notifications',
-  'applications',
-  'licenses',
-];
+const paths = ['', 'integrations', 'notifications', 'applications', 'licenses'];
 
 export default {
   components: {
