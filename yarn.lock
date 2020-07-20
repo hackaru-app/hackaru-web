@@ -5325,15 +5325,10 @@ ejs@^2.6.1:
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.7.4.tgz#48661287573dcc53e366c7a1ae52c3a120eec9ba"
   integrity sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
 
-electron-to-chromium@^1.3.47:
-  version "1.3.473"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.473.tgz#d0cd5fe391046fb70674ec98149f0f97609d29b8"
-  integrity sha512-smevlzzMNz3vMz6OLeeCq5HRWEj2AcgccNPYnAx4Usx0IOciq9DU36RJcICcS09hXoY7t7deRfVYKD14IrGb9A==
-
-electron-to-chromium@^1.3.488:
-  version "1.3.488"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.488.tgz#9226229f5fbc825959210e81e0bb3e63035d1c06"
-  integrity sha512-NReBdOugu1yl8ly+0VDtiQ6Yw/1sLjnvflWq0gvY1nfUXU2PbA+1XAVuEb7ModnwL/MfUPjby7e4pAFnSHiy6Q==
+electron-to-chromium@^1.3.47, electron-to-chromium@^1.3.488:
+  version "1.3.501"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.501.tgz#faa17a2cb0105ee30d5e1ca87eae7d8e85dd3175"
+  integrity sha512-tyzuKaV2POw2mtqBBzQGNBojMZzH0MRu8bT8T/50x+hWeucyG/9pkgAATy+PcM2ySNM9+8eG2VllY9c6j4i+bg==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
