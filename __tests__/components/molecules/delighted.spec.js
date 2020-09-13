@@ -34,6 +34,7 @@ describe('Delighted', () => {
     it('show survey', () => {
       expect(window.delighted.survey).toHaveBeenCalledWith({
         name: 1,
+        email: '1@example.com',
         properties: {
           locale: 'en',
         },
@@ -41,7 +42,7 @@ describe('Delighted', () => {
     });
   });
 
-  describe('when env does not habe DELIGHTED_TOKEN', () => {
+  describe('when env does not have DELIGHTED_TOKEN', () => {
     beforeEach(() => {
       $env.DELIGHTED_TOKEN = undefined;
       factory();
