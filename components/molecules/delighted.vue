@@ -17,10 +17,8 @@ export default {
     },
     survey() {
       if (!window.delighted.survey) return;
-      const userId = this.$store.getters['auth/userId'];
       window.delighted.survey({
-        name: userId,
-        email: `${userId}@example.com`,
+        name: this.$store.getters['auth/userId'],
         properties: {
           locale: this.$i18n.locale,
         },
