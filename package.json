@@ -18,7 +18,7 @@
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/sentry": "^4.2.1",
     "@sentry/browser": "^5.17.0",
-    "@sentry/integrations": "^5.15.4",
+    "@sentry/integrations": "^5.23.0",
     "axios": "^0.19.2",
     "body-scroll-lock": "^3.0.1",
     "camelcase-keys": "^6.1.2",
