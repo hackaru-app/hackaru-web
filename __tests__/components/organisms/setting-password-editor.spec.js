@@ -2,6 +2,8 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import SettingPasswordEditor from '@/components/organisms/setting-password-editor';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('SettingPasswordEditor', () => {
   let wrapper;
 
@@ -21,9 +23,11 @@ describe('SettingPasswordEditor', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
-      wrapper.find('.current-password').vm.$emit('input', 'current');
-      wrapper.find('.password').vm.$emit('input', 'password');
-      wrapper.find('.password-confirmation').vm.$emit('input', 'confirmation');
+      wrapper.find(testId('current-password')).vm.$emit('input', 'current');
+      wrapper.find(testId('password')).vm.$emit('input', 'password');
+      wrapper
+        .find(testId('password-confirmation'))
+        .vm.$emit('input', 'confirmation');
       wrapper.find('form').trigger('submit.prevent');
     });
 

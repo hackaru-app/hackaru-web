@@ -10,7 +10,8 @@
     </template>
 
     <base-button
-      class="is-rounded logout-button is-primary"
+      class="is-rounded is-primary"
+      data-test-id="logout-button"
       type="button"
       @click="logout"
     >

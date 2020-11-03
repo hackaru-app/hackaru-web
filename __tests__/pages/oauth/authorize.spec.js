@@ -2,6 +2,8 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Authorize from '@/pages/oauth/authorize';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('Authorize', () => {
   let wrapper;
 
@@ -90,7 +92,7 @@ describe('Authorize', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue('http://example.com/callback');
       wrapper = factory();
-      wrapper.find('.allow-button').vm.$emit('click');
+      wrapper.find(testId('allow-button')).vm.$emit('click');
     });
 
     it('dispatch oauth/allow', () => {
@@ -114,7 +116,7 @@ describe('Authorize', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue({ accessToken: 'accessToken' });
       wrapper = factory();
-      wrapper.find('.allow-button').vm.$emit('click');
+      wrapper.find(testId('allow-button')).vm.$emit('click');
     });
 
     it('redirect to default callback url', () => {
@@ -129,7 +131,7 @@ describe('Authorize', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue('http://example.com/callback');
       wrapper = factory();
-      wrapper.find('.deny-button').vm.$emit('click');
+      wrapper.find(testId('deny-button')).vm.$emit('click');
     });
 
     it('dispatch oauth/deny', () => {
@@ -153,7 +155,7 @@ describe('Authorize', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue({ errorDescription: 'denied' });
       wrapper = factory();
-      wrapper.find('.deny-button').vm.$emit('click');
+      wrapper.find(testId('deny-button')).vm.$emit('click');
     });
 
     it('dispatch oauth/deny', () => {

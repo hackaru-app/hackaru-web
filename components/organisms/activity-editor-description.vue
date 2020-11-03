@@ -9,6 +9,7 @@
         :value="description"
         :placeholder="$t('description')"
         class="description"
+        data-test-id="description"
         type="text"
         @focus="focus"
         @blur="blur"
@@ -17,12 +18,16 @@
     </modal-item>
 
     <transition>
-      <div v-if="focused && suggestions.length" class="suggestions">
+      <div
+        v-if="focused && suggestions.length"
+        data-test-id="suggestions"
+        class="suggestions"
+      >
         <ul>
           <li
             v-for="(suggestion, index) in suggestions"
             :key="index"
-            class="suggestion"
+            data-test-id="suggestion"
             @click="clickSuggestion(suggestion)"
           >
             <activity-name v-bind="suggestion" />

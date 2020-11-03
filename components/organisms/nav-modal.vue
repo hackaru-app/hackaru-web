@@ -16,6 +16,7 @@
           :is="current"
           :params="params"
           :pop-enabled="stack.length > 0"
+          data-test-id="current"
           class="current"
           @push="push"
           @pop="popOrClose"

@@ -2,6 +2,8 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Auth from '@/pages/auth';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('Auth', () => {
   let factory;
   let wrapper;
@@ -95,8 +97,8 @@ describe('Auth', () => {
   describe('when click login-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.email').vm.$emit('input', 'example@example.com');
-      wrapper.find('.password').vm.$emit('input', 'password');
+      wrapper.find(testId('email')).vm.$emit('input', 'example@example.com');
+      wrapper.find(testId('password')).vm.$emit('input', 'password');
       wrapper.find('form').trigger('submit.prevent');
     });
 
@@ -112,9 +114,11 @@ describe('Auth', () => {
     beforeEach(() => {
       $route.query['sign-up'] = true;
       wrapper = factory();
-      wrapper.find('.email').vm.$emit('input', 'example@example.com');
-      wrapper.find('.password').vm.$emit('input', 'password');
-      wrapper.find('.password-confirmation').vm.$emit('input', 'confirmation');
+      wrapper.find(testId('email')).vm.$emit('input', 'example@example.com');
+      wrapper.find(testId('password')).vm.$emit('input', 'password');
+      wrapper
+        .find(testId('password-confirmation'))
+        .vm.$emit('input', 'confirmation');
       wrapper.find('form').trigger('submit.prevent');
     });
 

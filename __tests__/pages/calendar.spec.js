@@ -4,6 +4,8 @@ import { shallowMount } from '@vue/test-utils';
 import Calendar from '@/pages/calendar';
 import { parseISO } from 'date-fns';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('Calendar', () => {
   let wrapper;
 
@@ -56,7 +58,7 @@ describe('Calendar', () => {
   describe('when slide left', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.loop-slider').vm.$emit('slide-left');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-left');
     });
 
     it('set prev weeks', () => {
@@ -75,7 +77,7 @@ describe('Calendar', () => {
   describe('when slide right', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.loop-slider').vm.$emit('slide-right');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
     });
 
     it('set next weeks', () => {
@@ -94,8 +96,8 @@ describe('Calendar', () => {
   describe('when click today-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.loop-slider').vm.$emit('slide-right');
-      wrapper.find('.date-header').vm.$emit('today');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
+      wrapper.find(testId('date-header')).vm.$emit('today');
     });
 
     it('set today weeks', () => {

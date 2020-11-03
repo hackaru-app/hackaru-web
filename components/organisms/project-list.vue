@@ -6,7 +6,8 @@
       <template slot="left">
         <base-button
           v-if="popEnabled"
-          class="left-arrow-button has-icon"
+          class="has-icon"
+          data-test-id="left-arrow-button"
           type="button"
           @click="pop"
         >
@@ -18,7 +19,8 @@
 
       <template slot="right">
         <base-button
-          class="add-button has-icon"
+          class="has-icon"
+          data-test-id="add-button"
           type="button"
           @click="createProject"
         >
@@ -28,12 +30,17 @@
     </modal-header>
 
     <div v-for="project in projects" :key="project.id" class="item">
-      <div class="project-content" @click="selectProject(project)">
+      <div
+        data-test-id="project-content"
+        class="project-content"
+        @click="selectProject(project)"
+      >
         <project-name :name="project.name" :color="project.color" />
       </div>
       <base-button
         v-if="project.id"
-        class="has-icon edit-button"
+        class="has-icon"
+        data-test-id="edit-button"
         type="button"
         @click="project.id && editProject(project)"
       >

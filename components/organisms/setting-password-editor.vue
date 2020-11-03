@@ -14,7 +14,8 @@
         v-model="currentPassword"
         :placeholder="$t('currentPassword')"
         type="password"
-        class="current-password has-border"
+        class="has-border"
+        data-test-id="current-password"
         size="1"
         required
       />
@@ -22,7 +23,8 @@
         v-model="password"
         :placeholder="$t('password')"
         type="password"
-        class="password has-border"
+        class="has-border"
+        data-test-id="password"
         size="1"
         required
       />
@@ -30,7 +32,8 @@
         v-model="passwordConfirmation"
         :placeholder="$t('passwordConfirmation')"
         type="password"
-        class="password-confirmation has-border"
+        class="has-border"
+        data-test-id="password-confirmation"
         size="1"
         required
       />

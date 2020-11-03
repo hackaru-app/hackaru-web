@@ -5,13 +5,17 @@
     <nav-modal
       :initial-component="ProjectList"
       height="450"
-      class="nav-modal"
+      data-test-id="nav-modal"
       name="project-list"
       @close="selectProject"
     />
-    <form class="form" @submit.prevent="submit">
+    <form data-test-id="form" class="form" @submit.prevent="submit">
       <div class="form-content">
-        <div class="project-wrapper" @click="showModal">
+        <div
+          data-test-id="project-wrapper"
+          class="project-wrapper"
+          @click="showModal"
+        >
           <project-name v-bind="project" class="selected-project" />
           <dot
             :color="project ? project.color : '#ccc'"
@@ -21,6 +25,7 @@
         <input
           :value="description"
           :placeholder="$t('description')"
+          data-test-id="description"
           type="text"
           class="description"
           @focus="focus"
@@ -56,13 +61,14 @@
         <div
           v-show="focused && !id && suggestions.length > 0"
           class="suggestions-wrapper"
+          data-test-id="suggestions-wrapper"
         >
           <div ref="suggestions" class="suggestions">
             <ul>
               <li
                 v-for="(suggestion, index) in suggestions"
                 :key="index"
-                class="suggestion"
+                data-test-id="suggestion"
                 @click="clickSuggestion(suggestion)"
               >
                 <activity-name v-bind="suggestion" />

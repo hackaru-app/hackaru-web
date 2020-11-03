@@ -2,6 +2,8 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Edit from '@/pages/password-reset/edit';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('Edit', () => {
   let wrapper;
 
@@ -22,8 +24,10 @@ describe('Edit', () => {
   describe('when click submit-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.password').vm.$emit('input', 'password');
-      wrapper.find('.password-confirmation').vm.$emit('input', 'confirmation');
+      wrapper.find(testId('password')).vm.$emit('input', 'password');
+      wrapper
+        .find(testId('password-confirmation'))
+        .vm.$emit('input', 'confirmation');
       wrapper.find('form').trigger('submit.prevent');
     });
 

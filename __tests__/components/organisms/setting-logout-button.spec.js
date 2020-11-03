@@ -2,6 +2,8 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import SettingLogoutButton from '@/components/organisms/setting-logout-button';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('SettingLogoutButton', () => {
   let wrapper;
 
@@ -24,7 +26,7 @@ describe('SettingLogoutButton', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
-      wrapper.find('.logout-button').vm.$emit('click');
+      wrapper.find(testId('logout-button')).vm.$emit('click');
     });
 
     it('dispatch auth/logout', () => {
@@ -44,7 +46,7 @@ describe('SettingLogoutButton', () => {
     beforeEach(() => {
       global.confirm = () => false;
       wrapper = factory();
-      wrapper.find('.logout-button').vm.$emit('click');
+      wrapper.find(testId('logout-button')).vm.$emit('click');
     });
 
     it('does not dispatch ', () => {

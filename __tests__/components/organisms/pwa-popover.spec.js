@@ -1,6 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 import PwaPopover from '@/components/organisms/pwa-popover';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('PwaPopover', () => {
   let wrapper;
 
@@ -27,7 +29,7 @@ describe('PwaPopover', () => {
     });
 
     it('show popover', () => {
-      expect(wrapper.find('.popover').attributes('open')).toBeTruthy();
+      expect(wrapper.find(testId('popover')).attributes('open')).toBeTruthy();
     });
   });
 
@@ -39,7 +41,7 @@ describe('PwaPopover', () => {
     });
 
     it('show popover', () => {
-      expect(wrapper.find('.popover').attributes('open')).toBeFalsy();
+      expect(wrapper.find(testId('popover')).attributes('open')).toBeFalsy();
     });
   });
 
@@ -51,7 +53,7 @@ describe('PwaPopover', () => {
     });
 
     it('hide popover', () => {
-      expect(wrapper.find('.popover').attributes('open')).toBeFalsy();
+      expect(wrapper.find(testId('popover')).attributes('open')).toBeFalsy();
     });
   });
 
@@ -64,7 +66,7 @@ describe('PwaPopover', () => {
     });
 
     it('hide popover', () => {
-      expect(wrapper.find('.popover').attributes('open')).toBeFalsy();
+      expect(wrapper.find(testId('popover')).attributes('open')).toBeFalsy();
     });
   });
 });

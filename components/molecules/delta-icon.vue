@@ -1,6 +1,6 @@
 <template>
   <div class="delta-icon">
-    <icon :class="['icon', delta]" :name="iconName" />
+    <icon :class="['icon', delta]" :name="iconName" data-test-id="icon" />
   </div>
 </template>
 

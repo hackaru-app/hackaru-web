@@ -3,7 +3,12 @@
 <template>
   <section>
     <content-header class="content-header">
-      <tabs :items="names" :index="index" class="tabs" @change="change" />
+      <tabs
+        :items="names"
+        :index="index"
+        data-test-id="tabs"
+        @change="change"
+      />
     </content-header>
     <nuxt-child keep-alive />
   </section>

@@ -1,6 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 import LoopSlider from '@/components/organisms/loop-slider';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('LoopSlider', () => {
   let wrapper;
 
@@ -21,7 +23,7 @@ describe('LoopSlider', () => {
   describe('when scroll window', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.window-scroll').vm.$emit('scroll');
+      wrapper.find(testId('window-scroll')).vm.$emit('scroll');
     });
 
     it('disable slider', () => {
@@ -32,7 +34,7 @@ describe('LoopSlider', () => {
   describe('when scroll window', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.window-scroll').vm.$emit('end');
+      wrapper.find(testId('window-scroll')).vm.$emit('end');
     });
 
     it('enable slider', () => {

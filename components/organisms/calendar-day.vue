@@ -18,7 +18,7 @@
             top: `${ghostTop}px`,
             height: `${ghostHeight}px`,
           }"
-          class="ghost-activity"
+          data-test-id="ghost-activity"
           title="No Project"
           color="#cccfd9"
         />

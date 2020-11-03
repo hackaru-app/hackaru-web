@@ -3,6 +3,7 @@
     <input
       ref="date"
       :value="date"
+      data-test-id="date"
       class="date"
       type="date"
       step="1"
@@ -11,6 +12,7 @@
     <input
       ref="time"
       :value="time"
+      data-test-id="time"
       class="time"
       type="time"
       step="1"

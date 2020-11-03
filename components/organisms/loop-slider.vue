@@ -6,7 +6,7 @@
     @end="drop"
   >
     <window-scroll
-      class="window-scroll"
+      data-test-id="window-scroll"
       @scroll="scroll"
       @start="startScroll"
       @end="endScroll"

@@ -2,6 +2,8 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Applications from '@/pages/settings/applications';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('Applications', () => {
   let wrapper;
 
@@ -43,7 +45,7 @@ describe('Applications', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
-      wrapper.findAll('.delete-button').at(0).vm.$emit('click');
+      wrapper.findAll(testId('delete-button')).at(0).vm.$emit('click');
     });
 
     it('dispatch applications/delete', () => {
@@ -55,7 +57,7 @@ describe('Applications', () => {
     beforeEach(() => {
       global.confirm = () => false;
       wrapper = factory();
-      wrapper.findAll('.delete-button').at(0).vm.$emit('click');
+      wrapper.findAll(testId('delete-button')).at(0).vm.$emit('click');
     });
 
     it('does not dispatch', () => {
@@ -69,7 +71,7 @@ describe('Applications', () => {
   describe('when click application', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.findAll('.application h1').at(0).trigger('click');
+      wrapper.findAll(testId('application-name')).at(0).trigger('click');
     });
 
     it('show modal', () => {

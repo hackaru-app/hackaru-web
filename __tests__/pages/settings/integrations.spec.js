@@ -2,6 +2,8 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Integrations from '@/pages/settings/integrations';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('Integrations', () => {
   let wrapper;
 
@@ -31,7 +33,7 @@ describe('Integrations', () => {
       $store.dispatch.mockReturnValue(true);
       window.open = () => ({ location: { assign }, closed: false });
       wrapper = factory();
-      wrapper.find('.google-calendar-button').vm.$emit('click');
+      wrapper.find(testId('google-calendar-button')).vm.$emit('click');
     });
 
     it('dispatch activity-calendar/createUrl', () => {
@@ -52,7 +54,7 @@ describe('Integrations', () => {
       $store.dispatch.mockReturnValue(true);
       window.open = () => ({ location: { assign }, closed: true });
       wrapper = factory();
-      wrapper.find('.google-calendar-button').vm.$emit('click');
+      wrapper.find(testId('google-calendar-button')).vm.$emit('click');
     });
 
     it('does not navigate', () => {
@@ -64,7 +66,7 @@ describe('Integrations', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
       wrapper = factory();
-      wrapper.find('.apple-calendar-button').vm.$emit('click');
+      wrapper.find(testId('apple-calendar-button')).vm.$emit('click');
     });
 
     it('dispatch activity-calendar/createUrl', () => {
@@ -84,7 +86,7 @@ describe('Integrations', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
       wrapper = factory();
-      wrapper.find('.outlook-button').vm.$emit('click');
+      wrapper.find(testId('outlook-button')).vm.$emit('click');
     });
 
     it('dispatch activity-calendar/createUrl', () => {

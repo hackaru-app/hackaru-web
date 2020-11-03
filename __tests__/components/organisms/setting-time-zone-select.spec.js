@@ -2,6 +2,8 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import SettingTimeZoneSelect from '@/components/organisms/setting-time-zone-select';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('SettingTimeZoneSelect', () => {
   let wrapper;
 
@@ -25,7 +27,7 @@ describe('SettingTimeZoneSelect', () => {
   describe('when select', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'base-select' }).vm.$emit('change', 'Asia/Tokyo');
+      wrapper.find(testId('base-select')).vm.$emit('change', 'Asia/Tokyo');
     });
 
     it('change user/update', () => {

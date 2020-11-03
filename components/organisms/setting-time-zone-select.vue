@@ -8,7 +8,7 @@
       <icon name="map-pin-icon" class="icon" />
       {{ $t('title') }}
     </template>
-    <base-select ref="base-select" :value="selected" @change="change">
+    <base-select :value="selected" data-test-id="base-select" @change="change">
       <option
         v-for="timeZone in timeZones"
         :key="timeZone"

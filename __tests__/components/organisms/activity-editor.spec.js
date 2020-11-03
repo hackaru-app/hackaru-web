@@ -3,6 +3,8 @@ import { shallowMount } from '@vue/test-utils';
 import ActivityEditor from '@/components/organisms/activity-editor';
 import ProjectList from '@/components/organisms/project-list';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('ActivityEditor', () => {
   let wrapper;
 
@@ -81,7 +83,7 @@ describe('ActivityEditor', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
-      wrapper.find('.delete-button').vm.$emit('click');
+      wrapper.find(testId('delete-button')).vm.$emit('click');
     });
 
     it('dispatch activities/delete', () => {
@@ -97,7 +99,7 @@ describe('ActivityEditor', () => {
     beforeEach(() => {
       global.confirm = () => false;
       wrapper = factory();
-      wrapper.find('.delete-button').vm.$emit('click');
+      wrapper.find(testId('delete-button')).vm.$emit('click');
     });
 
     it('does not dispatch activities/delete', () => {
@@ -108,7 +110,7 @@ describe('ActivityEditor', () => {
   describe('when press project button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.project-button').trigger('click');
+      wrapper.find(testId('project-button')).trigger('click');
     });
 
     it('emits push', () => {

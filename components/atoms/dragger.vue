@@ -3,7 +3,7 @@
     <drag-drop
       :delay="400"
       :enabled="enabled"
-      class="drag-drop"
+      data-test-id="drag-drop"
       @start="drag"
       @move="dragging"
       @end="drop"

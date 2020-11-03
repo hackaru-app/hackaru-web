@@ -2,7 +2,7 @@
 
 <template>
   <section class="pwa-popover">
-    <v-popover :open="opened" class="popover">
+    <v-popover :open="opened" data-test-id="popover" class="popover">
       <span class="tooltip-target" />
       <template slot="popover">
         <div class="content">

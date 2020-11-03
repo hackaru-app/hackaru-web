@@ -1,6 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 import NavModal from '@/components/organisms/nav-modal';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('NavModal', () => {
   let wrapper;
 
@@ -25,7 +27,7 @@ describe('NavModal', () => {
     });
 
     it('set current component', () => {
-      expect(wrapper.find('.current').is(initialComponent)).toBe(true);
+      expect(wrapper.find(testId('current')).is(initialComponent)).toBe(true);
     });
 
     it('reset animations', () => {
@@ -57,14 +59,14 @@ describe('NavModal', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ current: initialComponent });
-      wrapper.find('.current').vm.$emit('push', {
+      wrapper.find(testId('current')).vm.$emit('push', {
         component: nextComponent,
         params: { foo: 'bar' },
       });
     });
 
     it('set current component', () => {
-      expect(wrapper.find('.current').is(nextComponent)).toBe(true);
+      expect(wrapper.find(testId('current')).is(nextComponent)).toBe(true);
     });
 
     it('set animations', () => {
@@ -85,7 +87,7 @@ describe('NavModal', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ current: initialComponent });
-      wrapper.find('.current').vm.$emit('push', {
+      wrapper.find(testId('current')).vm.$emit('push', {
         component: nextComponent,
       });
     });
@@ -99,12 +101,14 @@ describe('NavModal', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ current: initialComponent });
-      wrapper.find('.current').vm.$emit('push', { component: nextComponent });
-      wrapper.find('.current').vm.$emit('pop', { foo: 'bar' });
+      wrapper
+        .find(testId('current'))
+        .vm.$emit('push', { component: nextComponent });
+      wrapper.find(testId('current')).vm.$emit('pop', { foo: 'bar' });
     });
 
     it('move to previous component', () => {
-      expect(wrapper.find('.current').is(initialComponent)).toBe(true);
+      expect(wrapper.find(testId('current')).is(initialComponent)).toBe(true);
     });
 
     it('set animations', () => {
@@ -125,8 +129,10 @@ describe('NavModal', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ current: initialComponent });
-      wrapper.find('.current').vm.$emit('push', { component: nextComponent });
-      wrapper.find('.current').vm.$emit('pop');
+      wrapper
+        .find(testId('current'))
+        .vm.$emit('push', { component: nextComponent });
+      wrapper.find(testId('current')).vm.$emit('pop');
     });
 
     it('reset params', () => {

@@ -3,6 +3,8 @@ import { shallowMount } from '@vue/test-utils';
 import { parseISO } from 'date-fns';
 import CalendarDay from '@/components/organisms/calendar-day';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('CalendarDay', () => {
   let wrapper;
 
@@ -66,7 +68,7 @@ describe('CalendarDay', () => {
     });
 
     it('show ghost-activity', () => {
-      expect(wrapper.find('.ghost-activity').isVisible()).toBe(true);
+      expect(wrapper.find(testId('ghost-activity')).isVisible()).toBe(true);
     });
 
     it('emits dragging', () => {
@@ -104,7 +106,7 @@ describe('CalendarDay', () => {
     });
 
     it('hide ghost-activity', () => {
-      expect(wrapper.find('.ghost-activity').isVisible()).toBe(false);
+      expect(wrapper.find(testId('ghost-activity')).isVisible()).toBe(false);
     });
 
     it('dispatch activities/add', () => {
@@ -127,7 +129,7 @@ describe('CalendarDay', () => {
     });
 
     it('hide ghost-activity', () => {
-      expect(wrapper.find('.ghost-activity').isVisible()).toBe(false);
+      expect(wrapper.find(testId('ghost-activity')).isVisible()).toBe(false);
     });
 
     it('dispatch activities/add', () => {

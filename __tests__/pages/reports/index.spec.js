@@ -5,6 +5,8 @@ import Reports from '@/pages/reports/index';
 import { parseISO, formatISO } from 'date-fns';
 import { stringify } from 'query-string';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('Index', () => {
   let wrapper;
 
@@ -60,7 +62,7 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       window.open = jest.fn();
-      wrapper.find('.pdf-button').trigger('click');
+      wrapper.find(testId('pdf-button')).trigger('click');
     });
 
     it('open pdf url', () => {
@@ -77,7 +79,7 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       window.open = jest.fn();
-      wrapper.find('.csv-button').trigger('click');
+      wrapper.find(testId('csv-button')).trigger('click');
     });
 
     it('open csv url', () => {
@@ -160,7 +162,7 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'week' });
-      wrapper.find('.loop-slider').vm.$emit('slide-left');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-left');
     });
 
     it('set prev weeks', () => {
@@ -183,7 +185,7 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'week' });
-      wrapper.find('.loop-slider').vm.$emit('slide-right');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
     });
 
     it('set next weeks', () => {
@@ -206,8 +208,8 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'week' });
-      wrapper.find('.loop-slider').vm.$emit('slide-right');
-      wrapper.find('.date-header').vm.$emit('today');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
+      wrapper.find(testId('date-header')).vm.$emit('today');
     });
 
     it('set today weeks', () => {

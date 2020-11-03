@@ -2,6 +2,8 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import ProjectEditor from '@/components/organisms/project-editor';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('ProjectEditor', () => {
   let wrapper;
 
@@ -73,7 +75,7 @@ describe('ProjectEditor', () => {
         name: 'Development',
         color: '#ff0',
       });
-      wrapper.find('.delete-button').vm.$emit('click');
+      wrapper.find(testId('delete-button')).vm.$emit('click');
     });
 
     it('dispatch projects/delete', () => {
@@ -94,7 +96,7 @@ describe('ProjectEditor', () => {
         name: 'Development',
         color: '#ff0',
       });
-      wrapper.find('.delete-button').vm.$emit('click');
+      wrapper.find(testId('delete-button')).vm.$emit('click');
     });
 
     it('does not dispatch projects/deleteProject', () => {

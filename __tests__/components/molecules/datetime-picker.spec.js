@@ -2,6 +2,8 @@ import { shallowMount } from '@vue/test-utils';
 import DatetimePicker from '@/components/molecules/datetime-picker';
 import dayjs from 'dayjs';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('DatetimePicker', () => {
   let wrapper;
 
@@ -10,8 +12,8 @@ describe('DatetimePicker', () => {
   describe('when input value is invalid', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.date').setValue('foo');
-      wrapper.find('.time').setValue('bar');
+      wrapper.find(testId('date')).setValue('foo');
+      wrapper.find(testId('time')).setValue('bar');
     });
 
     it('emits input with undefined', () => {
@@ -24,7 +26,7 @@ describe('DatetimePicker', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setProps({ value: '2019-03-03T11:22:33' });
-      wrapper.find('.date').setValue('2019-01-01');
+      wrapper.find(testId('date')).setValue('2019-01-01');
     });
 
     it('emits input with datetime', () => {
@@ -38,7 +40,7 @@ describe('DatetimePicker', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setProps({ value: '2019-03-03T11:22:33' });
-      wrapper.find('.time').setValue('22:33:44');
+      wrapper.find(testId('time')).setValue('22:33:44');
     });
 
     it('emits input with datetime', () => {

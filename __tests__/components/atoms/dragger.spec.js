@@ -1,6 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 import Dragger from '@/components/atoms/dragger';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('Dragger', () => {
   let wrapper;
 
@@ -13,7 +15,7 @@ describe('Dragger', () => {
   describe('when drag', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
+      wrapper.find(testId('drag-drop')).vm.$emit('start', dragEvent());
     });
 
     it('emits start', () => {
@@ -24,8 +26,8 @@ describe('Dragger', () => {
   describe('when drag', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
-      wrapper.find('.drag-drop').vm.$emit('move', dragEvent(70, 80));
+      wrapper.find(testId('drag-drop')).vm.$emit('start', dragEvent());
+      wrapper.find(testId('drag-drop')).vm.$emit('move', dragEvent(70, 80));
     });
 
     it('emits moving', () => {
@@ -44,9 +46,9 @@ describe('Dragger', () => {
   describe('when drop', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
-      wrapper.find('.drag-drop').vm.$emit('move', dragEvent(70, 80));
-      wrapper.find('.drag-drop').vm.$emit('end', dragEvent());
+      wrapper.find(testId('drag-drop')).vm.$emit('start', dragEvent());
+      wrapper.find(testId('drag-drop')).vm.$emit('move', dragEvent(70, 80));
+      wrapper.find(testId('drag-drop')).vm.$emit('end', dragEvent());
     });
 
     it('emits end', () => {
@@ -57,8 +59,8 @@ describe('Dragger', () => {
   describe('when drop but not moved', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent(0, 0));
-      wrapper.find('.drag-drop').vm.$emit('end', dragEvent(0, 0));
+      wrapper.find(testId('drag-drop')).vm.$emit('start', dragEvent(0, 0));
+      wrapper.find(testId('drag-drop')).vm.$emit('end', dragEvent(0, 0));
     });
 
     it('emits cancel', () => {

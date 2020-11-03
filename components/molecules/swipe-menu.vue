@@ -1,19 +1,24 @@
 <template>
   <div class="swipe-menu">
-    <div :style="leftStyle" class="left menu">
+    <div :style="leftStyle" data-test-id="left-menu">
       <slot name="left" />
     </div>
     <drag-drop
       :enabled="!scrolling"
       class="content"
+      data-test-id="content"
       @move="dragging"
       @end="drop"
     >
-      <window-scroll class="window-scroll" @scroll="scroll" @end="scrollEnd">
+      <window-scroll
+        data-test-id="window-scroll"
+        @scroll="scroll"
+        @end="scrollEnd"
+      >
         <slot />
       </window-scroll>
     </drag-drop>
-    <div :style="rightStyle" class="right menu">
+    <div :style="rightStyle" data-test-id="right-menu">
       <slot name="right" />
     </div>
   </div>

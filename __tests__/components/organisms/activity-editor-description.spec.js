@@ -2,6 +2,8 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import ActivityEditorDescription from '@/components/organisms/activity-editor-description';
 
+const testId = (id) => `[data-test-id="${id}"]`;
+
 describe('ActivityEditorDescription', () => {
   let wrapper;
 
@@ -42,31 +44,31 @@ describe('ActivityEditorDescription', () => {
   describe('when focus description', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.description').trigger('focus');
+      wrapper.find(testId('description')).trigger('focus');
     });
 
     it('show suggestions', () => {
-      expect(wrapper.find('.suggestions').exists()).toBe(true);
+      expect(wrapper.find(testId('suggestions')).exists()).toBe(true);
     });
   });
 
   describe('when blur description', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.description').trigger('focus');
-      wrapper.find('.description').trigger('blur');
+      wrapper.find(testId('description')).trigger('focus');
+      wrapper.find(testId('description')).trigger('blur');
     });
 
     it('hide suggestions', () => {
-      expect(wrapper.find('.suggestions').exists()).toBe(false);
+      expect(wrapper.find(testId('suggestions')).exists()).toBe(false);
     });
   });
 
   describe('when input description', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.description').setValue('Review my tasks');
-      wrapper.find('.description').trigger('input');
+      wrapper.find(testId('description')).setValue('Review my tasks');
+      wrapper.find(testId('description')).trigger('input');
     });
 
     it('emits update:description', () => {
@@ -79,8 +81,8 @@ describe('ActivityEditorDescription', () => {
   describe('when click suggestion', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.description').trigger('focus');
-      wrapper.find('.suggestion').trigger('click');
+      wrapper.find(testId('description')).trigger('focus');
+      wrapper.find(testId('suggestion')).trigger('click');
     });
 
     it('emits update:description', () => {
