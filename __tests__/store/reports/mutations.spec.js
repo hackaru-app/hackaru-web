@@ -40,7 +40,7 @@ describe('Mutations', () => {
       });
     });
 
-    it('set projects', () => {
+    it('sets projects', () => {
       expect(state.projects).toEqual([
         {
           id: 1,
@@ -50,23 +50,23 @@ describe('Mutations', () => {
       ]);
     });
 
-    it('set totals', () => {
+    it('sets totals', () => {
       expect(state.totals).toEqual({
         1: 100,
       });
     });
 
-    it('set labels', () => {
+    it('sets labels', () => {
       expect(state.labels).toEqual(['Jan', 'Feb']);
     });
 
-    it('set sums', () => {
+    it('sets sums', () => {
       expect(state.sums).toEqual({
         1: [100, 200],
       });
     });
 
-    it('set activityGroups', () => {
+    it('sets activityGroups', () => {
       expect(state.activityGroups).toEqual([
         {
           description: 'Review code',
@@ -97,7 +97,7 @@ describe('Mutations', () => {
       });
     });
 
-    it('set previousTotals', () => {
+    it('sets previousTotals', () => {
       expect(state.previousTotals).toEqual({
         1: 100,
       });

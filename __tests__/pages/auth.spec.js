@@ -77,7 +77,7 @@ describe('Auth', () => {
       wrapper = factory();
     });
 
-    it('show agreement of checkbox', () => {
+    it('shows agreement of checkbox', () => {
       expect(wrapper.find('#agreement').exists()).toBe(true);
     });
   });
@@ -89,7 +89,7 @@ describe('Auth', () => {
       wrapper = factory();
     });
 
-    it('hide agreement of checkbox', () => {
+    it('hides agreement of checkbox', () => {
       expect(wrapper.find('#agreement').exists()).toBe(false);
     });
   });
@@ -102,7 +102,7 @@ describe('Auth', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch auth/fetchRefreshToken', () => {
+    it('dispatches auth/fetchRefreshToken', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/fetchRefreshToken', {
         email: 'example@example.com',
         password: 'password',
@@ -122,7 +122,7 @@ describe('Auth', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch auth/signUp', () => {
+    it('dispatches auth/signUp', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/signUp', {
         email: 'example@example.com',
         password: 'password',

@@ -17,7 +17,7 @@ describe('Actions', () => {
       result = await actions.fetch({ commit, dispatch });
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -62,7 +62,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {

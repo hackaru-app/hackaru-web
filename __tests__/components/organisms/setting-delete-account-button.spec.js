@@ -30,7 +30,7 @@ describe('SettingDeleteAccountButton', () => {
       wrapper.find(testId('delete-account-button')).vm.$emit('click');
     });
 
-    it('show modal', () => {
+    it('shows modal', () => {
       expect($modal.show).toHaveBeenCalled();
     });
   });
@@ -44,7 +44,7 @@ describe('SettingDeleteAccountButton', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch auth/deleteAccount', () => {
+    it('dispatches auth/deleteAccount', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/deleteAccount', {
         currentPassword: 'password',
       });

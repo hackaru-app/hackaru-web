@@ -42,7 +42,7 @@ describe('Index', () => {
       wrapper.setData({ currentPeriod: 'day' });
     });
 
-    it('dispatch reports/fetch', () => {
+    it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-31T00:00:00'),
@@ -98,7 +98,7 @@ describe('Index', () => {
       wrapper.setData({ currentPeriod: 'week' });
     });
 
-    it('dispatch reports/fetch', () => {
+    it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-27T00:00:00'),
@@ -120,7 +120,7 @@ describe('Index', () => {
       wrapper.setData({ currentPeriod: 'month' });
     });
 
-    it('dispatch reports/fetch', () => {
+    it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-01T00:00:00'),
@@ -142,7 +142,7 @@ describe('Index', () => {
       wrapper.setData({ currentPeriod: 'year' });
     });
 
-    it('dispatch reports/fetch', () => {
+    it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-01T00:00:00'),
@@ -165,7 +165,7 @@ describe('Index', () => {
       wrapper.find(testId('loop-slider')).vm.$emit('slide-left');
     });
 
-    it('set prev weeks', () => {
+    it('sets prev weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-20T00:00:00'),
@@ -188,7 +188,7 @@ describe('Index', () => {
       wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
     });
 
-    it('set next weeks', () => {
+    it('sets next weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-02-03T00:00:00'),
@@ -212,7 +212,7 @@ describe('Index', () => {
       wrapper.find(testId('date-header')).vm.$emit('today');
     });
 
-    it('set today weeks', () => {
+    it('sets today weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-27T00:00:00'),
@@ -234,7 +234,7 @@ describe('Index', () => {
       wrapper.setData({ projectIds: [1] });
     });
 
-    it('dispatch reports/fetch', () => {
+    it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-31T00:00:00'),

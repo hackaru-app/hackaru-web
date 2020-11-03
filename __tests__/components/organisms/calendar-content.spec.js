@@ -36,7 +36,7 @@ describe('CalendarContent', () => {
     $store.reset();
   });
 
-  it('hides guide ruler', () => {
+  it('hidess guide ruler', () => {
     wrapper = factory();
     expect(wrapper.find(testId('guide-ruler')).exists()).toBe(false);
   });
@@ -58,7 +58,7 @@ describe('CalendarContent', () => {
       wrapper.setProps({ days: [parseISO('1999-01-01')] });
     });
 
-    it('hide today ruler', () => {
+    it('hides today ruler', () => {
       expect(wrapper.find(testId('today-ruler')).exists()).toBe(false);
     });
   });

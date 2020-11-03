@@ -31,7 +31,7 @@ describe('SettingPasswordEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch auth/changePassword', () => {
+    it('dispatches auth/changePassword', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/changePassword', {
         password: 'password',
         currentPassword: 'current',

@@ -67,7 +67,7 @@ describe('CalendarDay', () => {
         .vm.$emit('start', { preventDefault: () => {}, pageY: 100 });
     });
 
-    it('show ghost-activity', () => {
+    it('shows ghost-activity', () => {
       expect(wrapper.find(testId('ghost-activity')).isVisible()).toBe(true);
     });
 
@@ -105,11 +105,11 @@ describe('CalendarDay', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('hide ghost-activity', () => {
+    it('hides ghost-activity', () => {
       expect(wrapper.find(testId('ghost-activity')).isVisible()).toBe(false);
     });
 
-    it('dispatch activities/add', () => {
+    it('dispatches activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         startedAt: parseISO('2019-01-01T01:00:00'),
         stoppedAt: parseISO('2019-01-01T01:20:00'),
@@ -128,11 +128,11 @@ describe('CalendarDay', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('hide ghost-activity', () => {
+    it('hides ghost-activity', () => {
       expect(wrapper.find(testId('ghost-activity')).isVisible()).toBe(false);
     });
 
-    it('dispatch activities/add', () => {
+    it('dispatches activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         startedAt: parseISO('2019-01-01T01:00:00'),
         stoppedAt: parseISO('2019-01-01T01:20:00'),

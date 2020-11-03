@@ -50,7 +50,7 @@ describe('Authorize', () => {
       wrapper = factory();
     });
 
-    it('dispatch oauth/fetchClient', () => {
+    it('dispatches oauth/fetchClient', () => {
       expect($store.dispatch).toHaveBeenCalledWith('oauth/fetchClient', {
         clientId: 'clientId',
         scope: ['activities:read'],
@@ -95,7 +95,7 @@ describe('Authorize', () => {
       wrapper.find(testId('allow-button')).vm.$emit('click');
     });
 
-    it('dispatch oauth/allow', () => {
+    it('dispatches oauth/allow', () => {
       expect($store.dispatch).toHaveBeenCalledWith('oauth/allow', {
         clientId: 'clientId',
         scope: ['activities:read'],
@@ -134,7 +134,7 @@ describe('Authorize', () => {
       wrapper.find(testId('deny-button')).vm.$emit('click');
     });
 
-    it('dispatch oauth/deny', () => {
+    it('dispatches oauth/deny', () => {
       expect($store.dispatch).toHaveBeenCalledWith('oauth/deny', {
         clientId: 'clientId',
         scope: ['activities:read'],
@@ -158,7 +158,7 @@ describe('Authorize', () => {
       wrapper.find(testId('deny-button')).vm.$emit('click');
     });
 
-    it('dispatch oauth/deny', () => {
+    it('dispatches oauth/deny', () => {
       expect($store.dispatch).toHaveBeenCalledWith('oauth/deny', {
         clientId: 'clientId',
         scope: ['activities:read'],

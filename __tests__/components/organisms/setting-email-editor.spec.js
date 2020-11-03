@@ -28,7 +28,7 @@ describe('SettingEmailEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch auth/changeEmail', () => {
+    it('dispatches auth/changeEmail', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/changeEmail', {
         email: 'example@example.com',
         currentPassword: 'password',

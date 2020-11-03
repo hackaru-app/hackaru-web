@@ -31,7 +31,7 @@ describe('Edit', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch auth/resetPassword', () => {
+    it('dispatches auth/resetPassword', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/resetPassword', {
         id: 1,
         password: 'password',

@@ -11,7 +11,7 @@ describe('Mutations', () => {
       });
     });
 
-    it('set refresh token and client id', () => {
+    it('sets refresh token and client id', () => {
       expect(state.refreshToken).toBe('refreshToken');
       expect(state.clientId).toBe('clientId');
     });
@@ -24,7 +24,7 @@ describe('Mutations', () => {
       mutations['SET_ACCESS_TOKEN'](state, 'accessToken');
     });
 
-    it('set access token', () => {
+    it('sets access token', () => {
       expect(state.accessToken).toBe('accessToken');
     });
   });
@@ -39,7 +39,7 @@ describe('Mutations', () => {
       });
     });
 
-    it('set user', () => {
+    it('sets user', () => {
       expect(state.id).toBe(1);
       expect(state.email).toBe('example@example.com');
     });

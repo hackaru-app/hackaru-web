@@ -112,7 +112,7 @@ describe('CalendarActivity', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('dispatch activities/update', () => {
+    it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         startedAt: parseISO('2019-01-02T01:23:00'),
@@ -176,7 +176,7 @@ describe('CalendarActivity', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('dispatch activities/update', () => {
+    it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         stoppedAt: parseISO('2019-01-01T02:23:45'),
@@ -202,7 +202,7 @@ describe('CalendarActivity', () => {
       wrapper.find(testId('click-handler')).trigger('mouseup');
     });
 
-    it('show modal', () => {
+    it('shows modal', () => {
       expect($modal.show).toHaveBeenCalledWith('activity', {
         id: 1,
         description: 'Create a database.',

@@ -26,7 +26,7 @@ describe('NavModal', () => {
         .vm.$emit('before-open', { params: { foo: 'bar' } });
     });
 
-    it('set current component', () => {
+    it('sets current component', () => {
       expect(wrapper.find(testId('current')).is(initialComponent)).toBe(true);
     });
 
@@ -37,7 +37,7 @@ describe('NavModal', () => {
       });
     });
 
-    it('set params', () => {
+    it('sets params', () => {
       expect(wrapper.vm.params).toEqual({
         foo: 'bar',
       });
@@ -65,18 +65,18 @@ describe('NavModal', () => {
       });
     });
 
-    it('set current component', () => {
+    it('sets current component', () => {
       expect(wrapper.find(testId('current')).is(nextComponent)).toBe(true);
     });
 
-    it('set animations', () => {
+    it('sets animations', () => {
       expect(wrapper.vm.animation).toEqual({
         enter: 'fadeInRight',
         leave: 'fadeOutLeft',
       });
     });
 
-    it('set params', () => {
+    it('sets params', () => {
       expect(wrapper.vm.params).toEqual({
         foo: 'bar',
       });
@@ -111,14 +111,14 @@ describe('NavModal', () => {
       expect(wrapper.find(testId('current')).is(initialComponent)).toBe(true);
     });
 
-    it('set animations', () => {
+    it('sets animations', () => {
       expect(wrapper.vm.animation).toEqual({
         enter: 'fadeInLeft',
         leave: 'fadeOutRight',
       });
     });
 
-    it('set params', () => {
+    it('sets params', () => {
       expect(wrapper.vm.params).toEqual({
         foo: 'bar',
       });

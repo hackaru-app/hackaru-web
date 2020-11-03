@@ -43,7 +43,7 @@ describe('LocaleSelect', () => {
       wrapper.find({ ref: 'base-select' }).vm.$emit('change', 'ja');
     });
 
-    it('dispatch user/update', () => {
+    it('dispatches user/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('user/update', {
         locale: 'ja',
       });
@@ -57,7 +57,7 @@ describe('LocaleSelect', () => {
       wrapper.find({ ref: 'base-select' }).vm.$emit('change', 'ja');
     });
 
-    it('set locale', () => {
+    it('sets locale', () => {
       expect(setLocale).toHaveBeenCalledWith('ja');
     });
   });

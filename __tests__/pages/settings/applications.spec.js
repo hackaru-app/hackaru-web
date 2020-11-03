@@ -36,7 +36,7 @@ describe('Applications', () => {
     $store.reset();
   });
 
-  it('dispatch applications/fetch', () => {
+  it('dispatches applications/fetch', () => {
     factory();
     expect($store.dispatch).toHaveBeenCalledWith('applications/fetch');
   });
@@ -48,7 +48,7 @@ describe('Applications', () => {
       wrapper.findAll(testId('delete-button')).at(0).vm.$emit('click');
     });
 
-    it('dispatch applications/delete', () => {
+    it('dispatches applications/delete', () => {
       expect($store.dispatch).toHaveBeenCalledWith('applications/delete', 1);
     });
   });
@@ -74,7 +74,7 @@ describe('Applications', () => {
       wrapper.findAll(testId('application-name')).at(0).trigger('click');
     });
 
-    it('show modal', () => {
+    it('shows modal', () => {
       expect($modal.show).toHaveBeenCalledWith('application');
     });
   });

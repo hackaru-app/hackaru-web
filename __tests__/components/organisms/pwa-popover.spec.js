@@ -28,7 +28,7 @@ describe('PwaPopover', () => {
       wrapper = factory();
     });
 
-    it('show popover', () => {
+    it('shows popover', () => {
       expect(wrapper.find(testId('popover')).attributes('open')).toBeTruthy();
     });
   });
@@ -40,7 +40,7 @@ describe('PwaPopover', () => {
       wrapper = factory();
     });
 
-    it('show popover', () => {
+    it('shows popover', () => {
       expect(wrapper.find(testId('popover')).attributes('open')).toBeFalsy();
     });
   });
@@ -52,7 +52,7 @@ describe('PwaPopover', () => {
       wrapper = factory();
     });
 
-    it('hide popover', () => {
+    it('hides popover', () => {
       expect(wrapper.find(testId('popover')).attributes('open')).toBeFalsy();
     });
   });
@@ -65,7 +65,7 @@ describe('PwaPopover', () => {
       wrapper = factory();
     });
 
-    it('hide popover', () => {
+    it('hides popover', () => {
       expect(wrapper.find(testId('popover')).attributes('open')).toBeFalsy();
     });
   });

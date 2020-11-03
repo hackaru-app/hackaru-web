@@ -51,7 +51,7 @@ describe('SwipeMenu', () => {
       wrapper.find(testId('content')).vm.$emit('move', dragEvent(100, 0));
     });
 
-    it('set left style', () => {
+    it('sets left style', () => {
       expect(wrapper.find(testId('left-menu')).attributes().style).toBe(
         'width: 100px; animation-name: none;'
       );
@@ -77,7 +77,7 @@ describe('SwipeMenu', () => {
       );
     });
 
-    it('set right style', () => {
+    it('sets right style', () => {
       expect(wrapper.find(testId('right-menu')).attributes().style).toBe(
         'width: 100px; animation-name: none;'
       );
@@ -93,7 +93,7 @@ describe('SwipeMenu', () => {
       jest.runOnlyPendingTimers();
     });
 
-    it('set left style', () => {
+    it('sets left style', () => {
       expect(wrapper.find(testId('left-menu')).attributes().style).toBe(
         'width: 100%; animation-name: none; transition: width 300ms;'
       );
@@ -113,7 +113,7 @@ describe('SwipeMenu', () => {
       jest.runOnlyPendingTimers();
     });
 
-    it('set right style', () => {
+    it('sets right style', () => {
       expect(wrapper.find(testId('right-menu')).attributes().style).toBe(
         'width: 100%; animation-name: none; transition: width 300ms;'
       );

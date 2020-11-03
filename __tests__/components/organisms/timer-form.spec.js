@@ -43,7 +43,7 @@ describe('TimerForm', () => {
     $store.reset();
   });
 
-  it('dispatch activities/fetchWorking', () => {
+  it('dispatches activities/fetchWorking', () => {
     factory();
     expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorking');
   });
@@ -54,7 +54,7 @@ describe('TimerForm', () => {
       wrapper.find(testId('project-wrapper')).trigger('click');
     });
 
-    it('show modal', () => {
+    it('shows modal', () => {
       expect($modal.show).toHaveBeenCalledWith('project-list');
     });
   });
@@ -97,7 +97,7 @@ describe('TimerForm', () => {
       });
     });
 
-    it('dispatch activities/update', () => {
+    it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         description: 'Review my tasks',
@@ -120,7 +120,7 @@ describe('TimerForm', () => {
       wrapper.find(testId('form')).trigger('submit');
     });
 
-    it('dispatch activities/add', () => {
+    it('dispatches activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         description: 'Review my tasks',
         projectId: 2,
@@ -136,7 +136,7 @@ describe('TimerForm', () => {
       wrapper.find(testId('form')).trigger('submit');
     });
 
-    it('dispatch activities/update', () => {
+    it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         stoppedAt: `${new Date()}`,
@@ -159,7 +159,7 @@ describe('TimerForm', () => {
       wrapper.find(testId('description')).trigger('keypress.enter');
     });
 
-    it('dispatch activities/update', () => {
+    it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         projectId: 2,
@@ -182,7 +182,7 @@ describe('TimerForm', () => {
       wrapper.find(testId('description')).trigger('keypress.enter');
     });
 
-    it('dispatch activities/add', () => {
+    it('dispatches activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         projectId: 2,
         description: 'Review my tasks',
@@ -197,7 +197,7 @@ describe('TimerForm', () => {
       wrapper.find(testId('description')).trigger('focus');
     });
 
-    it('show suggestions', () => {
+    it('shows suggestions', () => {
       expect(wrapper.find(testId('suggestions-wrapper')).isVisible()).toBe(
         true
       );
@@ -211,7 +211,7 @@ describe('TimerForm', () => {
       wrapper.find(testId('description')).trigger('blur');
     });
 
-    it('hide suggestions', () => {
+    it('hides suggestions', () => {
       expect(wrapper.find(testId('suggestions-wrapper')).isVisible()).toBe(
         false
       );
@@ -248,7 +248,7 @@ describe('TimerForm', () => {
       wrapper.find(testId('description')).trigger('change');
     });
 
-    it('dispatch activities/update', () => {
+    it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         projectId: 2,
@@ -264,7 +264,7 @@ describe('TimerForm', () => {
       wrapper.find(testId('suggestion')).trigger('click');
     });
 
-    it('dispatch activities/add', () => {
+    it('dispatches activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         projectId: 2,
         description: 'Review my tasks',

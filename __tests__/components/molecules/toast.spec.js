@@ -38,14 +38,14 @@ describe('Toast', () => {
       };
     });
 
-    it('show new message', () => {
+    it('shows new message', () => {
       wrapper.vm.$nextTick(() => {
         expect(wrapper.find(testId('content')).text()).toBe('new message');
         expect(wrapper.find(testId('content')).exists()).toBe(true);
       });
     });
 
-    it('hide toast delayed', () => {
+    it('hides toast delayed', () => {
       jest.runOnlyPendingTimers();
       expect(wrapper.find(testId('content')).exists()).toBe(false);
     });

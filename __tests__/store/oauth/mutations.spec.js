@@ -13,7 +13,7 @@ describe('Mutations', () => {
       });
     });
 
-    it('set client', () => {
+    it('sets client', () => {
       expect(state.client).toEqual({
         name: 'Hackaru for Desktop',
         scopes: ['activity:create', 'activity:update'],

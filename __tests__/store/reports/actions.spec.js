@@ -38,7 +38,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch current auth-api/request', () => {
+    it('dispatches current auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -54,7 +54,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch previous auth-api/request', () => {
+    it('dispatches previous auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -103,7 +103,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -141,7 +141,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {

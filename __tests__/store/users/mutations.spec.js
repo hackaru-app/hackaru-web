@@ -20,13 +20,13 @@ describe('Mutations', () => {
       });
     });
 
-    it('set user data', () => {
+    it('sets user data', () => {
       expect(state.timeZone).toBe('Asia/Tokyo');
       expect(state.receiveWeekReport).toBe(true);
       expect(state.receiveMonthReport).toBe(true);
     });
 
-    it('set locale', () => {
+    it('sets locale', () => {
       expect(mutations.$i18n.setLocale).toHaveBeenCalledWith('ja');
     });
   });

@@ -21,7 +21,7 @@ describe('Settings', () => {
       wrapper.find(testId('tabs')).vm.$emit('change', 1);
     });
 
-    it('move to selected page', () => {
+    it('moves to selected page', () => {
       expect($router.push).toHaveBeenCalledWith('./integrations');
     });
   });

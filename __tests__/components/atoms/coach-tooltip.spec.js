@@ -46,7 +46,7 @@ describe('CoachTooltip', () => {
       wrapper.vm.hide();
     });
 
-    it('hide tooltip', () => {
+    it('hides tooltip', () => {
       expect(wrapper.vm.params.show).toBe(false);
     });
 

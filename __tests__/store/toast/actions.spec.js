@@ -8,7 +8,7 @@ describe('Actions', () => {
       actions.success({ commit }, 'message');
     });
 
-    it('show toast', () => {
+    it('shows toast', () => {
       expect(commit).toHaveBeenCalledWith('SHOW_SUCCESS', 'message');
     });
   });
@@ -27,7 +27,7 @@ describe('Actions', () => {
       );
     });
 
-    it('show response.data.error-description', () => {
+    it('shows response.data.error-description', () => {
       expect(commit).toHaveBeenCalledWith('SHOW_ERROR', 'message');
     });
   });
@@ -46,7 +46,7 @@ describe('Actions', () => {
       );
     });
 
-    it('show response.data.message', () => {
+    it('shows response.data.message', () => {
       expect(commit).toHaveBeenCalledWith('SHOW_ERROR', 'message');
     });
   });
@@ -56,7 +56,7 @@ describe('Actions', () => {
       actions.error({ commit }, { message: 'message' });
     });
 
-    it('show message', () => {
+    it('shows message', () => {
       expect(commit).toHaveBeenCalledWith('SHOW_ERROR', 'message');
     });
   });

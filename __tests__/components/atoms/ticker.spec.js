@@ -24,7 +24,7 @@ describe('Ticker', () => {
       wrapper.vm.updateDuration();
     });
 
-    it('set duration correctly', () => {
+    it('sets duration correctly', () => {
       expect(wrapper.find('time').text()).toBe('01:00:00');
     });
   });
@@ -39,7 +39,7 @@ describe('Ticker', () => {
       wrapper.vm.updateDuration();
     });
 
-    it('set duration correctly', () => {
+    it('sets duration correctly', () => {
       expect(wrapper.find('time').text()).toBe('02:00:00');
     });
 

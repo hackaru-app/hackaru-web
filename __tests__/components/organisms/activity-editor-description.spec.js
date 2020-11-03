@@ -47,7 +47,7 @@ describe('ActivityEditorDescription', () => {
       wrapper.find(testId('description')).trigger('focus');
     });
 
-    it('show suggestions', () => {
+    it('shows suggestions', () => {
       expect(wrapper.find(testId('suggestions')).exists()).toBe(true);
     });
   });
@@ -59,7 +59,7 @@ describe('ActivityEditorDescription', () => {
       wrapper.find(testId('description')).trigger('blur');
     });
 
-    it('hide suggestions', () => {
+    it('hides suggestions', () => {
       expect(wrapper.find(testId('suggestions')).exists()).toBe(false);
     });
   });

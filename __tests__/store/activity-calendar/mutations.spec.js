@@ -16,15 +16,15 @@ describe('Mutations', () => {
       });
     });
 
-    it('set token', () => {
+    it('sets token', () => {
       expect(state.token).toBe('token');
     });
 
-    it('set userId', () => {
+    it('sets userId', () => {
       expect(state.userId).toBe(1);
     });
 
-    it('set baseUrl', () => {
+    it('sets baseUrl', () => {
       expect(state.baseUrl).toBe('webcal://localhost');
     });
   });

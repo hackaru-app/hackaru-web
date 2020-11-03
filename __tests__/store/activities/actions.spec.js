@@ -10,7 +10,7 @@ describe('Actions', () => {
       actions.fetchWorking({ dispatch });
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         { url: '/v1/activities/working' },
@@ -18,7 +18,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch entities/merge', () => {
+    it('dispatches entities/merge', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'entities/merge',
         {
@@ -43,7 +43,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -57,7 +57,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch entities/merge', () => {
+    it('dispatches entities/merge', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'entities/merge',
         {
@@ -76,7 +76,7 @@ describe('Actions', () => {
       actions.add({ dispatch }, {});
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -90,7 +90,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch entities/merge', () => {
+    it('dispatches entities/merge', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'entities/merge',
         {
@@ -109,7 +109,7 @@ describe('Actions', () => {
       actions.delete({ dispatch }, 1);
     });
 
-    it('dispatch entities/delete', () => {
+    it('dispatches entities/delete', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'entities/delete',
         { name: 'activities', id: 1 },
@@ -117,7 +117,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -136,7 +136,7 @@ describe('Actions', () => {
       actions.update({ dispatch }, { id: 1 });
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -150,7 +150,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch entities/merge', () => {
+    it('dispatches entities/merge', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'entities/merge',
         {

@@ -29,7 +29,7 @@ describe('SettingLogoutButton', () => {
       wrapper.find(testId('logout-button')).vm.$emit('click');
     });
 
-    it('dispatch auth/logout', () => {
+    it('dispatches auth/logout', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/logout');
     });
 

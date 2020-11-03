@@ -26,7 +26,7 @@ describe('Index', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch auth/sendPasswordResetEmail', () => {
+    it('dispatches auth/sendPasswordResetEmail', () => {
       expect($store.dispatch).toHaveBeenCalledWith(
         'auth/sendPasswordResetEmail',
         {

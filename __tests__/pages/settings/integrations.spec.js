@@ -36,7 +36,7 @@ describe('Integrations', () => {
       wrapper.find(testId('google-calendar-button')).vm.$emit('click');
     });
 
-    it('dispatch activity-calendar/createUrl', () => {
+    it('dispatches activity-calendar/createUrl', () => {
       expect($store.dispatch).toHaveBeenCalledWith(
         'activity-calendar/createUrl'
       );
@@ -69,7 +69,7 @@ describe('Integrations', () => {
       wrapper.find(testId('apple-calendar-button')).vm.$emit('click');
     });
 
-    it('dispatch activity-calendar/createUrl', () => {
+    it('dispatches activity-calendar/createUrl', () => {
       expect($store.dispatch).toHaveBeenCalledWith(
         'activity-calendar/createUrl'
       );
@@ -89,7 +89,7 @@ describe('Integrations', () => {
       wrapper.find(testId('outlook-button')).vm.$emit('click');
     });
 
-    it('dispatch activity-calendar/createUrl', () => {
+    it('dispatches activity-calendar/createUrl', () => {
       expect($store.dispatch).toHaveBeenCalledWith(
         'activity-calendar/createUrl'
       );
