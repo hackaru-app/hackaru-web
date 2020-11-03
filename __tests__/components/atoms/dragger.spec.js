@@ -16,7 +16,7 @@ describe('Dragger', () => {
       wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
     });
 
-    it('emit start', () => {
+    it('emits start', () => {
       expect(wrapper.emitted('start')).toBeTruthy();
     });
   });
@@ -28,15 +28,15 @@ describe('Dragger', () => {
       wrapper.find('.drag-drop').vm.$emit('move', dragEvent(70, 80));
     });
 
-    it('emit moving', () => {
+    it('emits moving', () => {
       expect(wrapper.emitted('moving')).toBeTruthy();
     });
 
-    it('emit update:left', () => {
+    it('emits update:left', () => {
       expect(wrapper.emitted('update:left')[0][0]).toBe(70);
     });
 
-    it('emit update:top', () => {
+    it('emits update:top', () => {
       expect(wrapper.emitted('update:top')[0][0]).toBe(80);
     });
   });
@@ -49,7 +49,7 @@ describe('Dragger', () => {
       wrapper.find('.drag-drop').vm.$emit('end', dragEvent());
     });
 
-    it('emit end', () => {
+    it('emits end', () => {
       expect(wrapper.emitted('end')).toBeTruthy();
     });
   });
@@ -61,7 +61,7 @@ describe('Dragger', () => {
       wrapper.find('.drag-drop').vm.$emit('end', dragEvent(0, 0));
     });
 
-    it('emit cancel', () => {
+    it('emits cancel', () => {
       expect(wrapper.emitted('cancel')).toBeTruthy();
     });
   });

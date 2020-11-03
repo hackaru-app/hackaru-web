@@ -17,7 +17,7 @@ describe('Tabs', () => {
       wrapper.findAll('li').at(1).trigger('click');
     });
 
-    it('emit change', () => {
+    it('emits change', () => {
       expect(wrapper.emitted('change')[0][0]).toBe(1);
     });
   });

@@ -16,7 +16,7 @@ describe('Resizer', () => {
       wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent());
     });
 
-    it('emit start', () => {
+    it('emits start', () => {
       expect(wrapper.emitted('start')).toBeTruthy();
     });
   });
@@ -28,11 +28,11 @@ describe('Resizer', () => {
       wrapper.find({ ref: 'drag-drop' }).vm.$emit('move', dragEvent(0, 80));
     });
 
-    it('emit resizing', () => {
+    it('emits resizing', () => {
       expect(wrapper.emitted('resizing')).toBeTruthy();
     });
 
-    it('emit update:height', () => {
+    it('emits update:height', () => {
       expect(wrapper.emitted('update:height')[0][0]).toBe(80);
     });
   });
@@ -45,7 +45,7 @@ describe('Resizer', () => {
       wrapper.find({ ref: 'drag-drop' }).vm.$emit('end', dragEvent());
     });
 
-    it('emit end', () => {
+    it('emits end', () => {
       expect(wrapper.emitted('end')).toBeTruthy();
     });
   });
@@ -57,7 +57,7 @@ describe('Resizer', () => {
       wrapper.find({ ref: 'drag-drop' }).vm.$emit('end', dragEvent(0, 0));
     });
 
-    it('emit cancel', () => {
+    it('emits cancel', () => {
       expect(wrapper.emitted('cancel')).toBeTruthy();
     });
   });

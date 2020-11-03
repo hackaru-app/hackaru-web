@@ -35,7 +35,7 @@ describe('ProjectEditor', () => {
       });
     });
 
-    it('emit pop', () => {
+    it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
@@ -58,7 +58,7 @@ describe('ProjectEditor', () => {
       });
     });
 
-    it('emit pop', () => {
+    it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
@@ -80,7 +80,7 @@ describe('ProjectEditor', () => {
       expect($store.dispatch).toHaveBeenCalledWith('projects/delete', 1);
     });
 
-    it('emit pop', () => {
+    it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });

@@ -39,7 +39,7 @@ describe('ProjectList', () => {
       wrapper.find('.left-arrow-button').vm.$emit('click');
     });
 
-    it('emit pop', () => {
+    it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
@@ -50,7 +50,7 @@ describe('ProjectList', () => {
       wrapper.find('.add-button').vm.$emit('click');
     });
 
-    it('emit push', () => {
+    it('emits push', () => {
       expect(wrapper.emitted('push')[0][0]).toEqual({
         component: ProjectEditor,
       });
@@ -63,7 +63,7 @@ describe('ProjectList', () => {
       wrapper.findAll('.edit-button').at(1).vm.$emit('click');
     });
 
-    it('emit push', () => {
+    it('emits push', () => {
       expect(wrapper.emitted('push')[0][0]).toEqual({
         component: ProjectEditor,
         params: {
@@ -81,7 +81,7 @@ describe('ProjectList', () => {
       wrapper.findAll('.project-content').at(2).trigger('click');
     });
 
-    it('emit pop', () => {
+    it('emits pop', () => {
       expect(wrapper.emitted('pop')[0][0]).toEqual({
         project: {
           id: 2,

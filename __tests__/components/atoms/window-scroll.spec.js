@@ -16,11 +16,11 @@ describe('WindowScroll', () => {
       window.dispatchEvent(new CustomEvent('scroll'));
     });
 
-    it('emit start only once', () => {
+    it('emits start only once', () => {
       expect(wrapper.emitted('start').length).toBe(1);
     });
 
-    it('emit scroll', () => {
+    it('emits scroll', () => {
       expect(wrapper.emitted('scroll').length).toBe(3);
     });
   });
@@ -32,7 +32,7 @@ describe('WindowScroll', () => {
       jest.runOnlyPendingTimers();
     });
 
-    it('emit end', () => {
+    it('emits end', () => {
       expect(wrapper.emitted('end')).toBeTruthy();
     });
   });

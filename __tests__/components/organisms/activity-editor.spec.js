@@ -111,7 +111,7 @@ describe('ActivityEditor', () => {
       wrapper.find('.project-button').trigger('click');
     });
 
-    it('emit push', () => {
+    it('emits push', () => {
       expect(wrapper.emitted('push')[0][0]).toEqual({
         component: ProjectList,
         params: { selected: 2 },

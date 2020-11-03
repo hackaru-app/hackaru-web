@@ -69,7 +69,7 @@ describe('ActivityEditorDescription', () => {
       wrapper.find('.description').trigger('input');
     });
 
-    it('emit update:description', () => {
+    it('emits update:description', () => {
       expect(wrapper.emitted('update:description')[0][0]).toBe(
         'Review my tasks'
       );
@@ -83,13 +83,13 @@ describe('ActivityEditorDescription', () => {
       wrapper.find('.suggestion').trigger('click');
     });
 
-    it('emit update:description', () => {
+    it('emits update:description', () => {
       expect(wrapper.emitted('update:description')[0][0]).toBe(
         'Review my tasks'
       );
     });
 
-    it('emit update:project', () => {
+    it('emits update:project', () => {
       expect(wrapper.emitted('update:project')[0][0]).toEqual({
         id: 2,
         name: 'Review',

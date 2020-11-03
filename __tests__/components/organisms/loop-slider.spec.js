@@ -47,7 +47,7 @@ describe('LoopSlider', () => {
       jest.runOnlyPendingTimers();
     });
 
-    it('emit slide-left', () => {
+    it('emits slide-left', () => {
       expect(wrapper.emitted('slide-left')).toBeTruthy();
     });
   });
@@ -59,7 +59,7 @@ describe('LoopSlider', () => {
       jest.runOnlyPendingTimers();
     });
 
-    it('emit slide-right', () => {
+    it('emits slide-right', () => {
       expect(wrapper.emitted('slide-right')).toBeTruthy();
     });
   });

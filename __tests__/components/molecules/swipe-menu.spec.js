@@ -97,7 +97,7 @@ describe('SwipeMenu', () => {
       );
     });
 
-    it('emit swipe-left', () => {
+    it('emits swipe-left', () => {
       expect(wrapper.emitted('swipe-left')).toBeTruthy();
     });
   });
@@ -117,7 +117,7 @@ describe('SwipeMenu', () => {
       );
     });
 
-    it('emit swipe-right', () => {
+    it('emits swipe-right', () => {
       expect(wrapper.emitted('swipe-right')).toBeTruthy();
     });
   });

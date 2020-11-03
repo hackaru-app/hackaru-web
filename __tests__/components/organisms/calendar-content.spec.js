@@ -68,7 +68,7 @@ describe('CalendarContent', () => {
       day.vm.$emit('dragging', { el: 'dummy', guideRulerTop: 100 });
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toBe('dummy');
     });
 
@@ -84,7 +84,7 @@ describe('CalendarContent', () => {
       day.vm.$emit('drop');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
   });

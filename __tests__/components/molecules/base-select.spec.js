@@ -24,7 +24,7 @@ describe('BaseSelect', () => {
       wrapper.findAll('option').at(1).setSelected();
     });
 
-    it('emit change', () => {
+    it('emits change', () => {
       expect(wrapper.emitted('change')[0][0]).toBe('orange');
     });
   });

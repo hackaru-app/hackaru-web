@@ -14,7 +14,7 @@ describe('DatetimePicker', () => {
       wrapper.find('.time').setValue('bar');
     });
 
-    it('emit input with undefined', () => {
+    it('emits input with undefined', () => {
       expect(wrapper.emitted('input')[0]).toEqual([undefined]);
       expect(wrapper.emitted('input')[1]).toEqual([undefined]);
     });
@@ -27,7 +27,7 @@ describe('DatetimePicker', () => {
       wrapper.find('.date').setValue('2019-01-01');
     });
 
-    it('emit input with datetime', () => {
+    it('emits input with datetime', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
         dayjs('2019-01-01 11:22:33').format(),
       ]);
@@ -41,7 +41,7 @@ describe('DatetimePicker', () => {
       wrapper.find('.time').setValue('22:33:44');
     });
 
-    it('emit input with datetime', () => {
+    it('emits input with datetime', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
         dayjs('2019-03-03 22:33:44').format(),
       ]);

@@ -69,7 +69,7 @@ describe('CalendarDay', () => {
       expect(wrapper.find('.ghost-activity').isVisible()).toBe(true);
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
         guideRulerTop: 100 - 50 + 20,
@@ -84,7 +84,7 @@ describe('CalendarDay', () => {
       wrapper.find({ ref: 'resizer' }).vm.$emit('resizing');
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
         guideRulerTop: 50 + 20,
@@ -99,7 +99,7 @@ describe('CalendarDay', () => {
       wrapper.find({ ref: 'resizer' }).vm.$emit('end');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
@@ -122,7 +122,7 @@ describe('CalendarDay', () => {
       wrapper.find({ ref: 'resizer' }).vm.$emit('cancel');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 

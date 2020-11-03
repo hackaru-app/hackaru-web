@@ -77,7 +77,7 @@ describe('CalendarActivity', () => {
       expect(wrapper.find('.resizer').props().enabled).toBe(false);
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
         guideRulerTop: 60 + 23,
@@ -91,7 +91,7 @@ describe('CalendarActivity', () => {
       wrapper.find({ ref: 'dragger' }).vm.$emit('moving');
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
         guideRulerTop: 60 + 23,
@@ -106,7 +106,7 @@ describe('CalendarActivity', () => {
       wrapper.find({ ref: 'dragger' }).vm.$emit('end');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
@@ -126,7 +126,7 @@ describe('CalendarActivity', () => {
       wrapper.find({ ref: 'dragger' }).vm.$emit('end');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
@@ -141,7 +141,7 @@ describe('CalendarActivity', () => {
       wrapper.find({ ref: 'dragger' }).vm.$emit('cancel');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
   });
@@ -156,7 +156,7 @@ describe('CalendarActivity', () => {
       expect(wrapper.find({ ref: 'dragger' }).props().enabled).toBe(false);
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
         guideRulerTop: 60 + 23 + 60,
@@ -170,7 +170,7 @@ describe('CalendarActivity', () => {
       wrapper.find('.resizer').vm.$emit('end');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
@@ -188,7 +188,7 @@ describe('CalendarActivity', () => {
       wrapper.find('.resizer').vm.$emit('cancel');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
   });
