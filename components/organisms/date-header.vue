@@ -7,7 +7,6 @@
       <transition name="fade">
         <base-button
           v-if="!hasToday"
-          ref="today-button"
           class="is-marshmallow today-button"
           @click="today"
         >

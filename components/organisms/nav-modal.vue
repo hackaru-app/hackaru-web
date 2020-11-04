@@ -12,7 +12,6 @@
     >
       <keep-alive :include="keepAlives">
         <component
-          ref="current"
           :is="current"
           :params="params"
           :pop-enabled="stack.length > 0"

@@ -3,7 +3,7 @@
     <base-button class="is-marshmallow base-button">
       {{ value }}
     </base-button>
-    <select ref="select" @change="change">
+    <select @change="change">
       <slot />
     </select>
   </div>
