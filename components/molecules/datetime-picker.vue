@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
+import { format, formatISO, parseISO, isValid, isEqual } from 'date-fns';
 
 export default {
   props: {
@@ -41,24 +41,21 @@ export default {
     value: {
       immediate: true,
       handler() {
-        if (!this.value) return;
-        if (this.getDayJs().isSame(this.value)) return;
-        this.date = dayjs(this.value).format('YYYY-MM-DD');
-        this.time = dayjs(this.value).format('HH:mm:ss');
+        const date = parseISO(this.value);
+        if (!isValid(date)) return;
+        if (isEqual(this.getInputtedDate(), date)) return;
+        this.date = format(date, 'yyyy-MM-dd');
+        this.time = format(date, 'HH:mm:ss');
       },
     },
   },
   methods: {
-    getDayJs() {
-      if (this.$refs.date && this.$refs.time) {
-        return dayjs([this.$refs.date.value, this.$refs.time.value].join(' '));
-      } else {
-        return dayjs();
-      }
+    getInputtedDate() {
+      return parseISO(`${this.$refs.date.value}T${this.$refs.time.value}`);
     },
     update() {
-      const date = this.getDayJs();
-      this.$emit('input', date.isValid() ? date.format() : undefined);
+      const date = this.getInputtedDate();
+      this.$emit('input', isValid(date) ? formatISO(date) : undefined);
     },
   },
 };
