@@ -51,7 +51,11 @@ export default {
   },
   methods: {
     getInputtedDate() {
-      return parseISO(`${this.$refs.date.value}T${this.$refs.time.value}`);
+      if (this.$refs.date && this.$refs.time) {
+        return parseISO(`${this.$refs.date.value}T${this.$refs.time.value}`);
+      } else {
+        return parseISO(new Date());
+      }
     },
     update() {
       const date = this.getInputtedDate();
