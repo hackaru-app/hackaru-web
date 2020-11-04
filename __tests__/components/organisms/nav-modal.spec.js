@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import NavModal from '@/components/organisms/nav-modal';
-
-const testId = (id) => `[data-test-id="${id}"]`;
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('NavModal', () => {
   let wrapper;

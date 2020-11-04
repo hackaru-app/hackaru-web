@@ -1,8 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import DatetimePicker from '@/components/molecules/datetime-picker';
 import dayjs from 'dayjs';
-
-const testId = (id) => `[data-test-id="${id}"]`;
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('DatetimePicker', () => {
   let wrapper;

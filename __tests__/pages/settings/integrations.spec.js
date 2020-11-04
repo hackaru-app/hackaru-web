@@ -1,8 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Integrations from '@/pages/settings/integrations';
-
-const testId = (id) => `[data-test-id="${id}"]`;
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('Integrations', () => {
   let wrapper;

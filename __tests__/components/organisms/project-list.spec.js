@@ -2,8 +2,7 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import ProjectList from '@/components/organisms/project-list';
 import ProjectEditor from '@/components/organisms/project-editor';
-
-const testId = (id) => `[data-test-id="${id}"]`;
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('ProjectList', () => {
   let wrapper;

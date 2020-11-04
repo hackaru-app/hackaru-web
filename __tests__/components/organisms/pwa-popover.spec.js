@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import PwaPopover from '@/components/organisms/pwa-popover';
-
-const testId = (id) => `[data-test-id="${id}"]`;
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('PwaPopover', () => {
   let wrapper;

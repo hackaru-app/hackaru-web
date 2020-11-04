@@ -113,8 +113,9 @@
       "vue"
     ],
     "testPathIgnorePatterns": [
-      "/__tests__/__setups__/",
-      "/node_modules/"
+      "__tests__/__setups__/",
+      "__tests__/__helpers__/",
+      "node_modules/"
     ],
     "transform": {
       "^.+\\.js$": "babel-jest",
@@ -130,8 +131,10 @@
       "!static/sw.js",
       "!coverage/**",
       "!plugins/*",
-      "!**/node_modules/**",
-      "!**/__tests__/__setups__/**"
+      "!.nuxt/**",
+      "!node_modules/**",
+      "!__tests__/__setups__/**",
+      "!__tests__/__helpers__/**"
     ],
     "snapshotSerializers": [
       "jest-serializer-vue"

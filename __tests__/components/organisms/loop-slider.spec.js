@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import LoopSlider from '@/components/organisms/loop-slider';
-
-const testId = (id) => `[data-test-id="${id}"]`;
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('LoopSlider', () => {
   let wrapper;

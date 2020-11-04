@@ -4,8 +4,7 @@ import { shallowMount } from '@vue/test-utils';
 import Reports from '@/pages/reports/index';
 import { parseISO, formatISO } from 'date-fns';
 import { stringify } from 'query-string';
-
-const testId = (id) => `[data-test-id="${id}"]`;
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('Index', () => {
   let wrapper;

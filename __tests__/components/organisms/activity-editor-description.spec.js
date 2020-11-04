@@ -1,8 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import ActivityEditorDescription from '@/components/organisms/activity-editor-description';
-
-const testId = (id) => `[data-test-id="${id}"]`;
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('ActivityEditorDescription', () => {
   let wrapper;

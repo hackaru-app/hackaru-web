@@ -2,8 +2,7 @@ import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import TimerForm from '@/components/organisms/timer-form';
-
-const testId = (id) => `[data-test-id="${id}"]`;
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('TimerForm', () => {
   let wrapper;

@@ -3,8 +3,7 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Calendar from '@/pages/calendar';
 import { parseISO } from 'date-fns';
-
-const testId = (id) => `[data-test-id="${id}"]`;
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('Calendar', () => {
   let wrapper;
