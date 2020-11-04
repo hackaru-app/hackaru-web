@@ -13,7 +13,8 @@
           v-model="email"
           :placeholder="$t('email')"
           type="email"
-          class="email has-border"
+          class="has-border"
+          data-test-id="email"
           autofocus
           required
         />
@@ -21,14 +22,16 @@
           v-model="password"
           :placeholder="$t('password')"
           type="password"
-          class="password has-border"
+          class="has-border"
+          data-test-id="password"
           required
         />
         <base-input
           v-if="!hasAccount"
           v-model="passwordConfirmation"
           :placeholder="$t('passwordConfirmation')"
-          class="password-confirmation has-border"
+          class="has-border"
+          data-test-id="password-confirmation"
           type="password"
         />
         <footer>

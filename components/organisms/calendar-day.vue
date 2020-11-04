@@ -10,7 +10,7 @@
     @end="ghostDrop"
     @cancel="ghostDrop"
   >
-    <section ref="events" class="events">
+    <section class="events">
       <div class="row">
         <calendar-event
           v-show="ghostVisibility"
@@ -18,7 +18,7 @@
             top: `${ghostTop}px`,
             height: `${ghostHeight}px`,
           }"
-          class="ghost-activity"
+          data-test-id="ghost-activity"
           title="No Project"
           color="#cccfd9"
         />

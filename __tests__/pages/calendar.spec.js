@@ -3,6 +3,7 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Calendar from '@/pages/calendar';
 import { parseISO } from 'date-fns';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('Calendar', () => {
   let wrapper;
@@ -27,7 +28,7 @@ describe('Calendar', () => {
       wrapper.setData({ date: parseISO('2019-03-01T01:23:45') });
     });
 
-    it('dispatch activities/fetchByRange', () => {
+    it('dispatches activities/fetchByRange', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/fetchByRange', {
         start: parseISO('2019-02-24T00:00:00'),
         end: parseISO('2019-03-02T23:59:59.999'),
@@ -40,7 +41,7 @@ describe('Calendar', () => {
       wrapper = factory();
     });
 
-    it('set days correctly', () => {
+    it('sets days correctly', () => {
       expect(wrapper.vm.days).toEqual([
         parseISO('2019-01-27T00:00:00'),
         parseISO('2019-01-28T00:00:00'),
@@ -56,10 +57,10 @@ describe('Calendar', () => {
   describe('when slide left', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.loop-slider').vm.$emit('slide-left');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-left');
     });
 
-    it('set prev weeks', () => {
+    it('sets prev weeks', () => {
       expect(wrapper.vm.days).toEqual([
         parseISO('2019-01-20T00:00:00'),
         parseISO('2019-01-21T00:00:00'),
@@ -75,10 +76,10 @@ describe('Calendar', () => {
   describe('when slide right', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.loop-slider').vm.$emit('slide-right');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
     });
 
-    it('set next weeks', () => {
+    it('sets next weeks', () => {
       expect(wrapper.vm.days).toEqual([
         parseISO('2019-02-03T00:00:00'),
         parseISO('2019-02-04T00:00:00'),
@@ -94,11 +95,11 @@ describe('Calendar', () => {
   describe('when click today-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.loop-slider').vm.$emit('slide-right');
-      wrapper.find('.date-header').vm.$emit('today');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
+      wrapper.find(testId('date-header')).vm.$emit('today');
     });
 
-    it('set today weeks', () => {
+    it('sets today weeks', () => {
       expect(wrapper.vm.days).toEqual([
         parseISO('2019-01-27T00:00:00'),
         parseISO('2019-01-28T00:00:00'),

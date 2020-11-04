@@ -11,7 +11,8 @@
         v-model="email"
         :placeholder="$t('email')"
         type="email"
-        class="email has-border"
+        class="has-border"
+        data-test-id="email"
         autofocus
         required
       />

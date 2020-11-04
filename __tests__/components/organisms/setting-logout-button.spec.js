@@ -1,6 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import SettingLogoutButton from '@/components/organisms/setting-logout-button';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('SettingLogoutButton', () => {
   let wrapper;
@@ -24,10 +25,10 @@ describe('SettingLogoutButton', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
-      wrapper.find('.logout-button').vm.$emit('click');
+      wrapper.find(testId('logout-button')).vm.$emit('click');
     });
 
-    it('dispatch auth/logout', () => {
+    it('dispatches auth/logout', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/logout');
     });
 
@@ -44,7 +45,7 @@ describe('SettingLogoutButton', () => {
     beforeEach(() => {
       global.confirm = () => false;
       wrapper = factory();
-      wrapper.find('.logout-button').vm.$emit('click');
+      wrapper.find(testId('logout-button')).vm.$emit('click');
     });
 
     it('does not dispatch ', () => {

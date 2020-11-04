@@ -31,7 +31,7 @@ describe('Delighted', () => {
       factory();
     });
 
-    it('show survey', () => {
+    it('shows survey', () => {
       expect(window.delighted.survey).toHaveBeenCalledWith({
         name: 1,
         properties: {

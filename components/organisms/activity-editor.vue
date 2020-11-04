@@ -13,7 +13,12 @@
       />
 
       <modal-item>
-        <button type="button" class="project-button" @click="editProject">
+        <button
+          type="button"
+          data-test-id="project-button"
+          class="project-button"
+          @click="editProject"
+        >
           <project-name
             :name="project.name"
             :color="project.color"
@@ -49,6 +54,7 @@
           <base-button
             v-if="id"
             type="button"
+            data-test-id="delete-button"
             class="delete-button has-icon"
             @click="deleteActivity"
           >

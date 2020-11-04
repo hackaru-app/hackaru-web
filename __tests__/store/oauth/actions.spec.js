@@ -29,7 +29,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -139,7 +139,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -246,7 +246,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {

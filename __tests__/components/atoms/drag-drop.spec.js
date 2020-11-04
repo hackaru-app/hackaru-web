@@ -16,7 +16,7 @@ describe('DragDrop', () => {
       jest.runOnlyPendingTimers();
     });
 
-    it('emit start', () => {
+    it('emits start', () => {
       expect(wrapper.emitted('start')).toBeTruthy();
     });
   });
@@ -29,7 +29,7 @@ describe('DragDrop', () => {
       wrapper.trigger('mousemove', { pageX: 70, pageY: 80 });
     });
 
-    it('emit move', () => {
+    it('emits move', () => {
       expect(wrapper.emitted('move')).toBeTruthy();
     });
 
@@ -48,7 +48,7 @@ describe('DragDrop', () => {
       wrapper.trigger('mouseup');
     });
 
-    it('emit end', () => {
+    it('emits end', () => {
       expect(wrapper.emitted('end')).toBeTruthy();
     });
   });
@@ -60,7 +60,7 @@ describe('DragDrop', () => {
       jest.runOnlyPendingTimers();
     });
 
-    it('emit start', () => {
+    it('emits start', () => {
       expect(wrapper.emitted('start')).toBeTruthy();
     });
   });
@@ -73,7 +73,7 @@ describe('DragDrop', () => {
       wrapper.trigger('touchmove', touchEvent);
     });
 
-    it('emit move', () => {
+    it('emits move', () => {
       expect(wrapper.emitted('move')).toBeTruthy();
     });
   });
@@ -87,7 +87,7 @@ describe('DragDrop', () => {
       wrapper.trigger('touchend', touchEvent);
     });
 
-    it('emit end', () => {
+    it('emits end', () => {
       expect(wrapper.emitted('end')).toBeTruthy();
     });
   });

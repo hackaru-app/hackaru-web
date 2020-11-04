@@ -1,5 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import DeltaIcon from '@/components/molecules/delta-icon';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('DeltaIcon', () => {
   let wrapper;
@@ -22,13 +23,13 @@ describe('DeltaIcon', () => {
     });
 
     it('has name is correctly', () => {
-      expect(wrapper.find('.icon').attributes().name).toContain(
+      expect(wrapper.find(testId('icon')).attributes().name).toContain(
         'arrow-up-icon'
       );
     });
 
     it('has class is correctly', () => {
-      expect(wrapper.find('.icon').classes()).toContain('up');
+      expect(wrapper.find(testId('icon')).classes()).toContain('up');
     });
   });
 
@@ -42,13 +43,13 @@ describe('DeltaIcon', () => {
     });
 
     it('has name is correctly', () => {
-      expect(wrapper.find('.icon').attributes().name).toContain(
+      expect(wrapper.find(testId('icon')).attributes().name).toContain(
         'arrow-up-icon'
       );
     });
 
     it('has class is correctly', () => {
-      expect(wrapper.find('.icon').classes()).toContain('down');
+      expect(wrapper.find(testId('icon')).classes()).toContain('down');
     });
   });
 
@@ -62,11 +63,13 @@ describe('DeltaIcon', () => {
     });
 
     it('has name is correctly', () => {
-      expect(wrapper.find('.icon').attributes().name).toContain('minus-icon');
+      expect(wrapper.find(testId('icon')).attributes().name).toContain(
+        'minus-icon'
+      );
     });
 
     it('has class is correctly', () => {
-      expect(wrapper.find('.icon').classes()).toContain('even');
+      expect(wrapper.find(testId('icon')).classes()).toContain('even');
     });
   });
 });

@@ -2,6 +2,7 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import ActivityEditor from '@/components/organisms/activity-editor';
 import ProjectList from '@/components/organisms/project-list';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('ActivityEditor', () => {
   let wrapper;
@@ -40,7 +41,7 @@ describe('ActivityEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch activities/update', () => {
+    it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         projectId: 2,
@@ -50,7 +51,7 @@ describe('ActivityEditor', () => {
       });
     });
 
-    it('hide modal', () => {
+    it('hides modal', () => {
       expect($modal.hide).toHaveBeenCalledWith('activity');
     });
   });
@@ -63,7 +64,7 @@ describe('ActivityEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch activities/add', () => {
+    it('dispatches activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         projectId: 2,
         description: 'Create a database.',
@@ -72,7 +73,7 @@ describe('ActivityEditor', () => {
       });
     });
 
-    it('hide modal', () => {
+    it('hides modal', () => {
       expect($modal.hide).toHaveBeenCalledWith('activity');
     });
   });
@@ -81,14 +82,14 @@ describe('ActivityEditor', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
-      wrapper.find('.delete-button').vm.$emit('click');
+      wrapper.find(testId('delete-button')).vm.$emit('click');
     });
 
-    it('dispatch activities/delete', () => {
+    it('dispatches activities/delete', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/delete', 1);
     });
 
-    it('hide modal', () => {
+    it('hides modal', () => {
       expect($modal.hide).toHaveBeenCalledWith('activity');
     });
   });
@@ -97,7 +98,7 @@ describe('ActivityEditor', () => {
     beforeEach(() => {
       global.confirm = () => false;
       wrapper = factory();
-      wrapper.find('.delete-button').vm.$emit('click');
+      wrapper.find(testId('delete-button')).vm.$emit('click');
     });
 
     it('does not dispatch activities/delete', () => {
@@ -108,10 +109,10 @@ describe('ActivityEditor', () => {
   describe('when press project button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.project-button').trigger('click');
+      wrapper.find(testId('project-button')).trigger('click');
     });
 
-    it('emit push', () => {
+    it('emits push', () => {
       expect(wrapper.emitted('push')[0][0]).toEqual({
         component: ProjectList,
         params: { selected: 2 },

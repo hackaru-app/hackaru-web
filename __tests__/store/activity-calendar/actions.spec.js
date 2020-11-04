@@ -14,7 +14,7 @@ describe('Actions', () => {
       actions.createUrl({ dispatch, commit });
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {

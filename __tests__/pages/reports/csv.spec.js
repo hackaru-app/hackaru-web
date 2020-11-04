@@ -31,7 +31,7 @@ describe('Csv', () => {
       factory();
     });
 
-    it('dispatch reports/fetchCsv', () => {
+    it('dispatches reports/fetchCsv', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetchCsv', {
         start: parseISO('2019-01-31T00:00:00'),
         end: parseISO('2019-01-31T23:59:59.999'),

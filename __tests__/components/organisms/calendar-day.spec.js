@@ -2,6 +2,7 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import { parseISO } from 'date-fns';
 import CalendarDay from '@/components/organisms/calendar-day';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('CalendarDay', () => {
   let wrapper;
@@ -65,11 +66,11 @@ describe('CalendarDay', () => {
         .vm.$emit('start', { preventDefault: () => {}, pageY: 100 });
     });
 
-    it('show ghost-activity', () => {
-      expect(wrapper.find('.ghost-activity').isVisible()).toBe(true);
+    it('shows ghost-activity', () => {
+      expect(wrapper.find(testId('ghost-activity')).isVisible()).toBe(true);
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
         guideRulerTop: 100 - 50 + 20,
@@ -84,7 +85,7 @@ describe('CalendarDay', () => {
       wrapper.find({ ref: 'resizer' }).vm.$emit('resizing');
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
         guideRulerTop: 50 + 20,
@@ -99,15 +100,15 @@ describe('CalendarDay', () => {
       wrapper.find({ ref: 'resizer' }).vm.$emit('end');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('hide ghost-activity', () => {
-      expect(wrapper.find('.ghost-activity').isVisible()).toBe(false);
+    it('hides ghost-activity', () => {
+      expect(wrapper.find(testId('ghost-activity')).isVisible()).toBe(false);
     });
 
-    it('dispatch activities/add', () => {
+    it('dispatches activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         startedAt: parseISO('2019-01-01T01:00:00'),
         stoppedAt: parseISO('2019-01-01T01:20:00'),
@@ -122,15 +123,15 @@ describe('CalendarDay', () => {
       wrapper.find({ ref: 'resizer' }).vm.$emit('cancel');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('hide ghost-activity', () => {
-      expect(wrapper.find('.ghost-activity').isVisible()).toBe(false);
+    it('hides ghost-activity', () => {
+      expect(wrapper.find(testId('ghost-activity')).isVisible()).toBe(false);
     });
 
-    it('dispatch activities/add', () => {
+    it('dispatches activities/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         startedAt: parseISO('2019-01-01T01:00:00'),
         stoppedAt: parseISO('2019-01-01T01:20:00'),

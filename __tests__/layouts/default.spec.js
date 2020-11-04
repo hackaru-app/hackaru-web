@@ -22,7 +22,7 @@ describe('Default', () => {
     $store.reset();
   });
 
-  it('dispatch projects/fetch', () => {
+  it('dispatches projects/fetch', () => {
     factory();
     expect($store.dispatch).toHaveBeenCalledWith('projects/fetch');
   });

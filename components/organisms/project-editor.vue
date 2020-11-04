@@ -34,7 +34,8 @@
 
         <base-button
           v-if="id !== undefined"
-          class="delete-button has-icon"
+          class="has-icon"
+          data-test-id="delete-button"
           type="button"
           @click="deleteProject"
         >

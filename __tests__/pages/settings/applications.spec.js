@@ -1,6 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Applications from '@/pages/settings/applications';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('Applications', () => {
   let wrapper;
@@ -34,7 +35,7 @@ describe('Applications', () => {
     $store.reset();
   });
 
-  it('dispatch applications/fetch', () => {
+  it('dispatches applications/fetch', () => {
     factory();
     expect($store.dispatch).toHaveBeenCalledWith('applications/fetch');
   });
@@ -43,10 +44,10 @@ describe('Applications', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
-      wrapper.findAll('.delete-button').at(0).vm.$emit('click');
+      wrapper.findAll(testId('delete-button')).at(0).vm.$emit('click');
     });
 
-    it('dispatch applications/delete', () => {
+    it('dispatches applications/delete', () => {
       expect($store.dispatch).toHaveBeenCalledWith('applications/delete', 1);
     });
   });
@@ -55,7 +56,7 @@ describe('Applications', () => {
     beforeEach(() => {
       global.confirm = () => false;
       wrapper = factory();
-      wrapper.findAll('.delete-button').at(0).vm.$emit('click');
+      wrapper.findAll(testId('delete-button')).at(0).vm.$emit('click');
     });
 
     it('does not dispatch', () => {
@@ -69,10 +70,10 @@ describe('Applications', () => {
   describe('when click application', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.findAll('.application h1').at(0).trigger('click');
+      wrapper.findAll(testId('application-name')).at(0).trigger('click');
     });
 
-    it('show modal', () => {
+    it('shows modal', () => {
       expect($modal.show).toHaveBeenCalledWith('application');
     });
   });

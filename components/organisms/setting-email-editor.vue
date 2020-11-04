@@ -14,7 +14,8 @@
         v-model="email"
         :placeholder="$t('email')"
         type="email"
-        class="email has-border"
+        class="has-border"
+        data-test-id="email"
         required
         @focus="$event.target.select()"
       />
@@ -22,7 +23,8 @@
         v-model="currentPassword"
         :placeholder="$t('password')"
         type="password"
-        class="current-password has-border"
+        class="has-border"
+        data-test-id="current-password"
         required
       />
       <base-button class="is-rounded is-primary" type="submit">{{

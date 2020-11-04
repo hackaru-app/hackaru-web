@@ -1,6 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import SettingDeleteAccountButton from '@/components/organisms/setting-delete-account-button';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('SettingDeleteAccountButton', () => {
   let wrapper;
@@ -25,10 +26,10 @@ describe('SettingDeleteAccountButton', () => {
   describe('when click delete-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.delete-account-button').vm.$emit('click');
+      wrapper.find(testId('delete-account-button')).vm.$emit('click');
     });
 
-    it('show modal', () => {
+    it('shows modal', () => {
       expect($modal.show).toHaveBeenCalled();
     });
   });
@@ -38,11 +39,11 @@ describe('SettingDeleteAccountButton', () => {
       $store.dispatch.mockReturnValue(true);
       global.confirm = () => true;
       wrapper = factory();
-      wrapper.find('.current-password').setValue('password');
+      wrapper.find(testId('current-password')).setValue('password');
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch auth/deleteAccount', () => {
+    it('dispatches auth/deleteAccount', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/deleteAccount', {
         currentPassword: 'password',
       });
@@ -58,7 +59,7 @@ describe('SettingDeleteAccountButton', () => {
       $store.dispatch.mockReturnValue(true);
       global.confirm = () => false;
       wrapper = factory();
-      wrapper.find('.current-password').setValue('password');
+      wrapper.find(testId('current-password')).setValue('password');
       wrapper.find('form').trigger('submit.prevent');
     });
 

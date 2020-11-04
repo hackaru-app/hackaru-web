@@ -36,7 +36,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
@@ -94,7 +94,7 @@ describe('Actions', () => {
       result = await actions.fetchAccessToken({ state, commit, dispatch });
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
@@ -142,7 +142,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
@@ -206,7 +206,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -258,7 +258,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {
@@ -293,7 +293,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
@@ -328,7 +328,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
@@ -364,7 +364,7 @@ describe('Actions', () => {
       await actions.logout({ state, dispatch, commit });
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
@@ -397,7 +397,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {

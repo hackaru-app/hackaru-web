@@ -2,6 +2,7 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import { parseISO } from 'date-fns';
 import CalendarActivity from '@/components/organisms/calendar-activity';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('CalendarActivity', () => {
   let wrapper;
@@ -73,11 +74,11 @@ describe('CalendarActivity', () => {
       wrapper.find({ ref: 'dragger' }).vm.$emit('start');
     });
 
-    it('disable resizer', () => {
-      expect(wrapper.find('.resizer').props().enabled).toBe(false);
+    it('disables resizer', () => {
+      expect(wrapper.find(testId('resizer')).props().enabled).toBe(false);
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
         guideRulerTop: 60 + 23,
@@ -91,7 +92,7 @@ describe('CalendarActivity', () => {
       wrapper.find({ ref: 'dragger' }).vm.$emit('moving');
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
         guideRulerTop: 60 + 23,
@@ -106,11 +107,11 @@ describe('CalendarActivity', () => {
       wrapper.find({ ref: 'dragger' }).vm.$emit('end');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('dispatch activities/update', () => {
+    it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         startedAt: parseISO('2019-01-02T01:23:00'),
@@ -126,7 +127,7 @@ describe('CalendarActivity', () => {
       wrapper.find({ ref: 'dragger' }).vm.$emit('end');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
@@ -141,7 +142,7 @@ describe('CalendarActivity', () => {
       wrapper.find({ ref: 'dragger' }).vm.$emit('cancel');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
   });
@@ -149,14 +150,14 @@ describe('CalendarActivity', () => {
   describe('when resizing', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.resizer').vm.$emit('resizing');
+      wrapper.find(testId('resizer')).vm.$emit('resizing');
     });
 
     it('disable dragger', () => {
       expect(wrapper.find({ ref: 'dragger' }).props().enabled).toBe(false);
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toEqual({
         el: wrapper.element,
         guideRulerTop: 60 + 23 + 60,
@@ -167,14 +168,14 @@ describe('CalendarActivity', () => {
   describe('when resize end', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.resizer').vm.$emit('end');
+      wrapper.find(testId('resizer')).vm.$emit('end');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
-    it('dispatch activities/update', () => {
+    it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         stoppedAt: parseISO('2019-01-01T02:23:45'),
@@ -185,10 +186,10 @@ describe('CalendarActivity', () => {
   describe('when resize cancel', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.resizer').vm.$emit('cancel');
+      wrapper.find(testId('resizer')).vm.$emit('cancel');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
   });
@@ -196,11 +197,11 @@ describe('CalendarActivity', () => {
   describe('when mouseup', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.click-handler').trigger('mousedown');
-      wrapper.find('.click-handler').trigger('mouseup');
+      wrapper.find(testId('click-handler')).trigger('mousedown');
+      wrapper.find(testId('click-handler')).trigger('mouseup');
     });
 
-    it('show modal', () => {
+    it('shows modal', () => {
       expect($modal.show).toHaveBeenCalledWith('activity', {
         id: 1,
         description: 'Create a database.',
@@ -214,11 +215,11 @@ describe('CalendarActivity', () => {
   describe('when mouseup but dragged', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.click-handler').trigger('mousedown');
+      wrapper.find(testId('click-handler')).trigger('mousedown');
       wrapper.find({ ref: 'dragger' }).vm.$emit('start');
       wrapper.find({ ref: 'dragger' }).vm.$emit('moving');
       wrapper.find({ ref: 'dragger' }).vm.$emit('end');
-      wrapper.find('.click-handler').trigger('mouseup');
+      wrapper.find(testId('click-handler')).trigger('mouseup');
     });
 
     it('does not show modal', () => {
@@ -229,11 +230,11 @@ describe('CalendarActivity', () => {
   describe('when mouseup but resized', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.click-handler').trigger('mousedown');
-      wrapper.find('.resizer').vm.$emit('start');
-      wrapper.find('.resizer').vm.$emit('resizing');
-      wrapper.find('.resizer').vm.$emit('end');
-      wrapper.find('.click-handler').trigger('mouseup');
+      wrapper.find(testId('click-handler')).trigger('mousedown');
+      wrapper.find(testId('resizer')).vm.$emit('start');
+      wrapper.find(testId('resizer')).vm.$emit('resizing');
+      wrapper.find(testId('resizer')).vm.$emit('end');
+      wrapper.find(testId('click-handler')).trigger('mouseup');
     });
 
     it('does not show modal', () => {

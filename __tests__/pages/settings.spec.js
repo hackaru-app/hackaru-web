@@ -1,5 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import Settings from '@/pages/settings';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('Settings', () => {
   let wrapper;
@@ -16,10 +17,10 @@ describe('Settings', () => {
   describe('when change selected tab', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.tabs').vm.$emit('change', 1);
+      wrapper.find(testId('tabs')).vm.$emit('change', 1);
     });
 
-    it('move to selected page', () => {
+    it('moves to selected page', () => {
       expect($router.push).toHaveBeenCalledWith('./integrations');
     });
   });

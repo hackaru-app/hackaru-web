@@ -18,7 +18,7 @@
             v-model="currentPassword"
             :placeholder="$t('modal.currentPassword')"
             type="password"
-            class="current-password"
+            data-test-id="current-password"
             required
           />
         </modal-item>
@@ -36,7 +36,8 @@
     </template>
 
     <base-button
-      class="is-rounded delete-account-button is-danger"
+      class="is-rounded is-danger"
+      data-test-id="delete-account-button"
       type="button"
       @click="showDeleteAccountModal"
     >

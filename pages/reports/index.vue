@@ -9,15 +9,19 @@
       :current-period.sync="currentPeriod"
       :title="title"
       :has-today="hasToday"
-      class="date-header sticky"
+      data-test-id="date-header"
       @today="today"
       @left="slideLeft"
       @right="slideRight"
     />
     <div class="tools">
       <div class="exports">
-        <button class="pdf-button" @click="exportReport('pdf')">PDF</button>
-        <button class="csv-button" @click="exportReport('csv')">CSV</button>
+        <button data-test-id="pdf-button" @click="exportReport('pdf')">
+          PDF
+        </button>
+        <button data-test-id="csv-button" @click="exportReport('csv')">
+          CSV
+        </button>
       </div>
       <client-only>
         <window-scroll @scroll="scroll">
@@ -56,7 +60,7 @@
       <loop-slider
         v-slot="{ slideStyle }"
         ref="slider"
-        class="loop-slider"
+        data-test-id="loop-slider"
         @slide-left="prev"
         @slide-right="next"
       >

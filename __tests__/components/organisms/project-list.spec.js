@@ -2,6 +2,7 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import ProjectList from '@/components/organisms/project-list';
 import ProjectEditor from '@/components/organisms/project-editor';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('ProjectList', () => {
   let wrapper;
@@ -36,10 +37,10 @@ describe('ProjectList', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setProps({ popEnabled: true });
-      wrapper.find('.left-arrow-button').vm.$emit('click');
+      wrapper.find(testId('left-arrow-button')).vm.$emit('click');
     });
 
-    it('emit pop', () => {
+    it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
@@ -47,10 +48,10 @@ describe('ProjectList', () => {
   describe('when click add-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.add-button').vm.$emit('click');
+      wrapper.find(testId('add-button')).vm.$emit('click');
     });
 
-    it('emit push', () => {
+    it('emits push', () => {
       expect(wrapper.emitted('push')[0][0]).toEqual({
         component: ProjectEditor,
       });
@@ -60,10 +61,10 @@ describe('ProjectList', () => {
   describe('when click edit-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.findAll('.edit-button').at(1).vm.$emit('click');
+      wrapper.findAll(testId('edit-button')).at(1).vm.$emit('click');
     });
 
-    it('emit push', () => {
+    it('emits push', () => {
       expect(wrapper.emitted('push')[0][0]).toEqual({
         component: ProjectEditor,
         params: {
@@ -78,10 +79,10 @@ describe('ProjectList', () => {
   describe('when click project-content', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.findAll('.project-content').at(2).trigger('click');
+      wrapper.findAll(testId('project-content')).at(2).trigger('click');
     });
 
-    it('emit pop', () => {
+    it('emits pop', () => {
       expect(wrapper.emitted('pop')[0][0]).toEqual({
         project: {
           id: 2,

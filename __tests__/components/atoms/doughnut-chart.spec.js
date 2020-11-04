@@ -12,7 +12,7 @@ describe('DoughnutChart', () => {
       },
     });
 
-  it('show tooltip label correctly', () => {
+  it('shows tooltip label correctly', () => {
     const wrapper = factory();
     const label = wrapper.vm.options.tooltips.callbacks.label;
     expect(label({ index: 0 }, { datasets: [{ data: [60] }] })).toBe('01:00');

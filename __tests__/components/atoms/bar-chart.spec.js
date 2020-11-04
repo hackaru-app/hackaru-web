@@ -24,7 +24,7 @@ describe('BarChart', () => {
       },
     });
 
-  it('show tooltip label correctly', () => {
+  it('shows tooltip label correctly', () => {
     const wrapper = factory();
     const label = wrapper.vm.options.tooltips.callbacks.label;
     expect(label({ yLabel: 10 })).toBe('00:10');

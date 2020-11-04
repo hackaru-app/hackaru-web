@@ -13,7 +13,12 @@
     @end="moveEnd"
     @cancel="moveCancel"
   >
-    <div class="click-handler" @mousedown="mousedown" @mouseup="mouseup">
+    <div
+      data-test-id="click-handler"
+      class="click-handler"
+      @mousedown="mousedown"
+      @mouseup="mouseup"
+    >
       <calendar-event
         :style="{ height: `${height}px` }"
         :title="title"
@@ -27,6 +32,7 @@
         :enabled="!dragged"
         :min-height="minHeight"
         :handle-color="color"
+        data-test-id="resizer"
         class="resizer"
         @resizing="resizing"
         @end="resizeEnd"

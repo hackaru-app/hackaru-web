@@ -3,6 +3,7 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import CalendarContent from '@/components/organisms/calendar-content';
 import { parseISO } from 'date-fns';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('CalendarContent', () => {
   let wrapper;
@@ -34,9 +35,9 @@ describe('CalendarContent', () => {
     $store.reset();
   });
 
-  it('hide guide ruler', () => {
+  it('hidess guide ruler', () => {
     wrapper = factory();
-    expect(wrapper.find('.guide-ruler').exists()).toBe(false);
+    expect(wrapper.find(testId('guide-ruler')).exists()).toBe(false);
   });
 
   describe('when has today', () => {
@@ -45,8 +46,8 @@ describe('CalendarContent', () => {
       wrapper.setProps({ days: [parseISO('2019-01-31')] });
     });
 
-    it('show today ruler', () => {
-      expect(wrapper.find('.today-ruler').exists()).toBe(true);
+    it('shows today ruler', () => {
+      expect(wrapper.find(testId('today-ruler')).exists()).toBe(true);
     });
   });
 
@@ -56,35 +57,37 @@ describe('CalendarContent', () => {
       wrapper.setProps({ days: [parseISO('1999-01-01')] });
     });
 
-    it('hide today ruler', () => {
-      expect(wrapper.find('.today-ruler').exists()).toBe(false);
+    it('hides today ruler', () => {
+      expect(wrapper.find(testId('today-ruler')).exists()).toBe(false);
     });
   });
 
   describe('when dragging event emitted', () => {
     beforeEach(() => {
       wrapper = factory();
-      const day = wrapper.findAll('.day').at(0);
+      const day = wrapper.findAll(testId('day')).at(0);
       day.vm.$emit('dragging', { el: 'dummy', guideRulerTop: 100 });
     });
 
-    it('emit dragging', () => {
+    it('emits dragging', () => {
       expect(wrapper.emitted('dragging')[0][0]).toBe('dummy');
     });
 
-    it('set overlapped class', () => {
-      expect(wrapper.findAll('.day').at(1).classes()).toContain('overlapped');
+    it('sets overlapped class', () => {
+      expect(wrapper.findAll(testId('day')).at(1).classes()).toContain(
+        'overlapped'
+      );
     });
   });
 
   describe('when drop event emitted', () => {
     beforeEach(() => {
       wrapper = factory();
-      const day = wrapper.findAll('.day').at(0);
+      const day = wrapper.findAll(testId('day')).at(0);
       day.vm.$emit('drop');
     });
 
-    it('emit drop', () => {
+    it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
   });

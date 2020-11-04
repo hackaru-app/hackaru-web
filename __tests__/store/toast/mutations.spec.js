@@ -8,19 +8,19 @@ describe('Mutations', () => {
       mutations['SHOW_ERROR'](state, 'description');
     });
 
-    it('set text', () => {
+    it('sets text', () => {
       expect(state.text).toBe('description');
     });
 
-    it('set type', () => {
+    it('sets type', () => {
       expect(state.type).toBe('error');
     });
 
-    it('set rand', () => {
+    it('sets rand', () => {
       expect(state.rand).not.toBe(0);
     });
 
-    it('set duration', () => {
+    it('sets duration', () => {
       expect(state.duration).toBe(5000);
     });
   });
@@ -32,19 +32,19 @@ describe('Mutations', () => {
       mutations['SHOW_SUCCESS'](state, 'description');
     });
 
-    it('set text', () => {
+    it('sets text', () => {
       expect(state.text).toBe('description');
     });
 
-    it('set type', () => {
+    it('sets type', () => {
       expect(state.type).toBe('success');
     });
 
-    it('set rand', () => {
+    it('sets rand', () => {
       expect(state.rand).not.toBe(0);
     });
 
-    it('set duration', () => {
+    it('sets duration', () => {
       expect(state.duration).toBe(3000);
     });
   });

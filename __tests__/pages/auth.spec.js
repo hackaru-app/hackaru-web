@@ -1,6 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import Auth from '@/pages/auth';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('Auth', () => {
   let factory;
@@ -75,7 +76,7 @@ describe('Auth', () => {
       wrapper = factory();
     });
 
-    it('show agreement of checkbox', () => {
+    it('shows agreement of checkbox', () => {
       expect(wrapper.find('#agreement').exists()).toBe(true);
     });
   });
@@ -87,7 +88,7 @@ describe('Auth', () => {
       wrapper = factory();
     });
 
-    it('hide agreement of checkbox', () => {
+    it('hides agreement of checkbox', () => {
       expect(wrapper.find('#agreement').exists()).toBe(false);
     });
   });
@@ -95,12 +96,12 @@ describe('Auth', () => {
   describe('when click login-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.email').vm.$emit('input', 'example@example.com');
-      wrapper.find('.password').vm.$emit('input', 'password');
+      wrapper.find(testId('email')).vm.$emit('input', 'example@example.com');
+      wrapper.find(testId('password')).vm.$emit('input', 'password');
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch auth/fetchRefreshToken', () => {
+    it('dispatches auth/fetchRefreshToken', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/fetchRefreshToken', {
         email: 'example@example.com',
         password: 'password',
@@ -112,13 +113,15 @@ describe('Auth', () => {
     beforeEach(() => {
       $route.query['sign-up'] = true;
       wrapper = factory();
-      wrapper.find('.email').vm.$emit('input', 'example@example.com');
-      wrapper.find('.password').vm.$emit('input', 'password');
-      wrapper.find('.password-confirmation').vm.$emit('input', 'confirmation');
+      wrapper.find(testId('email')).vm.$emit('input', 'example@example.com');
+      wrapper.find(testId('password')).vm.$emit('input', 'password');
+      wrapper
+        .find(testId('password-confirmation'))
+        .vm.$emit('input', 'confirmation');
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch auth/signUp', () => {
+    it('dispatches auth/signUp', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/signUp', {
         email: 'example@example.com',
         password: 'password',

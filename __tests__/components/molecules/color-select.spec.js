@@ -13,7 +13,7 @@ describe('ColorSelect', () => {
       wrapper.findAll('button').at(2).trigger('click');
     });
 
-    it('emit update:value', () => {
+    it('emits update:value', () => {
       expect(wrapper.emitted('update:value')[0]).toEqual(['#0ff']);
     });
   });

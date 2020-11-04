@@ -9,7 +9,7 @@ describe('Actions', () => {
       actions.fetch({ commit, dispatch }, 'query');
     });
 
-    it('dispatch auth-api/request', () => {
+    it('dispatches auth-api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth-api/request',
         {

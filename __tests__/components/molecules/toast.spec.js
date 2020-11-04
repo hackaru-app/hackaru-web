@@ -1,6 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import { Store } from 'vuex-mock-store';
 import Toast from '@/components/molecules/toast';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('Toast', () => {
   let wrapper;
@@ -36,16 +37,16 @@ describe('Toast', () => {
       };
     });
 
-    it('show new message', () => {
+    it('shows new message', () => {
       wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.content').text()).toBe('new message');
-        expect(wrapper.find('.content').exists()).toBe(true);
+        expect(wrapper.find(testId('content')).text()).toBe('new message');
+        expect(wrapper.find(testId('content')).exists()).toBe(true);
       });
     });
 
-    it('hide toast delayed', () => {
+    it('hides toast delayed', () => {
       jest.runOnlyPendingTimers();
-      expect(wrapper.find('.content').exists()).toBe(false);
+      expect(wrapper.find(testId('content')).exists()).toBe(false);
     });
   });
 });

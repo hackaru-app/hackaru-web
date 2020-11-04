@@ -4,25 +4,26 @@
     <div v-if="hasToday">
       <calendar-ruler
         :top="currentTimeLineTop"
-        class="today-ruler"
+        data-test-id="today-ruler"
         color="#eb4f34"
       />
     </div>
     <calendar-ruler
       v-if="guideRulerTop"
       :top="guideRulerTop"
-      class="guide-ruler"
+      data-test-id="guide-ruler"
       color="#2e99b0"
       show-time
     />
     <calendar-day
       v-for="day in days"
       ref="days"
-      :class="['day', { overlapped: isOverlapped(day) }]"
+      :class="{ overlapped: isOverlapped(day) }"
       :overlapped-day="overlappedDay"
       :data-day="formatISO(day, { representation: 'date' })"
       :key="formatISO(day)"
       :day="formatISO(day)"
+      data-test-id="day"
       @dragging="dragging"
       @drop="drop"
     />

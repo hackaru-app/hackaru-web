@@ -1,6 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import DatetimePicker from '@/components/molecules/datetime-picker';
 import dayjs from 'dayjs';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('DatetimePicker', () => {
   let wrapper;
@@ -10,11 +11,11 @@ describe('DatetimePicker', () => {
   describe('when input value is invalid', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.date').setValue('foo');
-      wrapper.find('.time').setValue('bar');
+      wrapper.find(testId('date')).setValue('foo');
+      wrapper.find(testId('time')).setValue('bar');
     });
 
-    it('emit input with undefined', () => {
+    it('emits input with undefined', () => {
       expect(wrapper.emitted('input')[0]).toEqual([undefined]);
       expect(wrapper.emitted('input')[1]).toEqual([undefined]);
     });
@@ -24,10 +25,10 @@ describe('DatetimePicker', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setProps({ value: '2019-03-03T11:22:33' });
-      wrapper.find('.date').setValue('2019-01-01');
+      wrapper.find(testId('date')).setValue('2019-01-01');
     });
 
-    it('emit input with datetime', () => {
+    it('emits input with datetime', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
         dayjs('2019-01-01 11:22:33').format(),
       ]);
@@ -38,10 +39,10 @@ describe('DatetimePicker', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setProps({ value: '2019-03-03T11:22:33' });
-      wrapper.find('.time').setValue('22:33:44');
+      wrapper.find(testId('time')).setValue('22:33:44');
     });
 
-    it('emit input with datetime', () => {
+    it('emits input with datetime', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
         dayjs('2019-03-03 22:33:44').format(),
       ]);

@@ -18,7 +18,7 @@ describe('CalendarRuler', () => {
       wrapper.setProps({ showTime: true });
     });
 
-    it('show time correcly', () => {
+    it('shows time correcly', () => {
       expect(wrapper.find('time').text()).toBe('01:30');
     });
   });
@@ -29,7 +29,7 @@ describe('CalendarRuler', () => {
       wrapper.setProps({ showTime: false });
     });
 
-    it('hide time', () => {
+    it('hides time', () => {
       expect(wrapper.contains('time')).toBe(false);
     });
   });

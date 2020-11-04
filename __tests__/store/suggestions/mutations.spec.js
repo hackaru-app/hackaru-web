@@ -10,7 +10,7 @@ describe('Mutations', () => {
       ]);
     });
 
-    it('set suggestions', () => {
+    it('sets suggestions', () => {
       expect(state.data).toEqual([
         { project: undefined, description: 'Review' },
       ]);

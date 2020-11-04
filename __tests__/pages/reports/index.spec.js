@@ -4,6 +4,7 @@ import { shallowMount } from '@vue/test-utils';
 import Reports from '@/pages/reports/index';
 import { parseISO, formatISO } from 'date-fns';
 import { stringify } from 'query-string';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('Index', () => {
   let wrapper;
@@ -40,7 +41,7 @@ describe('Index', () => {
       wrapper.setData({ currentPeriod: 'day' });
     });
 
-    it('dispatch reports/fetch', () => {
+    it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-31T00:00:00'),
@@ -60,7 +61,7 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       window.open = jest.fn();
-      wrapper.find('.pdf-button').trigger('click');
+      wrapper.find(testId('pdf-button')).trigger('click');
     });
 
     it('open pdf url', () => {
@@ -77,7 +78,7 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       window.open = jest.fn();
-      wrapper.find('.csv-button').trigger('click');
+      wrapper.find(testId('csv-button')).trigger('click');
     });
 
     it('open csv url', () => {
@@ -96,7 +97,7 @@ describe('Index', () => {
       wrapper.setData({ currentPeriod: 'week' });
     });
 
-    it('dispatch reports/fetch', () => {
+    it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-27T00:00:00'),
@@ -118,7 +119,7 @@ describe('Index', () => {
       wrapper.setData({ currentPeriod: 'month' });
     });
 
-    it('dispatch reports/fetch', () => {
+    it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-01T00:00:00'),
@@ -140,7 +141,7 @@ describe('Index', () => {
       wrapper.setData({ currentPeriod: 'year' });
     });
 
-    it('dispatch reports/fetch', () => {
+    it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-01T00:00:00'),
@@ -160,10 +161,10 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'week' });
-      wrapper.find('.loop-slider').vm.$emit('slide-left');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-left');
     });
 
-    it('set prev weeks', () => {
+    it('sets prev weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-20T00:00:00'),
@@ -183,10 +184,10 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'week' });
-      wrapper.find('.loop-slider').vm.$emit('slide-right');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
     });
 
-    it('set next weeks', () => {
+    it('sets next weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-02-03T00:00:00'),
@@ -206,11 +207,11 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'week' });
-      wrapper.find('.loop-slider').vm.$emit('slide-right');
-      wrapper.find('.date-header').vm.$emit('today');
+      wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
+      wrapper.find(testId('date-header')).vm.$emit('today');
     });
 
-    it('set today weeks', () => {
+    it('sets today weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-27T00:00:00'),
@@ -232,7 +233,7 @@ describe('Index', () => {
       wrapper.setData({ projectIds: [1] });
     });
 
-    it('dispatch reports/fetch', () => {
+    it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
           start: parseISO('2019-01-31T00:00:00'),

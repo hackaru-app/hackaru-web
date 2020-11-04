@@ -1,5 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import Dragger from '@/components/atoms/dragger';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('Dragger', () => {
   let wrapper;
@@ -13,10 +14,10 @@ describe('Dragger', () => {
   describe('when drag', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
+      wrapper.find(testId('drag-drop')).vm.$emit('start', dragEvent());
     });
 
-    it('emit start', () => {
+    it('emits start', () => {
       expect(wrapper.emitted('start')).toBeTruthy();
     });
   });
@@ -24,19 +25,19 @@ describe('Dragger', () => {
   describe('when drag', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
-      wrapper.find('.drag-drop').vm.$emit('move', dragEvent(70, 80));
+      wrapper.find(testId('drag-drop')).vm.$emit('start', dragEvent());
+      wrapper.find(testId('drag-drop')).vm.$emit('move', dragEvent(70, 80));
     });
 
-    it('emit moving', () => {
+    it('emits moving', () => {
       expect(wrapper.emitted('moving')).toBeTruthy();
     });
 
-    it('emit update:left', () => {
+    it('emits update:left', () => {
       expect(wrapper.emitted('update:left')[0][0]).toBe(70);
     });
 
-    it('emit update:top', () => {
+    it('emits update:top', () => {
       expect(wrapper.emitted('update:top')[0][0]).toBe(80);
     });
   });
@@ -44,12 +45,12 @@ describe('Dragger', () => {
   describe('when drop', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent());
-      wrapper.find('.drag-drop').vm.$emit('move', dragEvent(70, 80));
-      wrapper.find('.drag-drop').vm.$emit('end', dragEvent());
+      wrapper.find(testId('drag-drop')).vm.$emit('start', dragEvent());
+      wrapper.find(testId('drag-drop')).vm.$emit('move', dragEvent(70, 80));
+      wrapper.find(testId('drag-drop')).vm.$emit('end', dragEvent());
     });
 
-    it('emit end', () => {
+    it('emits end', () => {
       expect(wrapper.emitted('end')).toBeTruthy();
     });
   });
@@ -57,11 +58,11 @@ describe('Dragger', () => {
   describe('when drop but not moved', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.drag-drop').vm.$emit('start', dragEvent(0, 0));
-      wrapper.find('.drag-drop').vm.$emit('end', dragEvent(0, 0));
+      wrapper.find(testId('drag-drop')).vm.$emit('start', dragEvent(0, 0));
+      wrapper.find(testId('drag-drop')).vm.$emit('end', dragEvent(0, 0));
     });
 
-    it('emit cancel', () => {
+    it('emits cancel', () => {
       expect(wrapper.emitted('cancel')).toBeTruthy();
     });
   });

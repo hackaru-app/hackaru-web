@@ -1,5 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import LoopSlider from '@/components/organisms/loop-slider';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('LoopSlider', () => {
   let wrapper;
@@ -21,7 +22,7 @@ describe('LoopSlider', () => {
   describe('when scroll window', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.window-scroll').vm.$emit('scroll');
+      wrapper.find(testId('window-scroll')).vm.$emit('scroll');
     });
 
     it('disable slider', () => {
@@ -32,7 +33,7 @@ describe('LoopSlider', () => {
   describe('when scroll window', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.window-scroll').vm.$emit('end');
+      wrapper.find(testId('window-scroll')).vm.$emit('end');
     });
 
     it('enable slider', () => {
@@ -47,7 +48,7 @@ describe('LoopSlider', () => {
       jest.runOnlyPendingTimers();
     });
 
-    it('emit slide-left', () => {
+    it('emits slide-left', () => {
       expect(wrapper.emitted('slide-left')).toBeTruthy();
     });
   });
@@ -59,7 +60,7 @@ describe('LoopSlider', () => {
       jest.runOnlyPendingTimers();
     });
 
-    it('emit slide-right', () => {
+    it('emits slide-right', () => {
       expect(wrapper.emitted('slide-right')).toBeTruthy();
     });
   });

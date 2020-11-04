@@ -1,6 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import ProjectEditor from '@/components/organisms/project-editor';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('ProjectEditor', () => {
   let wrapper;
@@ -27,7 +28,7 @@ describe('ProjectEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch projects/update', () => {
+    it('dispatches projects/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('projects/update', {
         id: 1,
         name: 'Development',
@@ -35,7 +36,7 @@ describe('ProjectEditor', () => {
       });
     });
 
-    it('emit pop', () => {
+    it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
@@ -51,14 +52,14 @@ describe('ProjectEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatch projects/add', () => {
+    it('dispatches projects/add', () => {
       expect($store.dispatch).toHaveBeenCalledWith('projects/add', {
         name: 'Development',
         color: '#ff0',
       });
     });
 
-    it('emit pop', () => {
+    it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
@@ -73,14 +74,14 @@ describe('ProjectEditor', () => {
         name: 'Development',
         color: '#ff0',
       });
-      wrapper.find('.delete-button').vm.$emit('click');
+      wrapper.find(testId('delete-button')).vm.$emit('click');
     });
 
-    it('dispatch projects/delete', () => {
+    it('dispatches projects/delete', () => {
       expect($store.dispatch).toHaveBeenCalledWith('projects/delete', 1);
     });
 
-    it('emit pop', () => {
+    it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
@@ -94,7 +95,7 @@ describe('ProjectEditor', () => {
         name: 'Development',
         color: '#ff0',
       });
-      wrapper.find('.delete-button').vm.$emit('click');
+      wrapper.find(testId('delete-button')).vm.$emit('click');
     });
 
     it('does not dispatch projects/deleteProject', () => {

@@ -1,7 +1,11 @@
 <template>
   <div class="toast">
     <transition enter-active-class="fadeInUp" leave-active-class="fadeOutDown">
-      <div v-if="opened" :class="['content', message.type]">
+      <div
+        v-if="opened"
+        :class="['content', message.type]"
+        data-test-id="content"
+      >
         {{ message.text }}
       </div>
     </transition>

@@ -12,7 +12,7 @@ describe('BaseInput', () => {
       wrapper.setValue('foo');
     });
 
-    it('emit input', () => {
+    it('emits input', () => {
       expect(wrapper.emitted('input')[0][0]).toBe('foo');
     });
   });

@@ -5,7 +5,7 @@
     <date-header
       :title="title"
       :has-today="hasToday"
-      class="date-header"
+      data-test-id="date-header"
       @today="today"
       @left="slideLeft"
       @right="slideRight"
@@ -15,7 +15,7 @@
       v-slot="{ slideStyle }"
       ref="slider"
       :enabled="sliderEnabled"
-      class="loop-slider"
+      data-test-id="loop-slider"
       @slide-left="prev"
       @slide-right="next"
     >

@@ -36,9 +36,12 @@
         :key="application.id"
         class="application"
       >
-        <h1 @click="showModal(application)">{{ application.name }}</h1>
+        <h1 data-test-id="application-name" @click="showModal(application)">
+          {{ application.name }}
+        </h1>
         <base-button
-          class="delete-button has-icon"
+          class="has-icon"
+          data-test-id="delete-button"
           @click="deleteApplication(application.id)"
         >
           <icon name="x-icon" class="is-danger" />

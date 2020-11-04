@@ -1,6 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import ActivityEditorDescription from '@/components/organisms/activity-editor-description';
+import testId from '@/__tests__/__helpers__/test-id';
 
 describe('ActivityEditorDescription', () => {
   let wrapper;
@@ -42,34 +43,34 @@ describe('ActivityEditorDescription', () => {
   describe('when focus description', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.description').trigger('focus');
+      wrapper.find(testId('description')).trigger('focus');
     });
 
-    it('show suggestions', () => {
-      expect(wrapper.find('.suggestions').exists()).toBe(true);
+    it('shows suggestions', () => {
+      expect(wrapper.find(testId('suggestions')).exists()).toBe(true);
     });
   });
 
   describe('when blur description', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.description').trigger('focus');
-      wrapper.find('.description').trigger('blur');
+      wrapper.find(testId('description')).trigger('focus');
+      wrapper.find(testId('description')).trigger('blur');
     });
 
-    it('hide suggestions', () => {
-      expect(wrapper.find('.suggestions').exists()).toBe(false);
+    it('hides suggestions', () => {
+      expect(wrapper.find(testId('suggestions')).exists()).toBe(false);
     });
   });
 
   describe('when input description', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.description').setValue('Review my tasks');
-      wrapper.find('.description').trigger('input');
+      wrapper.find(testId('description')).setValue('Review my tasks');
+      wrapper.find(testId('description')).trigger('input');
     });
 
-    it('emit update:description', () => {
+    it('emits update:description', () => {
       expect(wrapper.emitted('update:description')[0][0]).toBe(
         'Review my tasks'
       );
@@ -79,17 +80,17 @@ describe('ActivityEditorDescription', () => {
   describe('when click suggestion', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find('.description').trigger('focus');
-      wrapper.find('.suggestion').trigger('click');
+      wrapper.find(testId('description')).trigger('focus');
+      wrapper.find(testId('suggestion')).trigger('click');
     });
 
-    it('emit update:description', () => {
+    it('emits update:description', () => {
       expect(wrapper.emitted('update:description')[0][0]).toBe(
         'Review my tasks'
       );
     });
 
-    it('emit update:project', () => {
+    it('emits update:project', () => {
       expect(wrapper.emitted('update:project')[0][0]).toEqual({
         id: 2,
         name: 'Review',

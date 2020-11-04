@@ -28,7 +28,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {
@@ -91,7 +91,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/fetchAccessToken before request', () => {
+    it('dispatches api/fetchAccessToken before request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'auth/fetchAccessToken',
         {},
@@ -99,7 +99,7 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatch api/request', () => {
+    it('dispatches api/request', () => {
       expect(dispatch).toHaveBeenCalledWith(
         'api/request',
         {

@@ -30,7 +30,8 @@
         <footer class="footer">
           <base-button
             type="button"
-            class="is-rounded is-primary allow-button"
+            class="is-rounded is-primary"
+            data-test-id="allow-button"
             @click="decide('allow')"
           >
             {{ $t('allow') }}
@@ -38,6 +39,7 @@
           <base-button
             type="button"
             class="is-rounded deny-button"
+            data-test-id="deny-button"
             @click="decide('deny')"
           >
             {{ $t('deny') }}
