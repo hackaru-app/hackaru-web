@@ -10,7 +10,7 @@
     @end="ghostDrop"
     @cancel="ghostDrop"
   >
-    <section ref="events" class="events">
+    <section class="events">
       <div class="row">
         <calendar-event
           v-show="ghostVisibility"
