@@ -68,7 +68,7 @@ export default {
     click(suggestion) {
       this.$emit('click', suggestion);
     },
-    fetchSuggestions: debounce(async function () {
+    fetchSuggestions: debounce(function () {
       this.$store.dispatch('suggestions/fetch', this.description);
       this.$refs.suggestions.scrollTo({ top: 0 });
     }, 1000),
