@@ -55,9 +55,9 @@ describe('NavModal', () => {
   });
 
   describe('when emit push', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setData({ current: initialComponent });
+      await wrapper.setData({ current: initialComponent });
       wrapper.find(testId('current')).vm.$emit('push', {
         component: nextComponent,
         params: { foo: 'bar' },
@@ -83,9 +83,9 @@ describe('NavModal', () => {
   });
 
   describe('when emit push with empty params', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setData({ current: initialComponent });
+      await wrapper.setData({ current: initialComponent });
       wrapper.find(testId('current')).vm.$emit('push', {
         component: nextComponent,
       });
@@ -97,9 +97,9 @@ describe('NavModal', () => {
   });
 
   describe('when emit pop', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setData({ current: initialComponent });
+      await wrapper.setData({ current: initialComponent });
       wrapper
         .find(testId('current'))
         .vm.$emit('push', { component: nextComponent });
@@ -125,9 +125,9 @@ describe('NavModal', () => {
   });
 
   describe('when emit pop with empty params', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setData({ current: initialComponent });
+      await wrapper.setData({ current: initialComponent });
       wrapper
         .find(testId('current'))
         .vm.$emit('push', { component: nextComponent });
