@@ -70,7 +70,9 @@ export default {
     },
     fetchSuggestions: debounce(function () {
       this.$store.dispatch('suggestions/fetch', this.description);
-      this.$refs.suggestions.scrollTo({ top: 0 });
+      if (this.$refs.suggestions) {
+        this.$refs.suggestions.scrollTo({ top: 0 });
+      }
     }, 1000),
   },
 };
