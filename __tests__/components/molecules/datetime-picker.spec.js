@@ -22,9 +22,9 @@ describe('DatetimePicker', () => {
   });
 
   describe('when input date is valid', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setProps({ value: '2019-03-03T11:22:33' });
+      await wrapper.setProps({ value: '2019-03-03T11:22:33' });
       wrapper.find(testId('date')).setValue('2019-01-01');
     });
 
@@ -36,9 +36,9 @@ describe('DatetimePicker', () => {
   });
 
   describe('when input time is valid', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setProps({ value: '2019-03-03T11:22:33' });
+      await wrapper.setProps({ value: '2019-03-03T11:22:33' });
       wrapper.find(testId('time')).setValue('22:33:44');
     });
 
