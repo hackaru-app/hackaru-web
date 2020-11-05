@@ -16,16 +16,6 @@ describe('TimerForm', () => {
   const $store = new Store({
     getters: {
       'activities/working': [],
-      'suggestions/all': [
-        {
-          project: {
-            id: 2,
-            name: 'Review',
-            color: '#ff0',
-          },
-          description: 'Review my tasks',
-        },
-      ],
     },
   });
 
@@ -190,33 +180,6 @@ describe('TimerForm', () => {
     });
   });
 
-  describe('when focus description', () => {
-    beforeEach(() => {
-      wrapper = factory();
-      wrapper.find(testId('description')).trigger('focus');
-    });
-
-    it('shows suggestions', () => {
-      expect(wrapper.find(testId('suggestions-wrapper')).isVisible()).toBe(
-        true
-      );
-    });
-  });
-
-  describe('when blur description and timer is not working', () => {
-    beforeEach(() => {
-      wrapper = factory();
-      wrapper.find(testId('description')).trigger('focus');
-      wrapper.find(testId('description')).trigger('blur');
-    });
-
-    it('hides suggestions', () => {
-      expect(wrapper.find(testId('suggestions-wrapper')).isVisible()).toBe(
-        false
-      );
-    });
-  });
-
   describe('when change description and timer is not working', () => {
     beforeEach(() => {
       wrapper = factory();
@@ -259,8 +222,14 @@ describe('TimerForm', () => {
   describe('when click suggestion', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find(testId('description')).trigger('focus');
-      wrapper.find(testId('suggestion')).trigger('click');
+      wrapper.find(testId('suggestion-list')).vm.$emit('click', {
+        description: 'Review my tasks',
+        project: {
+          id: 2,
+          name: 'Review',
+          color: '#ff0',
+        },
+      });
     });
 
     it('dispatches activities/add', () => {

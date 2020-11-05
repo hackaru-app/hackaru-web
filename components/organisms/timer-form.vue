@@ -59,6 +59,7 @@
       <suggestion-list
         :shown="focused && !working"
         :description="description"
+        data-test-id="suggestion-list"
         @click="clickSuggestion"
       />
     </form>
@@ -126,7 +127,7 @@ export default {
       this.id = props.id;
       this.startedAt = props.startedAt;
       this.project = props.project;
-      this.description = props.description;
+      this.description = props.description || '';
     },
     selectProject({ project }) {
       this.project = project;
