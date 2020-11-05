@@ -33,14 +33,16 @@ describe('LocaleSelect', () => {
   });
 
   it('has selected value correctly', () => {
-    expect(factory().find({ ref: 'base-select' }).vm.value).toEqual('English');
+    expect(factory().findComponent({ ref: 'base-select' }).vm.value).toEqual(
+      'English'
+    );
   });
 
   describe('when select and user is logged in', () => {
     beforeEach(() => {
       $store.getters['auth/loggedIn'] = true;
       wrapper = factory();
-      wrapper.find({ ref: 'base-select' }).vm.$emit('change', 'ja');
+      wrapper.findComponent({ ref: 'base-select' }).vm.$emit('change', 'ja');
     });
 
     it('dispatches user/update', () => {
@@ -54,7 +56,7 @@ describe('LocaleSelect', () => {
     beforeEach(() => {
       $store.getters['auth/loggedIn'] = false;
       wrapper = factory();
-      wrapper.find({ ref: 'base-select' }).vm.$emit('change', 'ja');
+      wrapper.findComponent({ ref: 'base-select' }).vm.$emit('change', 'ja');
     });
 
     it('sets locale', () => {

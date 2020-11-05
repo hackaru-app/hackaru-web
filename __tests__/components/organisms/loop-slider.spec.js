@@ -26,7 +26,9 @@ describe('LoopSlider', () => {
     });
 
     it('disable slider', () => {
-      expect(wrapper.find({ ref: 'drag-drop' }).props().enabled).toBe(false);
+      expect(wrapper.findComponent({ ref: 'drag-drop' }).props().enabled).toBe(
+        false
+      );
     });
   });
 
@@ -37,14 +39,18 @@ describe('LoopSlider', () => {
     });
 
     it('enable slider', () => {
-      expect(wrapper.find({ ref: 'drag-drop' }).props().enabled).toBe(true);
+      expect(wrapper.findComponent({ ref: 'drag-drop' }).props().enabled).toBe(
+        true
+      );
     });
   });
 
   describe('when left-swiped', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'drag-drop' }).vm.$emit('end', dragEvent(200, 0));
+      wrapper
+        .findComponent({ ref: 'drag-drop' })
+        .vm.$emit('end', dragEvent(200, 0));
       jest.runOnlyPendingTimers();
     });
 
@@ -56,7 +62,9 @@ describe('LoopSlider', () => {
   describe('when right-swiped', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'drag-drop' }).vm.$emit('end', dragEvent(-200, 0));
+      wrapper
+        .findComponent({ ref: 'drag-drop' })
+        .vm.$emit('end', dragEvent(-200, 0));
       jest.runOnlyPendingTimers();
     });
 

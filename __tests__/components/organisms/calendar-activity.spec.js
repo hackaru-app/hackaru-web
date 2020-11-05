@@ -33,12 +33,12 @@ describe('CalendarActivity', () => {
   it('has top position correctly', () => {
     const top = 60 + 23; // 01:23
     wrapper = factory();
-    expect(wrapper.find({ ref: 'dragger' }).props().top).toBe(top);
+    expect(wrapper.findComponent({ ref: 'dragger' }).props().top).toBe(top);
   });
 
   it('has height correctly', () => {
     wrapper = factory();
-    expect(wrapper.find({ ref: 'dragger' }).attributes().style).toBe(
+    expect(wrapper.findComponent({ ref: 'dragger' }).attributes().style).toBe(
       'height: 60px;'
     );
   });
@@ -51,7 +51,7 @@ describe('CalendarActivity', () => {
 
     it('update top', () => {
       const top = 60 + 43; // 01:43
-      expect(wrapper.find({ ref: 'dragger' }).props().top).toBe(top);
+      expect(wrapper.findComponent({ ref: 'dragger' }).props().top).toBe(top);
     });
   });
 
@@ -62,7 +62,7 @@ describe('CalendarActivity', () => {
     });
 
     it('update height', () => {
-      expect(wrapper.find({ ref: 'dragger' }).attributes().style).toBe(
+      expect(wrapper.findComponent({ ref: 'dragger' }).attributes().style).toBe(
         'height: 80px;'
       );
     });
@@ -71,7 +71,7 @@ describe('CalendarActivity', () => {
   describe('when drag start', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'dragger' }).vm.$emit('start');
+      wrapper.findComponent({ ref: 'dragger' }).vm.$emit('start');
     });
 
     it('disables resizer', () => {
@@ -89,7 +89,7 @@ describe('CalendarActivity', () => {
   describe('when drag move', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'dragger' }).vm.$emit('moving');
+      wrapper.findComponent({ ref: 'dragger' }).vm.$emit('moving');
     });
 
     it('emits dragging', () => {
@@ -104,7 +104,7 @@ describe('CalendarActivity', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setProps({ overlappedDay: '2019-01-02' });
-      wrapper.find({ ref: 'dragger' }).vm.$emit('end');
+      wrapper.findComponent({ ref: 'dragger' }).vm.$emit('end');
     });
 
     it('emits drop', () => {
@@ -124,7 +124,7 @@ describe('CalendarActivity', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setProps({ overlappedDay: undefined });
-      wrapper.find({ ref: 'dragger' }).vm.$emit('end');
+      wrapper.findComponent({ ref: 'dragger' }).vm.$emit('end');
     });
 
     it('emits drop', () => {
@@ -139,7 +139,7 @@ describe('CalendarActivity', () => {
   describe('when drag cancel', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'dragger' }).vm.$emit('cancel');
+      wrapper.findComponent({ ref: 'dragger' }).vm.$emit('cancel');
     });
 
     it('emits drop', () => {
@@ -154,7 +154,9 @@ describe('CalendarActivity', () => {
     });
 
     it('disable dragger', () => {
-      expect(wrapper.find({ ref: 'dragger' }).props().enabled).toBe(false);
+      expect(wrapper.findComponent({ ref: 'dragger' }).props().enabled).toBe(
+        false
+      );
     });
 
     it('emits dragging', () => {
@@ -216,9 +218,9 @@ describe('CalendarActivity', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.find(testId('click-handler')).trigger('mousedown');
-      wrapper.find({ ref: 'dragger' }).vm.$emit('start');
-      wrapper.find({ ref: 'dragger' }).vm.$emit('moving');
-      wrapper.find({ ref: 'dragger' }).vm.$emit('end');
+      wrapper.findComponent({ ref: 'dragger' }).vm.$emit('start');
+      wrapper.findComponent({ ref: 'dragger' }).vm.$emit('moving');
+      wrapper.findComponent({ ref: 'dragger' }).vm.$emit('end');
       wrapper.find(testId('click-handler')).trigger('mouseup');
     });
 
