@@ -308,45 +308,6 @@ export default {
 .dot-only {
   display: none;
 }
-.suggestions-wrapper {
-  position: absolute;
-  animation-duration: 100ms;
-  width: 100%;
-  height: 100vh;
-  top: 91px;
-  box-sizing: border-box;
-  max-width: calc(100vw - #{$side-bar-min-width});
-  background-color: $backdrop-color;
-}
-.suggestions {
-  overflow-y: scroll;
-  box-sizing: border-box;
-  background-color: $background;
-  overflow: hidden;
-  overflow-y: scroll;
-  box-shadow: 0 3px 5px $shadow-darker;
-  -webkit-overflow-scrolling: touch;
-  max-height: 415px;
-}
-.suggestions ul {
-  margin: 0;
-  padding: 0;
-}
-.suggestions ul li {
-  display: flex;
-  cursor: pointer;
-  list-style-position: inside;
-  list-style-type: none;
-  text-align: center;
-  align-items: center;
-  height: 65px;
-  padding: 0 45px;
-  border-bottom: 1px $border solid;
-  transition: background-color 0.1s ease;
-  &:hover {
-    background-color: $background-hover;
-  }
-}
 @include mq(small) {
   .timer-form {
     max-width: 100vw;
@@ -414,46 +375,6 @@ export default {
   .form .duration {
     margin-right: 25px;
     display: none;
-  }
-  .suggestions-wrapper {
-    position: absolute;
-    top: 80px;
-    border: 0;
-    margin: 0;
-    padding: 0;
-    max-width: 100vw;
-    width: 100%;
-    background: none;
-  }
-  .suggestions {
-    border-radius: 0;
-    height: 100vh;
-    border-top: 0;
-    border-left: 0;
-    margin: 0;
-    max-width: 100vw;
-    background-color: $background-translucent;
-    max-height: 100%;
-    padding-bottom: 550px;
-  }
-  .suggestions ul {
-    min-height: 130vh;
-  }
-  .suggestions ul li {
-    height: 75px;
-    padding: 0 35px;
-    border-bottom: 1px $border solid;
-    border-radius: 0;
-    &:first-child {
-      padding-top: 0;
-    }
-    &:last-child {
-      border-bottom: 1px $border solid;
-      padding-bottom: 0;
-    }
-    &:hover {
-      background: none;
-    }
   }
 }
 </style>
