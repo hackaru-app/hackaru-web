@@ -21,7 +21,7 @@ describe('NavModal', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper
-        .find({ ref: 'base-modal' })
+        .findComponent({ ref: 'base-modal' })
         .vm.$emit('before-open', { params: { foo: 'bar' } });
     });
 
@@ -46,7 +46,7 @@ describe('NavModal', () => {
   describe('when emit before-open with empty params', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'base-modal' }).vm.$emit('before-open', {});
+      wrapper.findComponent({ ref: 'base-modal' }).vm.$emit('before-open', {});
     });
 
     it('reset params', () => {
@@ -55,9 +55,9 @@ describe('NavModal', () => {
   });
 
   describe('when emit push', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setData({ current: initialComponent });
+      await wrapper.setData({ current: initialComponent });
       wrapper.find(testId('current')).vm.$emit('push', {
         component: nextComponent,
         params: { foo: 'bar' },
@@ -83,9 +83,9 @@ describe('NavModal', () => {
   });
 
   describe('when emit push with empty params', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setData({ current: initialComponent });
+      await wrapper.setData({ current: initialComponent });
       wrapper.find(testId('current')).vm.$emit('push', {
         component: nextComponent,
       });
@@ -97,9 +97,9 @@ describe('NavModal', () => {
   });
 
   describe('when emit pop', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setData({ current: initialComponent });
+      await wrapper.setData({ current: initialComponent });
       wrapper
         .find(testId('current'))
         .vm.$emit('push', { component: nextComponent });
@@ -125,9 +125,9 @@ describe('NavModal', () => {
   });
 
   describe('when emit pop with empty params', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setData({ current: initialComponent });
+      await wrapper.setData({ current: initialComponent });
       wrapper
         .find(testId('current'))
         .vm.$emit('push', { component: nextComponent });

@@ -30,7 +30,7 @@ describe('CalendarRuler', () => {
     });
 
     it('hides time', () => {
-      expect(wrapper.contains('time')).toBe(false);
+      expect(wrapper.find('time').exists()).toBe(false);
     });
   });
 });

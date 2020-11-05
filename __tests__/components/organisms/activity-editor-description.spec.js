@@ -78,9 +78,9 @@ describe('ActivityEditorDescription', () => {
   });
 
   describe('when click suggestion', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.find(testId('description')).trigger('focus');
+      await wrapper.find(testId('description')).trigger('focus');
       wrapper.find(testId('suggestion')).trigger('click');
     });
 

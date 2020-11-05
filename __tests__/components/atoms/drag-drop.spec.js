@@ -7,7 +7,7 @@ describe('DragDrop', () => {
   jest.useFakeTimers();
 
   const touchEvent = { touches: [{}] };
-  const factory = () => mount(DragDrop, { attachToDocument: true });
+  const factory = () => mount(DragDrop, { attachTo: document.body });
 
   describe('when mousedown', () => {
     beforeEach(() => {

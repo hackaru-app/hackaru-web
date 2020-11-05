@@ -13,7 +13,9 @@ describe('Resizer', () => {
   describe('when drag', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent());
+      wrapper
+        .findComponent({ ref: 'drag-drop' })
+        .vm.$emit('start', dragEvent());
     });
 
     it('emits start', () => {
@@ -24,8 +26,12 @@ describe('Resizer', () => {
   describe('when drag', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent());
-      wrapper.find({ ref: 'drag-drop' }).vm.$emit('move', dragEvent(0, 80));
+      wrapper
+        .findComponent({ ref: 'drag-drop' })
+        .vm.$emit('start', dragEvent());
+      wrapper
+        .findComponent({ ref: 'drag-drop' })
+        .vm.$emit('move', dragEvent(0, 80));
     });
 
     it('emits resizing', () => {
@@ -40,9 +46,13 @@ describe('Resizer', () => {
   describe('when drop', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent());
-      wrapper.find({ ref: 'drag-drop' }).vm.$emit('move', dragEvent(70, 80));
-      wrapper.find({ ref: 'drag-drop' }).vm.$emit('end', dragEvent());
+      wrapper
+        .findComponent({ ref: 'drag-drop' })
+        .vm.$emit('start', dragEvent());
+      wrapper
+        .findComponent({ ref: 'drag-drop' })
+        .vm.$emit('move', dragEvent(70, 80));
+      wrapper.findComponent({ ref: 'drag-drop' }).vm.$emit('end', dragEvent());
     });
 
     it('emits end', () => {
@@ -53,8 +63,12 @@ describe('Resizer', () => {
   describe('when drop but not moved', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find({ ref: 'drag-drop' }).vm.$emit('start', dragEvent(0, 0));
-      wrapper.find({ ref: 'drag-drop' }).vm.$emit('end', dragEvent(0, 0));
+      wrapper
+        .findComponent({ ref: 'drag-drop' })
+        .vm.$emit('start', dragEvent(0, 0));
+      wrapper
+        .findComponent({ ref: 'drag-drop' })
+        .vm.$emit('end', dragEvent(0, 0));
     });
 
     it('emits cancel', () => {

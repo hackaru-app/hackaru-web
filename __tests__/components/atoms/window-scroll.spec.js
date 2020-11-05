@@ -6,7 +6,7 @@ describe('WindowScroll', () => {
 
   jest.useFakeTimers();
 
-  const factory = () => mount(WindowScroll, { attachToDocument: true });
+  const factory = () => mount(WindowScroll, { attachTo: document.body });
 
   describe('when scroll', () => {
     beforeEach(() => {

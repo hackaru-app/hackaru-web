@@ -34,9 +34,9 @@ describe('ProjectList', () => {
   });
 
   describe('when click left-arrow-button', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setProps({ popEnabled: true });
+      await wrapper.setProps({ popEnabled: true });
       wrapper.find(testId('left-arrow-button')).vm.$emit('click');
     });
 
