@@ -37,15 +37,14 @@ describe('Toast', () => {
       };
     });
 
-    it('shows new message', () => {
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.find(testId('content')).text()).toBe('new message');
-        expect(wrapper.find(testId('content')).exists()).toBe(true);
-      });
+    it('shows new message', async () => {
+      await wrapper.vm.$nextTick();
+      expect(wrapper.find(testId('content')).text()).toBe('new message');
+      expect(wrapper.find(testId('content')).exists()).toBe(true);
     });
 
-    it('hides toast delayed', () => {
-      jest.runOnlyPendingTimers();
+    it('hides toast delayed', async () => {
+      await jest.runOnlyPendingTimers();
       expect(wrapper.find(testId('content')).exists()).toBe(false);
     });
   });
