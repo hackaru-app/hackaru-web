@@ -17,10 +17,10 @@ describe('ProjectEditor', () => {
   });
 
   describe('when submit', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       $store.dispatch.mockReturnValue(true);
       wrapper = factory();
-      wrapper.setData({
+      await wrapper.setData({
         id: 1,
         name: 'Development',
         color: '#ff0',
@@ -42,10 +42,10 @@ describe('ProjectEditor', () => {
   });
 
   describe('when submit and id is undefined', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       $store.dispatch.mockReturnValue(true);
       wrapper = factory();
-      wrapper.setData({
+      await wrapper.setData({
         name: 'Development',
         color: '#ff0',
       });
@@ -65,11 +65,11 @@ describe('ProjectEditor', () => {
   });
 
   describe('when click delete-button', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       global.confirm = () => true;
       $store.dispatch.mockReturnValue(true);
       wrapper = factory();
-      wrapper.setData({
+      await wrapper.setData({
         id: 1,
         name: 'Development',
         color: '#ff0',
@@ -87,10 +87,10 @@ describe('ProjectEditor', () => {
   });
 
   describe('when click delete-button but confirm is false', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       global.confirm = () => false;
       wrapper = factory();
-      wrapper.setData({
+      await wrapper.setData({
         id: 1,
         name: 'Development',
         color: '#ff0',
