@@ -118,8 +118,8 @@ export default {
       this.syncProps();
     },
   },
-  async mounted() {
-    await this.$store.dispatch('activities/fetchWorking');
+  mounted() {
+    this.$store.dispatch('activities/fetchWorking');
   },
   methods: {
     syncProps() {
