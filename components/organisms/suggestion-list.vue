@@ -54,15 +54,15 @@ export default {
         enableBodyScroll(this.$refs.suggestions);
       }
     },
-    description: {
-      immediate: true,
-      handler() {
-        this.fetchSuggestions();
-      },
+    description() {
+      this.fetchSuggestions();
     },
   },
   deactivated() {
     enableBodyScroll(this.$refs.suggestions);
+  },
+  mounted() {
+    this.fetchSuggestions();
   },
   methods: {
     click(suggestion) {
