@@ -23,14 +23,13 @@
           />
         </div>
         <input
-          :value="description"
+          v-model="description"
           :placeholder="$t('description')"
           data-test-id="description"
           type="text"
           class="description"
           @focus="focus"
           @blur="blur"
-          @input="input"
           @change="change"
           @keypress.enter.prevent="enterDescription"
         />
@@ -42,7 +41,7 @@
         </transition>
         <base-button
           v-tooltip="$t('start')"
-          v-if="!id"
+          v-if="!working"
           type="submit"
           class="is-primary control-button start"
         >
@@ -57,26 +56,12 @@
           <icon name="square-icon" />
         </base-button>
       </div>
-      <transition>
-        <div
-          v-show="focused && !id && suggestions.length > 0"
-          class="suggestions-wrapper"
-          data-test-id="suggestions-wrapper"
-        >
-          <div ref="suggestions" class="suggestions">
-            <ul>
-              <li
-                v-for="(suggestion, index) in suggestions"
-                :key="index"
-                data-test-id="suggestion"
-                @click="clickSuggestion(suggestion)"
-              >
-                <activity-name v-bind="suggestion" />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </transition>
+      <suggestion-list
+        :shown="focused && !working"
+        :description="description"
+        data-test-id="suggestion-list"
+        @click="clickSuggestion"
+      />
     </form>
   </section>
 </template>
@@ -86,13 +71,12 @@ import NavModal from '@/components/organisms/nav-modal';
 import ProjectList from '@/components/organisms/project-list';
 import ProjectName from '@/components/molecules/project-name';
 import ActivityName from '@/components/molecules/activity-name';
+import SuggestionList from '@/components/organisms/suggestion-list';
 import Ticker from '@/components/atoms/ticker';
 import BaseButton from '@/components/atoms/base-button';
 import Icon from '@/components/atoms/icon';
 import Dot from '@/components/atoms/dot';
 import { mapGetters } from 'vuex';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import debounce from 'lodash.debounce';
 
 function getRandI18n(t) {
   if (!t) return;
@@ -109,6 +93,7 @@ export default {
     ActivityName,
     Icon,
     BaseButton,
+    SuggestionList,
   },
   data() {
     return {
@@ -122,38 +107,45 @@ export default {
   },
   computed: {
     ...mapGetters({
-      working: 'activities/working',
-      suggestions: 'suggestions/all',
+      workingActivity: 'activities/working',
     }),
+    working() {
+      return !!this.id;
+    },
   },
   watch: {
-    working() {
-      this.setWorkingProps();
+    workingActivity() {
+      this.syncProps();
     },
   },
   async mounted() {
     await this.$store.dispatch('activities/fetchWorking');
   },
-  deactivated() {
-    enableBodyScroll(this.$refs.suggestions);
-  },
   methods: {
-    setWorkingProps() {
-      const props = this.working || {};
+    syncProps() {
+      const props = this.workingActivity || {};
       this.id = props.id;
       this.startedAt = props.startedAt;
       this.project = props.project;
-      this.description = props.description;
+      this.description = props.description || '';
     },
     selectProject({ project }) {
       this.project = project;
       if (this.id) this.updateActivity();
     },
     submit() {
-      (this.id ? this.stopActivity : this.startActivity)();
+      if (this.working) {
+        this.stopActivity();
+      } else {
+        this.startActivity();
+      }
     },
     enterDescription() {
-      (this.id ? this.updateActivity : this.startActivity)();
+      if (this.working) {
+        this.updateActivity();
+      } else {
+        this.startActivity();
+      }
     },
     async updateActivity() {
       const success = await this.$store.dispatch('activities/update', {
@@ -162,7 +154,7 @@ export default {
         projectId: this.project && this.project.id,
       });
       if (success) {
-        this.setWorkingProps();
+        this.syncProps();
         this.$store.dispatch('toast/success', this.$t('updated'));
         this.$gtm.trackEvent({
           eventCategory: 'Activities',
@@ -184,7 +176,7 @@ export default {
         name: 'stop_activity',
         component: 'timer_form',
       });
-      this.setWorkingProps();
+      this.syncProps();
     },
     async startActivity() {
       const success = await this.$store.dispatch('activities/add', {
@@ -193,7 +185,7 @@ export default {
         startedAt: `${new Date()}`,
       });
       if (success) {
-        this.setWorkingProps();
+        this.syncProps();
         this.$store.dispatch('toast/success', this.$t('started'));
         this.$gtm.trackEvent({
           eventCategory: 'Activities',
@@ -203,32 +195,23 @@ export default {
         });
       }
     },
-    fetchSuggestions: debounce(function () {
-      if (this.id) return;
-      this.$store.dispatch('suggestions/fetch', this.description);
-    }, 1000),
     showModal() {
       this.$modal.show('project-list');
     },
-    input(e) {
-      this.description = e.target.value;
-      this.fetchSuggestions();
-    },
     focus() {
       this.focused = true;
-      disableBodyScroll(this.$refs.suggestions);
-      this.fetchSuggestions();
     },
     blur() {
       this.focused = false;
-      enableBodyScroll(this.$refs.suggestions);
     },
     change() {
-      if (this.id) this.updateActivity();
+      if (this.working) {
+        this.updateActivity();
+      }
     },
-    clickSuggestion({ description, project }) {
-      this.description = description;
-      this.project = project;
+    clickSuggestion(suggestion) {
+      this.description = suggestion.description;
+      this.project = suggestion.project;
       this.startActivity();
     },
   },
@@ -325,45 +308,6 @@ export default {
 .dot-only {
   display: none;
 }
-.suggestions-wrapper {
-  position: absolute;
-  animation-duration: 100ms;
-  width: 100%;
-  height: 100vh;
-  top: 91px;
-  box-sizing: border-box;
-  max-width: calc(100vw - #{$side-bar-min-width});
-  background-color: $backdrop-color;
-}
-.suggestions {
-  overflow-y: scroll;
-  box-sizing: border-box;
-  background-color: $background;
-  overflow: hidden;
-  overflow-y: scroll;
-  box-shadow: 0 3px 5px $shadow-darker;
-  -webkit-overflow-scrolling: touch;
-  max-height: 415px;
-}
-.suggestions ul {
-  margin: 0;
-  padding: 0;
-}
-.suggestions ul li {
-  display: flex;
-  cursor: pointer;
-  list-style-position: inside;
-  list-style-type: none;
-  text-align: center;
-  align-items: center;
-  height: 65px;
-  padding: 0 45px;
-  border-bottom: 1px $border solid;
-  transition: background-color 0.1s ease;
-  &:hover {
-    background-color: $background-hover;
-  }
-}
 @include mq(small) {
   .timer-form {
     max-width: 100vw;
@@ -431,46 +375,6 @@ export default {
   .form .duration {
     margin-right: 25px;
     display: none;
-  }
-  .suggestions-wrapper {
-    position: absolute;
-    top: 80px;
-    border: 0;
-    margin: 0;
-    padding: 0;
-    max-width: 100vw;
-    width: 100%;
-    background: none;
-  }
-  .suggestions {
-    border-radius: 0;
-    height: 100vh;
-    border-top: 0;
-    border-left: 0;
-    margin: 0;
-    max-width: 100vw;
-    background-color: $background-translucent;
-    max-height: 100%;
-    padding-bottom: 550px;
-  }
-  .suggestions ul {
-    min-height: 130vh;
-  }
-  .suggestions ul li {
-    height: 75px;
-    padding: 0 35px;
-    border-bottom: 1px $border solid;
-    border-radius: 0;
-    &:first-child {
-      padding-top: 0;
-    }
-    &:last-child {
-      border-bottom: 1px $border solid;
-      padding-bottom: 0;
-    }
-    &:hover {
-      background: none;
-    }
   }
 }
 </style>
