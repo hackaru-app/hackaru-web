@@ -112,11 +112,6 @@ module.exports = {
           exclude: /(node_modules)/,
         });
       }
-      config.module.rules.push({
-        resourceQuery: /blockType=i18n/,
-        type: 'javascript/auto',
-        loader: '@kazupon/vue-i18n-loader',
-      });
     },
   },
   /**

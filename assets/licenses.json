@@ -157,8 +157,8 @@
     },
     "nuxt-i18n": {
         "licenses": "MIT",
-        "repository": "https://github.com/nuxt-community/nuxt-i18n",
-        "licenseUrl": "https://github.com/nuxt-community/nuxt-i18n/raw/master/LICENSE",
+        "repository": "https://github.com/nuxt-community/i18n-module",
+        "licenseUrl": "https://github.com/nuxt-community/i18n-module/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
     "nuxt": {
