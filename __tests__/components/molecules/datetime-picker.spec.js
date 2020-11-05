@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import DatetimePicker from '@/components/molecules/datetime-picker';
-import dayjs from 'dayjs';
+import { formatISO, parseISO } from 'date-fns';
 import testId from '@/__tests__/__helpers__/test-id';
 
 describe('DatetimePicker', () => {
@@ -30,7 +30,7 @@ describe('DatetimePicker', () => {
 
     it('emits input with datetime', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
-        dayjs('2019-01-01 11:22:33').format(),
+        formatISO(parseISO('2019-01-01T11:22:33')),
       ]);
     });
   });
@@ -44,7 +44,7 @@ describe('DatetimePicker', () => {
 
     it('emits input with datetime', () => {
       expect(wrapper.emitted('input')[0]).toEqual([
-        dayjs('2019-03-03 22:33:44').format(),
+        formatISO(parseISO('2019-03-03T22:33:44')),
       ]);
     });
   });
