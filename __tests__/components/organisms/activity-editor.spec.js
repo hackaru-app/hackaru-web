@@ -56,6 +56,25 @@ describe('ActivityEditor', () => {
     });
   });
 
+  describe('when click submit button and project is null', () => {
+    beforeEach(() => {
+      $store.dispatch.mockReturnValue(true);
+      wrapper = factory();
+      wrapper.setData({ project: null });
+      wrapper.find('form').trigger('submit.prevent');
+    });
+
+    it('dispatches activities/add', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        projectId: null,
+        description: 'Create a database.',
+        startedAt: '2019-01-01T00:12:34',
+        stoppedAt: '2019-01-02T00:12:34',
+      });
+    });
+  });
+
   describe('when click submit button and id is undefined', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
@@ -115,7 +134,6 @@ describe('ActivityEditor', () => {
     it('emits push', () => {
       expect(wrapper.emitted('push')[0][0]).toEqual({
         component: ProjectList,
-        params: { selected: 2 },
       });
     });
   });

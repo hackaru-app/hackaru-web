@@ -6,7 +6,7 @@
   <div>
     <modal-item>
       <input
-        :value="description"
+        :value="value"
         :placeholder="$t('description')"
         class="description"
         data-test-id="description"
@@ -50,12 +50,8 @@ export default {
     ModalItem,
   },
   props: {
-    description: {
+    value: {
       type: String,
-      required: true,
-    },
-    project: {
-      type: Object,
       required: true,
     },
   },
@@ -74,7 +70,7 @@ export default {
       this.$store.dispatch('suggestions/fetch', text);
     }, 1000),
     input(e) {
-      this.$emit('update:description', e.target.value);
+      this.$emit('input', e.target.value);
       this.fetchSuggestions(e.target.value);
     },
     focus(e) {
@@ -85,8 +81,8 @@ export default {
       this.focused = false;
     },
     clickSuggestion({ description, project }) {
-      this.$emit('update:description', description);
-      this.$emit('update:project', project);
+      this.$emit('input', description);
+      this.$emit('select-project', project);
     },
   },
 };
