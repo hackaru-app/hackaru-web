@@ -97,7 +97,7 @@ export default {
       id: undefined,
       description: '',
       disabled: false,
-      project: undefined,
+      project: null,
       startedAt: `${new Date()}`,
       stoppedAt: undefined,
       focused: false,

@@ -17,6 +17,10 @@ describe('ActivityEditorDescription', () => {
           },
           description: 'Review my tasks',
         },
+        {
+          project: null,
+          description: 'Add tests',
+        },
       ],
     },
   });
@@ -82,12 +86,24 @@ describe('ActivityEditorDescription', () => {
       expect(wrapper.emitted('input')[0][0]).toBe('Review my tasks');
     });
 
-    it('emits update:project', () => {
+    it('emits select-project', () => {
       expect(wrapper.emitted('select-project')[0][0]).toEqual({
         id: 2,
         name: 'Review',
         color: '#ff0',
       });
+    });
+  });
+
+  describe('when click suggestion and project is null', () => {
+    beforeEach(async () => {
+      wrapper = factory();
+      await wrapper.find(testId('description')).trigger('focus');
+      wrapper.findAll(testId('suggestion')).at(1).trigger('click');
+    });
+
+    it('emits select-project', () => {
+      expect(wrapper.emitted('select-project')[0][0]).toBeNull();
     });
   });
 });
