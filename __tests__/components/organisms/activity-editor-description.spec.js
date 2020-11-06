@@ -27,12 +27,8 @@ describe('ActivityEditorDescription', () => {
         $store,
       },
       propsData: {
-        description: 'Create a database.',
-        project: {
-          id: null,
-          name: 'No Project',
-          color: '#cccfd9',
-        },
+        value: 'Create a database.',
+        project: undefined,
       },
     });
 
@@ -70,10 +66,8 @@ describe('ActivityEditorDescription', () => {
       wrapper.find(testId('description')).trigger('input');
     });
 
-    it('emits update:description', () => {
-      expect(wrapper.emitted('update:description')[0][0]).toBe(
-        'Review my tasks'
-      );
+    it('emits input', () => {
+      expect(wrapper.emitted('input')[0][0]).toBe('Review my tasks');
     });
   });
 
@@ -84,14 +78,12 @@ describe('ActivityEditorDescription', () => {
       wrapper.find(testId('suggestion')).trigger('click');
     });
 
-    it('emits update:description', () => {
-      expect(wrapper.emitted('update:description')[0][0]).toBe(
-        'Review my tasks'
-      );
+    it('emits input', () => {
+      expect(wrapper.emitted('input')[0][0]).toBe('Review my tasks');
     });
 
     it('emits update:project', () => {
-      expect(wrapper.emitted('update:project')[0][0]).toEqual({
+      expect(wrapper.emitted('select-project')[0][0]).toEqual({
         id: 2,
         name: 'Review',
         color: '#ff0',
