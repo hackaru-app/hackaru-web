@@ -67,12 +67,6 @@ export default {
     BaseButton,
   },
   props: {
-    params: {
-      type: Object,
-      default: () => ({
-        selected: null,
-      }),
-    },
     popEnabled: {
       type: Boolean,
       default: false,

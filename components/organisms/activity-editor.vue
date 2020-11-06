@@ -162,7 +162,6 @@ export default {
     editProject() {
       this.$emit('push', {
         component: ProjectList,
-        params: { selected: this.project && this.project.id },
       });
     },
     selectProject(project) {
