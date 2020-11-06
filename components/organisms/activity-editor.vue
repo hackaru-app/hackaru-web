@@ -8,8 +8,8 @@
 
     <form @submit.prevent="saveActivity">
       <activity-editor-description
-        :description.sync="description"
-        :project.sync="project"
+        v-model="description"
+        @select-project="selectProject"
       />
 
       <modal-item>
@@ -19,11 +19,7 @@
           class="project-button"
           @click="editProject"
         >
-          <project-name
-            :name="project.name"
-            :color="project.color"
-            class="project-name"
-          />
+          <project-name v-bind="project" class="project-name" />
           <icon name="chevron-right-icon" class="is-large" />
         </button>
       </modal-item>
@@ -101,11 +97,7 @@ export default {
       id: undefined,
       description: '',
       disabled: false,
-      project: {
-        id: null,
-        name: 'No Project',
-        color: '#cccfd9',
-      },
+      project: undefined,
       startedAt: `${new Date()}`,
       stoppedAt: undefined,
       focused: false,
@@ -135,7 +127,7 @@ export default {
       const action = this.id ? 'update' : 'add';
       const success = await this.$store.dispatch(`activities/${action}`, {
         id: this.id,
-        projectId: this.project.id,
+        projectId: this.project && this.project.id,
         description: this.description,
         startedAt: this.startedAt,
         stoppedAt: this.stoppedAt,
@@ -170,8 +162,11 @@ export default {
     editProject() {
       this.$emit('push', {
         component: ProjectList,
-        params: { selected: this.project.id },
+        params: { selected: this.project && this.project.id },
       });
+    },
+    selectProject(project) {
+      this.project = project;
     },
   },
 };
