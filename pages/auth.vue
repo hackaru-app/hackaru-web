@@ -35,7 +35,7 @@
           type="password"
         />
         <footer>
-          <div v-if="isShowAgreement" class="agreement">
+          <div v-if="shownAgreement" class="agreement">
             <label for="agreement">
               <input
                 id="agreement"
@@ -45,7 +45,7 @@
               />
               <i18n path="agreement">
                 <a
-                  :href="$config.hackaruTosAndPrivacyUrl"
+                  :href="$config.hackaruTermsUrl"
                   target="_blank"
                   rel="noopener"
                   >{{ $t('termOfServiceAndPrivacyPolicy') }}</a
@@ -110,8 +110,8 @@ export default {
     };
   },
   computed: {
-    isShowAgreement() {
-      return !this.hasAccount && this.$config.hackaruTosAndPrivacyUrl;
+    shownAgreement() {
+      return !this.hasAccount && this.$config.hackaruTermsUrl;
     },
   },
   mounted() {
