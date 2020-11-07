@@ -28,7 +28,7 @@
         </base-button>
       </template>
     </modal-header>
-    <div class="content">
+    <div v-scroll-lock="true" class="content">
       <div v-for="project in projects" :key="project.id" class="project">
         <button
           data-test-id="project-button"
