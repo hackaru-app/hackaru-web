@@ -2,13 +2,6 @@
 
 <template>
   <section class="timer-form">
-    <nav-modal
-      :initial-component="ProjectList"
-      height="450"
-      data-test-id="nav-modal"
-      name="project-list"
-      @close="selectProject"
-    />
     <form data-test-id="form" class="form" @submit.prevent="submit">
       <div class="form-content">
         <div
@@ -196,7 +189,10 @@ export default {
       }
     },
     showModal() {
-      this.$modal.show('project-list');
+      this.$nuxt.$emit('show-modal', {
+        component: ProjectList,
+        callback: this.selectProject,
+      });
     },
     focus() {
       this.focused = true;

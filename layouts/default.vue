@@ -1,11 +1,6 @@
 <template>
   <div class="default" ontouchstart="">
-    <nav-modal
-      :initial-component="ActivityEditor"
-      :keep-alives="['ActivityEditor']"
-      height="450"
-      name="activity"
-    />
+    <nav-modal />
     <side-bar />
     <login-guard class="content">
       <nuxt keep-alive />
