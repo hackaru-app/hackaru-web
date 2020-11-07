@@ -153,18 +153,6 @@ module.exports = {
         },
       },
     ],
-    [
-      'nuxt-env',
-      {
-        keys: [
-          { key: 'HACKARU_API_URL' },
-          { key: 'HACKARU_TOS_AND_PRIVACY_URL' },
-          { key: 'GOOGLE_TAG_MANAGER_ID' },
-          { key: 'SENTRY_DSN' },
-          { key: 'DELIGHTED_TOKEN' },
-        ],
-      },
-    ],
   ],
   publicRuntimeConfig: {
     hackaruApiUrl: process.env.HACKARU_API_URL,
