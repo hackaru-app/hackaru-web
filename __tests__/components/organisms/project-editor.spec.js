@@ -9,6 +9,9 @@ describe('ProjectEditor', () => {
   const $store = new Store({});
   const factory = () =>
     shallowMount(ProjectEditor, {
+      propsData: {
+        params: {},
+      },
       mocks: { $store },
     });
 
