@@ -13,7 +13,6 @@ describe('TimerForm', () => {
   const localVue = createLocalVue();
   localVue.directive('tooltip', () => {});
 
-  const $modal = { show: jest.fn() };
   const $nuxt = { $emit: jest.fn() };
   const $store = new Store({
     getters: {
@@ -26,7 +25,6 @@ describe('TimerForm', () => {
       localVue,
       mocks: {
         $store,
-        $modal,
         $nuxt,
       },
     });
