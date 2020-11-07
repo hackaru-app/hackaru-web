@@ -4,45 +4,53 @@
   <section>
     <modal-header>
       <template slot="left">
-        <base-button type="button" class="has-icon" @click="pop">
+        <base-button
+          v-if="navigated"
+          class="has-icon"
+          data-test-id="left-arrow-button"
+          type="button"
+          @click="pop"
+        >
           <icon name="chevron-left-icon" class="is-large" />
         </base-button>
       </template>
 
-      <h1>{{ $t(`titles.${id ? 'update' : 'add'}`) }}</h1>
+      {{ $t(`titles.${id ? 'update' : 'add'}`) }}
     </modal-header>
 
-    <form @submit.prevent="id ? updateProject() : addProject()">
-      <modal-item>
-        <label>
-          {{ $t('name') }}
-        </label>
-        <input v-model="name" :placeholder="$t('name')" type="text" />
-      </modal-item>
+    <div class="content">
+      <form data-test-id="form" @submit.prevent="addOrUpdate">
+        <modal-item>
+          <label>
+            {{ $t('name') }}
+          </label>
+          <input v-model="name" :placeholder="$t('name')" type="text" />
+        </modal-item>
 
-      <modal-item>
-        <label>
-          {{ $t('color') }}
-        </label>
-        <color-select :value.sync="color" />
-      </modal-item>
+        <modal-item>
+          <label>
+            {{ $t('color') }}
+          </label>
+          <color-select :value.sync="color" class="color-select" />
+        </modal-item>
 
-      <modal-footer>
-        <base-button type="submit" class="is-rounded is-primary">
-          {{ $t(id ? 'update' : 'add') }}
-        </base-button>
+        <modal-footer>
+          <base-button type="submit" class="is-rounded is-primary">
+            {{ $t(id ? 'update' : 'add') }}
+          </base-button>
 
-        <base-button
-          v-if="id !== undefined"
-          class="has-icon"
-          data-test-id="delete-button"
-          type="button"
-          @click="deleteProject"
-        >
-          <icon name="trash-icon" class="is-danger" />
-        </base-button>
-      </modal-footer>
-    </form>
+          <base-button
+            v-if="!!id"
+            type="button"
+            data-test-id="delete-button"
+            class="is-icon is-white"
+            @click="deleteProject"
+          >
+            <icon name="trash-2-icon" class="is-danger" />
+          </base-button>
+        </modal-footer>
+      </form>
+    </div>
   </section>
 </template>
 
@@ -64,9 +72,13 @@ export default {
     BaseButton,
   },
   props: {
+    navigated: {
+      type: Boolean,
+      default: false,
+    },
     params: {
       type: Object,
-      default: () => {},
+      required: true,
     },
   },
   data() {
@@ -80,14 +92,20 @@ export default {
     params: {
       immediate: true,
       handler() {
-        const params = this.params || {};
-        this.id = params.id || this.id;
-        this.name = params.name || this.name;
-        this.color = params.color || this.color;
+        this.id = this.params.id;
+        this.name = this.params.name || '';
+        this.color = this.params.color || '#4ab8b8';
       },
     },
   },
   methods: {
+    addOrUpdate() {
+      if (this.id) {
+        this.updateProject();
+      } else {
+        this.addProject();
+      }
+    },
     async addProject() {
       const success = await this.$store.dispatch('projects/add', {
         name: this.name,
@@ -141,3 +159,14 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.color-select {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  margin-left: -5px;
+}
+.content {
+  height: 385px;
+}
+</style>

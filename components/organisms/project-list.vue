@@ -4,9 +4,15 @@
   <section class="container">
     <modal-header>
       <template slot="left">
-        <icon-button v-if="navigated" data-test-id="pop-button" @click="pop">
+        <base-button
+          v-if="navigated"
+          class="has-icon"
+          data-test-id="left-arrow-button"
+          type="button"
+          @click="pop"
+        >
           <icon name="chevron-left-icon" class="is-large" />
-        </icon-button>
+        </base-button>
       </template>
 
       {{ $t('title') }}
@@ -110,7 +116,7 @@ export default {
 }
 .content {
   overflow: scroll;
-  height: 380px;
+  height: 385px;
 }
 .project-button {
   flex-basis: 100%;
@@ -120,12 +126,8 @@ export default {
   padding: 0;
   display: flex;
   justify-content: space-between;
-  transition: background-color 0.1s, transform 0.1s;
+  transition: background-color 0.1s;
   min-width: 1px;
-  transform-origin: left;
-  &:active {
-    transform: scale(0.97);
-  }
   cursor: pointer;
 }
 .project-name {
