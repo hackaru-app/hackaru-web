@@ -1,17 +1,15 @@
 <i18n src="@/assets/locales/components/organisms/activity-editor.json"></i18n>
 
 <template>
-  <section>
+  <form data-test-id="form" @submit.prevent="updateActivity">
     <modal-header>
-      <h1>{{ $t(`titles.${id ? 'update' : 'start'}`) }}</h1>
+      {{ $t('title') }}
     </modal-header>
-
-    <form @submit.prevent="saveActivity">
+    <div class="content">
       <activity-editor-description
         v-model="description"
         @select-project="selectProject"
       />
-
       <modal-item>
         <button
           type="button"
@@ -23,43 +21,33 @@
           <icon name="chevron-right-icon" class="is-large" />
         </button>
       </modal-item>
-
       <modal-item>
         <label>
           {{ $t('startedAt') }}
         </label>
-        <datetime-picker v-model="startedAt" />
+        <datetime-picker v-model="startedAt" class="datetime-picker" />
       </modal-item>
-
-      <modal-item v-if="id">
+      <modal-item>
         <label>
           {{ $t('stoppedAt') }}
         </label>
-        <datetime-picker v-model="stoppedAt" />
+        <datetime-picker v-model="stoppedAt" class="datetime-picker" />
       </modal-item>
-
       <modal-footer>
-        <base-button
-          :disabled="disabled"
-          type="submit"
-          class="is-rounded is-primary"
-        >
-          {{ $t(id ? 'update' : 'start') }}
+        <base-button type="submit" class="is-rounded is-primary">
+          {{ $t('update') }}
         </base-button>
-        <div class="icons">
-          <base-button
-            v-if="id"
-            type="button"
-            data-test-id="delete-button"
-            class="delete-button has-icon"
-            @click="deleteActivity"
-          >
-            <icon name="trash-icon" class="is-danger" />
-          </base-button>
-        </div>
+        <base-button
+          type="button"
+          data-test-id="delete-button"
+          class="is-icon is-white"
+          @click="deleteActivity"
+        >
+          <icon name="trash-2-icon" class="is-danger" />
+        </base-button>
       </modal-footer>
-    </form>
-  </section>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -89,7 +77,7 @@ export default {
   props: {
     params: {
       type: Object,
-      default: () => {},
+      required: true,
     },
   },
   data() {
@@ -122,10 +110,9 @@ export default {
     },
   },
   methods: {
-    async saveActivity() {
+    async updateActivity() {
       this.disabled = true;
-      const action = this.id ? 'update' : 'add';
-      const success = await this.$store.dispatch(`activities/${action}`, {
+      const success = await this.$store.dispatch('activities/update', {
         id: this.id,
         projectId: this.project && this.project.id,
         description: this.description,
@@ -138,11 +125,11 @@ export default {
           'toast/success',
           this.$t(this.id || this.stoppedAt ? 'saved' : 'started')
         );
-        this.$modal.hide('activity');
+        this.$emit('pop');
         this.$gtm.trackEvent({
           eventCategory: 'Activities',
-          eventAction: action,
-          name: `${action}_activity`,
+          eventAction: 'update',
+          name: 'update_activity',
           component: 'activity_editor',
         });
       }
@@ -157,7 +144,7 @@ export default {
         name: 'delete_activity',
         component: 'activity_editor',
       });
-      this.$modal.hide('activity');
+      this.$emit('pop');
     },
     editProject() {
       this.$emit('push', {
@@ -172,28 +159,25 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.content {
+  height: 385px;
+}
+.datetime-picker {
+  justify-content: flex-end;
+}
 .project-button {
-  cursor: pointer;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   border: 0;
   padding: 0;
-  height: 40px;
-  width: 100%;
   background: none;
-}
-.project-name {
-  flex: 1;
-  box-sizing: border-box;
-  padding-right: 20px;
-}
-.icons {
-  display: flex;
-  flex-shrink: 0;
-  flex-direction: row;
-  .delete-button {
-    margin-left: 10px;
+  cursor: pointer;
+  .project-name {
+    display: flex;
+    min-height: inherit;
+    padding-right: 10px;
   }
 }
 </style>
