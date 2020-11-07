@@ -9,7 +9,7 @@
         <component
           :is="current"
           :params="params"
-          :navigated="stack.length"
+          :navigated="stack.length > 0"
           data-test-id="current"
           class="current"
           @push="push"

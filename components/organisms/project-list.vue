@@ -1,21 +1,15 @@
 <i18n src="@/assets/locales/components/organisms/project-list.json"></i18n>
 
 <template>
-  <section>
+  <section class="container">
     <modal-header>
       <template slot="left">
-        <base-button
-          v-if="popEnabled"
-          class="has-icon"
-          data-test-id="left-arrow-button"
-          type="button"
-          @click="pop"
-        >
+        <icon-button v-if="navigated" data-test-id="pop-button" @click="pop">
           <icon name="chevron-left-icon" class="is-large" />
-        </base-button>
+        </icon-button>
       </template>
 
-      <h1>{{ $t('title') }}</h1>
+      {{ $t('title') }}
 
       <template slot="right">
         <base-button
@@ -28,24 +22,25 @@
         </base-button>
       </template>
     </modal-header>
-
-    <div v-for="project in projects" :key="project.id" class="item">
-      <div
-        data-test-id="project-content"
-        class="project-content"
-        @click="selectProject(project)"
-      >
-        <project-name :name="project.name" :color="project.color" />
+    <div class="content">
+      <div v-for="project in projects" :key="project.id" class="project">
+        <button
+          data-test-id="project-button"
+          class="project-button"
+          @click="pop({ project })"
+        >
+          <project-name v-bind="project" class="project-name" />
+        </button>
+        <base-button
+          v-if="project.id"
+          class="has-icon"
+          data-test-id="edit-button"
+          type="button"
+          @click="editProject(project)"
+        >
+          <icon name="edit-3-icon" class="is-primary" />
+        </base-button>
       </div>
-      <base-button
-        v-if="project.id"
-        class="has-icon"
-        data-test-id="edit-button"
-        type="button"
-        @click="project.id && editProject(project)"
-      >
-        <icon name="edit-3-icon" class="is-primary" />
-      </base-button>
     </div>
   </section>
 </template>
@@ -67,7 +62,7 @@ export default {
     BaseButton,
   },
   props: {
-    popEnabled: {
+    navigated: {
       type: Boolean,
       default: false,
     },
@@ -81,11 +76,13 @@ export default {
     },
   },
   methods: {
-    pop() {
-      this.$emit('pop');
+    pop(params) {
+      this.$emit('pop', params);
     },
     createProject() {
-      this.$emit('push', { component: ProjectEditor });
+      this.$emit('push', {
+        component: ProjectEditor,
+      });
     },
     editProject(project) {
       this.$emit('push', {
@@ -101,24 +98,40 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.item {
-  padding: 0 30px;
-  height: 68px;
+.project {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  height: 71px;
+  padding: 0 30px;
   border-bottom: 1px $border solid;
-  transition: background-color 0.1s ease;
+  transition: background-color 0.3s ease;
   &:hover {
     background: $background-hover;
   }
 }
-.project-content {
-  justify-content: space-between;
-  cursor: pointer;
-  height: 100%;
-  width: 90%;
-  display: flex;
+.content {
+  overflow: scroll;
+  height: 380px;
+}
+.project-button {
+  flex-basis: 100%;
   align-items: center;
+  background: none;
+  border: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  transition: background-color 0.1s, transform 0.1s;
+  min-width: 1px;
+  transform-origin: left;
+  &:active {
+    transform: scale(0.97);
+  }
+  cursor: pointer;
+}
+.project-name {
+  padding-right: 10px;
+}
+.edit-button {
+  flex-shrink: 0;
 }
 </style>
