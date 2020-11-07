@@ -3,7 +3,7 @@
 
 <template>
   <section>
-    <base-modal name="application">
+    <base-modal :shown.sync="shownModal" data-test-id="base-modal">
       <form>
         <modal-header>
           <h1>{{ selected.name }}</h1>
@@ -77,12 +77,12 @@ export default {
     ModalHeader,
     ModalItem,
     ModalFooter,
-
     Highlight,
   },
   data() {
     return {
       selected: {},
+      shownModal: false,
     };
   },
   computed: {
@@ -106,7 +106,7 @@ export default {
     },
     showModal(application) {
       this.selected = application;
-      this.$modal.show('application');
+      this.shownModal = true;
     },
   },
 };
