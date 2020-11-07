@@ -40,6 +40,54 @@ describe('TimerForm', () => {
     expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorking');
   });
 
+  describe('when select project and timer is not working', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.vm.selectProject({
+        project: {
+          id: 1,
+          name: 'Review',
+          color: '#ff0',
+        },
+      });
+    });
+
+    it('does not dispatch activities/update', () => {
+      expect($store.dispatch).not.toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        description: 'Review my tasks',
+        projectId: 1,
+      });
+    });
+  });
+
+  describe('when select project and timer is working', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.setData({
+        id: 1,
+        project: null,
+        startedAt: '2019-01-01T01:23:45',
+        description: 'Review my tasks',
+      });
+      wrapper.vm.selectProject({
+        project: {
+          id: 1,
+          name: 'Review',
+          color: '#ff0',
+        },
+      });
+    });
+
+    it('dispatches activities/update', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        description: 'Review my tasks',
+        projectId: 1,
+      });
+    });
+  });
+
   describe('when click project-select', () => {
     beforeEach(() => {
       wrapper = factory();
