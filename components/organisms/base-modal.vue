@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-down-fade">
-    <div v-if="shown" class="modal" @mousedown="hide">
+    <div v-scroll-lock="shown" v-if="shown" class="modal" @mousedown="hide">
       <div class="container" @mousedown.stop>
         <slot />
       </div>

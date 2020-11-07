@@ -5,7 +5,7 @@
       class="suggestions-wrapper"
       data-test-id="suggestions-wrapper"
     >
-      <div ref="suggestions" class="suggestions">
+      <div v-scroll-lock="shown" ref="suggestions" class="suggestions">
         <ul>
           <li
             v-for="(suggestion, index) in suggestions"
@@ -24,7 +24,6 @@
 <script>
 import ActivityName from '@/components/molecules/activity-name';
 import { mapGetters } from 'vuex';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import debounce from 'lodash.debounce';
 
 export default {
@@ -47,19 +46,9 @@ export default {
     }),
   },
   watch: {
-    shown() {
-      if (this.shown) {
-        disableBodyScroll(this.$refs.suggestions);
-      } else {
-        enableBodyScroll(this.$refs.suggestions);
-      }
-    },
     description() {
       this.fetchSuggestions();
     },
-  },
-  deactivated() {
-    enableBodyScroll(this.$refs.suggestions);
   },
   mounted() {
     this.fetchSuggestions();
