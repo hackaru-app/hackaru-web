@@ -5,137 +5,108 @@ import testId from '@/__tests__/__helpers__/test-id';
 describe('NavModal', () => {
   let wrapper;
 
-  const initialComponent = { render: () => '<p>Content</p>' };
-  const nextComponent = { render: () => '<p>Moved</p>' };
+  const initialComponent = {
+    props: {
+      params: {
+        type: Object,
+        default: undefined,
+      },
+    },
+    render: (h) => h,
+  };
+
+  const nextComponent = {
+    props: {
+      params: {
+        type: Object,
+        default: undefined,
+      },
+    },
+    render: (h) => h,
+  };
+
+  const $nuxt = { $on: () => {} };
 
   const factory = () =>
     shallowMount(NavModal, {
-      propsData: {
-        name: 'example',
-        initialComponent,
-        keepAlives: [],
+      mocks: {
+        $nuxt,
       },
     });
 
-  describe('when emit before-open', () => {
+  describe('when mounted', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper
-        .findComponent({ ref: 'base-modal' })
-        .vm.$emit('before-open', { params: { foo: 'bar' } });
     });
 
-    it('sets current component', () => {
-      expect(wrapper.find(testId('current')).is(initialComponent)).toBe(true);
-    });
-
-    it('reset animations', () => {
-      expect(wrapper.vm.animation).toEqual({
-        enter: '',
-        leave: '',
-      });
-    });
-
-    it('sets params', () => {
-      expect(wrapper.vm.params).toEqual({
-        foo: 'bar',
-      });
+    it('does not set component', () => {
+      expect(wrapper.find(testId('current')).exists()).toBe(false);
     });
   });
 
-  describe('when emit before-open with empty params', () => {
-    beforeEach(() => {
-      wrapper = factory();
-      wrapper.findComponent({ ref: 'base-modal' }).vm.$emit('before-open', {});
-    });
-
-    it('reset params', () => {
-      expect(wrapper.vm.params).toEqual({});
-    });
-  });
-
-  describe('when emit push', () => {
+  describe('when emits show-modal', () => {
     beforeEach(async () => {
       wrapper = factory();
-      await wrapper.setData({ current: initialComponent });
+      wrapper.vm.show({ component: initialComponent });
+    });
+
+    it('sets component', () => {
+      expect(wrapper.findComponent(initialComponent).exists()).toBe(true);
+    });
+  });
+
+  describe('when push', () => {
+    beforeEach(async () => {
+      wrapper = factory();
+      await wrapper.vm.show({ component: initialComponent });
       wrapper.find(testId('current')).vm.$emit('push', {
         component: nextComponent,
         params: { foo: 'bar' },
       });
     });
 
-    it('sets current component', () => {
-      expect(wrapper.find(testId('current')).is(nextComponent)).toBe(true);
-    });
-
-    it('sets animations', () => {
-      expect(wrapper.vm.animation).toEqual({
-        enter: 'fadeInRight',
-        leave: 'fadeOutLeft',
-      });
+    it('sets component', () => {
+      expect(wrapper.findComponent(nextComponent).exists()).toBe(true);
     });
 
     it('sets params', () => {
-      expect(wrapper.vm.params).toEqual({
+      expect(wrapper.findComponent(nextComponent).props('params')).toEqual({
         foo: 'bar',
       });
     });
   });
 
-  describe('when emit push with empty params', () => {
+  describe('when pop and has prev component', () => {
     beforeEach(async () => {
       wrapper = factory();
-      await wrapper.setData({ current: initialComponent });
-      wrapper.find(testId('current')).vm.$emit('push', {
-        component: nextComponent,
+      await wrapper.vm.show({ component: initialComponent });
+      const current = wrapper.find(testId('current'));
+      current.vm.$emit('push', { component: nextComponent });
+      current.vm.$emit('pop', { foo: 'bar' });
+    });
+
+    it('sets params', () => {
+      expect(wrapper.findComponent(initialComponent).props('params')).toEqual({
+        foo: 'bar',
       });
     });
 
-    it('reset params', () => {
-      expect(wrapper.vm.params).toEqual({});
+    it('restores prev component', () => {
+      expect(wrapper.findComponent(initialComponent).exists()).toBe(true);
     });
   });
 
-  describe('when emit pop', () => {
+  describe('when pop and does not have prev component', () => {
+    const callback = jest.fn();
+
     beforeEach(async () => {
       wrapper = factory();
-      await wrapper.setData({ current: initialComponent });
-      wrapper
-        .find(testId('current'))
-        .vm.$emit('push', { component: nextComponent });
+      await wrapper.vm.show({ component: initialComponent, callback });
       wrapper.find(testId('current')).vm.$emit('pop', { foo: 'bar' });
     });
 
-    it('move to previous component', () => {
-      expect(wrapper.find(testId('current')).is(initialComponent)).toBe(true);
-    });
-
-    it('sets animations', () => {
-      expect(wrapper.vm.animation).toEqual({
-        enter: 'fadeInLeft',
-        leave: 'fadeOutRight',
-      });
-    });
-
-    it('sets params', () => {
-      expect(wrapper.vm.params).toEqual({
-        foo: 'bar',
-      });
-    });
-  });
-
-  describe('when emit pop with empty params', () => {
-    beforeEach(async () => {
-      wrapper = factory();
-      await wrapper.setData({ current: initialComponent });
-      wrapper
-        .find(testId('current'))
-        .vm.$emit('push', { component: nextComponent });
-      wrapper.find(testId('current')).vm.$emit('pop');
-    });
-
-    it('reset params', () => {
-      expect(wrapper.vm.params).toEqual({});
+    it('calls callback', () => {
+      expect(callback).toHaveBeenCalledWith({ foo: 'bar' });
     });
   });
 });

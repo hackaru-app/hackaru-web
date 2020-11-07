@@ -1,5 +1,5 @@
 <template>
-  <base-modal :shown="shown" class="modal" @hide="hide">
+  <base-modal :shown="shown" @hide="hide">
     <transition
       :enter-active-class="animation.enter"
       :leave-active-class="animation.leave"
@@ -71,7 +71,7 @@ export default {
         this.current = prev;
       } else {
         this.callback(params);
-        this.hide();
+        this.shown = false;
       }
     },
     hide() {
