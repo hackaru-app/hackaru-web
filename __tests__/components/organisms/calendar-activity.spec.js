@@ -2,19 +2,20 @@ import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import { parseISO } from 'date-fns';
 import CalendarActivity from '@/components/organisms/calendar-activity';
+import ActivityEditor from '@/components/organisms/activity-editor';
 import testId from '@/__tests__/__helpers__/test-id';
 
 describe('CalendarActivity', () => {
   let wrapper;
 
   const $store = new Store({});
-  const $modal = { show: jest.fn() };
+  const $nuxt = { $emit: jest.fn() };
 
   const factory = () =>
     shallowMount(CalendarActivity, {
       mocks: {
         $store,
-        $modal,
+        $nuxt,
       },
       propsData: {
         id: 1,
@@ -204,12 +205,15 @@ describe('CalendarActivity', () => {
     });
 
     it('shows modal', () => {
-      expect($modal.show).toHaveBeenCalledWith('activity', {
-        id: 1,
-        description: 'Create a database.',
-        duration: 3600,
-        startedAt: '2019-01-01T01:23:45',
-        stoppedAt: '2019-01-01T02:23:45',
+      expect($nuxt.$emit).toHaveBeenCalledWith('show-modal', {
+        component: ActivityEditor,
+        params: {
+          id: 1,
+          description: 'Create a database.',
+          duration: 3600,
+          startedAt: '2019-01-01T01:23:45',
+          stoppedAt: '2019-01-01T02:23:45',
+        },
       });
     });
   });
@@ -225,7 +229,7 @@ describe('CalendarActivity', () => {
     });
 
     it('does not show modal', () => {
-      expect($modal.show).not.toHaveBeenCalled();
+      expect($nuxt.$emit).not.toHaveBeenCalled();
     });
   });
 
@@ -240,7 +244,7 @@ describe('CalendarActivity', () => {
     });
 
     it('does not show modal', () => {
-      expect($modal.show).not.toHaveBeenCalled();
+      expect($nuxt.$emit).not.toHaveBeenCalled();
     });
   });
 });

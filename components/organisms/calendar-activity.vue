@@ -48,6 +48,7 @@
 import Dragger from '@/components/atoms/dragger';
 import Resizer from '@/components/atoms/resizer';
 import CalendarEvent from '@/components/atoms/calendar-event';
+import ActivityEditor from '@/components/organisms/activity-editor';
 
 import {
   startOfDay,
@@ -208,13 +209,16 @@ export default {
       this.dragged = false;
     },
     showModal() {
-      this.$modal.show('activity', {
-        id: this.id,
-        description: this.description,
-        startedAt: this.startedAt,
-        stoppedAt: this.stoppedAt,
-        duration: this.duration,
-        project: this.project,
+      this.$nuxt.$emit('show-modal', {
+        component: ActivityEditor,
+        params: {
+          id: this.id,
+          description: this.description,
+          startedAt: this.startedAt,
+          stoppedAt: this.stoppedAt,
+          duration: this.duration,
+          project: this.project,
+        },
       });
     },
     async update(payload) {

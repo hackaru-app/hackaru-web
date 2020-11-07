@@ -3,12 +3,12 @@
 
 <template>
   <section>
-    <base-modal name="application">
-      <form>
+    <base-modal :shown.sync="shownModal" data-test-id="base-modal">
+      <section>
         <modal-header>
           <h1>{{ selected.name }}</h1>
         </modal-header>
-        <modal-item class="is-vertical">
+        <modal-item class="scopes-item is-vertical">
           <label>
             {{ $t('labels.scopes') }}
           </label>
@@ -20,7 +20,7 @@
             </ul>
           </highlight>
         </modal-item>
-      </form>
+      </section>
     </base-modal>
 
     <section class="content">
@@ -77,12 +77,12 @@ export default {
     ModalHeader,
     ModalItem,
     ModalFooter,
-
     Highlight,
   },
   data() {
     return {
       selected: {},
+      shownModal: false,
     };
   },
   computed: {
@@ -106,7 +106,7 @@ export default {
     },
     showModal(application) {
       this.selected = application;
-      this.$modal.show('application');
+      this.shownModal = true;
     },
   },
 };
@@ -164,6 +164,9 @@ ul {
   display: flex;
   width: 100%;
   color: $text-lighter;
+}
+.scopes-item {
+  border-bottom: 0;
 }
 @include mq(small) {
   .content {

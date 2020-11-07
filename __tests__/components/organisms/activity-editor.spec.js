@@ -8,12 +8,13 @@ describe('ActivityEditor', () => {
   let wrapper;
 
   const $store = new Store({});
-  const $modal = { hide: jest.fn() };
   const factory = () =>
     shallowMount(ActivityEditor, {
+      propsData: {
+        params: {},
+      },
       mocks: {
         $store,
-        $modal,
       },
       data() {
         return {
@@ -51,8 +52,8 @@ describe('ActivityEditor', () => {
       });
     });
 
-    it('hides modal', () => {
-      expect($modal.hide).toHaveBeenCalledWith('activity');
+    it('emits pop', () => {
+      expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
 
@@ -64,7 +65,7 @@ describe('ActivityEditor', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatches activities/add', () => {
+    it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         projectId: null,
@@ -72,28 +73,6 @@ describe('ActivityEditor', () => {
         startedAt: '2019-01-01T00:12:34',
         stoppedAt: '2019-01-02T00:12:34',
       });
-    });
-  });
-
-  describe('when click submit button and id is undefined', () => {
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue(true);
-      wrapper = factory();
-      wrapper.setData({ id: undefined });
-      wrapper.find('form').trigger('submit.prevent');
-    });
-
-    it('dispatches activities/add', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
-        projectId: 2,
-        description: 'Create a database.',
-        startedAt: '2019-01-01T00:12:34',
-        stoppedAt: '2019-01-02T00:12:34',
-      });
-    });
-
-    it('hides modal', () => {
-      expect($modal.hide).toHaveBeenCalledWith('activity');
     });
   });
 
@@ -108,8 +87,8 @@ describe('ActivityEditor', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/delete', 1);
     });
 
-    it('hides modal', () => {
-      expect($modal.hide).toHaveBeenCalledWith('activity');
+    it('emits pop', () => {
+      expect(wrapper.emitted('pop')).toBeTruthy();
     });
   });
 

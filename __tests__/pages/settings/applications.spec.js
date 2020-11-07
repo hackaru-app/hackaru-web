@@ -25,10 +25,11 @@ describe('Applications', () => {
     },
   });
 
-  const $modal = { show: jest.fn() };
   const factory = () =>
     shallowMount(Applications, {
-      mocks: { $store, $modal },
+      mocks: {
+        $store,
+      },
     });
 
   beforeEach(() => {
@@ -64,17 +65,6 @@ describe('Applications', () => {
         'applications/delete',
         1
       );
-    });
-  });
-
-  describe('when click application', () => {
-    beforeEach(() => {
-      wrapper = factory();
-      wrapper.findAll(testId('application-name')).at(0).trigger('click');
-    });
-
-    it('shows modal', () => {
-      expect($modal.show).toHaveBeenCalledWith('application');
     });
   });
 });

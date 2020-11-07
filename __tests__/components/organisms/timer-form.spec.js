@@ -2,6 +2,7 @@ import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import TimerForm from '@/components/organisms/timer-form';
+import ProjectList from '@/components/organisms/project-list';
 import testId from '@/__tests__/__helpers__/test-id';
 
 describe('TimerForm', () => {
@@ -12,7 +13,7 @@ describe('TimerForm', () => {
   const localVue = createLocalVue();
   localVue.directive('tooltip', () => {});
 
-  const $modal = { show: jest.fn() };
+  const $nuxt = { $emit: jest.fn() };
   const $store = new Store({
     getters: {
       'activities/working': [],
@@ -24,7 +25,7 @@ describe('TimerForm', () => {
       localVue,
       mocks: {
         $store,
-        $modal,
+        $nuxt,
       },
     });
 
@@ -37,21 +38,10 @@ describe('TimerForm', () => {
     expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorking');
   });
 
-  describe('when click project-select', () => {
-    beforeEach(() => {
-      wrapper = factory();
-      wrapper.find(testId('project-wrapper')).trigger('click');
-    });
-
-    it('shows modal', () => {
-      expect($modal.show).toHaveBeenCalledWith('project-list');
-    });
-  });
-
   describe('when select project and timer is not working', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find(testId('nav-modal')).vm.$emit('close', {
+      wrapper.vm.selectProject({
         project: {
           id: 1,
           name: 'Review',
@@ -61,10 +51,11 @@ describe('TimerForm', () => {
     });
 
     it('does not dispatch activities/update', () => {
-      expect($store.dispatch).not.toHaveBeenCalledWith(
-        'activities/update',
-        expect.any(Object)
-      );
+      expect($store.dispatch).not.toHaveBeenCalledWith('activities/update', {
+        id: 1,
+        description: 'Review my tasks',
+        projectId: 1,
+      });
     });
   });
 
@@ -77,7 +68,7 @@ describe('TimerForm', () => {
         startedAt: '2019-01-01T01:23:45',
         description: 'Review my tasks',
       });
-      wrapper.find(testId('nav-modal')).vm.$emit('close', {
+      wrapper.vm.selectProject({
         project: {
           id: 1,
           name: 'Review',
@@ -95,10 +86,24 @@ describe('TimerForm', () => {
     });
   });
 
+  describe('when click project-select', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.find(testId('project-wrapper')).trigger('click');
+    });
+
+    it('shows modal', () => {
+      expect($nuxt.$emit).toHaveBeenCalledWith('show-modal', {
+        component: ProjectList,
+        callback: wrapper.vm.selectProject,
+      });
+    });
+  });
+
   describe('when submit and timer is not working', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find(testId('nav-modal')).vm.$emit('close', {
+      wrapper.setData({
         project: {
           id: 2,
           name: 'Review',
@@ -136,8 +141,8 @@ describe('TimerForm', () => {
   describe('when press enter on description and timer is working', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ id: 1 });
-      wrapper.find(testId('nav-modal')).vm.$emit('close', {
+      wrapper.setData({
+        id: 1,
         project: {
           id: 2,
           name: 'Review',
@@ -160,7 +165,7 @@ describe('TimerForm', () => {
   describe('when press enter on description and timer is not working', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.find(testId('nav-modal')).vm.$emit('close', {
+      wrapper.setData({
         project: {
           id: 2,
           name: 'Review',
@@ -198,8 +203,8 @@ describe('TimerForm', () => {
   describe('when change description and timer is working', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ id: 1 });
-      wrapper.find(testId('nav-modal')).vm.$emit('close', {
+      wrapper.setData({
+        id: 1,
         project: {
           id: 2,
           name: 'Review',

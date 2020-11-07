@@ -1,59 +1,64 @@
 <template>
-  <modal
-    ref="modal"
-    :adaptive="true"
-    :max-width="500"
-    :name="name"
-    :pivot-y="0.5"
-    :height="height"
-    :scrollable="true"
-    transition="fade"
-    width="95%"
-    @before-open="beforeOpen"
-  >
-    <div class="modal-content">
-      <slot />
+  <transition name="slide-down-fade">
+    <div v-if="shown" class="modal" @mousedown="hide">
+      <div class="container" @mousedown.stop>
+        <slot />
+      </div>
     </div>
-  </modal>
+  </transition>
 </template>
-
-<style lang="scss">
-.v--modal {
-  background-color: $background;
-}
-.v--modal-overlay {
-  z-index: index($z, modal);
-  padding-top: env(safe-area-inset-top);
-  background: $backdrop-color;
-}
-</style>
-
-<style scoped lang="scss">
-.modal-content {
-  overflow: hidden;
-  min-height: 100%;
-  max-height: 100vh;
-  overflow-y: scroll;
-  transform: translateZ(0);
-}
-</style>
 
 <script>
 export default {
   props: {
-    name: {
-      type: String,
+    shown: {
+      type: Boolean,
       required: true,
-    },
-    height: {
-      type: String,
-      default: 'auto',
     },
   },
   methods: {
-    beforeOpen(e) {
-      this.$emit('before-open', e);
+    hide() {
+      this.$emit('update:shown', false);
     },
   },
 };
 </script>
+
+<style scoped lang="scss">
+.modal {
+  width: 100vw;
+  height: 100vh;
+  background-color: $backdrop-color;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  z-index: index($z, modal);
+}
+.container {
+  width: 500px;
+  position: relative;
+  margin: 0 10px;
+  overflow: hidden;
+  border-radius: 3px;
+  background-color: $background;
+  box-shadow: 0 10px 20px $shadow-darker;
+}
+.slide-down-fade-enter-active,
+.slide-down-fade-leave-active {
+  transition: opacity 0.15s;
+  .container {
+    transition: transform 0.15s;
+    transform: translateY(0);
+  }
+}
+.slide-down-fade-enter,
+.slide-down-fade-leave-to {
+  opacity: 0;
+  .container {
+    transform: translateY(-10px);
+  }
+}
+</style>

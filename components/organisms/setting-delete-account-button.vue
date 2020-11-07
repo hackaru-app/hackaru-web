@@ -4,7 +4,7 @@
 
 <template>
   <setting-box>
-    <base-modal name="deleteAccount">
+    <base-modal :shown.sync="shownModal">
       <form @submit.prevent="deleteAccount">
         <modal-header>
           <h1>{{ $t('modal.title') }}</h1>
@@ -69,12 +69,13 @@ export default {
   },
   data() {
     return {
+      shownModal: false,
       currentPassword: '',
     };
   },
   methods: {
-    async showDeleteAccountModal() {
-      this.$modal.show('deleteAccount');
+    showDeleteAccountModal() {
+      this.shownModal = true;
     },
     async deleteAccount() {
       if (!window.confirm(this.$t('confirms'))) return;

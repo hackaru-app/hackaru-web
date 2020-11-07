@@ -1,9 +1,6 @@
 {
   "en": {
-    "titles": {
-      "update": "Update Timer",
-      "start": "Start Timer"
-    },
+    "title": "Update Timer",
     "project": "Project",
     "startedAt": "Started at",
     "stoppedAt": "Stopped at",
@@ -12,19 +9,12 @@
     "saved": "Timer updated",
     "started": "Timer started",
     "deleted": "Timer deleted",
-    "share": {
-      "title": "Hackaru",
-      "text": "Worked on {title} for {duration} #hackaru"
-    },
     "confirms": {
       "delete":  "Are you sure you want to delete the timer?"
     }
   },
   "ja": {
-    "titles": {
-      "update": "計測を編集",
-      "start": "計測を開始"
-    },
+    "title": "計測を編集",
     "startedAt": "開始時間",
     "stoppedAt": "終了時間",
     "update": "更新",
@@ -32,10 +22,6 @@
     "saved": "計測を更新しました",
     "started": "計測を開始しました",
     "deleted": "計測を削除しました",
-    "share": {
-      "title": "Hackaru",
-      "text": "「{title}」を計測しました！ {duration} #hackaru"
-    },
     "confirms": {
       "delete":  "計測を削除しますか？"
     }

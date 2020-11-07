@@ -36,7 +36,7 @@ describe('ProjectList', () => {
   describe('when click left-arrow-button', () => {
     beforeEach(async () => {
       wrapper = factory();
-      await wrapper.setProps({ popEnabled: true });
+      await wrapper.setProps({ navigated: true });
       wrapper.find(testId('left-arrow-button')).vm.$emit('click');
     });
 
@@ -76,10 +76,10 @@ describe('ProjectList', () => {
     });
   });
 
-  describe('when click project-content', () => {
+  describe('when click project-button', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.findAll(testId('project-content')).at(2).trigger('click');
+      wrapper.findAll(testId('project-button')).at(2).trigger('click');
     });
 
     it('emits pop', () => {

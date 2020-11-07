@@ -7,12 +7,10 @@ describe('SettingDeleteAccountButton', () => {
   let wrapper;
 
   const $store = new Store({});
-  const $modal = { show: jest.fn() };
   const factory = () =>
     shallowMount(SettingDeleteAccountButton, {
       mocks: {
         $store,
-        $modal,
       },
     });
 
@@ -21,17 +19,6 @@ describe('SettingDeleteAccountButton', () => {
 
   beforeEach(() => {
     $store.reset();
-  });
-
-  describe('when click delete-button', () => {
-    beforeEach(() => {
-      wrapper = factory();
-      wrapper.find(testId('delete-account-button')).vm.$emit('click');
-    });
-
-    it('shows modal', () => {
-      expect($modal.show).toHaveBeenCalled();
-    });
   });
 
   describe('enter password and click submit-button', () => {
@@ -49,7 +36,7 @@ describe('SettingDeleteAccountButton', () => {
       });
     });
 
-    it('redirect to index', () => {
+    it('redirects to index', () => {
       expect(window.location.assign).toHaveBeenCalledWith('/en/index');
     });
   });

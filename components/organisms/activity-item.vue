@@ -42,6 +42,7 @@ import Icon from '@/components/atoms/icon';
 import ActivityName from '@/components/molecules/activity-name';
 import Ticker from '@/components/atoms/ticker';
 import SwipeMenu from '@/components/molecules/swipe-menu';
+import ActivityEditor from '@/components/organisms/activity-editor';
 
 export default {
   components: {
@@ -79,12 +80,15 @@ export default {
   },
   methods: {
     showModal(params) {
-      this.$modal.show('activity', {
-        id: this.id,
-        description: this.description,
-        startedAt: this.startedAt,
-        stoppedAt: this.stoppedAt,
-        project: this.project || undefined,
+      this.$nuxt.$emit('show-modal', {
+        component: ActivityEditor,
+        params: {
+          id: this.id,
+          description: this.description,
+          startedAt: this.startedAt,
+          stoppedAt: this.stoppedAt,
+          project: this.project || undefined,
+        },
       });
     },
     deleteActivity() {

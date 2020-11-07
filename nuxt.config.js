@@ -72,11 +72,7 @@ module.exports = {
       },
     ],
   },
-  css: [
-    { src: 'normalize.css' },
-    { src: '~/assets/scss/main.scss' },
-    { src: 'vue-js-modal/dist/styles.css' },
-  ],
+  css: [{ src: 'normalize.css' }, { src: '~/assets/scss/main.scss' }],
   /*
    ** Customize the progress bar color
    */
@@ -94,7 +90,6 @@ module.exports = {
     { src: '~/plugins/v-tooltip', ssr: false },
     { src: '~/plugins/sentry-client', ssr: false },
     { src: '~/plugins/load-script', ssr: false },
-    { src: '~/plugins/vue-js-modal' },
   ],
   /*
    ** Build configuration
