@@ -19,6 +19,7 @@
 
     <transition>
       <div
+        v-scroll-lock="true"
         v-if="focused && suggestions.length"
         data-test-id="suggestions"
         class="suggestions"

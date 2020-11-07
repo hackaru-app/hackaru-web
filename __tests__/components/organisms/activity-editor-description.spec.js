@@ -1,10 +1,13 @@
 import { Store } from 'vuex-mock-store';
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import ActivityEditorDescription from '@/components/organisms/activity-editor-description';
 import testId from '@/__tests__/__helpers__/test-id';
 
 describe('ActivityEditorDescription', () => {
   let wrapper;
+
+  const localVue = createLocalVue();
+  localVue.directive('scroll-lock', () => {});
 
   const $store = new Store({
     getters: {
@@ -27,6 +30,7 @@ describe('ActivityEditorDescription', () => {
 
   const factory = () =>
     shallowMount(ActivityEditorDescription, {
+      localVue,
       mocks: {
         $store,
       },

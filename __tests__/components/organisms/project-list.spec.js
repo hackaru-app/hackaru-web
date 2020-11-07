@@ -1,11 +1,14 @@
 import { Store } from 'vuex-mock-store';
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import ProjectList from '@/components/organisms/project-list';
 import ProjectEditor from '@/components/organisms/project-editor';
 import testId from '@/__tests__/__helpers__/test-id';
 
 describe('ProjectList', () => {
   let wrapper;
+
+  const localVue = createLocalVue();
+  localVue.directive('scroll-lock', () => {});
 
   const $store = new Store({
     getters: {
@@ -26,6 +29,7 @@ describe('ProjectList', () => {
 
   const factory = () =>
     shallowMount(ProjectList, {
+      localVue,
       mocks: { $store },
     });
 

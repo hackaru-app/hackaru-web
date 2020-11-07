@@ -1,6 +1,6 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import SuggestionList from '@/components/organisms/suggestion-list';
 import testId from '@/__tests__/__helpers__/test-id';
 
@@ -8,6 +8,9 @@ describe('SuggestionList', () => {
   let wrapper;
 
   MockDate.set('2019-01-31T01:23:45');
+
+  const localVue = createLocalVue();
+  localVue.directive('scroll-lock', () => {});
 
   const $store = new Store({
     getters: {
@@ -26,6 +29,7 @@ describe('SuggestionList', () => {
 
   const factory = () =>
     shallowMount(SuggestionList, {
+      localVue,
       propsData: {
         description: '',
         shown: true,
