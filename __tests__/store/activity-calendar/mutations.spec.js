@@ -9,7 +9,7 @@ describe('Mutations', () => {
     };
 
     beforeEach(() => {
-      mutations.$env = { HACKARU_API_URL: 'https://localhost' };
+      mutations.$config = { hackaruApiUrl: 'https://localhost' };
       mutations['SET_TOKEN_AND_USER_ID'](state, {
         token: 'token',
         userId: 1,

@@ -9,7 +9,7 @@ describe('Auth', () => {
 
   const $route = { query: {} };
   const $router = { replace: jest.fn() };
-  const $env = {};
+  const $config = {};
   const $store = new Store({
     getters: {
       'auth/loggedIn': false,
@@ -27,7 +27,7 @@ describe('Auth', () => {
           $store,
           $route,
           $router,
-          $env,
+          $config,
           $i18n: {
             locale: 'en',
           },
@@ -69,10 +69,10 @@ describe('Auth', () => {
     });
   });
 
-  describe('when service has HACKARU_TOS_AND_PRIVACY_URL', () => {
+  describe('when service has hackaruTermsUrl', () => {
     beforeEach(() => {
       $route.query['sign-up'] = true;
-      $env.HACKARU_TOS_AND_PRIVACY_URL = 'example.com';
+      $config.hackaruTermsUrl = 'example.com';
       wrapper = factory();
     });
 
@@ -81,10 +81,10 @@ describe('Auth', () => {
     });
   });
 
-  describe('when service does not have HACKARU_TOS_AND_PRIVACY_URL', () => {
+  describe('when service does not have hackaruTermsUrl', () => {
     beforeEach(() => {
       $route.query['sign-up'] = true;
-      $env.HACKARU_TOS_AND_PRIVACY_URL = undefined;
+      $config.hackaruTermsUrl = undefined;
       wrapper = factory();
     });
 

@@ -4,7 +4,7 @@ import Delighted from '@/components/molecules/delighted';
 
 describe('Delighted', () => {
   const $store = new Store({});
-  const $env = {};
+  const $config = {};
 
   beforeEach(() => {
     window.delighted = {
@@ -15,7 +15,7 @@ describe('Delighted', () => {
   const factory = () =>
     shallowMount(Delighted, {
       mocks: {
-        $env,
+        $config,
         $store,
         $i18n: {
           locale: 'en',
@@ -24,10 +24,10 @@ describe('Delighted', () => {
       },
     });
 
-  describe('when env has DELIGHTED_TOKEN', () => {
+  describe('when config has delightedToken', () => {
     beforeEach(() => {
       $store.getters['auth/userId'] = 1;
-      $env.DELIGHTED_TOKEN = 'token';
+      $config.delightedToken = 'token';
       factory();
     });
 
@@ -41,9 +41,9 @@ describe('Delighted', () => {
     });
   });
 
-  describe('when env does not have DELIGHTED_TOKEN', () => {
+  describe('when config does not have delightedToken', () => {
     beforeEach(() => {
-      $env.DELIGHTED_TOKEN = undefined;
+      $config.delightedToken = undefined;
       factory();
     });
 
@@ -57,7 +57,7 @@ describe('Delighted', () => {
 
     beforeEach(() => {
       window.delighted = undefined;
-      $env.DELIGHTED_TOKEN = 'token';
+      $config.delightedToken = 'token';
       wrapper = factory();
     });
 
