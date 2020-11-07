@@ -166,6 +166,14 @@ module.exports = {
       },
     ],
   ],
+  publicRuntimeConfig: {
+    hackaruApiUrl: process.env.HACKARU_API_URL,
+    hackaruApiTimeout: process.env.HACKARU_API_TIMEOUT || 0,
+    hackaruTosAndPrivacyUrl: process.env.HACKARU_TOS_AND_PRIVACY_URL,
+    googleTagManagerId: process.env.GOOGLE_TAG_MANAGER_ID,
+    sentryDsn: process.env.SENTRY_DSN,
+    delightedToken: process.env.DELIGHTED_TOKEN,
+  },
   styleResources: {
     scss: ['./assets/scss/modules/*.scss'],
   },

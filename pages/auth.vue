@@ -45,7 +45,7 @@
               />
               <i18n path="agreement">
                 <a
-                  :href="$env.HACKARU_TOS_AND_PRIVACY_URL"
+                  :href="$config.hackaruTosAndPrivacyUrl"
                   target="_blank"
                   rel="noopener"
                   >{{ $t('termOfServiceAndPrivacyPolicy') }}</a
@@ -111,7 +111,7 @@ export default {
   },
   computed: {
     isShowAgreement() {
-      return !this.hasAccount && this.$env.HACKARU_TOS_AND_PRIVACY_URL;
+      return !this.hasAccount && this.$config.hackaruTosAndPrivacyUrl;
     },
   },
   mounted() {

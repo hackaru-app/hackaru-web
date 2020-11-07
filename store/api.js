@@ -30,8 +30,8 @@ export const actions = {
             params: snakecaseKeys(config.params || {}),
           },
           {
-            baseURL: this.$env.HACKARU_API_URL,
-            timeout: this.$env.HACKARU_API_TIMEOUT || 0,
+            baseURL: this.$config.hackaruApiUrl,
+            timeout: this.$config.hackaruApiTimeout,
             headers: { 'Accept-Language': this.$i18n.locale },
           }
         )

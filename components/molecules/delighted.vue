@@ -4,25 +4,27 @@ const libraryUrl =
 
 export default {
   async mounted() {
-    if (!this.$env.DELIGHTED_TOKEN) return;
-    await this.load();
-    this.survey();
+    if (this.$config.delightedToken) {
+      await this.load();
+      this.survey();
+    }
   },
   methods: {
     async load() {
       window.delighted = window.delighted || {};
       await this.$loadScript(
-        `${libraryUrl}/${this.$env.DELIGHTED_TOKEN}/delighted.js`
+        `${libraryUrl}/${this.$config.delightedToken}/delighted.js`
       );
     },
     survey() {
-      if (!window.delighted.survey) return;
-      window.delighted.survey({
-        name: this.$store.getters['auth/userId'],
-        properties: {
-          locale: this.$i18n.locale,
-        },
-      });
+      if (window.delighted.survey) {
+        window.delighted.survey({
+          name: this.$store.getters['auth/userId'],
+          properties: {
+            locale: this.$i18n.locale,
+          },
+        });
+      }
     },
   },
   render(h) {
