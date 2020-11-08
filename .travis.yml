@@ -12,7 +12,7 @@ jobs:
         - docker run -v $(pwd):/src -w /src nickg/misspell /bin/sh -c 'git ls-files | xargs misspell -error'
 
     - stage: build
-      language: minimal
+      language: shell
       services:
         - docker
       script:
@@ -33,7 +33,7 @@ jobs:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
     - stage: push
-      language: minimal
+      language: shell
       if: tag =~ ^v
       services:
         - docker
@@ -52,7 +52,7 @@ jobs:
           done
 
     - stage: upload-source-map
-      language: minimal
+      language: shell
       if: tag =~ ^v
       services:
         - docker
