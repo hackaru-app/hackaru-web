@@ -50,3 +50,19 @@ jobs:
             docker build . -t "$DOCKER_REPO_NAME:$TAG"
             docker push "$DOCKER_REPO_NAME:$TAG"
           done
+
+    - stage: upload-source-map
+      language: minimal
+      if: tag =~ ^v
+      services:
+        - docker
+      script:
+        - |
+          docker-compose run --rm \
+            -e SENTRY_PUBLISH_RELEASE=true \
+            -e SENTRY_AUTO_ATTACH_COMMITS=true \
+            -e SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN \
+            -e SENTRY_ORG=$SENTRY_ORG \
+            -e SENTRY_PROJECT=$SENTRY_PROJECT \
+            -e SENTRY_RELEASE=$TRAVIS_COMMIT \
+            web yarn build
