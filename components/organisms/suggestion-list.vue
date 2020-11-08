@@ -49,6 +49,14 @@ export default {
     description() {
       this.fetchSuggestions();
     },
+    shown: {
+      immediate: true,
+      handler() {
+        if (this.shown) {
+          this.fetchSuggestions();
+        }
+      },
+    },
   },
   mounted() {
     this.fetchSuggestions();
@@ -59,9 +67,6 @@ export default {
     },
     fetchSuggestions: debounce(function () {
       this.$store.dispatch('suggestions/fetch', this.description);
-      if (this.$refs.suggestions) {
-        this.$refs.suggestions.scrollTo({ top: 0 });
-      }
     }, 1000),
   },
 };
