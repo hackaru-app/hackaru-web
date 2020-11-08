@@ -69,11 +69,15 @@ export default {
   },
   methods: {
     updateDuration() {
-      this.duration = this.working
-        ? fromS(
-            differenceInSeconds(new Date(), parseISO(this.working.startedAt))
-          )
-        : undefined;
+      if (this.working) {
+        const diff = differenceInSeconds(
+          new Date(),
+          parseISO(this.working.startedAt)
+        );
+        this.duration = fromS(diff);
+      } else {
+        this.duration = undefined;
+      }
     },
   },
 };
