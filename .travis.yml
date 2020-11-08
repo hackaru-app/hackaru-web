@@ -1,6 +1,7 @@
 jobs:
   include:
-    - stage: lint
+    - stage: tests
+      name: lint
       language: node_js
       node_js:
         - 12
@@ -11,14 +12,14 @@ jobs:
         - yarn lint .
         - docker run -v $(pwd):/src -w /src nickg/misspell /bin/sh -c 'git ls-files | xargs misspell -error'
 
-    - stage: build
+    - name: build
       language: minimal
       services:
         - docker
       script:
         - docker-compose build
 
-    - stage: test
+    - name: test
       language: node_js
       node_js:
         - 12
@@ -32,7 +33,8 @@ jobs:
       after_script:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
-    - stage: push
+    - stage: deploy
+      name: push container
       language: minimal
       if: tag =~ ^v
       services:
@@ -51,7 +53,7 @@ jobs:
             docker push "$DOCKER_REPO_NAME:$TAG"
           done
 
-    - stage: upload-source-map
+    - name: upload source map
       language: minimal
       if: tag =~ ^v
       services:
