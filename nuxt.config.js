@@ -151,7 +151,7 @@ module.exports = {
     ],
   ],
   publicRuntimeConfig: {
-    hackaruApiUrl: process.env.HACKARU_API_URL,
+    hackaruApiUrl: process.env.HACKARU_API_URL || 'http://localhost:3000',
     hackaruApiTimeout: process.env.HACKARU_API_TIMEOUT || 0,
     hackaruTermsUrl: process.env.HACKARU_TOS_AND_PRIVACY_URL,
     googleTagManagerId: process.env.GOOGLE_TAG_MANAGER_ID,
@@ -169,6 +169,10 @@ module.exports = {
   },
   sentry: {
     disableClientSide: true,
+    sourceMapStyle: 'hidden-source-map',
+    config: {
+      release: process.env.SENTRY_RELEASE,
+    },
   },
   meta: {
     appleStatusBarStyle: 'black-translucent',
