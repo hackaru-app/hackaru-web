@@ -1,6 +1,11 @@
+stages:
+  - test
+  - name: deploy
+    if: tag =~ ^v
+
 jobs:
   include:
-    - stage: tests
+    - stage: test
       name: lint
       language: node_js
       node_js:
@@ -36,7 +41,6 @@ jobs:
     - stage: deploy
       name: push container
       language: minimal
-      if: tag =~ ^v
       services:
         - docker
       script:
@@ -55,7 +59,6 @@ jobs:
 
     - name: upload source map
       language: minimal
-      if: tag =~ ^v
       services:
         - docker
       script:
