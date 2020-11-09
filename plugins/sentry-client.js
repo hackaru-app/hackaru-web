@@ -6,6 +6,7 @@ import { Integrations } from '@sentry/tracing';
 export default async ({ app }, inject) => {
   Sentry.init({
     dsn: app.$config.sentryDsn,
+    release: `${app.$config.sentryProject}@${app.$config.sentryRelease}`,
     integrations: [
       new Integrations.BrowserTracing(),
       new VueIntegration({

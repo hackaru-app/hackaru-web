@@ -65,5 +65,5 @@ jobs:
             -e SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN \
             -e SENTRY_ORG=$SENTRY_ORG \
             -e SENTRY_PROJECT=$SENTRY_PROJECT \
-            -e SENTRY_RELEASE=$TRAVIS_COMMIT \
+            -e SENTRY_RELEASE=$TRAVIS_TAG \
             web yarn build
