@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.2.2",
-    "@nuxtjs/sentry": "^4.3.5",
+    "@nuxtjs/sentry": "^4.4.0",
     "@sentry/browser": "^5.17.0",
     "@sentry/integrations": "^5.23.0",
     "@sentry/tracing": "^5.27.3",
