@@ -151,8 +151,8 @@ module.exports = {
     ],
   ],
   publicRuntimeConfig: {
-    hackaruApiUrl: process.env.HACKARU_API_URL || 'http://localhost:3000',
-    hackaruApiTimeout: process.env.HACKARU_API_TIMEOUT || 0,
+    hackaruApiUrl: process.env.HACKARU_API_URL,
+    hackaruApiTimeout: process.env.HACKARU_API_TIMEOUT,
     hackaruTermsUrl: process.env.HACKARU_TOS_AND_PRIVACY_URL,
     googleTagManagerId: process.env.GOOGLE_TAG_MANAGER_ID,
     sentryDsn: process.env.SENTRY_DSN,
@@ -183,5 +183,38 @@ module.exports = {
   toast: {
     position: 'bottom-center',
     duration: 3000,
+  },
+  render: {
+    csp: {
+      reportOnly: true,
+      hashAlgorithm: 'sha256',
+      policies: {
+        'connect-src': [
+          process.env.HACKARU_API_URL,
+          'https://*.sentry.io',
+          'https://www.google-analytics.com',
+          'https://web.delighted.com',
+        ],
+        'script-src-elem': [
+          'https://d2yyd1h5u9mauk.cloudfront.net',
+          'https://www.googletagmanager.com',
+          'https://www.google-analytics.com',
+          "'unsafe-inline'",
+          "'self'",
+        ],
+        'style-src': [
+          'https://fonts.googleapis.com',
+          "'unsafe-inline'",
+          "'self'",
+        ],
+        'img-src': ['https://www.google-analytics.com', "'self'"],
+        'font-src': ['https://fonts.gstatic.com'],
+        'default-src': ["'self'"],
+        'frame-src': ["'none'"],
+        'object-src': ["'none'"],
+        'upgrade-insecure-requests': [],
+        'report-uri': [process.env.SENTRY_CSP_REPORT_URI],
+      },
+    },
   },
 };

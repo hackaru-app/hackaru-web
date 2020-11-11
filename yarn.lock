@@ -12523,10 +12523,10 @@ vue-feather-icons@^5.1.0:
   dependencies:
     babel-helper-vue-jsx-merge-props "^2.0.2"
 
-vue-gtm@^2.2.0:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/vue-gtm/-/vue-gtm-2.3.4.tgz#19d5402853f90d4850a9d0042c184e5c6b91b1cf"
-  integrity sha512-09e5XMxnkqDt33lonKW0q2KCageK3d0vN5aA+IAMi4c3TKtpat86Y/DllhIeKWeLBoUT4elz+S+bVDHUGzUA2A==
+vue-gtm@3.1.0-vue2:
+  version "3.1.0-vue2"
+  resolved "https://registry.yarnpkg.com/vue-gtm/-/vue-gtm-3.1.0-vue2.tgz#a82b8451f3080f7e63e03fa011e9e162be480da6"
+  integrity sha512-n8N5jyelJaZrHiZXbCVcSnRLgJ4SmY1IfqqLSao+TBohNZ8HSHbqUqYD8HOm8QdQgDgdSoOpeW1MpoZMsSpNBA==
   dependencies:
     url-search-params-polyfill "^8.1.0"
 
