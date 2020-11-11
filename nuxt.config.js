@@ -211,7 +211,7 @@ module.exports = {
         'default-src': ["'self'"],
         'frame-src': ["'none'"],
         'object-src': ["'none'"],
-        'block-all-mixed-content': [],
+        'upgrade-insecure-requests': [],
       },
     },
   },
