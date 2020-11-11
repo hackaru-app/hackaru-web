@@ -31,7 +31,7 @@ export const actions = {
           },
           {
             baseURL: this.$config.hackaruApiUrl,
-            timeout: this.$config.hackaruApiTimeout,
+            timeout: this.$config.hackaruApiTimeout || 0,
             headers: { 'Accept-Language': this.$i18n.locale },
           }
         )
