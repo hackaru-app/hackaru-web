@@ -156,6 +156,8 @@ module.exports = {
     hackaruTermsUrl: process.env.HACKARU_TOS_AND_PRIVACY_URL,
     googleTagManagerId: process.env.GOOGLE_TAG_MANAGER_ID,
     sentryDsn: process.env.SENTRY_DSN,
+    sentryProject: process.env.SENTRY_PROJECT,
+    sentryRelease: process.env.SENTRY_RELEASE,
     delightedToken: process.env.DELIGHTED_TOKEN,
   },
   styleResources: {
