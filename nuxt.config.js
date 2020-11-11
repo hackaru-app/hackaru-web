@@ -184,9 +184,8 @@ module.exports = {
   },
   render: {
     csp: {
+      reportOnly: true,
       hashAlgorithm: 'sha256',
-      enabled: true,
-      reportOnly: false,
       policies: {
         'connect-src': [
           process.env.HACKARU_API_URL,
@@ -212,6 +211,7 @@ module.exports = {
         'frame-src': ["'none'"],
         'object-src': ["'none'"],
         'upgrade-insecure-requests': [],
+        'report-uri': [process.env.SENTRY_CSP_REPORT_URI],
       },
     },
   },
