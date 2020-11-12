@@ -125,6 +125,7 @@ module.exports = {
     '@nuxtjs/style-resources',
     '@nuxtjs/sentry',
     'vue-scrollto/nuxt',
+    'nuxt-helmet',
     [
       'nuxt-i18n',
       {
@@ -183,6 +184,19 @@ module.exports = {
   toast: {
     position: 'bottom-center',
     duration: 3000,
+  },
+  helmet: {
+    hsts: {
+      maxAge: 3600,
+      preload: true,
+    },
+    expectCt: {
+      enforce: false,
+      reportUri: process.env.SENTRY_EXPECT_CT_REPORT_URI,
+    },
+    frameguard: {
+      action: 'deny',
+    },
   },
   render: {
     csp: {
