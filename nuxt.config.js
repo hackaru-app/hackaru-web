@@ -185,7 +185,9 @@ module.exports = {
     position: 'bottom-center',
     duration: 3000,
   },
+  serverMiddleware: ['~/api/x-xss-protection'],
   helmet: {
+    xssFilter: false,
     hsts: {
       maxAge: 3600,
       preload: true,
