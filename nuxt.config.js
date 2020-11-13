@@ -88,7 +88,6 @@ module.exports = {
     { src: '~/plugins/vue-gtm', ssr: false },
     { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
-    { src: '~/plugins/sentry-client', ssr: false },
     { src: '~/plugins/load-script', ssr: false },
     { src: '~/plugins/v-scroll-lock', ssr: false },
   ],
