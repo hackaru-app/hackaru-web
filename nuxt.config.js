@@ -85,7 +85,6 @@ module.exports = {
     { src: '~/plugins/customs/platform', ssr: false },
     { src: '~/plugins/customs/px-min' },
     { src: '~/plugins/vue-timers', ssr: false },
-    { src: '~/plugins/vue-gtm', ssr: false },
     { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
     { src: '~/plugins/load-script', ssr: false },
@@ -123,6 +122,7 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     '@nuxtjs/sentry',
+    '@nuxtjs/gtm',
     'vue-scrollto/nuxt',
     'nuxt-helmet',
     [
@@ -154,7 +154,6 @@ module.exports = {
     hackaruApiUrl: process.env.HACKARU_API_URL,
     hackaruApiTimeout: process.env.HACKARU_API_TIMEOUT,
     hackaruTermsUrl: process.env.HACKARU_TOS_AND_PRIVACY_URL,
-    googleTagManagerId: process.env.GOOGLE_TAG_MANAGER_ID,
     sentryDsn: process.env.SENTRY_DSN,
     sentryProject: process.env.SENTRY_PROJECT,
     sentryRelease: process.env.SENTRY_RELEASE,
@@ -168,6 +167,10 @@ module.exports = {
     short_name: 'Hackaru',
     lang: 'ja',
     theme_color: '#262b38',
+  },
+  gtm: {
+    id: process.env.GOOGLE_TAG_MANAGER_ID,
+    debug: process.env.NODE_ENV !== 'production',
   },
   sentry: {
     dsn: process.env.SENTRY_DSN,

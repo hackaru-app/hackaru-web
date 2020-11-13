@@ -34,7 +34,8 @@ export default {
   methods: {
     async logout() {
       if (!window.confirm(this.$t('confirms'))) return;
-      this.$gtm.trackEvent({
+      this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'Accounts',
         eventAction: 'logout',
         name: 'logout',

@@ -1491,6 +1491,14 @@
     webpack-node-externals "^2.5.2"
     webpackbar "^4.0.0"
 
+"@nuxtjs/gtm@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/gtm/-/gtm-2.4.0.tgz#d7f5bb05b0306c564674831eab17b4e25cfdc1f6"
+  integrity sha512-Of5KuBBFwRjyJ6AuRrIQsh8J6ksIN2UegJDE8nBiTAanbwQBsAJ0hZibV9SjhKdGvGvWpbShQ4yR2bmQgY6XKA==
+  dependencies:
+    chalk "^4.1.0"
+    semver "^7.3.2"
+
 "@nuxtjs/pwa@^3.2.2":
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/pwa/-/pwa-3.2.2.tgz#e03c632e30f3df287a842d67323d945f36b97440"
@@ -12347,11 +12355,6 @@ url-loader@^2.3.0:
     mime "^2.4.4"
     schema-utils "^2.5.0"
 
-url-search-params-polyfill@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/url-search-params-polyfill/-/url-search-params-polyfill-8.1.0.tgz#5c15b69687165bfd4f6c7d8a161d70d85385885b"
-  integrity sha512-MRG3vzXyG20BJ2fox50/9ZRoe+2h3RM7DIudVD2u/GY9MtayO1Dkrna76IUOak+uoUPVWbyR0pHCzxctP/eDYQ==
-
 url@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/url/-/url-0.11.0.tgz#3838e97cfc60521eb73c525a8e55bfdd9e2e28f1"
@@ -12526,13 +12529,6 @@ vue-feather-icons@^5.1.0:
   integrity sha512-ZyM2yFGmL9DYLZYHm63KV1zCQOj8czC2LzDSkxoIp9o6zMAOY4yv1FkxbX+XNUwcH3RRrAuvf25Ij7CnUUsQVA==
   dependencies:
     babel-helper-vue-jsx-merge-props "^2.0.2"
-
-vue-gtm@3.1.0-vue2:
-  version "3.1.0-vue2"
-  resolved "https://registry.yarnpkg.com/vue-gtm/-/vue-gtm-3.1.0-vue2.tgz#a82b8451f3080f7e63e03fa011e9e162be480da6"
-  integrity sha512-n8N5jyelJaZrHiZXbCVcSnRLgJ4SmY1IfqqLSao+TBohNZ8HSHbqUqYD8HOm8QdQgDgdSoOpeW1MpoZMsSpNBA==
-  dependencies:
-    url-search-params-polyfill "^8.1.0"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"

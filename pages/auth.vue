@@ -130,7 +130,8 @@ export default {
       });
       if (success) {
         localStorage.setItem('userId', this.$store.getters['auth/userId']);
-        this.$gtm.trackEvent({
+        this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'Account',
           eventAction: 'login',
           name: 'login',
@@ -148,7 +149,8 @@ export default {
       });
       if (success) {
         localStorage.setItem('userId', this.$store.getters['auth/userId']);
-        this.$gtm.trackEvent({
+        this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'Account',
           eventAction: 'signUp',
           name: 'sign_up',

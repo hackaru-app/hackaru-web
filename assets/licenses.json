@@ -1,4 +1,10 @@
 {
+    "@nuxtjs/gtm": {
+        "licenses": "MIT",
+        "repository": "https://github.com/nuxt-community/gtm-module",
+        "licenseUrl": "https://github.com/nuxt-community/gtm-module/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
     "@nuxtjs/pwa": {
         "licenses": "MIT",
         "repository": "https://github.com/nuxt-community/pwa-module",

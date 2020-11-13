@@ -226,7 +226,8 @@ export default {
         id: this.id,
         ...payload,
       });
-      this.$gtm.trackEvent({
+      this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'Activities',
         eventAction: 'update',
         name: 'update_activity',

@@ -97,7 +97,8 @@ export default {
     deleteApplication(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('applications/delete', id);
-      this.$gtm.trackEvent({
+      this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'Applications',
         eventAction: 'delete',
         name: 'delete_application',
