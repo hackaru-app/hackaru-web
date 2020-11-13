@@ -68,7 +68,7 @@ export default {
       return this.$store.dispatch('activity-calendar/createUrl');
     },
     async addToGoogleCalendar() {
-      this.$gtm.trackEvent({
+      this.$gtm.push({
         eventCategory: 'GoogleCalendars',
         eventAction: 'add',
         name: 'add_to_google_calendar',
@@ -84,7 +84,7 @@ export default {
       window.location.assign(this.webcalUrl);
     },
     addToAppleCalendar() {
-      this.$gtm.trackEvent({
+      this.$gtm.push({
         eventCategory: 'AppleCalendars',
         eventAction: 'add',
         name: 'add_to_apple_calendar',
@@ -92,7 +92,7 @@ export default {
       this.navigateWebcal();
     },
     addToOutlook() {
-      this.$gtm.trackEvent({
+      this.$gtm.push({
         eventCategory: 'OutlookCalendars',
         eventAction: 'add',
         name: 'add_to_outlook',

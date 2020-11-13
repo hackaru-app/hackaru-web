@@ -126,7 +126,7 @@ export default {
           this.$t(this.id || this.stoppedAt ? 'saved' : 'started')
         );
         this.$emit('pop');
-        this.$gtm.trackEvent({
+        this.$gtm.push({
           eventCategory: 'Activities',
           eventAction: 'update',
           name: 'update_activity',
@@ -138,7 +138,7 @@ export default {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
-      this.$gtm.trackEvent({
+      this.$gtm.push({
         eventCategory: 'Activities',
         eventAction: 'delete',
         name: 'delete_activity',

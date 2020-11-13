@@ -83,7 +83,7 @@ export default {
         currentPassword: this.currentPassword,
       });
       if (success) {
-        this.$gtm.trackEvent({
+        this.$gtm.push({
           eventCategory: 'Accounts',
           eventAction: 'delete',
           name: 'delete_account',

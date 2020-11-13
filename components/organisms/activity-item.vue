@@ -98,7 +98,7 @@ export default {
       }
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
-      this.$gtm.trackEvent({
+      this.$gtm.push({
         eventCategory: 'Activities',
         eventAction: 'delete',
         name: 'delete_activity',
@@ -111,7 +111,7 @@ export default {
         projectId: this.project && this.project.id,
         startedAt: `${new Date()}`,
       });
-      this.$gtm.trackEvent({
+      this.$gtm.push({
         eventCategory: 'Activities',
         eventAction: 'duplicate',
         name: 'duplicate_activity',

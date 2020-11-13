@@ -31,7 +31,7 @@ export default {
       });
       if (data) {
         this.loading = false;
-        this.$gtm.trackEvent({
+        this.$gtm.push({
           eventCategory: 'ReportPdf',
           eventAction: 'export',
           name: 'export_report_to_pdf',

@@ -149,7 +149,7 @@ export default {
       if (success) {
         this.syncProps();
         this.$store.dispatch('toast/success', this.$t('updated'));
-        this.$gtm.trackEvent({
+        this.$gtm.push({
           eventCategory: 'Activities',
           eventAction: 'update',
           name: 'update_activity',
@@ -163,7 +163,7 @@ export default {
         id: this.id,
         stoppedAt: `${new Date()}`,
       });
-      this.$gtm.trackEvent({
+      this.$gtm.push({
         eventCategory: 'Activities',
         eventAction: 'stop',
         name: 'stop_activity',
@@ -180,7 +180,7 @@ export default {
       if (success) {
         this.syncProps();
         this.$store.dispatch('toast/success', this.$t('started'));
-        this.$gtm.trackEvent({
+        this.$gtm.push({
           eventCategory: 'Activities',
           eventAction: 'start',
           name: 'start_activity',

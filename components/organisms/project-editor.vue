@@ -113,7 +113,7 @@ export default {
       });
       if (success) {
         this.$emit('pop');
-        this.$gtm.trackEvent({
+        this.$gtm.push({
           eventCategory: 'Projects',
           eventAction: 'add',
           name: 'add_project',
@@ -130,7 +130,7 @@ export default {
       });
       if (success) {
         this.$emit('pop');
-        this.$gtm.trackEvent({
+        this.$gtm.push({
           eventCategory: 'Projects',
           eventAction: 'update',
           name: 'update_project',
@@ -144,7 +144,7 @@ export default {
       const success = await this.$store.dispatch('projects/delete', this.id);
       if (success) {
         this.$emit('pop');
-        this.$gtm.trackEvent({
+        this.$gtm.push({
           eventCategory: 'Projects',
           eventAction: 'delete',
           name: 'delete_project',
