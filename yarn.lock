@@ -1541,7 +1541,7 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@sentry/browser@^5.17.0", "@sentry/browser@^5.27.3":
+"@sentry/browser@^5.27.3":
   version "5.27.3"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.27.3.tgz#02e78a4502ee99988d3cbb0075a11ec44b503871"
   integrity sha512-vczS+XTW4Nk2A7TIpAw8IVFHpp+NK6mV9euBG2I61Bs2QbQY9yKLfbjiln/yH2Q8X4THX6MKa0GuiPoCEeq3uw==
@@ -1582,7 +1582,7 @@
     "@sentry/utils" "5.27.3"
     tslib "^1.9.3"
 
-"@sentry/integrations@^5.23.0", "@sentry/integrations@^5.27.3":
+"@sentry/integrations@^5.27.3":
   version "5.27.3"
   resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.27.3.tgz#d9a8f898c9414e9dc287fcd00d28321f54f4701e"
   integrity sha512-lmkYH3g1ZW9I8g3SXQNYIfNc9gaNoqJUxgTI9d0AQph+mSB8Y3lx50NYMAfK74XgiC3VJ9j8kWstdQCMbgfXpQ==
@@ -1616,7 +1616,7 @@
     lru_map "^0.3.3"
     tslib "^1.9.3"
 
-"@sentry/tracing@5.27.3", "@sentry/tracing@^5.27.3":
+"@sentry/tracing@5.27.3":
   version "5.27.3"
   resolved "https://registry.yarnpkg.com/@sentry/tracing/-/tracing-5.27.3.tgz#787e57a2f7071e375f4fad0f3c3a5ff3381928e7"
   integrity sha512-UWrHMdGxPfx1u558CWm1tptc2z0BuqCHVe2+BNN7POahq5BkpbGqaotyPQTBHbfmcs6QGfsMG57ou8HQFrBxyA==

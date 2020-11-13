@@ -170,8 +170,18 @@ module.exports = {
     theme_color: '#262b38',
   },
   sentry: {
-    disableClientSide: true,
+    dsn: process.env.SENTRY_DSN,
     sourceMapStyle: 'hidden-source-map',
+    tracing: {
+      tracesSampleRate: 1.0,
+      vueOptions: {
+        tracing: true,
+        attachProps: true,
+        tracingOptions: {
+          trackComponents: true,
+        },
+      },
+    },
     config: {
       release: process.env.SENTRY_RELEASE,
     },
