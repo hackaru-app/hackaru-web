@@ -32,6 +32,7 @@ export default {
       if (data) {
         this.loading = false;
         this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'ReportPdf',
           eventAction: 'export',
           name: 'export_report_to_pdf',

@@ -32,6 +32,7 @@ export default {
       if (data) {
         this.loading = false;
         this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'ReportCsv',
           eventAction: 'export',
           name: 'export_report_to_csv',

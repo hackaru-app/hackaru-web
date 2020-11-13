@@ -114,6 +114,7 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'Projects',
           eventAction: 'add',
           name: 'add_project',
@@ -131,6 +132,7 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'Projects',
           eventAction: 'update',
           name: 'update_project',
@@ -145,6 +147,7 @@ export default {
       if (success) {
         this.$emit('pop');
         this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'Projects',
           eventAction: 'delete',
           name: 'delete_project',

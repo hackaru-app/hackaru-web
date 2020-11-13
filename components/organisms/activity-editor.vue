@@ -127,6 +127,7 @@ export default {
         );
         this.$emit('pop');
         this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'Activities',
           eventAction: 'update',
           name: 'update_activity',
@@ -139,6 +140,7 @@ export default {
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'Activities',
         eventAction: 'delete',
         name: 'delete_activity',

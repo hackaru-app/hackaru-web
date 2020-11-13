@@ -69,6 +69,7 @@ export default {
     },
     async addToGoogleCalendar() {
       this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'GoogleCalendars',
         eventAction: 'add',
         name: 'add_to_google_calendar',
@@ -85,6 +86,7 @@ export default {
     },
     addToAppleCalendar() {
       this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'AppleCalendars',
         eventAction: 'add',
         name: 'add_to_apple_calendar',
@@ -93,6 +95,7 @@ export default {
     },
     addToOutlook() {
       this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'OutlookCalendars',
         eventAction: 'add',
         name: 'add_to_outlook',

@@ -84,6 +84,7 @@ export default {
       });
       if (success) {
         this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'Accounts',
           eventAction: 'delete',
           name: 'delete_account',

@@ -99,6 +99,7 @@ export default {
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'Activities',
         eventAction: 'delete',
         name: 'delete_activity',
@@ -112,6 +113,7 @@ export default {
         startedAt: `${new Date()}`,
       });
       this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'Activities',
         eventAction: 'duplicate',
         name: 'duplicate_activity',

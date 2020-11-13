@@ -150,6 +150,7 @@ export default {
         this.syncProps();
         this.$store.dispatch('toast/success', this.$t('updated'));
         this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'Activities',
           eventAction: 'update',
           name: 'update_activity',
@@ -164,6 +165,7 @@ export default {
         stoppedAt: `${new Date()}`,
       });
       this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'Activities',
         eventAction: 'stop',
         name: 'stop_activity',
@@ -181,6 +183,7 @@ export default {
         this.syncProps();
         this.$store.dispatch('toast/success', this.$t('started'));
         this.$gtm.push({
+          event: 'interaction',
           eventCategory: 'Activities',
           eventAction: 'start',
           name: 'start_activity',

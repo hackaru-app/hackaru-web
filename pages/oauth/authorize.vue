@@ -89,6 +89,7 @@ export default {
   methods: {
     async decide(action) {
       this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'OAuth',
         eventAction: action,
         name: `${action}_oauth`,

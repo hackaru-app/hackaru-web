@@ -227,6 +227,7 @@ export default {
         ...payload,
       });
       this.$gtm.push({
+        event: 'interaction',
         eventCategory: 'Activities',
         eventAction: 'update',
         name: 'update_activity',
