@@ -131,6 +131,12 @@
         "licenseUrl": "https://github.com/paularmstrong/normalizr/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
+    "nuxt-helmet": {
+        "licenses": "MIT",
+        "repository": "https://github.com/victor-perez/nuxt-helmet",
+        "licenseUrl": "https://github.com/victor-perez/nuxt-helmet/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
     "nuxt-i18n": {
         "licenses": "MIT",
         "repository": "https://github.com/nuxt-community/i18n-module",

@@ -124,6 +124,7 @@ module.exports = {
     '@nuxtjs/sentry',
     '@nuxtjs/gtm',
     'vue-scrollto/nuxt',
+    'nuxt-helmet',
     [
       'nuxt-i18n',
       {
@@ -196,6 +197,21 @@ module.exports = {
     position: 'bottom-center',
     duration: 3000,
   },
+  serverMiddleware: ['~/api/x-xss-protection'],
+  helmet: {
+    xssFilter: false,
+    hsts: {
+      maxAge: 3600,
+      preload: true,
+    },
+    expectCt: {
+      enforce: false,
+      reportUri: process.env.SENTRY_EXPECT_CT_REPORT_URI,
+    },
+    frameguard: {
+      action: 'deny',
+    },
+  },
   render: {
     csp: {
       reportOnly: true,
@@ -204,10 +220,12 @@ module.exports = {
         'connect-src': [
           process.env.HACKARU_API_URL,
           'https://*.sentry.io',
+          'https://sentry.io',
           'https://www.google-analytics.com',
           'https://web.delighted.com',
+          'wss://ws.pusherapp.com/app/7fa7ab308aa09e4f2ae1',
         ],
-        'script-src-elem': [
+        'script-src': [
           'https://d2yyd1h5u9mauk.cloudfront.net',
           'https://www.googletagmanager.com',
           'https://www.google-analytics.com',
@@ -219,7 +237,11 @@ module.exports = {
           "'unsafe-inline'",
           "'self'",
         ],
-        'img-src': ['https://www.google-analytics.com', "'self'"],
+        'img-src': [
+          'https://www.google-analytics.com',
+          'https://www.googletagmanager.com',
+          "'self'",
+        ],
         'font-src': ['https://fonts.gstatic.com'],
         'default-src': ["'self'"],
         'frame-src': ["'none'"],
