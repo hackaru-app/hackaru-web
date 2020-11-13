@@ -54,10 +54,6 @@ describe('LoginGuard', () => {
       expect($router.replace).not.toHaveBeenCalled();
     });
 
-    it('save user id to localStorage', () => {
-      expect(localStorage.setItem).toHaveBeenCalledWith('userId', 1);
-    });
-
     it('save user id to sentry', () => {
       expect(scope.setUser).toHaveBeenCalledWith({ id: 1 });
     });
