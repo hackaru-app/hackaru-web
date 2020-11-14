@@ -159,6 +159,9 @@ module.exports = {
     sentryProject: process.env.SENTRY_PROJECT,
     sentryRelease: process.env.SENTRY_RELEASE,
     delightedToken: process.env.DELIGHTED_TOKEN,
+    gtm: {
+      id: process.env.GOOGLE_TAG_MANAGER_ID,
+    },
   },
   styleResources: {
     scss: ['./assets/scss/modules/*.scss'],
@@ -170,7 +173,6 @@ module.exports = {
     theme_color: '#262b38',
   },
   gtm: {
-    id: process.env.GOOGLE_TAG_MANAGER_ID,
     debug: process.env.NODE_ENV !== 'production',
   },
   sentry: {
