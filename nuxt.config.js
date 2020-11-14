@@ -175,16 +175,7 @@ module.exports = {
   sentry: {
     dsn: process.env.SENTRY_DSN,
     sourceMapStyle: 'hidden-source-map',
-    tracing: {
-      tracesSampleRate: 1.0,
-      vueOptions: {
-        tracing: true,
-        attachProps: true,
-        tracingOptions: {
-          trackComponents: true,
-        },
-      },
-    },
+    tracing: true,
     config: {
       release: process.env.SENTRY_RELEASE,
     },

@@ -18,6 +18,7 @@
     "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/pwa": "^3.2.2",
     "@nuxtjs/sentry": "^4.5.0",
+    "@sentry/tracing": "^5.27.4",
     "axios": "^0.21.0",
     "camelcase-keys": "^6.1.2",
     "chart.js": "^2.9.3",
