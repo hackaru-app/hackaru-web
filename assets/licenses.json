@@ -17,6 +17,24 @@
         "licenseUrl": "https://github.com/nuxt-community/sentry-module/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
+    "@sentry/browser": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/getsentry/sentry-javascript",
+        "licenseUrl": "https://github.com/getsentry/sentry-javascript/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
+    "@sentry/integrations": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/getsentry/sentry-javascript",
+        "licenseUrl": "https://github.com/getsentry/sentry-javascript/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
+    "@sentry/tracing": {
+        "licenses": "MIT",
+        "repository": "https://github.com/getsentry/sentry-javascript",
+        "licenseUrl": "https://github.com/getsentry/sentry-javascript/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
     "axios": {
         "licenses": "MIT",
         "repository": "https://github.com/axios/axios",
@@ -195,12 +213,6 @@
         "licenses": "MIT",
         "repository": "https://github.com/egoist/vue-feather-icons",
         "licenseUrl": "https://github.com/egoist/vue-feather-icons/raw/master/LICENSE",
-        "parents": "hackaru-web"
-    },
-    "vue-gtm": {
-        "licenses": "Apache-2.0",
-        "repository": "https://github.com/mib200/vue-gtm",
-        "licenseUrl": "https://github.com/mib200/vue-gtm/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
     "vue-plugin-load-script": {

@@ -87,6 +87,7 @@ module.exports = {
     { src: '~/plugins/vue-timers', ssr: false },
     { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
+    { src: '~/plugins/sentry-client', ssr: false },
     { src: '~/plugins/load-script', ssr: false },
     { src: '~/plugins/v-scroll-lock', ssr: false },
   ],
@@ -173,18 +174,8 @@ module.exports = {
     debug: process.env.NODE_ENV !== 'production',
   },
   sentry: {
-    dsn: process.env.SENTRY_DSN,
+    disableClientSide: true,
     sourceMapStyle: 'hidden-source-map',
-    tracing: {
-      tracesSampleRate: 1.0,
-      vueOptions: {
-        tracing: true,
-        attachProps: true,
-        tracingOptions: {
-          trackComponents: true,
-        },
-      },
-    },
     config: {
       release: process.env.SENTRY_RELEASE,
     },
