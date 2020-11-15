@@ -158,7 +158,7 @@ describe('Actions', () => {
     });
   });
 
-  describe('when unknown error', () => {
+  describe('when raise unknown error', () => {
     beforeEach(() => {
       mock.onGet('/').reply(() => {
         throw new Error('Unknown error');
