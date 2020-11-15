@@ -1,4 +1,10 @@
 {
+    "@nuxtjs/axios": {
+        "licenses": "MIT",
+        "repository": "https://github.com/nuxt-community/axios-module",
+        "licenseUrl": "https://github.com/nuxt-community/axios-module/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
     "@nuxtjs/gtm": {
         "licenses": "MIT",
         "repository": "https://github.com/nuxt-community/gtm-module",

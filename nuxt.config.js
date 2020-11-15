@@ -123,6 +123,7 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     '@nuxtjs/sentry',
+    '@nuxtjs/axios',
     '@nuxtjs/gtm',
     'vue-scrollto/nuxt',
     'nuxt-helmet',
@@ -161,6 +162,9 @@ module.exports = {
     delightedToken: process.env.DELIGHTED_TOKEN,
     gtm: {
       id: process.env.GOOGLE_TAG_MANAGER_ID,
+    },
+    axios: {
+      browserBaseURL: process.env.HACKARU_API_URL,
     },
   },
   styleResources: {

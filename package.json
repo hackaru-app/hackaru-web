@@ -15,6 +15,7 @@
     "postinstall": "yarn license-third-party"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/pwa": "^3.2.2",
     "@nuxtjs/sentry": "^4.5.0",
