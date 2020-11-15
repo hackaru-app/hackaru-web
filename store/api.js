@@ -18,7 +18,7 @@ export const actions = {
       const client = applyCaseMiddleware(this.$axios.create(), {
         ignoreHeaders: true,
       });
-      return client.request(
+      return await client.request(
         merge(config, {
           timeout: this.$config.hackaruApiTimeout,
           headers: { 'Accept-Language': this.$i18n.locale },
@@ -28,9 +28,10 @@ export const actions = {
       if (findErrorLocaleKey(error.message)) {
         const locale = this.$i18n.locale;
         this.$i18n.setLocaleMessage(locale, translations[locale]);
-        error.message = this.$i18n.t(findErrorLocaleKey(error.message));
+        throw new Error(this.$i18n.t(findErrorLocaleKey(error.message)));
+      } else {
+        throw error;
       }
-      throw error;
     }
   },
 };

@@ -122,36 +122,36 @@ describe('Actions', () => {
     });
   });
 
-  describe('when request is Network Error', () => {
+  describe('when raise network error', () => {
     beforeEach(() => {
       mock.onGet('/').networkError();
     });
 
-    it('returns english message', () => {
+    it('returns localized message', () => {
       const request = actions.request({}, { url: '/' });
       expect(request).rejects.toThrow('Network Error');
     });
   });
 
-  describe('when request is Timeout', () => {
+  describe('when raise timeout error', () => {
     beforeEach(() => {
       mock.onGet('/').timeout();
     });
 
-    it('returns english message', () => {
+    it('returns localized message', () => {
       const request = actions.request({}, { url: '/' });
       expect(request).rejects.toThrow('Timeout Error');
     });
   });
 
-  describe('when request aborted', () => {
+  describe('when raise request aborted', () => {
     beforeEach(() => {
       mock.onGet('/').reply(() => {
         throw new Error('Request aborted');
       });
     });
 
-    it('returns english message', () => {
+    it('returns localized message', () => {
       const request = actions.request({}, { url: '/' });
       expect(request).rejects.toThrow('Request aborted');
     });
