@@ -41,6 +41,12 @@
         "licenseUrl": "https://github.com/getsentry/sentry-javascript/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
+    "axios-case-converter": {
+        "licenses": "MIT",
+        "repository": "https://github.com/mpyw/axios-interceptor-change-case",
+        "licenseUrl": "https://github.com/mpyw/axios-interceptor-change-case/raw/master/LICENSE",
+        "parents": "hackaru-web"
+    },
     "camelcase-keys": {
         "licenses": "MIT",
         "repository": "https://github.com/sindresorhus/camelcase-keys",
