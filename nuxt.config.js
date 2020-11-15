@@ -76,7 +76,9 @@ module.exports = {
   /*
    ** Customize the progress bar color
    */
-  loading: { color: '#ffd96a' },
+  loading: {
+    color: '#ffd96a',
+  },
   /*
    ** Plugins
    */
@@ -174,6 +176,10 @@ module.exports = {
     short_name: 'Hackaru',
     lang: 'ja',
     theme_color: '#262b38',
+  },
+  axios: {
+    progress: false,
+    debug: process.env.NODE_ENV !== 'production',
   },
   gtm: {
     debug: process.env.NODE_ENV !== 'production',
