@@ -62,4 +62,22 @@ describe('Actions', () => {
       expect(commit).not.toHaveBeenCalled();
     });
   });
+
+  describe('when json is not object', () => {
+    const commit = jest.fn();
+
+    beforeEach(() => {
+      actions.merge(
+        { commit },
+        {
+          schema: user,
+          json: 'invalid',
+        }
+      );
+    });
+
+    it('does not commit', () => {
+      expect(commit).not.toHaveBeenCalled();
+    });
+  });
 });
