@@ -9,7 +9,7 @@ describe('Mutations', () => {
     };
 
     beforeEach(() => {
-      mutations.$config = { hackaruApiUrl: 'https://localhost' };
+      mutations.$config = { axios: { browserBaseURL: 'https://localhost' } };
       mutations['SET_TOKEN_AND_USER_ID'](state, {
         token: 'token',
         userId: 1,
