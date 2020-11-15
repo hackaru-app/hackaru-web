@@ -14,13 +14,14 @@ describe('Actions', () => {
 
   beforeEach(() => {
     mock.reset();
-    actions.$config = { hackaruApiUrl: 'http://localhost' };
+    actions.$axios = axios;
+    actions.$config = { hackaruApiTimeout: 0 };
     actions.$i18n = new VueI18n({ locale: 'en', messages: translations });
   });
 
   describe('when dispatch request', () => {
     beforeEach(async () => {
-      mock.onPost('http://localhost/example').replyOnce(200);
+      mock.onPost('/example').replyOnce(200);
       await actions.request(
         {},
         {
@@ -57,7 +58,7 @@ describe('Actions', () => {
   describe('when content-type is json', () => {
     beforeEach(async () => {
       mock
-        .onGet('http://localhost/example')
+        .onGet('/example')
         .reply(200, { foo_bar: 'baz', foo: { bar_baz: 'foo' } });
       result = await actions.request(
         {},
@@ -77,7 +78,7 @@ describe('Actions', () => {
   describe('when content-type is undefined', () => {
     beforeEach(async () => {
       mock
-        .onGet('http://localhost/example')
+        .onGet('/example')
         .reply(200, { foo_bar: 'baz', foo: { bar_baz: 'foo' } });
       result = await actions.request(
         {},
@@ -95,7 +96,7 @@ describe('Actions', () => {
 
   describe('when content-type is not json', () => {
     beforeEach(async () => {
-      mock.onGet('http://localhost/example').reply(200, { foo_bar: 'baz' });
+      mock.onGet('/example').reply(200, { foo_bar: 'baz' });
       result = await actions.request(
         {},
         {
@@ -112,7 +113,7 @@ describe('Actions', () => {
 
   describe('when response data is empty', () => {
     beforeEach(async () => {
-      mock.onGet('http://localhost/example').reply(200, {});
+      mock.onGet('/example').reply(200, {});
       result = await actions.request({}, { url: '/example' });
     });
 
@@ -123,10 +124,10 @@ describe('Actions', () => {
 
   describe('when request is Network Error', () => {
     beforeEach(() => {
-      mock.onGet('http://localhost/').networkError();
+      mock.onGet('/').networkError();
     });
 
-    it('catch Error with english message', async () => {
+    it('returns english message', () => {
       const request = actions.request({}, { url: '/' });
       expect(request).rejects.toThrow('Network Error');
     });
@@ -134,10 +135,10 @@ describe('Actions', () => {
 
   describe('when request is Timeout', () => {
     beforeEach(() => {
-      mock.onGet('http://localhost/').timeout();
+      mock.onGet('/').timeout();
     });
 
-    it('catch Error with english message', async () => {
+    it('returns english message', () => {
       const request = actions.request({}, { url: '/' });
       expect(request).rejects.toThrow('Timeout Error');
     });
@@ -145,15 +146,12 @@ describe('Actions', () => {
 
   describe('when request aborted', () => {
     beforeEach(() => {
-      // axios-mock-adapterでRequest abortedのテストを書きたいけど、以下のURLにあるような関数が定義されていないので、
-      // 自前でエラーを発生させる。
-      // https://github.com/ctimmerm/axios-mock-adapter/blob/master/src/index.js#L97
-      mock.onGet('http://localhost/').reply((config) => {
+      mock.onGet('/').reply(() => {
         throw new Error('Request aborted');
       });
     });
 
-    it('catch Error with english message', async () => {
+    it('returns english message', () => {
       const request = actions.request({}, { url: '/' });
       expect(request).rejects.toThrow('Request aborted');
     });

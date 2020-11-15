@@ -1,5 +1,4 @@
 import merge from 'lodash.merge';
-import axios from 'axios';
 import camelcaseKeys from 'camelcase-keys';
 import snakecaseKeys from 'snakecase-keys';
 import translations from '@/assets/locales/store/api.json';
@@ -20,9 +19,9 @@ function localizeErrorMessage(message, i18n) {
 }
 
 export const actions = {
-  async request(state, config) {
+  async request(_, config) {
     try {
-      const res = await axios.request(
+      const res = await this.$axios.request(
         merge(
           {
             ...config,
@@ -30,7 +29,6 @@ export const actions = {
             params: snakecaseKeys(config.params || {}),
           },
           {
-            baseURL: this.$config.hackaruApiUrl,
             timeout: this.$config.hackaruApiTimeout,
             headers: { 'Accept-Language': this.$i18n.locale },
           }
