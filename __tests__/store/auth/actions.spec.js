@@ -53,14 +53,14 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_REFRESH_TOKEN', () => {
+    it('commits SET_REFRESH_TOKEN', () => {
       expect(commit).toHaveBeenCalledWith('SET_REFRESH_TOKEN', {
         refreshToken: 'refreshToken',
         clientId: 'clientId',
       });
     });
 
-    it('commit SET_ID_AND_EMAIL', () => {
+    it('commits SET_ID_AND_EMAIL', () => {
       expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
         id: 1,
         email: 'example@example.com',
@@ -109,7 +109,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_ACCESS_TOKEN', () => {
+    it('commits SET_ACCESS_TOKEN', () => {
       expect(commit).toHaveBeenCalledWith('SET_ACCESS_TOKEN', 'accessToken');
     });
 
@@ -161,14 +161,14 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_REFRESH_TOKEN', () => {
+    it('commits SET_REFRESH_TOKEN', () => {
       expect(commit).toHaveBeenCalledWith('SET_REFRESH_TOKEN', {
         refreshToken: 'refreshToken',
         clientId: 'clientId',
       });
     });
 
-    it('commit SET_ID_AND_EMAIL', () => {
+    it('commits SET_ID_AND_EMAIL', () => {
       expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
         id: 1,
         email: 'example@example.com',
@@ -223,7 +223,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_ID_AND_EMAIL', () => {
+    it('commits SET_ID_AND_EMAIL', () => {
       expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
         id: 1,
         email: 'changed@example.com',
@@ -379,7 +379,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit CLEAR_TOKENS', () => {
+    it('commits CLEAR_TOKENS', () => {
       expect(commit).toHaveBeenCalledWith('CLEAR_TOKENS');
     });
   });
@@ -416,7 +416,7 @@ describe('Actions', () => {
     it('returns true', () => {
       expect(result).toBe(true);
     });
-    it('commit CLEAR_TOKENS', () => {
+    it('commits CLEAR_TOKENS', () => {
       expect(commit).toHaveBeenCalledWith('CLEAR_TOKENS');
     });
   });

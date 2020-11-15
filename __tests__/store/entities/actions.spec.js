@@ -9,7 +9,7 @@ describe('Actions', () => {
   describe('when dispatch merge', () => {
     const commit = jest.fn();
 
-    beforeEach(async () => {
+    beforeEach(() => {
       actions.merge(
         { commit },
         {
@@ -26,7 +26,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit MERGE_ENTITIES', () => {
+    it('commits MERGE_ENTITIES', () => {
       expect(commit).toHaveBeenCalledWith('MERGE_ENTITIES', {
         users: {
           1: {
@@ -42,6 +42,24 @@ describe('Actions', () => {
           },
         },
       });
+    });
+  });
+
+  describe('when json is null', () => {
+    const commit = jest.fn();
+
+    beforeEach(() => {
+      actions.merge(
+        { commit },
+        {
+          schema: user,
+          json: null,
+        }
+      );
+    });
+
+    it('does not commit', () => {
+      expect(commit).not.toHaveBeenCalled();
     });
   });
 });

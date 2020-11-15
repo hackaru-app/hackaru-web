@@ -46,7 +46,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_CLIENT', () => {
+    it('commits SET_CLIENT', () => {
       expect(commit).toHaveBeenCalledWith('SET_CLIENT', {
         clientId: 'clientId',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',

@@ -28,7 +28,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_USER', () => {
+    it('commits SET_USER', () => {
       expect(commit).toHaveBeenCalledWith('SET_USER', {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
@@ -80,7 +80,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_USER', () => {
+    it('commits SET_USER', () => {
       expect(commit).toHaveBeenCalledWith('SET_USER', {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
