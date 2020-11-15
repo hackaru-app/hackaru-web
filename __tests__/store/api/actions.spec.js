@@ -94,23 +94,6 @@ describe('Actions', () => {
     });
   });
 
-  describe('when content-type is not json', () => {
-    beforeEach(async () => {
-      mock.onGet('/example').reply(200, { foo_bar: 'baz' });
-      result = await actions.request(
-        {},
-        {
-          url: '/example',
-          responseType: 'blob',
-        }
-      );
-    });
-
-    it('does not convert response', () => {
-      expect(result.data.foo_bar).toBe('baz');
-    });
-  });
-
   describe('when response data is empty', () => {
     beforeEach(async () => {
       mock.onGet('/example').reply(200, {});
@@ -127,7 +110,7 @@ describe('Actions', () => {
       mock.onGet('/').networkError();
     });
 
-    it('returns localized message', () => {
+    it('throws localized error', () => {
       const request = actions.request({}, { url: '/' });
       expect(request).rejects.toThrow('Network Error');
     });
@@ -138,7 +121,7 @@ describe('Actions', () => {
       mock.onGet('/').timeout();
     });
 
-    it('returns localized message', () => {
+    it('throws localized error', () => {
       const request = actions.request({}, { url: '/' });
       expect(request).rejects.toThrow('Timeout Error');
     });
@@ -151,9 +134,22 @@ describe('Actions', () => {
       });
     });
 
-    it('returns localized message', () => {
+    it('throws localized error', () => {
       const request = actions.request({}, { url: '/' });
       expect(request).rejects.toThrow('Request aborted');
+    });
+  });
+
+  describe('when unknown error', () => {
+    beforeEach(() => {
+      mock.onGet('/').reply(() => {
+        throw new Error('Unknown error');
+      });
+    });
+
+    it('throws raw error', () => {
+      const request = actions.request({}, { url: '/' });
+      expect(request).rejects.toThrow('Unknown error');
     });
   });
 });
