@@ -1,49 +1,37 @@
 import merge from 'lodash.merge';
-import camelcaseKeys from 'camelcase-keys';
-import snakecaseKeys from 'snakecase-keys';
+import applyCaseMiddleware from 'axios-case-converter';
 import translations from '@/assets/locales/store/api.json';
 
-function isJsonType(responseType) {
-  return !responseType || responseType === 'json';
-}
-
-function localizeErrorMessage(message, i18n) {
-  i18n.setLocaleMessage(i18n.locale, translations[i18n.locale]);
+function findErrorLocaleKey(message) {
   if (message === 'Request aborted') {
-    return i18n.t('errors.request_aborted');
+    return 'errors.request_aborted';
   } else if (message === 'Network Error') {
-    return i18n.t('errors.network_error');
+    return 'errors.network_error';
   } else if (/^timeout of \d+ms exceeded$/.test(message)) {
-    return i18n.t('errors.timeout');
+    return 'errors.timeout';
   }
 }
 
 export const actions = {
   async request(_, config) {
     try {
-      const res = await this.$axios.request(
-        merge(
-          {
-            ...config,
-            data: snakecaseKeys(config.data || {}),
-            params: snakecaseKeys(config.params || {}),
-          },
-          {
-            timeout: this.$config.hackaruApiTimeout,
-            headers: { 'Accept-Language': this.$i18n.locale },
-          }
-        )
+      const client = applyCaseMiddleware(this.$axios.create(), {
+        ignoreHeaders: true,
+      });
+      return await client.request(
+        merge(config, {
+          timeout: this.$config.hackaruApiTimeout,
+          headers: { 'Accept-Language': this.$i18n.locale },
+        })
       );
-      if (isJsonType(config.responseType)) {
-        return {
-          data: camelcaseKeys(res.data || {}, { deep: true }),
-          headers: res.headers,
-        };
-      }
-      return res;
     } catch (error) {
-      error.message = localizeErrorMessage(error.message, this.$i18n);
-      throw error;
+      if (findErrorLocaleKey(error.message)) {
+        const locale = this.$i18n.locale;
+        this.$i18n.setLocaleMessage(locale, translations[locale]);
+        throw new Error(this.$i18n.t(findErrorLocaleKey(error.message)));
+      } else {
+        throw error;
+      }
     }
   },
 };

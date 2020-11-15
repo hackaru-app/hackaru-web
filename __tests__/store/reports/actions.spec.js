@@ -70,7 +70,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_REPORTS', () => {
+    it('commits SET_REPORTS', () => {
       expect(commit).toHaveBeenCalledWith('SET_REPORTS', {
         projects: [],
         sums: [],
@@ -80,7 +80,7 @@ describe('Actions', () => {
       });
     });
 
-    it('commit SET_PREVIOUS_TOTALS', () => {
+    it('commits SET_PREVIOUS_TOTALS', () => {
       expect(commit).toHaveBeenCalledWith('SET_PREVIOUS_TOTALS', {
         totals: {},
       });

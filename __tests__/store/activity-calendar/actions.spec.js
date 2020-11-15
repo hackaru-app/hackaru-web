@@ -25,7 +25,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_TOKEN_AND_USER_ID', () => {
+    it('commits SET_TOKEN_AND_USER_ID', () => {
       expect(commit).toHaveBeenCalledWith('SET_TOKEN_AND_USER_ID', {
         token: 'token',
         userId: 1,

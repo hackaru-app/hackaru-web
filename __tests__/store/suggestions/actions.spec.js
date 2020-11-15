@@ -23,7 +23,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_SUGGESTIONS', () => {
+    it('commits SET_SUGGESTIONS', () => {
       expect(commit).toHaveBeenCalledWith('SET_SUGGESTIONS', {});
     });
   });

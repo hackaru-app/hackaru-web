@@ -46,7 +46,7 @@ describe('Actions', () => {
       );
     });
 
-    it('commit SET_CLIENT', () => {
+    it('commits SET_CLIENT', () => {
       expect(commit).toHaveBeenCalledWith('SET_CLIENT', {
         clientId: 'clientId',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
@@ -226,7 +226,7 @@ describe('Actions', () => {
       error.response = {
         data: {
           status: 'redirect',
-          redirect_uri:
+          redirectUri:
             'http://example.com/callback#error=access_denied&error_description=denied',
         },
       };
@@ -278,7 +278,7 @@ describe('Actions', () => {
       error.response = {
         data: {
           error: 'access_denied',
-          error_description: 'denied',
+          errorDescription: 'denied',
         },
       };
       throw error;

@@ -38,11 +38,11 @@ describe('Actions', () => {
       );
     });
 
-    it('convert params to snakecase', () => {
+    it('converts params to snakecase', () => {
       expect(mock.history.post[0].params).toEqual({ foo_bar: 'baz' });
     });
 
-    it('convert data to snakecase', () => {
+    it('converts data to snakecase', () => {
       expect(JSON.parse(mock.history.post[0].data)).toEqual({ bar_baz: 'baz' });
     });
 
@@ -69,7 +69,7 @@ describe('Actions', () => {
       );
     });
 
-    it('convert response to camelcase', () => {
+    it('converts response to camelcase', () => {
       expect(result.data.fooBar).toBe('baz');
       expect(result.data.foo.barBaz).toBe('foo');
     });
@@ -88,26 +88,9 @@ describe('Actions', () => {
       );
     });
 
-    it('convert response to camelcase', () => {
+    it('converts response to camelcase', () => {
       expect(result.data.fooBar).toBe('baz');
       expect(result.data.foo.barBaz).toBe('foo');
-    });
-  });
-
-  describe('when content-type is not json', () => {
-    beforeEach(async () => {
-      mock.onGet('/example').reply(200, { foo_bar: 'baz' });
-      result = await actions.request(
-        {},
-        {
-          url: '/example',
-          responseType: 'blob',
-        }
-      );
-    });
-
-    it('does not convert response', () => {
-      expect(result.data.foo_bar).toBe('baz');
     });
   });
 
@@ -122,38 +105,70 @@ describe('Actions', () => {
     });
   });
 
-  describe('when request is Network Error', () => {
+  describe('when response is error', () => {
+    beforeEach(() => {
+      mock
+        .onGet('/example')
+        .reply(401, { foo_bar: 'baz', foo: { bar_baz: 'foo' } });
+    });
+
+    it('converts response to camelcase', () => {
+      return actions.request({}, { url: '/example' }).catch((error) => {
+        expect(error.response.data.fooBar).toBe('baz');
+        expect(error.response.data.foo.barBaz).toBe('foo');
+      });
+    });
+  });
+
+  describe('when raise network error', () => {
     beforeEach(() => {
       mock.onGet('/').networkError();
     });
 
-    it('returns english message', () => {
-      const request = actions.request({}, { url: '/' });
-      expect(request).rejects.toThrow('Network Error');
+    it('returns localized message', () => {
+      return actions
+        .request({}, { url: '/' })
+        .catch((error) => expect(error.message).toBe('Network Error'));
     });
   });
 
-  describe('when request is Timeout', () => {
+  describe('when raise timeout error', () => {
     beforeEach(() => {
       mock.onGet('/').timeout();
     });
 
-    it('returns english message', () => {
-      const request = actions.request({}, { url: '/' });
-      expect(request).rejects.toThrow('Timeout Error');
+    it('returns localized message', () => {
+      return actions
+        .request({}, { url: '/' })
+        .catch((error) => expect(error.message).toBe('Timeout Error'));
     });
   });
 
-  describe('when request aborted', () => {
+  describe('when raise request aborted', () => {
     beforeEach(() => {
       mock.onGet('/').reply(() => {
         throw new Error('Request aborted');
       });
     });
 
-    it('returns english message', () => {
-      const request = actions.request({}, { url: '/' });
-      expect(request).rejects.toThrow('Request aborted');
+    it('returns localized message', () => {
+      return actions
+        .request({}, { url: '/' })
+        .catch((error) => expect(error.message).toBe('Request aborted'));
+    });
+  });
+
+  describe('when raise unknown error', () => {
+    beforeEach(() => {
+      mock.onGet('/').reply(() => {
+        throw new Error('Unknown error');
+      });
+    });
+
+    it('returns raw message', () => {
+      return actions
+        .request({}, { url: '/' })
+        .catch((error) => expect(error.message).toBe('Unknown error'));
     });
   });
 });
