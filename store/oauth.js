@@ -78,11 +78,11 @@ export const actions = {
 };
 
 function getRedirectUriByError(e) {
-  return get(e, 'response.data.redirect_uri');
+  return get(e, 'response.data.redirectUri');
 }
 
 function getDescriptionByError(e) {
-  const errorDescription = get(e, 'response.data.error_description');
+  const errorDescription = get(e, 'response.data.errorDescription');
   return errorDescription && { errorDescription };
 }
 

@@ -226,7 +226,7 @@ describe('Actions', () => {
       error.response = {
         data: {
           status: 'redirect',
-          redirect_uri:
+          redirectUri:
             'http://example.com/callback#error=access_denied&error_description=denied',
         },
       };
@@ -278,7 +278,7 @@ describe('Actions', () => {
       error.response = {
         data: {
           error: 'access_denied',
-          error_description: 'denied',
+          errorDescription: 'denied',
         },
       };
       throw error;
