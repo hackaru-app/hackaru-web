@@ -41,12 +41,6 @@
         "licenseUrl": "https://github.com/getsentry/sentry-javascript/raw/master/LICENSE",
         "parents": "hackaru-web"
     },
-    "axios": {
-        "licenses": "MIT",
-        "repository": "https://github.com/axios/axios",
-        "licenseUrl": "https://github.com/axios/axios/raw/master/LICENSE",
-        "parents": "hackaru-web"
-    },
     "camelcase-keys": {
         "licenses": "MIT",
         "repository": "https://github.com/sindresorhus/camelcase-keys",
