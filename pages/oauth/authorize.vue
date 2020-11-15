@@ -30,7 +30,7 @@
         <footer class="footer">
           <base-button
             type="button"
-            class="is-rounded is-primary"
+            class="allow-button is-rounded is-primary"
             data-test-id="allow-button"
             @click="decide('allow')"
           >
