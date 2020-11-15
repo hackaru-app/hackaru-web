@@ -117,13 +117,13 @@ export const actions = {
 };
 
 export const getters = {
-  all(state, getters, rootState, rootGetters) {
+  all(_state, _getters, _rootState, rootGetters) {
     return rootGetters['entities/getEntities']('activities', [activity]);
   },
-  working(state, getters) {
+  working(_state, getters) {
     return getters.all.find(({ stoppedAt }) => !stoppedAt);
   },
-  pastWeek: (state, getters) => {
+  pastWeek: (_state, getters) => {
     const weekly = getters.all
       .filter(({ stoppedAt }) => stoppedAt)
       .filter(({ startedAt }) => isWithinPastWeek(parseISO(startedAt)))
@@ -134,7 +134,7 @@ export const getters = {
       formatISO(parseISO(startedAt), { representation: 'date' })
     );
   },
-  getCalendar: (state, getters) => (date, toMin) => {
+  getCalendar: (_state, getters) => (date, toMin) => {
     const rows = [];
     const addNewRow = () => rows.push([]) - 1;
 

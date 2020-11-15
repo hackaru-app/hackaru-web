@@ -39,7 +39,7 @@ export const mutations = {
 };
 
 export const getters = {
-  message(state, getters, rootState, rootGetters) {
+  message(state) {
     return {
       text: state.text,
       type: state.type,

@@ -150,20 +150,20 @@ export default {
       this.height = this.getInitialHeight();
       this.left = 0;
     },
-    moveStart(e) {
+    moveStart() {
       this.dragged = true;
       this.$emit('dragging', {
         el: this.$el,
         guideRulerTop: this.top,
       });
     },
-    moving(e) {
+    moving() {
       this.$emit('dragging', {
         el: this.$el,
         guideRulerTop: this.top,
       });
     },
-    moveEnd(e) {
+    moveEnd() {
       this.$emit('drop');
       if (!this.overlappedDay) {
         return this.resetPosition();
@@ -177,17 +177,17 @@ export default {
         stoppedAt: addSeconds(date, this.duration),
       });
     },
-    moveCancel(e) {
+    moveCancel() {
       this.$emit('drop');
     },
-    resizing(e) {
+    resizing() {
       this.resized = true;
       this.$emit('dragging', {
         el: this.$el,
         guideRulerTop: this.top + this.height,
       });
     },
-    resizeEnd(e) {
+    resizeEnd() {
       this.$emit('drop');
       const stoppedAt = addMinutes(
         parseISO(this.startedAt),
@@ -195,14 +195,14 @@ export default {
       );
       this.update({ stoppedAt });
     },
-    resizeCancel(e) {
+    resizeCancel() {
       this.$emit('drop');
     },
-    mousedown(e) {
+    mousedown() {
       this.resized = false;
       this.dragged = false;
     },
-    mouseup(e) {
+    mouseup() {
       const clickOnly = !this.resized && !this.dragged;
       if (clickOnly) this.showModal();
       this.resized = false;

@@ -65,7 +65,7 @@ export default {
     };
   },
   methods: {
-    async changePassword({ store }) {
+    async changePassword() {
       const success = await this.$store.dispatch('auth/changePassword', {
         currentPassword: this.currentPassword,
         password: this.password,

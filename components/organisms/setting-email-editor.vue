@@ -54,7 +54,7 @@ export default {
     };
   },
   methods: {
-    async changeEmail({ store }) {
+    async changeEmail() {
       const success = await this.$store.dispatch('auth/changeEmail', {
         email: this.email,
         currentPassword: this.currentPassword,

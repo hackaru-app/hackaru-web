@@ -9,7 +9,7 @@ export const state = () => ({
 });
 
 export const actions = {
-  async createUrl({ commit, dispatch }, payload) {
+  async createUrl({ commit, dispatch }) {
     try {
       const res = await dispatch(
         'auth-api/request',
@@ -37,13 +37,13 @@ export const mutations = {
 };
 
 export const getters = {
-  webcalUrl: (state, getter) => {
+  webcalUrl: (state) => {
     return `${state.baseUrl}/v1/activity_calendar?${stringify({
       token: state.token,
       user_id: state.userId,
     })}`;
   },
-  googleCalendarUrl: (state, getter) => {
+  googleCalendarUrl: (_state, getter) => {
     return `https://www.google.com/calendar/render?${stringify({
       cid: getter.webcalUrl,
     })}`;

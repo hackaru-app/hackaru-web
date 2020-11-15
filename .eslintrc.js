@@ -29,6 +29,16 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    camelcase: ["error", { properties: "never" }]
+    'no-unused-vars': [
+      'error', {
+        args: 'all',
+        argsIgnorePattern: '^_'
+      }
+    ],
+    camelcase: [
+      'error', {
+        properties: 'never'
+      }
+    ]
   }
 }

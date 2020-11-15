@@ -97,13 +97,13 @@ export default {
         guideRulerTop: this.ghostTop + this.ghostHeight,
       });
     },
-    ghostDragging(e) {
+    ghostDragging() {
       this.dragging({
         el: this.$el,
         guideRulerTop: this.ghostTop + this.ghostHeight,
       });
     },
-    async ghostDrop(e) {
+    async ghostDrop() {
       this.drop(this.$el);
       await this.addActivity();
       this.ghostVisibility = false;

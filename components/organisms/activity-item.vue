@@ -79,7 +79,7 @@ export default {
     },
   },
   methods: {
-    showModal(params) {
+    showModal() {
       this.$nuxt.$emit('show-modal', {
         component: ActivityEditor,
         params: {

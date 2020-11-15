@@ -89,7 +89,7 @@ export default {
       }
       e.preventDefault();
     },
-    drop({ e, distance }) {
+    drop({ distance }) {
       const wasTooLowDrag = Math.abs(distance.x) < 120;
       if (wasTooLowDrag) return this.reset();
       return distance.x < 0 ? this.swipeRight() : this.swipeLeft();
