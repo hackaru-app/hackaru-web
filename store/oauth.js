@@ -29,7 +29,7 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
     }
   },
-  async allow({ commit, dispatch }, payload) {
+  async allow({ dispatch }, payload) {
     try {
       const res = await dispatch(
         'auth-api/request',
@@ -52,7 +52,7 @@ export const actions = {
       return undefined;
     }
   },
-  async deny({ commit, dispatch }, payload) {
+  async deny({ dispatch }, payload) {
     try {
       await dispatch(
         'auth-api/request',

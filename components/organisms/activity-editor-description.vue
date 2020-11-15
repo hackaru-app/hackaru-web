@@ -74,11 +74,11 @@ export default {
       this.$emit('input', e.target.value);
       this.fetchSuggestions(e.target.value);
     },
-    focus(e) {
+    focus() {
       this.focused = true;
       this.fetchSuggestions('');
     },
-    blur(e) {
+    blur() {
       this.focused = false;
     },
     clickSuggestion({ description, project }) {

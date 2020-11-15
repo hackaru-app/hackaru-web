@@ -1,7 +1,7 @@
 import { application } from '@/schemas';
 
 export const actions = {
-  async fetch({ commit, dispatch }) {
+  async fetch({ dispatch }) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
@@ -19,7 +19,7 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
     }
   },
-  async delete({ commit, dispatch }, id) {
+  async delete({ dispatch }, id) {
     try {
       dispatch('entities/delete', { name: 'applications', id }, { root: true });
       await dispatch(
@@ -39,7 +39,7 @@ export const actions = {
 };
 
 export const getters = {
-  all(state, getters, rootState, rootGetters) {
+  all(_state, _getters, _rootState, rootGetters) {
     return rootGetters['entities/getEntities']('applications', [application]);
   },
 };

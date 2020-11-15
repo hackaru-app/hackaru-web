@@ -65,7 +65,7 @@ export default {
       this.offset = `-${this.$mezr.width(this.$el) - distance.x}px`;
       e.preventDefault();
     },
-    drop({ e, distance }) {
+    drop({ distance }) {
       const wasTooLowDrag = Math.abs(distance.x) < 100;
       if (wasTooLowDrag) return this.slideReset();
       return distance.x < 0 ? this.slideRight() : this.slideLeft();

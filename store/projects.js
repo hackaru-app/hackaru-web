@@ -1,7 +1,7 @@
 import { project } from '@/schemas';
 
 export const actions = {
-  async fetch({ commit, dispatch }) {
+  async fetch({ dispatch }) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
@@ -19,7 +19,7 @@ export const actions = {
       dispatch('toast/error', e, { root: true });
     }
   },
-  async add({ commit, dispatch }, payload) {
+  async add({ dispatch }, payload) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
@@ -43,7 +43,7 @@ export const actions = {
       return false;
     }
   },
-  async update({ commit, dispatch }, payload) {
+  async update({ dispatch }, payload) {
     try {
       const { data } = await dispatch(
         'auth-api/request',
@@ -67,7 +67,7 @@ export const actions = {
       return false;
     }
   },
-  async delete({ commit, dispatch }, id) {
+  async delete({ dispatch }, id) {
     try {
       dispatch('entities/delete', { name: 'projects', id }, { root: true });
       await dispatch(
@@ -87,7 +87,7 @@ export const actions = {
 };
 
 export const getters = {
-  all(state, getters, rootState, rootGetters) {
+  all(_state, _getters, _rootState, rootGetters) {
     return rootGetters['entities/getEntities']('projects', [project]);
   },
 };
