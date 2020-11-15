@@ -30,7 +30,8 @@ export const actions = {
 
 export const mutations = {
   [SET_TOKEN_AND_USER_ID](state, payload) {
-    state.baseUrl = this.$config.hackaruApiUrl.replace(/^https?/, 'webcal');
+    const baseUrl = this.$config.axios.browserBaseURL;
+    state.baseUrl = baseUrl.replace(/^https?/, 'webcal');
     state.token = payload.token;
     state.userId = payload.userId;
   },

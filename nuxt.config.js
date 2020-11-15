@@ -153,7 +153,6 @@ module.exports = {
     ],
   ],
   publicRuntimeConfig: {
-    hackaruApiUrl: process.env.HACKARU_API_URL,
     hackaruApiTimeout: process.env.HACKARU_API_TIMEOUT,
     hackaruTermsUrl: process.env.HACKARU_TOS_AND_PRIVACY_URL,
     sentryDsn: process.env.SENTRY_DSN,
