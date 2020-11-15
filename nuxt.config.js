@@ -233,6 +233,7 @@ module.exports = {
         'img-src': [
           'https://www.google-analytics.com',
           'https://www.googletagmanager.com',
+          'data:',
           "'self'",
         ],
         'font-src': ['https://fonts.gstatic.com'],
