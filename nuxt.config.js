@@ -216,7 +216,6 @@ module.exports = {
   },
   render: {
     csp: {
-      reportOnly: true,
       hashAlgorithm: 'sha256',
       policies: {
         'connect-src': [
