@@ -93,7 +93,7 @@
     "jest-localstorage-mock": "^2.4.3",
     "jest-serializer-vue": "^2.0.2",
     "jsonwebtoken": "^8.5.0",
-    "lint-staged": "^9.4.2",
+    "lint-staged": "^10.5.1",
     "match-media-mock": "^0.1.1",
     "mockdate": "^2.0.2",
     "npm-license-crawler": "mwittig/npm-license-crawler#master",
