@@ -29,7 +29,7 @@
     "date-fns": "^2.16.1",
     "file-saver": "^2.0.2",
     "hh-mm-ss": "^1.2.0",
-    "jwt-decode": "^2.2.0",
+    "jwt-decode": "^3.1.2",
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.groupby": "^4.6.0",
