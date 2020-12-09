@@ -45,6 +45,9 @@
   &:active {
     opacity: 1;
   }
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 .base-button.is-marshmallow {
   height: 43px;
