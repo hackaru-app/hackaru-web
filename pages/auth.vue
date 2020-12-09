@@ -206,7 +206,7 @@ export default {
   }
 }
 .submit-button {
-  min-width: 110px;
+  min-width: 100px;
 }
 .toggle-button {
   box-sizing: border-box;
