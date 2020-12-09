@@ -36,9 +36,15 @@
   color: $white;
 }
 .base-button.is-rounded {
-  border-radius: 99px;
-  padding-right: 20px;
-  padding-left: 20px;
+  border-radius: 4px;
+  padding-right: 18px;
+  padding-left: 18px;
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    opacity: 1;
+  }
 }
 .base-button.is-marshmallow {
   height: 43px;
