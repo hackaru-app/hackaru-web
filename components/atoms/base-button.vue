@@ -54,14 +54,6 @@
   border: 1px $border solid;
   box-shadow: 0 3px 8px $shadow;
 }
-.base-button.has-icon {
-  line-height: normal;
-  height: auto;
-  padding: 20px;
-  margin: -20px;
-  background: none;
-  border: 0;
-}
 @media (prefers-color-scheme: dark) {
   .base-button.is-marshmallow {
     background-color: $background-dark;

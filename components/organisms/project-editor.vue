@@ -4,15 +4,14 @@
   <section>
     <modal-header>
       <template slot="left">
-        <base-button
+        <icon-button
           v-if="navigated"
-          class="has-icon"
           data-test-id="left-arrow-button"
           type="button"
           @click="pop"
         >
           <icon name="chevron-left-icon" class="is-large" />
-        </base-button>
+        </icon-button>
       </template>
 
       {{ $t(`titles.${id ? 'update' : 'add'}`) }}
@@ -61,6 +60,7 @@ import ModalFooter from '@/components/molecules/modal-footer';
 import Icon from '@/components/atoms/icon';
 import ColorSelect from '@/components/molecules/color-select';
 import BaseButton from '@/components/atoms/base-button';
+import IconButton from '@/components/atoms/icon-button';
 
 export default {
   components: {
@@ -70,6 +70,7 @@ export default {
     ModalItem,
     ModalFooter,
     BaseButton,
+    IconButton,
   },
   props: {
     navigated: {
