@@ -55,10 +55,12 @@
           </div>
           <div class="buttons">
             <base-button
+              :disabled="loading"
               type="submit"
               class="submit-button is-rounded is-primary"
             >
-              {{ $t(hasAccount ? 'login' : 'signUp') }}
+              <indicator v-if="loading" class="is-white is-small" />
+              <span v-else>{{ $t(hasAccount ? 'login' : 'signUp') }}</span>
             </base-button>
             <button
               type="button"
@@ -86,6 +88,7 @@ import Heading from '@/components/atoms/heading';
 import BaseInput from '@/components/atoms/base-input';
 import BaseButton from '@/components/atoms/base-button';
 import LocaleSelect from '@/components/molecules/locale-select';
+import Indicator from '@/components/atoms/indicator.vue';
 
 export default {
   layout: 'auth',
@@ -94,6 +97,7 @@ export default {
     BaseInput,
     BaseButton,
     LocaleSelect,
+    Indicator,
   },
   head() {
     return {
@@ -107,6 +111,7 @@ export default {
       passwordConfirmation: '',
       agreement: false,
       hasAccount: !this.$route.query['sign-up'],
+      loading: false,
     };
   },
   computed: {
@@ -121,7 +126,9 @@ export default {
   },
   methods: {
     async submit() {
+      this.loading = true;
       await (this.hasAccount ? this.login : this.signUp)();
+      this.loading = false;
     },
     async login() {
       const success = await this.$store.dispatch('auth/fetchRefreshToken', {
