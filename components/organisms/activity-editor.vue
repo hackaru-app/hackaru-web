@@ -37,14 +37,13 @@
         <base-button type="submit" class="is-rounded is-primary">
           {{ $t('update') }}
         </base-button>
-        <base-button
+        <icon-button
           type="button"
           data-test-id="delete-button"
-          class="is-icon is-white"
           @click="deleteActivity"
         >
           <icon name="trash-2-icon" class="is-danger" />
-        </base-button>
+        </icon-button>
       </modal-footer>
     </div>
   </form>
@@ -59,6 +58,7 @@ import ModalFooter from '@/components/molecules/modal-footer';
 import ProjectName from '@/components/molecules/project-name';
 import DatetimePicker from '@/components/molecules/datetime-picker';
 import BaseButton from '@/components/atoms/base-button';
+import IconButton from '@/components/atoms/icon-button';
 import Icon from '@/components/atoms/icon';
 import { mapGetters } from 'vuex';
 
@@ -72,6 +72,7 @@ export default {
     ModalItem,
     ModalFooter,
     BaseButton,
+    IconButton,
     Icon,
   },
   props: {

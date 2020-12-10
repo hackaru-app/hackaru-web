@@ -20,13 +20,13 @@
         :stopped-at="stoppedAt"
         :class="['duration', { stopped: stoppedAt }]"
       />
-      <base-button
+      <icon-button
         v-tooltip="$t('duplicate')"
         class="duplicate-button"
         @click.stop="duplicateActivity"
       >
         <icon name="repeat-icon" class="is-midium" />
-      </base-button>
+      </icon-button>
     </section>
     <template slot="right">
       <div class="swipe-menu-item is-duplicate">
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import BaseButton from '@/components/atoms/base-button';
+import IconButton from '@/components/atoms/icon-button';
 import Icon from '@/components/atoms/icon';
 import ActivityName from '@/components/molecules/activity-name';
 import Ticker from '@/components/atoms/ticker';
@@ -46,7 +46,7 @@ import ActivityEditor from '@/components/organisms/activity-editor';
 
 export default {
   components: {
-    BaseButton,
+    IconButton,
     SwipeMenu,
     Icon,
     ActivityName,
@@ -160,7 +160,8 @@ export default {
 .duplicate-button {
   height: 100%;
   border-radius: 0;
-  margin-left: 10px;
+  margin-right: 15px;
+  margin-left: 25px;
 }
 .is-duplicate {
   background-color: $green;

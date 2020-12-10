@@ -4,28 +4,26 @@
   <section class="container">
     <modal-header>
       <template slot="left">
-        <base-button
+        <icon-button
           v-if="navigated"
-          class="has-icon"
           data-test-id="left-arrow-button"
           type="button"
           @click="pop"
         >
           <icon name="chevron-left-icon" class="is-large" />
-        </base-button>
+        </icon-button>
       </template>
 
       {{ $t('title') }}
 
       <template slot="right">
-        <base-button
-          class="has-icon"
+        <icon-button
           data-test-id="add-button"
           type="button"
           @click="createProject"
         >
           <icon name="plus-icon" />
-        </base-button>
+        </icon-button>
       </template>
     </modal-header>
     <div v-scroll-lock="true" class="content">
@@ -37,15 +35,14 @@
         >
           <project-name v-bind="project" class="project-name" />
         </button>
-        <base-button
+        <icon-button
           v-if="project.id"
-          class="has-icon"
           data-test-id="edit-button"
           type="button"
           @click="editProject(project)"
         >
           <icon name="edit-3-icon" class="is-primary" />
-        </base-button>
+        </icon-button>
       </div>
     </div>
   </section>
@@ -56,8 +53,8 @@ import ModalItem from '@/components/molecules/modal-item';
 import ModalHeader from '@/components/molecules/modal-header';
 import ProjectName from '@/components/molecules/project-name';
 import Icon from '@/components/atoms/icon';
-import BaseButton from '@/components/atoms/base-button';
 import ProjectEditor from '@/components/organisms/project-editor';
+import IconButton from '@/components/atoms/icon-button';
 
 export default {
   components: {
@@ -65,7 +62,7 @@ export default {
     ModalHeader,
     ModalItem,
     ProjectName,
-    BaseButton,
+    IconButton,
   },
   props: {
     navigated: {

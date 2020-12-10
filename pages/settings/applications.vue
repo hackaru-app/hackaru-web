@@ -39,13 +39,12 @@
         <h1 data-test-id="application-name" @click="showModal(application)">
           {{ application.name }}
         </h1>
-        <base-button
-          class="has-icon"
+        <icon-button
           data-test-id="delete-button"
           @click="deleteApplication(application.id)"
         >
           <icon name="x-icon" class="is-danger" />
-        </base-button>
+        </icon-button>
       </div>
 
       <p v-if="applications.length <= 0" class="empty-message">
@@ -57,7 +56,7 @@
 
 <script>
 import ContentHeader from '@/components/organisms/content-header';
-import BaseButton from '@/components/atoms/base-button';
+import IconButton from '@/components/atoms/icon-button';
 import Icon from '@/components/atoms/icon';
 import Heading from '@/components/atoms/heading';
 import ModalItem from '@/components/molecules/modal-item';
@@ -70,7 +69,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: {
     ContentHeader,
-    BaseButton,
+    IconButton,
     Icon,
     Heading,
     BaseModal,
