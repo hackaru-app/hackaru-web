@@ -117,6 +117,9 @@ export default {
 .content {
   overflow: scroll;
   height: 385px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .project-button {
   flex-basis: 100%;

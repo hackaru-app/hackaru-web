@@ -38,10 +38,11 @@ export default {
 .tabs {
   display: flex;
   overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
   margin: 0;
   padding: 0;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .tabs li {
   box-sizing: border-box;
