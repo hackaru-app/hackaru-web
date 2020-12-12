@@ -3,14 +3,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: 'Hackaru',
     meta: [
-      { charset: 'utf-8' },
-      {
-        name: 'viewport',
-        content:
-          'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover',
-      },
       {
         hid: 'description',
         name: 'description',
@@ -191,10 +184,6 @@ module.exports = {
       release: process.env.SENTRY_RELEASE,
     },
   },
-  meta: {
-    appleStatusBarStyle: 'black-translucent',
-    mobileAppIOS: true,
-  },
   toast: {
     position: 'bottom-center',
     duration: 3000,
@@ -251,6 +240,18 @@ module.exports = {
         'upgrade-insecure-requests': [],
         'report-uri': [process.env.SENTRY_CSP_REPORT_URI],
       },
+    },
+  },
+  pwa: {
+    meta: {
+      viewport:
+        'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover',
+      mobileAppIOS: true,
+      appleStatusBarStyle: 'black-translucent',
+      name: 'Hackaru',
+      description: 'A simple time tracking app',
+      theme_color: '#262b38',
+      lang: 'ja',
     },
   },
 };

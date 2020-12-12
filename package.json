@@ -1,6 +1,5 @@
 {
   "name": "hackaru-web",
-  "description": "Hackaru web server",
   "author": "ktmouk <ktmouk@gmail.com>",
   "private": true,
   "scripts": {
