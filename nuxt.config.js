@@ -3,13 +3,6 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Simple and open source time tracking app.',
-      },
-    ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
@@ -164,12 +157,6 @@ module.exports = {
   styleResources: {
     scss: ['./assets/scss/modules/*.scss'],
   },
-  manifest: {
-    name: 'Hackaru',
-    short_name: 'Hackaru',
-    lang: 'ja',
-    theme_color: '#262b38',
-  },
   axios: {
     progress: false,
     debug: process.env.NODE_ENV !== 'production',
@@ -251,7 +238,11 @@ module.exports = {
       name: 'Hackaru',
       description: 'A simple time tracking app',
       theme_color: '#262b38',
-      lang: 'ja',
+    },
+    manifest: {
+      name: 'Hackaru',
+      short_name: 'Hackaru',
+      description: 'A simple time tracking app',
     },
   },
 };
