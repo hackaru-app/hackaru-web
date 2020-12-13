@@ -59,8 +59,7 @@
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "yarn lint --fix",
-      "git add"
+      "yarn lint --fix"
     ]
   },
   "config": {
