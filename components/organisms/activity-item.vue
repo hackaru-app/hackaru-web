@@ -25,7 +25,7 @@
         class="duplicate-button"
         @click.stop="duplicateActivity"
       >
-        <icon name="repeat-icon" class="is-midium" />
+        <icon name="repeat-icon" class="is-medium" />
       </icon-button>
     </section>
     <template slot="right">

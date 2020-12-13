@@ -18,7 +18,7 @@
         <slot />
       </window-scroll>
     </drag-drop>
-    <div :style="rightStyle" data-test-id="right-menu">
+    <div :style="rightStyle" class="right-menu" data-test-id="right-menu">
       <slot name="right" />
     </div>
   </div>
@@ -157,7 +157,7 @@ export default {
   color: $white;
 }
 @include mq(small) {
-  .tutorial .right {
+  .tutorial .right-menu {
     animation-name: gesture;
     animation-delay: 0.5s;
     animation-duration: 1s;
