@@ -28,7 +28,7 @@ export default {
   width: 16px;
   height: 16px;
 }
-.icon.is-midium {
+.icon.is-medium {
   width: 18px;
   height: 18px;
 }
