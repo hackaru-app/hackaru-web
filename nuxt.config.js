@@ -3,6 +3,12 @@ module.exports = {
    ** Headers of the page
    */
   head: {
+    meta: [
+      {
+        name: 'apple-mobile-web-app-capable',
+        content: 'yes',
+      },
+    ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
@@ -228,7 +234,7 @@ module.exports = {
     meta: {
       viewport:
         'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover',
-      mobileAppIOS: true,
+      mobileAppIOS: false,
       appleStatusBarStyle: 'black-translucent',
       name: 'Hackaru',
       description: 'A simple time tracking app',
