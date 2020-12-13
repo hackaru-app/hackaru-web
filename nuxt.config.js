@@ -1,3 +1,16 @@
+function buildStartupImages(images) {
+  return images.map((image) => ({
+    rel: 'apple-touch-startup-image',
+    href: image.href,
+    media: [
+      `(device-width: ${image.width})`,
+      `(device-height: ${image.height})`,
+      `(-webkit-device-pixel-ratio: ${image.ratio})`,
+      `(orientation: portrait)`,
+    ].join(' and '),
+  }));
+}
+
 module.exports = {
   /*
    ** Headers of the page
@@ -15,48 +28,86 @@ module.exports = {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Roboto:300,400',
       },
-      {
-        rel: 'apple-touch-startup-image',
-        href: '/launch-640x1136.png',
-        media:
-          '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)',
-      },
-      {
-        rel: 'apple-touch-startup-image',
-        href: '/launch-750x1294.png',
-        media:
-          '(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)',
-      },
-      {
-        rel: 'apple-touch-startup-image',
-        href: '/launch-1242x2148.png',
-        media:
-          '(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)',
-      },
-      {
-        rel: 'apple-touch-startup-image',
-        href: '/launch-1125x2436.png',
-        media:
-          '(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)',
-      },
-      {
-        rel: 'apple-touch-startup-image',
-        href: '/launch-1536x2048.png',
-        media:
-          '(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)',
-      },
-      {
-        rel: 'apple-touch-startup-image',
-        href: '/launch-1668x2224.png',
-        media:
-          '(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)',
-      },
-      {
-        rel: 'apple-touch-startup-image',
-        href: '/launch-2048x2732.png',
-        media:
-          '(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)',
-      },
+      ...buildStartupImages([
+        {
+          href: '/apple-splash-2048-2732.png',
+          width: '1024px',
+          height: '1366px',
+          ratio: 2,
+        },
+        {
+          href: '/apple-splash-1668-2388.png',
+          width: '834px',
+          height: '1194px',
+          ratio: 2,
+        },
+        {
+          href: '/apple-splash-1536-2048.png',
+          width: '768px',
+          height: '1024px',
+          ratio: 2,
+        },
+        {
+          href: '/apple-splash-1668-2224.png',
+          width: '834px',
+          height: '1112px',
+          ratio: 2,
+        },
+        {
+          href: '/apple-splash-1620-2160.png',
+          width: '810px',
+          height: '1080px',
+          ratio: 2,
+        },
+        {
+          href: '/apple-splash-1284-2778.png',
+          width: '428px',
+          height: '926px',
+          ratio: 3,
+        },
+        {
+          href: '/apple-splash-1170-2532.png',
+          width: '390px',
+          height: '844px',
+          ratio: 3,
+        },
+        {
+          href: '/apple-splash-1125-2436.png',
+          width: '375px',
+          height: '812px',
+          ratio: 3,
+        },
+        {
+          href: '/apple-splash-1242-2688.png',
+          width: '414px',
+          height: '896px',
+          ratio: 3,
+        },
+        {
+          href: '/apple-splash-828-1792.png',
+          width: '414px',
+          height: '896px',
+          ratio: 2,
+        },
+        {
+          href: '/apple-splash-1242-2208.png',
+          width: '414px',
+          height: '736px',
+          ratio: 3,
+        },
+        {
+          href: '/apple-splash-750-1334.png',
+          width: '375px',
+          height: '667px',
+          ratio: 2,
+        },
+        {
+          href: '/apple-splash-640-1136.png',
+          width: '320px',
+          height: '568px',
+          ratio: 2,
+        },
+      ]),
     ],
   },
   css: [{ src: 'normalize.css' }, { src: '~/assets/scss/main.scss' }],
