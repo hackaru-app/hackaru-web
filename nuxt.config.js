@@ -10,11 +10,6 @@ module.exports = {
         href: 'https://fonts.googleapis.com/css?family=Roboto:300,400',
       },
       {
-        rel: 'apple-touch-icon',
-        href: '/apple-touch-icon.png',
-        sizes: '512x512',
-      },
-      {
         rel: 'apple-touch-startup-image',
         href: '/launch-640x1136.png',
         media:
