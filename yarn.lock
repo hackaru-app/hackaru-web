@@ -3635,13 +3635,13 @@ caniuse-lite@^1.0.30001157:
   integrity sha512-E9FktFxaNnp4ky3ucIGzEXLM+Knzlpuq1oN1sFAU0KeayygabGTmOsndpo8QrL4D9pcThlf4D2pUKaDxPCUmVw==
 
 capital-case@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/capital-case/-/capital-case-1.0.3.tgz#339bd77e8fab6cf75111d4fca509b3edf7c117c8"
-  integrity sha512-OlUSJpUr7SY0uZFOxcwnDOU7/MpHlKTZx2mqnDYQFrDudXLFm0JJ9wr/l4csB+rh2Ug0OPuoSO53PqiZBqno9A==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/capital-case/-/capital-case-1.0.4.tgz#9d130292353c9249f6b00fa5852bee38a717e669"
+  integrity sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==
   dependencies:
-    no-case "^3.0.3"
-    tslib "^1.10.0"
-    upper-case-first "^2.0.1"
+    no-case "^3.0.4"
+    tslib "^2.0.3"
+    upper-case-first "^2.0.2"
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -8021,13 +8021,6 @@ lower-case@^1.1.1:
   resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
   integrity sha1-miyr0bno4K6ZOkv31YdcOcQujqw=
 
-lower-case@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-2.0.1.tgz#39eeb36e396115cc05e29422eaea9e692c9408c7"
-  integrity sha512-LiWgfDLLb1dwbFQZsSglpRj+1ctGnayXz3Uv0/WO8n558JycT5fg6zkNcnW0G68Nn0aEldTFeEfmjCfmqry/rQ==
-  dependencies:
-    tslib "^1.10.0"
-
 lower-case@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-2.0.2.tgz#6fa237c63dbdc4a82ca0fd882e4722dc5e634e28"
@@ -8512,15 +8505,7 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
-no-case@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/no-case/-/no-case-3.0.3.tgz#c21b434c1ffe48b39087e86cfb4d2582e9df18f8"
-  integrity sha512-ehY/mVQCf9BL0gKfsJBvFJen+1V//U+0HQMPrWct40ixE4jnv0bfvxDbWtAHL9EcaPEOJHVVYKoQn1TlZUB8Tw==
-  dependencies:
-    lower-case "^2.0.1"
-    tslib "^1.10.0"
-
-no-case@^3.0.4:
+no-case@^3.0.3, no-case@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-3.0.4.tgz#d361fd5c9800f558551a8369fc0dcd4662b6124d"
   integrity sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==
@@ -12132,12 +12117,12 @@ upath@^2.0.0:
   resolved "https://registry.yarnpkg.com/upath/-/upath-2.0.0.tgz#7234f3c1e7fd2bcb4f6aaba3e5565ee13ce6d287"
   integrity sha512-ghi1XxsVYPOZPDsOZrfOJIwQU5I3JVYB3Q6IbBGn1KFeOa89i0nUy5tCEkY9pVm83U83qZ1QG40RQKGknllV4w==
 
-upper-case-first@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/upper-case-first/-/upper-case-first-2.0.1.tgz#32ab436747d891cc20ab1e43d601cb4d0a7fbf4a"
-  integrity sha512-105J8XqQ+9RxW3l9gHZtgve5oaiR9TIwvmZAMAIZWRHe00T21cdvewKORTlOJf/zXW6VukuTshM+HXZNWz7N5w==
+upper-case-first@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/upper-case-first/-/upper-case-first-2.0.2.tgz#992c3273f882abd19d1e02894cc147117f844324"
+  integrity sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==
   dependencies:
-    tslib "^1.10.0"
+    tslib "^2.0.3"
 
 upper-case@^1.1.1:
   version "1.1.3"
