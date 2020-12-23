@@ -7,7 +7,7 @@
     <base-modal :shown.sync="shownModal">
       <form @submit.prevent="deleteAccount">
         <modal-header>
-          <h1>{{ $t('modal.title') }}</h1>
+          {{ $t('modal.title') }}
         </modal-header>
         <modal-item>
           <icon name="alert-triangle-icon" class="icon alert-icon" />
