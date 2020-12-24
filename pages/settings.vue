@@ -18,7 +18,7 @@
 import Tabs from '@/components/molecules/tabs';
 import ContentHeader from '@/components/organisms/content-header';
 
-const paths = ['', 'integrations', 'notifications', 'applications', 'licenses'];
+const paths = ['', 'integrations', 'notifications', 'applications'];
 
 export default {
   components: {
@@ -36,7 +36,6 @@ export default {
         this.$t('integrations'),
         this.$t('notifications'),
         this.$t('applications'),
-        this.$t('licenses'),
       ],
     };
   },
