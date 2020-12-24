@@ -3,7 +3,7 @@
     <div class="left">
       <slot name="left" />
     </div>
-    <slot />
+    <h1><slot /></h1>
     <div class="right">
       <slot name="right" />
     </div>
@@ -23,6 +23,11 @@
   box-shadow: 0 3px 6px $shadow;
   background-color: $background;
   border-radius: 3px 3px 0 0;
+}
+h1 {
+  font-size: $font-size;
+  font-weight: normal;
+  margin: 0;
 }
 .left,
 .right {

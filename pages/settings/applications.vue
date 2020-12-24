@@ -6,7 +6,7 @@
     <base-modal :shown.sync="shownModal" data-test-id="base-modal">
       <section>
         <modal-header>
-          <h1>{{ selected.name }}</h1>
+          {{ selected.name }}
         </modal-header>
         <modal-item class="scopes-item is-vertical">
           <label>
