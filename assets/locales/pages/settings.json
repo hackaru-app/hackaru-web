@@ -3,14 +3,12 @@
     "account": "Account",
     "notifications": "Notifications",
     "integrations": "Integrations",
-    "applications": "Authorized apps",
-    "licenses": "Licenses"
+    "applications": "Authorized apps"
   },
   "ja": {
     "account": "アカウント設定",
     "notifications": "配信設定",
     "integrations": "連携機能",
-    "applications": "認証済みアプリ",
-    "licenses": "謝辞"
+    "applications": "認証済みアプリ"
   }
 }
