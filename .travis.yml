@@ -13,6 +13,7 @@ jobs:
         - docker
       script:
         - yarn lint .
+        - docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
         - docker run -v $(pwd):/src -w /src nickg/misspell /bin/sh -c 'git ls-files | xargs misspell -error'
 
     - stage: build
@@ -58,6 +59,7 @@ jobs:
       services:
         - docker
       script:
+        - docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
         - |
           docker-compose run --rm \
             -e SENTRY_PUBLISH_RELEASE=true \
