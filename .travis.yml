@@ -13,7 +13,6 @@ jobs:
         - docker
       script:
         - yarn lint .
-        - docker run -v $(pwd):/src -w /src nickg/misspell /bin/sh -c 'git ls-files | xargs misspell -error'
 
     - stage: build
       services:
