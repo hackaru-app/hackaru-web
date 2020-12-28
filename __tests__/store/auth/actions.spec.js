@@ -90,8 +90,17 @@ describe('Actions', () => {
       },
     }));
 
+    const getters = {
+      validateToken: () => false,
+    };
+
     beforeEach(async () => {
-      result = await actions.fetchAccessToken({ state, commit, dispatch });
+      result = await actions.fetchAccessToken({
+        state,
+        commit,
+        dispatch,
+        getters,
+      });
     });
 
     it('dispatches api/request', () => {
@@ -111,6 +120,35 @@ describe('Actions', () => {
 
     it('commits SET_ACCESS_TOKEN', () => {
       expect(commit).toHaveBeenCalledWith('SET_ACCESS_TOKEN', 'accessToken');
+    });
+
+    it('returns true', () => {
+      expect(result).toBe(true);
+    });
+  });
+
+  describe('when dispatch fetchAccessToken but already has token', () => {
+    const commit = jest.fn();
+    const dispatch = jest.fn();
+
+    const getters = {
+      validateToken: () => true,
+    };
+
+    beforeEach(async () => {
+      result = await actions.fetchAccessToken({
+        commit,
+        dispatch,
+        getters,
+      });
+    });
+
+    it('does not dispatches api/request', () => {
+      expect(dispatch).not.toHaveBeenCalled();
+    });
+
+    it('does not commits', () => {
+      expect(commit).not.toHaveBeenCalled();
     });
 
     it('returns true', () => {

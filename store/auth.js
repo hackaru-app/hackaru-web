@@ -1,4 +1,5 @@
 import decodeJwt from 'jwt-decode';
+import PQueue from 'p-queue';
 
 const SET_ID_AND_EMAIL = 'SET_ID_AND_EMAIL';
 const SET_REFRESH_TOKEN = 'SET_REFRESH_TOKEN';
@@ -11,6 +12,10 @@ export const state = () => ({
   refreshToken: '',
   clientId: '',
   accessToken: '',
+});
+
+const queue = new PQueue({
+  concurrency: 1,
 });
 
 export const actions = {
@@ -41,27 +46,32 @@ export const actions = {
       return false;
     }
   },
-  async fetchAccessToken({ state, commit, dispatch }) {
-    try {
-      const res = await dispatch(
-        'api/request',
-        {
-          url: '/v1/auth/access_tokens',
-          method: 'post',
-          headers: {
-            'x-client-id': state.clientId,
-            'x-refresh-token': state.refreshToken,
+  async fetchAccessToken({ state, commit, getters, dispatch }) {
+    return queue.add(async () => {
+      if (getters.validateToken()) {
+        return true;
+      }
+      try {
+        const res = await dispatch(
+          'api/request',
+          {
+            url: '/v1/auth/access_tokens',
+            method: 'post',
+            headers: {
+              'x-client-id': state.clientId,
+              'x-refresh-token': state.refreshToken,
+            },
           },
-        },
-        { root: true }
-      );
-      commit(SET_ID_AND_EMAIL, res.data);
-      commit(SET_ACCESS_TOKEN, res.headers['x-access-token']);
-      return true;
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-      return false;
-    }
+          { root: true }
+        );
+        commit(SET_ID_AND_EMAIL, res.data);
+        commit(SET_ACCESS_TOKEN, res.headers['x-access-token']);
+        return true;
+      } catch (e) {
+        dispatch('toast/error', e, { root: true });
+        return false;
+      }
+    });
   },
   async signUp(
     { commit, dispatch },
