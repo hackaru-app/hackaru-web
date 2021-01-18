@@ -12,6 +12,7 @@ export const state = () => ({
   refreshToken: '',
   clientId: '',
   accessToken: '',
+  loggedIn: false,
 });
 
 const queue = new PQueue({
@@ -249,6 +250,7 @@ export const mutations = {
   },
   [SET_ACCESS_TOKEN](state, payload) {
     state.accessToken = payload;
+    state.loggedIn = true;
   },
   [SET_ID_AND_EMAIL](state, payload) {
     state.id = payload.id;
