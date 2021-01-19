@@ -40,7 +40,7 @@
     "normalizr": "^3.6.0",
     "nuxt": "^2.14.12",
     "nuxt-helmet": "^2.0.0",
-    "nuxt-i18n": "^6.4.1",
+    "nuxt-i18n": "^6.18.0",
     "p-queue": "^6.6.2",
     "query-string": "^6.13.4",
     "sass-loader": "^10.1.0",
