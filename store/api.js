@@ -21,7 +21,11 @@ export const actions = {
       return await client.request(
         merge(config, {
           timeout: this.$config.hackaruApiTimeout,
-          headers: { 'Accept-Language': this.$i18n.locale },
+          withCredentials: true,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept-Language': this.$i18n.locale,
+          },
         })
       );
     } catch (error) {

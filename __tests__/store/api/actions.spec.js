@@ -27,7 +27,9 @@ describe('Actions', () => {
         {
           url: '/example',
           method: 'post',
-          headers: { 'X-Foo': 'bar' },
+          headers: {
+            'X-Foo': 'bar',
+          },
           params: {
             fooBar: 'baz',
           },
@@ -48,6 +50,12 @@ describe('Actions', () => {
 
     it('send headers', () => {
       expect(mock.history.post[0].headers['X-Foo']).toEqual('bar');
+    });
+
+    it('send xhr header', () => {
+      expect(mock.history.post[0].headers['X-Requested-With']).toEqual(
+        'XMLHttpRequest'
+      );
     });
 
     it('send Accept-Language headers', () => {

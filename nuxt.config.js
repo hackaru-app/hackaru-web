@@ -165,6 +165,7 @@ module.exports = {
     '@nuxtjs/sentry',
     '@nuxtjs/axios',
     '@nuxtjs/gtm',
+    'cookie-universal-nuxt',
     'vue-scrollto/nuxt',
     'nuxt-helmet',
     [
