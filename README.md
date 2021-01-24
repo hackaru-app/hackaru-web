@@ -1,29 +1,49 @@
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
-[![Build Status](https://travis-ci.org/ktmouk/hackaru-web.svg?branch=master)](https://travis-ci.org/ktmouk/hackaru-web)
+# hackaru-web
+A web server for Hackaru, an open source and simple time tracking app.
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/f3acee4ccf10e43f8cd7/maintainability)](https://codeclimate.com/github/hackaru-app/hackaru-web/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f3acee4ccf10e43f8cd7/test_coverage)](https://codeclimate.com/github/hackaru-app/hackaru-web/test_coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-<br>
-<p align="center">
-  <p align="center"><img src="./docs/images/architecture.png" width="500" /></p>
-  <p align="center">Hackaru web</p>
-  <p align="center">Communicates with the <a href="https://github.com/ktmouk/hackaru-api">API server</a> via RESTful <br>and returns response to the web browser.</p>
-</p>
+## Features
+Want to know that you can do with Hackaru? For more information on the app, please see the main repository [README](https://github.com/hackaru-app/hackaru).　
 
-## Contributing
-1. Install [docker-compose](https://docs.docker.com/compose/install/).
-1. [Fork](https://github.com/ktmouk/hackaru-web/fork) and clone this repository.
-1. Check out new branch. `git checkout -b new-feature`
-1. Start API server. See [ktmouk/hackaru-api](https://github.com/ktmouk/hackaru-api).
-1. Copy env file from the sample file. `cp .env.sample .env.development`
-1. Start dev server. `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up`
-1. Access dev server in your browser http://localhost:3333/.
-1. Improve codes.
-1. Run linter and test. `yarn && yarn lint . && yarn test`
-1. Push branch. `git push origin new-feature`
-1. Create a new pull request.
+## Roles
+
+- The role of the web server is to provide a user-friendly interface.
+- Web server does not change the user's data directly. it is the role of the API server.
+- The web server and API server communicate via RESTful.
+
+## Feedback
+
+If you find a bug or would like to submit feature requests, please let us know via [Issues](https://github.com/hackaru-app/hackaru/issues). 😉
+
+## Running locally
+
+You can run Hackaru on your local easily using [Docker](https://www.docker.com).
+
+1. Install [docker-compose](https://docs.docker.com/compose/install).
+
+2. Clone the repository. 
+```sh
+git clone git@github.com:hackaru-app/hackaru-web.git
+cd hackaru-web
+```
+3. Copy `.env.sample` with the name `.env.development`. Basically, There is no need to modify the contents of the file.
+
+```sh
+cp .env.sample .env.development
+```
+
+4. Start the container using docker-compose command.
+
+```sh
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+```
+
+5. That's all! Try accessing [http://localhost:3333](http://localhost:3333) in your browser. 🎉
+
+If you want to login to Hackaru locally, It is also necessary to run the API server, see the API server [README](https://github.com/hackaru-app/hackaru-api).
 
 ## License
 - [MIT](./LICENSE)
