@@ -1,22 +1,22 @@
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import { actions } from '@/store/applications';
 import { application } from '@/schemas';
 
 describe('Actions', () => {
+  const mock = new MockAdapter(axios);
+
+  beforeEach(() => {
+    mock.reset();
+    actions.$api = axios;
+  });
+
   describe('when dispatch fetch', () => {
-    const dispatch = jest.fn(() => ({ data: {} }));
+    const dispatch = jest.fn();
 
     beforeEach(() => {
+      mock.onGet('/v1/oauth/authorized_applications').replyOnce(200, {});
       actions.fetch({ dispatch });
-    });
-
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/oauth/authorized_applications',
-        },
-        { root: true }
-      );
     });
 
     it('dispatches entities/merge', () => {
@@ -35,6 +35,7 @@ describe('Actions', () => {
     const dispatch = jest.fn();
 
     beforeEach(() => {
+      mock.onDelete('/v1/oauth/authorized_applications/1').replyOnce(200);
       actions.delete({ dispatch }, 1);
     });
 
@@ -46,15 +47,8 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/oauth/authorized_applications/1',
-          method: 'delete',
-        },
-        { root: true }
-      );
+    it('requests api', () => {
+      expect(mock.history.delete.length).toBe(1);
     });
   });
 });

@@ -90,7 +90,6 @@ export default {
           name: 'delete_account',
           component: 'setting_delete_account_button',
         });
-        window.location.assign(this.localePath('index'));
       }
     },
   },

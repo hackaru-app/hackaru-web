@@ -131,12 +131,11 @@ export default {
       this.loading = false;
     },
     async login() {
-      const success = await this.$store.dispatch('auth/fetchRefreshToken', {
+      const success = await this.$store.dispatch('auth/login', {
         email: this.email,
         password: this.password,
       });
       if (success) {
-        localStorage.setItem('userId', this.$store.getters['auth/userId']);
         this.$gtm.push({
           event: 'interaction',
           eventCategory: 'Account',
@@ -155,7 +154,6 @@ export default {
         locale: this.$i18n.locale,
       });
       if (success) {
-        localStorage.setItem('userId', this.$store.getters['auth/userId']);
         this.$gtm.push({
           event: 'interaction',
           eventCategory: 'Account',
@@ -167,9 +165,9 @@ export default {
       }
     },
     goBack() {
-      const prev = sessionStorage.getItem('previousPath');
-      this.$router.replace(prev || this.localePath('index'));
-      sessionStorage.removeItem('previousPath');
+      const path = this.$cookies.get('previous_path');
+      this.$router.replace(path || this.localePath('index'));
+      this.$cookies.remove('previous_path');
     },
   },
 };

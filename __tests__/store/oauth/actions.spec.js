@@ -1,24 +1,31 @@
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import { actions } from '@/store/oauth';
 
 describe('Actions', () => {
   let result;
 
+  const mock = new MockAdapter(axios);
+
+  beforeEach(() => {
+    mock.reset();
+    actions.$api = axios;
+  });
+
   describe('when dispatch fetchClient', () => {
     const commit = jest.fn();
-    const dispatch = jest.fn(() => ({
-      data: {
+
+    beforeEach(async () => {
+      mock.onGet('/v1/oauth/authorize').replyOnce(200, {
         clientId: 'clientId',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
         state: 'state',
         responseType: 'token',
         scope: 'activities:read projects:read',
         clientName: 'Example',
-      },
-    }));
-
-    beforeEach(async () => {
+      });
       result = await actions.fetchClient(
-        { dispatch, commit },
+        { commit },
         {
           clientId: 'clientId',
           responseType: 'token',
@@ -26,23 +33,6 @@ describe('Actions', () => {
           scope: 'activities:read projects:read',
           state: 'state',
         }
-      );
-    });
-
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/oauth/authorize',
-          params: {
-            clientId: 'clientId',
-            responseType: 'token',
-            redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-            scope: 'activities:read projects:read',
-            state: 'state',
-          },
-        },
-        { root: true }
       );
     });
 
@@ -64,204 +54,126 @@ describe('Actions', () => {
 
   describe('when dispatch fetchClient but already authorized', () => {
     const commit = jest.fn();
-    const dispatch = jest.fn(() => ({
-      data: {
-        status: 'redirect',
-        redirectUri:
-          'http://example.com/callback#access_token=accessToken&token_type=Bearer',
-      },
-    }));
 
     beforeEach(async () => {
+      mock.onGet('/v1/oauth/authorize').replyOnce(200, {
+        status: 'redirect',
+        redirectUri:
+          'http://example.com/callback#access_token=token&token_type=Bearer',
+      });
       result = await actions.fetchClient(
-        { dispatch, commit },
+        { commit },
         {
           clientId: 'clientId',
           responseType: 'token',
-          redirectUri: 'http://example.com/callback',
+          redirectUri:
+            'http://example.com/callback#access_token=token&token_type=Bearer',
           scope: 'activities:read projects:read',
           state: 'state',
         }
-      );
-    });
-
-    it('returns redirect uri', () => {
-      expect(result).toBe(
-        'http://example.com/callback#access_token=accessToken&token_type=Bearer'
       );
     });
 
     it('does not commit', () => {
       expect(commit).not.toHaveBeenCalled();
     });
-  });
 
-  describe('when dispatch fetchClient but throw error', () => {
-    const dispatch = jest.fn().mockRejectedValueOnce(new Error('error'));
-
-    beforeEach(async () => {
-      result = await actions.fetchClient(
-        { dispatch },
-        {
-          clientId: 'clientId',
-          responseType: 'token',
-          redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-          scope: 'activities:read projects:read',
-          state: 'state',
-        }
+    it('returns redirect uri', () => {
+      expect(result).toBe(
+        'http://example.com/callback#access_token=token&token_type=Bearer'
       );
-    });
-
-    it('returns undefined', () => {
-      expect(result).toBeUndefined();
     });
   });
 
   describe('when dispatch allow', () => {
-    const dispatch = jest.fn(() => ({
-      data: {
-        status: 'redirect',
-        redirectUri:
-          'http://example.com/callback#access_token=accessToken&token_type=Bearer',
-      },
-    }));
-
     beforeEach(async () => {
-      result = await actions.allow(
-        { dispatch },
-        {
+      mock
+        .onPost('/v1/oauth/authorize', {
           clientId: 'clientId',
           responseType: 'token',
           redirectUri: 'http://example.com/callback',
           scope: 'activities:read projects:read',
           state: 'state',
-        }
-      );
-    });
-
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/oauth/authorize',
-          method: 'post',
-          data: {
-            clientId: 'clientId',
-            responseType: 'token',
-            redirectUri: 'http://example.com/callback',
-            scope: 'activities:read projects:read',
-            state: 'state',
-          },
-        },
-        { root: true }
-      );
+        })
+        .replyOnce(200, {
+          status: 'redirect',
+          redirectUri:
+            'http://example.com/callback#access_token=token&token_type=Bearer',
+        });
+      result = await actions.allow(undefined, {
+        clientId: 'clientId',
+        responseType: 'token',
+        redirectUri: 'http://example.com/callback',
+        scope: 'activities:read projects:read',
+        state: 'state',
+      });
     });
 
     it('returns redirectUri', () => {
       expect(result).toBe(
-        'http://example.com/callback#access_token=accessToken&token_type=Bearer'
+        'http://example.com/callback#access_token=token&token_type=Bearer'
       );
     });
   });
 
   describe('when dispatch allow and redirectUri is urn:ietf:wg:oauth:2.0:oob', () => {
-    const dispatch = jest.fn(() => ({
-      data: {
-        status: 'redirect',
-        redirectUri: {
-          controller: 'doorkeeper/token_info',
-          action: 'show',
-          accessToken: 'accessToken',
-        },
-      },
-    }));
-
     beforeEach(async () => {
-      result = await actions.allow(
-        { dispatch },
-        {
+      mock
+        .onPost('/v1/oauth/authorize', {
           clientId: 'clientId',
           responseType: 'token',
           redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
           scope: 'activities:read projects:read',
           state: 'state',
-        }
-      );
+        })
+        .replyOnce(200, {
+          status: 'redirect',
+          redirectUri: {
+            controller: 'doorkeeper/token_info',
+            action: 'show',
+            token: 'token',
+          },
+        });
+      result = await actions.allow(undefined, {
+        clientId: 'clientId',
+        responseType: 'token',
+        redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
+        scope: 'activities:read projects:read',
+        state: 'state',
+      });
     });
 
     it('returns redirectUri object', () => {
       expect(result).toEqual({
         controller: 'doorkeeper/token_info',
         action: 'show',
-        accessToken: 'accessToken',
+        token: 'token',
       });
     });
   });
 
-  describe('when dispatch allow but throw error', () => {
-    const dispatch = jest.fn().mockRejectedValueOnce(new Error('error'));
-
+  describe('when dispatch deny', () => {
     beforeEach(async () => {
-      result = await actions.allow(
-        { dispatch },
-        {
+      mock
+        .onDelete('/v1/oauth/authorize', {
           clientId: 'clientId',
           responseType: 'token',
           redirectUri: 'http://example.com/callback',
           scope: 'activities:read projects:read',
           state: 'state',
-        }
-      );
-    });
-
-    it('returns undefined', () => {
-      expect(result).toBeUndefined();
-    });
-  });
-
-  describe('when dispatch deny', () => {
-    const dispatch = jest.fn(() => {
-      const error = new Error();
-      error.status = '401';
-      error.response = {
-        data: {
+        })
+        .replyOnce(400, {
           status: 'redirect',
           redirectUri:
             'http://example.com/callback#error=access_denied&error_description=denied',
-        },
-      };
-      throw error;
-    });
-
-    beforeEach(async () => {
-      result = await actions.deny(
-        { dispatch },
-        {
-          clientId: 'clientId',
-          responseType: 'token',
-          redirectUri: 'http://example.com/callback',
-          scope: 'activities:read projects:read',
-          state: 'state',
-        }
-      );
-    });
-
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/oauth/authorize',
-          method: 'delete',
-          data: {
-            clientId: 'clientId',
-            responseType: 'token',
-            redirectUri: 'http://example.com/callback',
-            scope: 'activities:read projects:read',
-            state: 'state',
-          },
-        },
-        { root: true }
-      );
+        });
+      result = await actions.deny(undefined, {
+        clientId: 'clientId',
+        responseType: 'token',
+        redirectUri: 'http://example.com/callback',
+        scope: 'activities:read projects:read',
+        state: 'state',
+      });
     });
 
     it('returns redirectUri', () => {
@@ -272,29 +184,26 @@ describe('Actions', () => {
   });
 
   describe('when dispatch deny and redirectUri is urn:ietf:wg:oauth:2.0:oob', () => {
-    const dispatch = jest.fn(() => {
-      const error = new Error();
-      error.status = '401';
-      error.response = {
-        data: {
-          error: 'access_denied',
-          errorDescription: 'denied',
-        },
-      };
-      throw error;
-    });
-
     beforeEach(async () => {
-      result = await actions.deny(
-        { dispatch },
-        {
+      mock
+        .onDelete('/v1/oauth/authorize', {
           clientId: 'clientId',
           responseType: 'token',
-          redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
+          redirectUri: 'http://example.com/callback',
           scope: 'activities:read projects:read',
           state: 'state',
-        }
-      );
+        })
+        .replyOnce(400, {
+          error: 'access_denied',
+          errorDescription: 'denied',
+        });
+      result = await actions.deny(undefined, {
+        clientId: 'clientId',
+        responseType: 'token',
+        redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
+        scope: 'activities:read projects:read',
+        state: 'state',
+      });
     });
 
     it('returns error description', () => {

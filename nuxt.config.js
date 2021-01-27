@@ -130,6 +130,7 @@ module.exports = {
     { src: '~/plugins/sentry-client', ssr: false },
     { src: '~/plugins/load-script', ssr: false },
     { src: '~/plugins/v-scroll-lock', ssr: false },
+    { src: '~/plugins/api' },
   ],
   /*
    ** Build configuration
@@ -228,9 +229,7 @@ module.exports = {
     position: 'bottom-center',
     duration: 3000,
   },
-  serverMiddleware: ['~/api/x-xss-protection'],
   helmet: {
-    xssFilter: false,
     hsts: {
       maxAge: 3600,
       preload: true,

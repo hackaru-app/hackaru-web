@@ -1,31 +1,27 @@
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import { actions } from '@/store/user';
 
 describe('Actions', () => {
   let result;
 
+  const mock = new MockAdapter(axios);
+
+  beforeEach(() => {
+    mock.reset();
+    actions.$api = axios;
+  });
+
   describe('when dispatch fetch', () => {
     const commit = jest.fn();
-    const dispatch = jest.fn(() => ({
-      data: {
+
+    beforeEach(async () => {
+      mock.onGet('/v1/user').replyOnce(200, {
         timeZone: 'Asia/Tokyo',
         receiveWeekReport: true,
         receiveMonthReport: true,
-      },
-    }));
-
-    beforeEach(async () => {
-      result = await actions.fetch({ commit, dispatch });
-    });
-
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/user',
-          method: 'get',
-        },
-        { root: true }
-      );
+      });
+      result = await actions.fetch({ commit });
     });
 
     it('commits SET_USER', () => {
@@ -43,40 +39,28 @@ describe('Actions', () => {
 
   describe('when dispatch update', () => {
     const commit = jest.fn();
-    const dispatch = jest.fn(() => ({
-      data: {
-        timeZone: 'Asia/Tokyo',
-        receiveWeekReport: true,
-        receiveMonthReport: true,
-      },
-    }));
 
     beforeEach(async () => {
+      mock
+        .onPut('/v1/user', {
+          user: {
+            timeZone: 'Asia/Tokyo',
+            receiveWeekReport: true,
+            receiveMonthReport: true,
+          },
+        })
+        .replyOnce(200, {
+          timeZone: 'Asia/Tokyo',
+          receiveWeekReport: true,
+          receiveMonthReport: true,
+        });
       result = await actions.update(
-        { commit, dispatch },
+        { commit },
         {
           timeZone: 'Asia/Tokyo',
           receiveWeekReport: true,
           receiveMonthReport: true,
         }
-      );
-    });
-
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/user',
-          method: 'put',
-          data: {
-            user: {
-              timeZone: 'Asia/Tokyo',
-              receiveWeekReport: true,
-              receiveMonthReport: true,
-            },
-          },
-        },
-        { root: true }
       );
     });
 

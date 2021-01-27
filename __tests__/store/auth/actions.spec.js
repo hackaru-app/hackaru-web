@@ -1,6 +1,10 @@
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import { actions } from '@/store/auth';
 
 describe('Actions', () => {
+  const mock = new MockAdapter(axios);
+
   let result;
 
   Intl.DateTimeFormat = () => ({
@@ -10,168 +14,29 @@ describe('Actions', () => {
   });
 
   beforeEach(() => {
-    localStorage.clear();
-  });
-
-  describe('when dispatch fetchRefreshToken', () => {
-    const commit = jest.fn();
-    const dispatch = jest.fn(() => ({
-      headers: {
-        'x-refresh-token': 'refreshToken',
-        'x-client-id': 'clientId',
-      },
-      data: {
-        id: 1,
-        email: 'example@example.com',
-      },
-    }));
-
-    beforeEach(async () => {
-      result = await actions.fetchRefreshToken(
-        { commit, dispatch },
-        {
-          email: 'example@example.com',
-          password: 'password',
-        }
-      );
-    });
-
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'api/request',
-        {
-          url: '/v1/auth/refresh_tokens',
-          method: 'post',
-          data: {
-            user: {
-              email: 'example@example.com',
-              password: 'password',
-            },
-          },
-        },
-        { root: true }
-      );
-    });
-
-    it('commits SET_REFRESH_TOKEN', () => {
-      expect(commit).toHaveBeenCalledWith('SET_REFRESH_TOKEN', {
-        refreshToken: 'refreshToken',
-        clientId: 'clientId',
-      });
-    });
-
-    it('commits SET_ID_AND_EMAIL', () => {
-      expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
-        id: 1,
-        email: 'example@example.com',
-      });
-    });
-
-    it('returns true', () => {
-      expect(result).toBe(true);
-    });
-  });
-
-  describe('when dispatch fetchAccessToken', () => {
-    const state = {
-      clientId: 'clientId',
-      refreshToken: 'refreshToken',
-    };
-
-    const commit = jest.fn();
-
-    const dispatch = jest.fn(() => ({
-      headers: {
-        'x-access-token': 'accessToken',
-      },
-      data: {
-        id: 1,
-        email: 'example@example.com',
-      },
-    }));
-
-    const getters = {
-      validateToken: () => false,
-    };
-
-    beforeEach(async () => {
-      result = await actions.fetchAccessToken({
-        state,
-        commit,
-        dispatch,
-        getters,
-      });
-    });
-
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'api/request',
-        {
-          url: '/v1/auth/access_tokens',
-          method: 'post',
-          headers: {
-            'x-refresh-token': 'refreshToken',
-            'x-client-id': 'clientId',
-          },
-        },
-        { root: true }
-      );
-    });
-
-    it('commits SET_ACCESS_TOKEN', () => {
-      expect(commit).toHaveBeenCalledWith('SET_ACCESS_TOKEN', 'accessToken');
-    });
-
-    it('returns true', () => {
-      expect(result).toBe(true);
-    });
-  });
-
-  describe('when dispatch fetchAccessToken but already has token', () => {
-    const commit = jest.fn();
-    const dispatch = jest.fn();
-
-    const getters = {
-      validateToken: () => true,
-    };
-
-    beforeEach(async () => {
-      result = await actions.fetchAccessToken({
-        commit,
-        dispatch,
-        getters,
-      });
-    });
-
-    it('does not dispatches api/request', () => {
-      expect(dispatch).not.toHaveBeenCalled();
-    });
-
-    it('does not commits', () => {
-      expect(commit).not.toHaveBeenCalled();
-    });
-
-    it('returns true', () => {
-      expect(result).toBe(true);
-    });
+    mock.reset();
+    actions.$api = axios;
   });
 
   describe('when dispatch signUp', () => {
     const commit = jest.fn();
-    const dispatch = jest.fn(() => ({
-      headers: {
-        'x-refresh-token': 'refreshToken',
-        'x-client-id': 'clientId',
-      },
-      data: {
-        id: 1,
-        email: 'example@example.com',
-      },
-    }));
 
     beforeEach(async () => {
+      mock
+        .onPost('/v1/auth/users', {
+          user: {
+            email: 'example@example.com',
+            password: 'password',
+            passwordConfirmation: 'passwordConfirmation',
+            timeZone: 'America/New_York',
+          },
+        })
+        .replyOnce(200, {
+          id: 1,
+          email: 'example@example.com',
+        });
       result = await actions.signUp(
-        { dispatch, commit },
+        { commit },
         {
           email: 'example@example.com',
           password: 'password',
@@ -180,34 +45,8 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'api/request',
-        {
-          url: '/v1/auth/users',
-          method: 'post',
-          data: {
-            user: {
-              email: 'example@example.com',
-              password: 'password',
-              passwordConfirmation: 'passwordConfirmation',
-              timeZone: 'America/New_York',
-            },
-          },
-        },
-        { root: true }
-      );
-    });
-
-    it('commits SET_REFRESH_TOKEN', () => {
-      expect(commit).toHaveBeenCalledWith('SET_REFRESH_TOKEN', {
-        refreshToken: 'refreshToken',
-        clientId: 'clientId',
-      });
-    });
-
-    it('commits SET_ID_AND_EMAIL', () => {
-      expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
+    it('commits LOGIN', () => {
+      expect(commit).toHaveBeenCalledWith('LOGIN', {
         id: 1,
         email: 'example@example.com',
       });
@@ -219,24 +58,22 @@ describe('Actions', () => {
   });
 
   describe('when dispatch changeEmail', () => {
-    const state = {
-      user: {
-        email: 'example@example.com',
-      },
-    };
-
     const commit = jest.fn();
 
-    const dispatch = jest.fn(() => ({
-      data: {
-        id: 1,
-        email: 'changed@example.com',
-      },
-    }));
-
     beforeEach(async () => {
+      mock
+        .onPut('/v1/auth/user', {
+          user: {
+            email: 'changed@example.com',
+            currentPassword: 'password',
+          },
+        })
+        .replyOnce(200, {
+          email: 'changed@example.com',
+          currentPassword: 'password',
+        });
       result = await actions.changeEmail(
-        { state, dispatch, commit },
+        { commit },
         {
           email: 'changed@example.com',
           currentPassword: 'password',
@@ -244,28 +81,8 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/auth/user',
-          method: 'put',
-          data: {
-            user: {
-              email: 'changed@example.com',
-              currentPassword: 'password',
-            },
-          },
-        },
-        { root: true }
-      );
-    });
-
-    it('commits SET_ID_AND_EMAIL', () => {
-      expect(commit).toHaveBeenCalledWith('SET_ID_AND_EMAIL', {
-        id: 1,
-        email: 'changed@example.com',
-      });
+    it('commits LOGIN', () => {
+      expect(commit).toHaveBeenCalledWith('SET_EMAIL', 'changed@example.com');
     });
 
     it('returns true', () => {
@@ -274,44 +91,24 @@ describe('Actions', () => {
   });
 
   describe('when dispatch changePassword', () => {
-    const state = {
-      email: 'example@example.com',
-    };
-
-    const dispatch = jest.fn(() => ({
-      data: {
-        id: 1,
-        email: 'example@example.com',
-      },
-    }));
-
     beforeEach(async () => {
-      result = await actions.changePassword(
-        { state, dispatch },
-        {
-          currentPassword: 'currentPassword',
-          password: 'password',
-          passwordConfirmation: 'passwordConfirmation',
-        }
-      );
-    });
-
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/auth/user',
-          method: 'put',
-          data: {
-            user: {
-              currentPassword: 'currentPassword',
-              password: 'password',
-              passwordConfirmation: 'passwordConfirmation',
-            },
+      mock
+        .onPut('/v1/auth/user', {
+          user: {
+            currentPassword: 'currentPassword',
+            password: 'password',
+            passwordConfirmation: 'passwordConfirmation',
           },
-        },
-        { root: true }
-      );
+        })
+        .replyOnce(200, {
+          id: 1,
+          email: 'example@example.com',
+        });
+      result = await actions.changePassword(undefined, {
+        currentPassword: 'currentPassword',
+        password: 'password',
+        passwordConfirmation: 'passwordConfirmation',
+      });
     });
 
     it('returns true', () => {
@@ -320,31 +117,17 @@ describe('Actions', () => {
   });
 
   describe('when dispatch sendPasswordResetEmail', () => {
-    const dispatch = jest.fn();
-
     beforeEach(async () => {
-      result = await actions.sendPasswordResetEmail(
-        { dispatch },
-        {
-          email: 'example@example.com',
-        }
-      );
-    });
-
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'api/request',
-        {
-          url: '/v1/auth/password_reset/mails',
-          method: 'post',
-          data: {
-            user: {
-              email: 'example@example.com',
-            },
+      mock
+        .onPost('/v1/auth/password_reset/mails', {
+          user: {
+            email: 'example@example.com',
           },
-        },
-        { root: true }
-      );
+        })
+        .replyOnce(200);
+      result = await actions.sendPasswordResetEmail(undefined, {
+        email: 'example@example.com',
+      });
     });
 
     it('returns true', () => {
@@ -353,35 +136,21 @@ describe('Actions', () => {
   });
 
   describe('when dispatch resetPassword', () => {
-    const dispatch = jest.fn();
-
     beforeEach(async () => {
-      result = await actions.resetPassword(
-        { dispatch },
-        {
-          token: 'passwordResetToken',
-          password: 'password',
-          passwordConfirmation: 'passwordConfirmation',
-        }
-      );
-    });
-
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'api/request',
-        {
-          url: '/v1/auth/password_reset',
-          method: 'put',
-          data: {
-            user: {
-              token: 'passwordResetToken',
-              password: 'password',
-              passwordConfirmation: 'passwordConfirmation',
-            },
+      mock
+        .onPut('/v1/auth/password_reset', {
+          user: {
+            token: 'passwordResetToken',
+            password: 'password',
+            passwordConfirmation: 'passwordConfirmation',
           },
-        },
-        { root: true }
-      );
+        })
+        .replyOnce(200);
+      result = await actions.resetPassword(undefined, {
+        token: 'passwordResetToken',
+        password: 'password',
+        passwordConfirmation: 'passwordConfirmation',
+      });
     });
 
     it('returns true', () => {
@@ -390,72 +159,59 @@ describe('Actions', () => {
   });
 
   describe('when dispatch logout', () => {
-    const state = {
-      clientId: 'clientId',
-      refreshToken: 'refreshToken',
-    };
-
     const commit = jest.fn();
-    const dispatch = jest.fn();
 
     beforeEach(async () => {
-      await actions.logout({ state, dispatch, commit });
+      mock.onDelete('/v1/auth/auth_token').replyOnce(200);
+      await actions.logout({ commit });
     });
 
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'api/request',
-        {
-          url: '/v1/auth/refresh_token',
-          method: 'delete',
-          headers: {
-            'x-client-id': 'clientId',
-            'x-refresh-token': 'refreshToken',
-          },
-        },
-        { root: true }
-      );
+    it('requests api', () => {
+      expect(mock.history.delete.length).toBe(1);
     });
 
-    it('commits CLEAR_TOKENS', () => {
-      expect(commit).toHaveBeenCalledWith('CLEAR_TOKENS');
+    it('commits LOGOUT', () => {
+      expect(commit).toHaveBeenCalledWith('LOGOUT');
     });
   });
 
   describe('when dispatch deleteAccount', () => {
     const commit = jest.fn();
-    const dispatch = jest.fn();
 
     beforeEach(async () => {
+      mock
+        .onDelete('/v1/auth/user', {
+          user: {
+            currentPassword: 'currentPassword',
+          },
+        })
+        .replyOnce(200);
       result = await actions.deleteAccount(
-        { dispatch, commit },
+        { commit },
         {
           currentPassword: 'currentPassword',
         }
       );
     });
 
-    it('dispatches api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/auth/user',
-          method: 'delete',
-          data: {
-            user: {
-              currentPassword: 'currentPassword',
-            },
-          },
-        },
-        { root: true }
-      );
-    });
-
     it('returns true', () => {
       expect(result).toBe(true);
     });
-    it('commits CLEAR_TOKENS', () => {
-      expect(commit).toHaveBeenCalledWith('CLEAR_TOKENS');
+
+    it('commits LOGOUT', () => {
+      expect(commit).toHaveBeenCalledWith('LOGOUT');
+    });
+  });
+
+  describe('when dispatch forceLogout', () => {
+    const commit = jest.fn();
+
+    beforeEach(async () => {
+      await actions.forceLogout({ commit });
+    });
+
+    it('commits LOGOUT', () => {
+      expect(commit).toHaveBeenCalledWith('LOGOUT');
     });
   });
 });

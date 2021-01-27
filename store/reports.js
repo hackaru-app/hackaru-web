@@ -11,90 +11,75 @@ export const state = () => ({
 });
 
 export const actions = {
-  async fetch({ commit, dispatch }, payload) {
-    try {
-      const request = async (payload) =>
-        dispatch(
-          'auth-api/request',
-          {
-            url: '/v1/report',
-            params: {
-              start: payload.start,
-              end: payload.end,
-              projectIds: payload.projectIds,
-              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            },
-          },
-          { root: true }
-        );
+  async fetch({ commit }, payload) {
+    const request = async (payload) =>
+      await this.$api.request({
+        url: '/v1/report',
+        withCredentials: true,
+        params: {
+          start: payload.start,
+          end: payload.end,
+          projectIds: payload.projectIds,
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        },
+      });
 
-      const [current, previous] = await Promise.all([
-        await request({
-          start: payload.current.start,
-          end: payload.current.end,
-          projectIds: payload.current.projectIds,
-        }),
-        await request({
-          start: payload.previous.start,
-          end: payload.previous.end,
-          projectIds: payload.previous.projectIds,
-        }),
-      ]);
-      commit(SET_REPORTS, {
-        projects: current.data.projects,
-        totals: current.data.totals,
-        labels: current.data.labels,
-        sums: current.data.sums,
-        activityGroups: current.data.activityGroups,
-      });
-      commit(SET_PREVIOUS_TOTALS, {
-        totals: previous.data.totals,
-      });
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-    }
+    const [current, previous] = await Promise.all([
+      await request({
+        start: payload.current.start,
+        end: payload.current.end,
+        projectIds: payload.current.projectIds,
+      }),
+      await request({
+        start: payload.previous.start,
+        end: payload.previous.end,
+        projectIds: payload.previous.projectIds,
+      }),
+    ]);
+    commit(SET_REPORTS, {
+      projects: current.data.projects,
+      totals: current.data.totals,
+      labels: current.data.labels,
+      sums: current.data.sums,
+      activityGroups: current.data.activityGroups,
+    });
+    commit(SET_PREVIOUS_TOTALS, {
+      totals: previous.data.totals,
+    });
   },
-  async fetchPdf({ dispatch }, payload) {
-    try {
-      const res = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/report.pdf',
-          responseType: 'blob',
-          params: {
-            start: payload.start,
-            end: payload.end,
-            projectIds: payload.projectIds,
-            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-          },
+  async fetchPdf(_, payload) {
+    const res = await this.$api.request(
+      {
+        url: '/v1/report.pdf',
+        withCredentials: true,
+        responseType: 'blob',
+        params: {
+          start: payload.start,
+          end: payload.end,
+          projectIds: payload.projectIds,
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
-        { root: true }
-      );
-      return res.data;
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-    }
+      },
+      { root: true }
+    );
+    return res.data;
   },
-  async fetchCsv({ dispatch }, payload) {
-    try {
-      const res = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/report.csv',
-          responseType: 'blob',
-          params: {
-            start: payload.start,
-            end: payload.end,
-            projectIds: payload.projectIds,
-            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-          },
+  async fetchCsv(_, payload) {
+    const res = await this.$api.request(
+      {
+        url: '/v1/report.csv',
+        withCredentials: true,
+        responseType: 'blob',
+        params: {
+          start: payload.start,
+          end: payload.end,
+          projectIds: payload.projectIds,
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
-        { root: true }
-      );
-      return res.data;
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-    }
+      },
+      { root: true }
+    );
+    return res.data;
   },
 };
 

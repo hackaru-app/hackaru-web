@@ -5,23 +5,19 @@ export const state = () => ({
 });
 
 export const actions = {
-  async fetch({ commit, dispatch }, q) {
-    try {
-      const { data } = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/suggestions',
-          params: {
-            q,
-            limit: 30,
-          },
+  async fetch({ commit }, q) {
+    const res = await this.$api.request(
+      {
+        url: '/v1/suggestions',
+        withCredentials: true,
+        params: {
+          q,
+          limit: 30,
         },
-        { root: true }
-      );
-      commit(SET_SUGGESTIONS, data);
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-    }
+      },
+      { root: true }
+    );
+    commit(SET_SUGGESTIONS, res.data);
   },
 };
 
