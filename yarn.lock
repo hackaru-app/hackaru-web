@@ -11997,14 +11997,14 @@ v-scroll-lock@^1.3.1:
   dependencies:
     body-scroll-lock "^2.6.4"
 
-v-tooltip@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/v-tooltip/-/v-tooltip-2.0.3.tgz#34fd64096656f032b1616567bf62f6165c57d529"
-  integrity sha512-KZZY3s+dcijzZmV2qoDH4rYmjMZ9YKGBVoUznZKQX0e3c2GjpJm3Sldzz8HHH2Ud87JqhZPB4+4gyKZ6m98cKQ==
+v-tooltip@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/v-tooltip/-/v-tooltip-2.1.2.tgz#5d3cd0c13eecdd365a0ad734b2f6c938bc8f7885"
+  integrity sha512-6c4NotnvDvinmZnBiqW50Rn6Q3MMk+pUV9Nla+JHkgJulgXh5snrU3RYbIZVf9p2ZlFoaZL/3QhTNgcQIc2GFQ==
   dependencies:
     lodash "^4.17.15"
     popper.js "^1.16.0"
-    vue-resize "^0.4.5"
+    vue-resize "^1.0.0"
 
 v8-to-istanbul@^7.0.0:
   version "7.0.0"
@@ -12133,10 +12133,10 @@ vue-plugin-load-script@^1.3.2:
   resolved "https://registry.yarnpkg.com/vue-plugin-load-script/-/vue-plugin-load-script-1.3.2.tgz#348515d261205bb76d5b9285968e7e53539bbdb6"
   integrity sha512-UQcFanuWBf72/339LxgsPZbMsT5LKUjBzkQfV3xf4ni5fc6Nnx5GNYclODFaQ9FHtOjWhu423bhHrlBHz4MIFg==
 
-vue-resize@^0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/vue-resize/-/vue-resize-0.4.5.tgz#4777a23042e3c05620d9cbda01c0b3cc5e32dcea"
-  integrity sha512-bhP7MlgJQ8TIkZJXAfDf78uJO+mEI3CaLABLjv0WNzr4CcGRGPIAItyWYnP6LsPA4Oq0WE+suidNs6dgpO4RHg==
+vue-resize@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vue-resize/-/vue-resize-1.0.0.tgz#380565b36e411190d85f8fbd3aa230a4cc22f1a5"
+  integrity sha512-SkIi19neeJClapYavfmHiewFZkkTfITVWskg/dIL8b1Eb+RlvnCb8fjGUwLjQJmsw2qsRiiAo4o7BAJVM4pcOA==
 
 vue-router@^3.4.9:
   version "3.4.9"
