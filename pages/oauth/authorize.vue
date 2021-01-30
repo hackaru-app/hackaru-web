@@ -2,7 +2,8 @@
 <i18n src="@/assets/locales/pages/oauth/authorize.json"></i18n>
 
 <template>
-  <login-guard>
+  <section>
+    <login-guard />
     <div v-show="client.name">
       <content-header>
         <heading>
@@ -47,7 +48,7 @@
         </footer>
       </article>
     </div>
-  </login-guard>
+  </section>
 </template>
 
 <script>

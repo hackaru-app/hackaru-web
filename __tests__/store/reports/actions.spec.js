@@ -1,28 +1,56 @@
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import { actions } from '@/store/reports';
 import { parseISO } from 'date-fns';
 
 describe('Actions', () => {
+  const mock = new MockAdapter(axios);
+
   Intl.DateTimeFormat = () => ({
     resolvedOptions: () => ({
       timeZone: 'America/New_York',
     }),
   });
 
+  beforeEach(() => {
+    mock.reset();
+    actions.$api = axios;
+  });
+
   describe('when dispatch fetch', () => {
     const commit = jest.fn();
-    const dispatch = jest.fn(() => ({
-      data: {
-        projects: [],
-        sums: [],
-        totals: {},
-        labels: [],
-        activityGroups: [],
-      },
-    }));
 
-    beforeEach(() => {
-      actions.fetch(
-        { dispatch, commit },
+    beforeEach(async () => {
+      mock
+        .onGet('/v1/report', {
+          params: {
+            start: parseISO('2019-01-01T00:00:00'),
+            end: parseISO('2019-01-03T00:00:00'),
+            projectIds: [1],
+            timeZone: 'America/New_York',
+          },
+        })
+        .replyOnce(200, {
+          projects: [],
+          sums: [],
+          totals: {},
+          labels: [],
+          activityGroups: [],
+        });
+      mock
+        .onGet('/v1/report', {
+          params: {
+            start: parseISO('2019-12-29T00:00:00'),
+            end: parseISO('2019-01-31T00:00:00'),
+            projectIds: [1],
+            timeZone: 'America/New_York',
+          },
+        })
+        .replyOnce(200, {
+          totals: {},
+        });
+      await actions.fetch(
+        { commit },
         {
           current: {
             start: parseISO('2019-01-01T00:00:00'),
@@ -35,38 +63,6 @@ describe('Actions', () => {
             projectIds: [1],
           },
         }
-      );
-    });
-
-    it('dispatches current auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/report',
-          params: {
-            start: parseISO('2019-01-01T00:00:00'),
-            end: parseISO('2019-01-03T00:00:00'),
-            projectIds: [1],
-            timeZone: 'America/New_York',
-          },
-        },
-        { root: true }
-      );
-    });
-
-    it('dispatches previous auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/report',
-          params: {
-            start: parseISO('2019-12-29T00:00:00'),
-            end: parseISO('2019-01-31T00:00:00'),
-            projectIds: [1],
-            timeZone: 'America/New_York',
-          },
-        },
-        { root: true }
       );
     });
 
@@ -90,37 +86,29 @@ describe('Actions', () => {
   describe('when dispatch fetchPdf', () => {
     let result;
 
-    const dispatch = jest.fn(() => ({ data: '%PDF-' }));
-
     beforeEach(async () => {
-      result = await actions.fetchPdf(
-        { dispatch },
-        {
-          start: parseISO('2019-01-01T00:00:00'),
-          end: parseISO('2019-01-03T00:00:00'),
-          projectIds: [1],
-        }
-      );
-    });
-
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/report.pdf',
-          responseType: 'blob',
+      mock
+        .onGet('/v1/report.pdf', {
           params: {
             start: parseISO('2019-01-01T00:00:00'),
             end: parseISO('2019-01-03T00:00:00'),
             projectIds: [1],
             timeZone: 'America/New_York',
           },
-        },
-        { root: true }
-      );
+        })
+        .replyOnce(200, '%PDF-');
+      result = await actions.fetchPdf(undefined, {
+        start: parseISO('2019-01-01T00:00:00'),
+        end: parseISO('2019-01-03T00:00:00'),
+        projectIds: [1],
+      });
     });
 
-    it('retuns data', () => {
+    it('requests api with blob responseType', () => {
+      expect(mock.history.get[0].responseType).toBe('blob');
+    });
+
+    it('retuns pdf data', () => {
       expect(result).toBe('%PDF-');
     });
   });
@@ -128,38 +116,30 @@ describe('Actions', () => {
   describe('when dispatch fetchCsv', () => {
     let result;
 
-    const dispatch = jest.fn(() => ({ data: 'example,example' }));
-
     beforeEach(async () => {
-      result = await actions.fetchCsv(
-        { dispatch },
-        {
-          start: parseISO('2019-01-01T00:00:00'),
-          end: parseISO('2019-01-03T00:00:00'),
-          projectIds: [1],
-        }
-      );
-    });
-
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/report.csv',
-          responseType: 'blob',
+      mock
+        .onGet('/v1/report.csv', {
           params: {
             start: parseISO('2019-01-01T00:00:00'),
             end: parseISO('2019-01-03T00:00:00'),
             projectIds: [1],
             timeZone: 'America/New_York',
           },
-        },
-        { root: true }
-      );
+        })
+        .replyOnce(200, 'a,b,c');
+      result = await actions.fetchCsv(undefined, {
+        start: parseISO('2019-01-01T00:00:00'),
+        end: parseISO('2019-01-03T00:00:00'),
+        projectIds: [1],
+      });
     });
 
-    it('retuns data', () => {
-      expect(result).toBe('example,example');
+    it('requests api with blob responseType', () => {
+      expect(mock.history.get[0].responseType).toBe('blob');
+    });
+
+    it('retuns csv data', () => {
+      expect(result).toBe('a,b,c');
     });
   });
 });

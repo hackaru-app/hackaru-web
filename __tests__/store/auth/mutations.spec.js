@@ -1,71 +1,64 @@
 import { mutations } from '@/store/auth';
 
 describe('Mutations', () => {
-  describe('when commit SET_REFRESH_TOKEN', () => {
-    const state = { refreshToken: '', clientId: '' };
-
-    beforeEach(() => {
-      mutations['SET_REFRESH_TOKEN'](state, {
-        refreshToken: 'refreshToken',
-        clientId: 'clientId',
-      });
-    });
-
-    it('sets refresh token and client id', () => {
-      expect(state.refreshToken).toBe('refreshToken');
-      expect(state.clientId).toBe('clientId');
-    });
-  });
-
-  describe('when commit SET_ACCESS_TOKEN', () => {
-    const state = { accessToken: '' };
-
-    beforeEach(() => {
-      mutations['SET_ACCESS_TOKEN'](state, 'accessToken');
-    });
-
-    it('sets access token', () => {
-      expect(state.accessToken).toBe('accessToken');
-    });
-  });
-
-  describe('when commit SET_ID_AND_EMAIL', () => {
+  describe('when commit LOGIN', () => {
     const state = { id: undefined, email: '' };
 
     beforeEach(() => {
-      mutations['SET_ID_AND_EMAIL'](state, {
+      mutations['LOGIN'](state, {
         id: 1,
         email: 'example@example.com',
       });
     });
 
-    it('sets user', () => {
+    it('sets userId', () => {
       expect(state.id).toBe(1);
+    });
+
+    it('sets email', () => {
       expect(state.email).toBe('example@example.com');
+    });
+
+    it('sets loggedIn to true', () => {
+      expect(state.loggedIn).toBe(true);
     });
   });
 
-  describe('when commit CLEAR_TOKENS', () => {
+  describe('when commit LOGOUT', () => {
     const state = {
       id: 1,
       email: 'example@example.com',
-      refreshToken: 'refreshToken',
-      clientId: 'clientId',
-      accessToken: 'accessToken',
+      loggedIn: true,
     };
 
     beforeEach(() => {
-      mutations['CLEAR_TOKENS'](state);
+      mutations['LOGOUT'](state);
     });
 
-    it('clear state', () => {
-      expect(state).toEqual({
-        id: undefined,
-        email: '',
-        refreshToken: '',
-        clientId: '',
-        accessToken: '',
-      });
+    it('clears userId', () => {
+      expect(state.id).toBeUndefined();
+    });
+
+    it('clears email', () => {
+      expect(state.email).toBe('');
+    });
+
+    it('sets loggedIn to false', () => {
+      expect(state.loggedIn).toBe(false);
+    });
+  });
+
+  describe('when commit SET_EMAIL', () => {
+    const state = {
+      email: '',
+    };
+
+    beforeEach(() => {
+      mutations['SET_EMAIL'](state, 'example@example.com');
+    });
+
+    it('sets email', () => {
+      expect(state.email).toBe('example@example.com');
     });
   });
 });

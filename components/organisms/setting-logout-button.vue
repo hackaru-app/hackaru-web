@@ -41,9 +41,7 @@ export default {
         name: 'logout',
         component: 'setting_logout_button',
       });
-      await this.$store.dispatch('auth/logout');
-      localStorage.removeItem('userId');
-      window.location.assign(this.localePath('index'));
+      this.$store.dispatch('auth/logout');
     },
   },
 };

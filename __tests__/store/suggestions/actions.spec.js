@@ -1,26 +1,28 @@
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import { actions } from '@/store/suggestions';
 
 describe('Actions', () => {
+  const mock = new MockAdapter(axios);
+
+  beforeEach(() => {
+    mock.reset();
+    actions.$api = axios;
+  });
+
   describe('when dispatch fetch', () => {
     const commit = jest.fn();
-    const dispatch = jest.fn(() => ({ data: {} }));
 
     beforeEach(() => {
-      actions.fetch({ commit, dispatch }, 'query');
-    });
-
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/suggestions',
+      mock
+        .onGet('/v1/suggestions', {
           params: {
             q: 'query',
             limit: 30,
           },
-        },
-        { root: true }
-      );
+        })
+        .replyOnce(200, {});
+      actions.fetch({ commit }, 'query');
     });
 
     it('commits SET_SUGGESTIONS', () => {

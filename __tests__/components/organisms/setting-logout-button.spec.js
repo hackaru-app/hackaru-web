@@ -6,9 +6,6 @@ import testId from '@/__tests__/__helpers__/test-id';
 describe('SettingLogoutButton', () => {
   let wrapper;
 
-  delete window.location;
-  window.location = { assign: jest.fn() };
-
   const $store = new Store({});
   const factory = () =>
     shallowMount(SettingLogoutButton, {
@@ -21,7 +18,7 @@ describe('SettingLogoutButton', () => {
     $store.reset();
   });
 
-  describe('click logout-button', () => {
+  describe('when click logout-button', () => {
     beforeEach(() => {
       global.confirm = () => true;
       wrapper = factory();
@@ -31,17 +28,9 @@ describe('SettingLogoutButton', () => {
     it('dispatches auth/logout', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/logout');
     });
-
-    it('redirect to index', () => {
-      expect(window.location.assign).toHaveBeenCalledWith('/en/index');
-    });
-
-    it('removes user id', () => {
-      expect(localStorage.removeItem).toHaveBeenCalledWith('userId');
-    });
   });
 
-  describe('click logout-button but confirm is false', () => {
+  describe('when click logout-button but confirm is false', () => {
     beforeEach(() => {
       global.confirm = () => false;
       wrapper = factory();
@@ -50,10 +39,6 @@ describe('SettingLogoutButton', () => {
 
     it('does not dispatch ', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
-    });
-
-    it('does not remove user id', () => {
-      expect(localStorage.removeItem).not.toHaveBeenCalledWith('userId');
     });
   });
 });

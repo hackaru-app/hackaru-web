@@ -9,20 +9,19 @@ export const state = () => ({
 });
 
 export const actions = {
-  async createUrl({ commit, dispatch }) {
+  async createUrl({ commit }) {
     try {
-      const res = await dispatch(
-        'auth-api/request',
-        { url: '/v1/activity_calendar', method: 'put' },
-        { root: true }
-      );
+      const res = await this.$api.request({
+        url: '/v1/activity_calendar',
+        method: 'put',
+        withCredentials: true,
+      });
       commit(SET_TOKEN_AND_USER_ID, {
         token: res.data.token,
         userId: res.data.userId,
       });
       return true;
     } catch (e) {
-      dispatch('toast/error', e, { root: true });
       return false;
     }
   },

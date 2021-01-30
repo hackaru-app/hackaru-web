@@ -14,14 +14,11 @@ describe('SettingDeleteAccountButton', () => {
       },
     });
 
-  delete window.location;
-  window.location = { assign: jest.fn() };
-
   beforeEach(() => {
     $store.reset();
   });
 
-  describe('enter password and click submit-button', () => {
+  describe('when enter password and click submit-button', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
       global.confirm = () => true;
@@ -35,13 +32,9 @@ describe('SettingDeleteAccountButton', () => {
         currentPassword: 'password',
       });
     });
-
-    it('redirects to index', () => {
-      expect(window.location.assign).toHaveBeenCalledWith('/en/index');
-    });
   });
 
-  describe('enter password and click submit-button but confirm is false', () => {
+  describe('when enter password and click submit-button but confirm is false', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
       global.confirm = () => false;

@@ -1,26 +1,35 @@
-<template>
-  <section>
-    <slot />
-  </section>
-</template>
-
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  mounted() {
-    if (!this.$store.getters['auth/loggedIn']) return this.redirect();
-    const userId = this.$store.getters['auth/userId'];
-    this.$gtm.push({
-      userId,
-    });
-    this.$sentry.configureScope((scope) => {
-      scope.setUser({ id: userId });
-    });
+  computed: {
+    ...mapGetters({
+      loggedIn: 'auth/loggedIn',
+      userId: 'auth/userId',
+    }),
   },
-  methods: {
-    redirect() {
-      sessionStorage.setItem('previousPath', this.$route.fullPath);
-      this.$router.replace(this.localePath('auth'));
+  watch: {
+    loggedIn: {
+      immediate: true,
+      handler() {
+        if (!this.loggedIn && !process.server) {
+          this.$cookies.set('previous_path', this.$route.fullPath);
+          window.location.assign(this.localePath('auth'));
+        }
+      },
     },
+    userId: {
+      immediate: true,
+      handler() {
+        this.$gtm.push({ userId: this.userId });
+        this.$sentry.configureScope((scope) => {
+          scope.setUser({ id: this.userId });
+        });
+      },
+    },
+  },
+  render(h) {
+    return h();
   },
 };
 </script>

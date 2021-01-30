@@ -7,40 +7,32 @@ export const state = () => ({
 });
 
 export const actions = {
-  async fetch({ commit, dispatch }) {
+  async fetch({ commit }) {
     try {
-      const res = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/user',
-          method: 'get',
-        },
-        { root: true }
-      );
+      const res = await this.$api.request({
+        url: '/v1/user',
+        method: 'get',
+        withCredentials: true,
+      });
       commit(SET_USER, res.data);
       return true;
     } catch (e) {
-      dispatch('toast/error', e, { root: true });
       return false;
     }
   },
-  async update({ commit, dispatch }, data) {
+  async update({ commit }, data) {
     try {
-      const res = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/user',
-          method: 'put',
-          data: {
-            user: data,
-          },
+      const res = await this.$api.request({
+        url: '/v1/user',
+        method: 'put',
+        withCredentials: true,
+        data: {
+          user: data,
         },
-        { root: true }
-      );
+      });
       commit(SET_USER, res.data);
       return true;
     } catch (e) {
-      dispatch('toast/error', e, { root: true });
       return false;
     }
   },

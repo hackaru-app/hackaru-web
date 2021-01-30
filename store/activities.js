@@ -14,103 +14,76 @@ import {
 
 export const actions = {
   async fetchWorking({ dispatch }) {
-    try {
-      const { data } = await dispatch(
-        'auth-api/request',
-        { url: '/v1/activities/working' },
-        { root: true }
-      );
-      dispatch(
-        'entities/merge',
-        { json: data, schema: activity },
-        { root: true }
-      );
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-    }
+    const res = await this.$api.request({
+      url: '/v1/activities/working',
+      withCredentials: true,
+    });
+    dispatch(
+      'entities/merge',
+      { json: res.data, schema: activity },
+      { root: true }
+    );
   },
   async fetchByRange({ dispatch }, payload) {
-    try {
-      const { data } = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/activities',
-          params: {
-            start: payload.start,
-            end: payload.end,
-          },
-        },
-        { root: true }
-      );
-      dispatch(
-        'entities/merge',
-        { json: data, schema: [activity] },
-        { root: true }
-      );
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-    }
+    const res = await this.$api.request({
+      url: '/v1/activities',
+      withCredentials: true,
+      params: {
+        start: payload.start,
+        end: payload.end,
+      },
+    });
+    dispatch(
+      'entities/merge',
+      { json: res.data, schema: [activity] },
+      { root: true }
+    );
   },
   async add({ dispatch }, payload) {
     try {
-      const { data } = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/activities',
-          method: 'post',
-          data: {
-            activity: payload,
-          },
+      const res = await this.$api.request({
+        url: '/v1/activities',
+        withCredentials: true,
+        method: 'post',
+        data: {
+          activity: payload,
         },
-        { root: true }
-      );
+      });
       dispatch(
         'entities/merge',
-        { json: data, schema: activity },
+        { json: res.data, schema: activity },
         { root: true }
       );
       return true;
     } catch (e) {
-      dispatch('toast/error', e, { root: true });
       return false;
     }
   },
   async delete({ dispatch }, id) {
-    try {
-      dispatch('entities/delete', { name: 'activities', id }, { root: true });
-      await dispatch(
-        'auth-api/request',
-        {
-          url: `/v1/activities/${id}`,
-          method: 'delete',
-        },
-        { root: true }
-      );
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-    }
+    dispatch('entities/delete', { name: 'activities', id }, { root: true });
+    await this.$api.request({
+      url: `/v1/activities/${id}`,
+      method: 'delete',
+      withCredentials: true,
+    });
   },
   async update({ dispatch }, payload) {
     try {
-      const { data } = await dispatch(
-        'auth-api/request',
-        {
-          url: `/v1/activities/${payload.id}`,
-          method: 'put',
-          data: {
-            activity: payload,
-          },
+      const res = await this.$api.request({
+        url: `/v1/activities/${payload.id}`,
+        method: 'put',
+        withCredentials: true,
+        data: {
+          activity: payload,
         },
-        { root: true }
-      );
+      });
       dispatch(
         'entities/merge',
-        { json: data, schema: activity },
+        { json: res.data, schema: activity },
         { root: true }
       );
       return true;
     } catch (e) {
-      dispatch('toast/error', e, { root: true });
       return false;
     }
   },

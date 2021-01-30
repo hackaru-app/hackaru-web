@@ -1,274 +1,179 @@
-import decodeJwt from 'jwt-decode';
-import PQueue from 'p-queue';
-
-const SET_ID_AND_EMAIL = 'SET_ID_AND_EMAIL';
-const SET_REFRESH_TOKEN = 'SET_REFRESH_TOKEN';
-const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
-const CLEAR_TOKENS = 'CLEAR_TOKENS';
+const LOGIN = 'LOGIN';
+const LOGOUT = 'LOGOUT';
+const SET_EMAIL = 'SET_EMAIL';
 
 export const state = () => ({
   id: undefined,
   email: '',
-  refreshToken: '',
-  clientId: '',
-  accessToken: '',
   loggedIn: false,
 });
 
-const queue = new PQueue({
-  concurrency: 1,
-});
-
 export const actions = {
-  async fetchRefreshToken({ commit, dispatch }, { email, password }) {
+  async login({ commit }, { email, password }) {
     try {
-      const res = await dispatch(
-        'api/request',
-        {
-          url: '/v1/auth/refresh_tokens',
-          method: 'post',
-          data: {
-            user: {
-              email,
-              password,
-            },
+      const res = await this.$api.request({
+        url: '/v1/auth/auth_tokens',
+        method: 'post',
+        withCredentials: true,
+        data: {
+          user: {
+            email,
+            password,
           },
         },
-        { root: true }
-      );
-      commit(SET_ID_AND_EMAIL, res.data);
-      commit(SET_REFRESH_TOKEN, {
-        refreshToken: res.headers['x-refresh-token'],
-        clientId: res.headers['x-client-id'],
+      });
+      commit(LOGIN, res.data);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  },
+  async signUp({ commit }, { email, password, passwordConfirmation, locale }) {
+    try {
+      const res = await this.$api.request({
+        url: '/v1/auth/users',
+        method: 'post',
+        withCredentials: true,
+        data: {
+          user: {
+            email,
+            password,
+            passwordConfirmation,
+            locale,
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          },
+        },
+      });
+      commit(LOGIN, res.data);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  },
+  async changeEmail({ commit }, { email, currentPassword }) {
+    try {
+      const res = await this.$api.request({
+        url: `/v1/auth/user`,
+        withCredentials: true,
+        method: 'put',
+        data: {
+          user: {
+            email,
+            currentPassword,
+          },
+        },
+      });
+      commit(SET_EMAIL, res.data.email);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  },
+  async changePassword(_, { password, passwordConfirmation, currentPassword }) {
+    try {
+      await this.$api.request({
+        url: `/v1/auth/user`,
+        method: 'put',
+        withCredentials: true,
+        data: {
+          user: {
+            password,
+            passwordConfirmation,
+            currentPassword,
+          },
+        },
       });
       return true;
     } catch (e) {
-      dispatch('toast/error', e, { root: true });
       return false;
     }
   },
-  async fetchAccessToken({ state, commit, getters, dispatch }) {
-    return queue.add(async () => {
-      if (getters.validateToken()) {
-        return true;
-      }
-      try {
-        const res = await dispatch(
-          'api/request',
-          {
-            url: '/v1/auth/access_tokens',
-            method: 'post',
-            headers: {
-              'x-client-id': state.clientId,
-              'x-refresh-token': state.refreshToken,
-            },
-          },
-          { root: true }
-        );
-        commit(SET_ID_AND_EMAIL, res.data);
-        commit(SET_ACCESS_TOKEN, res.headers['x-access-token']);
-        return true;
-      } catch (e) {
-        dispatch('toast/error', e, { root: true });
-        return false;
-      }
-    });
-  },
-  async signUp(
-    { commit, dispatch },
-    { email, password, passwordConfirmation, locale }
-  ) {
+  async sendPasswordResetEmail(_, { email }) {
     try {
-      const res = await dispatch(
-        'api/request',
-        {
-          url: '/v1/auth/users',
-          method: 'post',
-          data: {
-            user: {
-              email,
-              password,
-              passwordConfirmation,
-              locale,
-              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            },
+      await this.$api.request({
+        url: '/v1/auth/password_reset/mails',
+        method: 'post',
+        data: {
+          user: {
+            email,
           },
         },
-        { root: true }
-      );
-      commit(SET_ID_AND_EMAIL, res.data);
-      commit(SET_REFRESH_TOKEN, {
-        refreshToken: res.headers['x-refresh-token'],
-        clientId: res.headers['x-client-id'],
       });
       return true;
     } catch (e) {
-      dispatch('toast/error', e, { root: true });
       return false;
     }
   },
-  async changeEmail({ commit, dispatch }, { email, currentPassword }) {
+  async resetPassword(_, { password, passwordConfirmation, token, id }) {
     try {
-      const res = await dispatch(
-        'auth-api/request',
-        {
-          url: `/v1/auth/user`,
-          method: 'put',
-          data: {
-            user: {
-              email,
-              currentPassword,
-            },
+      await this.$api.request({
+        url: '/v1/auth/password_reset',
+        method: 'put',
+        data: {
+          user: {
+            id,
+            token,
+            password,
+            passwordConfirmation,
           },
         },
-        { root: true }
-      );
-      commit(SET_ID_AND_EMAIL, res.data);
+      });
       return true;
     } catch (e) {
-      dispatch('toast/error', e, { root: true });
       return false;
     }
   },
-  async changePassword(
-    { dispatch },
-    { password, passwordConfirmation, currentPassword }
-  ) {
-    try {
-      await dispatch(
-        'auth-api/request',
-        {
-          url: `/v1/auth/user`,
-          method: 'put',
-          data: {
-            user: {
-              password,
-              passwordConfirmation,
-              currentPassword,
-            },
-          },
-        },
-        { root: true }
-      );
-      return true;
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-      return false;
-    }
-  },
-  async sendPasswordResetEmail({ dispatch }, { email }) {
-    try {
-      await dispatch(
-        'api/request',
-        {
-          url: '/v1/auth/password_reset/mails',
-          method: 'post',
-          data: {
-            user: {
-              email,
-            },
-          },
-        },
-        { root: true }
-      );
-      return true;
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-      return false;
-    }
-  },
-  async resetPassword(
-    { dispatch },
-    { password, passwordConfirmation, token, id }
-  ) {
-    try {
-      await dispatch(
-        'api/request',
-        {
-          url: '/v1/auth/password_reset',
-          method: 'put',
-          data: {
-            user: {
-              id,
-              token,
-              password,
-              passwordConfirmation,
-            },
-          },
-        },
-        { root: true }
-      );
-      return true;
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-      return false;
-    }
-  },
-  async logout({ state, commit, dispatch }) {
-    await dispatch(
-      'api/request',
+  async logout({ commit }) {
+    await this.$api.request(
       {
-        url: '/v1/auth/refresh_token',
+        url: '/v1/auth/auth_token',
         method: 'delete',
-        headers: {
-          'x-client-id': state.clientId,
-          'x-refresh-token': state.refreshToken,
-        },
+        withCredentials: true,
       },
       { root: true }
     );
-    commit(CLEAR_TOKENS);
+    commit(LOGOUT);
   },
-  async deleteAccount({ commit, dispatch }, { currentPassword }) {
+  async deleteAccount({ commit }, { currentPassword }) {
     try {
-      await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/auth/user',
-          method: 'delete',
-          data: {
-            user: {
-              currentPassword: currentPassword,
-            },
+      await this.$api.request({
+        url: '/v1/auth/user',
+        method: 'delete',
+        withCredentials: true,
+        data: {
+          user: {
+            currentPassword: currentPassword,
           },
         },
-        { root: true }
-      );
-      commit(CLEAR_TOKENS);
+      });
+      commit(LOGOUT);
       return true;
     } catch (e) {
-      dispatch('toast/error', e, { root: true });
       return false;
     }
+  },
+  forceLogout({ commit }) {
+    commit(LOGOUT);
   },
 };
 
 export const mutations = {
-  [SET_REFRESH_TOKEN](state, payload) {
-    state.refreshToken = payload.refreshToken;
-    state.clientId = payload.clientId;
+  [SET_EMAIL](state, payload) {
+    state.email = payload;
   },
-  [SET_ACCESS_TOKEN](state, payload) {
-    state.accessToken = payload;
-    state.loggedIn = true;
-  },
-  [SET_ID_AND_EMAIL](state, payload) {
+  [LOGIN](state, payload) {
     state.id = payload.id;
     state.email = payload.email;
+    state.loggedIn = true;
   },
-  [CLEAR_TOKENS](state) {
+  [LOGOUT](state) {
     state.id = undefined;
     state.email = '';
-    state.refreshToken = '';
-    state.clientId = '';
-    state.accessToken = '';
+    state.loggedIn = false;
   },
 };
 
 export const getters = {
-  accessToken: (state) => {
-    return state.accessToken;
-  },
   email: (state) => {
     return state.email;
   },
@@ -276,14 +181,6 @@ export const getters = {
     return state.id;
   },
   loggedIn: (state) => {
-    return state.clientId && state.refreshToken;
-  },
-  validateToken: (state) => () => {
-    if (!state.accessToken) return false;
-    try {
-      return Date.now().valueOf() / 1000 < decodeJwt(state.accessToken).exp;
-    } catch (e) {
-      return false;
-    }
+    return state.loggedIn;
   },
 };

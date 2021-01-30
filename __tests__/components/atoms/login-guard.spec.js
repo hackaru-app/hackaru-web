@@ -3,15 +3,27 @@ import { shallowMount } from '@vue/test-utils';
 import LoginGuard from '@/components/atoms/login-guard';
 
 describe('LoginGuard', () => {
-  const $store = new Store({});
+  const $store = new Store({
+    getters: {
+      'auth/loggedIn': false,
+      'auth/userId': undefined,
+    },
+  });
   const $router = { replace: jest.fn() };
+  const $cookies = { set: jest.fn() };
+  const $gtm = { push: jest.fn() };
   const scope = { setUser: jest.fn() };
+
+  delete window.location;
+  window.location = { assign: jest.fn() };
 
   const factory = () =>
     shallowMount(LoginGuard, {
       mocks: {
         $store,
         $router,
+        $cookies,
+        $gtm,
         $route: { fullPath: '/secure' },
         $sentry: {
           configureScope: (fn) => fn(scope),
@@ -20,26 +32,20 @@ describe('LoginGuard', () => {
     });
 
   beforeEach(() => {
-    sessionStorage.clear();
-    localStorage.clear();
     $store.reset();
   });
 
-  describe('when user is not logged-in', () => {
+  describe('when user is not loggedIn', () => {
     beforeEach(() => {
-      $store.getters['auth/loggedIn'] = false;
       factory();
     });
 
-    it('redirect to login page', () => {
-      expect($router.replace).toHaveBeenCalledWith('/en/auth');
+    it('redirects to login page', () => {
+      expect(window.location.assign).toHaveBeenCalledWith('/en/auth');
     });
 
-    it('save current path', () => {
-      expect(sessionStorage.setItem).toHaveBeenCalledWith(
-        'previousPath',
-        '/secure'
-      );
+    it('stores current path', () => {
+      expect($cookies.set).toHaveBeenCalledWith('previous_path', '/secure');
     });
   });
 
@@ -51,11 +57,15 @@ describe('LoginGuard', () => {
     });
 
     it('does not redirect', () => {
-      expect($router.replace).not.toHaveBeenCalled();
+      expect(window.location.assign).not.toHaveBeenCalled();
     });
 
-    it('save user id to sentry', () => {
+    it('saves userId to sentry', () => {
       expect(scope.setUser).toHaveBeenCalledWith({ id: 1 });
+    });
+
+    it('saves userId to gtm', () => {
+      expect($gtm.push).toHaveBeenCalledWith({ userId: 1 });
     });
   });
 });

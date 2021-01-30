@@ -1,5 +1,3 @@
-import get from 'lodash.get';
-
 export const SET_CLIENT = 'SET_CLIENT';
 
 export const state = () => ({
@@ -7,82 +5,67 @@ export const state = () => ({
 });
 
 export const actions = {
-  async fetchClient({ commit, dispatch }, payload) {
-    try {
-      const { data } = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/oauth/authorize',
-          params: {
-            clientId: payload.clientId,
-            responseType: payload.responseType,
-            redirectUri: payload.redirectUri,
-            scope: payload.scope,
-            state: payload.state,
-          },
+  async fetchClient({ commit }, payload) {
+    const res = await this.$api.request(
+      {
+        url: '/v1/oauth/authorize',
+        withCredentials: true,
+        params: {
+          clientId: payload.clientId,
+          responseType: payload.responseType,
+          redirectUri: payload.redirectUri,
+          scope: payload.scope,
+          state: payload.state,
         },
-        { root: true }
-      );
-      if (data.status === 'redirect') return data.redirectUri;
-      commit(SET_CLIENT, data);
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-    }
-  },
-  async allow({ dispatch }, payload) {
-    try {
-      const res = await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/oauth/authorize',
-          method: 'post',
-          data: {
-            clientId: payload.clientId,
-            responseType: payload.responseType,
-            redirectUri: payload.redirectUri,
-            scope: payload.scope,
-            state: payload.state,
-          },
-        },
-        { root: true }
-      );
+      },
+      { root: true }
+    );
+    if (res.data.status === 'redirect') {
       return res.data.redirectUri;
-    } catch (e) {
-      dispatch('toast/error', e, { root: true });
-      return undefined;
+    } else {
+      commit(SET_CLIENT, res.data);
     }
   },
-  async deny({ dispatch }, payload) {
-    try {
-      await dispatch(
-        'auth-api/request',
-        {
-          url: '/v1/oauth/authorize',
-          method: 'delete',
-          data: {
-            clientId: payload.clientId,
-            responseType: payload.responseType,
-            redirectUri: payload.redirectUri,
-            scope: payload.scope,
-            state: payload.state,
-          },
+  async allow(_, payload) {
+    const res = await this.$api.request(
+      {
+        url: '/v1/oauth/authorize',
+        withCredentials: true,
+        method: 'post',
+        data: {
+          clientId: payload.clientId,
+          responseType: payload.responseType,
+          redirectUri: payload.redirectUri,
+          scope: payload.scope,
+          state: payload.state,
         },
-        { root: true }
-      );
-    } catch (e) {
-      const response = getRedirectUriByError(e) || getDescriptionByError(e);
-      if (response) return response;
-      dispatch('toast/error', e, { root: true });
-    }
+      },
+      { root: true }
+    );
+    return res.data.redirectUri;
+  },
+  async deny(_, payload) {
+    const res = await this.$api.request({
+      url: '/v1/oauth/authorize',
+      withCredentials: true,
+      method: 'delete',
+      validateStatus(status) {
+        return status === 400;
+      },
+      data: {
+        clientId: payload.clientId,
+        responseType: payload.responseType,
+        redirectUri: payload.redirectUri,
+        scope: payload.scope,
+        state: payload.state,
+      },
+    });
+    return res.data.redirectUri || getDescriptionFromError(res);
   },
 };
 
-function getRedirectUriByError(e) {
-  return get(e, 'response.data.redirectUri');
-}
-
-function getDescriptionByError(e) {
-  const errorDescription = get(e, 'response.data.errorDescription');
+function getDescriptionFromError(res) {
+  const errorDescription = res.data.errorDescription;
   return errorDescription && { errorDescription };
 }
 

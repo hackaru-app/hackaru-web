@@ -1,22 +1,22 @@
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import { actions } from '@/store/projects';
 import { project } from '@/schemas';
 
 describe('Actions', () => {
+  const mock = new MockAdapter(axios);
+
+  beforeEach(() => {
+    mock.reset();
+    actions.$api = axios;
+  });
+
   describe('when dispatch fetch', () => {
-    const dispatch = jest.fn(() => ({ data: {} }));
+    const dispatch = jest.fn();
 
     beforeEach(() => {
+      mock.onGet('/v1/projects').replyOnce(200, {});
       actions.fetch({ dispatch });
-    });
-
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/projects',
-        },
-        { root: true }
-      );
     });
 
     it('dispatches entities/merge', () => {
@@ -32,24 +32,11 @@ describe('Actions', () => {
   });
 
   describe('when dispatch add', () => {
-    const dispatch = jest.fn(() => ({ data: {} }));
+    const dispatch = jest.fn();
 
     beforeEach(() => {
+      mock.onPost('/v1/projects').replyOnce(200, {});
       actions.add({ dispatch }, {});
-    });
-
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/projects',
-          method: 'post',
-          data: {
-            project: {},
-          },
-        },
-        { root: true }
-      );
     });
 
     it('dispatches entities/merge', () => {
@@ -68,6 +55,7 @@ describe('Actions', () => {
     const dispatch = jest.fn();
 
     beforeEach(() => {
+      mock.onDelete('/v1/projects/1').replyOnce(200, {});
       actions.delete({ dispatch }, 1);
     });
 
@@ -79,37 +67,17 @@ describe('Actions', () => {
       );
     });
 
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/projects/1',
-          method: 'delete',
-        },
-        { root: true }
-      );
+    it('requests api', () => {
+      expect(mock.history.delete.length).toBe(1);
     });
   });
 
   describe('when dispatch update', () => {
-    const dispatch = jest.fn(() => ({ data: {} }));
+    const dispatch = jest.fn();
 
     beforeEach(() => {
+      mock.onPut('/v1/projects/1', { project: { id: 1 } }).replyOnce(200, {});
       actions.update({ dispatch }, { id: 1 });
-    });
-
-    it('dispatches auth-api/request', () => {
-      expect(dispatch).toHaveBeenCalledWith(
-        'auth-api/request',
-        {
-          url: '/v1/projects/1',
-          method: 'put',
-          data: {
-            project: { id: 1 },
-          },
-        },
-        { root: true }
-      );
     });
 
     it('dispatches entities/merge', () => {

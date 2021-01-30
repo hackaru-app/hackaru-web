@@ -9,6 +9,7 @@ describe('Auth', () => {
 
   const $route = { query: {} };
   const $router = { replace: jest.fn() };
+  const $cookies = { set: jest.fn(), remove: () => {} };
   const $config = {};
   const $store = new Store({
     getters: {
@@ -17,8 +18,6 @@ describe('Auth', () => {
   });
 
   beforeEach(() => {
-    sessionStorage.clear();
-    localStorage.clear();
     $store.reset();
     $route.query['sign-up'] = false;
     factory = () =>
@@ -27,6 +26,7 @@ describe('Auth', () => {
           $store,
           $route,
           $router,
+          $cookies,
           $config,
           $i18n: {
             locale: 'en',
@@ -35,9 +35,10 @@ describe('Auth', () => {
       });
   });
 
-  describe('when user already logged in', () => {
+  describe('when user already loggedIn', () => {
     beforeEach(() => {
       $store.getters['auth/loggedIn'] = true;
+      $cookies.get = () => undefined;
       factory();
     });
 
@@ -49,11 +50,11 @@ describe('Auth', () => {
   describe('when user already logged in and has previous path', () => {
     beforeEach(() => {
       $store.getters['auth/loggedIn'] = true;
-      sessionStorage.setItem('previousPath', '/previous');
+      $cookies.get = () => '/previous';
       factory();
     });
 
-    it('redirect to previous path', () => {
+    it('redirects to previous path', () => {
       expect($router.replace).toHaveBeenCalledWith('/previous');
     });
   });
@@ -69,7 +70,7 @@ describe('Auth', () => {
     });
   });
 
-  describe('when service has hackaruTermsUrl', () => {
+  describe('when service has terms', () => {
     beforeEach(() => {
       $route.query['sign-up'] = true;
       $config.hackaruTermsUrl = 'example.com';
@@ -81,7 +82,7 @@ describe('Auth', () => {
     });
   });
 
-  describe('when service does not have hackaruTermsUrl', () => {
+  describe('when service does not have terms', () => {
     beforeEach(() => {
       $route.query['sign-up'] = true;
       $config.hackaruTermsUrl = undefined;
@@ -101,8 +102,8 @@ describe('Auth', () => {
       wrapper.find('form').trigger('submit.prevent');
     });
 
-    it('dispatches auth/fetchRefreshToken', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('auth/fetchRefreshToken', {
+    it('dispatches auth/login', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('auth/login', {
         email: 'example@example.com',
         password: 'password',
       });

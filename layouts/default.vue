@@ -2,13 +2,14 @@
   <div class="default" ontouchstart="">
     <nav-modal />
     <side-bar />
-    <login-guard class="content">
+    <login-guard />
+    <section class="content">
       <nuxt keep-alive />
       <toast />
       <client-only>
         <pwa-popover />
       </client-only>
-    </login-guard>
+    </section>
   </div>
 </template>
 
