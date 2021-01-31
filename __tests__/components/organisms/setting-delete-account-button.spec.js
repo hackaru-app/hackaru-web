@@ -6,10 +6,13 @@ import testId from '@/__tests__/__helpers__/test-id';
 describe('SettingDeleteAccountButton', () => {
   let wrapper;
 
+  const $ga = { event: jest.fn() };
   const $store = new Store({});
+
   const factory = () =>
     shallowMount(SettingDeleteAccountButton, {
       mocks: {
+        $ga,
         $store,
       },
     });
@@ -32,6 +35,13 @@ describe('SettingDeleteAccountButton', () => {
         currentPassword: 'password',
       });
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Accounts',
+        eventAction: 'delete',
+      });
+    });
   });
 
   describe('when enter password and click submit-button but confirm is false', () => {
@@ -45,6 +55,10 @@ describe('SettingDeleteAccountButton', () => {
 
     it('does not dispatch auth/deleteAccount', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('does not send ga event', () => {
+      expect($ga.event).not.toHaveBeenCalledWith();
     });
   });
 });

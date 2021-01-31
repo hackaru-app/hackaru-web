@@ -95,13 +95,11 @@ export default {
   methods: {
     deleteApplication(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
-      this.$store.dispatch('applications/delete', id);
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'Applications',
         eventAction: 'delete',
-        name: 'delete_application',
       });
+      this.$store.dispatch('applications/delete', id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
     },
     showModal(application) {

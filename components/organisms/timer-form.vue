@@ -141,6 +141,10 @@ export default {
       }
     },
     async updateActivity() {
+      this.$ga.event({
+        eventCategory: 'Activities',
+        eventAction: 'update',
+      });
       const success = await this.$store.dispatch('activities/update', {
         id: this.id,
         description: this.description,
@@ -149,31 +153,25 @@ export default {
       if (success) {
         this.syncProps();
         this.$store.dispatch('toast/success', this.$t('updated'));
-        this.$gtm.push({
-          event: 'interaction',
-          eventCategory: 'Activities',
-          eventAction: 'update',
-          name: 'update_activity',
-          component: 'timer_form',
-        });
       }
     },
     async stopActivity() {
+      this.$ga.event({
+        eventCategory: 'Activities',
+        eventAction: 'stop',
+      });
       this.$store.dispatch('toast/success', getRandI18n(this.$t('stopped')));
       await this.$store.dispatch('activities/update', {
         id: this.id,
         stoppedAt: `${new Date()}`,
       });
-      this.$gtm.push({
-        event: 'interaction',
-        eventCategory: 'Activities',
-        eventAction: 'stop',
-        name: 'stop_activity',
-        component: 'timer_form',
-      });
       this.syncProps();
     },
     async startActivity() {
+      this.$ga.event({
+        eventCategory: 'Activities',
+        eventAction: 'start',
+      });
       const success = await this.$store.dispatch('activities/add', {
         description: this.description,
         projectId: this.project && this.project.id,
@@ -182,13 +180,6 @@ export default {
       if (success) {
         this.syncProps();
         this.$store.dispatch('toast/success', this.$t('started'));
-        this.$gtm.push({
-          event: 'interaction',
-          eventCategory: 'Activities',
-          eventAction: 'start',
-          name: 'start_activity',
-          component: 'timer_form',
-        });
       }
     },
     showModal() {

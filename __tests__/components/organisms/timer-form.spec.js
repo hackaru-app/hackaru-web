@@ -13,6 +13,7 @@ describe('TimerForm', () => {
   const localVue = createLocalVue();
   localVue.directive('tooltip', () => {});
 
+  const $ga = { event: jest.fn() };
   const $nuxt = { $emit: jest.fn() };
   const $store = new Store({
     getters: {
@@ -24,8 +25,9 @@ describe('TimerForm', () => {
     shallowMount(TimerForm, {
       localVue,
       mocks: {
-        $store,
+        $ga,
         $nuxt,
+        $store,
       },
     });
 
@@ -57,6 +59,10 @@ describe('TimerForm', () => {
         projectId: 1,
       });
     });
+
+    it('does not send ga event', () => {
+      expect($ga.event).not.toHaveBeenCalledWith();
+    });
   });
 
   describe('when select project and timer is working', () => {
@@ -82,6 +88,13 @@ describe('TimerForm', () => {
         id: 1,
         description: 'Review my tasks',
         projectId: 1,
+      });
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'update',
       });
     });
   });
@@ -121,6 +134,13 @@ describe('TimerForm', () => {
         startedAt: `${new Date()}`,
       });
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'start',
+      });
+    });
   });
 
   describe('when submit and timer is working', () => {
@@ -134,6 +154,13 @@ describe('TimerForm', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         stoppedAt: `${new Date()}`,
+      });
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'stop',
       });
     });
   });
@@ -160,6 +187,13 @@ describe('TimerForm', () => {
         description: 'Review my tasks',
       });
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'update',
+      });
+    });
   });
 
   describe('when press enter on description and timer is not working', () => {
@@ -183,6 +217,13 @@ describe('TimerForm', () => {
         startedAt: `${new Date()}`,
       });
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'start',
+      });
+    });
   });
 
   describe('when change description and timer is not working', () => {
@@ -197,6 +238,10 @@ describe('TimerForm', () => {
         'activities/update',
         expect.any(Object)
       );
+    });
+
+    it('does not send ga event', () => {
+      expect($ga.event).not.toHaveBeenCalledWith();
     });
   });
 
@@ -222,6 +267,13 @@ describe('TimerForm', () => {
         description: 'Review my tasks',
       });
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'update',
+      });
+    });
   });
 
   describe('when click suggestion', () => {
@@ -242,6 +294,13 @@ describe('TimerForm', () => {
         projectId: 2,
         description: 'Review my tasks',
         startedAt: `${new Date()}`,
+      });
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'start',
       });
     });
   });

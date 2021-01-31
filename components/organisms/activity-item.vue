@@ -98,12 +98,9 @@ export default {
       }
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'Activities',
         eventAction: 'delete',
-        name: 'delete_activity',
-        component: 'activity_item',
       });
     },
     async duplicateActivity() {
@@ -112,12 +109,9 @@ export default {
         projectId: this.project && this.project.id,
         startedAt: `${new Date()}`,
       });
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'Activities',
         eventAction: 'duplicate',
-        name: 'duplicate_activity',
-        component: 'activity_item',
       });
       if (success) {
         this.$refs.swipeMenu.reset();

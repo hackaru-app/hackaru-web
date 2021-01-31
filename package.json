@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.3",
-    "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/pwa": "^3.3.2",
     "@nuxtjs/sentry": "^4.5.0",
     "@sentry/browser": "^5.17.0",
@@ -70,6 +69,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@vue/test-utils": "^1.1.2",
     "axios-mock-adapter": "^1.18.2",

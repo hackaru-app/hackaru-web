@@ -83,12 +83,9 @@ export default {
         currentPassword: this.currentPassword,
       });
       if (success) {
-        this.$gtm.push({
-          event: 'interaction',
+        this.$ga.event({
           eventCategory: 'Accounts',
           eventAction: 'delete',
-          name: 'delete_account',
-          component: 'setting_delete_account_button',
         });
       }
     },

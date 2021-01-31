@@ -31,11 +31,9 @@ export default {
       });
       if (data) {
         this.loading = false;
-        this.$gtm.push({
-          event: 'interaction',
-          eventCategory: 'ReportCsv',
+        this.$ga.event({
+          eventCategory: 'CsvReports',
           eventAction: 'export',
-          name: 'export_report_to_csv',
         });
         const blob = new Blob([data], { type: 'text/csv' });
         saveAs(blob, 'report.csv');

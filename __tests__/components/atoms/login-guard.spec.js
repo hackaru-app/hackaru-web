@@ -11,7 +11,7 @@ describe('LoginGuard', () => {
   });
   const $router = { replace: jest.fn() };
   const $cookies = { set: jest.fn() };
-  const $gtm = { push: jest.fn() };
+  const $ga = { set: jest.fn() };
   const scope = { setUser: jest.fn() };
 
   delete window.location;
@@ -23,7 +23,7 @@ describe('LoginGuard', () => {
         $store,
         $router,
         $cookies,
-        $gtm,
+        $ga,
         $route: { fullPath: '/secure' },
         $sentry: {
           configureScope: (fn) => fn(scope),
@@ -64,8 +64,8 @@ describe('LoginGuard', () => {
       expect(scope.setUser).toHaveBeenCalledWith({ id: 1 });
     });
 
-    it('saves userId to gtm', () => {
-      expect($gtm.push).toHaveBeenCalledWith({ userId: 1 });
+    it('saves userId to google analytics', () => {
+      expect($ga.set).toHaveBeenCalledWith({ userId: 1 });
     });
   });
 });

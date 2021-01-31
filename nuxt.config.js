@@ -165,7 +165,6 @@ module.exports = {
     '@nuxtjs/style-resources',
     '@nuxtjs/sentry',
     '@nuxtjs/axios',
-    '@nuxtjs/gtm',
     'cookie-universal-nuxt',
     'vue-scrollto/nuxt',
     'nuxt-helmet',
@@ -194,6 +193,7 @@ module.exports = {
       },
     ],
   ],
+  buildModules: ['@nuxtjs/google-analytics'],
   publicRuntimeConfig: {
     hackaruApiTimeout: process.env.HACKARU_API_TIMEOUT,
     hackaruTermsUrl: process.env.HACKARU_TOS_AND_PRIVACY_URL,
@@ -201,11 +201,11 @@ module.exports = {
     sentryProject: process.env.SENTRY_PROJECT,
     sentryRelease: process.env.SENTRY_RELEASE,
     delightedToken: process.env.DELIGHTED_TOKEN,
-    gtm: {
-      id: process.env.GOOGLE_TAG_MANAGER_ID,
-    },
     axios: {
       browserBaseURL: process.env.HACKARU_API_URL,
+    },
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID,
     },
   },
   styleResources: {
@@ -215,8 +215,21 @@ module.exports = {
     progress: false,
     debug: process.env.NODE_ENV !== 'production',
   },
-  gtm: {
-    debug: process.env.NODE_ENV !== 'production',
+  googleAnalytics: {
+    debug: {
+      enabled: process.env.NODE_ENV !== 'production',
+      sendHitTask: false,
+    },
+    autoTracking: {
+      transformQueryString: false,
+      pageviewTemplate(route) {
+        return {
+          page: route.path,
+          title: document.title,
+          location: undefined,
+        };
+      },
+    },
   },
   sentry: {
     disableClientSide: true,

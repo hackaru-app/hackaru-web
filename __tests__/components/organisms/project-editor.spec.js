@@ -6,13 +6,18 @@ import testId from '@/__tests__/__helpers__/test-id';
 describe('ProjectEditor', () => {
   let wrapper;
 
+  const $ga = { event: jest.fn() };
   const $store = new Store({});
+
   const factory = () =>
     shallowMount(ProjectEditor, {
       propsData: {
         params: {},
       },
-      mocks: { $store },
+      mocks: {
+        $ga,
+        $store,
+      },
     });
 
   beforeEach(() => {
@@ -39,6 +44,13 @@ describe('ProjectEditor', () => {
       });
     });
 
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Projects',
+        eventAction: 'update',
+      });
+    });
+
     it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
@@ -59,6 +71,13 @@ describe('ProjectEditor', () => {
       expect($store.dispatch).toHaveBeenCalledWith('projects/add', {
         name: 'Development',
         color: '#ff0',
+      });
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Projects',
+        eventAction: 'add',
       });
     });
 
@@ -84,6 +103,13 @@ describe('ProjectEditor', () => {
       expect($store.dispatch).toHaveBeenCalledWith('projects/delete', 1);
     });
 
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Projects',
+        eventAction: 'delete',
+      });
+    });
+
     it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
@@ -103,6 +129,10 @@ describe('ProjectEditor', () => {
 
     it('does not dispatch projects/deleteProject', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('does not send ga event', () => {
+      expect($ga.event).not.toHaveBeenCalledWith();
     });
   });
 });
