@@ -89,11 +89,9 @@ export default {
   },
   methods: {
     async decide(action) {
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'OAuth',
         eventAction: action,
-        name: `${action}_oauth`,
       });
       const data = await this.$store.dispatch(`oauth/${action}`, {
         clientId: this.$route.query['client_id'],

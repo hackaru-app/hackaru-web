@@ -6,6 +6,7 @@ import testId from '@/__tests__/__helpers__/test-id';
 describe('Authorize', () => {
   let wrapper;
 
+  const $ga = { event: jest.fn() };
   const $store = new Store({
     getters: {
       'auth/email': 'example@example.com',
@@ -22,6 +23,7 @@ describe('Authorize', () => {
   const factory = () =>
     shallowMount(Authorize, {
       mocks: {
+        $ga,
         $store,
         $router,
         $route: {
@@ -66,10 +68,14 @@ describe('Authorize', () => {
       wrapper = factory();
     });
 
-    it('redirect to callback url', () => {
+    it('redirects to callback url', () => {
       expect(window.location.assign).toHaveBeenCalledWith(
         'http://example.com/callback'
       );
+    });
+
+    it('does not send ga event', () => {
+      expect($ga.event).not.toHaveBeenCalledWith();
     });
   });
 
@@ -79,11 +85,15 @@ describe('Authorize', () => {
       wrapper = factory();
     });
 
-    it('redirect to default callback url', () => {
+    it('redirects to default callback url', () => {
       expect($router.push).toHaveBeenCalledWith({
         path: '/oauth/callback',
         query: { error_description: 'denied' },
       });
+    });
+
+    it('does not send ga event', () => {
+      expect($ga.event).not.toHaveBeenCalledWith();
     });
   });
 
@@ -104,10 +114,17 @@ describe('Authorize', () => {
       });
     });
 
-    it('redirect to callback url', () => {
+    it('redirects to callback url', () => {
       expect(window.location.assign).toHaveBeenCalledWith(
         'http://example.com/callback'
       );
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'OAuth',
+        eventAction: 'allow',
+      });
     });
   });
 
@@ -118,10 +135,17 @@ describe('Authorize', () => {
       wrapper.find(testId('allow-button')).vm.$emit('click');
     });
 
-    it('redirect to default callback url', () => {
+    it('redirects to default callback url', () => {
       expect($router.push).toHaveBeenCalledWith({
         path: '/oauth/callback',
         query: { access_token: 'accessToken' },
+      });
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'OAuth',
+        eventAction: 'allow',
       });
     });
   });
@@ -143,10 +167,17 @@ describe('Authorize', () => {
       });
     });
 
-    it('redirect to callback url', () => {
+    it('redirects to callback url', () => {
       expect(window.location.assign).toHaveBeenCalledWith(
         'http://example.com/callback'
       );
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'OAuth',
+        eventAction: 'deny',
+      });
     });
   });
 
@@ -167,10 +198,17 @@ describe('Authorize', () => {
       });
     });
 
-    it('redirect to default callback url', () => {
+    it('redirects to default callback url', () => {
       expect($router.push).toHaveBeenCalledWith({
         path: '/oauth/callback',
         query: { error_description: 'denied' },
+      });
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'OAuth',
+        eventAction: 'deny',
       });
     });
   });

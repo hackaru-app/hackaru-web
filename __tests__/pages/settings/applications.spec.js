@@ -6,6 +6,7 @@ import testId from '@/__tests__/__helpers__/test-id';
 describe('Applications', () => {
   let wrapper;
 
+  const $ga = { event: jest.fn() };
   const $store = new Store({
     getters: {
       'applications/all': [
@@ -28,6 +29,7 @@ describe('Applications', () => {
   const factory = () =>
     shallowMount(Applications, {
       mocks: {
+        $ga,
         $store,
       },
     });
@@ -51,6 +53,13 @@ describe('Applications', () => {
     it('dispatches applications/delete', () => {
       expect($store.dispatch).toHaveBeenCalledWith('applications/delete', 1);
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Applications',
+        eventAction: 'delete',
+      });
+    });
   });
 
   describe('when click delete-button but confirm is false', () => {
@@ -65,6 +74,10 @@ describe('Applications', () => {
         'applications/delete',
         1
       );
+    });
+
+    it('does not send ga event', () => {
+      expect($ga.event).not.toHaveBeenCalledWith();
     });
   });
 });

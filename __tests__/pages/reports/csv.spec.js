@@ -5,11 +5,13 @@ import { parseISO } from 'date-fns';
 import fileSaver from 'file-saver';
 
 describe('Csv', () => {
+  const $ga = { event: jest.fn() };
   const $store = new Store();
 
   const factory = () =>
     shallowMount(Csv, {
       mocks: {
+        $ga,
         $store,
         $route: {
           query: {
@@ -38,8 +40,15 @@ describe('Csv', () => {
       });
     });
 
-    it('save csv', () => {
+    it('saves csv', () => {
       expect(fileSaver.saveAs).toHaveBeenCalledWith(new Blob(), 'report.csv');
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'CsvReports',
+        eventAction: 'export',
+      });
     });
   });
 });

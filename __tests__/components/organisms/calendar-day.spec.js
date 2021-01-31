@@ -7,6 +7,7 @@ import testId from '@/__tests__/__helpers__/test-id';
 describe('CalendarDay', () => {
   let wrapper;
 
+  const $ga = { event: jest.fn() };
   const $store = new Store({
     getters: {
       'activities/getCalendar': () => [
@@ -42,6 +43,7 @@ describe('CalendarDay', () => {
     shallowMount(CalendarDay, {
       mocks: {
         $store,
+        $ga,
         $mezr: {
           offset: () => ({
             top: 50,
@@ -114,6 +116,13 @@ describe('CalendarDay', () => {
         stoppedAt: parseISO('2019-01-01T01:20:00'),
       });
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'add',
+      });
+    });
   });
 
   describe('when cancel ghost-activity', () => {
@@ -135,6 +144,13 @@ describe('CalendarDay', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         startedAt: parseISO('2019-01-01T01:00:00'),
         stoppedAt: parseISO('2019-01-01T01:20:00'),
+      });
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'add',
       });
     });
   });

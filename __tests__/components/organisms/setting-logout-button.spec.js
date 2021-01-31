@@ -6,10 +6,13 @@ import testId from '@/__tests__/__helpers__/test-id';
 describe('SettingLogoutButton', () => {
   let wrapper;
 
+  const $ga = { event: jest.fn() };
   const $store = new Store({});
+
   const factory = () =>
     shallowMount(SettingLogoutButton, {
       mocks: {
+        $ga,
         $store,
       },
     });
@@ -28,6 +31,13 @@ describe('SettingLogoutButton', () => {
     it('dispatches auth/logout', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/logout');
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Accounts',
+        eventAction: 'logout',
+      });
+    });
   });
 
   describe('when click logout-button but confirm is false', () => {
@@ -39,6 +49,10 @@ describe('SettingLogoutButton', () => {
 
     it('does not dispatch ', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('does not send ga event', () => {
+      expect($ga.event).not.toHaveBeenCalledWith();
     });
   });
 });

@@ -114,12 +114,9 @@ export default {
       });
       if (success) {
         this.$emit('pop');
-        this.$gtm.push({
-          event: 'interaction',
+        this.$ga.event({
           eventCategory: 'Projects',
           eventAction: 'add',
-          name: 'add_project',
-          component: 'project_editor',
         });
         this.$store.dispatch('toast/success', this.$t('added'));
       }
@@ -132,12 +129,9 @@ export default {
       });
       if (success) {
         this.$emit('pop');
-        this.$gtm.push({
-          event: 'interaction',
+        this.$ga.event({
           eventCategory: 'Projects',
           eventAction: 'update',
-          name: 'update_project',
-          component: 'project_editor',
         });
         this.$store.dispatch('toast/success', this.$t('updated'));
       }
@@ -147,12 +141,9 @@ export default {
       const success = await this.$store.dispatch('projects/delete', this.id);
       if (success) {
         this.$emit('pop');
-        this.$gtm.push({
-          event: 'interaction',
+        this.$ga.event({
           eventCategory: 'Projects',
           eventAction: 'delete',
-          name: 'delete_project',
-          component: 'project_editor',
         });
         this.$store.dispatch('toast/success', this.$t('deleted'));
       }

@@ -31,11 +31,9 @@ export default {
       });
       if (data) {
         this.loading = false;
-        this.$gtm.push({
-          event: 'interaction',
-          eventCategory: 'ReportPdf',
+        this.$ga.event({
+          eventCategory: 'PdfReports',
           eventAction: 'export',
-          name: 'export_report_to_pdf',
         });
         const blob = new Blob([data], { type: 'application/pdf' });
         saveAs(blob, 'report.pdf');

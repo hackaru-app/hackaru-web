@@ -226,12 +226,9 @@ export default {
         id: this.id,
         ...payload,
       });
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'Activities',
         eventAction: 'update',
-        name: 'update_activity',
-        component: 'calendar_activity',
       });
     },
   },

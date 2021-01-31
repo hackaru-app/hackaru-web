@@ -68,11 +68,9 @@ export default {
       return this.$store.dispatch('activity-calendar/createUrl');
     },
     async addToGoogleCalendar() {
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'GoogleCalendars',
         eventAction: 'add',
-        name: 'add_to_google_calendar',
       });
       const childWindow = window.open('about:blank');
       if (!(await this.createUrl())) return;
@@ -85,20 +83,16 @@ export default {
       window.location.assign(this.webcalUrl);
     },
     addToAppleCalendar() {
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'AppleCalendars',
         eventAction: 'add',
-        name: 'add_to_apple_calendar',
       });
       this.navigateWebcal();
     },
     addToOutlook() {
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'OutlookCalendars',
         eventAction: 'add',
-        name: 'add_to_outlook',
       });
       this.navigateWebcal();
     },

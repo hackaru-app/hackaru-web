@@ -34,12 +34,9 @@ export default {
   methods: {
     async logout() {
       if (!window.confirm(this.$t('confirms'))) return;
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'Accounts',
         eventAction: 'logout',
-        name: 'logout',
-        component: 'setting_logout_button',
       });
       this.$store.dispatch('auth/logout');
     },

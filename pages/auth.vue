@@ -136,12 +136,9 @@ export default {
         password: this.password,
       });
       if (success) {
-        this.$gtm.push({
-          event: 'interaction',
-          eventCategory: 'Account',
+        this.$ga.event({
+          eventCategory: 'Accounts',
           eventAction: 'login',
-          name: 'login',
-          method: 'email',
         });
         this.goBack();
       }
@@ -154,12 +151,9 @@ export default {
         locale: this.$i18n.locale,
       });
       if (success) {
-        this.$gtm.push({
-          event: 'interaction',
-          eventCategory: 'Account',
+        this.$ga.event({
+          eventCategory: 'Accounts',
           eventAction: 'signUp',
-          name: 'sign_up',
-          method: 'email',
         });
         this.goBack();
       }

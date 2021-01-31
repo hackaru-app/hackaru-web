@@ -127,12 +127,9 @@ export default {
         startedAt,
         stoppedAt: addMinutes(startedAt, this.$toMin(this.ghostHeight)),
       });
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'Activities',
         eventAction: 'add',
-        name: 'add_activity',
-        component: 'calendar_day',
       });
     },
   },

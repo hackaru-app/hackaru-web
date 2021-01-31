@@ -9,6 +9,7 @@ describe('Integrations', () => {
   delete window.location;
   window.location = { assign: jest.fn() };
 
+  const $ga = { event: jest.fn() };
   const $store = new Store({
     getters: {
       'activity-calendar/googleCalendarUrl': 'https://example.com',
@@ -18,7 +19,10 @@ describe('Integrations', () => {
 
   const factory = () =>
     shallowMount(Integrations, {
-      mocks: { $store },
+      mocks: {
+        $ga,
+        $store,
+      },
     });
 
   beforeEach(() => {
@@ -43,6 +47,13 @@ describe('Integrations', () => {
 
     it('navigate to google calendar url', () => {
       expect(assign).toHaveBeenCalledWith('https://example.com');
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'GoogleCalendars',
+        eventAction: 'add',
+      });
     });
   });
 
@@ -79,6 +90,13 @@ describe('Integrations', () => {
         'webcal://example.com'
       );
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'AppleCalendars',
+        eventAction: 'add',
+      });
+    });
   });
 
   describe('when click outlook button', () => {
@@ -98,6 +116,13 @@ describe('Integrations', () => {
       expect(window.location.assign).toHaveBeenCalledWith(
         'webcal://example.com'
       );
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'OutlookCalendars',
+        eventAction: 'add',
+      });
     });
   });
 });

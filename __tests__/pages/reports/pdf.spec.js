@@ -5,11 +5,13 @@ import { parseISO } from 'date-fns';
 import fileSaver from 'file-saver';
 
 describe('Pdf', () => {
+  const $ga = { event: jest.fn() };
   const $store = new Store();
 
   const factory = () =>
     shallowMount(Pdf, {
       mocks: {
+        $ga,
         $store,
         $route: {
           query: {
@@ -38,8 +40,15 @@ describe('Pdf', () => {
       });
     });
 
-    it('save pdf', () => {
+    it('saves pdf', () => {
       expect(fileSaver.saveAs).toHaveBeenCalledWith(new Blob(), 'report.pdf');
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'PdfReports',
+        eventAction: 'export',
+      });
     });
   });
 });

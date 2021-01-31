@@ -8,6 +8,7 @@ import testId from '@/__tests__/__helpers__/test-id';
 describe('CalendarActivity', () => {
   let wrapper;
 
+  const $ga = { event: jest.fn() };
   const $store = new Store({});
   const $nuxt = { $emit: jest.fn() };
 
@@ -16,6 +17,7 @@ describe('CalendarActivity', () => {
       mocks: {
         $store,
         $nuxt,
+        $ga,
       },
       propsData: {
         id: 1,
@@ -119,6 +121,13 @@ describe('CalendarActivity', () => {
         stoppedAt: parseISO('2019-01-02T02:23:00'),
       });
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'update',
+      });
+    });
   });
 
   describe('when drag end but does not has overlapped-day', () => {
@@ -134,6 +143,10 @@ describe('CalendarActivity', () => {
 
     it('does not dispatch activities/update', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('does not send ga event', () => {
+      expect($ga.event).not.toHaveBeenCalledWith();
     });
   });
 
@@ -182,6 +195,13 @@ describe('CalendarActivity', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         stoppedAt: parseISO('2019-01-01T02:23:45'),
+      });
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'update',
       });
     });
   });

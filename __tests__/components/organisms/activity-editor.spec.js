@@ -7,7 +7,9 @@ import testId from '@/__tests__/__helpers__/test-id';
 describe('ActivityEditor', () => {
   let wrapper;
 
+  const $ga = { event: jest.fn() };
   const $store = new Store({});
+
   const factory = () =>
     shallowMount(ActivityEditor, {
       propsData: {
@@ -15,6 +17,7 @@ describe('ActivityEditor', () => {
       },
       mocks: {
         $store,
+        $ga,
       },
       data() {
         return {
@@ -49,6 +52,13 @@ describe('ActivityEditor', () => {
         description: 'Create a database.',
         startedAt: '2019-01-01T00:12:34',
         stoppedAt: '2019-01-02T00:12:34',
+      });
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'update',
       });
     });
 
@@ -87,6 +97,13 @@ describe('ActivityEditor', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/delete', 1);
     });
 
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Activities',
+        eventAction: 'delete',
+      });
+    });
+
     it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
@@ -101,6 +118,10 @@ describe('ActivityEditor', () => {
 
     it('does not dispatch activities/delete', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('does not send ga event', () => {
+      expect($ga.event).not.toHaveBeenCalled();
     });
   });
 

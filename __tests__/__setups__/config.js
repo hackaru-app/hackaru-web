@@ -1,7 +1,6 @@
 import { config, RouterLinkStub } from '@vue/test-utils';
 
 config.mocks['$t'] = () => {};
-config.mocks['$gtm'] = { push: () => {} };
 config.mocks['$toast'] = { success: () => {} };
 config.mocks['$route'] = { fullPath: '' };
 config.mocks['$toPx'] = (min) => min;

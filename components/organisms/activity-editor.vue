@@ -127,12 +127,9 @@ export default {
           this.$t(this.id || this.stoppedAt ? 'saved' : 'started')
         );
         this.$emit('pop');
-        this.$gtm.push({
-          event: 'interaction',
+        this.$ga.event({
           eventCategory: 'Activities',
           eventAction: 'update',
-          name: 'update_activity',
-          component: 'activity_editor',
         });
       }
     },
@@ -140,12 +137,9 @@ export default {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
-      this.$gtm.push({
-        event: 'interaction',
+      this.$ga.event({
         eventCategory: 'Activities',
         eventAction: 'delete',
-        name: 'delete_activity',
-        component: 'activity_editor',
       });
       this.$emit('pop');
     },
