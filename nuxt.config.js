@@ -218,7 +218,7 @@ module.exports = {
   googleAnalytics: {
     debug: {
       enabled: process.env.NODE_ENV !== 'production',
-      sendHitTask: false,
+      sendHitTask: process.env.NODE_ENV === 'production',
     },
     autoTracking: {
       transformQueryString: false,
