@@ -21,7 +21,7 @@ export default {
     userId: {
       immediate: true,
       handler() {
-        if (this.$ga) this.$ga.set({ userId: this.userId });
+        if (this.$ga) this.$ga.set('userId', this.userId);
         this.$sentry.configureScope((scope) => {
           scope.setUser({ id: this.userId });
         });
