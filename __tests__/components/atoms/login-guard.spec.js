@@ -65,7 +65,7 @@ describe('LoginGuard', () => {
     });
 
     it('saves userId to google analytics', () => {
-      expect($ga.set).toHaveBeenCalledWith({ userId: 1 });
+      expect($ga.set).toHaveBeenCalledWith('userId', 1);
     });
   });
 });
