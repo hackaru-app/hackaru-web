@@ -92,7 +92,7 @@
     "lint-staged": "^10.5.3",
     "match-media-mock": "^0.1.1",
     "mockdate": "^3.0.2",
-    "prettier": "^2.0.5",
+    "prettier": "^2.2.1",
     "vue-jest": "^3.0.5",
     "vuex-mock-store": "^0.0.7"
   },
