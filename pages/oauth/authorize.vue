@@ -59,6 +59,18 @@ import ContentHeader from '@/components/organisms/content-header';
 import Highlight from '@/components/atoms/highlight';
 import { mapGetters } from 'vuex';
 
+function extractQuery(query) {
+  return {
+    clientId: query.client_id,
+    responseType: query.response_type,
+    redirectUri: query.redirect_uri,
+    scope: query.scope,
+    state: query.state,
+    codeChallenge: query.code_challenge,
+    codeChallengeMethod: query.code_challenge_method,
+  };
+}
+
 export default {
   layout: 'auth',
   components: {
@@ -73,47 +85,42 @@ export default {
   },
   computed: {
     ...mapGetters({
+      decided: 'oauth/decided',
+      redirectUri: 'oauth/redirectUri',
+      redirectQuery: 'oauth/redirectQuery',
       client: 'oauth/client',
       email: 'auth/email',
     }),
   },
-  async mounted() {
-    const data = await this.$store.dispatch('oauth/fetchClient', {
-      clientId: this.$route.query['client_id'],
-      responseType: this.$route.query['response_type'],
-      redirectUri: this.$route.query['redirect_uri'],
-      scope: this.$route.query['scope'],
-      state: this.$route.query.state,
-    });
-    this.callback(data);
+  watch: {
+    decided() {
+      if (this.decided) {
+        this.callback();
+      }
+    },
+  },
+  mounted() {
+    const query = extractQuery(this.$route.query);
+    this.$store.dispatch('oauth/fetchClient', query);
   },
   methods: {
-    async decide(action) {
+    decide(action) {
       this.$ga.event({
         eventCategory: 'OAuth',
         eventAction: action,
       });
-      const data = await this.$store.dispatch(`oauth/${action}`, {
-        clientId: this.$route.query['client_id'],
-        responseType: this.$route.query['response_type'],
-        redirectUri: this.$route.query['redirect_uri'],
-        scope: this.$route.query['scope'],
-        state: this.$route.query.state,
-      });
-      this.callback(data);
+      const query = extractQuery(this.$route.query);
+      this.$store.dispatch(`oauth/${action}`, query);
     },
-    callback(data) {
-      if (!data) return;
-      if (data.accessToken || data.errorDescription) {
-        return this.$router.push({
-          path: '/oauth/callback',
-          query: {
-            access_token: data.accessToken,
-            error_description: data.errorDescription,
-          },
+    callback() {
+      if (this.redirectUri) {
+        window.location.assign(this.redirectUri);
+      } else {
+        this.$router.push({
+          path: this.localePath('oauth/callback'),
+          query: this.redirectQuery,
         });
       }
-      window.location.assign(data);
     },
   },
 };
