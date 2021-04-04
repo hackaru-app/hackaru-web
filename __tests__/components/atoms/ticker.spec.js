@@ -15,9 +15,9 @@ describe('Ticker', () => {
     });
 
   describe('when stoppedAt is empty', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setProps({
+      await wrapper.setProps({
         startedAt: '2019-01-31T00:23:45',
         stoppedAt: undefined,
       });
@@ -30,9 +30,9 @@ describe('Ticker', () => {
   });
 
   describe('when stoppedAt is defined', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setProps({
+      await wrapper.setProps({
         startedAt: '2019-01-31T02:23:45',
         stoppedAt: '2019-01-31T04:23:45',
       });

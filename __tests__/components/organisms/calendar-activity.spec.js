@@ -104,9 +104,9 @@ describe('CalendarActivity', () => {
   });
 
   describe('when drag end', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       wrapper = factory();
-      wrapper.setProps({ overlappedDay: '2019-01-02' });
+      await wrapper.setProps({ overlappedDay: '2019-01-02' });
       wrapper.findComponent({ ref: 'dragger' }).vm.$emit('end');
     });
 
