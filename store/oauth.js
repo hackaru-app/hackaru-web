@@ -1,7 +1,11 @@
 export const SET_CLIENT = 'SET_CLIENT';
+export const SET_DECIDED_RESPONSE = 'SET_DECIDED_RESPONSE';
 
 export const state = () => ({
+  decided: false,
   client: {},
+  redirectUri: '',
+  redirectQuery: {},
 });
 
 export const actions = {
@@ -16,17 +20,19 @@ export const actions = {
           redirectUri: payload.redirectUri,
           scope: payload.scope,
           state: payload.state,
+          codeChallenge: payload.codeChallenge,
+          codeChallengeMethod: payload.codeChallengeMethod,
         },
       },
       { root: true }
     );
     if (res.data.status === 'redirect') {
-      return res.data.redirectUri;
+      commit(SET_DECIDED_RESPONSE, res.data);
     } else {
       commit(SET_CLIENT, res.data);
     }
   },
-  async allow(_, payload) {
+  async allow({ commit }, payload) {
     const res = await this.$api.request(
       {
         url: '/v1/oauth/authorize',
@@ -38,13 +44,15 @@ export const actions = {
           redirectUri: payload.redirectUri,
           scope: payload.scope,
           state: payload.state,
+          codeChallenge: payload.codeChallenge,
+          codeChallengeMethod: payload.codeChallengeMethod,
         },
       },
       { root: true }
     );
-    return res.data.redirectUri;
+    commit(SET_DECIDED_RESPONSE, res.data);
   },
-  async deny(_, payload) {
+  async deny({ commit }, payload) {
     const res = await this.$api.request({
       url: '/v1/oauth/authorize',
       withCredentials: true,
@@ -58,16 +66,13 @@ export const actions = {
         redirectUri: payload.redirectUri,
         scope: payload.scope,
         state: payload.state,
+        codeChallenge: payload.codeChallenge,
+        codeChallengeMethod: payload.codeChallengeMethod,
       },
     });
-    return res.data.redirectUri || getDescriptionFromError(res);
+    commit(SET_DECIDED_RESPONSE, res.data);
   },
 };
-
-function getDescriptionFromError(res) {
-  const errorDescription = res.data.errorDescription;
-  return errorDescription && { errorDescription };
-}
 
 export const mutations = {
   [SET_CLIENT](state, payload) {
@@ -78,10 +83,34 @@ export const mutations = {
       state: payload.state,
     };
   },
+  [SET_DECIDED_RESPONSE](state, payload) {
+    if (typeof payload.redirectUri === 'string') {
+      state.decided = true;
+      state.redirectUri = payload.redirectUri;
+      state.redirectQuery = {};
+    } else {
+      state.decided = true;
+      state.redirectUri = '';
+      state.redirectQuery = {
+        code: payload.redirectUri?.code,
+        access_token: payload.redirectUri?.accessToken,
+        error_description: payload.errorDescription,
+      };
+    }
+  },
 };
 
 export const getters = {
   client(state) {
     return state.client;
+  },
+  decided(state) {
+    return state.decided;
+  },
+  redirectUri(state) {
+    return state.redirectUri;
+  },
+  redirectQuery(state) {
+    return state.redirectQuery;
   },
 };

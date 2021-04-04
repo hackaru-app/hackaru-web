@@ -10,10 +10,11 @@ describe('Authorize', () => {
   const $store = new Store({
     getters: {
       'auth/email': 'example@example.com',
+      'oauth/decided': false,
       'oauth/client': {
         name: 'ExampleApp',
         scopes: ['activities:read'],
-        responseType: 'token',
+        responseType: 'code',
         state: 'state',
       },
     },
@@ -32,8 +33,10 @@ describe('Authorize', () => {
             secret: 'secret',
             redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
             state: 'state',
-            response_type: 'token',
+            response_type: 'code',
             scope: ['activities:read'],
+            code_challenge: 'codeChallenge',
+            code_challenge_method: 'S256',
           },
         },
       },
@@ -55,51 +58,17 @@ describe('Authorize', () => {
       expect($store.dispatch).toHaveBeenCalledWith('oauth/fetchClient', {
         clientId: 'clientId',
         scope: ['activities:read'],
-        responseType: 'token',
+        responseType: 'code',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
         state: 'state',
+        codeChallenge: 'codeChallenge',
+        codeChallengeMethod: 'S256',
       });
     });
   });
 
-  describe('when mount component but already allowed', () => {
+  describe('when click allow-button', () => {
     beforeEach(() => {
-      $store.dispatch.mockReturnValue('http://example.com/callback');
-      wrapper = factory();
-    });
-
-    it('redirects to callback url', () => {
-      expect(window.location.assign).toHaveBeenCalledWith(
-        'http://example.com/callback'
-      );
-    });
-
-    it('does not send ga event', () => {
-      expect($ga.event).not.toHaveBeenCalledWith();
-    });
-  });
-
-  describe('when mount component but already denied', () => {
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue({ errorDescription: 'denied' });
-      wrapper = factory();
-    });
-
-    it('redirects to default callback url', () => {
-      expect($router.push).toHaveBeenCalledWith({
-        path: '/oauth/callback',
-        query: { error_description: 'denied' },
-      });
-    });
-
-    it('does not send ga event', () => {
-      expect($ga.event).not.toHaveBeenCalledWith();
-    });
-  });
-
-  describe('when click allow-button and returns callback url', () => {
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue('http://example.com/callback');
       wrapper = factory();
       wrapper.find(testId('allow-button')).vm.$emit('click');
     });
@@ -108,37 +77,11 @@ describe('Authorize', () => {
       expect($store.dispatch).toHaveBeenCalledWith('oauth/allow', {
         clientId: 'clientId',
         scope: ['activities:read'],
-        responseType: 'token',
+        responseType: 'code',
         redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
         state: 'state',
-      });
-    });
-
-    it('redirects to callback url', () => {
-      expect(window.location.assign).toHaveBeenCalledWith(
-        'http://example.com/callback'
-      );
-    });
-
-    it('sends ga event', () => {
-      expect($ga.event).toHaveBeenCalledWith({
-        eventCategory: 'OAuth',
-        eventAction: 'allow',
-      });
-    });
-  });
-
-  describe('when click allow-button and returns access token', () => {
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue({ accessToken: 'accessToken' });
-      wrapper = factory();
-      wrapper.find(testId('allow-button')).vm.$emit('click');
-    });
-
-    it('redirects to default callback url', () => {
-      expect($router.push).toHaveBeenCalledWith({
-        path: '/oauth/callback',
-        query: { access_token: 'accessToken' },
+        codeChallenge: 'codeChallenge',
+        codeChallengeMethod: 'S256',
       });
     });
 
@@ -150,58 +93,97 @@ describe('Authorize', () => {
     });
   });
 
-  describe('when click deny-button and returns callback url', () => {
+  describe('when sets redirectUri', () => {
     beforeEach(() => {
-      $store.dispatch.mockReturnValue('http://example.com/callback');
       wrapper = factory();
-      wrapper.find(testId('deny-button')).vm.$emit('click');
-    });
-
-    it('dispatches oauth/deny', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('oauth/deny', {
-        clientId: 'clientId',
-        scope: ['activities:read'],
-        responseType: 'token',
-        redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        state: 'state',
-      });
+      $store.getters['oauth/decided'] = true;
+      $store.getters['oauth/redirectUri'] = 'http://example.com';
     });
 
     it('redirects to callback url', () => {
-      expect(window.location.assign).toHaveBeenCalledWith(
-        'http://example.com/callback'
-      );
-    });
-
-    it('sends ga event', () => {
-      expect($ga.event).toHaveBeenCalledWith({
-        eventCategory: 'OAuth',
-        eventAction: 'deny',
-      });
+      expect(window.location.assign).toHaveBeenCalledWith('http://example.com');
     });
   });
 
-  describe('when click deny-button and returns error description', () => {
+  describe('when sets code', () => {
     beforeEach(() => {
-      $store.dispatch.mockReturnValue({ errorDescription: 'denied' });
       wrapper = factory();
-      wrapper.find(testId('deny-button')).vm.$emit('click');
-    });
-
-    it('dispatches oauth/deny', () => {
-      expect($store.dispatch).toHaveBeenCalledWith('oauth/deny', {
-        clientId: 'clientId',
-        scope: ['activities:read'],
-        responseType: 'token',
-        redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
-        state: 'state',
-      });
+      $store.getters['oauth/decided'] = true;
+      $store.getters['oauth/redirectUri'] = '';
+      $store.getters['oauth/redirectQuery'] = {
+        code: 'code',
+        accessToken: '',
+        errorDescription: '',
+      };
     });
 
     it('redirects to default callback url', () => {
       expect($router.push).toHaveBeenCalledWith({
-        path: '/oauth/callback',
-        query: { error_description: 'denied' },
+        path: '/en/oauth/callback',
+        query: { accessToken: '', code: 'code', errorDescription: '' },
+      });
+    });
+  });
+
+  describe('when sets accessToken', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      $store.getters['oauth/decided'] = true;
+      $store.getters['oauth/redirectUri'] = '';
+      $store.getters['oauth/redirectQuery'] = {
+        code: '',
+        accessToken: 'accessToken',
+        errorDescription: '',
+      };
+    });
+
+    it('redirects to default callback url', () => {
+      expect($router.push).toHaveBeenCalledWith({
+        path: '/en/oauth/callback',
+        query: { accessToken: 'accessToken', code: '', errorDescription: '' },
+      });
+    });
+  });
+
+  describe('when sets errorDescription', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      $store.getters['oauth/decided'] = true;
+      $store.getters['oauth/redirectUri'] = '';
+      $store.getters['oauth/redirectQuery'] = {
+        code: '',
+        accessToken: '',
+        errorDescription: 'errorDescription',
+      };
+    });
+
+    it('redirects to default callback url', () => {
+      expect($router.push).toHaveBeenCalledWith({
+        path: '/en/oauth/callback',
+        query: {
+          accessToken: '',
+          code: '',
+          errorDescription: 'errorDescription',
+        },
+      });
+    });
+  });
+
+  describe('when click deny-button', () => {
+    beforeEach(() => {
+      wrapper = factory();
+      wrapper.find(testId('deny-button')).vm.$emit('click');
+    });
+
+    it('dispatches oauth/deny', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('oauth/deny', {
+        clientId: 'clientId',
+        scope: ['activities:read'],
+        responseType: 'code',
+        redirectUri: 'urn:ietf:wg:oauth:2.0:oob',
+        state: 'state',
+        codeChallenge: 'codeChallenge',
+        codeChallengeMethod: 'S256',
       });
     });
 
