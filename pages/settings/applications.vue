@@ -89,8 +89,8 @@ export default {
       applications: 'applications/all',
     }),
   },
-  async mounted() {
-    await this.$store.dispatch('applications/fetch');
+  mounted() {
+    this.$store.dispatch('applications/fetch');
   },
   methods: {
     deleteApplication(id) {
