@@ -1,7 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Applications from '@/pages/settings/applications';
-import testId from '@/__tests__/__helpers__/test-id';
+import Applications from '~/pages/settings/applications';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('Applications', () => {
   let wrapper;

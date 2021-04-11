@@ -1,4 +1,4 @@
-import { mutations } from '@/store/activity-calendar';
+import { mutations } from '~/store/activity-calendar';
 
 describe('Mutations', () => {
   describe('when commit SET_TOKEN_AND_USER_ID', () => {

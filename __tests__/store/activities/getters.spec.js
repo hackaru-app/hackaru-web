@@ -1,5 +1,5 @@
 import MockDate from 'mockdate';
-import { getters } from '@/store/activities';
+import { getters } from '~/store/activities';
 import { parseISO } from 'date-fns';
 
 describe('Getters', () => {

@@ -1,5 +1,5 @@
 <i18n
-  src="@/assets/locales/components/organisms/activity-day-group.json"
+  src="~/assets/locales/components/organisms/activity-day-group.json"
 ></i18n>
 
 <template>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import ActivityItem from '@/components/organisms/activity-item';
+import ActivityItem from '~/components/organisms/activity-item';
 import { differenceInDays, startOfDay, parseISO, format } from 'date-fns';
 
 export default {

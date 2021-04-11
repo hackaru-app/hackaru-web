@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
-import DatetimePicker from '@/components/molecules/datetime-picker';
+import DatetimePicker from '~/components/molecules/datetime-picker';
 import { formatISO, parseISO } from 'date-fns';
-import testId from '@/__tests__/__helpers__/test-id';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('DatetimePicker', () => {
   let wrapper;

@@ -1,7 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import SettingLogoutButton from '@/components/organisms/setting-logout-button';
-import testId from '@/__tests__/__helpers__/test-id';
+import SettingLogoutButton from '~/components/organisms/setting-logout-button';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('SettingLogoutButton', () => {
   let wrapper;

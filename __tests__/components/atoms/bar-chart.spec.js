@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import BarChart from '@/components/atoms/bar-chart';
+import BarChart from '~/components/atoms/bar-chart';
 
 describe('BarChart', () => {
   const factory = () =>

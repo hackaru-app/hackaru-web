@@ -1,4 +1,4 @@
-import { getters } from '@/store/reports';
+import { getters } from '~/store/reports';
 
 describe('Getters', () => {
   let result;

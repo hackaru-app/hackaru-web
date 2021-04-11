@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
-import SwipeMenu from '@/components/molecules/swipe-menu';
-import testId from '@/__tests__/__helpers__/test-id';
+import SwipeMenu from '~/components/molecules/swipe-menu';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('SwipeMenu', () => {
   let wrapper;

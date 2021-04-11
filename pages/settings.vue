@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/settings.json"></i18n>
+<i18n src="~/assets/locales/pages/settings.json"></i18n>
 
 <template>
   <section>
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import Tabs from '@/components/molecules/tabs';
-import ContentHeader from '@/components/organisms/content-header';
+import Tabs from '~/components/molecules/tabs';
+import ContentHeader from '~/components/organisms/content-header';
 
 const paths = ['', 'integrations', 'notifications', 'applications'];
 

@@ -1,7 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import MockDate from 'mockdate';
-import Default from '@/layouts/default';
+import Default from '~/layouts/default';
 
 describe('Default', () => {
   MockDate.set('2019-01-31T01:23:45');

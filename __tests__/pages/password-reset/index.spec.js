@@ -1,7 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Index from '@/pages/password-reset/index';
-import testId from '@/__tests__/__helpers__/test-id';
+import Index from '~/pages/password-reset/index';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('Index', () => {
   let wrapper;

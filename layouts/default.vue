@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import LoginGuard from '@/components/atoms/login-guard';
-import Toast from '@/components/molecules/toast';
-import PwaPopover from '@/components/organisms/pwa-popover';
-import SideBar from '@/components/organisms/side-bar';
-import NavModal from '@/components/organisms/nav-modal';
-import ActivityEditor from '@/components/organisms/activity-editor';
+import LoginGuard from '~/components/atoms/login-guard';
+import Toast from '~/components/molecules/toast';
+import PwaPopover from '~/components/organisms/pwa-popover';
+import SideBar from '~/components/organisms/side-bar';
+import NavModal from '~/components/organisms/nav-modal';
+import ActivityEditor from '~/components/organisms/activity-editor';
 import { mapGetters } from 'vuex';
 import { fromS } from 'hh-mm-ss';
 import { differenceInSeconds, parseISO } from 'date-fns';

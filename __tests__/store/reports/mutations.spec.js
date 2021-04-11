@@ -1,4 +1,4 @@
-import { mutations } from '@/store/reports';
+import { mutations } from '~/store/reports';
 
 describe('Mutations', () => {
   describe('when commit SET_REPORTS', () => {

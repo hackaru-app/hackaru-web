@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/calendar.json"></i18n>
+<i18n src="~/assets/locales/pages/calendar.json"></i18n>
 
 <template>
   <section>
@@ -53,11 +53,11 @@
 </template>
 
 <script>
-import CoachTooltip from '@/components/atoms/coach-tooltip';
-import DateHeader from '@/components/organisms/date-header';
-import LoopSlider from '@/components/organisms/loop-slider';
-import CalendarContent from '@/components/organisms/calendar-content';
-import CalendarDayHeader from '@/components/organisms/calendar-day-header';
+import CoachTooltip from '~/components/atoms/coach-tooltip';
+import DateHeader from '~/components/organisms/date-header';
+import LoopSlider from '~/components/organisms/loop-slider';
+import CalendarContent from '~/components/organisms/calendar-content';
+import CalendarDayHeader from '~/components/organisms/calendar-day-header';
 import {
   isSameDay,
   startOfWeek,

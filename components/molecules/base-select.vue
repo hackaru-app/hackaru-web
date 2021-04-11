@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import BaseButton from '@/components/atoms/base-button';
+import BaseButton from '~/components/atoms/base-button';
 
 export default {
   components: {

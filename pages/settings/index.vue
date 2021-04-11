@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import SettingEmailEditor from '@/components/organisms/setting-email-editor';
-import SettingPasswordEditor from '@/components/organisms/setting-password-editor';
-import SettingLocaleSelect from '@/components/organisms/setting-locale-select';
-import SettingTimeZoneSelect from '@/components/organisms/setting-time-zone-select';
-import SettingLogoutButton from '@/components/organisms/setting-logout-button';
-import SettingDeleteAccountButton from '@/components/organisms/setting-delete-account-button';
+import SettingEmailEditor from '~/components/organisms/setting-email-editor';
+import SettingPasswordEditor from '~/components/organisms/setting-password-editor';
+import SettingLocaleSelect from '~/components/organisms/setting-locale-select';
+import SettingTimeZoneSelect from '~/components/organisms/setting-time-zone-select';
+import SettingLogoutButton from '~/components/organisms/setting-logout-button';
+import SettingDeleteAccountButton from '~/components/organisms/setting-delete-account-button';
 
 export default {
   components: {

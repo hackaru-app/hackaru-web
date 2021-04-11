@@ -1,6 +1,6 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Pdf from '@/pages/reports/pdf';
+import Pdf from '~/pages/reports/pdf';
 import { parseISO } from 'date-fns';
 import fileSaver from 'file-saver';
 

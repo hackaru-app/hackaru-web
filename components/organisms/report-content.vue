@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/report-content.json"></i18n>
+<i18n src="~/assets/locales/components/organisms/report-content.json"></i18n>
 
 <template>
   <article class="report-content">
@@ -62,14 +62,14 @@
 </template>
 
 <script>
-import Tabs from '@/components/molecules/tabs';
-import DeltaIcon from '@/components/molecules/delta-icon';
-import Icon from '@/components/atoms/icon';
-import ColorScheme from '@/components/atoms/color-scheme';
-import ProjectName from '@/components/molecules/project-name';
-import ActivityName from '@/components/molecules/activity-name';
-import DoughnutChart from '@/components/atoms/doughnut-chart';
-import BarChart from '@/components/atoms/bar-chart';
+import Tabs from '~/components/molecules/tabs';
+import DeltaIcon from '~/components/molecules/delta-icon';
+import Icon from '~/components/atoms/icon';
+import ColorScheme from '~/components/atoms/color-scheme';
+import ProjectName from '~/components/molecules/project-name';
+import ActivityName from '~/components/molecules/activity-name';
+import DoughnutChart from '~/components/atoms/doughnut-chart';
+import BarChart from '~/components/atoms/bar-chart';
 import { mapGetters } from 'vuex';
 import { fromS } from 'hh-mm-ss';
 

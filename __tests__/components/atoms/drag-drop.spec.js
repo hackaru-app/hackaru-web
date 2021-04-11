@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import DragDrop from '@/components/atoms/drag-drop';
+import DragDrop from '~/components/atoms/drag-drop';
 
 describe('DragDrop', () => {
   let wrapper;

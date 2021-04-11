@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Icon from '@/components/atoms/icon';
+import Icon from '~/components/atoms/icon';
 
 export default {
   components: {

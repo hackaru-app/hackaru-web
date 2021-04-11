@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/settings/notification.json"></i18n>
+<i18n src="~/assets/locales/pages/settings/notification.json"></i18n>
 
 <template>
   <section>
@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import Heading from '@/components/atoms/heading';
-import Icon from '@/components/atoms/icon';
-import SettingBox from '@/components/molecules/setting-box';
+import Heading from '~/components/atoms/heading';
+import Icon from '~/components/atoms/icon';
+import SettingBox from '~/components/molecules/setting-box';
 import { mapGetters } from 'vuex';
 
 export default {

@@ -1,7 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Authorize from '@/pages/oauth/authorize';
-import testId from '@/__tests__/__helpers__/test-id';
+import Authorize from '~/pages/oauth/authorize';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('Authorize', () => {
   let wrapper;

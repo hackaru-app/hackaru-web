@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import DragDrop from '@/components/atoms/drag-drop';
+import DragDrop from '~/components/atoms/drag-drop';
 
 export default {
   components: {

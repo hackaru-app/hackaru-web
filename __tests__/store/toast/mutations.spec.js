@@ -1,4 +1,4 @@
-import { mutations } from '@/store/toast';
+import { mutations } from '~/store/toast';
 
 describe('Mutations', () => {
   describe('when commit SHOW_ERROR', () => {

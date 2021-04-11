@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/settings/integrations.json"></i18n>
+<i18n src="~/assets/locales/pages/settings/integrations.json"></i18n>
 
 <template>
   <section>
@@ -42,11 +42,11 @@
 </template>
 
 <script>
-import Heading from '@/components/atoms/heading';
-import Icon from '@/components/atoms/icon';
-import BaseInput from '@/components/atoms/base-input';
-import BaseButton from '@/components/atoms/base-button';
-import SettingBox from '@/components/molecules/setting-box';
+import Heading from '~/components/atoms/heading';
+import Icon from '~/components/atoms/icon';
+import BaseInput from '~/components/atoms/base-input';
+import BaseButton from '~/components/atoms/base-button';
+import SettingBox from '~/components/molecules/setting-box';
 import { mapGetters } from 'vuex';
 
 export default {

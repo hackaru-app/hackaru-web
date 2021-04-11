@@ -1,6 +1,6 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Delighted from '@/components/molecules/delighted';
+import Delighted from '~/components/molecules/delighted';
 
 describe('Delighted', () => {
   const $store = new Store({});

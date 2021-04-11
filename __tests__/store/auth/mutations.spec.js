@@ -1,4 +1,4 @@
-import { mutations } from '@/store/auth';
+import { mutations } from '~/store/auth';
 
 describe('Mutations', () => {
   describe('when commit LOGIN', () => {

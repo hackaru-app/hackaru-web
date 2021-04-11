@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/index.json"></i18n>
+<i18n src="~/assets/locales/pages/index.json"></i18n>
 
 <template>
   <section class="index">
@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import TimerForm from '@/components/organisms/timer-form';
-import ProjectName from '@/components/molecules/project-name';
-import BaseButton from '@/components/atoms/base-button';
-import ActivityDayGroup from '@/components/organisms/activity-day-group';
-import Icon from '@/components/atoms/icon';
+import TimerForm from '~/components/organisms/timer-form';
+import ProjectName from '~/components/molecules/project-name';
+import BaseButton from '~/components/atoms/base-button';
+import ActivityDayGroup from '~/components/organisms/activity-day-group';
+import Icon from '~/components/atoms/icon';
 import { startOfDay, endOfDay, addDays } from 'date-fns';
 import { mapGetters } from 'vuex';
 

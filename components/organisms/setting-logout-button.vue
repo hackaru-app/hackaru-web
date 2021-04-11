@@ -1,5 +1,5 @@
 <i18n
-  src="@/assets/locales/components/organisms/setting-logout-button.json"
+  src="~/assets/locales/components/organisms/setting-logout-button.json"
 ></i18n>
 
 <template>
@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import Icon from '@/components/atoms/icon';
-import BaseButton from '@/components/atoms/base-button';
-import SettingBox from '@/components/molecules/setting-box';
+import Icon from '~/components/atoms/icon';
+import BaseButton from '~/components/atoms/base-button';
+import SettingBox from '~/components/molecules/setting-box';
 
 export default {
   components: {

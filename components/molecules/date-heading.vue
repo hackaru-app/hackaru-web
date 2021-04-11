@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import IconButton from '@/components/atoms/icon-button';
-import Icon from '@/components/atoms/icon';
-import Heading from '@/components/atoms/heading';
+import IconButton from '~/components/atoms/icon-button';
+import Icon from '~/components/atoms/icon';
+import Heading from '~/components/atoms/heading';
 
 export default {
   components: {

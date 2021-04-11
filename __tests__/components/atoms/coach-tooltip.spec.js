@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import CoachTooltip from '@/components/atoms/coach-tooltip';
+import CoachTooltip from '~/components/atoms/coach-tooltip';
 
 describe('CoachTooltip', () => {
   let wrapper;

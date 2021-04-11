@@ -1,6 +1,6 @@
 import MatchMediaMock from 'match-media-mock';
 import { shallowMount } from '@vue/test-utils';
-import ColorScheme from '@/components/atoms/color-scheme';
+import ColorScheme from '~/components/atoms/color-scheme';
 
 describe('ColorScheme', () => {
   let wrapper;

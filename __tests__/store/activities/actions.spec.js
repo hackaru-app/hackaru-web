@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { actions } from '@/store/activities';
-import { activity } from '@/schemas';
+import { actions } from '~/store/activities';
+import { activity } from '~/schemas';
 import { parseISO } from 'date-fns';
 
 describe('Actions', () => {

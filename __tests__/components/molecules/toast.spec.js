@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import { Store } from 'vuex-mock-store';
-import Toast from '@/components/molecules/toast';
-import testId from '@/__tests__/__helpers__/test-id';
+import Toast from '~/components/molecules/toast';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('Toast', () => {
   let wrapper;

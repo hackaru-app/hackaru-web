@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/auth.json"></i18n>
+<i18n src="~/assets/locales/pages/auth.json"></i18n>
 
 <template>
   <section class="auth">
@@ -84,11 +84,11 @@
 </template>
 
 <script>
-import Heading from '@/components/atoms/heading';
-import BaseInput from '@/components/atoms/base-input';
-import BaseButton from '@/components/atoms/base-button';
-import LocaleSelect from '@/components/molecules/locale-select';
-import Indicator from '@/components/atoms/indicator.vue';
+import Heading from '~/components/atoms/heading';
+import BaseInput from '~/components/atoms/base-input';
+import BaseButton from '~/components/atoms/base-button';
+import LocaleSelect from '~/components/molecules/locale-select';
+import Indicator from '~/components/atoms/indicator.vue';
 
 export default {
   layout: 'auth',

@@ -1,4 +1,4 @@
-import { mutations } from '@/store/entities';
+import { mutations } from '~/store/entities';
 
 describe('Mutations', () => {
   describe('when commit MERGE_ENTITIES', () => {

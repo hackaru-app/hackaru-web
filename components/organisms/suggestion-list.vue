@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import ActivityName from '@/components/molecules/activity-name';
+import ActivityName from '~/components/molecules/activity-name';
 import { mapGetters } from 'vuex';
 import debounce from 'lodash.debounce';
 

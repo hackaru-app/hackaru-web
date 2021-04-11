@@ -1,7 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import ActivityEditorDescription from '@/components/organisms/activity-editor-description';
-import testId from '@/__tests__/__helpers__/test-id';
+import ActivityEditorDescription from '~/components/organisms/activity-editor-description';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('ActivityEditorDescription', () => {
   let wrapper;

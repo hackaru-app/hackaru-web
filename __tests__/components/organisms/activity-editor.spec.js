@@ -1,8 +1,8 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import ActivityEditor from '@/components/organisms/activity-editor';
-import ProjectList from '@/components/organisms/project-list';
-import testId from '@/__tests__/__helpers__/test-id';
+import ActivityEditor from '~/components/organisms/activity-editor';
+import ProjectList from '~/components/organisms/project-list';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('ActivityEditor', () => {
   let wrapper;

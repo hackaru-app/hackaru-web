@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import DotText from '@/components/molecules/dot-text';
+import DotText from '~/components/molecules/dot-text';
 
 export default {
   components: {

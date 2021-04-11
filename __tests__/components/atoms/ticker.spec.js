@@ -1,6 +1,6 @@
 import MockDate from 'mockdate';
 import { shallowMount } from '@vue/test-utils';
-import Ticker from '@/components/atoms/ticker';
+import Ticker from '~/components/atoms/ticker';
 
 describe('Ticker', () => {
   let wrapper;

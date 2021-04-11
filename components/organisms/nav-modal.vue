@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import BaseModal from '@/components/organisms/base-modal';
+import BaseModal from '~/components/organisms/base-modal';
 
 const noop = () => {};
 

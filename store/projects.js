@@ -1,4 +1,4 @@
-import { project } from '@/schemas';
+import { project } from '~/schemas';
 
 export const actions = {
   async fetch({ dispatch }) {

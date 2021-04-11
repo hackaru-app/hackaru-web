@@ -1,6 +1,6 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Csv from '@/pages/reports/csv';
+import Csv from '~/pages/reports/csv';
 import { parseISO } from 'date-fns';
 import fileSaver from 'file-saver';
 

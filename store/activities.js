@@ -1,4 +1,4 @@
-import { activity } from '@/schemas';
+import { activity } from '~/schemas';
 import groupBy from 'lodash.groupby';
 import {
   isWithinInterval,

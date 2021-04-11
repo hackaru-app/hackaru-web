@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/password-reset/index.json"></i18n>
+<i18n src="~/assets/locales/pages/password-reset/index.json"></i18n>
 
 <template>
   <section>
@@ -26,9 +26,9 @@
 </template>
 
 <script>
-import Heading from '@/components/atoms/heading';
-import BaseButton from '@/components/atoms/base-button';
-import BaseInput from '@/components/atoms/base-input';
+import Heading from '~/components/atoms/heading';
+import BaseButton from '~/components/atoms/base-button';
+import BaseInput from '~/components/atoms/base-input';
 
 export default {
   layout: 'auth',

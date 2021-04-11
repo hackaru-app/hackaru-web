@@ -1,5 +1,5 @@
 <i18n
-  src="@/assets/locales/components/organisms/activity-editor-description.json"
+  src="~/assets/locales/components/organisms/activity-editor-description.json"
 ></i18n>
 
 <template>
@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import ActivityName from '@/components/molecules/activity-name';
-import ModalItem from '@/components/molecules/modal-item';
+import ActivityName from '~/components/molecules/activity-name';
+import ModalItem from '~/components/molecules/modal-item';
 import { mapGetters } from 'vuex';
 import debounce from 'lodash.debounce';
 

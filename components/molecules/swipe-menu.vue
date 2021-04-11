@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import WindowScroll from '@/components/atoms/window-scroll';
-import DragDrop from '@/components/atoms/drag-drop';
+import WindowScroll from '~/components/atoms/window-scroll';
+import DragDrop from '~/components/atoms/drag-drop';
 
 export default {
   components: {

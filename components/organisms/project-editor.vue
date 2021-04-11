@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/project-editor.json"></i18n>
+<i18n src="~/assets/locales/components/organisms/project-editor.json"></i18n>
 
 <template>
   <section>
@@ -54,13 +54,13 @@
 </template>
 
 <script>
-import ModalItem from '@/components/molecules/modal-item';
-import ModalHeader from '@/components/molecules/modal-header';
-import ModalFooter from '@/components/molecules/modal-footer';
-import Icon from '@/components/atoms/icon';
-import ColorSelect from '@/components/molecules/color-select';
-import BaseButton from '@/components/atoms/base-button';
-import IconButton from '@/components/atoms/icon-button';
+import ModalItem from '~/components/molecules/modal-item';
+import ModalHeader from '~/components/molecules/modal-header';
+import ModalFooter from '~/components/molecules/modal-footer';
+import Icon from '~/components/atoms/icon';
+import ColorSelect from '~/components/molecules/color-select';
+import BaseButton from '~/components/atoms/base-button';
+import IconButton from '~/components/atoms/icon-button';
 
 export default {
   components: {

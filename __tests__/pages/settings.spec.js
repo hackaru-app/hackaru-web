@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
-import Settings from '@/pages/settings';
-import testId from '@/__tests__/__helpers__/test-id';
+import Settings from '~/pages/settings';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('Settings', () => {
   let wrapper;

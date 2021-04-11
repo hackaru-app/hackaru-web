@@ -1,8 +1,8 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import SuggestionList from '@/components/organisms/suggestion-list';
-import testId from '@/__tests__/__helpers__/test-id';
+import SuggestionList from '~/components/organisms/suggestion-list';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('SuggestionList', () => {
   let wrapper;
