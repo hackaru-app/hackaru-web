@@ -45,7 +45,7 @@ describe('Actions', () => {
     });
   });
 
-  describe('when json is null', () => {
+  describe('when dispatch merge and json is null', () => {
     const commit = jest.fn();
 
     beforeEach(() => {
@@ -63,7 +63,7 @@ describe('Actions', () => {
     });
   });
 
-  describe('when json is not object', () => {
+  describe('when dispatch merge and json is not object', () => {
     const commit = jest.fn();
 
     beforeEach(() => {
@@ -78,6 +78,21 @@ describe('Actions', () => {
 
     it('does not commit', () => {
       expect(commit).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when dispatch delete', () => {
+    const commit = jest.fn();
+
+    beforeEach(() => {
+      actions.delete({ commit }, { name: 'activities', id: 1 });
+    });
+
+    it('commits DELETE_ENTITY', () => {
+      expect(commit).toHaveBeenCalledWith('DELETE_ENTITY', {
+        name: 'activities',
+        id: 1,
+      });
     });
   });
 });
