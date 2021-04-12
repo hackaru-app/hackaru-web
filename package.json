@@ -17,7 +17,7 @@
     "@nuxtjs/sentry": "^5.0.3",
     "@sentry/browser": "^5.17.0",
     "@sentry/integrations": "^6.2.1",
-    "@sentry/tracing": "^6.2.3",
+    "@sentry/tracing": "^6.2.5",
     "axios-case-converter": "^0.7.0",
     "camelcase-keys": "^6.1.2",
     "chart.js": "^2.9.3",
