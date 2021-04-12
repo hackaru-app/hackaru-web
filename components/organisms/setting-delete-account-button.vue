@@ -1,5 +1,5 @@
 <i18n
-  src="@/assets/locales/components/organisms/setting-delete-account-button.json"
+  src="~/assets/locales/components/organisms/setting-delete-account-button.json"
 ></i18n>
 
 <template>
@@ -47,14 +47,14 @@
 </template>
 
 <script>
-import Icon from '@/components/atoms/icon';
-import BaseButton from '@/components/atoms/base-button';
-import BaseInput from '@/components/atoms/base-input';
-import SettingBox from '@/components/molecules/setting-box';
-import BaseModal from '@/components/organisms/base-modal';
-import ModalItem from '@/components/molecules/modal-item';
-import ModalHeader from '@/components/molecules/modal-header';
-import ModalFooter from '@/components/molecules/modal-footer';
+import Icon from '~/components/atoms/icon';
+import BaseButton from '~/components/atoms/base-button';
+import BaseInput from '~/components/atoms/base-input';
+import SettingBox from '~/components/molecules/setting-box';
+import BaseModal from '~/components/organisms/base-modal';
+import ModalItem from '~/components/molecules/modal-item';
+import ModalHeader from '~/components/molecules/modal-header';
+import ModalFooter from '~/components/molecules/modal-footer';
 
 export default {
   components: {

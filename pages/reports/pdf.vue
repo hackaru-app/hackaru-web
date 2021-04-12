@@ -4,7 +4,7 @@
 
 <script>
 import { saveAs } from 'file-saver';
-import Loading from '@/components/molecules/loading';
+import Loading from '~/components/molecules/loading';
 
 export default {
   layout: 'none',

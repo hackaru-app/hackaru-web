@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/activity-item.json"></i18n>
+<i18n src="~/assets/locales/components/organisms/activity-item.json"></i18n>
 
 <template>
   <swipe-menu
@@ -37,12 +37,12 @@
 </template>
 
 <script>
-import IconButton from '@/components/atoms/icon-button';
-import Icon from '@/components/atoms/icon';
-import ActivityName from '@/components/molecules/activity-name';
-import Ticker from '@/components/atoms/ticker';
-import SwipeMenu from '@/components/molecules/swipe-menu';
-import ActivityEditor from '@/components/organisms/activity-editor';
+import IconButton from '~/components/atoms/icon-button';
+import Icon from '~/components/atoms/icon';
+import ActivityName from '~/components/molecules/activity-name';
+import Ticker from '~/components/atoms/ticker';
+import SwipeMenu from '~/components/molecules/swipe-menu';
+import ActivityEditor from '~/components/organisms/activity-editor';
 
 export default {
   components: {

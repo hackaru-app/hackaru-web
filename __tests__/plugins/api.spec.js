@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { createPlugin } from '@/plugins/api.js';
+import { createPlugin } from '~/plugins/api.js';
 
 describe('Api', () => {
   let result;

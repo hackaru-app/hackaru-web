@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { actions } from '@/store/auth';
+import { actions } from '~/store/auth';
 
 describe('Actions', () => {
   const mock = new MockAdapter(axios);

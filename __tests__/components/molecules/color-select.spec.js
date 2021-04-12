@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import ColorSelect from '@/components/molecules/color-select';
+import ColorSelect from '~/components/molecules/color-select';
 
 describe('ColorSelect', () => {
   let wrapper;

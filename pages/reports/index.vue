@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/pages/reports/index.json"></i18n>
+<i18n src="~/assets/locales/pages/reports/index.json"></i18n>
 
 <template>
   <section>
@@ -110,15 +110,15 @@
 </template>
 
 <script>
-import WindowScroll from '@/components/atoms/window-scroll';
-import Icon from '@/components/atoms/icon';
-import ProjectName from '@/components/molecules/project-name';
-import CoachTooltip from '@/components/atoms/coach-tooltip';
-import LoopSlider from '@/components/organisms/loop-slider';
-import DateHeader from '@/components/organisms/date-header';
-import ContentHeader from '@/components/organisms/content-header';
-import ReportContent from '@/components/organisms/report-content';
-import Delighted from '@/components/molecules/delighted';
+import WindowScroll from '~/components/atoms/window-scroll';
+import Icon from '~/components/atoms/icon';
+import ProjectName from '~/components/molecules/project-name';
+import CoachTooltip from '~/components/atoms/coach-tooltip';
+import LoopSlider from '~/components/organisms/loop-slider';
+import DateHeader from '~/components/organisms/date-header';
+import ContentHeader from '~/components/organisms/content-header';
+import ReportContent from '~/components/organisms/report-content';
+import Delighted from '~/components/molecules/delighted';
 import { mapGetters } from 'vuex';
 import { stringify } from 'query-string';
 import {

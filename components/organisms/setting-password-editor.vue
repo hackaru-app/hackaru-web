@@ -1,5 +1,5 @@
 <i18n
-  src="@/assets/locales/components/organisms/setting-password-editor.json"
+  src="~/assets/locales/components/organisms/setting-password-editor.json"
 ></i18n>
 
 <template>
@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import Icon from '@/components/atoms/icon';
-import BaseButton from '@/components/atoms/base-button';
-import BaseInput from '@/components/atoms/base-input';
-import SettingBox from '@/components/molecules/setting-box';
+import Icon from '~/components/atoms/icon';
+import BaseButton from '~/components/atoms/base-button';
+import BaseInput from '~/components/atoms/base-input';
+import SettingBox from '~/components/molecules/setting-box';
 
 export default {
   components: {

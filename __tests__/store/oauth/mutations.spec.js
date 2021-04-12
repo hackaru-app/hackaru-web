@@ -1,4 +1,4 @@
-import { mutations } from '@/store/oauth';
+import { mutations } from '~/store/oauth';
 
 describe('Mutations', () => {
   describe('when commit SET_CLIENT', () => {

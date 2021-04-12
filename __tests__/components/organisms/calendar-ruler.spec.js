@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import CalendarRuler from '@/components/organisms/calendar-ruler';
+import CalendarRuler from '~/components/organisms/calendar-ruler';
 
 describe('CalendarRuler', () => {
   let wrapper;

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import WindowScroll from '@/components/atoms/window-scroll';
+import WindowScroll from '~/components/atoms/window-scroll';
 
 describe('WindowScroll', () => {
   let wrapper;

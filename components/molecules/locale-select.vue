@@ -13,7 +13,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import BaseSelect from '@/components/molecules/base-select';
+import BaseSelect from '~/components/molecules/base-select';
 
 export default {
   components: {

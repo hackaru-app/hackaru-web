@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Icon from '@/components/atoms/icon';
-import Heading from '@/components/atoms/heading';
+import Icon from '~/components/atoms/icon';
+import Heading from '~/components/atoms/heading';
 
 export default {
   components: {

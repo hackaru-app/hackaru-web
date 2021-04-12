@@ -1,6 +1,6 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import LoginGuard from '@/components/atoms/login-guard';
+import LoginGuard from '~/components/atoms/login-guard';
 
 describe('LoginGuard', () => {
   const $store = new Store({

@@ -1,4 +1,4 @@
-import { getters } from '@/store/oauth';
+import { getters } from '~/store/oauth';
 
 describe('Getters', () => {
   let result;

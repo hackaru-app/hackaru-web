@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
-import Dragger from '@/components/atoms/dragger';
-import testId from '@/__tests__/__helpers__/test-id';
+import Dragger from '~/components/atoms/dragger';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('Dragger', () => {
   let wrapper;

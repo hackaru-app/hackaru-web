@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Indicator from '@/components/atoms/indicator.vue';
+import Indicator from '~/components/atoms/indicator.vue';
 
 export default {
   components: {

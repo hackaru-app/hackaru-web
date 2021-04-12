@@ -1,5 +1,5 @@
 <i18n
-  src="@/assets/locales/components/organisms/calendar-day-header.json"
+  src="~/assets/locales/components/organisms/calendar-day-header.json"
 ></i18n>
 
 <template>

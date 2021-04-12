@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Dot from '@/components/atoms/dot';
+import Dot from '~/components/atoms/dot';
 
 export default {
   components: {

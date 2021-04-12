@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
-import DeltaIcon from '@/components/molecules/delta-icon';
-import testId from '@/__tests__/__helpers__/test-id';
+import DeltaIcon from '~/components/molecules/delta-icon';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('DeltaIcon', () => {
   let wrapper;

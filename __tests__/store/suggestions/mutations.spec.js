@@ -1,4 +1,4 @@
-import { mutations } from '@/store/suggestions';
+import { mutations } from '~/store/suggestions';
 
 describe('Mutations', () => {
   describe('when commit SET_SUGGESTIONS', () => {

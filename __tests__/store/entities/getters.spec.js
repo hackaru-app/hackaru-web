@@ -1,4 +1,4 @@
-import { getters } from '@/store/entities';
+import { getters } from '~/store/entities';
 import { schema } from 'normalizr';
 
 describe('Getters', () => {

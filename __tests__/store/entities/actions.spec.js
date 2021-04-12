@@ -1,4 +1,4 @@
-import { actions } from '@/store/entities';
+import { actions } from '~/store/entities';
 import { schema } from 'normalizr';
 
 describe('Actions', () => {

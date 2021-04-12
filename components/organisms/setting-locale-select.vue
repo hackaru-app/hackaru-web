@@ -1,5 +1,5 @@
 <i18n
-  src="@/assets/locales/components/organisms/setting-locale-select.json"
+  src="~/assets/locales/components/organisms/setting-locale-select.json"
 ></i18n>
 
 <template>
@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import Icon from '@/components/atoms/icon';
-import LocaleSelect from '@/components/molecules/locale-select';
-import SettingBox from '@/components/molecules/setting-box';
+import Icon from '~/components/atoms/icon';
+import LocaleSelect from '~/components/molecules/locale-select';
+import SettingBox from '~/components/molecules/setting-box';
 
 export default {
   components: {

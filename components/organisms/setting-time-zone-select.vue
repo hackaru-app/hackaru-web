@@ -1,5 +1,5 @@
 <i18n
-  src="@/assets/locales/components/organisms/setting-time-zone-select.json"
+  src="~/assets/locales/components/organisms/setting-time-zone-select.json"
 ></i18n>
 
 <template>
@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import Icon from '@/components/atoms/icon';
-import SettingBox from '@/components/molecules/setting-box';
-import BaseSelect from '@/components/molecules/base-select';
+import Icon from '~/components/atoms/icon';
+import SettingBox from '~/components/molecules/setting-box';
+import BaseSelect from '~/components/molecules/base-select';
 import { mapGetters } from 'vuex';
 
 export default {

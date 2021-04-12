@@ -1,4 +1,4 @@
-import { getters } from '@/store/activity-calendar';
+import { getters } from '~/store/activity-calendar';
 
 describe('Getters', () => {
   let result;

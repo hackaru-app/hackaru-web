@@ -1,6 +1,6 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import LocaleSelect from '@/components/molecules/locale-select';
+import LocaleSelect from '~/components/molecules/locale-select';
 
 describe('LocaleSelect', () => {
   let factory;

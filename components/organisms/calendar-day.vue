@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import Resizer from '@/components/atoms/resizer';
-import CalendarEvent from '@/components/atoms/calendar-event';
-import CalendarActivity from '@/components/organisms/calendar-activity';
+import Resizer from '~/components/atoms/resizer';
+import CalendarEvent from '~/components/atoms/calendar-event';
+import CalendarActivity from '~/components/organisms/calendar-activity';
 import { format, startOfDay, addMinutes, parseISO } from 'date-fns';
 
 export default {

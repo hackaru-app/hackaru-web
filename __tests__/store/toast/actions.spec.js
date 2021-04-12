@@ -1,4 +1,4 @@
-import { actions } from '@/store/toast';
+import { actions } from '~/store/toast';
 
 describe('Actions', () => {
   const commit = jest.fn();

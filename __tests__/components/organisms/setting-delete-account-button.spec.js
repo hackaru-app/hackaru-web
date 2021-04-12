@@ -1,7 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import SettingDeleteAccountButton from '@/components/organisms/setting-delete-account-button';
-import testId from '@/__tests__/__helpers__/test-id';
+import SettingDeleteAccountButton from '~/components/organisms/setting-delete-account-button';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('SettingDeleteAccountButton', () => {
   let wrapper;

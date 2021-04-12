@@ -1,4 +1,4 @@
-import { mutations } from '@/store/user';
+import { mutations } from '~/store/user';
 
 describe('Mutations', () => {
   describe('when commit SET_USER', () => {

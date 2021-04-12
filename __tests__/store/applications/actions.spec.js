@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { actions } from '@/store/applications';
-import { application } from '@/schemas';
+import { actions } from '~/store/applications';
+import { application } from '~/schemas';
 
 describe('Actions', () => {
   const mock = new MockAdapter(axios);

@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import DoughnutChart from '@/components/atoms/doughnut-chart';
+import DoughnutChart from '~/components/atoms/doughnut-chart';
 
 describe('DoughnutChart', () => {
   const factory = () =>

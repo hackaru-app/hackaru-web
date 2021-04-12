@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/calendar-activity.json"></i18n>
+<i18n src="~/assets/locales/components/organisms/calendar-activity.json"></i18n>
 
 <template>
   <dragger
@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import Dragger from '@/components/atoms/dragger';
-import Resizer from '@/components/atoms/resizer';
-import CalendarEvent from '@/components/atoms/calendar-event';
-import ActivityEditor from '@/components/organisms/activity-editor';
+import Dragger from '~/components/atoms/dragger';
+import Resizer from '~/components/atoms/resizer';
+import CalendarEvent from '~/components/atoms/calendar-event';
+import ActivityEditor from '~/components/organisms/activity-editor';
 
 import {
   startOfDay,

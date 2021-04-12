@@ -1,5 +1,5 @@
-<i18n src="@/assets/locales/common/scopes.json"></i18n>
-<i18n src="@/assets/locales/pages/oauth/authorize.json"></i18n>
+<i18n src="~/assets/locales/common/scopes.json"></i18n>
+<i18n src="~/assets/locales/pages/oauth/authorize.json"></i18n>
 
 <template>
   <section>
@@ -52,11 +52,11 @@
 </template>
 
 <script>
-import LoginGuard from '@/components/atoms/login-guard';
-import Heading from '@/components/atoms/heading';
-import BaseButton from '@/components/atoms/base-button';
-import ContentHeader from '@/components/organisms/content-header';
-import Highlight from '@/components/atoms/highlight';
+import LoginGuard from '~/components/atoms/login-guard';
+import Heading from '~/components/atoms/heading';
+import BaseButton from '~/components/atoms/base-button';
+import ContentHeader from '~/components/organisms/content-header';
+import Highlight from '~/components/atoms/highlight';
 import { mapGetters } from 'vuex';
 
 function extractQuery(query) {

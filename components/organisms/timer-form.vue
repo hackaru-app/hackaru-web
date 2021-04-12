@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/timer-form.json"></i18n>
+<i18n src="~/assets/locales/components/organisms/timer-form.json"></i18n>
 
 <template>
   <section class="timer-form">
@@ -60,15 +60,15 @@
 </template>
 
 <script>
-import NavModal from '@/components/organisms/nav-modal';
-import ProjectList from '@/components/organisms/project-list';
-import ProjectName from '@/components/molecules/project-name';
-import ActivityName from '@/components/molecules/activity-name';
-import SuggestionList from '@/components/organisms/suggestion-list';
-import Ticker from '@/components/atoms/ticker';
-import BaseButton from '@/components/atoms/base-button';
-import Icon from '@/components/atoms/icon';
-import Dot from '@/components/atoms/dot';
+import NavModal from '~/components/organisms/nav-modal';
+import ProjectList from '~/components/organisms/project-list';
+import ProjectName from '~/components/molecules/project-name';
+import ActivityName from '~/components/molecules/activity-name';
+import SuggestionList from '~/components/organisms/suggestion-list';
+import Ticker from '~/components/atoms/ticker';
+import BaseButton from '~/components/atoms/base-button';
+import Icon from '~/components/atoms/icon';
+import Dot from '~/components/atoms/dot';
 import { mapGetters } from 'vuex';
 
 function getRandI18n(t) {

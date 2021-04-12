@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import Resizer from '@/components/atoms/resizer';
+import Resizer from '~/components/atoms/resizer';
 
 describe('Resizer', () => {
   let wrapper;

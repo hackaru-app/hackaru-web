@@ -1,7 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Auth from '@/pages/auth';
-import testId from '@/__tests__/__helpers__/test-id';
+import Auth from '~/pages/auth';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('Auth', () => {
   let factory;

@@ -1,9 +1,9 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Calendar from '@/pages/calendar';
+import Calendar from '~/pages/calendar';
 import { parseISO } from 'date-fns';
-import testId from '@/__tests__/__helpers__/test-id';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('Calendar', () => {
   let wrapper;

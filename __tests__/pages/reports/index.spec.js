@@ -1,10 +1,10 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import Reports from '@/pages/reports/index';
+import Reports from '~/pages/reports/index';
 import { parseISO, formatISO } from 'date-fns';
 import { stringify } from 'query-string';
-import testId from '@/__tests__/__helpers__/test-id';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('Index', () => {
   let wrapper;

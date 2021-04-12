@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import BaseSelect from '@/components/molecules/base-select';
+import BaseSelect from '~/components/molecules/base-select';
 
 describe('BaseSelect', () => {
   let wrapper;

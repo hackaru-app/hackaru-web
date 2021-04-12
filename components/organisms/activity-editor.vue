@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/activity-editor.json"></i18n>
+<i18n src="~/assets/locales/components/organisms/activity-editor.json"></i18n>
 
 <template>
   <form data-test-id="form" @submit.prevent="updateActivity">
@@ -50,16 +50,16 @@
 </template>
 
 <script>
-import ActivityEditorDescription from '@/components/organisms/activity-editor-description';
-import ProjectList from '@/components/organisms/project-list';
-import ModalItem from '@/components/molecules/modal-item';
-import ModalHeader from '@/components/molecules/modal-header';
-import ModalFooter from '@/components/molecules/modal-footer';
-import ProjectName from '@/components/molecules/project-name';
-import DatetimePicker from '@/components/molecules/datetime-picker';
-import BaseButton from '@/components/atoms/base-button';
-import IconButton from '@/components/atoms/icon-button';
-import Icon from '@/components/atoms/icon';
+import ActivityEditorDescription from '~/components/organisms/activity-editor-description';
+import ProjectList from '~/components/organisms/project-list';
+import ModalItem from '~/components/molecules/modal-item';
+import ModalHeader from '~/components/molecules/modal-header';
+import ModalFooter from '~/components/molecules/modal-footer';
+import ProjectName from '~/components/molecules/project-name';
+import DatetimePicker from '~/components/molecules/datetime-picker';
+import BaseButton from '~/components/atoms/base-button';
+import IconButton from '~/components/atoms/icon-button';
+import Icon from '~/components/atoms/icon';
 import { mapGetters } from 'vuex';
 
 export default {

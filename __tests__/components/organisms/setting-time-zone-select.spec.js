@@ -1,7 +1,7 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import SettingTimeZoneSelect from '@/components/organisms/setting-time-zone-select';
-import testId from '@/__tests__/__helpers__/test-id';
+import SettingTimeZoneSelect from '~/components/organisms/setting-time-zone-select';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('SettingTimeZoneSelect', () => {
   let wrapper;

@@ -1,5 +1,5 @@
 import MockDate from 'mockdate';
-import { getters } from '@/store/auth';
+import { getters } from '~/store/auth';
 
 describe('Getters', () => {
   let result;

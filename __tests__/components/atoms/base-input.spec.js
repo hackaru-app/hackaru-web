@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import BaseInput from '@/components/atoms/base-input';
+import BaseInput from '~/components/atoms/base-input';
 
 describe('BaseInput', () => {
   let wrapper;

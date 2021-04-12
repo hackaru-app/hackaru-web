@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/pwa-popover.json"></i18n>
+<i18n src="~/assets/locales/components/organisms/pwa-popover.json"></i18n>
 
 <template>
   <section class="pwa-popover">
@@ -7,7 +7,7 @@
       <template slot="popover">
         <div class="content">
           <section class="logo">
-            <img src="@/assets/logo.svg" class="logo-icon" />
+            <img src="~/assets/logo.svg" class="logo-icon" />
           </section>
           <section class="about">
             <h1>{{ $t('title') }}</h1>
@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import Icon from '@/components/atoms/icon';
-import BaseButton from '@/components/atoms/base-button';
+import Icon from '~/components/atoms/icon';
+import BaseButton from '~/components/atoms/base-button';
 
 export default {
   timers: {

@@ -1,9 +1,9 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
 import { parseISO } from 'date-fns';
-import CalendarActivity from '@/components/organisms/calendar-activity';
-import ActivityEditor from '@/components/organisms/activity-editor';
-import testId from '@/__tests__/__helpers__/test-id';
+import CalendarActivity from '~/components/organisms/calendar-activity';
+import ActivityEditor from '~/components/organisms/activity-editor';
+import testId from '~/__tests__/__helpers__/test-id';
 
 describe('CalendarActivity', () => {
   let wrapper;

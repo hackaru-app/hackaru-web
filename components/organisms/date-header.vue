@@ -1,4 +1,4 @@
-<i18n src="@/assets/locales/components/organisms/date-header.json"></i18n>
+<i18n src="~/assets/locales/components/organisms/date-header.json"></i18n>
 
 <template>
   <content-header class="date-header">
@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import Icon from '@/components/atoms/icon';
-import ContentHeader from '@/components/organisms/content-header';
-import BaseButton from '@/components/atoms/base-button';
-import BaseSelect from '@/components/molecules/base-select';
-import DateHeading from '@/components/molecules/date-heading';
+import Icon from '~/components/atoms/icon';
+import ContentHeader from '~/components/organisms/content-header';
+import BaseButton from '~/components/atoms/base-button';
+import BaseSelect from '~/components/molecules/base-select';
+import DateHeading from '~/components/molecules/date-heading';
 
 export default {
   components: {

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Toast from '@/components/molecules/toast';
+import Toast from '~/components/molecules/toast';
 
 export default {
   components: {
