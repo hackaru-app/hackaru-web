@@ -12,7 +12,7 @@ For more information on the app, please see the main repository [README](https:/
 
 ## Roles
 The web server provides the UI to a browser.  
-It also sends user actions to the API server via RESTful.
+It also sends user actions to the API server via REST API.
 
 ## Feedback
 
@@ -23,15 +23,15 @@ Please let us know via [Issues](https://github.com/hackaru-app/hackaru/issues). 
 
 You can run Hackaru on your local easily using [docker-compose](https://docs.docker.com/compose/install).  
 
-If you want to login to Hackaru on your local, it is also necessary to run the API server.  
-Please see the API repository [README](https://github.com/hackaru-app/hackaru-api).
+It's also necessary to run the web server if you want to login to Hackaru on your browser.  
+Please see the API server [README](https://github.com/hackaru-app/hackaru-api).
 
 ```sh
 # Clone this repository.
 git clone git@github.com:hackaru-app/hackaru-web.git
 cd hackaru-web
 
-# Basically, there is no need to modify the content of file.
+# Copy and rename env file.
 cp .env.sample .env.development
 
 # Try accessing http://localhost:3333 after execution.
