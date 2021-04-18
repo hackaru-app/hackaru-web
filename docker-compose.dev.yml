@@ -3,6 +3,8 @@ services:
   web:
     command: yarn dev
     env_file: .env.development
+    user: root
     volumes:
-      - .:/hackaru
+      - .:/hackaru:delegated
+      - /hackaru/.nuxt
       - /hackaru/node_modules

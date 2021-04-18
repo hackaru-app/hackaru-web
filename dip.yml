@@ -1,0 +1,12 @@
+version: '6.0'
+
+environment:
+  COMPOSE_EXT: dev
+
+compose:
+  files:
+    - docker-compose.yml
+    - docker-compose.$COMPOSE_EXT.yml
+
+provision:
+  - cp .env.sample .env.development
