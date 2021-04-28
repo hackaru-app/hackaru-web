@@ -2,7 +2,7 @@
   <section class="side-bar">
     <h1>
       <nuxt-link :to="localePath('index')">
-        <img src="~/assets/logo.svg" class="logo-icon" />
+        <img src="~/assets/images/logo.svg" class="logo-icon" />
       </nuxt-link>
     </h1>
     <ul v-if="showMenu">
