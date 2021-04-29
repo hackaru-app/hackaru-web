@@ -7,7 +7,7 @@
       <template slot="popover">
         <div class="content">
           <section class="logo">
-            <img src="~/assets/logo.svg" class="logo-icon" />
+            <img src="~/assets/images/logo.svg" class="logo-icon" />
           </section>
           <section class="about">
             <h1>{{ $t('title') }}</h1>
