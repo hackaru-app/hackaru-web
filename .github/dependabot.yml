@@ -1,24 +1,18 @@
 version: 2
 updates:
 - package-ecosystem: npm
-  directory: "/"
+  directory: '/'
   schedule:
     interval: weekly
-    time: "11:00"
+    time: '11:00'
   open-pull-requests-limit: 10
   labels:
-  - "type: dependencies"
-  ignore:
-  - dependency-name: sass-loader
-    versions:
-    - 11.0.0
+    - 'type: dependencies'
 - package-ecosystem: docker
-  directory: "/"
+  directory: '/'
   schedule:
     interval: weekly
-    time: "11:00"
+    time: '11:00'
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: node
-    versions:
-    - 15.13.0.pre.alpine
+  labels:
+    - 'type: dependencies'
