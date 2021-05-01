@@ -24,7 +24,7 @@
     "color": "^3.1.0",
     "cookie-universal-nuxt": "^2.1.4",
     "date-fns": "^2.17.0",
-    "file-saver": "^2.0.2",
+    "file-saver": "^2.0.5",
     "hh-mm-ss": "^1.2.0",
     "jwt-decode": "^3.1.2",
     "lodash.debounce": "^4.0.8",
