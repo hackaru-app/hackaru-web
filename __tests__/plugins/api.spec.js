@@ -3,8 +3,6 @@ import MockAdapter from 'axios-mock-adapter';
 import { createPlugin } from '~/plugins/api.js';
 
 describe('Api', () => {
-  let result;
-
   const context = {
     $config: {
       hackaruApiTimeout: 3000,
@@ -65,33 +63,33 @@ describe('Api', () => {
   });
 
   describe('when content-type is json', () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       mock
         .onGet('/example')
         .replyOnce(200, { foo_bar: 'baz', foo: { bar_baz: 'foo' } });
-      result = await plugin.request({
+    });
+
+    it('converts response to camelcase', async () => {
+      const result = await plugin.request({
         url: '/example',
         responseType: 'json',
       });
-    });
-
-    it('converts response to camelcase', () => {
       expect(result.data.fooBar).toBe('baz');
       expect(result.data.foo.barBaz).toBe('foo');
     });
   });
 
   describe('when content-type is undefined', () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       mock
         .onGet('/example')
         .replyOnce(200, { foo_bar: 'baz', foo: { bar_baz: 'foo' } });
-      result = await plugin.request({
-        url: '/example',
-      });
     });
 
-    it('converts response to camelcase', () => {
+    it('converts response to camelcase', async () => {
+      const result = await plugin.request({
+        url: '/example',
+      });
       expect(result.data.fooBar).toBe('baz');
       expect(result.data.foo.barBaz).toBe('foo');
     });
@@ -104,78 +102,84 @@ describe('Api', () => {
         .replyOnce(500, { foo_bar: 'baz', foo: { bar_baz: 'foo' } });
     });
 
-    it('converts response to camelcase', () => {
-      return plugin
+    it('converts response to camelcase', async () => {
+      await plugin
         .request({
           url: '/example',
         })
-        .catch((error) => {
-          expect(error.response.data.fooBar).toBe('baz');
-          expect(error.response.data.foo.barBaz).toBe('foo');
+        .catch((e) => {
+          expect(e.response.data.fooBar).toBe('baz');
+          expect(e.response.data.foo.barBaz).toBe('foo');
         });
     });
   });
 
   describe('when response is not 401 error', () => {
-    const error = new Error();
+    beforeEach(() => {
+      mock.onGet('/example').replyOnce(500);
+    });
 
-    beforeEach(async () => {
-      mock.onGet('/example').replyOnce(500, error);
-      await plugin.request({
-        url: '/example',
-      });
+    it('throws error', (done) => {
+      plugin.request({ url: '/example' }).catch(() => done());
     });
 
     it('dispatches toast/error', () => {
-      expect(context.store.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        expect.any(Error)
-      );
+      plugin
+        .request({ url: '/example' })
+        .catch((e) =>
+          expect(context.store.dispatch).toHaveBeenCalledWith('toast/error', e)
+        );
     });
   });
 
   describe('when response is 401 error', () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       mock.onGet('/example').replyOnce(401);
-      await plugin.request({
-        url: '/example',
-      });
     });
 
-    it('dispatches auth/forceLogout', () => {
+    it('does not throw error', () => {
+      expect(plugin.request({ url: '/example' })).resolves.not.toThrow();
+    });
+
+    it('dispatches auth/forceLogout', async () => {
+      await plugin.request({ url: '/example' });
       expect(context.store.dispatch).toHaveBeenCalledWith('auth/forceLogout');
     });
   });
 
   describe('when raise network error', () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       mock.onGet('/example').networkError();
-      await plugin.request({
-        url: '/example',
-      });
     });
 
-    it('dispatches toast/error', () => {
-      expect(context.store.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        expect.any(Error)
-      );
+    it('throws error', (done) => {
+      plugin.request({ url: '/example' }).catch(() => done());
+    });
+
+    it('dispatches toast/error', async () => {
+      try {
+        await plugin.request({ url: '/example' });
+      } catch (e) {
+        expect(context.store.dispatch).toHaveBeenCalledWith('toast/error', e);
+      }
     });
   });
 
   describe('when raise timeout error', () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       mock.onGet('/example').timeoutOnce();
-      await plugin.request({
-        url: '/example',
-      });
+    });
+
+    it('throws error', (done) => {
+      plugin.request({ url: '/example' }).catch(() => done());
     });
 
     it('dispatches toast/error', () => {
-      expect(context.store.dispatch).toHaveBeenCalledWith(
-        'toast/error',
-        expect.any(Error)
-      );
+      plugin
+        .request({ url: '/example' })
+        .catch((e) =>
+          expect(context.store.dispatch).toHaveBeenCalledWith('toast/error', e)
+        );
     });
   });
 });
