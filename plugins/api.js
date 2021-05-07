@@ -18,10 +18,11 @@ export function createPlugin({ store, $config, $axios }) {
   });
 
   api.interceptors.response.use(undefined, (error) => {
-    if (error.response && error.response.status === 401) {
+    if (error.response?.status === 401) {
       store.dispatch('auth/forceLogout');
     } else {
       store.dispatch('toast/error', error);
+      throw error;
     }
   });
 
