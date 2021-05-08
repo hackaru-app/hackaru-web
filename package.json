@@ -26,7 +26,6 @@
     "date-fns": "^2.21.1",
     "file-saver": "^2.0.5",
     "hh-mm-ss": "^1.2.0",
-    "jwt-decode": "^3.1.2",
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.groupby": "^4.6.0",
