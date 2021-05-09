@@ -156,12 +156,12 @@ describe('Api', () => {
       plugin.request({ url: '/example' }).catch(() => done());
     });
 
-    it('dispatches toast/error', async () => {
-      try {
-        await plugin.request({ url: '/example' });
-      } catch (e) {
-        expect(context.store.dispatch).toHaveBeenCalledWith('toast/error', e);
-      }
+    it('dispatches toast/error', () => {
+      plugin
+        .request({ url: '/example' })
+        .catch((e) =>
+          expect(context.store.dispatch).toHaveBeenCalledWith('toast/error', e)
+        );
     });
   });
 
