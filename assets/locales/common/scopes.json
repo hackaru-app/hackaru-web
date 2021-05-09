@@ -5,7 +5,8 @@
       "activities:write": "Update your activities",
       "projects:read": "Read your projects",
       "projects:write": "Update your projects",
-      "suggestions:read": "Read your suggestions"
+      "suggestions:read": "Read your suggestions",
+      "user:read": "Read user information excluding authentication"
     }
   },
   "ja": {
@@ -14,7 +15,8 @@
       "activities:write": "アクティビティの変更",
       "projects:read": "プロジェクトの読み取り",
       "projects:write": "プロジェクトの変更",
-      "suggestions:read": "検索候補の読み取り"
+      "suggestions:read": "検索候補の読み取り",
+      "user:read": "認証情報を除くユーザ情報の読み取り"
     }
   }
 }
