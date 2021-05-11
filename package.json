@@ -38,7 +38,7 @@
     "node-sass": "^5.0.0",
     "normalize.css": "^8.0.1",
     "normalizr": "^3.6.0",
-    "nuxt": "^2.15.4",
+    "nuxt": "^2.15.5",
     "nuxt-helmet": "^2.0.0",
     "nuxt-i18n": "^6.27.0",
     "query-string": "^7.0.0",
