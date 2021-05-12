@@ -25,6 +25,10 @@
   background-color: $red;
   color: $white;
 }
+.base-button.is-dark {
+  background-color: $grey-333;
+  color: $white;
+}
 .base-button.is-circle {
   width: 36px;
   height: 36px;
