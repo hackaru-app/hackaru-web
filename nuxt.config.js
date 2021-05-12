@@ -136,9 +136,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    /*
-     ** Run ESLint on save
-     */
+    hardSource: process.env.NODE_ENV !== 'production',
     extend(config) {
       if (process.server && process.browser) {
         config.module.rules.push({
