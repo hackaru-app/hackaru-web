@@ -10,7 +10,6 @@
   background: none;
   border: 0;
   padding: 0;
-  cursor: pointer;
   transition: opacity 0.3s, transform 0.1s;
   &:hover {
     opacity: 0.7;

@@ -6,7 +6,6 @@
 
 <style scoped lang="scss">
 .base-button {
-  cursor: pointer;
   padding: 0 15px;
   height: 42px;
   justify-content: center;

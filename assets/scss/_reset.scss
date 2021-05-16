@@ -1,6 +1,6 @@
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-user-select: none;
+  user-select: none;
 }
 body, select, input, button {
   color: $text;
@@ -34,8 +34,4 @@ input::placeholder {
   color: $grey-ccc;
   opacity: 1;
   padding-top: 2px;
-}
-input:focus,
-button:focus {
-  outline: none;
 }
