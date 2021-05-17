@@ -170,7 +170,6 @@ export default {
   border: 0;
   padding: 0;
   background: none;
-  cursor: pointer;
   .project-name {
     display: flex;
     min-height: inherit;

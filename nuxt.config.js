@@ -110,7 +110,7 @@ module.exports = {
       ]),
     ],
   },
-  css: [{ src: 'normalize.css' }, { src: '~/assets/scss/main.scss' }],
+  css: ['ress', { src: '~/assets/scss/main.scss' }],
   /*
    ** Customize the progress bar color
    */

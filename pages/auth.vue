@@ -213,7 +213,6 @@ export default {
   text-decoration: none;
   width: 200px;
   padding: 10px 0;
-  cursor: pointer;
   text-align: left;
   border: 0;
   background: none;
