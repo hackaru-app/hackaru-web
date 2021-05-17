@@ -26,7 +26,7 @@ jobs:
         id: get-tags
         run: |
           VERSION=${GITHUB_REF/refs\/tags\//}
-          TAGS=latest
+          TAGS=${DOCKERHUB_REPO_NAME}:latest
           TAGS=${TAGS},${DOCKERHUB_REPO_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1/')
           TAGS=${TAGS},${DOCKERHUB_REPO_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2/')
           TAGS=${TAGS},${DOCKERHUB_REPO_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2.\3/')
