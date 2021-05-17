@@ -279,7 +279,7 @@ export default {
 }
 .selected-project {
   display: flex;
-  max-width: 120px;
+  max-width: 210px;
   padding: 0 45px;
   align-items: center;
 }

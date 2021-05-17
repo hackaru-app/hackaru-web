@@ -128,7 +128,6 @@ export default {
   justify-content: space-between;
   transition: background-color 0.1s;
   min-width: 1px;
-  cursor: pointer;
 }
 .project-name {
   padding-right: 10px;

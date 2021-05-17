@@ -304,7 +304,6 @@ export default {
     border-top: 0;
     border-bottom: 0;
     align-items: center;
-    cursor: pointer;
   }
 }
 .popover-wrapper {
