@@ -27,9 +27,9 @@ jobs:
         run: |
           VERSION=${GITHUB_REF/refs\/tags\//}
           TAGS=latest
-          TAGS=${TAGS},${{ secrets.DOCKERHUB_REPO_NAME }}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1/')
-          TAGS=${TAGS},${{ secrets.DOCKERHUB_REPO_NAME }}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2/')
-          TAGS=${TAGS},${{ secrets.DOCKERHUB_REPO_NAME }}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2.\3/')
+          TAGS=${TAGS},${DOCKERHUB_REPO_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1/')
+          TAGS=${TAGS},${DOCKERHUB_REPO_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2/')
+          TAGS=${TAGS},${DOCKERHUB_REPO_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2.\3/')
           echo ::set-output name=tags::${TAGS}
         env:
           DOCKERHUB_REPO_NAME: ${{ secrets.DOCKERHUB_REPO_NAME }}
