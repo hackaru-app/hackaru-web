@@ -10,18 +10,30 @@ jobs:
       - name: Checkout
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: Run test
-        run: |
-          docker-compose run --rm \
-            -e SENTRY_PUBLISH_RELEASE=true \
-            -e SENTRY_AUTO_ATTACH_COMMITS=true \
-            -e SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN} \
-            -e SENTRY_ORG=${SENTRY_ORG} \
-            -e SENTRY_PROJECT=${SENTRY_PROJECT} \
-            -e SENTRY_RELEASE=${GITHUB_REF/refs\/tags\//} \
-            web yarn build
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@1a9e2138d905efd099035b49d8b7a3888c653ca8
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Get version
+        id: get-version
+        run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
+
+      - name: Upload source map
+        run: yarn build
         env:
+          SENTRY_PUBLISH_RELEASE: true
+          SENTRY_AUTO_ATTACH_COMMITS: true
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-          SENTRY_RELEASE: ${{ secrets.SENTRY_RELEASE }}
+          SENTRY_RELEASE: ${{ steps.get-version.outputs.version }}
