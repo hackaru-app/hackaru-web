@@ -1,8 +1,8 @@
 name: source-map
 on:
-  push:
-    tags:
-      - 'v*'
+  pull_request:
+    branches:
+      - master
 jobs:
   upload:
     runs-on: ubuntu-latest
@@ -18,7 +18,7 @@ jobs:
             -e SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN} \
             -e SENTRY_ORG=${SENTRY_ORG} \
             -e SENTRY_PROJECT=${SENTRY_PROJECT} \
-            -e SENTRY_RELEASE=${GITHUB_REF/refs\/tags\//} \
+            -e SENTRY_RELEASE=v1.13.29 \
             web yarn build
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
