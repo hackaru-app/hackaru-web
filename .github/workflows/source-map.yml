@@ -1,0 +1,27 @@
+name: source-map
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
+      - name: Run test
+        run: |
+          docker-compose run --rm \
+            -e SENTRY_PUBLISH_RELEASE=true \
+            -e SENTRY_AUTO_ATTACH_COMMITS=true \
+            -e SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN} \
+            -e SENTRY_ORG=${SENTRY_ORG} \
+            -e SENTRY_PROJECT=${SENTRY_PROJECT} \
+            -e SENTRY_RELEASE=${GITHUB_REF/refs\/tags\//} \
+            web yarn build
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          SENTRY_RELEASE: ${{ secrets.SENTRY_RELEASE }}
