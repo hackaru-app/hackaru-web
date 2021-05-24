@@ -13,6 +13,7 @@ describe('LoginGuard', () => {
   const $cookies = { set: jest.fn() };
   const $ga = { set: jest.fn() };
   const scope = { setUser: jest.fn() };
+  const $logrocket = { identify: jest.fn() };
 
   delete window.location;
   window.location = { assign: jest.fn() };
@@ -24,6 +25,7 @@ describe('LoginGuard', () => {
         $router,
         $cookies,
         $ga,
+        $logrocket,
         $route: { fullPath: '/secure' },
         $sentry: {
           configureScope: (fn) => fn(scope),
@@ -66,6 +68,10 @@ describe('LoginGuard', () => {
 
     it('saves userId to google analytics', () => {
       expect($ga.set).toHaveBeenCalledWith('userId', 1);
+    });
+
+    it('saves userId to logrocket', () => {
+      expect($logrocket.identify).toHaveBeenCalledWith(1);
     });
   });
 });
