@@ -1,5 +1,3 @@
-import get from 'lodash.get';
-
 export const SHOW_ERROR = 'SHOW_ERROR';
 export const SHOW_SUCCESS = 'SHOW_SUCCESS';
 
@@ -13,9 +11,9 @@ export const state = () => ({
 export const actions = {
   error({ commit }, payload) {
     const text =
-      get(payload, 'response.data.error_description') ||
-      get(payload, 'response.data.message') ||
-      get(payload, 'message');
+      payload?.response?.data?.error_description ||
+      payload?.response?.data?.message ||
+      payload?.message;
     if (text) commit(SHOW_ERROR, text);
   },
   success({ commit }, payload) {
