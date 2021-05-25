@@ -18,8 +18,10 @@ export default {
     },
     survey() {
       if (window.delighted.survey) {
+        const userId = this.$store.getters['auth/userId'];
         window.delighted.survey({
-          name: this.$store.getters['auth/userId'],
+          name: userId,
+          email: `${userId}@hackaru.app`,
           properties: {
             locale: this.$i18n.locale,
           },
