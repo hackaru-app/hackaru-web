@@ -200,8 +200,8 @@ module.exports = {
     sentryProject: process.env.SENTRY_PROJECT,
     sentryRelease: process.env.SENTRY_RELEASE,
     delightedToken: process.env.DELIGHTED_TOKEN,
-    logRocketId: process.env.LOG_ROCKET_ID,
-    logRocketRelease: process.env.LOG_ROCKET_RELEASE,
+    logRocketId: process.env.LOGROCKET_ID,
+    logRocketRelease: process.env.LOGROCKET_RELEASE,
     axios: {
       browserBaseURL: process.env.HACKARU_API_URL,
     },
