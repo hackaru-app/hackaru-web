@@ -34,6 +34,7 @@ describe('Delighted', () => {
     it('shows survey', () => {
       expect(window.delighted.survey).toHaveBeenCalledWith({
         name: 1,
+        email: '1@hackaru.app',
         properties: {
           locale: 'en',
         },
