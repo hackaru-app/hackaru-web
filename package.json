@@ -33,6 +33,7 @@
     "lodash.omit": "^4.5.0",
     "lodash.union": "^4.6.0",
     "lodash.uniqby": "^4.7.0",
+    "logrocket": "^1.2.1",
     "mezr": "^0.6.2",
     "normalizr": "^3.6.0",
     "nuxt": "^2.15.6",

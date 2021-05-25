@@ -131,6 +131,7 @@ module.exports = {
     { src: '~/plugins/load-script', ssr: false },
     { src: '~/plugins/v-scroll-lock', ssr: false },
     { src: '~/plugins/api' },
+    { src: '~/plugins/logrocket' },
   ],
   /*
    ** Build configuration
@@ -199,6 +200,8 @@ module.exports = {
     sentryProject: process.env.SENTRY_PROJECT,
     sentryRelease: process.env.SENTRY_RELEASE,
     delightedToken: process.env.DELIGHTED_TOKEN,
+    logRocketId: process.env.LOG_ROCKET_ID,
+    logRocketRelease: process.env.LOG_ROCKET_RELEASE,
     axios: {
       browserBaseURL: process.env.HACKARU_API_URL,
     },
@@ -265,6 +268,9 @@ module.exports = {
           'https://web.delighted.com',
           'https://translate.googleapis.com',
           'wss://ws.pusherapp.com/app/7fa7ab308aa09e4f2ae1',
+          'https://*.logrocket.io',
+          'https://*.lr-ingest.io',
+          'https://*.logrocket.com',
         ],
         'script-src': [
           'https://d2yyd1h5u9mauk.cloudfront.net',
@@ -272,6 +278,8 @@ module.exports = {
           'https://www.google-analytics.com',
           'https://translate.google.com',
           "'unsafe-inline'",
+          'https://cdn.logrocket.io',
+          'https://cdn.lr-ingest.io',
           "'self'",
         ],
         'style-src': [
@@ -288,6 +296,7 @@ module.exports = {
           'data:',
           "'self'",
         ],
+        'worker-src': ['blob:', "'self'"],
         'font-src': ['https://fonts.gstatic.com'],
         'default-src': ["'self'"],
         'frame-src': ["'none'"],
