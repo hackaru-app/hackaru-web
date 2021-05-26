@@ -296,6 +296,7 @@ module.exports = {
           'data:',
           "'self'",
         ],
+        'child-src': ['blob:', "'self'"],
         'worker-src': ['blob:', "'self'"],
         'font-src': ['https://fonts.gstatic.com'],
         'default-src': ["'self'"],
