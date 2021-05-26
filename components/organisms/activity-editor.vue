@@ -164,6 +164,7 @@ export default {
 }
 .project-button {
   width: 100%;
+  min-height: inherit;
   display: flex;
   align-items: center;
   justify-content: space-between;

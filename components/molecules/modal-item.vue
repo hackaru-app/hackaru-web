@@ -6,7 +6,7 @@
 
 <style scoped lang="scss">
 .modal-item {
-  padding: 15px 30px;
+  padding: 0 30px;
   display: flex;
   box-sizing: border-box;
   align-items: center;
@@ -14,7 +14,7 @@
   min-height: 73px;
   input {
     width: 100%;
-    min-height: 40px;
+    min-height: inherit;
     display: flex;
     border: 0;
     background: none;
@@ -36,7 +36,7 @@
   flex-direction: column;
   align-self: flex-start;
   align-items: stretch;
-  padding: 25px 30px;
+  padding: 20px 25px;
   label {
     padding-bottom: 25px;
   }
