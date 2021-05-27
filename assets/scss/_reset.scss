@@ -29,6 +29,7 @@ input[type="email"],
 input[type="password"] {
   -webkit-appearance: none;
   box-sizing: border-box;
+  outline: none;
 }
 input::placeholder {
   color: $grey-ccc;

@@ -46,6 +46,5 @@ export default {
 }
 .heading {
   margin: 0 15px;
-  margin-bottom: 2px;
 }
 </style>
