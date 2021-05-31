@@ -273,6 +273,7 @@ module.exports = {
           'https://*.logrocket.io',
           'https://*.lr-ingest.io',
           'https://*.logrocket.com',
+          'https://api-js.mixpanel.com',
         ],
         'script-src': [
           'https://d2yyd1h5u9mauk.cloudfront.net',
