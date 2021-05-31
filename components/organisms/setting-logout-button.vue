@@ -34,6 +34,7 @@ export default {
   methods: {
     async logout() {
       if (!window.confirm(this.$t('confirms'))) return;
+      this.$mixpanel.reset();
       this.$ga.event({
         eventCategory: 'Accounts',
         eventAction: 'logout',

@@ -1,6 +1,6 @@
 import { Store } from 'vuex-mock-store';
 import { shallowMount } from '@vue/test-utils';
-import { parseISO } from 'date-fns';
+import { parseISO, formatISO } from 'date-fns';
 import CalendarDay from '~/components/organisms/calendar-day';
 import testId from '~/__tests__/__helpers__/test-id';
 
@@ -8,6 +8,7 @@ describe('CalendarDay', () => {
   let wrapper;
 
   const $ga = { event: jest.fn() };
+  const $mixpanel = { track: jest.fn() };
   const $store = new Store({
     getters: {
       'activities/getCalendar': () => [
@@ -44,6 +45,7 @@ describe('CalendarDay', () => {
       mocks: {
         $store,
         $ga,
+        $mixpanel,
         $mezr: {
           offset: () => ({
             top: 50,
@@ -117,6 +119,16 @@ describe('CalendarDay', () => {
       });
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Add activity', {
+        component: 'calendar-day',
+        descriptionLength: 0,
+        startedAt: formatISO(parseISO('2019-01-01T01:00:00')),
+        stoppedAt: formatISO(parseISO('2019-01-01T01:20:00')),
+        duration: 1200,
+      });
+    });
+
     it('sends ga event', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Activities',
@@ -144,6 +156,16 @@ describe('CalendarDay', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/add', {
         startedAt: parseISO('2019-01-01T01:00:00'),
         stoppedAt: parseISO('2019-01-01T01:20:00'),
+      });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Add activity', {
+        component: 'calendar-day',
+        descriptionLength: 0,
+        startedAt: formatISO(parseISO('2019-01-01T01:00:00')),
+        stoppedAt: formatISO(parseISO('2019-01-01T01:20:00')),
+        duration: 1200,
       });
     });
 

@@ -212,10 +212,21 @@ export default {
   },
   watch: {
     projectIds: {
-      handler: 'fetchReport',
+      handler() {
+        this.$mixpanel.track('Filter project ids', {
+          component: 'report',
+        });
+        this.fetchReport();
+      },
     },
     period: {
-      handler: 'fetchReport',
+      handler() {
+        this.$mixpanel.track('Select period', {
+          component: 'report',
+          period: this.currentPeriod,
+        });
+        this.fetchReport();
+      },
     },
     date: {
       handler: 'fetchReport',
@@ -246,15 +257,28 @@ export default {
       this.$refs.slider.slideRight();
     },
     today() {
+      this.$mixpanel.track('Show today report', {
+        component: 'report',
+      });
       this.date = new Date();
     },
     prev() {
+      this.$mixpanel.track('Show prev report', {
+        component: 'report',
+      });
       this.date = this.period.add(this.period.startOf(this.date), -1);
     },
     next() {
+      this.$mixpanel.track('Show next report', {
+        component: 'report',
+      });
       this.date = this.period.add(this.period.startOf(this.date), 1);
     },
     exportReport(type) {
+      this.$mixpanel.track('Export report', {
+        component: 'report',
+        type,
+      });
       const query = stringify({
         start: formatISO(this.period.startOf(this.date)),
         end: formatISO(this.period.endOf(this.date)),

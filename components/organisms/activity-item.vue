@@ -43,6 +43,7 @@ import ActivityName from '~/components/molecules/activity-name';
 import Ticker from '~/components/atoms/ticker';
 import SwipeMenu from '~/components/molecules/swipe-menu';
 import ActivityEditor from '~/components/organisms/activity-editor';
+import { formatISO } from 'date-fns';
 
 export default {
   components: {
@@ -80,6 +81,9 @@ export default {
   },
   methods: {
     showModal() {
+      this.$mixpanel.track('Show activity modal', {
+        component: 'activity-item',
+      });
       this.$nuxt.$emit('show-modal', {
         component: ActivityEditor,
         params: {
@@ -96,6 +100,14 @@ export default {
         this.$refs.swipeMenu.reset();
         return;
       }
+      this.$mixpanel.track('Delete activity', {
+        component: 'activity-item',
+        descriptionLength: this.description.length,
+        projectId: this.project?.id,
+        startedAt: this.startedAt,
+        stoppedAt: this.stoppedAt,
+        duration: this.duration,
+      });
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
       this.$ga.event({
@@ -104,14 +116,21 @@ export default {
       });
     },
     async duplicateActivity() {
+      const startedAt = new Date();
       const success = await this.$store.dispatch('activities/add', {
         description: this.description,
-        projectId: this.project && this.project.id,
-        startedAt: `${new Date()}`,
+        projectId: this.project?.id,
+        startedAt: `${startedAt}`,
       });
       this.$ga.event({
         eventCategory: 'Activities',
         eventAction: 'duplicate',
+      });
+      this.$mixpanel.track('Duplicate activity', {
+        component: 'activity-item',
+        descriptionLength: this.description.length,
+        projectId: this.project?.id,
+        startedAt: formatISO(startedAt),
       });
       if (success) {
         this.$refs.swipeMenu.reset();

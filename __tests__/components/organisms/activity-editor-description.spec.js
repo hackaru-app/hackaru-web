@@ -9,6 +9,7 @@ describe('ActivityEditorDescription', () => {
   const localVue = createLocalVue();
   localVue.directive('scroll-lock', () => {});
 
+  const $mixpanel = { track: jest.fn() };
   const $store = new Store({
     getters: {
       'suggestions/all': [
@@ -33,9 +34,10 @@ describe('ActivityEditorDescription', () => {
       localVue,
       mocks: {
         $store,
+        $mixpanel,
       },
       propsData: {
-        value: 'Create a database.',
+        value: 'Create a database',
         project: undefined,
       },
     });
@@ -97,6 +99,14 @@ describe('ActivityEditorDescription', () => {
         color: '#ff0',
       });
     });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Click suggestion', {
+        component: 'activity-editor-description',
+        descriptionLength: 15,
+        projectId: 2,
+      });
+    });
   });
 
   describe('when click suggestion and project is null', () => {
@@ -108,6 +118,14 @@ describe('ActivityEditorDescription', () => {
 
     it('emits select-project', () => {
       expect(wrapper.emitted('select-project')[0][0]).toBeNull();
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Click suggestion', {
+        component: 'activity-editor-description',
+        descriptionLength: 9,
+        projectId: undefined,
+      });
     });
   });
 });

@@ -61,6 +61,7 @@ import BaseButton from '~/components/atoms/base-button';
 import IconButton from '~/components/atoms/icon-button';
 import Icon from '~/components/atoms/icon';
 import { mapGetters } from 'vuex';
+import { differenceInSeconds, parseISO } from 'date-fns';
 
 export default {
   name: 'ActivityEditor',
@@ -115,7 +116,7 @@ export default {
       this.disabled = true;
       const success = await this.$store.dispatch('activities/update', {
         id: this.id,
-        projectId: this.project && this.project.id,
+        projectId: this.project?.id,
         description: this.description,
         startedAt: this.startedAt,
         stoppedAt: this.stoppedAt,
@@ -127,6 +128,19 @@ export default {
           this.$t(this.id || this.stoppedAt ? 'saved' : 'started')
         );
         this.$emit('pop');
+        this.$mixpanel.track('Update activity', {
+          component: 'activity-editor',
+          descriptionLength: this.description.length,
+          projectId: this.project?.id,
+          startedAt: this.startedAt,
+          stoppedAt: this.stoppedAt,
+          duration: this.stoppedAt
+            ? differenceInSeconds(
+                parseISO(this.stoppedAt),
+                parseISO(this.startedAt)
+              )
+            : undefined,
+        });
         this.$ga.event({
           eventCategory: 'Activities',
           eventAction: 'update',
@@ -137,6 +151,19 @@ export default {
       if (!window.confirm(this.$t('confirms.delete'))) return;
       this.$store.dispatch('activities/delete', this.id);
       this.$store.dispatch('toast/success', this.$t('deleted'));
+      this.$mixpanel.track('Delete activity', {
+        component: 'activity-editor',
+        descriptionLength: this.description.length,
+        projectId: this.project?.id,
+        startedAt: this.startedAt,
+        stoppedAt: this.stoppedAt,
+        duration: this.stoppedAt
+          ? differenceInSeconds(
+              parseISO(this.stoppedAt),
+              parseISO(this.startedAt)
+            )
+          : undefined,
+      });
       this.$ga.event({
         eventCategory: 'Activities',
         eventAction: 'delete',

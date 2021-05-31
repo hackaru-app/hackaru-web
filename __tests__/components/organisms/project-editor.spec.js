@@ -8,6 +8,7 @@ describe('ProjectEditor', () => {
 
   const $ga = { event: jest.fn() };
   const $store = new Store({});
+  const $mixpanel = { track: jest.fn() };
 
   const factory = () =>
     shallowMount(ProjectEditor, {
@@ -17,6 +18,7 @@ describe('ProjectEditor', () => {
       mocks: {
         $ga,
         $store,
+        $mixpanel,
       },
     });
 
@@ -41,6 +43,12 @@ describe('ProjectEditor', () => {
         id: 1,
         name: 'Development',
         color: '#ff0',
+      });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Update project', {
+        component: 'project-editor',
       });
     });
 
@@ -74,6 +82,12 @@ describe('ProjectEditor', () => {
       });
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Add project', {
+        component: 'project-editor',
+      });
+    });
+
     it('sends ga event', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Projects',
@@ -103,6 +117,12 @@ describe('ProjectEditor', () => {
       expect($store.dispatch).toHaveBeenCalledWith('projects/delete', 1);
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Delete project', {
+        component: 'project-editor',
+      });
+    });
+
     it('sends ga event', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Projects',
@@ -129,6 +149,10 @@ describe('ProjectEditor', () => {
 
     it('does not dispatch projects/deleteProject', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('does not send mixpanel event', () => {
+      expect($mixpanel.track).not.toHaveBeenCalled();
     });
 
     it('does not send ga event', () => {

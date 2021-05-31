@@ -131,12 +131,21 @@ export default {
       this.$refs.slider.slideRight();
     },
     prev() {
+      this.$mixpanel.track('Show prev calendar', {
+        component: 'calendar',
+      });
       this.date = addWeeks(startOfWeek(this.date), -1);
     },
     next() {
+      this.$mixpanel.track('Show next calendar', {
+        component: 'calendar',
+      });
       this.date = addWeeks(startOfWeek(this.date), 1);
     },
     today() {
+      this.$mixpanel.track('Show today calendar', {
+        component: 'calendar',
+      });
       this.date = new Date();
     },
   },

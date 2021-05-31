@@ -82,6 +82,11 @@ export default {
       this.focused = false;
     },
     clickSuggestion({ description, project }) {
+      this.$mixpanel.track('Click suggestion', {
+        component: 'activity-editor-description',
+        descriptionLength: description.length,
+        projectId: project?.id,
+      });
       this.$emit('input', description);
       this.$emit('select-project', project);
     },

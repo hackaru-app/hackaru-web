@@ -68,6 +68,10 @@ export default {
       return this.$store.dispatch('activity-calendar/createUrl');
     },
     async addToGoogleCalendar() {
+      this.$mixpanel.track('Add calendar integration', {
+        component: 'integrations',
+        type: 'google-calendar',
+      });
       this.$ga.event({
         eventCategory: 'GoogleCalendars',
         eventAction: 'add',
@@ -83,6 +87,10 @@ export default {
       window.location.assign(this.webcalUrl);
     },
     addToAppleCalendar() {
+      this.$mixpanel.track('Add calendar integration', {
+        component: 'integrations',
+        type: 'apple-calendar',
+      });
       this.$ga.event({
         eventCategory: 'AppleCalendars',
         eventAction: 'add',
@@ -90,6 +98,10 @@ export default {
       this.navigateWebcal();
     },
     addToOutlook() {
+      this.$mixpanel.track('Add calendar integration', {
+        component: 'integrations',
+        type: 'outlook-calendar',
+      });
       this.$ga.event({
         eventCategory: 'OutlookCalendars',
         eventAction: 'add',

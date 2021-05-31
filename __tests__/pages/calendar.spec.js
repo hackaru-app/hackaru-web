@@ -11,10 +11,12 @@ describe('Calendar', () => {
   MockDate.set('2019-01-31T01:23:45');
 
   const $store = new Store({});
+  const $mixpanel = { track: jest.fn() };
   const factory = () =>
     shallowMount(Calendar, {
       mocks: {
         $store,
+        $mixpanel,
       },
     });
 
@@ -60,6 +62,12 @@ describe('Calendar', () => {
       wrapper.find(testId('loop-slider')).vm.$emit('slide-left');
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Show prev calendar', {
+        component: 'calendar',
+      });
+    });
+
     it('sets prev weeks', () => {
       expect(wrapper.vm.days).toEqual([
         parseISO('2019-01-20T00:00:00'),
@@ -77,6 +85,12 @@ describe('Calendar', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Show next calendar', {
+        component: 'calendar',
+      });
     });
 
     it('sets next weeks', () => {
@@ -97,6 +111,12 @@ describe('Calendar', () => {
       wrapper = factory();
       wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
       wrapper.find(testId('date-header')).vm.$emit('today');
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Show today calendar', {
+        component: 'calendar',
+      });
     });
 
     it('sets today weeks', () => {

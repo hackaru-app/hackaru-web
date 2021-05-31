@@ -2,8 +2,13 @@ import { shallowMount } from '@vue/test-utils';
 import DoughnutChart from '~/components/atoms/doughnut-chart';
 
 describe('DoughnutChart', () => {
+  const $mixpanel = { track: jest.fn() };
+
   const factory = () =>
     shallowMount(DoughnutChart, {
+      mocks: {
+        $mixpanel,
+      },
       propsData: {
         chartData: {
           labels: ['Review', 'Development'],

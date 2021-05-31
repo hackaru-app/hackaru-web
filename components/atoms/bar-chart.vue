@@ -10,11 +10,6 @@ const options = {
     legend: {
       display: false,
     },
-    tooltips: {
-      callbacks: {
-        label: ({ yLabel }) => fromS(yLabel),
-      },
-    },
     scales: {
       yAxes: [
         {
@@ -71,7 +66,19 @@ export default {
   },
   computed: {
     options() {
-      return this.isDark ? options.dark : options.default;
+      return {
+        ...(this.isDark ? options.dark : options.default),
+        tooltips: {
+          callbacks: {
+            label: ({ yLabel }) => {
+              this.$mixpanel.track('Hover bar chart', {
+                component: 'bar-chart',
+              });
+              return fromS(yLabel);
+            },
+          },
+        },
+      };
     },
   },
   watch: {

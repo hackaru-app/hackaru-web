@@ -70,6 +70,7 @@ import BaseButton from '~/components/atoms/base-button';
 import Icon from '~/components/atoms/icon';
 import Dot from '~/components/atoms/dot';
 import { mapGetters } from 'vuex';
+import { formatISO, parseISO, differenceInSeconds } from 'date-fns';
 
 function getRandI18n(t) {
   if (!t) return;
@@ -124,7 +125,12 @@ export default {
     },
     selectProject({ project }) {
       this.project = project;
-      if (this.id) this.updateActivity();
+      if (this.id) {
+        this.updateActivity();
+        this.$mixpanel.track('Select project', {
+          component: 'timer-form',
+        });
+      }
     },
     submit() {
       if (this.working) {
@@ -148,7 +154,13 @@ export default {
       const success = await this.$store.dispatch('activities/update', {
         id: this.id,
         description: this.description,
-        projectId: this.project && this.project.id,
+        projectId: this.project?.id,
+      });
+      this.$mixpanel.track('Update activity', {
+        component: 'timer-form',
+        startedAt: this.startedAt,
+        projectId: this.project?.id,
+        descriptionLength: this.description.length,
       });
       if (success) {
         this.syncProps();
@@ -156,26 +168,44 @@ export default {
       }
     },
     async stopActivity() {
+      const stoppedAt = new Date();
+
       this.$ga.event({
         eventCategory: 'Activities',
         eventAction: 'stop',
       });
+      this.$mixpanel.track('Stop activity', {
+        component: 'timer-form',
+        startedAt: this.startedAt,
+        projectId: this.project?.id,
+        descriptionLength: this.description.length,
+        stoppedAt: formatISO(stoppedAt),
+        duration: differenceInSeconds(stoppedAt, parseISO(this.startedAt)),
+      });
       this.$store.dispatch('toast/success', getRandI18n(this.$t('stopped')));
       await this.$store.dispatch('activities/update', {
         id: this.id,
-        stoppedAt: `${new Date()}`,
+        stoppedAt: `${stoppedAt}`,
       });
       this.syncProps();
     },
     async startActivity() {
+      const startedAt = new Date();
+
       this.$ga.event({
         eventCategory: 'Activities',
         eventAction: 'start',
       });
+      this.$mixpanel.track('Start activity', {
+        component: 'timer-form',
+        startedAt: formatISO(startedAt),
+        projectId: this.project?.id,
+        descriptionLength: this.description.length,
+      });
       const success = await this.$store.dispatch('activities/add', {
         description: this.description,
-        projectId: this.project && this.project.id,
-        startedAt: `${new Date()}`,
+        projectId: this.project?.id,
+        startedAt: `${startedAt}`,
       });
       if (success) {
         this.syncProps();
@@ -183,6 +213,9 @@ export default {
       }
     },
     showModal() {
+      this.$mixpanel.track('Show project modal', {
+        component: 'timer-form',
+      });
       this.$nuxt.$emit('show-modal', {
         component: ProjectList,
         callback: this.selectProject,
@@ -200,6 +233,7 @@ export default {
       }
     },
     clickSuggestion(suggestion) {
+      this.$mixpanel.track('Click suggestion', { component: 'timer-form' });
       this.description = suggestion.description;
       this.project = suggestion.project;
       this.startActivity();

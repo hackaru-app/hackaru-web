@@ -10,6 +10,7 @@ describe('Integrations', () => {
   window.location = { assign: jest.fn() };
 
   const $ga = { event: jest.fn() };
+  const $mixpanel = { track: jest.fn() };
   const $store = new Store({
     getters: {
       'activity-calendar/googleCalendarUrl': 'https://example.com',
@@ -21,6 +22,7 @@ describe('Integrations', () => {
     shallowMount(Integrations, {
       mocks: {
         $ga,
+        $mixpanel,
         $store,
       },
     });
@@ -45,8 +47,15 @@ describe('Integrations', () => {
       );
     });
 
-    it('navigate to google calendar url', () => {
+    it('navigates to google calendar url', () => {
       expect(assign).toHaveBeenCalledWith('https://example.com');
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Add calendar integration', {
+        component: 'integrations',
+        type: 'google-calendar',
+      });
     });
 
     it('sends ga event', () => {
@@ -85,10 +94,17 @@ describe('Integrations', () => {
       );
     });
 
-    it('navigate to webcal url', () => {
+    it('navigates to webcal url', () => {
       expect(window.location.assign).toHaveBeenCalledWith(
         'webcal://example.com'
       );
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Add calendar integration', {
+        component: 'integrations',
+        type: 'apple-calendar',
+      });
     });
 
     it('sends ga event', () => {
@@ -112,10 +128,17 @@ describe('Integrations', () => {
       );
     });
 
-    it('navigate to webcal url', () => {
+    it('navigates to webcal url', () => {
       expect(window.location.assign).toHaveBeenCalledWith(
         'webcal://example.com'
       );
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Add calendar integration', {
+        component: 'integrations',
+        type: 'outlook-calendar',
+      });
     });
 
     it('sends ga event', () => {

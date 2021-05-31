@@ -7,6 +7,7 @@ describe('Authorize', () => {
   let wrapper;
 
   const $ga = { event: jest.fn() };
+  const $mixpanel = { track: jest.fn() };
   const $store = new Store({
     getters: {
       'auth/email': 'example@example.com',
@@ -27,6 +28,7 @@ describe('Authorize', () => {
         $ga,
         $store,
         $router,
+        $mixpanel,
         $route: {
           query: {
             client_id: 'clientId',
@@ -71,6 +73,16 @@ describe('Authorize', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.find(testId('allow-button')).vm.$emit('click');
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith(
+        'Decide oauth authorization',
+        {
+          component: 'authorize',
+          action: 'allow',
+        }
+      );
     });
 
     it('dispatches oauth/allow', () => {
@@ -173,6 +185,16 @@ describe('Authorize', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.find(testId('deny-button')).vm.$emit('click');
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith(
+        'Decide oauth authorization',
+        {
+          component: 'authorize',
+          action: 'deny',
+        }
+      );
     });
 
     it('dispatches oauth/deny', () => {

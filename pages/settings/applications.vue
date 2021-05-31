@@ -95,6 +95,9 @@ export default {
   methods: {
     deleteApplication(id) {
       if (!window.confirm(this.$t('confirms.delete'))) return;
+      this.$mixpanel.track('Delete application', {
+        component: 'applications',
+      });
       this.$ga.event({
         eventCategory: 'Applications',
         eventAction: 'delete',
