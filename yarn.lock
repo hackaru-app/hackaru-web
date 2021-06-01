@@ -7704,10 +7704,10 @@ log-update@^4.0.0:
     slice-ansi "^4.0.0"
     wrap-ansi "^6.2.0"
 
-logrocket@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/logrocket/-/logrocket-1.2.1.tgz#a46d017802d609991bcdf8d0346bbd582d1c2181"
-  integrity sha512-Tkl5OF3Bvt04k3P2SBKrDXFldm4bFeCEAkg+m1oyaZT31wHlcuch1xXU57at77ptRIXtehROPJw3R0fvTviRhw==
+logrocket@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/logrocket/-/logrocket-1.2.2.tgz#3b25396ee17b166b4abb91faaa835e9fdb2bedab"
+  integrity sha512-y6c/w/te7fDei9VonjmXDhJKjFNBb5Loomq0cSSDyJKDngJF4q5S0NFa1PToSAaxUW+ccm3PTKsKXBk+PfrEdA==
 
 loose-envify@^1.0.0:
   version "1.4.0"
