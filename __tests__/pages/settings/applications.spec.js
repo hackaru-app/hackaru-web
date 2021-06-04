@@ -7,6 +7,7 @@ describe('Applications', () => {
   let wrapper;
 
   const $ga = { event: jest.fn() };
+  const $mixpanel = { track: jest.fn() };
   const $store = new Store({
     getters: {
       'applications/all': [
@@ -30,6 +31,7 @@ describe('Applications', () => {
     shallowMount(Applications, {
       mocks: {
         $ga,
+        $mixpanel,
         $store,
       },
     });
@@ -54,6 +56,12 @@ describe('Applications', () => {
       expect($store.dispatch).toHaveBeenCalledWith('applications/delete', 1);
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Delete application', {
+        component: 'applications',
+      });
+    });
+
     it('sends ga event', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Applications',
@@ -74,6 +82,10 @@ describe('Applications', () => {
         'applications/delete',
         1
       );
+    });
+
+    it('does not send mixpanel event', () => {
+      expect($mixpanel.track).not.toHaveBeenCalled();
     });
 
     it('does not send ga event', () => {

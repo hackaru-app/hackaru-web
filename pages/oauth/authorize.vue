@@ -105,6 +105,10 @@ export default {
   },
   methods: {
     decide(action) {
+      this.$mixpanel.track('Decide oauth authorization', {
+        component: 'authorize',
+        action,
+      });
       this.$ga.event({
         eventCategory: 'OAuth',
         eventAction: action,

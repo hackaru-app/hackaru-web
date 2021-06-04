@@ -209,6 +209,9 @@ export default {
       this.dragged = false;
     },
     showModal() {
+      this.$mixpanel.track('Show activity modal', {
+        component: 'calendar-activity',
+      });
       this.$nuxt.$emit('show-modal', {
         component: ActivityEditor,
         params: {
@@ -225,6 +228,14 @@ export default {
       await this.$store.dispatch('activities/update', {
         id: this.id,
         ...payload,
+      });
+      this.$mixpanel.track('Update activity', {
+        component: 'calendar-activity',
+        descriptionLength: this.description.length,
+        projectId: this.project?.id,
+        startedAt: this.startedAt,
+        stoppedAt: this.stoppedAt,
+        duration: this.duration,
       });
       this.$ga.event({
         eventCategory: 'Activities',

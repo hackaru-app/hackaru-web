@@ -118,6 +118,9 @@ export default {
           eventCategory: 'Projects',
           eventAction: 'add',
         });
+        this.$mixpanel.track('Add project', {
+          component: 'project-editor',
+        });
         this.$store.dispatch('toast/success', this.$t('added'));
       }
     },
@@ -133,6 +136,9 @@ export default {
           eventCategory: 'Projects',
           eventAction: 'update',
         });
+        this.$mixpanel.track('Update project', {
+          component: 'project-editor',
+        });
         this.$store.dispatch('toast/success', this.$t('updated'));
       }
     },
@@ -144,6 +150,9 @@ export default {
         this.$ga.event({
           eventCategory: 'Projects',
           eventAction: 'delete',
+        });
+        this.$mixpanel.track('Delete project', {
+          component: 'project-editor',
         });
         this.$store.dispatch('toast/success', this.$t('deleted'));
       }

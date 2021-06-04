@@ -49,7 +49,14 @@
 import Resizer from '~/components/atoms/resizer';
 import CalendarEvent from '~/components/atoms/calendar-event';
 import CalendarActivity from '~/components/organisms/calendar-activity';
-import { format, startOfDay, addMinutes, parseISO } from 'date-fns';
+import {
+  format,
+  startOfDay,
+  addMinutes,
+  parseISO,
+  formatISO,
+  differenceInSeconds,
+} from 'date-fns';
 
 export default {
   components: {
@@ -123,9 +130,17 @@ export default {
         startOfDay(parseISO(this.day)),
         this.$toMin(this.ghostTop)
       );
+      const stoppedAt = addMinutes(startedAt, this.$toMin(this.ghostHeight));
       await this.$store.dispatch('activities/add', {
         startedAt,
-        stoppedAt: addMinutes(startedAt, this.$toMin(this.ghostHeight)),
+        stoppedAt,
+      });
+      this.$mixpanel.track('Add activity', {
+        component: 'calendar-day',
+        descriptionLength: 0,
+        startedAt: formatISO(startedAt),
+        stoppedAt: formatISO(stoppedAt),
+        duration: differenceInSeconds(stoppedAt, startedAt),
       });
       this.$ga.event({
         eventCategory: 'Activities',

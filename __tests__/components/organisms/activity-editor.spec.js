@@ -9,6 +9,7 @@ describe('ActivityEditor', () => {
 
   const $ga = { event: jest.fn() };
   const $store = new Store({});
+  const $mixpanel = { track: jest.fn() };
 
   const factory = () =>
     shallowMount(ActivityEditor, {
@@ -18,6 +19,7 @@ describe('ActivityEditor', () => {
       mocks: {
         $store,
         $ga,
+        $mixpanel,
       },
       data() {
         return {
@@ -27,7 +29,7 @@ describe('ActivityEditor', () => {
             name: 'Development',
             color: '#ff0',
           },
-          description: 'Create a database.',
+          description: 'Create a database',
           startedAt: '2019-01-01T00:12:34',
           stoppedAt: '2019-01-02T00:12:34',
         };
@@ -49,7 +51,7 @@ describe('ActivityEditor', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         projectId: 2,
-        description: 'Create a database.',
+        description: 'Create a database',
         startedAt: '2019-01-01T00:12:34',
         stoppedAt: '2019-01-02T00:12:34',
       });
@@ -59,6 +61,17 @@ describe('ActivityEditor', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Activities',
         eventAction: 'update',
+      });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Update activity', {
+        component: 'activity-editor',
+        descriptionLength: 17,
+        projectId: 2,
+        startedAt: '2019-01-01T00:12:34',
+        stoppedAt: '2019-01-02T00:12:34',
+        duration: 86400,
       });
     });
 
@@ -78,10 +91,21 @@ describe('ActivityEditor', () => {
     it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
-        projectId: null,
-        description: 'Create a database.',
+        projectId: undefined,
+        description: 'Create a database',
         startedAt: '2019-01-01T00:12:34',
         stoppedAt: '2019-01-02T00:12:34',
+      });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Update activity', {
+        component: 'activity-editor',
+        descriptionLength: 17,
+        projectId: undefined,
+        startedAt: '2019-01-01T00:12:34',
+        stoppedAt: '2019-01-02T00:12:34',
+        duration: 86400,
       });
     });
   });
@@ -104,6 +128,17 @@ describe('ActivityEditor', () => {
       });
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Delete activity', {
+        component: 'activity-editor',
+        descriptionLength: 17,
+        projectId: 2,
+        startedAt: '2019-01-01T00:12:34',
+        stoppedAt: '2019-01-02T00:12:34',
+        duration: 86400,
+      });
+    });
+
     it('emits pop', () => {
       expect(wrapper.emitted('pop')).toBeTruthy();
     });
@@ -118,6 +153,10 @@ describe('ActivityEditor', () => {
 
     it('does not dispatch activities/delete', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).not.toHaveBeenCalled();
     });
 
     it('does not send ga event', () => {

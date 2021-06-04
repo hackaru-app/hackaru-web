@@ -10,19 +10,25 @@ export default {
       type: Object,
       required: true,
     },
-    options: {
-      type: Object,
-      default: () => ({
+  },
+  computed: {
+    options() {
+      return {
         responsive: true,
         legend: {
           display: false,
         },
         tooltips: {
           callbacks: {
-            label: ({ index }, data) => fromS(data.datasets[0].data[index]),
+            label: ({ index }, data) => {
+              this.$mixpanel.track('Hover doughnut chart', {
+                component: 'bar-chart',
+              });
+              return fromS(data.datasets[0].data[index]);
+            },
           },
         },
-      }),
+      };
     },
   },
   mounted() {

@@ -11,6 +11,7 @@ describe('CalendarActivity', () => {
   const $ga = { event: jest.fn() };
   const $store = new Store({});
   const $nuxt = { $emit: jest.fn() };
+  const $mixpanel = { track: jest.fn() };
 
   const factory = () =>
     shallowMount(CalendarActivity, {
@@ -18,10 +19,11 @@ describe('CalendarActivity', () => {
         $store,
         $nuxt,
         $ga,
+        $mixpanel,
       },
       propsData: {
         id: 1,
-        description: 'Create a database.',
+        description: 'Create a database',
         startedAt: '2019-01-01T01:23:45',
         stoppedAt: '2019-01-01T02:23:45',
         duration: 3600,
@@ -122,6 +124,17 @@ describe('CalendarActivity', () => {
       });
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Update activity', {
+        component: 'calendar-activity',
+        descriptionLength: 17,
+        projectId: undefined,
+        startedAt: '2019-01-01T01:23:45',
+        stoppedAt: '2019-01-01T02:23:45',
+        duration: 3600,
+      });
+    });
+
     it('sends ga event', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Activities',
@@ -139,6 +152,10 @@ describe('CalendarActivity', () => {
 
     it('emits drop', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
+    });
+
+    it('does not send mixpanel event', () => {
+      expect($mixpanel.track).not.toHaveBeenCalled();
     });
 
     it('does not dispatch activities/update', () => {
@@ -191,6 +208,17 @@ describe('CalendarActivity', () => {
       expect(wrapper.emitted('drop')).toBeTruthy();
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Update activity', {
+        component: 'calendar-activity',
+        descriptionLength: 17,
+        projectId: undefined,
+        startedAt: '2019-01-01T01:23:45',
+        stoppedAt: '2019-01-01T02:23:45',
+        duration: 3600,
+      });
+    });
+
     it('dispatches activities/update', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
@@ -224,12 +252,18 @@ describe('CalendarActivity', () => {
       wrapper.find(testId('click-handler')).trigger('mouseup');
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Show activity modal', {
+        component: 'calendar-activity',
+      });
+    });
+
     it('shows modal', () => {
       expect($nuxt.$emit).toHaveBeenCalledWith('show-modal', {
         component: ActivityEditor,
         params: {
           id: 1,
-          description: 'Create a database.',
+          description: 'Create a database',
           duration: 3600,
           startedAt: '2019-01-01T01:23:45',
           stoppedAt: '2019-01-01T02:23:45',

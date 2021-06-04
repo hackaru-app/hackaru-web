@@ -35,6 +35,7 @@
     "lodash.uniqby": "^4.7.0",
     "logrocket": "^1.2.2",
     "mezr": "^0.6.2",
+    "mixpanel-browser": "^2.41.0",
     "normalizr": "^3.6.0",
     "nuxt": "^2.15.6",
     "nuxt-helmet": "^2.0.0",

@@ -1,6 +1,7 @@
 import MockDate from 'mockdate';
 import { Store } from 'vuex-mock-store';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { formatISO } from 'date-fns';
 import TimerForm from '~/components/organisms/timer-form';
 import ProjectList from '~/components/organisms/project-list';
 import testId from '~/__tests__/__helpers__/test-id';
@@ -15,6 +16,7 @@ describe('TimerForm', () => {
 
   const $ga = { event: jest.fn() };
   const $nuxt = { $emit: jest.fn() };
+  const $mixpanel = { track: jest.fn() };
   const $store = new Store({
     getters: {
       'activities/working': [],
@@ -28,6 +30,7 @@ describe('TimerForm', () => {
         $ga,
         $nuxt,
         $store,
+        $mixpanel,
       },
     });
 
@@ -58,6 +61,10 @@ describe('TimerForm', () => {
         description: 'Review my tasks',
         projectId: 1,
       });
+    });
+
+    it('does not send mixpanel event', () => {
+      expect($mixpanel.track).not.toHaveBeenCalled();
     });
 
     it('does not send ga event', () => {
@@ -91,6 +98,12 @@ describe('TimerForm', () => {
       });
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Select project', {
+        component: 'timer-form',
+      });
+    });
+
     it('sends ga event', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Activities',
@@ -103,6 +116,12 @@ describe('TimerForm', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.find(testId('project-wrapper')).trigger('click');
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Show project modal', {
+        component: 'timer-form',
+      });
     });
 
     it('shows modal', () => {
@@ -135,6 +154,15 @@ describe('TimerForm', () => {
       });
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Start activity', {
+        component: 'timer-form',
+        projectId: 2,
+        descriptionLength: 15,
+        startedAt: formatISO(new Date()),
+      });
+    });
+
     it('sends ga event', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Activities',
@@ -146,7 +174,16 @@ describe('TimerForm', () => {
   describe('when submit and timer is working', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ id: 1 });
+      wrapper.setData({
+        id: 1,
+        startedAt: '2019-01-31T00:23:45',
+        description: 'Review my tasks',
+        project: {
+          id: 2,
+          name: 'Review',
+          color: '#ff0',
+        },
+      });
       wrapper.find(testId('form')).trigger('submit');
     });
 
@@ -154,6 +191,17 @@ describe('TimerForm', () => {
       expect($store.dispatch).toHaveBeenCalledWith('activities/update', {
         id: 1,
         stoppedAt: `${new Date()}`,
+      });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Stop activity', {
+        component: 'timer-form',
+        projectId: 2,
+        descriptionLength: 15,
+        startedAt: '2019-01-31T00:23:45',
+        stoppedAt: formatISO(new Date()),
+        duration: 3600,
       });
     });
 
@@ -170,6 +218,7 @@ describe('TimerForm', () => {
       wrapper = factory();
       wrapper.setData({
         id: 1,
+        startedAt: '2019-01-31T00:23:45',
         project: {
           id: 2,
           name: 'Review',
@@ -185,6 +234,15 @@ describe('TimerForm', () => {
         id: 1,
         projectId: 2,
         description: 'Review my tasks',
+      });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Update activity', {
+        component: 'timer-form',
+        projectId: 2,
+        descriptionLength: 15,
+        startedAt: '2019-01-31T00:23:45',
       });
     });
 
@@ -218,6 +276,15 @@ describe('TimerForm', () => {
       });
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Start activity', {
+        component: 'timer-form',
+        projectId: 2,
+        descriptionLength: 15,
+        startedAt: formatISO(new Date()),
+      });
+    });
+
     it('sends ga event', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Activities',
@@ -238,6 +305,10 @@ describe('TimerForm', () => {
         'activities/update',
         expect.any(Object)
       );
+    });
+
+    it('does not send mixpanel event', () => {
+      expect($mixpanel.track).not.toHaveBeenCalled();
     });
 
     it('does not send ga event', () => {
@@ -294,6 +365,12 @@ describe('TimerForm', () => {
         projectId: 2,
         description: 'Review my tasks',
         startedAt: `${new Date()}`,
+      });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Click suggestion', {
+        component: 'timer-form',
       });
     });
 

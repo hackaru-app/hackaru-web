@@ -11,6 +11,7 @@ describe('Index', () => {
 
   MockDate.set('2019-01-31T01:23:45');
 
+  const $mixpanel = { track: jest.fn() };
   const $store = new Store({
     getters: {
       'projects/all': [
@@ -27,6 +28,7 @@ describe('Index', () => {
     shallowMount(Reports, {
       mocks: {
         $store,
+        $mixpanel,
       },
     });
 
@@ -64,6 +66,13 @@ describe('Index', () => {
       wrapper.find(testId('pdf-button')).trigger('click');
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Export report', {
+        component: 'report',
+        type: 'pdf',
+      });
+    });
+
     it('open pdf url', () => {
       const query = stringify({
         start: formatISO(parseISO('2019-01-31T00:00:00')),
@@ -81,6 +90,13 @@ describe('Index', () => {
       wrapper.find(testId('csv-button')).trigger('click');
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Export report', {
+        component: 'report',
+        type: 'csv',
+      });
+    });
+
     it('open csv url', () => {
       const query = stringify({
         start: formatISO(parseISO('2019-01-31T00:00:00')),
@@ -95,6 +111,13 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'week' });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Select period', {
+        component: 'report',
+        period: 'week',
+      });
     });
 
     it('dispatches reports/fetch', () => {
@@ -119,6 +142,13 @@ describe('Index', () => {
       wrapper.setData({ currentPeriod: 'month' });
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Select period', {
+        component: 'report',
+        period: 'month',
+      });
+    });
+
     it('dispatches reports/fetch', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
@@ -139,6 +169,13 @@ describe('Index', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'year' });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Select period', {
+        component: 'report',
+        period: 'year',
+      });
     });
 
     it('dispatches reports/fetch', () => {
@@ -164,6 +201,12 @@ describe('Index', () => {
       wrapper.find(testId('loop-slider')).vm.$emit('slide-left');
     });
 
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Show prev report', {
+        component: 'report',
+      });
+    });
+
     it('sets prev weeks', () => {
       expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
         current: {
@@ -185,6 +228,12 @@ describe('Index', () => {
       wrapper = factory();
       wrapper.setData({ currentPeriod: 'week' });
       wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Show next report', {
+        component: 'report',
+      });
     });
 
     it('sets next weeks', () => {
@@ -209,6 +258,12 @@ describe('Index', () => {
       wrapper.setData({ currentPeriod: 'week' });
       wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
       wrapper.find(testId('date-header')).vm.$emit('today');
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Show today report', {
+        component: 'report',
+      });
     });
 
     it('sets today weeks', () => {

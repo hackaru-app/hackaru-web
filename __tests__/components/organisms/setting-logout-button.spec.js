@@ -7,12 +7,14 @@ describe('SettingLogoutButton', () => {
   let wrapper;
 
   const $ga = { event: jest.fn() };
+  const $mixpanel = { reset: jest.fn() };
   const $store = new Store({});
 
   const factory = () =>
     shallowMount(SettingLogoutButton, {
       mocks: {
         $ga,
+        $mixpanel,
         $store,
       },
     });
@@ -32,6 +34,10 @@ describe('SettingLogoutButton', () => {
       expect($store.dispatch).toHaveBeenCalledWith('auth/logout');
     });
 
+    it('resets mixpanel properties', () => {
+      expect($mixpanel.reset).toHaveBeenCalled();
+    });
+
     it('sends ga event', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Accounts',
@@ -49,6 +55,10 @@ describe('SettingLogoutButton', () => {
 
     it('does not dispatch ', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('does not reset mixpanel properties', () => {
+      expect($mixpanel.reset).not.toHaveBeenCalled();
     });
 
     it('does not send ga event', () => {

@@ -2,8 +2,13 @@ import { shallowMount } from '@vue/test-utils';
 import BarChart from '~/components/atoms/bar-chart';
 
 describe('BarChart', () => {
+  const $mixpanel = { track: jest.fn() };
+
   const factory = () =>
     shallowMount(BarChart, {
+      mocks: {
+        $mixpanel,
+      },
       propsData: {
         isDark: false,
         chartData: {

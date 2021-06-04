@@ -1,6 +1,6 @@
 import LogRocket from 'logrocket';
 
-export default async ({ app }, inject) => {
+function init(app) {
   LogRocket.init(app.$config.logRocketId, {
     release: app.$config.logRocketRelease,
     dom: {
@@ -27,6 +27,9 @@ export default async ({ app }, inject) => {
       eventAction: sessionURL,
     });
   });
+}
 
+export default async ({ app }, inject) => {
+  if (app.$config.logRocketId) init(app);
   inject('logrocket', LogRocket);
 };

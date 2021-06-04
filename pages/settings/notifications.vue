@@ -50,12 +50,18 @@ export default {
   },
   methods: {
     changeReceiveWeekReport(e) {
+      this.$mixpanel.track('Toggle receive week report', {
+        component: 'notifications',
+      });
       this.$store.dispatch('user/update', {
         receiveWeekReport: e.target.checked,
       });
       this.$store.dispatch('toast/success', this.$t('updated'));
     },
     changeReceiveMonthReport(e) {
+      this.$mixpanel.track('Toggle receive month report', {
+        component: 'notifications',
+      });
       this.$store.dispatch('user/update', {
         receiveMonthReport: e.target.checked,
       });
