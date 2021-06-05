@@ -128,6 +128,9 @@ export default {
     change(index) {
       this.$scrollTo('body', 300, { offset: 50 });
       this.$emit('update:selectedIndex', index);
+      this.$mixpanel.track('Select report tab', {
+        item: ['projects', 'activities'][index],
+      });
     },
   },
 };
