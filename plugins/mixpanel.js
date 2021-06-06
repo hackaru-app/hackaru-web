@@ -1,5 +1,12 @@
 import mixpanel from 'mixpanel-browser';
 
+function isStandalone() {
+  return (
+    navigator.standalone ||
+    window.matchMedia('(display-mode: standalone)').matches
+  );
+}
+
 export default async ({ app, $config }, inject) => {
   mixpanel.init($config.mixpanelProjectToken);
   mixpanel.set_config({
@@ -12,6 +19,10 @@ export default async ({ app, $config }, inject) => {
       path: to.path,
     })
   );
+
+  mixpanel.register({
+    standalone: isStandalone(),
+  });
 
   inject('mixpanel', mixpanel);
 };
