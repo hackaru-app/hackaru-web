@@ -7,12 +7,14 @@ describe('SettingDeleteAccountButton', () => {
   let wrapper;
 
   const $ga = { event: jest.fn() };
+  const $mixpanel = { reset: jest.fn() };
   const $store = new Store({});
 
   const factory = () =>
     shallowMount(SettingDeleteAccountButton, {
       mocks: {
         $ga,
+        $mixpanel,
         $store,
       },
     });
@@ -36,6 +38,10 @@ describe('SettingDeleteAccountButton', () => {
       });
     });
 
+    it('resets mixpanel properties', () => {
+      expect($mixpanel.reset).toHaveBeenCalled();
+    });
+
     it('sends ga event', () => {
       expect($ga.event).toHaveBeenCalledWith({
         eventCategory: 'Accounts',
@@ -55,6 +61,10 @@ describe('SettingDeleteAccountButton', () => {
 
     it('does not dispatch auth/deleteAccount', () => {
       expect($store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('does not reset mixpanel properties', () => {
+      expect($mixpanel.reset).not.toHaveBeenCalled();
     });
 
     it('does not send ga event', () => {

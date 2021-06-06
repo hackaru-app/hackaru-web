@@ -83,6 +83,7 @@ export default {
         currentPassword: this.currentPassword,
       });
       if (success) {
+        this.$mixpanel.reset();
         this.$ga.event({
           eventCategory: 'Accounts',
           eventAction: 'delete',
