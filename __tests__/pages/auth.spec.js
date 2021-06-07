@@ -9,7 +9,9 @@ describe('Auth', () => {
 
   const $route = { query: {} };
   const $router = { replace: jest.fn() };
+  const $ga = { event: jest.fn() };
   const $cookies = { set: jest.fn(), remove: () => {} };
+  const $mixpanel = { track: jest.fn() };
   const $config = {};
   const $store = new Store({
     getters: {
@@ -26,7 +28,9 @@ describe('Auth', () => {
           $store,
           $route,
           $router,
+          $ga,
           $cookies,
+          $mixpanel,
           $config,
           $i18n: {
             locale: 'en',
@@ -96,6 +100,7 @@ describe('Auth', () => {
 
   describe('when click login-button', () => {
     beforeEach(() => {
+      $store.dispatch.mockReturnValue(true);
       wrapper = factory();
       wrapper.find(testId('email')).vm.$emit('input', 'example@example.com');
       wrapper.find(testId('password')).vm.$emit('input', 'password');
@@ -108,10 +113,24 @@ describe('Auth', () => {
         password: 'password',
       });
     });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Accounts',
+        eventAction: 'login',
+      });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Login', {
+        component: 'auth',
+      });
+    });
   });
 
   describe('when click sign-up button', () => {
     beforeEach(() => {
+      $store.dispatch.mockReturnValue(true);
       $route.query['sign-up'] = true;
       wrapper = factory();
       wrapper.find(testId('email')).vm.$emit('input', 'example@example.com');
@@ -128,6 +147,19 @@ describe('Auth', () => {
         password: 'password',
         passwordConfirmation: 'confirmation',
         locale: 'en',
+      });
+    });
+
+    it('sends ga event', () => {
+      expect($ga.event).toHaveBeenCalledWith({
+        eventCategory: 'Accounts',
+        eventAction: 'signUp',
+      });
+    });
+
+    it('sends mixpanel event', () => {
+      expect($mixpanel.track).toHaveBeenCalledWith('Sign up', {
+        component: 'auth',
       });
     });
   });

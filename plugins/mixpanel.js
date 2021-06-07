@@ -21,6 +21,7 @@ export default async ({ app, $config }, inject) => {
   );
 
   mixpanel.register({
+    repository: 'hackaru-web',
     standalone: isStandalone(),
   });
 

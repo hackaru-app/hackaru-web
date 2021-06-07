@@ -136,6 +136,9 @@ export default {
         password: this.password,
       });
       if (success) {
+        this.$mixpanel.track('Login', {
+          component: 'auth',
+        });
         this.$ga.event({
           eventCategory: 'Accounts',
           eventAction: 'login',
@@ -151,6 +154,9 @@ export default {
         locale: this.$i18n.locale,
       });
       if (success) {
+        this.$mixpanel.track('Sign up', {
+          component: 'auth',
+        });
         this.$ga.event({
           eventCategory: 'Accounts',
           eventAction: 'signUp',
