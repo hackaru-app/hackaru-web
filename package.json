@@ -18,7 +18,7 @@
     "@nuxtjs/sentry": "^5.1.0",
     "@sentry/browser": "^6.5.0",
     "@sentry/integrations": "^6.5.0",
-    "@sentry/tracing": "^6.5.0",
+    "@sentry/tracing": "^6.5.1",
     "axios-case-converter": "^0.7.0",
     "camelcase-keys": "^6.1.2",
     "chart.js": "^2.9.3",
@@ -33,7 +33,7 @@
     "lodash.omit": "^4.5.0",
     "lodash.union": "^4.6.0",
     "lodash.uniqby": "^4.7.0",
-    "logrocket": "^1.2.2",
+    "logrocket": "^1.2.3",
     "mezr": "^0.6.2",
     "mixpanel-browser": "^2.41.0",
     "normalizr": "^3.6.0",
@@ -93,7 +93,7 @@
     "lint-staged": "^11.0.0",
     "match-media-mock": "^0.1.1",
     "mockdate": "^3.0.5",
-    "prettier": "^2.3.0",
+    "prettier": "^2.3.1",
     "vue-jest": "^3.0.5",
     "vuex-mock-store": "^0.0.7"
   }
