@@ -7,7 +7,20 @@ function isStandalone() {
   );
 }
 
+function createMock() {
+  const noop = () => {};
+  return {
+    track: noop,
+    reset: noop,
+    identify: noop,
+  };
+}
+
 export default async ({ app, $config }, inject) => {
+  if (!$config.mixpanelProjectToken) {
+    return inject('mixpanel', createMock());
+  }
+
   mixpanel.init($config.mixpanelProjectToken);
   mixpanel.set_config({
     debug: process.env.NODE_ENV !== 'production',
