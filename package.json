@@ -23,7 +23,7 @@
     "camelcase-keys": "^6.1.2",
     "chart.js": "^2.9.3",
     "color": "^3.1.0",
-    "cookie-universal-nuxt": "^2.1.4",
+    "cookie-universal-nuxt": "^2.1.5",
     "date-fns": "^2.22.1",
     "file-saver": "^2.0.5",
     "hh-mm-ss": "^1.2.0",
