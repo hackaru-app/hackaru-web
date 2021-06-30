@@ -2,7 +2,7 @@
 
 <template>
   <section>
-    <delighted />
+    <survey-hint />
     <date-header
       ref="header"
       :periods="['day', 'week', 'month', 'year']"
@@ -118,7 +118,7 @@ import LoopSlider from '~/components/organisms/loop-slider';
 import DateHeader from '~/components/organisms/date-header';
 import ContentHeader from '~/components/organisms/content-header';
 import ReportContent from '~/components/organisms/report-content';
-import Delighted from '~/components/molecules/delighted';
+import SurveyHint from '~/components/organisms/survey-hint';
 import { mapGetters } from 'vuex';
 import { stringify } from 'query-string';
 import {
@@ -164,7 +164,7 @@ const periods = {
 
 export default {
   components: {
-    Delighted,
+    SurveyHint,
     Icon,
     CoachTooltip,
     LoopSlider,
