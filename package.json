@@ -16,10 +16,10 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sentry": "^5.1.0",
-    "@sentry/browser": "^6.8.0",
+    "@sentry/browser": "^6.9.0",
     "@sentry/integrations": "^6.8.0",
     "@sentry/tracing": "^6.8.0",
-    "axios-case-converter": "^0.7.0",
+    "axios-case-converter": "^0.8.1",
     "camelcase-keys": "^7.0.0",
     "chart.js": "^2.9.3",
     "color": "^3.1.0",
@@ -42,7 +42,7 @@
     "nuxt-i18n": "^6.27.2",
     "query-string": "^7.0.1",
     "ress": "^4.0.0",
-    "sass": "^1.35.1",
+    "sass": "^1.35.2",
     "sass-loader": "^10.1.0",
     "snakecase-keys": "^4.0.2",
     "style-loader": "^0.23.1",
@@ -54,7 +54,7 @@
     "vue-scrollto": "^2.19.1",
     "vue-timers": "^2.0.4",
     "vue2-animate": "^2.1.3",
-    "vuex-persistedstate": "^3.2.0"
+    "vuex-persistedstate": "^4.0.0"
   },
   "lint-staged": {
     "*.{js,vue}": [
@@ -85,7 +85,7 @@
     "eslint-loader": "^1.7.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^4.0.0",
-    "husky": "^6.0.0",
+    "husky": "^7.0.1",
     "jest": "^26.1.0",
     "jest-canvas-mock": "^2.3.1",
     "jest-localstorage-mock": "^2.4.14",
