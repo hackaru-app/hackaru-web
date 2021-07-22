@@ -30,4 +30,5 @@ module.exports = {
   ],
   snapshotSerializers: ['jest-serializer-vue'],
   clearMocks: true,
+  testEnvironment: 'jsdom',
 };
