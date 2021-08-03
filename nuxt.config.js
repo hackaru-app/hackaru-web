@@ -272,6 +272,7 @@ module.exports = {
           'https://*.logrocket.io',
           'https://*.lr-ingest.io',
           'https://*.logrocket.com',
+          'https://*.lr-in.com',
           'https://api-js.mixpanel.com',
         ],
         'script-src': [
@@ -282,6 +283,7 @@ module.exports = {
           "'unsafe-inline'",
           'https://cdn.logrocket.io',
           'https://cdn.lr-ingest.io',
+          'https://cdn.lr-in.com',
           "'self'",
         ],
         'style-src': [
