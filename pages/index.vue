@@ -73,16 +73,13 @@ export default {
   flex-direction: column;
   width: 100%;
 }
-
 .timer-form {
   width: 100%;
 }
-
 .content {
   margin-top: 90px;
   width: 100%;
 }
-
 .empty-message {
   color: $text-lighter;
   display: flex;

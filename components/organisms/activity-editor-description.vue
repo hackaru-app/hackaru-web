@@ -105,7 +105,6 @@ export default {
   position: absolute;
   width: 100%;
 }
-
 .suggestions ul {
   list-style-position: inside;
   list-style-type: none;
@@ -115,7 +114,6 @@ export default {
   padding-bottom: 200px;
   width: 100%;
 }
-
 .suggestions li {
   align-items: center;
   border-bottom: 1px solid $border;
@@ -123,7 +121,6 @@ export default {
   height: 65px;
   padding: 0 30px;
   transition: background-color 0.1s ease;
-
   &:hover {
     background-color: $background-hover;
   }

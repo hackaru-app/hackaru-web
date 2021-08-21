@@ -118,10 +118,8 @@ export default {
   padding: 0 40px;
   padding-bottom: 50px;
 }
-
 .header {
   display: flex;
-
   h1 {
     align-items: center;
     display: flex;
@@ -132,13 +130,11 @@ export default {
     margin-top: 5px;
   }
 }
-
 ul {
   list-style-position: inside;
   margin: 0;
   padding: 0;
 }
-
 .application {
   align-items: center;
   border: 1px $border solid;
@@ -147,7 +143,6 @@ ul {
   justify-content: space-between;
   margin-bottom: 10px;
   padding: 20px 25px;
-
   h1 {
     align-items: center;
     cursor: pointer;
@@ -162,7 +157,6 @@ ul {
     width: 100%;
   }
 }
-
 .empty-message {
   border-top: 1px $border solid;
   color: $text-lighter;
@@ -172,7 +166,6 @@ ul {
   padding-top: 30px;
   width: 100%;
 }
-
 .scopes-item {
   border-bottom: 0;
 }
@@ -181,7 +174,6 @@ ul {
   .content {
     padding: 0 30px;
   }
-
   .empty-message {
     box-sizing: border-box;
     justify-content: center;

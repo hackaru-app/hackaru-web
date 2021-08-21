@@ -46,7 +46,6 @@ export default {
   line-height: 1;
   width: 1px;
 }
-
 .calendar-day-header h1 {
   align-items: flex-end;
   color: $text;
@@ -57,12 +56,10 @@ export default {
   margin: 0;
   padding: 0;
 }
-
 .calendar-day-header small {
   color: $text-light;
   padding-left: 5px;
 }
-
 .calendar-day-header.today h1,
 .calendar-day-header.today small {
   color: $text-primary;
@@ -72,11 +69,9 @@ export default {
   .calendar-day-header h1 {
     font-size: 16px;
   }
-
   .calendar-day-header {
     flex-direction: column;
   }
-
   .calendar-day-header small {
     margin-top: 2px;
     padding: 0;

@@ -62,14 +62,12 @@ export default {
   justify-content: center;
   width: 100%;
 }
-
 .popover {
   position: absolute;
   right: 140px;
   top: 0;
   z-index: index($z, pwa-popover);
 }
-
 .content {
   box-sizing: border-box;
   display: flex;
@@ -77,7 +75,6 @@ export default {
   padding: 20px;
   position: relative;
 }
-
 .logo {
   align-items: center;
   background: $background-dark;
@@ -88,27 +85,23 @@ export default {
   justify-content: center;
   margin-right: 20px;
   width: 56px;
-
   .logo-icon {
     height: 20px;
     width: 20px;
   }
 }
-
 .about {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-bottom: 1px;
-
   h1 {
     font-size: $font-size;
     font-weight: normal;
     margin: 0;
     padding: 0;
   }
-
   p {
     color: $grey-666;
     display: flex;
@@ -118,7 +111,6 @@ export default {
     padding-right: 10px;
   }
 }
-
 .share-icon {
   height: 16px;
   margin-right: 5px;

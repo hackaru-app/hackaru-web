@@ -19,7 +19,6 @@ export default {
 .indicator {
   margin-bottom: 10px;
 }
-
 .loading {
   align-items: center;
   display: flex;

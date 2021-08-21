@@ -59,7 +59,6 @@ export default {
   width: calc(100vw - #{$side-bar-min-width});
   z-index: index($z, survey-hint);
 }
-
 .link {
   color: $cyan;
   display: block;
@@ -72,7 +71,6 @@ export default {
     left: 0;
     width: 100vw;
   }
-
   .link {
     padding-bottom: calc(15px + env(safe-area-inset-bottom) * 0.6);
   }

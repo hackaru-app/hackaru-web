@@ -85,7 +85,6 @@ export default {
   animation-timing-function: ease;
   width: 100%;
 }
-
 .leave {
   position: absolute;
 }
