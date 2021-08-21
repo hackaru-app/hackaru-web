@@ -223,13 +223,11 @@ export default {
   min-height: 100vh;
   width: 100%;
 }
-
 .header {
   padding-bottom: 40px;
   padding-top: 60px;
   text-align: center;
 }
-
 .logo-container {
   align-items: center;
   background-color: $background-dark;
@@ -240,7 +238,6 @@ export default {
   justify-content: center;
   width: 64px;
 }
-
 .header h1 {
   color: $text;
   font-size: 21px;
@@ -248,19 +245,16 @@ export default {
   margin-bottom: 10px;
   margin-top: 30px;
 }
-
 .header p {
   color: $text-light;
   letter-spacing: 1px;
   margin: 0 auto;
 }
-
 .form {
   margin: 40px auto;
   margin-bottom: 100px;
   max-width: 600px;
 }
-
 .questions {
   background-color: $background-light;
   border: 1px solid $border;
@@ -268,87 +262,69 @@ export default {
   box-shadow: 0 5px 20px $shadow-dark;
   margin-bottom: 30px;
 }
-
 .question-title {
   font-size: 16px;
   margin-bottom: 30px;
   vertical-align: top;
 }
-
 .question-description {
   color: $text-light;
   margin-bottom: 30px;
 }
-
 .question {
   padding: 40px;
 }
-
 .sub-question {
   border-top: 1px solid $border;
   padding: 40px;
   padding-left: 50px;
 }
-
 label {
   display: block;
   margin-bottom: 10px;
 }
-
 input[type='radio'] {
   margin-right: 10px;
 }
-
 input[type='text'],
 input[type='email'] {
   border-bottom: 1px solid $border;
   height: 50px;
   min-width: 100%;
-
   &::placeholder {
     color: $text-light;
     opacity: 1;
   }
-
   &:focus {
     border-color: $yellow;
   }
-
   &:placeholder-shown {
     border-color: $border;
   }
-
   &:placeholder-shown:focus {
     border-color: $yellow;
   }
 }
-
 textarea {
   border: 1px solid $border;
   min-width: 100%;
   padding: 20px;
-
   &::placeholder {
     color: $text-light;
     opacity: 1;
   }
-
   &:focus {
     border-color: $yellow;
   }
-
   &:placeholder-shown {
     border-color: $border;
   }
-
   &:placeholder-shown:focus {
     border-color: $yellow;
   }
 }
-
 .footer {
   margin: 40px;
-
   button {
     margin: 20px auto;
     width: 50%;
@@ -359,17 +335,14 @@ textarea {
   .header h1 {
     font-size: 18px;
   }
-
   .header p {
     padding: 0 40px;
   }
-
   .questions {
     border-left: 0;
     border-radius: 0;
     border-right: 0;
   }
-
   .question {
     padding: 40px 30px;
   }

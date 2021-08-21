@@ -9,7 +9,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "eslint": "eslint --ext .js,.vue --ignore-path .gitignore",
-    "stylelint": "stylelint '**/*.{vue,css,scss}'",
+    "stylelint": "stylelint '**/*.{vue,scss}'",
     "test": "jest",
     "postinstall": "husky install"
   },
@@ -61,7 +61,7 @@
     "*.{vue,js}": [
       "yarn eslint --fix"
     ],
-    "*.{vue,css,scss}": [
+    "*.{vue,scss}": [
       "yarn stylelint --fix"
     ]
   },

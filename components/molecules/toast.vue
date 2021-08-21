@@ -52,7 +52,6 @@ export default {
   width: calc(100vw - #{$side-bar-min-width});
   z-index: index($z, toast);
 }
-
 .content {
   border-radius: 99px;
   color: $white;
@@ -60,11 +59,9 @@ export default {
   padding: 9px 20px;
   text-align: center;
 }
-
 .success {
   background-color: $cyan;
 }
-
 .error {
   background-color: $red;
 }
@@ -74,7 +71,6 @@ export default {
     left: 0;
     width: 100vw;
   }
-
   .content {
     border-radius: 0;
     bottom: 0;

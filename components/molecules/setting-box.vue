@@ -24,7 +24,6 @@ article {
   border-bottom: 1px $border solid;
   margin: 0 40px;
   padding-bottom: 40px;
-
   h1 {
     align-items: center;
     display: flex;
@@ -35,11 +34,9 @@ article {
     margin-top: 5px;
   }
 }
-
 article form {
   display: flex;
   flex-direction: column;
-
   button {
     align-self: flex-start;
     margin-top: 10px;

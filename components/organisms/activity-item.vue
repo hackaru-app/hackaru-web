@@ -151,20 +151,16 @@ export default {
   padding: 0 45px;
   padding-right: 40px;
   transition: background-color 0.1s ease;
-
   &:hover {
     background-color: $background-hover;
   }
 }
-
 .duration {
   font-family: $font-family-duration;
 }
-
 .duration.stopped {
   color: $text-light;
 }
-
 .content {
   align-items: center;
   display: flex;
@@ -174,14 +170,12 @@ export default {
   min-width: 1px;
   padding-right: 20px;
 }
-
 .duplicate-button {
   border-radius: 0;
   height: 100%;
   margin-left: 25px;
   margin-right: 15px;
 }
-
 .is-duplicate {
   background-color: $green;
   color: $white;
@@ -193,7 +187,6 @@ export default {
     padding: 0 30px;
     padding-left: 35px;
   }
-
   .duplicate-button {
     display: none;
   }
