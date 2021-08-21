@@ -16,7 +16,6 @@
   justify-content: space-between;
   padding: 0 40px;
 }
-
 .content-header.sticky {
   position: sticky;
   top: 0;
@@ -27,7 +26,6 @@
   .content-header {
     padding: 0 30px;
   }
-
   .content-header.sticky {
     top: $side-bar-min-height;
   }

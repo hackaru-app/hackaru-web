@@ -179,49 +179,40 @@ export default {
   flex-direction: column;
   min-height: 100vh;
 }
-
 .form-container {
   flex-grow: 1;
   padding: 30px 50px;
 }
-
 .auth form {
   display: flex;
   flex-direction: column;
   max-width: 480px;
   padding-top: 20px;
 }
-
 .auth form footer {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
   position: relative;
 }
-
 .auth form footer .buttons {
   display: flex;
   flex: 1;
 }
-
 .agreement {
   display: flex;
   flex: 1;
   margin-bottom: 30px;
-
   input {
     margin-right: 10px;
   }
-
   a {
     color: $text;
   }
 }
-
 .submit-button {
   min-width: 100px;
 }
-
 .toggle-button {
   background: none;
   border: 0;
@@ -231,14 +222,12 @@ export default {
   text-align: left;
   text-decoration: none;
   width: 200px;
-
   span {
     color: $text-lighter;
     margin-left: 20px;
     margin-right: 5px;
   }
 }
-
 .forgot {
   animation-duration: 0.2s;
   color: $text-light;
@@ -248,13 +237,11 @@ export default {
   text-decoration: none;
   width: 300px;
 }
-
 .auth-footer {
   align-items: center;
   display: flex;
   padding: 30px 50px;
 }
-
 .locale-select {
   flex-shrink: 0;
 }
@@ -263,11 +250,9 @@ export default {
   .auth {
     min-height: auto;
   }
-
   .form-container {
     padding: 30px;
   }
-
   .auth-footer {
     align-items: flex-start;
     flex-direction: column;

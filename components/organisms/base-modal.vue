@@ -37,7 +37,6 @@ export default {
   width: 100vw;
   z-index: index($z, modal);
 }
-
 .container {
   background-color: $background;
   border-radius: 3px;
@@ -47,21 +46,17 @@ export default {
   position: relative;
   width: 500px;
 }
-
 .slide-down-fade-enter-active,
 .slide-down-fade-leave-active {
   transition: opacity 0.15s;
-
   .container {
     transform: translateY(0);
     transition: transform 0.15s;
   }
 }
-
 .slide-down-fade-enter,
 .slide-down-fade-leave-to {
   opacity: 0;
-
   .container {
     transform: translateY(-10px);
   }

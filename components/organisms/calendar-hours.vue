@@ -14,7 +14,6 @@
   flex-direction: column;
   width: 60px;
 }
-
 .calendar-hours time {
   box-sizing: border-box;
   color: $text-light;
@@ -22,7 +21,6 @@
   font-size: 13px;
   line-height: 20px;
   position: relative;
-
   &::before {
     border-top: 1px $border dashed;
     content: '';
@@ -30,7 +28,6 @@
     position: absolute;
     width: 100vw;
   }
-
   &:first-child::before {
     display: none;
   }
@@ -40,7 +37,6 @@
   .calendar-hours {
     width: 25px;
   }
-
   .calendar-hours time .min {
     display: none;
   }

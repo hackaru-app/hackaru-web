@@ -44,7 +44,6 @@ export default {
 .date-heading {
   display: flex;
 }
-
 .heading {
   margin: 0 15px;
 }

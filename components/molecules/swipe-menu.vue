@@ -132,7 +132,6 @@ export default {
   overflow: hidden;
   position: relative;
 }
-
 .content {
   flex: 1;
   margin: 0;
@@ -140,7 +139,6 @@ export default {
   padding: 0;
   width: 100%;
 }
-
 .swipe-menu-item {
   align-items: center;
   align-self: stretch;
@@ -149,12 +147,10 @@ export default {
   justify-content: center;
   position: relative;
 }
-
 .swipe-menu-item.is-primary {
   background-color: $cyan;
   color: $white;
 }
-
 .swipe-menu-item.is-danger {
   background-color: $red;
   color: $white;
@@ -172,15 +168,12 @@ export default {
     0% {
       width: 0;
     }
-
     20% {
       width: 60px;
     }
-
     60% {
       width: 60px;
     }
-
     100% {
       width: 0;
     }

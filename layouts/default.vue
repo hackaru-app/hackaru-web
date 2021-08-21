@@ -91,7 +91,6 @@ export default {
   min-height: 100vh;
   width: 100%;
 }
-
 .content {
   display: flex;
   flex: 1;

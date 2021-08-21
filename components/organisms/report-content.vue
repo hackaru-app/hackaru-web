@@ -145,24 +145,20 @@ export default {
   padding-bottom: 45px;
   width: 100%;
 }
-
 .bar-chart-wrapper {
   height: 180px;
   max-width: 100%;
   min-width: 200px;
   width: 100%;
 }
-
 .bar-chart {
   height: 100%;
   width: 100%;
 }
-
 .content {
   display: flex;
   margin-top: 50px;
 }
-
 .doughnut-chart-wrapper {
   align-self: start;
   background-color: $background-translucent;
@@ -174,20 +170,17 @@ export default {
   position: sticky;
   top: 40px;
 }
-
 .doughnut-chart,
 .doughnut-chart-empty {
   display: flex;
   height: 150px;
   width: 150px;
 }
-
 .doughnut-chart-empty {
   align-items: center;
   display: flex;
   justify-content: center;
   margin: 0;
-
   &::before {
     border: 40px $grey-f5f5f5 solid;
     border-radius: 50%;
@@ -198,7 +191,6 @@ export default {
     width: 160px;
   }
 }
-
 .details {
   background-color: $background-translucent;
   border: 1px $border-dark solid;
@@ -212,20 +204,17 @@ export default {
   min-width: 1px;
   padding: 0;
 }
-
 .details header {
   display: flex;
   list-style-type: none;
   padding: 25px 20px;
   padding-bottom: 15px;
 }
-
 .details section {
   animation-delay: 305ms;
   animation-duration: 0.1s;
   animation-timing-function: linear;
 }
-
 .details article {
   align-items: center;
   border-bottom: 1px $border solid;
@@ -237,12 +226,10 @@ export default {
   min-width: 1px;
   overflow: hidden;
   padding: 0 30px;
-
   &:last-child {
     border: 0;
     margin-bottom: 15px;
   }
-
   .duration {
     color: $text-light;
     flex: 1;
@@ -258,7 +245,6 @@ export default {
     margin: 0;
     padding: 0;
   }
-
   .doughnut-chart-wrapper {
     align-self: center;
     background-color: $background;
@@ -270,38 +256,31 @@ export default {
     order: 0;
     padding: 30px 0;
   }
-
   .doughnut-chart {
     align-self: center;
     padding: 0 0;
   }
-
   .doughnut-chart,
   .doughnut-chart-empty {
     height: 160px;
     width: 160px;
   }
-
   .bar-chart-wrapper {
     height: 130px;
   }
-
   .content {
     flex-direction: column;
     margin: 0;
     padding: 0;
   }
-
   .details {
     background-color: $background;
     border: 0;
     box-shadow: none;
   }
-
   .details article {
     height: 65px;
   }
-
   .details header {
     background: none;
     border-bottom: 1px $border solid;

@@ -68,13 +68,11 @@ export default {
 section {
   margin: 30px 50px;
 }
-
 form {
   display: flex;
   flex-direction: column;
   margin-top: 30px;
 }
-
 footer {
   align-items: center;
   display: flex;
