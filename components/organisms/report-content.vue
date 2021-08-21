@@ -138,157 +138,179 @@ export default {
 
 <style scoped lang="scss">
 .report-content {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 100%;
   padding: 40px;
   padding-bottom: 45px;
-  box-sizing: border-box;
+  width: 100%;
 }
+
 .bar-chart-wrapper {
+  height: 180px;
   max-width: 100%;
   min-width: 200px;
   width: 100%;
-  height: 180px;
 }
+
 .bar-chart {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
+
 .content {
   display: flex;
   margin-top: 50px;
 }
+
 .doughnut-chart-wrapper {
-  position: sticky;
-  top: 40px;
-  margin-right: 40px;
   align-self: start;
-  padding: 20px;
+  background-color: $background-translucent;
+  border: 1px $border-dark solid;
   border-radius: 3px;
   box-shadow: 0 3px 5px $shadow;
-  border: 1px $border-dark solid;
-  background-color: $background-translucent;
+  margin-right: 40px;
+  padding: 20px;
+  position: sticky;
+  top: 40px;
 }
+
 .doughnut-chart,
 .doughnut-chart-empty {
   display: flex;
-  width: 150px;
   height: 150px;
+  width: 150px;
 }
+
 .doughnut-chart-empty {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   margin: 0;
-  &:before {
-    position: absolute;
-    content: '';
-    width: 160px;
-    height: 160px;
-    box-sizing: border-box;
+
+  &::before {
     border: 40px $grey-f5f5f5 solid;
     border-radius: 50%;
+    box-sizing: border-box;
+    content: '';
+    height: 160px;
+    position: absolute;
+    width: 160px;
   }
 }
+
 .details {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  min-width: 1px;
-  max-width: 650px;
-  flex: 1;
-  margin: 0;
-  box-shadow: 0 3px 5px $shadow;
-  border-radius: 3px;
-  border: 1px $border-dark solid;
   background-color: $background-translucent;
+  border: 1px $border-dark solid;
+  border-radius: 3px;
+  box-shadow: 0 3px 5px $shadow;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 0;
+  max-width: 650px;
+  min-width: 1px;
+  padding: 0;
 }
+
 .details header {
+  display: flex;
+  list-style-type: none;
   padding: 25px 20px;
   padding-bottom: 15px;
-  list-style-type: none;
-  display: flex;
 }
+
 .details section {
   animation-delay: 305ms;
   animation-duration: 0.1s;
   animation-timing-function: linear;
 }
+
 .details article {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-sizing: border-box;
-  flex-direction: row;
   align-items: center;
-  min-width: 1px;
-  justify-content: space-between;
   border-bottom: 1px $border solid;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
   height: 65px;
+  justify-content: space-between;
+  min-width: 1px;
+  overflow: hidden;
   padding: 0 30px;
+
   &:last-child {
     border: 0;
     margin-bottom: 15px;
   }
+
   .duration {
-    flex: 1;
-    text-align: right;
     color: $text-light;
-    padding-left: 25px;
+    flex: 1;
     font-family: $font-family-duration;
+    padding-left: 25px;
+    text-align: right;
   }
 }
+
 @include mq(small) {
   .report-content {
     flex-direction: column;
+    margin: 0;
     padding: 0;
-    margin: 0;
   }
+
   .doughnut-chart-wrapper {
-    display: flex;
     align-self: center;
-    justify-content: center;
-    padding: 30px 0;
-    order: 0;
-    margin: 0;
+    background-color: $background;
     border: 0;
     box-shadow: none;
-    background-color: $background;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    order: 0;
+    padding: 30px 0;
   }
+
   .doughnut-chart {
-    padding: 0 0;
     align-self: center;
+    padding: 0 0;
   }
+
   .doughnut-chart,
   .doughnut-chart-empty {
-    width: 160px;
     height: 160px;
+    width: 160px;
   }
+
   .bar-chart-wrapper {
     height: 130px;
   }
+
   .content {
-    padding: 0;
-    margin: 0;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
   }
+
   .details {
+    background-color: $background;
     border: 0;
     box-shadow: none;
-    background-color: $background;
   }
+
   .details article {
     height: 65px;
   }
+
   .details header {
     background: none;
-    padding-bottom: 20px;
     border-bottom: 1px $border solid;
+    padding-bottom: 20px;
   }
 }
+
 @media (prefers-color-scheme: dark) {
-  .doughnut-chart-empty:before {
+  .doughnut-chart-empty::before {
     border-color: $background-dark;
   }
 }

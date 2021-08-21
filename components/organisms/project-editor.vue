@@ -166,10 +166,11 @@ export default {
 
 <style scoped lang="scss">
 .color-select {
-  margin-top: 25px;
   margin-bottom: 15px;
   margin-left: -5px;
+  margin-top: 25px;
 }
+
 .content {
   height: 385px;
 }

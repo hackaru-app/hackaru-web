@@ -244,161 +244,183 @@ export default {
 
 <style scoped lang="scss">
 .timer-form {
-  display: flex;
-  position: fixed;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  max-width: calc(100vw - #{$side-bar-min-width});
-  z-index: index($z, timer-form);
+  display: flex;
+  flex-direction: column;
   height: 91px;
+  justify-content: center;
   left: $side-bar-min-width;
+  max-width: calc(100vw - #{$side-bar-min-width});
+  position: fixed;
+  z-index: index($z, timer-form);
 }
+
 .duration.stopped {
   color: $text-light;
 }
+
 .base-button.control-button {
-  display: flex;
   align-self: center;
-  flex-shrink: 0;
-  padding: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 40px;
-  pointer-events: auto;
   border-radius: 50%;
   box-shadow: 0 3px 3px $shadow-dark;
+  display: flex;
+  flex-shrink: 0;
+  height: 50px;
+  margin-right: 40px;
+  padding: 0;
+  pointer-events: auto;
+  width: 50px;
 }
+
 .base-button.control-button .icon {
-  width: 22px;
   height: 22px;
+  width: 22px;
 }
+
 .base-button.control-button.start .icon {
   padding-left: 3px;
 }
+
 .form {
-  width: 100%;
-  justify-content: center;
-  height: 100%;
-  display: flex;
   border-radius: 5px;
   box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
 }
+
 .form .duration {
-  font-size: 18px;
   align-self: center;
+  font-family: $font-family-duration;
+  font-size: 18px;
   line-height: 1;
   margin-right: 30px;
-  font-family: $font-family-duration;
 }
+
 .form .duration.show {
   display: block;
 }
+
 .form-content {
-  z-index: 1;
-  display: flex;
-  flex: 1;
+  background-color: $background-translucent;
   border-bottom: 1px $border-dark solid;
   border-right: 0;
   box-shadow: 0 3px 3px $shadow;
-  background-color: $background-translucent;
-}
-.project-wrapper {
   display: flex;
+  flex: 1;
+  z-index: 1;
+}
+
+.project-wrapper {
   align-items: center;
-  min-height: 100%;
   border-right: 1px $border-dark solid;
   cursor: pointer;
+  display: flex;
+  min-height: 100%;
 }
+
 .selected-project {
+  align-items: center;
   display: flex;
   max-width: 210px;
   padding: 0 45px;
-  align-items: center;
 }
+
 .description {
-  line-height: 1;
-  border: 0;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 0 40px;
-  display: flex;
   background: none;
-  text-overflow: ellipsis;
+  border: 0;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  line-height: 1;
   overflow: hidden;
+  padding: 0 40px;
+  text-overflow: ellipsis;
+  width: 100%;
 }
+
 .dot-only {
   display: none;
 }
+
 @include mq(small) {
   .timer-form {
-    max-width: 100vw;
     left: 0;
+    max-width: 100vw;
   }
+
   .form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
     height: auto;
-    padding: 0;
     justify-content: flex-start;
     margin: 0;
     margin-top: 15px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    padding: 0 30px;
     max-width: 100%;
-    font-size: 17px;
+    padding: 0 30px;
+    width: 100%;
   }
+
   .description::placeholder {
     padding-top: 3px;
   }
+
   .project-wrapper {
     display: flex;
+    height: 100%;
     justify-content: center;
     min-width: 80px;
-    height: 100%;
   }
+
   .project-wrapper .selected-project {
     display: none;
   }
+
   .dot-only {
     display: flex;
   }
+
   .form-content {
+    border: 0;
+    border-bottom: 1px $border-dark solid;
+    border-radius: 0;
+    box-shadow: 0 3px 3px $shadow;
+    box-sizing: border-box;
+    height: 80px;
+    left: 0;
     order: 1;
     position: fixed;
-    left: 0;
     top: $side-bar-min-height;
-    border-radius: 0;
     width: 100%;
-    border: 0;
-    height: 80px;
-    box-sizing: border-box;
-    border-bottom: 1px $border-dark solid;
-    box-shadow: 0 3px 3px $shadow;
   }
+
   .base-button.control-button {
-    width: 48px;
     height: 48px;
     margin-right: 16px;
+    width: 48px;
   }
+
+  .base-button.control-button .icon {
+    height: 20px;
+    width: 20px;
+  }
+
   .base-button.control-button.start .icon {
     padding-left: 3px;
   }
-  .base-button.control-button .icon {
-    width: 20px;
-    height: 20px;
-  }
+
   .description {
     margin: 0;
-    padding: 0 25px;
     min-width: 1px;
+    padding: 0 25px;
   }
+
   .form .duration {
-    margin-right: 25px;
     display: none;
+    margin-right: 25px;
   }
 }
 </style>

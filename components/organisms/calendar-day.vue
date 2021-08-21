@@ -153,28 +153,31 @@ export default {
 
 <style scoped lang="scss">
 .calendar-day {
-  flex: 1;
   border-left: 1px $border-dark solid;
   box-sizing: border-box;
-  user-select: none;
+  flex: 1;
   max-width: 100%;
+  user-select: none;
+
   &.overlapped {
     background: $background-hover;
   }
 }
+
 .events {
-  flex: 1;
   display: flex;
-  position: relative;
+  flex: 1;
   flex-direction: column;
-  margin-right: 5px;
   height: 100%;
+  margin-right: 5px;
+  position: relative;
 }
+
 .row {
-  flex: 1;
-  position: absolute;
   display: flex;
-  width: 100%;
+  flex: 1;
   pointer-events: none;
+  position: absolute;
+  width: 100%;
 }
 </style>

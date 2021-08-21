@@ -248,56 +248,63 @@ export default {
 
 <style scoped lang="scss">
 .calendar-activity {
-  flex: 1;
-  position: relative;
+  align-items: center;
+  border: 1px $background solid;
+  border-bottom: 0;
+  border-left: 0;
+  box-shadow: 0 3px 2px $shadow-dark;
   box-sizing: border-box;
   display: flex;
-  padding: 0;
-  align-items: center;
+  flex: 1;
   overflow: hidden;
+  padding: 0;
   pointer-events: auto;
+  position: relative;
   transition: box-shadow 0.2s, opacity 0.2s;
-  box-shadow: 0 3px 2px $shadow-dark;
-  border: 1px $background solid;
-  border-left: 0;
-  border-bottom: 0;
+
   &:hover,
   &:active {
     cursor: pointer;
   }
 }
+
 .calendar-activity.dragging {
+  box-shadow: 0 7px 10px $shadow-dark;
   cursor: grabbing;
   opacity: 1;
-  box-shadow: 0 7px 10px $shadow-dark;
   z-index: index($z, calendar-dragging-activity);
 }
+
 .event {
   height: 100%;
 }
+
 .handler {
-  position: absolute;
+  bottom: 0;
+  box-sizing: border-box;
+  cursor: s-resize;
   display: flex;
   justify-content: flex-end;
-  box-sizing: border-box;
   padding: 5px;
   padding-top: 15px;
+  position: absolute;
   right: 0;
-  bottom: 0;
   width: 100%;
-  cursor: s-resize;
 }
+
 .resizer {
   align-items: center;
 }
+
 .click-handler {
+  align-items: center;
   display: flex;
   flex: 1;
-  width: 100%;
   height: 100%;
   overflow: hidden;
-  align-items: center;
+  width: 100%;
 }
+
 @include mq(small) {
   .handler {
     left: auto;

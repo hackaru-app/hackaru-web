@@ -118,61 +118,70 @@ export default {
   padding: 0 40px;
   padding-bottom: 50px;
 }
+
 .header {
   display: flex;
+
   h1 {
-    flex: 1;
-    display: flex;
     align-items: center;
+    display: flex;
+    flex: 1;
     font-weight: normal;
+    height: 90px;
     margin: 0;
     margin-top: 5px;
-    height: 90px;
   }
 }
+
 ul {
+  list-style-position: inside;
   margin: 0;
   padding: 0;
-  list-style-position: inside;
 }
+
 .application {
-  padding: 20px 25px;
-  display: flex;
-  margin-bottom: 10px;
   align-items: center;
-  justify-content: space-between;
   border: 1px $border solid;
   border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 20px 25px;
+
   h1 {
+    align-items: center;
     cursor: pointer;
     font-size: $font-size;
     font-weight: normal;
-    padding: 0;
-    margin: 0;
     height: 100%;
-    width: 100%;
-    align-items: center;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
+    width: 100%;
   }
 }
+
 .empty-message {
   border-top: 1px $border solid;
+  color: $text-lighter;
+  display: flex;
+  margin: 0;
   padding: 0 10px;
   padding-top: 30px;
-  margin: 0;
-  display: flex;
   width: 100%;
-  color: $text-lighter;
 }
+
 .scopes-item {
   border-bottom: 0;
 }
+
 @include mq(small) {
   .content {
     padding: 0 30px;
   }
+
   .empty-message {
     box-sizing: border-box;
     justify-content: center;

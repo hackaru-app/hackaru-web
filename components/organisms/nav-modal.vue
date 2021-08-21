@@ -80,11 +80,12 @@ export default {
 
 <style scoped lang="scss">
 .current {
-  width: 100%;
   animation-delay: 0.15s;
   animation-duration: 0.35s;
   animation-timing-function: ease;
+  width: 100%;
 }
+
 .leave {
   position: absolute;
 }

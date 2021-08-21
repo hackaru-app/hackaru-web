@@ -40,17 +40,21 @@ export default {
   justify-content: center;
   margin-left: 10px;
 }
+
 .icon {
-  transition: transform 0.4s ease;
   transform: rotate(-360deg);
+  transition: transform 0.4s ease;
 }
+
 .icon.even {
   color: $text-lighter;
 }
+
 .icon.up {
   color: $green;
   transform: rotate(0);
 }
+
 .icon.down {
   color: $red;
   transform: rotate(-180deg);

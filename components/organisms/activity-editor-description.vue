@@ -96,31 +96,34 @@ export default {
 
 <style scoped lang="scss">
 .suggestions {
+  animation-duration: 100ms;
+  background-color: $background;
+  box-shadow: 0 8px 5px -5px $shadow-dark inset;
   height: 317px;
   overflow: hidden;
   overflow: scroll;
   position: absolute;
-  animation-duration: 100ms;
   width: 100%;
-  box-shadow: 0 8px 5px -5px $shadow-dark inset;
-  background-color: $background;
 }
+
 .suggestions ul {
-  width: 100%;
-  list-style-type: none;
   list-style-position: inside;
-  padding: 0;
+  list-style-type: none;
   margin: 0;
   min-height: 100vh;
+  padding: 0;
   padding-bottom: 200px;
+  width: 100%;
 }
+
 .suggestions li {
-  display: flex;
-  padding: 0 30px;
-  height: 65px;
   align-items: center;
   border-bottom: 1px solid $border;
+  display: flex;
+  height: 65px;
+  padding: 0 30px;
   transition: background-color 0.1s ease;
+
   &:hover {
     background-color: $background-hover;
   }

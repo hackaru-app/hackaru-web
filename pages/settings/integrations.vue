@@ -116,22 +116,26 @@ export default {
 .calendar-buttons {
   display: flex;
   flex-wrap: wrap;
+
   .base-button {
     display: flex;
+    height: 50px;
     justify-content: space-between;
     margin: 5px 0;
     margin-right: 10px;
-    height: 50px;
   }
+
   .icon {
     margin-left: 10px;
   }
 }
+
 @media screen and (max-width: 640px) {
   .calendar-buttons {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+
     .base-button {
       height: 52px;
       width: 100%;

@@ -15,17 +15,19 @@ export default {
 
 <style>
 .dot {
-  display: inline;
   border-radius: 50%;
-  min-width: 9px;
+  display: inline;
   min-height: 9px;
+  min-width: 9px;
 }
+
 .dot.is-medium {
-  min-width: 11px;
   min-height: 11px;
+  min-width: 11px;
 }
+
 .dot.is-large {
-  min-width: 14px;
   min-height: 14px;
+  min-width: 14px;
 }
 </style>

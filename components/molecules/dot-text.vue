@@ -27,17 +27,19 @@ export default {
 
 <style scoped lang="scss">
 .dot-text {
-  display: flex;
   align-items: center;
+  display: flex;
   overflow: hidden;
 }
+
 p {
   display: inline;
   margin: 0;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 }
+
 .dot {
   margin-right: 15px;
 }

@@ -3,7 +3,7 @@ $grey-333: #333c4f;
 $grey-666: #68757d;
 $grey-999: #9aa5ab;
 $grey-ccc: #cdd0d1;
-$grey-eee: #eeeeee;
+$grey-eee: #eee;
 $grey-f0f0f0: #f0f1f2;
 $grey-f5f5f5: #f5f6f7;
 $grey-fafafa: #fafafc;
@@ -44,10 +44,8 @@ $white-lighter: #fffffff0;
   // Border
   --border: #{$grey-f0f0f0};
   --border-dark: #{$grey-f0f0f0};
-}
 
-// Dark
-:root {
+  // Dark
   @media (prefers-color-scheme: dark) {
     // Background
     --background-translucent: #303748;
@@ -117,27 +115,17 @@ $background-dark: var(--background-dark);
 $background-dark-hover: var(--background-dark-hover);
 
 // Animation
-$animation-duration: .25s;
+$animation-duration: 0.25s;
 
 // MediaQueries
 $breakpoints: (
-  'small': 640px
+  'small': 640px,
 );
 
 // ZIndex
-$z:
-  calendar-dragging-activity, // low
-  calendar-ruler,
-  content-header,
-  calendar-day-header,
-  timer-form,
-  side-bar,
-  pwa-popover,
-  survey-hint,
-  tooltip,
-  modal,
-  toast, // high
-;
+$z: calendar-dragging-activity, calendar-ruler, content-header,
+  calendar-day-header, timer-form, side-bar, pwa-popover, survey-hint, tooltip,
+  modal, toast;
 
 // Sidebar
 $side-bar-min-width: calc(80px + env(safe-area-inset-left));

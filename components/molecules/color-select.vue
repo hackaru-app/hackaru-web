@@ -50,26 +50,27 @@ export default {
 
 <style scoped lang="scss">
 .color-select {
+  align-items: center;
   display: flex;
   flex-flow: wrap;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
-  margin-right: 20px;
   margin: 5px 0;
 }
+
 .color-select button {
-  display: flex;
-  margin-right: 5px;
+  align-items: center;
   background: 0;
-  padding: 0;
   border: 1px $background solid;
   border-radius: 50%;
-  width: 26px;
+  display: flex;
   height: 26px;
   justify-content: center;
-  align-items: center;
   margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 0;
+  width: 26px;
+
   &:hover,
   &.selected {
     border: 1px $white solid;

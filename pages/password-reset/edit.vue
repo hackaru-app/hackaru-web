@@ -71,15 +71,18 @@ export default {
 section {
   margin: 30px 50px;
 }
+
 form {
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   margin-top: 20px;
 }
+
 .button {
   align-self: flex-start;
   margin-top: 18px;
 }
+
 @media screen and (max-width: 640px) {
   section {
     margin: 30px;
