@@ -186,11 +186,9 @@ export default {
 .content {
   height: 385px;
 }
-
 .datetime-picker {
   justify-content: flex-end;
 }
-
 .project-button {
   align-items: center;
   background: none;
@@ -200,7 +198,6 @@ export default {
   min-height: inherit;
   padding: 0;
   width: 100%;
-
   .project-name {
     display: flex;
     min-height: inherit;

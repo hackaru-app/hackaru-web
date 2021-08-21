@@ -170,7 +170,6 @@ export default {
   margin-left: -5px;
   margin-top: 25px;
 }
-
 .content {
   height: 385px;
 }

@@ -77,7 +77,6 @@ label {
   display: flex;
   margin: 10px 0;
 }
-
 .checkbox {
   margin-right: 15px;
 }

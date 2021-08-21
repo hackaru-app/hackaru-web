@@ -60,14 +60,12 @@ export default {
   margin: 50px 0;
   padding: 0 0;
   width: 100%;
-
   h1 {
     font-size: 18px;
     font-weight: normal;
     margin-left: 40px;
     padding-bottom: 10px;
   }
-
   span {
     color: $text-light;
     font-size: 16px;
@@ -78,11 +76,9 @@ export default {
   .activity-day-group {
     margin-bottom: 50px;
     margin-top: 30px;
-
     h1 {
       margin-left: 30px;
     }
-
     span {
       display: none;
     }

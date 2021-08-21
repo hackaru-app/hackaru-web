@@ -71,23 +71,19 @@ export default {
   position: fixed;
   z-index: index($z, side-bar);
 }
-
 .url {
   display: none;
 }
-
 h1 {
   align-items: center;
   display: flex;
   justify-content: center;
   margin: 0;
-
   a {
     align-items: center;
     display: flex;
     height: 90px;
   }
-
   a .logo-icon {
     color: $yellow;
     height: 20px;
@@ -95,7 +91,6 @@ h1 {
     width: 20px;
   }
 }
-
 ul {
   display: flex;
   flex-direction: column;
@@ -104,7 +99,6 @@ ul {
   margin: 0;
   padding: 0;
 }
-
 li a {
   align-items: center;
   background-color: none;
@@ -118,24 +112,19 @@ li a {
   padding-right: 4px;
   text-decoration: none;
   transition: all 0.1s ease;
-
   .icon {
     color: $grey-f5f5f5;
   }
 }
-
 li a:hover {
   background-color: $background-dark-hover;
 }
-
 li.selected a {
   border-left-color: $red;
 }
-
 li:first-child a {
   margin-top: 0;
 }
-
 @include mq(small) {
   .side-bar {
     align-items: center;
@@ -150,25 +139,21 @@ li:first-child a {
     position: fixed;
     width: 100%;
   }
-
   h1 a {
     height: auto;
     margin-left: -22px;
     padding: 20px;
   }
-
   h1 a .logo-icon {
     height: 18px;
     width: 18px;
   }
-
   ul {
     display: flex;
     flex-direction: row;
     margin: 0;
     margin-right: -15px;
   }
-
   li a,
   li button {
     align-items: center;
@@ -182,7 +167,6 @@ li:first-child a {
     vertical-align: middle;
     width: 40px;
   }
-
   li.selected a {
     background-color: $background-dark-hover;
   }

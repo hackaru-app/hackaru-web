@@ -261,24 +261,20 @@ export default {
   pointer-events: auto;
   position: relative;
   transition: box-shadow 0.2s, opacity 0.2s;
-
   &:hover,
   &:active {
     cursor: pointer;
   }
 }
-
 .calendar-activity.dragging {
   box-shadow: 0 7px 10px $shadow-dark;
   cursor: grabbing;
   opacity: 1;
   z-index: index($z, calendar-dragging-activity);
 }
-
 .event {
   height: 100%;
 }
-
 .handler {
   bottom: 0;
   box-sizing: border-box;
@@ -291,11 +287,9 @@ export default {
   right: 0;
   width: 100%;
 }
-
 .resizer {
   align-items: center;
 }
-
 .click-handler {
   align-items: center;
   display: flex;
