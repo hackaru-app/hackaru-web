@@ -88,15 +88,17 @@ export default {
 .default {
   display: flex;
   flex-direction: column;
-  width: 100%;
   min-height: 100vh;
+  width: 100%;
 }
+
 .content {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   margin-left: $side-bar-min-width;
 }
+
 @include mq(small) {
   .content {
     margin-left: 0;

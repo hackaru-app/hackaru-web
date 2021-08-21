@@ -297,76 +297,89 @@ export default {
 .reports-wrapper {
   overflow: hidden;
 }
+
 .containers {
   display: flex;
   flex-direction: row;
 }
+
 .slider-item {
-  display: flex;
   align-items: flex-start;
-  min-width: 100%;
-  min-height: 100vh;
   box-shadow: -3px 0 3px $shadow;
-}
-.tools {
   display: flex;
+  min-height: 100vh;
+  min-width: 100%;
+}
+
+.tools {
+  background-color: $background-translucent;
+  border-bottom: 1px $border-dark solid;
+  box-shadow: 0 3px 3px $shadow;
+  box-sizing: border-box;
+  display: flex;
+  height: 50px;
   justify-content: space-between;
   padding: 0 40px;
-  height: 50px;
-  box-sizing: border-box;
-  border-bottom: 1px $border-dark solid;
-  background-color: $background-translucent;
-  box-shadow: 0 3px 3px $shadow;
+
   button {
-    display: flex;
+    align-items: center;
     background: none;
-    color: $text;
-    padding: 0 20px;
-    height: 50px;
     border: 0;
     border: 1px $border-dark solid;
-    border-top: 0;
     border-bottom: 0;
-    align-items: center;
+    border-top: 0;
+    color: $text;
+    display: flex;
+    height: 50px;
+    padding: 0 20px;
   }
 }
+
 .popover-wrapper {
-  padding: 10px;
   max-height: 270px;
   overflow: scroll;
+  padding: 10px;
 }
+
 .project-item {
-  display: flex;
-  padding: 0 15px;
-  height: 45px;
   align-items: center;
-  justify-content: space-between;
   border-radius: 5px;
+  display: flex;
+  height: 45px;
+  justify-content: space-between;
+  padding: 0 15px;
   transition: background-color 0.15s;
+
   &:hover {
     background-color: $background-hover;
   }
 }
+
 .project-name {
   max-width: 150px;
   padding-right: 30px;
 }
+
 .exports {
   display: flex;
+
   button {
     border-left: 0;
+
     &:first-child {
       border-left: 1px $border-dark solid;
     }
   }
 }
+
 @media screen and (max-width: 640px) {
   .tools {
     padding: 0;
   }
+
   .filter-button {
-    margin-right: 30px;
     border-right: 1px $border-dark solid;
+    margin-right: 30px;
   }
 }
 </style>

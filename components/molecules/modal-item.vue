@@ -6,37 +6,42 @@
 
 <style scoped lang="scss">
 .modal-item {
-  padding: 0 30px;
-  display: flex;
-  box-sizing: border-box;
   align-items: center;
   border-bottom: 1px $border solid;
+  box-sizing: border-box;
+  display: flex;
   min-height: 73px;
+  padding: 0 30px;
+
   input {
-    width: 100%;
-    min-height: inherit;
-    display: flex;
-    border: 0;
     background: none;
-    text-overflow: ellipsis;
+    border: 0;
+    display: flex;
+    min-height: inherit;
     overflow: hidden;
     padding: 0;
+    text-overflow: ellipsis;
+    width: 100%;
+
     &::placeholder {
       color: $placeholder;
     }
   }
+
   label {
-    min-width: 110px;
-    justify-content: center;
     color: $text;
     flex-shrink: 0;
+    justify-content: center;
+    min-width: 110px;
   }
 }
+
 .modal-item.is-vertical {
-  flex-direction: column;
-  align-self: flex-start;
   align-items: stretch;
+  align-self: flex-start;
+  flex-direction: column;
   padding: 20px 25px;
+
   label {
     padding-bottom: 25px;
   }

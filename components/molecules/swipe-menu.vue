@@ -129,52 +129,60 @@ export default {
 <style scoped lang="scss">
 .swipe-menu {
   display: flex;
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
+
 .content {
   flex: 1;
-  padding: 0;
   margin: 0;
-  width: 100%;
   min-width: 0;
+  padding: 0;
+  width: 100%;
 }
+
 .swipe-menu-item {
-  position: relative;
-  justify-content: center;
-  display: flex;
-  align-self: stretch;
   align-items: center;
-  justify-content: center;
+  align-self: stretch;
+  display: flex;
   height: 100%;
+  justify-content: center;
+  position: relative;
 }
+
 .swipe-menu-item.is-primary {
   background-color: $cyan;
   color: $white;
 }
+
 .swipe-menu-item.is-danger {
   background-color: $red;
   color: $white;
 }
+
 @include mq(small) {
   .tutorial .right-menu {
-    animation-name: gesture;
     animation-delay: 0.5s;
     animation-duration: 1s;
+    animation-name: gesture;
     animation-timing-function: ease;
   }
+
   @keyframes gesture {
     0% {
-      width: 0px;
+      width: 0;
     }
+
     20% {
       width: 60px;
     }
+
     60% {
       width: 60px;
     }
+
     100% {
-      width: 0px;
+      width: 0;
     }
   }
 }

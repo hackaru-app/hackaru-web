@@ -220,128 +220,156 @@ export default {
 .wrapper {
   display: flex;
   flex-direction: column;
-  width: 100%;
   min-height: 100vh;
+  width: 100%;
 }
+
 .header {
-  text-align: center;
-  padding-top: 60px;
   padding-bottom: 40px;
+  padding-top: 60px;
+  text-align: center;
 }
+
 .logo-container {
-  background-color: $background-dark;
-  display: inline-flex;
-  justify-content: center;
   align-items: center;
-  width: 64px;
-  height: 64px;
+  background-color: $background-dark;
   border-radius: 3px;
   box-shadow: 0 3px 3px $shadow-dark;
+  display: inline-flex;
+  height: 64px;
+  justify-content: center;
+  width: 64px;
 }
+
 .header h1 {
-  font-size: 21px;
-  margin-top: 30px;
   color: $text;
+  font-size: 21px;
   font-weight: normal;
   margin-bottom: 10px;
+  margin-top: 30px;
 }
+
 .header p {
   color: $text-light;
   letter-spacing: 1px;
   margin: 0 auto;
 }
+
 .form {
-  max-width: 600px;
   margin: 40px auto;
   margin-bottom: 100px;
+  max-width: 600px;
 }
+
 .questions {
   background-color: $background-light;
   border: 1px solid $border;
-  box-shadow: 0 5px 20px $shadow-dark;
   border-radius: 5px;
+  box-shadow: 0 5px 20px $shadow-dark;
   margin-bottom: 30px;
 }
+
 .question-title {
-  margin-bottom: 30px;
   font-size: 16px;
+  margin-bottom: 30px;
   vertical-align: top;
 }
+
 .question-description {
-  margin-bottom: 30px;
   color: $text-light;
+  margin-bottom: 30px;
 }
+
 .question {
   padding: 40px;
 }
+
 .sub-question {
+  border-top: 1px solid $border;
   padding: 40px;
   padding-left: 50px;
-  border-top: 1px solid $border;
 }
+
 label {
   display: block;
   margin-bottom: 10px;
 }
+
 input[type='radio'] {
   margin-right: 10px;
 }
+
 input[type='text'],
 input[type='email'] {
-  min-width: 100%;
   border-bottom: 1px solid $border;
   height: 50px;
+  min-width: 100%;
+
   &::placeholder {
     color: $text-light;
     opacity: 1;
   }
+
   &:focus {
     border-color: $yellow;
   }
+
   &:placeholder-shown {
     border-color: $border;
   }
+
   &:placeholder-shown:focus {
     border-color: $yellow;
   }
 }
+
 textarea {
+  border: 1px solid $border;
   min-width: 100%;
   padding: 20px;
-  border: 1px solid $border;
+
   &::placeholder {
     color: $text-light;
     opacity: 1;
   }
+
   &:focus {
     border-color: $yellow;
   }
+
   &:placeholder-shown {
     border-color: $border;
   }
+
   &:placeholder-shown:focus {
     border-color: $yellow;
   }
 }
+
 .footer {
   margin: 40px;
+
   button {
-    width: 50%;
     margin: 20px auto;
+    width: 50%;
   }
 }
+
 @include mq(small) {
   .header h1 {
     font-size: 18px;
   }
+
   .header p {
     padding: 0 40px;
   }
+
   .questions {
-    border-radius: 0;
     border-left: 0;
+    border-radius: 0;
     border-right: 0;
   }
+
   .question {
     padding: 40px 30px;
   }

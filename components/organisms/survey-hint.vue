@@ -46,30 +46,33 @@ export default {
 
 <style scoped lang="scss">
 .survey-hint {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  position: fixed;
-  width: calc(100vw - #{$side-bar-min-width});
-  bottom: 0;
-  left: $side-bar-min-width;
-  z-index: index($z, survey-hint);
   background-color: $background-translucent;
   border-top: 1px solid $border;
+  bottom: 0;
   box-shadow: 0 -5px 3px $shadow;
+  display: flex;
+  justify-content: center;
+  left: $side-bar-min-width;
+  position: fixed;
   text-align: center;
+  width: calc(100vw - #{$side-bar-min-width});
+  z-index: index($z, survey-hint);
 }
+
 .link {
+  color: $cyan;
   display: block;
   padding: 15px 20px;
-  color: $cyan;
   width: 100%;
 }
+
 @include mq(small) {
   .survey-hint {
     left: 0;
     width: 100vw;
   }
+
   .link {
     padding-bottom: calc(15px + env(safe-area-inset-bottom) * 0.6);
   }

@@ -73,10 +73,11 @@ export default {
 
 <style scoped lang="scss">
 label {
+  align-items: center;
   display: flex;
   margin: 10px 0;
-  align-items: center;
 }
+
 .checkbox {
   margin-right: 15px;
 }

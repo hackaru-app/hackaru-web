@@ -74,84 +74,95 @@ export default {
 
 <style scoped lang="scss">
 .suggestions-wrapper {
-  position: absolute;
   animation-duration: 100ms;
-  width: 100%;
-  height: 100vh;
-  top: 91px;
-  box-sizing: border-box;
-  max-width: calc(100vw - #{$side-bar-min-width});
   background-color: $backdrop-color;
-}
-.suggestions {
-  overflow-y: scroll;
   box-sizing: border-box;
-  background-color: $background;
-  overflow: hidden;
-  overflow-y: scroll;
-  box-shadow: 0 3px 5px $shadow-darker;
-  -webkit-overflow-scrolling: touch;
-  max-height: 415px;
+  height: 100vh;
+  max-width: calc(100vw - #{$side-bar-min-width});
+  position: absolute;
+  top: 91px;
+  width: 100%;
 }
+
+.suggestions {
+  background-color: $background;
+  box-shadow: 0 3px 5px $shadow-darker;
+  box-sizing: border-box;
+  max-height: 415px;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+}
+
 .suggestions ul {
   margin: 0;
   padding: 0;
 }
+
 .suggestions ul li {
-  display: flex;
+  align-items: center;
+  border-bottom: 1px $border solid;
   cursor: pointer;
+  display: flex;
+  height: 65px;
   list-style-position: inside;
   list-style-type: none;
-  text-align: center;
-  align-items: center;
-  height: 65px;
   padding: 0 45px;
-  border-bottom: 1px $border solid;
+  text-align: center;
   transition: background-color 0.1s ease;
+
   &:hover {
     background-color: $background-hover;
   }
+
   &:last-child {
     border-bottom: 0;
   }
 }
+
 @include mq(small) {
   .suggestions-wrapper {
-    position: absolute;
-    top: 80px;
+    background: none;
     border: 0;
     margin: 0;
+    max-width: 100vw;
     padding: 0;
-    max-width: 100vw;
+    position: absolute;
+    top: 80px;
     width: 100%;
-    background: none;
   }
+
   .suggestions {
-    border-radius: 0;
-    height: 100vh;
-    border-top: 0;
-    border-left: 0;
-    margin: 0;
-    max-width: 100vw;
     background-color: $background-translucent;
+    border-left: 0;
+    border-radius: 0;
+    border-top: 0;
+    height: 100vh;
+    margin: 0;
     max-height: 100%;
+    max-width: 100vw;
     padding-bottom: 550px;
   }
+
   .suggestions ul {
     min-height: 130vh;
   }
+
   .suggestions ul li {
-    height: 75px;
-    padding: 0 35px;
     border-bottom: 1px $border solid;
     border-radius: 0;
+    height: 75px;
+    padding: 0 35px;
+
     &:first-child {
       padding-top: 0;
     }
+
     &:last-child {
       border-bottom: 1px $border solid;
       padding-bottom: 0;
     }
+
     &:hover {
       background: none;
     }

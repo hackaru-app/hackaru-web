@@ -154,37 +154,44 @@ export default {
 
 <style scoped lang="scss">
 .sticky {
+  background-color: $background-translucent;
+  border-bottom: 1px $border-dark solid;
+  box-shadow: 0 3px 3px $shadow;
+  overflow: hidden;
   position: sticky;
   top: 0;
-  overflow: hidden;
   z-index: index($z, calendar-day-header);
-  border-bottom: 1px $border-dark solid;
-  background-color: $background-translucent;
-  box-shadow: 0 3px 3px $shadow;
 }
+
 .headers-wrapper {
   display: flex;
 }
+
 .headers {
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   min-width: 100%;
-  box-sizing: border-box;
   padding-left: 60px;
 }
+
 .contents-wrapper {
   overflow: hidden;
 }
+
 .contents {
   display: flex;
 }
+
 .slider-item {
   min-width: 100%;
 }
+
 @media screen and (max-width: 640px) {
   .sticky {
     top: $side-bar-min-height;
   }
+
   .headers {
     padding-left: 25px;
   }

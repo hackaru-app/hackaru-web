@@ -134,24 +134,30 @@ export default {
 article {
   padding: 20px 40px;
 }
+
 .highlight {
   margin: 30px 0;
 }
+
 ul {
   list-style-position: inside;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
+
 .empty-scope {
   color: $text-lighter;
 }
+
 .allow-button {
-  width: 100px;
   margin-right: 10px;
+  width: 100px;
 }
+
 .footer {
   display: flex;
 }
+
 @media screen and (max-width: 640px) {
   article {
     padding-left: 30px;

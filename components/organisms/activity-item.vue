@@ -143,49 +143,57 @@ export default {
 
 <style scoped lang="scss">
 .activity {
-  border-top: 1px $border solid;
-  height: 68px;
-  display: flex;
   align-items: center;
+  border-top: 1px $border solid;
+  cursor: pointer;
+  display: flex;
+  height: 68px;
   padding: 0 45px;
   padding-right: 40px;
-  cursor: pointer;
   transition: background-color 0.1s ease;
+
   &:hover {
     background-color: $background-hover;
   }
 }
+
 .duration {
   font-family: $font-family-duration;
 }
+
 .duration.stopped {
   color: $text-light;
 }
+
 .content {
   align-items: center;
-  min-width: 1px;
-  justify-content: space-between;
   display: flex;
   flex: 1;
+  height: 100%;
+  justify-content: space-between;
+  min-width: 1px;
   padding-right: 20px;
-  height: 100%;
 }
+
 .duplicate-button {
-  height: 100%;
   border-radius: 0;
-  margin-right: 15px;
+  height: 100%;
   margin-left: 25px;
+  margin-right: 15px;
 }
+
 .is-duplicate {
   background-color: $green;
   color: $white;
 }
+
 @include mq(small) {
   .activity {
+    height: 75px;
     padding: 0 30px;
     padding-left: 35px;
-    height: 75px;
   }
+
   .duplicate-button {
     display: none;
   }

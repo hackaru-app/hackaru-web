@@ -68,17 +68,20 @@ export default {
 section {
   margin: 30px 50px;
 }
+
 form {
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
 }
+
 footer {
-  position: relative;
-  display: flex;
   align-items: center;
+  display: flex;
   margin-top: 18px;
+  position: relative;
 }
+
 @media screen and (max-width: 640px) {
   section {
     margin: 30px;

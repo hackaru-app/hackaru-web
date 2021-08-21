@@ -116,9 +116,9 @@ export default {
 
 <style scoped lang="scss">
 .calendar-content {
+  box-shadow: -3px 0 3px $shadow;
   display: flex;
   pointer-events: auto;
   position: relative;
-  box-shadow: -3px 0 3px $shadow;
 }
 </style>
