@@ -47,15 +47,25 @@ describe('Getters', () => {
 
   describe('when call activityGroups', () => {
     const state = {
-      activityGroups: [],
+      activityGroups: [
+        { project: { id: 1 }, description: 'foo' },
+        { project: { id: 1 }, description: 'bar' },
+        { project: { id: 2 }, description: 'baz' },
+      ],
     };
 
     beforeEach(() => {
       result = getters.activityGroups(state);
     });
 
-    it('returns previousTotals', () => {
-      expect(result).toEqual([]);
+    it('groups by projectId', () => {
+      expect(result).toEqual({
+        1: [
+          { project: { id: 1 }, description: 'foo' },
+          { project: { id: 1 }, description: 'bar' },
+        ],
+        2: [{ project: { id: 2 }, description: 'baz' }],
+      });
     });
   });
 

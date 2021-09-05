@@ -11,6 +11,19 @@
     </color-scheme>
 
     <div class="content">
+      <section class="report-content-items">
+        <report-content-item
+          v-for="project in projects"
+          :key="project.id"
+          :project="project"
+          :total="totals[project.id]"
+          :activity-groups="activityGroups[project.id]"
+          :previous-total="previousTotals[project.id]"
+          :opened-detail="isOpenedDetail(project.id)"
+          class="report-content-item"
+          @toggle-detail="toggleDetail(project.id)"
+        />
+      </section>
       <section class="doughnut-chart-wrapper">
         <p v-if="empty" class="doughnut-chart-empty" />
         <doughnut-chart
@@ -19,70 +32,24 @@
           class="doughnut-chart"
         />
       </section>
-      <section class="details">
-        <header>
-          <tabs
-            :items="[$t('projects'), $t('activities')]"
-            :index="selectedIndex"
-            class="tabs"
-            @change="change"
-          />
-        </header>
-        <transition name="fade" mode="out-in">
-          <section v-if="selectedIndex == 0" key="projects">
-            <article v-for="project in projects" :key="project.id">
-              <project-name :name="project.name" :color="project.color" />
-              <time class="duration">
-                {{ fromS(totals[project.id], 'hh:mm:ss') }}
-              </time>
-              <delta-icon
-                :current="totals[project.id]"
-                :previous="previousTotals[project.id]"
-              />
-            </article>
-          </section>
-          <section v-else key="activityGroups">
-            <article
-              v-for="activityGroup in activityGroups"
-              :key="`${activityGroup.project.id}-${activityGroup.description}`"
-            >
-              <activity-name
-                :description="activityGroup.description"
-                :project="activityGroup.project"
-              />
-              <time class="duration">
-                {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
-              </time>
-            </article>
-          </section>
-        </transition>
-      </section>
     </div>
   </article>
 </template>
 
 <script>
-import Tabs from '~/components/molecules/tabs';
-import DeltaIcon from '~/components/molecules/delta-icon';
-import Icon from '~/components/atoms/icon';
 import ColorScheme from '~/components/atoms/color-scheme';
-import ProjectName from '~/components/molecules/project-name';
-import ActivityName from '~/components/molecules/activity-name';
 import DoughnutChart from '~/components/atoms/doughnut-chart';
 import BarChart from '~/components/atoms/bar-chart';
+import ReportContentItem from '~/components/organisms/report-content-item';
+import without from 'lodash.without';
 import { mapGetters } from 'vuex';
-import { fromS } from 'hh-mm-ss';
 
 export default {
   components: {
-    Icon,
-    Tabs,
-    DeltaIcon,
     ColorScheme,
     DoughnutChart,
     BarChart,
-    ProjectName,
-    ActivityName,
+    ReportContentItem,
   },
   props: {
     barChartData: {
@@ -106,18 +73,13 @@ export default {
       required: true,
     },
     activityGroups: {
+      type: Object,
+      required: true,
+    },
+    openedDetails: {
       type: Array,
       required: true,
     },
-    selectedIndex: {
-      type: Number,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      fromS,
-    };
   },
   computed: {
     ...mapGetters({
@@ -125,12 +87,18 @@ export default {
     }),
   },
   methods: {
-    change(index) {
-      this.$scrollTo('body', 300, { offset: 50 });
-      this.$emit('update:selectedIndex', index);
-      this.$mixpanel.track('Select report tab', {
-        item: ['projects', 'activities'][index],
-      });
+    isOpenedDetail(projectId) {
+      return this.openedDetails.includes(projectId);
+    },
+    toggleDetail(projectId) {
+      if (this.isOpenedDetail(projectId)) {
+        this.$emit(
+          'update:openedDetails',
+          without(this.openedDetails, projectId)
+        );
+      } else {
+        this.$emit('update:openedDetails', [...this.openedDetails, projectId]);
+      }
     },
   },
 };
@@ -156,17 +124,14 @@ export default {
   width: 100%;
 }
 .content {
+  align-items: flex-start;
   display: flex;
   margin-top: 50px;
 }
 .doughnut-chart-wrapper {
   align-self: start;
   background-color: $background-translucent;
-  border: 1px $border-dark solid;
-  border-radius: 3px;
-  box-shadow: 0 3px 5px $shadow;
-  margin-right: 40px;
-  padding: 20px;
+  padding: 10px;
   position: sticky;
   top: 40px;
 }
@@ -191,51 +156,24 @@ export default {
     width: 160px;
   }
 }
-.details {
+.report-content-items {
   background-color: $background-translucent;
   border: 1px $border-dark solid;
   border-radius: 3px;
-  box-shadow: 0 3px 5px $shadow;
+  box-shadow: 0 3px 3px $shadow;
   display: flex;
   flex: 1;
   flex-direction: column;
   margin: 0;
+  margin-right: 40px;
   max-width: 650px;
   min-width: 1px;
   padding: 0;
 }
-.details header {
-  display: flex;
-  list-style-type: none;
-  padding: 25px 20px;
-  padding-bottom: 15px;
-}
-.details section {
-  animation-delay: 305ms;
-  animation-duration: 0.1s;
-  animation-timing-function: linear;
-}
-.details article {
-  align-items: center;
-  border-bottom: 1px $border solid;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  height: 65px;
-  justify-content: space-between;
-  min-width: 1px;
-  overflow: hidden;
-  padding: 0 30px;
-  &:last-child {
-    border: 0;
-    margin-bottom: 15px;
-  }
-  .duration {
-    color: $text-light;
-    flex: 1;
-    font-family: $font-family-duration;
-    padding-left: 25px;
-    text-align: right;
+.report-content-item {
+  border-top: 1px $border solid;
+  &:first-child {
+    border-top: 0;
   }
 }
 
@@ -258,7 +196,8 @@ export default {
   }
   .doughnut-chart {
     align-self: center;
-    padding: 0 0;
+    order: 0;
+    padding: 0;
   }
   .doughnut-chart,
   .doughnut-chart-empty {
@@ -273,18 +212,15 @@ export default {
     margin: 0;
     padding: 0;
   }
-  .details {
+  .report-content-items {
     background-color: $background;
     border: 0;
+    border-bottom: 1px $border-dark solid;
+    border-top: 1px $border-dark solid;
     box-shadow: none;
-  }
-  .details article {
-    height: 65px;
-  }
-  .details header {
-    background: none;
-    border-bottom: 1px $border solid;
-    padding-bottom: 20px;
+    margin-right: 0;
+    order: 1;
+    width: 100%;
   }
 }
 
