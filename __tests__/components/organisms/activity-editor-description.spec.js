@@ -31,6 +31,7 @@ describe('ActivityEditorDescription', () => {
 
   const factory = () =>
     shallowMount(ActivityEditorDescription, {
+      attachTo: document.body,
       localVue,
       mocks: {
         $store,
