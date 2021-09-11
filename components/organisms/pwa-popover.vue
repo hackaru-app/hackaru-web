@@ -64,63 +64,64 @@ export default {
 }
 .popover {
   position: absolute;
-  z-index: index($z, pwa-popover);
   right: 140px;
   top: 0;
+  z-index: index($z, pwa-popover);
 }
 .content {
-  position: relative;
-  justify-content: center;
-  display: flex;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
   padding: 20px;
+  position: relative;
 }
 .logo {
-  flex-shrink: 0;
-  width: 56px;
-  height: 56px;
-  display: flex;
+  align-items: center;
   background: $background-dark;
   border-radius: 3px;
-  margin-right: 20px;
+  display: flex;
+  flex-shrink: 0;
+  height: 56px;
   justify-content: center;
-  align-items: center;
+  margin-right: 20px;
+  width: 56px;
   .logo-icon {
-    width: 20px;
     height: 20px;
+    width: 20px;
   }
 }
 .about {
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   margin-bottom: 1px;
   h1 {
+    font-size: $font-size;
+    font-weight: normal;
     margin: 0;
     padding: 0;
-    font-weight: normal;
-    font-size: $font-size;
   }
   p {
-    padding: 0;
-    margin: 0;
-    font-size: 13px;
-    padding-right: 10px;
-    display: flex;
     color: $grey-666;
+    display: flex;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    padding-right: 10px;
   }
 }
 .share-icon {
-  width: 16px;
   height: 16px;
   margin-right: 5px;
+  width: 16px;
 }
+
 @include mq(small) {
   .popover {
-    top: auto;
-    right: auto;
     bottom: 15px;
+    right: auto;
+    top: auto;
   }
 }
 </style>

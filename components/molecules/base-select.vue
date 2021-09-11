@@ -32,17 +32,17 @@ export default {
 
 <style scoped lang="scss">
 .base-select {
-  position: relative;
   display: inline-block;
+  position: relative;
 }
 .base-select select {
-  position: absolute;
   background: $background;
   color: $text;
-  top: 0;
-  width: 100%;
+  cursor: pointer;
   height: 42px;
   opacity: 0;
-  cursor: pointer;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 </style>

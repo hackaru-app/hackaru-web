@@ -11,6 +11,19 @@
     </color-scheme>
 
     <div class="content">
+      <section class="report-content-items">
+        <report-content-item
+          v-for="project in projects"
+          :key="project.id"
+          :project="project"
+          :total="totals[project.id]"
+          :activity-groups="activityGroups[project.id]"
+          :previous-total="previousTotals[project.id]"
+          :opened-detail="isOpenedDetail(project.id)"
+          class="report-content-item"
+          @toggle-detail="toggleDetail(project.id)"
+        />
+      </section>
       <section class="doughnut-chart-wrapper">
         <p v-if="empty" class="doughnut-chart-empty" />
         <doughnut-chart
@@ -19,70 +32,24 @@
           class="doughnut-chart"
         />
       </section>
-      <section class="details">
-        <header>
-          <tabs
-            :items="[$t('projects'), $t('activities')]"
-            :index="selectedIndex"
-            class="tabs"
-            @change="change"
-          />
-        </header>
-        <transition name="fade" mode="out-in">
-          <section v-if="selectedIndex == 0" key="projects">
-            <article v-for="project in projects" :key="project.id">
-              <project-name :name="project.name" :color="project.color" />
-              <time class="duration">
-                {{ fromS(totals[project.id], 'hh:mm:ss') }}
-              </time>
-              <delta-icon
-                :current="totals[project.id]"
-                :previous="previousTotals[project.id]"
-              />
-            </article>
-          </section>
-          <section v-else key="activityGroups">
-            <article
-              v-for="activityGroup in activityGroups"
-              :key="`${activityGroup.project.id}-${activityGroup.description}`"
-            >
-              <activity-name
-                :description="activityGroup.description"
-                :project="activityGroup.project"
-              />
-              <time class="duration">
-                {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
-              </time>
-            </article>
-          </section>
-        </transition>
-      </section>
     </div>
   </article>
 </template>
 
 <script>
-import Tabs from '~/components/molecules/tabs';
-import DeltaIcon from '~/components/molecules/delta-icon';
-import Icon from '~/components/atoms/icon';
 import ColorScheme from '~/components/atoms/color-scheme';
-import ProjectName from '~/components/molecules/project-name';
-import ActivityName from '~/components/molecules/activity-name';
 import DoughnutChart from '~/components/atoms/doughnut-chart';
 import BarChart from '~/components/atoms/bar-chart';
+import ReportContentItem from '~/components/organisms/report-content-item';
+import without from 'lodash.without';
 import { mapGetters } from 'vuex';
-import { fromS } from 'hh-mm-ss';
 
 export default {
   components: {
-    Icon,
-    Tabs,
-    DeltaIcon,
     ColorScheme,
     DoughnutChart,
     BarChart,
-    ProjectName,
-    ActivityName,
+    ReportContentItem,
   },
   props: {
     barChartData: {
@@ -106,18 +73,13 @@ export default {
       required: true,
     },
     activityGroups: {
+      type: Object,
+      required: true,
+    },
+    openedDetails: {
       type: Array,
       required: true,
     },
-    selectedIndex: {
-      type: Number,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      fromS,
-    };
   },
   computed: {
     ...mapGetters({
@@ -125,12 +87,18 @@ export default {
     }),
   },
   methods: {
-    change(index) {
-      this.$scrollTo('body', 300, { offset: 50 });
-      this.$emit('update:selectedIndex', index);
-      this.$mixpanel.track('Select report tab', {
-        item: ['projects', 'activities'][index],
-      });
+    isOpenedDetail(projectId) {
+      return this.openedDetails.includes(projectId);
+    },
+    toggleDetail(projectId) {
+      if (this.isOpenedDetail(projectId)) {
+        this.$emit(
+          'update:openedDetails',
+          without(this.openedDetails, projectId)
+        );
+      } else {
+        this.$emit('update:openedDetails', [...this.openedDetails, projectId]);
+      }
     },
   },
 };
@@ -138,158 +106,130 @@ export default {
 
 <style scoped lang="scss">
 .report-content {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 100%;
   padding: 40px;
   padding-bottom: 45px;
-  box-sizing: border-box;
+  width: 100%;
 }
 .bar-chart-wrapper {
+  height: 180px;
   max-width: 100%;
   min-width: 200px;
   width: 100%;
-  height: 180px;
 }
 .bar-chart {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
 .content {
+  align-items: flex-start;
   display: flex;
   margin-top: 50px;
 }
 .doughnut-chart-wrapper {
+  align-self: start;
+  background-color: $background-translucent;
+  padding: 10px;
   position: sticky;
   top: 40px;
-  margin-right: 40px;
-  align-self: start;
-  padding: 20px;
-  border-radius: 3px;
-  box-shadow: 0 3px 5px $shadow;
-  border: 1px $border-dark solid;
-  background-color: $background-translucent;
 }
 .doughnut-chart,
 .doughnut-chart-empty {
   display: flex;
-  width: 150px;
   height: 150px;
+  width: 150px;
 }
 .doughnut-chart-empty {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   margin: 0;
-  &:before {
-    position: absolute;
-    content: '';
-    width: 160px;
-    height: 160px;
-    box-sizing: border-box;
+  &::before {
     border: 40px $grey-f5f5f5 solid;
     border-radius: 50%;
+    box-sizing: border-box;
+    content: '';
+    height: 160px;
+    position: absolute;
+    width: 160px;
   }
 }
-.details {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  min-width: 1px;
-  max-width: 650px;
-  flex: 1;
-  margin: 0;
-  box-shadow: 0 3px 5px $shadow;
-  border-radius: 3px;
-  border: 1px $border-dark solid;
+.report-content-items {
   background-color: $background-translucent;
-}
-.details header {
-  padding: 25px 20px;
-  padding-bottom: 15px;
-  list-style-type: none;
+  border: 1px $border solid;
+  border-radius: 3px;
+  box-shadow: 0 3px 3px $shadow;
   display: flex;
-}
-.details section {
-  animation-delay: 305ms;
-  animation-duration: 0.1s;
-  animation-timing-function: linear;
-}
-.details article {
-  display: flex;
+  flex: 1;
   flex-direction: column;
-  overflow: hidden;
-  box-sizing: border-box;
-  flex-direction: row;
-  align-items: center;
+  margin: 0;
+  margin-right: 40px;
+  max-width: 650px;
   min-width: 1px;
-  justify-content: space-between;
-  border-bottom: 1px $border solid;
-  height: 65px;
-  padding: 0 30px;
-  &:last-child {
-    border: 0;
-    margin-bottom: 15px;
-  }
-  .duration {
-    flex: 1;
-    text-align: right;
-    color: $text-light;
-    padding-left: 25px;
-    font-family: $font-family-duration;
+  padding: 0;
+}
+.report-content-item {
+  border-top: 1px $border solid;
+  &:first-child {
+    border-top: 0;
   }
 }
+
 @include mq(small) {
   .report-content {
     flex-direction: column;
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
   .doughnut-chart-wrapper {
-    display: flex;
     align-self: center;
-    justify-content: center;
-    padding: 30px 0;
-    order: 0;
-    margin: 0;
+    background-color: $background;
     border: 0;
     box-shadow: none;
-    background-color: $background;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    order: 0;
+    padding: 30px 0;
   }
   .doughnut-chart {
-    padding: 0 0;
     align-self: center;
+    order: 0;
+    padding: 0;
   }
   .doughnut-chart,
   .doughnut-chart-empty {
-    width: 160px;
     height: 160px;
+    width: 160px;
   }
   .bar-chart-wrapper {
     height: 130px;
   }
   .content {
-    padding: 0;
-    margin: 0;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
   }
-  .details {
-    border: 0;
-    box-shadow: none;
+  .report-content-items {
     background-color: $background;
-  }
-  .details article {
-    height: 65px;
-  }
-  .details header {
-    background: none;
-    padding-bottom: 20px;
+    border: 0;
     border-bottom: 1px $border solid;
+    border-top: 1px $border solid;
+    box-shadow: none;
+    margin-right: 0;
+    order: 1;
+    width: 100%;
   }
 }
+
 @media (prefers-color-scheme: dark) {
-  .doughnut-chart-empty:before {
+  .doughnut-chart-empty::before {
     border-color: $background-dark;
+  }
+  .report-content-items {
+    border-radius: 0;
   }
 }
 </style>

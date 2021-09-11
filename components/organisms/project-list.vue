@@ -102,32 +102,32 @@ export default {
 
 <style scoped lang="scss">
 .project {
+  border-bottom: 1px $border solid;
   display: flex;
   height: 71px;
   padding: 0 30px;
-  border-bottom: 1px $border solid;
   transition: background-color 0.3s ease;
   &:hover {
     background: $background-hover;
   }
 }
 .content {
-  overflow: scroll;
   height: 385px;
+  overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
 }
 .project-button {
-  flex-basis: 100%;
   align-items: center;
   background: none;
   border: 0;
-  padding: 0;
   display: flex;
+  flex-basis: 100%;
   justify-content: space-between;
-  transition: background-color 0.1s;
   min-width: 1px;
+  padding: 0;
+  transition: background-color 0.1s;
 }
 .project-name {
   padding-right: 10px;

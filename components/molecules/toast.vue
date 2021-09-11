@@ -42,21 +42,21 @@ export default {
 
 <style scoped lang="scss">
 .toast {
+  align-items: flex-end;
+  bottom: 0;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  left: $side-bar-min-width;
+  pointer-events: none;
   position: fixed;
   width: calc(100vw - #{$side-bar-min-width});
-  bottom: 0;
-  pointer-events: none;
-  left: $side-bar-min-width;
   z-index: index($z, toast);
 }
 .content {
-  padding: 9px 20px;
-  margin-bottom: 50px;
-  color: $white;
   border-radius: 99px;
+  color: $white;
+  margin-bottom: 50px;
+  padding: 9px 20px;
   text-align: center;
 }
 .success {
@@ -65,21 +65,22 @@ export default {
 .error {
   background-color: $red;
 }
+
 @include mq(small) {
   .toast {
     left: 0;
     width: 100vw;
   }
   .content {
-    padding: 25px 30px;
-    padding-bottom: calc(25px + env(safe-area-inset-bottom) * 0.6);
-    flex-direction: column;
-    box-sizing: border-box;
+    border-radius: 0;
     bottom: 0;
+    box-sizing: border-box;
+    flex-direction: column;
     left: 0;
     margin: 0;
+    padding: 25px 30px;
+    padding-bottom: calc(25px + env(safe-area-inset-bottom) * 0.6);
     width: 100%;
-    border-radius: 0;
   }
 }
 </style>

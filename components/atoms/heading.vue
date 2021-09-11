@@ -6,8 +6,8 @@
 
 <style lang="scss">
 .heading {
-  display: flex;
   align-items: center;
+  display: flex;
   font-size: 20px;
   font-weight: normal;
   .icon {

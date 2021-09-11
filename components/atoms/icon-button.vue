@@ -6,10 +6,10 @@
 
 <style scoped lang="scss">
 .icon-button {
-  position: relative;
   background: none;
   border: 0;
   padding: 0;
+  position: relative;
   transition: opacity 0.3s, transform 0.1s;
   &:hover {
     opacity: 0.7;
@@ -17,14 +17,14 @@
   &:active {
     opacity: 1;
   }
-  &:after {
+  &::after {
     content: '';
-    position: absolute;
+    height: 40px;
     left: 0;
     margin-left: -10px;
     margin-top: -10px;
+    position: absolute;
     width: 40px;
-    height: 40px;
   }
 }
 .is-primary {

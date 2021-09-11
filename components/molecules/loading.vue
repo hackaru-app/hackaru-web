@@ -20,16 +20,16 @@ export default {
   margin-bottom: 10px;
 }
 .loading {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100px;
   height: 100px;
+  justify-content: center;
+  left: 50%;
   margin-left: -50px;
   margin-top: -50px;
+  position: absolute;
   top: 50%;
-  left: 50%;
+  width: 100px;
 }
 </style>

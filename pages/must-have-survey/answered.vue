@@ -39,10 +39,10 @@ export default {
   font-size: 40px;
 }
 .wrapper {
-  margin: 40px 25px;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: 40px 25px;
 }
 .title {
   font-size: 21px;

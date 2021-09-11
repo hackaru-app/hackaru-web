@@ -35,26 +35,26 @@ export default {
 
 <style scoped lang="scss">
 .calendar-day-header {
-  flex: 1;
-  width: 1px;
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  height: 65px;
-  line-height: 1;
-  box-sizing: border-box;
   border-left: 1px $border-dark solid;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  height: 65px;
+  justify-content: center;
+  line-height: 1;
+  width: 1px;
 }
 .calendar-day-header h1 {
-  display: flex;
-  font-weight: normal;
-  font-size: 18px;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
   align-items: flex-end;
   color: $text;
+  display: flex;
+  font-size: 18px;
+  font-weight: normal;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 .calendar-day-header small {
   color: $text-light;
@@ -64,6 +64,7 @@ export default {
 .calendar-day-header.today small {
   color: $text-primary;
 }
+
 @include mq(small) {
   .calendar-day-header h1 {
     font-size: 16px;
@@ -72,8 +73,8 @@ export default {
     flex-direction: column;
   }
   .calendar-day-header small {
-    padding: 0;
     margin-top: 2px;
+    padding: 0;
   }
 }
 </style>

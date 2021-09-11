@@ -71,14 +71,14 @@ export default {
   flex: 1;
 }
 .datetime-picker input {
-  margin-right: 10px;
-  border: 0;
-  width: 100%;
-  max-width: 160px;
-  height: 46px;
-  border-radius: 0;
   background: none;
+  border: 0;
   border-bottom: 1px $border solid;
+  border-radius: 0;
+  height: 46px;
+  margin-right: 10px;
+  max-width: 160px;
+  width: 100%;
   &:last-child {
     margin-right: 0;
   }

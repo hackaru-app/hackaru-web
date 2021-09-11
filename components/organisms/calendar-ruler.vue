@@ -41,28 +41,29 @@ export default {
 
 <style scoped lang="scss">
 .ruler {
+  animation-duration: 0.2s;
   display: flex;
-  position: absolute;
   flex-direction: column;
   left: 0;
+  position: absolute;
   width: 100%;
   z-index: index($z, calendar-ruler);
-  animation-duration: 0.2s;
 }
 .ruler time {
-  width: 60px;
   color: $white;
   display: flex;
+  font-size: 12px;
   justify-content: center;
   line-height: 20px;
-  font-size: 12px;
+  width: 60px;
 }
 .line {
   content: '';
   display: block;
-  width: 100%;
   height: 1px;
+  width: 100%;
 }
+
 @include mq(small) {
   .ruler time {
     width: 40px;

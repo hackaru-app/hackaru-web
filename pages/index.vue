@@ -68,25 +68,26 @@ export default {
 
 <style scoped lang="scss">
 .index {
+  align-items: center;
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: center;
 }
 .timer-form {
   width: 100%;
 }
 .content {
-  width: 100%;
   margin-top: 90px;
+  width: 100%;
 }
 .empty-message {
+  color: $text-lighter;
   display: flex;
   justify-content: center;
   margin: 60px 30px;
   text-align: center;
-  color: $text-lighter;
 }
+
 @include mq(small) {
   .empty-message {
     height: calc(100vh - #{$side-bar-min-height});

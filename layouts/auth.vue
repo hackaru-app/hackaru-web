@@ -22,18 +22,19 @@ export default {
 
 <style scoped lang="scss">
 .auth {
+  background: $background;
   display: flex;
   flex-direction: column;
-  background: $background;
-  width: 100%;
   min-height: 100vh;
+  width: 100%;
 }
 .content {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   margin-left: $side-bar-min-width;
 }
+
 @include mq(small) {
   .content {
     margin-left: 0;

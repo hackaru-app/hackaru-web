@@ -12,17 +12,17 @@
 
 <style scoped lang="scss">
 .modal-header {
-  display: flex;
   align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-  justify-content: space-between;
-  height: 60px;
-  padding: 0 30px;
-  border-bottom: 1px solid $border;
-  box-shadow: 0 3px 6px $shadow;
   background-color: $background;
+  border-bottom: 1px solid $border;
   border-radius: 3px 3px 0 0;
+  box-shadow: 0 3px 6px $shadow;
+  box-sizing: border-box;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 30px;
+  width: 100%;
 }
 h1 {
   font-size: $font-size;
@@ -31,8 +31,8 @@ h1 {
 }
 .left,
 .right {
-  display: flex;
   align-items: center;
+  display: flex;
   height: 100%;
 }
 </style>

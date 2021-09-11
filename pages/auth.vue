@@ -180,20 +180,20 @@ export default {
   min-height: 100vh;
 }
 .form-container {
-  padding: 30px 50px;
   flex-grow: 1;
+  padding: 30px 50px;
 }
 .auth form {
-  padding-top: 20px;
-  max-width: 480px;
   display: flex;
   flex-direction: column;
+  max-width: 480px;
+  padding-top: 20px;
 }
 .auth form footer {
-  position: relative;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  position: relative;
 }
 .auth form footer .buttons {
   display: flex;
@@ -214,37 +214,38 @@ export default {
   min-width: 100px;
 }
 .toggle-button {
+  background: none;
+  border: 0;
   box-sizing: border-box;
   color: $text-primary;
-  text-decoration: none;
-  width: 200px;
   padding: 10px 0;
   text-align: left;
-  border: 0;
-  background: none;
+  text-decoration: none;
+  width: 200px;
   span {
     color: $text-lighter;
-    margin-right: 5px;
     margin-left: 20px;
+    margin-right: 5px;
   }
 }
 .forgot {
-  color: $text-light;
-  text-decoration: none;
-  display: flex;
   animation-duration: 0.2s;
-  margin-top: 30px;
+  color: $text-light;
+  display: flex;
   margin-left: 5px;
+  margin-top: 30px;
+  text-decoration: none;
   width: 300px;
 }
 .auth-footer {
+  align-items: center;
   display: flex;
   padding: 30px 50px;
-  align-items: center;
 }
 .locale-select {
   flex-shrink: 0;
 }
+
 @media screen and (max-width: 640px) {
   .auth {
     min-height: auto;
@@ -253,9 +254,9 @@ export default {
     padding: 30px;
   }
   .auth-footer {
-    padding: 30px;
-    flex-direction: column;
     align-items: flex-start;
+    flex-direction: column;
+    padding: 30px;
   }
 }
 </style>

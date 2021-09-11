@@ -9,29 +9,30 @@
 
 <style scoped lang="scss">
 .calendar-hours {
-  width: 60px;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 60px;
 }
 .calendar-hours time {
-  position: relative;
-  display: flex;
   box-sizing: border-box;
   color: $text-light;
+  display: flex;
   font-size: 13px;
   line-height: 20px;
+  position: relative;
   &::before {
-    position: absolute;
-    left: 0;
-    width: 100vw;
-    content: '';
     border-top: 1px $border dashed;
+    content: '';
+    left: 0;
+    position: absolute;
+    width: 100vw;
   }
   &:first-child::before {
     display: none;
   }
 }
+
 @include mq(small) {
   .calendar-hours {
     width: 25px;

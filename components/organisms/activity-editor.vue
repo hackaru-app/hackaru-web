@@ -190,14 +190,14 @@ export default {
   justify-content: flex-end;
 }
 .project-button {
-  width: 100%;
-  min-height: inherit;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  border: 0;
-  padding: 0;
   background: none;
+  border: 0;
+  display: flex;
+  justify-content: space-between;
+  min-height: inherit;
+  padding: 0;
+  width: 100%;
   .project-name {
     display: flex;
     min-height: inherit;

@@ -26,32 +26,32 @@ export default {
 
 <style scoped lang="scss">
 .modal {
-  width: 100vw;
-  height: 100vh;
-  background-color: $backdrop-color;
-  position: fixed;
-  display: flex;
   align-items: center;
+  background-color: $backdrop-color;
+  display: flex;
+  height: 100vh;
   justify-content: center;
   left: 0;
+  position: fixed;
   top: 0;
+  width: 100vw;
   z-index: index($z, modal);
 }
 .container {
-  width: 500px;
-  position: relative;
+  background-color: $background;
+  border-radius: 3px;
+  box-shadow: 0 10px 20px $shadow-darker;
   margin: 0 10px;
   overflow: hidden;
-  border-radius: 3px;
-  background-color: $background;
-  box-shadow: 0 10px 20px $shadow-darker;
+  position: relative;
+  width: 500px;
 }
 .slide-down-fade-enter-active,
 .slide-down-fade-leave-active {
   transition: opacity 0.15s;
   .container {
-    transition: transform 0.15s;
     transform: translateY(0);
+    transition: transform 0.15s;
   }
 }
 .slide-down-fade-enter,

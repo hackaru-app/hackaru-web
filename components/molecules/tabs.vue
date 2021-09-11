@@ -37,31 +37,31 @@ export default {
 <style scoped lang="scss">
 .tabs {
   display: flex;
-  overflow-x: scroll;
   margin: 0;
+  overflow-x: scroll;
   padding: 0;
   &::-webkit-scrollbar {
     display: none;
   }
 }
 .tabs li {
-  box-sizing: border-box;
-  flex-shrink: 0;
-  display: flex;
+  align-items: center;
   border-bottom: 2px $border solid;
-  list-style-type: none;
+  box-sizing: border-box;
+  color: $text-light;
+  display: flex;
+  flex-shrink: 0;
   list-style-position: inside;
+  list-style-type: none;
   padding: 10px 15px;
   padding-top: 2px;
-  align-items: center;
-  color: $text-light;
   transition: all 0.2s ease;
 }
 .tabs li.selected,
 .tabs li:hover {
-  cursor: pointer;
   border-bottom-color: $cyan;
   color: $text;
+  cursor: pointer;
 }
 .tabs li:active {
   color: $text-lighter;

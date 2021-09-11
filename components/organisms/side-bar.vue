@@ -59,59 +59,59 @@ export default {
 
 <style scoped lang="scss">
 .side-bar {
-  position: fixed;
-  min-width: $side-bar-min-width;
-  min-height: $side-bar-min-height;
+  background-color: $background-dark;
+  box-sizing: border-box;
   display: flex;
-  margin: 0 auto;
   flex-direction: column;
   height: 100vh;
-  box-sizing: border-box;
-  background-color: $background-dark;
-  z-index: index($z, side-bar);
+  margin: 0 auto;
+  min-height: $side-bar-min-height;
+  min-width: $side-bar-min-width;
   padding-left: env(safe-area-inset-left);
+  position: fixed;
+  z-index: index($z, side-bar);
 }
 .url {
   display: none;
 }
 h1 {
-  margin: 0;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin: 0;
   a {
-    display: flex;
     align-items: center;
+    display: flex;
     height: 90px;
   }
   a .logo-icon {
-    width: 20px;
-    height: 20px;
     color: $yellow;
+    height: 20px;
     transition: filter 0.2s;
+    width: 20px;
   }
 }
 ul {
   display: flex;
-  list-style-type: none;
-  list-style-position: inside;
   flex-direction: column;
-  padding: 0;
+  list-style-position: inside;
+  list-style-type: none;
   margin: 0;
+  padding: 0;
 }
 li a {
-  cursor: pointer;
-  transition: all 0.1s ease;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
+  background-color: none;
   border: 0;
   border-left: 2px transparent solid;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
   padding: 16px 0;
   padding-right: 4px;
   text-decoration: none;
-  background-color: none;
+  transition: all 0.1s ease;
   .icon {
     color: $grey-f5f5f5;
   }
@@ -127,45 +127,45 @@ li:first-child a {
 }
 @include mq(small) {
   .side-bar {
-    position: fixed;
+    align-items: center;
+    border: 0;
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    height: auto;
     justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    border: 0;
     padding: 0 32px;
     padding-top: env(safe-area-inset-top);
-    height: auto;
-    box-sizing: border-box;
+    position: fixed;
+    width: 100%;
   }
   h1 a {
-    padding: 20px;
-    margin-left: -22px;
     height: auto;
+    margin-left: -22px;
+    padding: 20px;
   }
   h1 a .logo-icon {
-    width: 18px;
     height: 18px;
+    width: 18px;
   }
   ul {
     display: flex;
-    margin: 0;
     flex-direction: row;
+    margin: 0;
     margin-right: -15px;
   }
   li a,
   li button {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    vertical-align: middle;
-    padding: 0;
-    margin: 0 3px;
-    width: 40px;
-    height: 35px;
-    border-radius: 99px;
     border: 0;
+    border-radius: 99px;
+    display: flex;
+    height: 35px;
+    justify-content: center;
+    margin: 0 3px;
+    padding: 0;
+    vertical-align: middle;
+    width: 40px;
   }
   li.selected a {
     background-color: $background-dark-hover;

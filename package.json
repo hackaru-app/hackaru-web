@@ -8,17 +8,18 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore",
+    "eslint": "eslint --ext .js,.vue --ignore-path .gitignore",
+    "stylelint": "stylelint '**/*.{vue,scss}'",
     "test": "jest",
     "postinstall": "husky install"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
-    "@nuxtjs/sentry": "^5.1.1",
-    "@sentry/browser": "^6.11.0",
-    "@sentry/integrations": "^6.11.0",
-    "@sentry/tracing": "^6.11.0",
+    "@nuxtjs/sentry": "^5.1.3",
+    "@sentry/browser": "^6.12.0",
+    "@sentry/integrations": "^6.12.0",
+    "@sentry/tracing": "^6.12.0",
     "axios-case-converter": "^0.8.1",
     "camelcase-keys": "^7.0.0",
     "chart.js": "^2.9.3",
@@ -31,8 +32,7 @@
     "lodash.groupby": "^4.6.0",
     "lodash.merge": "^4.6.1",
     "lodash.omit": "^4.5.0",
-    "lodash.union": "^4.6.0",
-    "lodash.uniqby": "^4.7.0",
+    "lodash.without": "^4.4.0",
     "logrocket": "^2.0.0",
     "mezr": "^0.6.2",
     "mixpanel-browser": "^2.41.0",
@@ -42,9 +42,8 @@
     "nuxt-i18n": "^6.28.1",
     "query-string": "^7.0.1",
     "ress": "^4.0.0",
-    "sass": "^1.38.0",
+    "sass": "^1.39.2",
     "sass-loader": "^10.1.0",
-    "snakecase-keys": "^4.0.2",
     "style-loader": "^0.23.1",
     "v-scroll-lock": "^1.3.1",
     "v-tooltip": "^2.1.3",
@@ -57,8 +56,11 @@
     "vuex-persistedstate": "^4.0.0"
   },
   "lint-staged": {
-    "*.{js,vue}": [
-      "yarn lint --fix"
+    "*.{vue,js}": [
+      "yarn eslint --fix"
+    ],
+    "*.{vue,scss}": [
+      "yarn stylelint --fix"
     ]
   },
   "config": {
@@ -68,32 +70,37 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.4",
+    "@babel/preset-env": "^7.15.6",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/style-resources": "^1.2.1",
-    "@vue/test-utils": "^1.1.3",
+    "@vue/test-utils": "^1.2.2",
     "axios-mock-adapter": "^1.20.0",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^27.0.6",
-    "babel-preset-env": "^1.7.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^27.1.1",
     "eslint": "^4.15.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-vue": "^2.0.2",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-vue": "^4.0.0",
-    "husky": "^7.0.1",
-    "jest": "^27.0.6",
+    "husky": "^7.0.2",
+    "jest": "^27.1.1",
     "jest-canvas-mock": "^2.3.1",
-    "jest-localstorage-mock": "^2.4.16",
+    "jest-localstorage-mock": "^2.4.17",
     "jest-serializer-vue": "^2.0.2",
     "lint-staged": "^11.1.2",
     "match-media-mock": "^0.1.1",
     "mockdate": "^3.0.5",
-    "prettier": "^2.3.2",
+    "prettier": "^2.4.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-prettier": "^1.2.0",
+    "stylelint-scss": "^3.20.1",
     "vue-jest": "^3.0.5",
     "vuex-mock-store": "^0.0.7"
   }
