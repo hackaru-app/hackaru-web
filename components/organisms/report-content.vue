@@ -158,7 +158,7 @@ export default {
 }
 .report-content-items {
   background-color: $background-translucent;
-  border: 1px $border-dark solid;
+  border: 1px $border solid;
   border-radius: 3px;
   box-shadow: 0 3px 3px $shadow;
   display: flex;
@@ -215,8 +215,8 @@ export default {
   .report-content-items {
     background-color: $background;
     border: 0;
-    border-bottom: 1px $border-dark solid;
-    border-top: 1px $border-dark solid;
+    border-bottom: 1px $border solid;
+    border-top: 1px $border solid;
     box-shadow: none;
     margin-right: 0;
     order: 1;
@@ -227,6 +227,9 @@ export default {
 @media (prefers-color-scheme: dark) {
   .doughnut-chart-empty::before {
     border-color: $background-dark;
+  }
+  .report-content-items {
+    border-radius: 0;
   }
 }
 </style>

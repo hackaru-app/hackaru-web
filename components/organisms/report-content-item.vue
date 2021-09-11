@@ -104,7 +104,6 @@ export default {
 }
 .actitivty-group {
   align-items: center;
-  background-color: $background-light;
   border-top: 1px $border solid;
   box-sizing: border-box;
   display: flex;
