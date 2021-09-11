@@ -1,3 +1,5 @@
+import groupBy from 'lodash.groupby';
+
 export const SET_REPORTS = 'SET_REPORTS';
 export const SET_PREVIOUS_TOTALS = 'SET_PREVIOUS_TOTALS';
 
@@ -100,7 +102,9 @@ export const mutations = {
 
 export const getters = {
   projects: (state) => {
-    return state.projects;
+    return state.projects
+      .slice()
+      .sort((a, b) => state.totals[b.id] - state.totals[a.id]);
   },
   totals: (state) => {
     return state.totals;
@@ -109,7 +113,7 @@ export const getters = {
     return state.previousTotals;
   },
   activityGroups: (state) => {
-    return state.activityGroups;
+    return groupBy(state.activityGroups, ({ project }) => project.id);
   },
   empty: (state) => {
     return !Object.values(state.totals).find((value) => value > 0);
