@@ -35,20 +35,20 @@ import BaseInput from '~/components/atoms/base-input';
 import BaseButton from '~/components/atoms/base-button';
 
 export default {
-  layout: 'auth',
   components: {
     Heading,
     BaseInput,
     BaseButton,
   },
-  head: {
-    title: 'Reset Password',
-  },
+  layout: 'auth',
   data() {
     return {
       password: '',
       passwordConfirmation: '',
     };
+  },
+  head: {
+    title: 'Reset Password',
   },
   methods: {
     async resetPassword() {

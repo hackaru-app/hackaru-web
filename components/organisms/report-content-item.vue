@@ -37,24 +37,16 @@
 </template>
 
 <script>
-import Tabs from '~/components/molecules/tabs';
 import DeltaIcon from '~/components/molecules/delta-icon';
 import Icon from '~/components/atoms/icon';
-import ColorScheme from '~/components/atoms/color-scheme';
 import ProjectName from '~/components/molecules/project-name';
 import ActivityName from '~/components/molecules/activity-name';
-import DoughnutChart from '~/components/atoms/doughnut-chart';
-import BarChart from '~/components/atoms/bar-chart';
 import { fromS } from 'hh-mm-ss';
 
 export default {
   components: {
     Icon,
-    Tabs,
     DeltaIcon,
-    ColorScheme,
-    DoughnutChart,
-    BarChart,
     ProjectName,
     ActivityName,
   },

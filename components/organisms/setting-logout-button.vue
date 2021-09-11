@@ -4,7 +4,7 @@
 
 <template>
   <setting-box>
-    <template v-slot:heading>
+    <template #heading>
       <icon name="log-out-icon" class="icon" />
       {{ $t('title') }}
     </template>

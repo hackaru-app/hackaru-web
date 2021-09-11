@@ -116,7 +116,6 @@ import ProjectName from '~/components/molecules/project-name';
 import CoachTooltip from '~/components/atoms/coach-tooltip';
 import LoopSlider from '~/components/organisms/loop-slider';
 import DateHeader from '~/components/organisms/date-header';
-import ContentHeader from '~/components/organisms/content-header';
 import ReportContent from '~/components/organisms/report-content';
 import SurveyHint from '~/components/organisms/survey-hint';
 import { mapGetters } from 'vuex';
@@ -170,12 +169,8 @@ export default {
     LoopSlider,
     ReportContent,
     DateHeader,
-    ContentHeader,
     ProjectName,
     WindowScroll,
-  },
-  head: {
-    title: 'Reports',
   },
   data() {
     return {
@@ -185,6 +180,9 @@ export default {
       openedDetails: [],
       openPopover: false,
     };
+  },
+  head: {
+    title: 'Reports',
   },
   computed: {
     ...mapGetters({

@@ -18,10 +18,10 @@
     <calendar-day
       v-for="day in days"
       ref="days"
+      :key="formatISO(day)"
       :class="{ overlapped: isOverlapped(day) }"
       :overlapped-day="overlappedDay"
       :data-day="formatISO(day, { representation: 'date' })"
-      :key="formatISO(day)"
       :day="formatISO(day)"
       data-test-id="day"
       @dragging="dragging"

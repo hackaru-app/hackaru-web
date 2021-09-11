@@ -3,7 +3,7 @@
 <template>
   <section>
     <setting-box>
-      <template v-slot:heading>
+      <template #heading>
         <icon name="calendar-icon" />
         {{ $t('title') }}
       </template>
@@ -42,17 +42,13 @@
 </template>
 
 <script>
-import Heading from '~/components/atoms/heading';
 import Icon from '~/components/atoms/icon';
-import BaseInput from '~/components/atoms/base-input';
 import BaseButton from '~/components/atoms/base-button';
 import SettingBox from '~/components/molecules/setting-box';
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
-    Heading,
-    BaseInput,
     SettingBox,
     Icon,
     BaseButton,

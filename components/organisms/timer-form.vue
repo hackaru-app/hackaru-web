@@ -33,16 +33,16 @@
           />
         </transition>
         <base-button
-          v-tooltip="$t('start')"
           v-if="!working"
+          v-tooltip="$t('start')"
           type="submit"
           class="is-primary control-button start"
         >
           <icon name="play-icon" />
         </base-button>
         <base-button
-          v-tooltip="$t('stop')"
           v-else
+          v-tooltip="$t('stop')"
           type="submit"
           class="is-danger control-button stop"
         >
@@ -60,10 +60,8 @@
 </template>
 
 <script>
-import NavModal from '~/components/organisms/nav-modal';
 import ProjectList from '~/components/organisms/project-list';
 import ProjectName from '~/components/molecules/project-name';
-import ActivityName from '~/components/molecules/activity-name';
 import SuggestionList from '~/components/organisms/suggestion-list';
 import Ticker from '~/components/atoms/ticker';
 import BaseButton from '~/components/atoms/base-button';
@@ -81,10 +79,8 @@ function getRandI18n(t) {
 export default {
   components: {
     Dot,
-    NavModal,
     Ticker,
     ProjectName,
-    ActivityName,
     Icon,
     BaseButton,
     SuggestionList,

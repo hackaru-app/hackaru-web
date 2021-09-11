@@ -5,7 +5,7 @@
       class="suggestions-wrapper"
       data-test-id="suggestions-wrapper"
     >
-      <div v-scroll-lock="shown" ref="suggestions" class="suggestions">
+      <div ref="suggestions" v-scroll-lock="shown" class="suggestions">
         <ul>
           <li
             v-for="(suggestion, index) in suggestions"

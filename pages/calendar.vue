@@ -24,8 +24,8 @@
           <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
             <calendar-day-header
               v-for="day in getDays(page)"
-              :day="formatISO(day)"
               :key="formatISO(day)"
+              :day="formatISO(day)"
             />
           </div>
         </div>
@@ -78,9 +78,6 @@ export default {
     CalendarDayHeader,
     DateHeader,
   },
-  head: {
-    title: 'Calendar',
-  },
   data() {
     return {
       addDays,
@@ -90,6 +87,9 @@ export default {
       date: new Date(),
       sliding: undefined,
     };
+  },
+  head: {
+    title: 'Calendar',
   },
   computed: {
     title() {

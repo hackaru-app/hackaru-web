@@ -9,8 +9,8 @@
     </h1>
     <activity-item
       v-for="(activity, index) in activities"
-      :class="{ tutorial: first && index === 0 }"
       :key="activity.id"
+      :class="{ tutorial: first && index === 0 }"
       v-bind="activity"
     />
   </section>
@@ -44,7 +44,7 @@ export default {
       if (diff === 0) return this.$t('today');
       if (diff === 1) return this.$t('yesterday');
       if (diff < 0) return `${Math.abs(diff)}${this.$t('later')}`;
-      if (diff > 0) return `${diff}${this.$t('ago')}`;
+      return `${diff}${this.$t('ago')}`;
     },
     week() {
       return this.$t(`weeks[${format(parseISO(this.day), 'i') - 1}]`);

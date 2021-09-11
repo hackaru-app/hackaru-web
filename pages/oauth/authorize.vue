@@ -72,7 +72,6 @@ function extractQuery(query) {
 }
 
 export default {
-  layout: 'auth',
   components: {
     LoginGuard,
     ContentHeader,
@@ -80,6 +79,7 @@ export default {
     Heading,
     Highlight,
   },
+  layout: 'auth',
   head: {
     title: 'Authorize',
   },

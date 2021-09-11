@@ -5,7 +5,7 @@
     <content-header class="content-header">
       <tabs
         :items="names"
-        :index="index"
+        :selected-index="index"
         data-test-id="tabs"
         @change="change"
       />
@@ -25,9 +25,6 @@ export default {
     ContentHeader,
     Tabs,
   },
-  head: {
-    title: 'Settings',
-  },
   data() {
     return {
       index: paths.indexOf(this.$route.path.split('/').pop()),
@@ -38,6 +35,9 @@ export default {
         this.$t('applications'),
       ],
     };
+  },
+  head: {
+    title: 'Settings',
   },
   methods: {
     change(index) {
