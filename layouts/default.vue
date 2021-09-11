@@ -39,11 +39,6 @@ export default {
     SideBar,
     PwaPopover,
   },
-  head() {
-    return {
-      titleTemplate: this.titleTemplate,
-    };
-  },
   props: {
     showSideMenu: {
       type: Boolean,
@@ -54,6 +49,11 @@ export default {
     return {
       ActivityEditor,
       duration: undefined,
+    };
+  },
+  head() {
+    return {
+      titleTemplate: this.titleTemplate,
     };
   },
   computed: {

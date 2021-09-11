@@ -22,11 +22,7 @@
 
 <script>
 import TimerForm from '~/components/organisms/timer-form';
-import ProjectName from '~/components/molecules/project-name';
-import BaseButton from '~/components/atoms/base-button';
 import ActivityDayGroup from '~/components/organisms/activity-day-group';
-import Icon from '~/components/atoms/icon';
-import SurveyHint from '~/components/organisms/survey-hint';
 import { startOfDay, endOfDay, addDays } from 'date-fns';
 import { mapGetters } from 'vuex';
 
@@ -38,11 +34,7 @@ const weekly = {
 export default {
   components: {
     TimerForm,
-    ProjectName,
-    Icon,
-    BaseButton,
     ActivityDayGroup,
-    SurveyHint,
   },
   data() {
     return {

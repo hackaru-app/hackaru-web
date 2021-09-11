@@ -18,7 +18,7 @@ export default {
       type: Array,
       required: true,
     },
-    index: {
+    selectedIndex: {
       type: Number,
       default: 0,
     },
@@ -28,7 +28,7 @@ export default {
       this.$emit('change', index);
     },
     isSelected(index) {
-      return this.index === index;
+      return this.selectedIndex === index;
     },
   },
 };

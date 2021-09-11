@@ -31,20 +31,20 @@ import BaseButton from '~/components/atoms/base-button';
 import BaseInput from '~/components/atoms/base-input';
 
 export default {
-  layout: 'auth',
   components: {
     Heading,
     BaseInput,
     BaseButton,
   },
-  head() {
-    return {
-      title: 'Reset Password',
-    };
-  },
+  layout: 'auth',
   data() {
     return {
       email: '',
+    };
+  },
+  head() {
+    return {
+      title: 'Reset Password',
     };
   },
   methods: {

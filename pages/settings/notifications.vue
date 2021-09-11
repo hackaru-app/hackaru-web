@@ -3,7 +3,7 @@
 <template>
   <section>
     <setting-box>
-      <template v-slot:heading>
+      <template #heading>
         <icon name="mail-icon" />
         {{ $t('title') }}
       </template>
@@ -31,14 +31,12 @@
 </template>
 
 <script>
-import Heading from '~/components/atoms/heading';
 import Icon from '~/components/atoms/icon';
 import SettingBox from '~/components/molecules/setting-box';
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
-    Heading,
     SettingBox,
     Icon,
   },

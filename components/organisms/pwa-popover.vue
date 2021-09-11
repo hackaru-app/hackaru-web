@@ -23,7 +23,6 @@
 
 <script>
 import Icon from '~/components/atoms/icon';
-import BaseButton from '~/components/atoms/base-button';
 
 export default {
   timers: {
@@ -34,7 +33,6 @@ export default {
   },
   components: {
     Icon,
-    BaseButton,
   },
   data() {
     return {

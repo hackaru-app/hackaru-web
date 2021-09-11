@@ -7,17 +7,17 @@ import { saveAs } from 'file-saver';
 import Loading from '~/components/molecules/loading';
 
 export default {
-  layout: 'none',
   components: {
     Loading,
   },
-  head: {
-    title: 'Loading',
-  },
+  layout: 'none',
   data() {
     return {
       loading: true,
     };
+  },
+  head: {
+    title: 'Loading',
   },
   mounted() {
     this.exportPdf();

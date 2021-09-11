@@ -91,7 +91,6 @@ import LocaleSelect from '~/components/molecules/locale-select';
 import Indicator from '~/components/atoms/indicator.vue';
 
 export default {
-  layout: 'auth',
   components: {
     Heading,
     BaseInput,
@@ -99,11 +98,7 @@ export default {
     LocaleSelect,
     Indicator,
   },
-  head() {
-    return {
-      title: this.hasAccount ? 'Login' : 'SignUp',
-    };
-  },
+  layout: 'auth',
   data() {
     return {
       email: '',
@@ -112,6 +107,11 @@ export default {
       agreement: false,
       hasAccount: !this.$route.query['sign-up'],
       loading: false,
+    };
+  },
+  head() {
+    return {
+      title: this.hasAccount ? 'Login' : 'SignUp',
     };
   },
   computed: {

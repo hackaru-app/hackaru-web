@@ -30,7 +30,7 @@
       </form>
     </base-modal>
 
-    <template v-slot:heading>
+    <template #heading>
       <icon name="user-x-icon" class="icon" />
       {{ $t('title') }}
     </template>
@@ -49,7 +49,6 @@
 <script>
 import Icon from '~/components/atoms/icon';
 import BaseButton from '~/components/atoms/base-button';
-import BaseInput from '~/components/atoms/base-input';
 import SettingBox from '~/components/molecules/setting-box';
 import BaseModal from '~/components/organisms/base-modal';
 import ModalItem from '~/components/molecules/modal-item';
@@ -60,7 +59,6 @@ export default {
   components: {
     Icon,
     BaseButton,
-    BaseInput,
     SettingBox,
     BaseModal,
     ModalItem,

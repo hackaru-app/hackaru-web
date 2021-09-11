@@ -55,27 +55,23 @@
 </template>
 
 <script>
-import ContentHeader from '~/components/organisms/content-header';
 import IconButton from '~/components/atoms/icon-button';
 import Icon from '~/components/atoms/icon';
 import Heading from '~/components/atoms/heading';
 import ModalItem from '~/components/molecules/modal-item';
 import ModalHeader from '~/components/molecules/modal-header';
-import ModalFooter from '~/components/molecules/modal-footer';
 import BaseModal from '~/components/organisms/base-modal';
 import Highlight from '~/components/atoms/highlight';
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
-    ContentHeader,
     IconButton,
     Icon,
     Heading,
     BaseModal,
     ModalHeader,
     ModalItem,
-    ModalFooter,
     Highlight,
   },
   data() {
