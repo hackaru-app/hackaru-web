@@ -216,6 +216,7 @@ export default {
     background-color: $background;
     border: 0;
     border-bottom: 1px $border solid;
+    border-radius: 0;
     border-top: 1px $border solid;
     box-shadow: none;
     margin-right: 0;
