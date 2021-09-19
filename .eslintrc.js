@@ -12,9 +12,7 @@ module.exports = {
     'plugin:vue/strongly-recommended',
     'plugin:vue/recommended',
     'plugin:prettier/recommended',
-    'prettier/babel',
-    'prettier/standard',
-    'prettier/vue',
+    'prettier',
   ],
   rules: {
     'no-unused-vars': [
