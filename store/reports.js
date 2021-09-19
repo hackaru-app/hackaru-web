@@ -109,6 +109,12 @@ export const getters = {
   totals: (state) => {
     return state.totals;
   },
+  totalSum: (state) => {
+    return Object.values(state.totals).reduce(
+      (total, current) => total + current,
+      0
+    );
+  },
   previousTotals: (state) => {
     return state.previousTotals;
   },

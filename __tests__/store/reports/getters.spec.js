@@ -189,4 +189,36 @@ describe('Getters', () => {
       });
     });
   });
+
+  describe('when call totalSum is not empty', () => {
+    const state = {
+      totals: {
+        1: 100,
+        2: 200,
+        3: 300,
+      },
+    };
+
+    beforeEach(() => {
+      result = getters.totalSum(state);
+    });
+
+    it('returns sum', () => {
+      expect(result).toBe(600);
+    });
+  });
+
+  describe('when call totalSum is empty', () => {
+    const state = {
+      totals: {},
+    };
+
+    beforeEach(() => {
+      result = getters.totalSum(state);
+    });
+
+    it('returns zero', () => {
+      expect(result).toBe(0);
+    });
+  });
 });

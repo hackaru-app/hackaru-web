@@ -158,9 +158,6 @@ export default {
 .duration {
   font-family: $font-family-duration;
 }
-.duration.stopped {
-  color: $text-light;
-}
 .content {
   align-items: center;
   display: flex;

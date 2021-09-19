@@ -71,6 +71,7 @@
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
                 :totals="totals"
+                :total-sum="totalSum"
                 :previous-totals="previousTotals"
                 :projects="projects"
                 :activity-groups="activityGroups"
@@ -83,6 +84,7 @@
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
                 :totals="totals"
+                :total-sum="totalSum"
                 :previous-totals="previousTotals"
                 :projects="projects"
                 :activity-groups="activityGroups"
@@ -95,6 +97,7 @@
                 :bar-chart-data="barChartData"
                 :doughnut-chart-data="doughnutChartData"
                 :totals="totals"
+                :total-sum="totalSum"
                 :previous-totals="previousTotals"
                 :projects="projects"
                 :activity-groups="activityGroups"
@@ -189,6 +192,7 @@ export default {
       doughnutChartData: 'reports/doughnutChartData',
       barChartData: 'reports/barChartData',
       totals: 'reports/totals',
+      totalSum: 'reports/totalSum',
       previousTotals: 'reports/previousTotals',
       projects: 'reports/projects',
       allProjects: 'projects/all',

@@ -13,7 +13,7 @@
         name="chevron-right-icon"
       />
       <project-name :name="project.name" :color="project.color" />
-      <time class="duration">
+      <time :class="['duration', { zero: total === 0 }]">
         {{ fromS(total, 'hh:mm:ss') }}
       </time>
       <delta-icon :current="total" :previous="previousTotal" />
@@ -28,7 +28,7 @@
           :description="activityGroup.description"
           :project="activityGroup.project"
         />
-        <time class="duration">
+        <time :class="['duration', { zero: activityGroup.duration === 0 }]">
           {{ fromS(activityGroup.duration, 'hh:mm:ss') }}
         </time>
       </article>
@@ -108,11 +108,14 @@ export default {
   padding-right: 55px;
 }
 .duration {
-  color: $text-light;
+  color: $text;
   flex: 1;
   font-family: $font-family-duration;
   padding-left: 25px;
   text-align: right;
+  &.zero {
+    color: $text-light;
+  }
 }
 .arrow-icon {
   flex-shrink: 0;
