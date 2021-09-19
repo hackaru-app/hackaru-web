@@ -1,10 +1,8 @@
 {
   "en": {
-    "projects": "Projects",
-    "activities": "Activities"
+    "total": "Total"
   },
   "ja": {
-    "projects": "プロジェクト",
-    "activities": "計測"
+    "total": "合計"
   }
 }

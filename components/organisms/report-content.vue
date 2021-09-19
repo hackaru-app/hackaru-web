@@ -24,13 +24,19 @@
           @toggle-detail="toggleDetail(project.id)"
         />
       </section>
-      <section class="doughnut-chart-wrapper">
-        <p v-if="empty" class="doughnut-chart-empty" />
-        <doughnut-chart
-          v-if="!empty"
-          :chart-data="doughnutChartData"
-          class="doughnut-chart"
-        />
+      <section class="total">
+        <div :class="['total-sum', { zero: totalSum === 0 }]">
+          <animate-duration class="duration" :duration="totalSum" />
+          {{ $t('total') }}
+        </div>
+        <section class="doughnut-chart-wrapper">
+          <p v-if="empty" class="doughnut-chart-empty" />
+          <doughnut-chart
+            v-if="!empty"
+            :chart-data="doughnutChartData"
+            class="doughnut-chart"
+          />
+        </section>
       </section>
     </div>
   </article>
@@ -41,8 +47,10 @@ import ColorScheme from '~/components/atoms/color-scheme';
 import DoughnutChart from '~/components/atoms/doughnut-chart';
 import BarChart from '~/components/atoms/bar-chart';
 import ReportContentItem from '~/components/organisms/report-content-item';
+import AnimateDuration from '../atoms/animate-duration';
 import without from 'lodash.without';
 import { mapGetters } from 'vuex';
+import { fromS } from 'hh-mm-ss';
 
 export default {
   components: {
@@ -50,6 +58,7 @@ export default {
     DoughnutChart,
     BarChart,
     ReportContentItem,
+    AnimateDuration,
   },
   props: {
     barChartData: {
@@ -62,6 +71,10 @@ export default {
     },
     totals: {
       type: Object,
+      required: true,
+    },
+    totalSum: {
+      type: Number,
       required: true,
     },
     previousTotals: {
@@ -80,6 +93,11 @@ export default {
       type: Array,
       required: true,
     },
+  },
+  data() {
+    return {
+      fromS,
+    };
   },
   computed: {
     ...mapGetters({
@@ -130,9 +148,10 @@ export default {
 }
 .doughnut-chart-wrapper {
   align-self: start;
-  background-color: $background-translucent;
-  padding: 10px;
+  margin-bottom: 5px;
+  padding: 20px;
   position: sticky;
+  text-align: center;
   top: 40px;
 }
 .doughnut-chart,
@@ -158,22 +177,47 @@ export default {
 }
 .report-content-items {
   background-color: $background-translucent;
-  border: 1px $border solid;
+  border: 1px $border-dark solid;
   border-radius: 3px;
   box-shadow: 0 3px 3px $shadow;
   display: flex;
   flex: 1;
   flex-direction: column;
   margin: 0;
-  margin-right: 40px;
+  margin-right: 30px;
   max-width: 650px;
   min-width: 1px;
   padding: 0;
 }
 .report-content-item {
-  border-top: 1px $border solid;
+  border-top: 1px $border-dark solid;
   &:first-child {
     border-top: 0;
+  }
+}
+.total {
+  background-color: $background-translucent;
+  border: 1px $border-dark solid;
+  border-radius: 3px;
+  box-shadow: 0 3px 3px $shadow;
+  display: flex;
+  flex-direction: column;
+}
+.total-sum {
+  align-items: center;
+  border-bottom: 1px $border-dark solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0;
+  text-align: center;
+  &.zero {
+    color: $text-light;
+  }
+  .duration {
+    font-family: $font-family-duration;
+    font-size: 28px;
+    font-weight: 200;
   }
 }
 
@@ -185,14 +229,32 @@ export default {
   }
   .doughnut-chart-wrapper {
     align-self: center;
-    background-color: $background;
     border: 0;
     box-shadow: none;
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: 15px 0;
     order: 0;
-    padding: 30px 0;
+    padding: 0;
+    padding-bottom: 15px;
+  }
+  .total {
+    background-color: $background;
+    border: 0;
+    box-shadow: none;
+    width: 100%;
+  }
+  .total-sum {
+    align-items: baseline;
+    border: 0;
+    border-top: 1px $border solid;
+    flex-direction: row;
+    order: 1;
+    padding: 15px 0;
+    .duration {
+      margin: 0 10px;
+      order: 1;
+    }
   }
   .doughnut-chart {
     align-self: center;
@@ -222,6 +284,9 @@ export default {
     margin-right: 0;
     order: 1;
     width: 100%;
+  }
+  .report-content-item {
+    border-top: 1px $border solid;
   }
 }
 
