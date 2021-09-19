@@ -2,7 +2,7 @@
 
 <template>
   <section class="report-content-item">
-    <section class="project" @click="$emit('toggle-detail')">
+    <section class="project" @click="toggleDetail">
       <icon
         :class="[
           'is-large',
@@ -76,6 +76,14 @@ export default {
     return {
       fromS,
     };
+  },
+  methods: {
+    toggleDetail() {
+      this.$emit('toggle-detail');
+      this.$mixpanel.track('Toggle detail', {
+        component: 'report-content-item',
+      });
+    },
   },
 };
 </script>
