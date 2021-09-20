@@ -13,10 +13,14 @@
         name="chevron-right-icon"
       />
       <project-name :name="project.name" :color="project.color" />
+      <delta-icon
+        class="delta-icon"
+        :current="total"
+        :previous="previousTotal"
+      />
       <time :class="['duration', { zero: total === 0 }]">
         {{ fromS(total, 'hh:mm:ss') }}
       </time>
-      <delta-icon :current="total" :previous="previousTotal" />
     </section>
     <section v-if="openedDetail" key="activityGroups">
       <article
@@ -99,7 +103,7 @@ export default {
   justify-content: space-between;
   min-width: 1px;
   overflow: hidden;
-  padding-left: 18px;
+  padding-left: 20px;
   padding-right: 25px;
 }
 .actitivty-group {
@@ -110,16 +114,19 @@ export default {
   flex-direction: row;
   height: 65px;
   justify-content: space-between;
-  margin-left: 55px;
+  margin-left: 52px;
   min-width: 1px;
   overflow: hidden;
-  padding-right: 55px;
+  padding-right: 25px;
+}
+.delta-icon {
+  flex: 1;
+  justify-content: flex-end;
 }
 .duration {
   color: $text;
-  flex: 1;
   font-family: $font-family-duration;
-  padding-left: 25px;
+  padding-left: 15px;
   text-align: right;
   &.zero {
     color: $text-light;
@@ -127,13 +134,20 @@ export default {
 }
 .arrow-icon {
   flex-shrink: 0;
-  margin-right: 15px;
+  margin-right: 10px;
   transition: transform 0.1s ease;
   &.opened {
     transform: rotate(90deg);
   }
   &.empty {
     color: $text-lighter;
+  }
+}
+
+@include mq(small) {
+  .actitivty-group {
+    border-top: 1px $border solid;
+    margin-left: 27px;
   }
 }
 </style>
