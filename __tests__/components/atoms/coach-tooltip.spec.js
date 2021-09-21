@@ -4,6 +4,8 @@ import CoachTooltip from '~/components/atoms/coach-tooltip';
 describe('CoachTooltip', () => {
   let wrapper;
 
+  jest.useFakeTimers();
+
   const localVue = createLocalVue();
   localVue.directive('tooltip', () => {});
 
@@ -33,9 +35,10 @@ describe('CoachTooltip', () => {
   describe('when user does not seen', () => {
     beforeEach(() => {
       wrapper = factory();
+      jest.runOnlyPendingTimers();
     });
 
-    it('does not show tooltip', () => {
+    it('shows tooltip', () => {
       expect(wrapper.vm.params.show).toBe(true);
     });
   });
