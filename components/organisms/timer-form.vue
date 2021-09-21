@@ -4,17 +4,23 @@
   <section class="timer-form">
     <form data-test-id="form" class="form" @submit.prevent="submit">
       <div class="form-content">
-        <div
-          data-test-id="project-wrapper"
-          class="project-wrapper"
-          @click="showModal"
+        <coach-tooltip
+          :content="$t('selectProject')"
+          placement="bottom"
+          name="selectProject"
         >
-          <project-name v-bind="project" class="selected-project" />
-          <dot
-            :color="project ? project.color : '#ccc'"
-            class="dot-only is-medium"
-          />
-        </div>
+          <div
+            data-test-id="project-wrapper"
+            class="project-wrapper"
+            @click="showModal"
+          >
+            <project-name v-bind="project" class="selected-project" />
+            <dot
+              :color="project ? project.color : '#ccc'"
+              class="dot-only is-medium"
+            />
+          </div>
+        </coach-tooltip>
         <input
           v-model="description"
           :placeholder="$t('description')"
@@ -67,6 +73,7 @@ import Ticker from '~/components/atoms/ticker';
 import BaseButton from '~/components/atoms/base-button';
 import Icon from '~/components/atoms/icon';
 import Dot from '~/components/atoms/dot';
+import CoachTooltip from '~/components/atoms/coach-tooltip';
 import { mapGetters } from 'vuex';
 import { formatISO, parseISO, differenceInSeconds } from 'date-fns';
 
@@ -78,6 +85,7 @@ function getRandI18n(t) {
 
 export default {
   components: {
+    CoachTooltip,
     Dot,
     Ticker,
     ProjectName,

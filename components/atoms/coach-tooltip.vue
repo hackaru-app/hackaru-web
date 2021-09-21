@@ -8,7 +8,7 @@
 export default {
   timers: {
     hide: {
-      time: 5000,
+      time: 9000,
       autostart: true,
     },
   },
