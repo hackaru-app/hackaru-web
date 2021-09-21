@@ -8,6 +8,7 @@
           :content="$t('selectProject')"
           placement="bottom"
           name="selectProject"
+          :delay="2000"
         >
           <div
             data-test-id="project-wrapper"

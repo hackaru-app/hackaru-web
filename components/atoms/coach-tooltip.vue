@@ -29,6 +29,10 @@ export default {
       type: String,
       default: undefined,
     },
+    delay: {
+      type: Number,
+      default: 500,
+    },
   },
   data() {
     return {
@@ -43,11 +47,14 @@ export default {
         show: this.show,
         offset: this.offset,
         placement: this.placement,
+        delayTimer: undefined,
       };
     },
   },
   mounted() {
-    this.show = !localStorage.getItem(`coachTooltip/${this.name}`);
+    this.delayTimer = setTimeout(() => {
+      this.show = !localStorage.getItem(`coachTooltip/${this.name}`);
+    }, this.delay);
   },
   deactivated() {
     this.hide();
@@ -55,6 +62,7 @@ export default {
   methods: {
     hide() {
       this.show = false;
+      clearTimeout(this.delayTimer);
       localStorage.setItem(`coachTooltip/${this.name}`, true);
     },
   },
