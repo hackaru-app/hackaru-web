@@ -318,7 +318,7 @@ export default {
 .selected-project {
   align-items: center;
   display: flex;
-  max-width: 210px;
+  max-width: 300px;
   padding: 0 45px;
 }
 .description {
