@@ -104,6 +104,7 @@ export default {
   overflow: scroll;
   position: absolute;
   width: 100%;
+  z-index: 1;
 }
 .suggestions ul {
   list-style-position: inside;
