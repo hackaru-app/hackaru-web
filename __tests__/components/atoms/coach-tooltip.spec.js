@@ -53,7 +53,7 @@ describe('CoachTooltip', () => {
       expect(wrapper.vm.params.show).toBe(false);
     });
 
-    it('store hidden flag to local-storage', () => {
+    it('stores hidden flag to local-storage', () => {
       expect(localStorage.setItem).toHaveBeenCalledWith(
         'coachTooltip/example',
         true
