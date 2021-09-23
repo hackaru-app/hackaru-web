@@ -34,7 +34,11 @@
         </modal-item>
 
         <modal-footer>
-          <base-button type="submit" class="is-rounded is-primary">
+          <base-button
+            :disabled="loading"
+            type="submit"
+            class="is-rounded is-primary"
+          >
             {{ $t(id ? 'update' : 'add') }}
           </base-button>
 
@@ -87,6 +91,7 @@ export default {
       id: undefined,
       name: '',
       color: '#cccfd9',
+      loading: false,
     };
   },
   watch: {
@@ -100,12 +105,14 @@ export default {
     },
   },
   methods: {
-    addOrUpdate() {
+    async addOrUpdate() {
+      this.loading = true;
       if (this.id) {
-        this.updateProject();
+        await this.updateProject();
       } else {
-        this.addProject();
+        await this.addProject();
       }
+      this.loading = false;
     },
     async addProject() {
       const success = await this.$store.dispatch('projects/add', {
