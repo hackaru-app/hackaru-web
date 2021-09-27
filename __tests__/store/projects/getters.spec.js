@@ -5,15 +5,19 @@ describe('Getters', () => {
 
   describe('when call all', () => {
     const rootGetters = {
-      'entities/getEntities': jest.fn(() => ({})),
+      'entities/getEntities': () => [
+        { name: 'B' },
+        { name: 'C' },
+        { name: 'A' },
+      ],
     };
 
     beforeEach(() => {
       result = getters.all({}, {}, {}, rootGetters);
     });
 
-    it('returns result', () => {
-      expect(result).toEqual({});
+    it('returns projects sorted by name', () => {
+      expect(result).toEqual([{ name: 'A' }, { name: 'B' }, { name: 'C' }]);
     });
   });
 });

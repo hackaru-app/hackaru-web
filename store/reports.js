@@ -1,4 +1,5 @@
 import groupBy from 'lodash.groupby';
+import sortBy from 'lodash.sortby';
 
 export const SET_REPORTS = 'SET_REPORTS';
 export const SET_PREVIOUS_TOTALS = 'SET_PREVIOUS_TOTALS';
@@ -102,9 +103,9 @@ export const mutations = {
 
 export const getters = {
   projects: (state) => {
-    return state.projects
-      .slice()
-      .sort((a, b) => state.totals[b.id] - state.totals[a.id]);
+    return sortBy(state.projects, 'name').sort(
+      (a, b) => state.totals[b.id] - state.totals[a.id]
+    );
   },
   totals: (state) => {
     return state.totals;
