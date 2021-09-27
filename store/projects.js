@@ -1,4 +1,5 @@
 import { project } from '~/schemas';
+import sortBy from 'lodash.sortby';
 
 export const actions = {
   async fetch({ dispatch }) {
@@ -72,6 +73,7 @@ export const actions = {
 
 export const getters = {
   all(_state, _getters, _rootState, rootGetters) {
-    return rootGetters['entities/getEntities']('projects', [project]);
+    const projects = rootGetters['entities/getEntities']('projects', [project]);
+    return sortBy(projects, 'name');
   },
 };

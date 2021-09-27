@@ -5,15 +5,28 @@ describe('Getters', () => {
 
   describe('when call projects', () => {
     const state = {
-      projects: [],
+      projects: [
+        { id: 1, name: 'C' },
+        { id: 2, name: 'A' },
+        { id: 3, name: 'B' },
+      ],
+      totals: {
+        1: 100,
+        2: 100,
+        3: 300,
+      },
     };
 
     beforeEach(() => {
       result = getters.projects(state);
     });
 
-    it('returns projects', () => {
-      expect(result).toEqual([]);
+    it('returns projects sorted by total and name', () => {
+      expect(result).toEqual([
+        { id: 3, name: 'B' },
+        { id: 2, name: 'A' },
+        { id: 1, name: 'C' },
+      ]);
     });
   });
 

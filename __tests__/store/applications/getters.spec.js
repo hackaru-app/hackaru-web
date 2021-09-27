@@ -5,7 +5,7 @@ describe('Getters', () => {
 
   describe('when call all', () => {
     const rootGetters = {
-      'entities/getEntities': jest.fn(() => ({})),
+      'entities/getEntities': () => [],
     };
 
     beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Getters', () => {
     });
 
     it('returns result', () => {
-      expect(result).toEqual({});
+      expect(result).toEqual([]);
     });
   });
 });
