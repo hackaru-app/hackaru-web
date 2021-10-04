@@ -21,7 +21,7 @@
     "@sentry/integrations": "^6.13.2",
     "@sentry/tracing": "^6.13.2",
     "axios-case-converter": "^0.8.1",
-    "camelcase-keys": "^7.0.0",
+    "camelcase-keys": "^7.0.1",
     "chart.js": "^2.9.3",
     "color": "^3.2.1",
     "cookie-universal-nuxt": "^2.1.5",
