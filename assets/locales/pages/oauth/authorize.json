@@ -5,7 +5,7 @@
     "decide": "Authorize {name} to use your account?",
     "empty-scope": "This application has no required controls.",
     "allow": "Accept",
-    "deny": "Cencel"
+    "deny": "Cancel"
   },
   "ja": {
     "title": "{name} の許可",
