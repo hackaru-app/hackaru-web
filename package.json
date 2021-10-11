@@ -17,7 +17,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sentry": "^5.1.4",
-    "@sentry/browser": "^6.13.2",
+    "@sentry/browser": "^6.13.3",
     "@sentry/integrations": "^6.13.2",
     "@sentry/tracing": "^6.13.2",
     "axios-case-converter": "^0.8.1",
