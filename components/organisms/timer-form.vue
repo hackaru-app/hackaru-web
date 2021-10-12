@@ -94,6 +94,12 @@ export default {
     BaseButton,
     SuggestionList,
   },
+  props: {
+    loaded: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       ProjectList,
@@ -107,25 +113,30 @@ export default {
   computed: {
     ...mapGetters({
       workingActivity: 'activities/working',
+      prevActivity: 'activities/prev',
+      allProjects: 'projects/all',
     }),
     working() {
       return !!this.id;
     },
-  },
-  watch: {
-    workingActivity() {
-      this.syncProps();
+    defaultProject() {
+      return this.prevActivity?.project || this.allProjects[0];
     },
   },
-  mounted() {
-    this.$store.dispatch('activities/fetchWorking');
+  watch: {
+    workingActivity: 'syncProps',
+    loaded() {
+      if (!this.working) {
+        this.project = this.defaultProject;
+      }
+    },
   },
   methods: {
     syncProps() {
       const props = this.workingActivity || {};
       this.id = props.id;
       this.startedAt = props.startedAt;
-      this.project = props.project;
+      this.project = props.project || this.defaultProject;
       this.description = props.description || '';
     },
     selectProject({ project }) {

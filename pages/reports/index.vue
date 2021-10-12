@@ -235,6 +235,7 @@ export default {
     },
   },
   activated() {
+    this.$store.dispatch('projects/fetch');
     this.fetchReport();
   },
   methods: {

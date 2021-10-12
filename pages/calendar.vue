@@ -109,6 +109,7 @@ export default {
   },
   activated() {
     this.fetchActivities();
+    this.$store.dispatch('projects/fetch');
   },
   methods: {
     async fetchActivities() {
