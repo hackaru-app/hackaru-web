@@ -65,7 +65,6 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('projects/fetch');
     this.$store.dispatch('user/fetch');
   },
   methods: {

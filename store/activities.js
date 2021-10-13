@@ -93,6 +93,13 @@ export const getters = {
   all(_state, _getters, _rootState, rootGetters) {
     return rootGetters['entities/getEntities']('activities', [activity]);
   },
+  prev: (_state, getters) => {
+    return getters.all
+      .filter(({ stoppedAt }) => stoppedAt)
+      .sort((a, b) =>
+        compareDesc(parseISO(a.stoppedAt), parseISO(b.stoppedAt))
+      )[0];
+  },
   working(_state, getters) {
     return getters.all.find(({ stoppedAt }) => !stoppedAt);
   },

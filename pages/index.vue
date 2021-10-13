@@ -2,7 +2,7 @@
 
 <template>
   <section class="index">
-    <timer-form class="timer-form" />
+    <timer-form class="timer-form" :loaded="loaded" />
     <div class="content">
       <p v-if="Object.keys(pastWeek).length <= 0" class="empty-message">
         {{ $t('empty') }}
@@ -39,6 +39,7 @@ export default {
   data() {
     return {
       addDays,
+      loaded: false,
     };
   },
   head: {
@@ -49,11 +50,16 @@ export default {
       pastWeek: 'activities/pastWeek',
     }),
   },
-  activated() {
-    this.$store.dispatch('activities/fetchByRange', {
-      start: weekly.start,
-      end: weekly.end,
-    });
+  async activated() {
+    await Promise.all([
+      this.$store.dispatch('projects/fetch'),
+      this.$store.dispatch('activities/fetchWorking'),
+      this.$store.dispatch('activities/fetchByRange', {
+        start: weekly.start,
+        end: weekly.end,
+      }),
+    ]);
+    this.loaded = true;
   },
 };
 </script>

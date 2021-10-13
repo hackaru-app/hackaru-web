@@ -22,8 +22,8 @@ describe('Default', () => {
     $store.reset();
   });
 
-  it('dispatches projects/fetch', () => {
+  it('dispatches user/fetch', () => {
     factory();
-    expect($store.dispatch).toHaveBeenCalledWith('projects/fetch');
+    expect($store.dispatch).toHaveBeenCalledWith('user/fetch');
   });
 });

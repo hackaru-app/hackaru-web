@@ -20,6 +20,8 @@ describe('TimerForm', () => {
   const $store = new Store({
     getters: {
       'activities/working': [],
+      'activities/prev': undefined,
+      'projects/all': [],
     },
   });
 
@@ -36,11 +38,6 @@ describe('TimerForm', () => {
 
   beforeEach(() => {
     $store.reset();
-  });
-
-  it('dispatches activities/fetchWorking', () => {
-    factory();
-    expect($store.dispatch).toHaveBeenCalledWith('activities/fetchWorking');
   });
 
   describe('when select project and timer is not working', () => {
