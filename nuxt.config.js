@@ -306,7 +306,6 @@ module.exports = {
         'default-src': ["'self'"],
         'frame-src': ["'none'"],
         'object-src': ["'none'"],
-        'upgrade-insecure-requests': [],
         'report-uri': [process.env.SENTRY_CSP_REPORT_URI],
       },
     },
