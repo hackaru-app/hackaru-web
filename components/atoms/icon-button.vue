@@ -11,12 +11,15 @@
   padding: 0;
   position: relative;
   transition: opacity 0.3s, transform 0.1s;
+
   &:hover {
     opacity: 0.7;
   }
+
   &:active {
     opacity: 1;
   }
+
   &::after {
     content: '';
     height: 40px;
@@ -27,6 +30,7 @@
     width: 40px;
   }
 }
+
 .is-primary {
   color: $cyan;
 }

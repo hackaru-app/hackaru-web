@@ -16,14 +16,17 @@
   transform: translateZ(0);
   width: 30px;
 }
+
 .is-primary {
   border-color: #00000010;
   border-left-color: $cyan;
 }
+
 .is-white {
   border-color: $white;
   border-left-color: transparent;
 }
+
 .is-small {
   height: 13px;
   width: 13px;
@@ -34,6 +37,7 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);

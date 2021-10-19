@@ -105,17 +105,21 @@ export default {
   height: 71px;
   padding: 0 30px;
   transition: background-color 0.3s ease;
+
   &:hover {
     background: $background-hover;
   }
 }
+
 .content {
   height: 385px;
   overflow: scroll;
+
   &::-webkit-scrollbar {
     display: none;
   }
 }
+
 .project-button {
   align-items: center;
   background: none;
@@ -127,9 +131,11 @@ export default {
   padding: 0;
   transition: background-color 0.1s;
 }
+
 .project-name {
   padding-right: 10px;
 }
+
 .edit-button {
   flex-shrink: 0;
 }

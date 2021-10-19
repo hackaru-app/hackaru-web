@@ -112,6 +112,7 @@ export default {
 .calendar-buttons {
   display: flex;
   flex-wrap: wrap;
+
   .base-button {
     display: flex;
     height: 50px;
@@ -119,6 +120,7 @@ export default {
     margin: 5px 0;
     margin-right: 10px;
   }
+
   .icon {
     margin-left: 10px;
   }
@@ -129,6 +131,7 @@ export default {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+
     .base-button {
       height: 52px;
       width: 100%;

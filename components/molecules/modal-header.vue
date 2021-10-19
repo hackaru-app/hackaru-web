@@ -24,11 +24,13 @@
   padding: 0 30px;
   width: 100%;
 }
+
 h1 {
   font-size: $font-size;
   font-weight: normal;
   margin: 0;
 }
+
 .left,
 .right {
   align-items: center;

@@ -2,6 +2,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   user-select: none;
 }
+
 body,
 select,
 input,
@@ -9,6 +10,7 @@ textarea,
 button {
   color: $text;
 }
+
 body {
   background-color: $background;
   font-display: auto;
@@ -16,6 +18,7 @@ body {
   font-size: $font-size;
   line-height: $line-height;
   outline: none;
+
   &::before {
     background: $background;
     content: '';
@@ -26,6 +29,7 @@ body {
     z-index: -1;
   }
 }
+
 input[type='text'],
 input[type='time'],
 input[type='date'],
@@ -36,6 +40,7 @@ textarea {
   box-sizing: border-box;
   outline: none;
 }
+
 input::placeholder {
   color: $grey-ccc;
   opacity: 1;

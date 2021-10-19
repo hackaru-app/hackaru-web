@@ -106,6 +106,7 @@ export default {
   padding-left: 20px;
   padding-right: 25px;
 }
+
 .actitivty-group {
   align-items: center;
   border-top: 1px $border-dark solid;
@@ -119,26 +120,32 @@ export default {
   overflow: hidden;
   padding-right: 25px;
 }
+
 .delta-icon {
   flex: 1;
   justify-content: flex-end;
 }
+
 .duration {
   color: $text;
   font-family: $font-family-duration;
   padding-left: 15px;
   text-align: right;
+
   &.zero {
     color: $text-light;
   }
 }
+
 .arrow-icon {
   flex-shrink: 0;
   margin-right: 10px;
   transition: transform 0.1s ease;
+
   &.opened {
     transform: rotate(90deg);
   }
+
   &.empty {
     color: $text-lighter;
   }

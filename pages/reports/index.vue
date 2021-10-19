@@ -300,10 +300,12 @@ export default {
 .reports-wrapper {
   overflow: hidden;
 }
+
 .containers {
   display: flex;
   flex-direction: row;
 }
+
 .slider-item {
   align-items: flex-start;
   box-shadow: -3px 0 3px $shadow;
@@ -311,6 +313,7 @@ export default {
   min-height: 100vh;
   min-width: 100%;
 }
+
 .tools {
   background-color: $background-translucent;
   border-bottom: 1px $border-dark solid;
@@ -320,6 +323,7 @@ export default {
   height: 50px;
   justify-content: space-between;
   padding: 0 40px;
+
   button {
     align-items: center;
     background: none;
@@ -333,11 +337,13 @@ export default {
     padding: 0 20px;
   }
 }
+
 .popover-wrapper {
   max-height: 270px;
   overflow: scroll;
   padding: 10px;
 }
+
 .project-item {
   align-items: center;
   border-radius: 5px;
@@ -346,18 +352,23 @@ export default {
   justify-content: space-between;
   padding: 0 15px;
   transition: background-color 0.15s;
+
   &:hover {
     background-color: $background-hover;
   }
 }
+
 .project-name {
   max-width: 150px;
   padding-right: 30px;
 }
+
 .exports {
   display: flex;
+
   button {
     border-left: 0;
+
     &:first-child {
       border-left: 1px $border-dark solid;
     }
@@ -368,6 +379,7 @@ export default {
   .tools {
     padding: 0;
   }
+
   .filter-button {
     border-right: 1px $border-dark solid;
     margin-right: 30px;

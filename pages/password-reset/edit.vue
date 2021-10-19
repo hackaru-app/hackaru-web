@@ -71,11 +71,13 @@ export default {
 section {
   margin: 30px 50px;
 }
+
 form {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
+
 .button {
   align-self: flex-start;
   margin-top: 18px;

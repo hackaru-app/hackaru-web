@@ -35,6 +35,7 @@ export default {
   display: inline-block;
   position: relative;
 }
+
 .base-select select {
   background: $background;
   color: $text;

@@ -163,9 +163,11 @@ export default {
   top: 0;
   z-index: index($z, calendar-day-header);
 }
+
 .headers-wrapper {
   display: flex;
 }
+
 .headers {
   box-sizing: border-box;
   display: flex;
@@ -173,12 +175,15 @@ export default {
   min-width: 100%;
   padding-left: 60px;
 }
+
 .contents-wrapper {
   overflow: hidden;
 }
+
 .contents {
   display: flex;
 }
+
 .slider-item {
   min-width: 100%;
 }
@@ -187,6 +192,7 @@ export default {
   .sticky {
     top: $side-bar-min-height;
   }
+
   .headers {
     padding-left: 25px;
   }

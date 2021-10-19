@@ -87,9 +87,11 @@ export default {
 .date-header nav {
   display: flex;
 }
+
 .today-button {
   padding: 0 13px;
 }
+
 .period-button {
   margin-left: 15px;
 }
