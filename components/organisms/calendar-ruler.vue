@@ -49,6 +49,7 @@ export default {
   width: 100%;
   z-index: index($z, calendar-ruler);
 }
+
 .ruler time {
   color: $white;
   display: flex;
@@ -57,6 +58,7 @@ export default {
   line-height: 20px;
   width: 60px;
 }
+
 .line {
   content: '';
   display: block;

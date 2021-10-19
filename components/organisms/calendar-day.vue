@@ -158,10 +158,12 @@ export default {
   flex: 1;
   max-width: 100%;
   user-select: none;
+
   &.overlapped {
     background: $background-hover;
   }
 }
+
 .events {
   display: flex;
   flex: 1;
@@ -170,6 +172,7 @@ export default {
   margin-right: 5px;
   position: relative;
 }
+
 .row {
   display: flex;
   flex: 1;

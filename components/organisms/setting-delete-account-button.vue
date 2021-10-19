@@ -97,6 +97,7 @@ export default {
   flex-shrink: 0;
   margin-right: 15px;
 }
+
 .warning-message {
   margin: 15px 0;
 }

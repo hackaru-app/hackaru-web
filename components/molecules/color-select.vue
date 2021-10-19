@@ -57,6 +57,7 @@ export default {
   justify-content: flex-start;
   margin: 5px 0;
 }
+
 .color-select button {
   align-items: center;
   background: 0;
@@ -69,6 +70,7 @@ export default {
   margin-right: 5px;
   padding: 0;
   width: 26px;
+
   &:hover,
   &.selected {
     border: 1px $white solid;

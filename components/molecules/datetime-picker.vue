@@ -70,6 +70,7 @@ export default {
   display: flex;
   flex: 1;
 }
+
 .datetime-picker input {
   background: none;
   border: 0;
@@ -79,6 +80,7 @@ export default {
   margin-right: 10px;
   max-width: 160px;
   width: 100%;
+
   &:last-child {
     margin-right: 0;
   }

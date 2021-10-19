@@ -37,16 +37,20 @@ export default {
   margin-bottom: 15px;
   padding: 0 20px;
   transition: border-color 0.2s;
+
   &::placeholder {
     color: $grey-999;
     opacity: 1;
   }
+
   &:focus {
     border-color: $yellow;
   }
+
   &:placeholder-shown {
     border-color: $border;
   }
+
   &:placeholder-shown:focus {
     border-color: $yellow;
   }
@@ -56,6 +60,7 @@ export default {
   .base-input.has-border {
     background-color: $background-dark;
     border-color: transparent;
+
     &:placeholder-shown {
       border-color: transparent;
     }

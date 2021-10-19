@@ -61,6 +61,7 @@ export default {
   padding-top: 0;
   position: relative;
 }
+
 .calendar-event h1 {
   flex-shrink: 1;
   font-size: 14px;
@@ -76,6 +77,7 @@ export default {
     padding: 0;
     padding-bottom: 8px;
   }
+
   .calendar-event h1 {
     font-size: 10px;
     height: 100%;

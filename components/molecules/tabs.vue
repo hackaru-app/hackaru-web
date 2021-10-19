@@ -40,10 +40,12 @@ export default {
   margin: 0;
   overflow-x: scroll;
   padding: 0;
+
   &::-webkit-scrollbar {
     display: none;
   }
 }
+
 .tabs li {
   align-items: center;
   border-bottom: 2px $border solid;
@@ -57,12 +59,14 @@ export default {
   padding-top: 2px;
   transition: all 0.2s ease;
 }
+
 .tabs li.selected,
 .tabs li:hover {
   border-bottom-color: $cyan;
   color: $text;
   cursor: pointer;
 }
+
 .tabs li:active {
   color: $text-lighter;
 }

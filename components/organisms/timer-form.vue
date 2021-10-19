@@ -270,9 +270,11 @@ export default {
   position: fixed;
   z-index: index($z, timer-form);
 }
+
 .duration.stopped {
   color: $text-light;
 }
+
 .base-button.control-button {
   align-self: center;
   border-radius: 50%;
@@ -285,13 +287,16 @@ export default {
   pointer-events: auto;
   width: 50px;
 }
+
 .base-button.control-button .icon {
   height: 22px;
   width: 22px;
 }
+
 .base-button.control-button.start .icon {
   padding-left: 3px;
 }
+
 .form {
   border-radius: 5px;
   box-sizing: border-box;
@@ -300,6 +305,7 @@ export default {
   justify-content: center;
   width: 100%;
 }
+
 .form .duration {
   align-self: center;
   font-family: $font-family-duration;
@@ -307,9 +313,11 @@ export default {
   line-height: 1;
   margin-right: 30px;
 }
+
 .form .duration.show {
   display: block;
 }
+
 .form-content {
   background-color: $background-translucent;
   border-bottom: 1px $border-dark solid;
@@ -319,6 +327,7 @@ export default {
   flex: 1;
   z-index: 1;
 }
+
 .project-wrapper {
   align-items: center;
   border-right: 1px $border-dark solid;
@@ -326,12 +335,14 @@ export default {
   display: flex;
   min-height: 100%;
 }
+
 .selected-project {
   align-items: center;
   display: flex;
   max-width: 300px;
   padding: 0 45px;
 }
+
 .description {
   background: none;
   border: 0;
@@ -344,6 +355,7 @@ export default {
   text-overflow: ellipsis;
   width: 100%;
 }
+
 .dot-only {
   display: none;
 }
@@ -353,6 +365,7 @@ export default {
     left: 0;
     max-width: 100vw;
   }
+
   .form {
     align-items: center;
     display: flex;
@@ -366,21 +379,26 @@ export default {
     padding: 0 30px;
     width: 100%;
   }
+
   .description::placeholder {
     padding-top: 3px;
   }
+
   .project-wrapper {
     display: flex;
     height: 100%;
     justify-content: center;
     min-width: 80px;
   }
+
   .project-wrapper .selected-project {
     display: none;
   }
+
   .dot-only {
     display: flex;
   }
+
   .form-content {
     border: 0;
     border-bottom: 1px $border-dark solid;
@@ -394,23 +412,28 @@ export default {
     top: $side-bar-min-height;
     width: 100%;
   }
+
   .base-button.control-button {
     height: 48px;
     margin-right: 16px;
     width: 48px;
   }
+
   .base-button.control-button .icon {
     height: 20px;
     width: 20px;
   }
+
   .base-button.control-button.start .icon {
     padding-left: 3px;
   }
+
   .description {
     margin: 0;
     min-width: 1px;
     padding: 0 25px;
   }
+
   .form .duration {
     display: none;
     margin-right: 25px;

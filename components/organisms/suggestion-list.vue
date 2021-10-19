@@ -83,6 +83,7 @@ export default {
   top: 91px;
   width: 100%;
 }
+
 .suggestions {
   background-color: $background;
   box-shadow: 0 3px 5px $shadow-darker;
@@ -92,10 +93,12 @@ export default {
   -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
 }
+
 .suggestions ul {
   margin: 0;
   padding: 0;
 }
+
 .suggestions ul li {
   align-items: center;
   border-bottom: 1px $border solid;
@@ -107,9 +110,11 @@ export default {
   padding: 0 45px;
   text-align: center;
   transition: background-color 0.1s ease;
+
   &:hover {
     background-color: $background-hover;
   }
+
   &:last-child {
     border-bottom: 0;
   }
@@ -126,6 +131,7 @@ export default {
     top: 80px;
     width: 100%;
   }
+
   .suggestions {
     background-color: $background-translucent;
     border-left: 0;
@@ -137,21 +143,26 @@ export default {
     max-width: 100vw;
     padding-bottom: 550px;
   }
+
   .suggestions ul {
     min-height: 130vh;
   }
+
   .suggestions ul li {
     border-bottom: 1px $border solid;
     border-radius: 0;
     height: 75px;
     padding: 0 35px;
+
     &:first-child {
       padding-top: 0;
     }
+
     &:last-child {
       border-bottom: 1px $border solid;
       padding-bottom: 0;
     }
+
     &:hover {
       background: none;
     }
