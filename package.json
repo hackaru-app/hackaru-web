@@ -34,7 +34,7 @@
     "lodash.omit": "^4.5.0",
     "lodash.sortby": "^4.7.0",
     "lodash.without": "^4.4.0",
-    "logrocket": "^2.0.0",
+    "logrocket": "^2.1.1",
     "mezr": "^0.6.2",
     "mixpanel-browser": "^2.41.0",
     "normalizr": "^3.6.0",
