@@ -111,7 +111,7 @@ export default {
 <style scoped lang="scss">
 .calendar-buttons {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap;
 
   .base-button {
     display: flex;
@@ -128,9 +128,7 @@ export default {
 
 @media screen and (max-width: 640px) {
   .calendar-buttons {
-    display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
 
     .base-button {
       height: 52px;

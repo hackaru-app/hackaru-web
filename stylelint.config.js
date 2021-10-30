@@ -6,4 +6,14 @@ module.exports = {
     'scss/at-rule-no-unknown': true,
     'order/properties-alphabetical-order': true,
   },
+  overrides: [
+    {
+      files: ['**/*.vue'],
+      customSyntax: 'postcss-html',
+    },
+    {
+      files: ['**/*.scss'],
+      customSyntax: 'postcss-scss',
+    },
+  ],
 };
