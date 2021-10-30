@@ -58,7 +58,7 @@ export default {
   border-bottom: 1px $border solid;
   box-sizing: border-box;
   margin: 50px 0;
-  padding: 0 0;
+  padding: 0;
   width: 100%;
 
   h1 {

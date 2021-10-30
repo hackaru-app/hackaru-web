@@ -1,5 +1,5 @@
 html {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
   user-select: none;
 }
 
@@ -36,13 +36,13 @@ input[type='date'],
 input[type='email'],
 input[type='password'],
 textarea {
-  -webkit-appearance: none;
+  appearance: none;
   box-sizing: border-box;
   outline: none;
 }
 
 input::placeholder {
   color: $grey-ccc;
-  opacity: 1;
+  opacity: 100%;
   padding-top: 2px;
 }

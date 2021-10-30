@@ -307,7 +307,7 @@ input[type='email'] {
 
   &::placeholder {
     color: $text-light;
-    opacity: 1;
+    opacity: 100%;
   }
 
   &:focus {
@@ -330,7 +330,7 @@ textarea {
 
   &::placeholder {
     color: $text-light;
-    opacity: 1;
+    opacity: 100%;
   }
 
   &:focus {
