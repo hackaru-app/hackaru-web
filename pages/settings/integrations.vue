@@ -7,6 +7,7 @@
         <icon name="calendar-icon" />
         {{ $t('title') }}
       </template>
+      <template #description>{{ $t('description') }}</template>
 
       <div class="calendar-buttons">
         <base-button

@@ -1,12 +1,14 @@
 {
   "en": {
     "title": "Link with Calendar",
+    "description": "You can check timers on your calendar.\nSynchronization can take up to a day.",
     "googleCalendar": "Google Calendar",
     "appleCalendar": "Apple Calendar",
     "outlook": "Outlook"
   },
   "ja": {
     "title": "カレンダーと連携",
+    "description": "計測した記録をお使いのカレンダー上に表示できます。同期まで最大1日ほど時間がかかる場合があります。",
     "googleCalendar": "Google カレンダー",
     "appleCalendar": "Apple カレンダー",
     "outlook": "Outlook"

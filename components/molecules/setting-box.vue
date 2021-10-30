@@ -1,8 +1,13 @@
 <template>
   <article>
-    <heading class="is-small">
-      <slot name="heading" />
-    </heading>
+    <header class="header">
+      <heading class="is-small">
+        <slot name="heading" />
+      </heading>
+      <p class="description">
+        <slot name="description" />
+      </p>
+    </header>
     <slot />
   </article>
 </template>
@@ -28,9 +33,8 @@ article {
     display: flex;
     font-size: 16px;
     font-weight: normal;
-    height: 90px;
     margin: 0;
-    margin-top: 5px;
+    margin-top: 35px;
   }
 }
 
@@ -42,6 +46,16 @@ article form {
     align-self: flex-start;
     margin-top: 10px;
   }
+}
+
+.header {
+  margin-bottom: 25px;
+}
+
+.description {
+  color: $text-light;
+  margin-bottom: 30px;
+  margin-top: 15px;
 }
 
 @include mq(small) {
