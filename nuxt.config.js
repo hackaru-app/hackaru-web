@@ -127,7 +127,6 @@ module.exports = {
     { src: '~/plugins/vue-timers', ssr: false },
     { src: '~/plugins/persist-state.js', ssr: false },
     { src: '~/plugins/v-tooltip', ssr: false },
-    { src: '~/plugins/sentry-client', ssr: false },
     { src: '~/plugins/load-script', ssr: false },
     { src: '~/plugins/v-scroll-lock', ssr: false },
     { src: '~/plugins/mixpanel', ssr: false },
@@ -234,7 +233,6 @@ module.exports = {
     },
   },
   sentry: {
-    disableClientSide: true,
     sourceMapStyle: 'hidden-source-map',
     config: {
       release: process.env.SENTRY_RELEASE,
