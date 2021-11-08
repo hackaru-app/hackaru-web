@@ -16,7 +16,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
-    "@nuxtjs/sentry": "^5.1.4",
+    "@nuxtjs/sentry": "^5.1.5",
     "axios-case-converter": "^0.9.0",
     "camelcase-keys": "^7.0.1",
     "chart.js": "^2.9.3",
