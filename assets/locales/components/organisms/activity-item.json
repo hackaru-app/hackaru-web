@@ -5,7 +5,7 @@
     "deleted": "Timer deleted",
     "duplicate": "Start timer with same content",
     "confirms": {
-      "delete":  "Are you sure you want to delete the timer?"
+      "delete": "Are you sure you want to delete the timer?"
     }
   },
   "ja": {
@@ -14,7 +14,7 @@
     "deleted": "計測を削除しました",
     "duplicate": "同じ内容で開始",
     "confirms": {
-      "delete":  "計測を削除しますか？"
+      "delete": "計測を削除しますか？"
     }
   }
 }

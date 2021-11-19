@@ -7,7 +7,7 @@
     "changed": "Email address changed"
   },
   "ja": {
-    "title":  "Eメールを変更",
+    "title": "Eメールを変更",
     "email": "変更後のメールアドレスを入力",
     "password": "現在のパスワードを入力",
     "update": "変更",
