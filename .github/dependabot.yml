@@ -1,21 +1,21 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: '/'
-  schedule:
-    interval: weekly
-    time: '11:00'
-  ignore:
-    - dependency-name: 'color'
-      versions: ['4.x']
-  open-pull-requests-limit: 10
-  labels:
-    - 'type: dependencies'
-- package-ecosystem: docker
-  directory: '/'
-  schedule:
-    interval: weekly
-    time: '11:00'
-  open-pull-requests-limit: 10
-  labels:
-    - 'type: dependencies'
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+      time: '11:00'
+    ignore:
+      - dependency-name: 'color'
+        versions: ['4.x']
+    open-pull-requests-limit: 10
+    labels:
+      - 'type: dependencies'
+  - package-ecosystem: docker
+    directory: '/'
+    schedule:
+      interval: weekly
+      time: '11:00'
+    open-pull-requests-limit: 10
+    labels:
+      - 'type: dependencies'

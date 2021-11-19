@@ -7,9 +7,9 @@
     "production": "nuxt build && nuxt start",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
     "eslint": "eslint --ext .js,.vue --ignore-path .gitignore",
-    "stylelint": "stylelint '**/*.{vue,scss}'",
+    "stylelint": "stylelint '**/*.{vue,scss}' --ignore-path .gitignore",
+    "prettier": "prettier --ignore-path .gitignore",
     "test": "jest",
     "postinstall": "husky install"
   },
@@ -54,11 +54,18 @@
     "vuex-persistedstate": "^4.1.0"
   },
   "lint-staged": {
-    "*.{vue,js}": [
-      "yarn eslint --fix"
+    "*.js": [
+      "yarn eslint --fix",
+      "yarn prettier --write"
     ],
-    "*.{vue,scss}": [
-      "yarn stylelint --fix"
+    "*.vue": [
+      "yarn eslint --fix",
+      "yarn stylelint --fix",
+      "yarn prettier --write"
+    ],
+    "*.scss": [
+      "yarn stylelint --fix",
+      "yarn prettier --write"
     ]
   },
   "config": {
@@ -80,8 +87,6 @@
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^7.20.0",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
@@ -96,12 +101,9 @@
     "postcss-scss": "^4.0.2",
     "prettier": "^2.4.1",
     "stylelint": "^14.1.0",
-    "stylelint-config-html": "^1.0.0",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^23.0.0",
+    "stylelint-config-standard-scss": "^2.0.1",
     "stylelint-order": "^5.0.0",
-    "stylelint-prettier": "^2.0.0",
-    "stylelint-scss": "^4.0.0",
     "vue-jest": "^3.0.5",
     "vuex-mock-store": "^0.0.7"
   }

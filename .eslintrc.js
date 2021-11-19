@@ -11,7 +11,6 @@ module.exports = {
     'plugin:vue/essential',
     'plugin:vue/strongly-recommended',
     'plugin:vue/recommended',
-    'plugin:prettier/recommended',
     'prettier',
   ],
   rules: {

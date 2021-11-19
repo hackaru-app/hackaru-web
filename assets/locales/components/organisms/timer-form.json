@@ -6,10 +6,7 @@
     "updated": "Timer updated!",
     "started": "Timer started! Let's start your work!",
     "selectProject": "Select a project from here",
-    "stopped": [
-      "Timer stopped! Nice work! 🎉",
-      "Timer stopped! Great! 🎉"
-    ]
+    "stopped": ["Timer stopped! Nice work! 🎉", "Timer stopped! Great! 🎉"]
   },
   "ja": {
     "start": "計測を開始",
