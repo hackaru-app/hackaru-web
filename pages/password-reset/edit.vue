@@ -83,7 +83,7 @@ form {
   margin-top: 18px;
 }
 
-@media screen and (max-width: 640px) {
+@include mq(small) {
   section {
     margin: 30px;
   }

@@ -375,7 +375,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 640px) {
+@include mq(small) {
   .tools {
     padding: 0;
   }

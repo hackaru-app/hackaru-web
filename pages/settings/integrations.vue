@@ -127,7 +127,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 640px) {
+@include mq(small) {
   .calendar-buttons {
     flex-direction: column;
 

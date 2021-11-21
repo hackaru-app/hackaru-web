@@ -158,7 +158,7 @@ ul {
   display: flex;
 }
 
-@media screen and (max-width: 640px) {
+@include mq(small) {
   article {
     padding-left: 30px;
     padding-right: 30px;

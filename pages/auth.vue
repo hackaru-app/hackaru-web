@@ -259,7 +259,7 @@ export default {
   flex-shrink: 0;
 }
 
-@media screen and (max-width: 640px) {
+@include mq(small) {
   .auth {
     min-height: auto;
   }
