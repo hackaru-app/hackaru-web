@@ -188,7 +188,7 @@ export default {
   min-width: 100%;
 }
 
-@media screen and (max-width: 640px) {
+@include mq(small) {
   .sticky {
     top: $side-bar-min-height;
   }
