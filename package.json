@@ -22,7 +22,7 @@
     "chart.js": "^2.9.3",
     "color": "^3.2.1",
     "cookie-universal-nuxt": "^2.1.5",
-    "date-fns": "^2.25.0",
+    "date-fns": "^2.26.0",
     "file-saver": "^2.0.5",
     "hh-mm-ss": "^1.2.0",
     "lodash.debounce": "^4.0.8",
