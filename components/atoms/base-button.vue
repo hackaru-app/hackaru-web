@@ -45,15 +45,15 @@
   padding-right: 18px;
 
   &:hover {
-    opacity: 90%;
+    opacity: 0.9;
   }
 
   &:active {
-    opacity: 100%;
+    opacity: 1;
   }
 
   &:disabled {
-    opacity: 50%;
+    opacity: 0.5;
   }
 }
 

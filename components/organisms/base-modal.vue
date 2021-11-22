@@ -60,7 +60,7 @@ export default {
 
 .slide-down-fade-enter,
 .slide-down-fade-leave-to {
-  opacity: 0%;
+  opacity: 0;
 
   .container {
     transform: translateY(-10px);
