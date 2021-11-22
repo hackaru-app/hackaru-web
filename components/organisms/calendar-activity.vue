@@ -271,7 +271,7 @@ export default {
 .calendar-activity.dragging {
   box-shadow: 0 7px 10px $shadow-dark;
   cursor: grabbing;
-  opacity: 100%;
+  opacity: 1;
   z-index: index($z, calendar-dragging-activity);
 }
 

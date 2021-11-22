@@ -40,7 +40,7 @@ export default {
 
   &::placeholder {
     color: $grey-999;
-    opacity: 100%;
+    opacity: 1;
   }
 
   &:focus {
