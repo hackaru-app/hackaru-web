@@ -1599,14 +1599,14 @@
     serve-static "^1.14.1"
     workbox-cdn "^5.1.4"
 
-"@nuxtjs/sentry@^5.1.5":
-  version "5.1.5"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/sentry/-/sentry-5.1.5.tgz#25cde70f43ed7c607c3a72f0b144ac5946d002ee"
-  integrity sha512-P2LZTFq2I/tEQ/uDH6QXIBrE2X3VjB/VtgtUc6fBNfQDDmpAWDSC3NQuQ1vJZOBH1STmA+1tidE/gTgpNSjxiw==
+"@nuxtjs/sentry@^5.1.6":
+  version "5.1.6"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/sentry/-/sentry-5.1.6.tgz#d6296684553112f6873d0c33f2a488650cd5b919"
+  integrity sha512-QkP+Axv1wJbrUcNh/xVobkpLa4zQoliB860oKHzaO9uvATVfi6lipB+PZfpFC9zc3YJhbKH4V1CX1Mcc0xj2Fg==
   dependencies:
-    "@sentry/browser" "^6.14.1"
-    "@sentry/integrations" "^6.14.1"
-    "@sentry/node" "^6.14.1"
+    "@sentry/browser" "^6.15.0"
+    "@sentry/integrations" "^6.15.0"
+    "@sentry/node" "^6.15.0"
     "@sentry/webpack-plugin" "^1.18.3"
     consola "^2.15.3"
     lodash.mergewith "^4.6.2"
@@ -1634,7 +1634,7 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
-"@sentry/browser@^6.14.1":
+"@sentry/browser@^6.15.0":
   version "6.15.0"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-6.15.0.tgz#7a1d316dd31cedee446e359a21774bf93d1e553d"
   integrity sha512-ZiqfHK5DMVgDsgMTuSwxilWIqEnZzy4yuJ9Sr6Iap1yZddPSiKHYjbBieSHn57UsWHViRB3ojbwu44LfvXKJdQ==
@@ -1676,7 +1676,7 @@
     "@sentry/utils" "6.15.0"
     tslib "^1.9.3"
 
-"@sentry/integrations@^6.14.1":
+"@sentry/integrations@^6.15.0":
   version "6.15.0"
   resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-6.15.0.tgz#3c83617c301b5f77a57514ad7812aedc03613a31"
   integrity sha512-fSBAipas6zwyYo4U91pyQOnaTcRCfwvH6ZFwu0Fqmkm64nU9rYpbTNiKkwOWbbiXXT6+LEF6RzBpsyhm4QvgmQ==
@@ -1695,7 +1695,7 @@
     "@sentry/types" "6.15.0"
     tslib "^1.9.3"
 
-"@sentry/node@^6.14.1":
+"@sentry/node@^6.15.0":
   version "6.15.0"
   resolved "https://registry.yarnpkg.com/@sentry/node/-/node-6.15.0.tgz#d7b911e5667a3459a807a2ae0464558e872504d4"
   integrity sha512-V1GeupWi9ClmoMy5eBWdVTv3k+Yx/JpddT4zCzzYY9QfjYtEvQI7R3SWFtlgXuaQQaZNU0WUoE2UgJV2N/vS8g==
