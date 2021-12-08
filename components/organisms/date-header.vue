@@ -77,7 +77,7 @@ export default {
       this.$emit('today');
     },
     change(period) {
-      this.$emit('update:currentPeriod', period);
+      this.$emit('change-period', period);
     },
   },
 };

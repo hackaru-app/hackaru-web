@@ -12,6 +12,7 @@ describe('Index', () => {
   MockDate.set('2019-01-31T01:23:45');
 
   const $mixpanel = { track: jest.fn() };
+  const $cookies = { get: () => undefined };
   const $store = new Store({
     getters: {
       'projects/all': [
@@ -29,6 +30,7 @@ describe('Index', () => {
       mocks: {
         $store,
         $mixpanel,
+        $cookies,
       },
     });
 
@@ -299,6 +301,75 @@ describe('Index', () => {
           start: parseISO('2019-01-30T00:00:00'),
           end: parseISO('2019-01-30T23:59:59.999'),
           projectIds: [1],
+        },
+      });
+    });
+  });
+
+  describe('when cookie has previous period', () => {
+    beforeEach(() => {
+      $cookies.get = () => 'week';
+      wrapper = factory();
+      wrapper.vm.$options.activated[0].call(wrapper.vm);
+    });
+
+    it('dispatches reports/fetch', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
+        current: {
+          start: parseISO('2019-01-27T00:00:00'),
+          end: parseISO('2019-02-02T23:59:59.999'),
+          projectIds: [],
+        },
+        previous: {
+          start: parseISO('2019-01-20T00:00:00'),
+          end: parseISO('2019-01-26T23:59:59.999'),
+          projectIds: [],
+        },
+      });
+    });
+  });
+
+  describe('when cookie has invalid period', () => {
+    beforeEach(() => {
+      $cookies.get = () => 'invalid';
+      wrapper = factory();
+      wrapper.vm.$options.activated[0].call(wrapper.vm);
+    });
+
+    it('dispatches reports/fetch', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
+        current: {
+          start: parseISO('2019-01-31T00:00:00'),
+          end: parseISO('2019-01-31T23:59:59.999'),
+          projectIds: [],
+        },
+        previous: {
+          start: parseISO('2019-01-30T00:00:00'),
+          end: parseISO('2019-01-30T23:59:59.999'),
+          projectIds: [],
+        },
+      });
+    });
+  });
+
+  describe('when cookie does not have period', () => {
+    beforeEach(() => {
+      $cookies.get = () => undefined;
+      wrapper = factory();
+      wrapper.vm.$options.activated[0].call(wrapper.vm);
+    });
+
+    it('dispatches reports/fetch', () => {
+      expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
+        current: {
+          start: parseISO('2019-01-31T00:00:00'),
+          end: parseISO('2019-01-31T23:59:59.999'),
+          projectIds: [],
+        },
+        previous: {
+          start: parseISO('2019-01-30T00:00:00'),
+          end: parseISO('2019-01-30T23:59:59.999'),
+          projectIds: [],
         },
       });
     });
