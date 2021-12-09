@@ -6,13 +6,14 @@
     <date-header
       ref="header"
       :periods="['day', 'week', 'month', 'year']"
-      :current-period.sync="currentPeriod"
+      :current-period="currentPeriod"
       :title="title"
       :has-today="hasToday"
       data-test-id="date-header"
       @today="today"
       @left="slideLeft"
       @right="slideRight"
+      @change-period="changePeriod"
     />
     <div class="tools">
       <div class="exports">
@@ -178,7 +179,7 @@ export default {
   data() {
     return {
       date: new Date(),
-      currentPeriod: 'day',
+      currentPeriod: this.getDefaultPeriod(),
       projectIds: [],
       openedDetails: [],
       openPopover: false,
@@ -291,6 +292,19 @@ export default {
     },
     scroll() {
       this.openPopover = false;
+    },
+    changePeriod(period) {
+      const permanent = 60 * 60 * 24 * 365 * 20;
+      this.currentPeriod = period;
+      this.$cookies.set('report_period', period, {
+        path: '/',
+        maxAge: permanent,
+        sameSite: 'Lax',
+      });
+    },
+    getDefaultPeriod() {
+      const cached = this.$cookies.get('report_period');
+      return Object.keys(periods).includes(cached) ? cached : 'day';
     },
   },
 };
