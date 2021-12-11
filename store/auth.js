@@ -41,6 +41,7 @@ export const actions = {
             passwordConfirmation,
             locale,
             timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            startDay: 0,
           },
         },
       });

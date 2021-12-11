@@ -12,9 +12,10 @@ describe('Index', () => {
   MockDate.set('2019-01-31T01:23:45');
 
   const $mixpanel = { track: jest.fn() };
-  const $cookies = { get: () => undefined };
+  const $cookies = { get: () => undefined, set: jest.fn() };
   const $store = new Store({
     getters: {
+      'user/startDay': 0,
       'projects/all': [
         {
           id: 1,
@@ -112,13 +113,21 @@ describe('Index', () => {
   describe('when change period to week', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ currentPeriod: 'week' });
+      wrapper.find(testId('date-header')).vm.$emit('change-period', 'week');
     });
 
     it('sends mixpanel event', () => {
       expect($mixpanel.track).toHaveBeenCalledWith('Select period', {
         component: 'report',
         period: 'week',
+      });
+    });
+
+    it('saves current period', () => {
+      expect($cookies.set).toHaveBeenCalledWith('report_period', 'week', {
+        maxAge: 630720000,
+        path: '/',
+        sameSite: 'Lax',
       });
     });
 
@@ -141,13 +150,21 @@ describe('Index', () => {
   describe('when change period to month', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ currentPeriod: 'month' });
+      wrapper.find(testId('date-header')).vm.$emit('change-period', 'month');
     });
 
     it('sends mixpanel event', () => {
       expect($mixpanel.track).toHaveBeenCalledWith('Select period', {
         component: 'report',
         period: 'month',
+      });
+    });
+
+    it('saves current period', () => {
+      expect($cookies.set).toHaveBeenCalledWith('report_period', 'month', {
+        maxAge: 630720000,
+        path: '/',
+        sameSite: 'Lax',
       });
     });
 
@@ -170,13 +187,21 @@ describe('Index', () => {
   describe('when change period to year', () => {
     beforeEach(() => {
       wrapper = factory();
-      wrapper.setData({ currentPeriod: 'year' });
+      wrapper.find(testId('date-header')).vm.$emit('change-period', 'year');
     });
 
     it('sends mixpanel event', () => {
       expect($mixpanel.track).toHaveBeenCalledWith('Select period', {
         component: 'report',
         period: 'year',
+      });
+    });
+
+    it('saves current period', () => {
+      expect($cookies.set).toHaveBeenCalledWith('report_period', 'year', {
+        maxAge: 630720000,
+        path: '/',
+        sameSite: 'Lax',
       });
     });
 
@@ -371,6 +396,29 @@ describe('Index', () => {
           end: parseISO('2019-01-30T23:59:59.999'),
           projectIds: [],
         },
+      });
+    });
+
+    describe('when startDay was changed', () => {
+      beforeEach(() => {
+        $store.getters['user/startDay'] = 3;
+        wrapper = factory();
+        wrapper.setData({ currentPeriod: 'week' });
+      });
+
+      it('dispatches reports/fetch', () => {
+        expect($store.dispatch).toHaveBeenLastCalledWith('reports/fetch', {
+          current: {
+            start: parseISO('2019-01-30T00:00:00'),
+            end: parseISO('2019-02-05T23:59:59.999'),
+            projectIds: [],
+          },
+          previous: {
+            start: parseISO('2019-01-23T00:00:00'),
+            end: parseISO('2019-01-29T23:59:59.999'),
+            projectIds: [],
+          },
+        });
       });
     });
   });

@@ -4,6 +4,7 @@ export const state = () => ({
   timeZone: 'Etc/UTC',
   receiveWeekReport: false,
   receiveMonthReport: false,
+  startDay: 0,
 });
 
 export const actions = {
@@ -43,6 +44,7 @@ export const mutations = {
     state.timeZone = payload.timeZone;
     state.receiveWeekReport = payload.receiveWeekReport;
     state.receiveMonthReport = payload.receiveMonthReport;
+    state.startDay = payload.startDay;
     this.$i18n.setLocale(payload.locale);
   },
 };
@@ -50,6 +52,9 @@ export const mutations = {
 export const getters = {
   timeZone: (state) => {
     return state.timeZone;
+  },
+  startDay: (state) => {
+    return state.startDay;
   },
   receiveWeekReport: (state) => {
     return state.receiveWeekReport;

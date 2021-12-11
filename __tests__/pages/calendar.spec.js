@@ -10,7 +10,12 @@ describe('Calendar', () => {
 
   MockDate.set('2019-01-31T01:23:45');
 
-  const $store = new Store({});
+  const $store = new Store({
+    getters: {
+      'user/startDay': 0,
+    },
+  });
+
   const $mixpanel = { track: jest.fn() };
   const factory = () =>
     shallowMount(Calendar, {
@@ -128,6 +133,25 @@ describe('Calendar', () => {
         parseISO('2019-01-31T00:00:00'),
         parseISO('2019-02-01T00:00:00'),
         parseISO('2019-02-02T00:00:00'),
+      ]);
+    });
+  });
+
+  describe('when startDay was changed', () => {
+    beforeEach(() => {
+      $store.getters['user/startDay'] = 3;
+      wrapper = factory();
+    });
+
+    it('sets days correctly', () => {
+      expect(wrapper.vm.days).toEqual([
+        parseISO('2019-01-30T00:00:00'),
+        parseISO('2019-01-31T00:00:00'),
+        parseISO('2019-02-01T00:00:00'),
+        parseISO('2019-02-02T00:00:00'),
+        parseISO('2019-02-03T00:00:00'),
+        parseISO('2019-02-04T00:00:00'),
+        parseISO('2019-02-05T00:00:00'),
       ]);
     });
   });

@@ -12,6 +12,7 @@
     />
 
     <loop-slider
+      v-show="loaded"
       v-slot="{ slideStyle }"
       ref="slider"
       :enabled="sliderEnabled"
@@ -58,6 +59,7 @@ import DateHeader from '~/components/organisms/date-header';
 import LoopSlider from '~/components/organisms/loop-slider';
 import CalendarContent from '~/components/organisms/calendar-content';
 import CalendarDayHeader from '~/components/organisms/calendar-day-header';
+import { mapGetters } from 'vuex';
 import {
   isSameDay,
   startOfWeek,
@@ -86,12 +88,16 @@ export default {
       sliderEnabled: true,
       date: new Date(),
       sliding: undefined,
+      loaded: false,
     };
   },
   head: {
     title: 'Calendar',
   },
   computed: {
+    ...mapGetters({
+      startDay: 'user/startDay',
+    }),
     title() {
       return format(this.date, this.$t('format') || 'yyyy/MM');
     },
@@ -99,17 +105,25 @@ export default {
       return this.getDays(0);
     },
     hasToday() {
-      return isSameDay(startOfWeek(new Date()), startOfWeek(this.date));
+      return isSameDay(
+        startOfWeek(new Date(), { weekStartsOn: this.startDay }),
+        startOfWeek(this.date, { weekStartsOn: this.startDay })
+      );
     },
   },
   watch: {
     date: {
       handler: 'fetchActivities',
     },
+    startDay: {
+      handler: 'fetchActivities',
+    },
   },
-  activated() {
-    this.fetchActivities();
+  async activated() {
     this.$store.dispatch('projects/fetch');
+    await this.$store.dispatch('user/fetch');
+    this.fetchActivities();
+    this.loaded = true;
   },
   methods: {
     async fetchActivities() {
@@ -121,8 +135,8 @@ export default {
     getDays(page) {
       const baseDate = addWeeks(this.date, page);
       return eachDayOfInterval({
-        start: startOfWeek(baseDate),
-        end: endOfWeek(baseDate),
+        start: startOfWeek(baseDate, { weekStartsOn: this.startDay }),
+        end: endOfWeek(baseDate, { weekStartsOn: this.startDay }),
       });
     },
     slideLeft() {
@@ -135,13 +149,15 @@ export default {
       this.$mixpanel.track('Show prev calendar', {
         component: 'calendar',
       });
-      this.date = addWeeks(startOfWeek(this.date), -1);
+      const current = startOfWeek(this.date, { weekStartsOn: this.startDay });
+      this.date = addWeeks(current, -1);
     },
     next() {
       this.$mixpanel.track('Show next calendar', {
         component: 'calendar',
       });
-      this.date = addWeeks(startOfWeek(this.date), 1);
+      const current = startOfWeek(this.date, { weekStartsOn: this.startDay });
+      this.date = addWeeks(current, 1);
     },
     today() {
       this.$mixpanel.track('Show today calendar', {

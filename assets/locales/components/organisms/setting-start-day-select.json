@@ -1,0 +1,28 @@
+{
+  "en": {
+    "title": "First day of the week",
+    "changed": "First day of the week changed",
+    "startDays": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  "ja": {
+    "title": "週の始まり",
+    "changed": "週の始まりを変更しました",
+    "startDays": [
+      "日曜日",
+      "月曜日",
+      "火曜日",
+      "水曜日",
+      "木曜日",
+      "金曜日",
+      "土曜日"
+    ]
+  }
+}
