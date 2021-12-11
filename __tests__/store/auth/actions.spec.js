@@ -29,6 +29,7 @@ describe('Actions', () => {
             password: 'password',
             passwordConfirmation: 'passwordConfirmation',
             timeZone: 'America/New_York',
+            startDay: 0,
           },
         })
         .replyOnce(200, {

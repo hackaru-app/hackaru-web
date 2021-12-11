@@ -142,29 +142,6 @@ import {
   endOfYear,
 } from 'date-fns';
 
-const periods = {
-  day: {
-    startOf: startOfDay,
-    endOf: endOfDay,
-    add: addDays,
-  },
-  week: {
-    startOf: startOfWeek,
-    endOf: endOfWeek,
-    add: addWeeks,
-  },
-  month: {
-    startOf: startOfMonth,
-    endOf: endOfMonth,
-    add: addMonths,
-  },
-  year: {
-    startOf: startOfYear,
-    endOf: endOfYear,
-    add: addYears,
-  },
-};
-
 export default {
   components: {
     Delighted,
@@ -198,9 +175,34 @@ export default {
       projects: 'reports/projects',
       allProjects: 'projects/all',
       activityGroups: 'reports/activityGroups',
+      startDay: 'user/startDay',
     }),
+    periods() {
+      return ((weekStartsOn) => ({
+        day: {
+          startOf: startOfDay,
+          endOf: endOfDay,
+          add: addDays,
+        },
+        week: {
+          startOf: (date) => startOfWeek(date, { weekStartsOn }),
+          endOf: (date) => endOfWeek(date, { weekStartsOn }),
+          add: addWeeks,
+        },
+        month: {
+          startOf: startOfMonth,
+          endOf: endOfMonth,
+          add: addMonths,
+        },
+        year: {
+          startOf: startOfYear,
+          endOf: endOfYear,
+          add: addYears,
+        },
+      }))(this.startDay);
+    },
     period() {
-      return periods[this.currentPeriod];
+      return this.periods[this.currentPeriod];
     },
     title() {
       const formatString = this.$t(`${this.currentPeriod}.format`);
@@ -224,10 +226,6 @@ export default {
     },
     period: {
       handler() {
-        this.$mixpanel.track('Select period', {
-          component: 'report',
-          period: this.currentPeriod,
-        });
         this.fetchReport();
       },
     },
@@ -235,8 +233,9 @@ export default {
       handler: 'fetchReport',
     },
   },
-  activated() {
+  async activated() {
     this.$store.dispatch('projects/fetch');
+    await this.$store.dispatch('user/fetch');
     this.fetchReport();
   },
   methods: {
@@ -296,6 +295,10 @@ export default {
     changePeriod(period) {
       const permanent = 60 * 60 * 24 * 365 * 20;
       this.currentPeriod = period;
+      this.$mixpanel.track('Select period', {
+        component: 'report',
+        period: this.currentPeriod,
+      });
       this.$cookies.set('report_period', period, {
         path: '/',
         maxAge: permanent,
@@ -304,7 +307,7 @@ export default {
     },
     getDefaultPeriod() {
       const cached = this.$cookies.get('report_period');
-      return Object.keys(periods).includes(cached) ? cached : 'day';
+      return ['day', 'week', 'month', 'year'].includes(cached) ? cached : 'day';
     },
   },
 };

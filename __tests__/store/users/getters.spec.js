@@ -38,4 +38,16 @@ describe('Getters', () => {
       expect(result).toBe(true);
     });
   });
+
+  describe('when call startDay', () => {
+    const state = { startDay: 0 };
+
+    beforeEach(() => {
+      result = getters.startDay(state);
+    });
+
+    it('returns startDay', () => {
+      expect(result).toBe(0);
+    });
+  });
 });
