@@ -73,6 +73,13 @@ describe('Calendar', () => {
       });
     });
 
+    it('dispatches activities/fetchByRange', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/fetchByRange', {
+        start: parseISO('2019-01-20T00:00:00'),
+        end: parseISO('2019-01-26T23:59:59.999'),
+      });
+    });
+
     it('sets prev weeks', () => {
       expect(wrapper.vm.days).toEqual([
         parseISO('2019-01-20T00:00:00'),
@@ -98,6 +105,13 @@ describe('Calendar', () => {
       });
     });
 
+    it('dispatches activities/fetchByRange', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/fetchByRange', {
+        start: parseISO('2019-02-03T00:00:00'),
+        end: parseISO('2019-02-09T23:59:59.999'),
+      });
+    });
+
     it('sets next weeks', () => {
       expect(wrapper.vm.days).toEqual([
         parseISO('2019-02-03T00:00:00'),
@@ -116,6 +130,13 @@ describe('Calendar', () => {
       wrapper = factory();
       wrapper.find(testId('loop-slider')).vm.$emit('slide-right');
       wrapper.find(testId('date-header')).vm.$emit('today');
+    });
+
+    it('dispatches activities/fetchByRange', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/fetchByRange', {
+        start: parseISO('2019-01-27T00:00:00'),
+        end: parseISO('2019-02-02T23:59:59.999'),
+      });
     });
 
     it('sends mixpanel event', () => {
@@ -141,6 +162,13 @@ describe('Calendar', () => {
     beforeEach(() => {
       $store.getters['user/startDay'] = 3;
       wrapper = factory();
+    });
+
+    it('dispatches activities/fetchByRange', () => {
+      expect($store.dispatch).toHaveBeenCalledWith('activities/fetchByRange', {
+        start: parseISO('2019-01-30T00:00:00'),
+        end: parseISO('2019-02-05T23:59:59.999'),
+      });
     });
 
     it('sets days correctly', () => {

@@ -1,10 +1,8 @@
 {
   "en": {
-    "format": "MM/yyyy",
-    "addActivityByLongPress": "You can add a record using long press."
+    "format": "MM/yyyy"
   },
   "ja": {
-    "format": "yyyy/MM",
-    "addActivityByLongPress": "長押しで記録を追加できます"
+    "format": "yyyy/MM"
   }
 }
