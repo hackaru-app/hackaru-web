@@ -32,29 +32,23 @@
         </div>
       </section>
 
-      <coach-tooltip
-        :content="$t('addActivityByLongPress')"
-        name="addCalendarActivity"
-      >
-        <section class="contents-wrapper">
-          <section :style="slideStyle" class="contents">
-            <calendar-content :days="[]" class="slider-item" />
-            <calendar-content
-              :days="days"
-              class="slider-item"
-              @dragging="sliderEnabled = false"
-              @drop="sliderEnabled = true"
-            />
-            <calendar-content :days="[]" class="slider-item" />
-          </section>
+      <section class="contents-wrapper">
+        <section :style="slideStyle" class="contents">
+          <calendar-content :days="[]" class="slider-item" />
+          <calendar-content
+            :days="days"
+            class="slider-item"
+            @dragging="sliderEnabled = false"
+            @drop="sliderEnabled = true"
+          />
+          <calendar-content :days="[]" class="slider-item" />
         </section>
-      </coach-tooltip>
+      </section>
     </loop-slider>
   </section>
 </template>
 
 <script>
-import CoachTooltip from '~/components/atoms/coach-tooltip';
 import DateHeader from '~/components/organisms/date-header';
 import LoopSlider from '~/components/organisms/loop-slider';
 import CalendarContent from '~/components/organisms/calendar-content';
@@ -74,7 +68,6 @@ import {
 
 export default {
   components: {
-    CoachTooltip,
     LoopSlider,
     CalendarContent,
     CalendarDayHeader,
@@ -120,7 +113,6 @@ export default {
     },
   },
   async activated() {
-    this.fetchActivities();
     this.$store.dispatch('projects/fetch');
     await this.$store.dispatch('user/fetch');
     this.loaded = true;
@@ -128,8 +120,8 @@ export default {
   methods: {
     async fetchActivities() {
       await this.$store.dispatch('activities/fetchByRange', {
-        start: startOfWeek(this.date),
-        end: endOfWeek(this.date),
+        start: startOfWeek(this.date, { weekStartsOn: this.startDay }),
+        end: endOfWeek(this.date, { weekStartsOn: this.startDay }),
       });
     },
     getDays(page) {
