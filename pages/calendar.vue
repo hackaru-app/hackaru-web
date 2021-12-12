@@ -12,7 +12,6 @@
     />
 
     <loop-slider
-      v-show="loaded"
       v-slot="{ slideStyle }"
       ref="slider"
       :enabled="sliderEnabled"
@@ -25,6 +24,7 @@
           <div v-for="page in [-1, 0, 1]" :key="page" class="headers">
             <calendar-day-header
               v-for="day in getDays(page)"
+              v-show="loaded"
               :key="formatISO(day)"
               :day="formatISO(day)"
             />
@@ -120,9 +120,9 @@ export default {
     },
   },
   async activated() {
+    this.fetchActivities();
     this.$store.dispatch('projects/fetch');
     await this.$store.dispatch('user/fetch');
-    this.fetchActivities();
     this.loaded = true;
   },
   methods: {
@@ -190,6 +190,7 @@ export default {
   flex-direction: row;
   min-width: 100%;
   padding-left: 60px;
+  height: 65px;
 }
 
 .contents-wrapper {
