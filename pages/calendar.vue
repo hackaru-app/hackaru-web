@@ -115,6 +115,7 @@ export default {
   async activated() {
     this.$store.dispatch('projects/fetch');
     await this.$store.dispatch('user/fetch');
+    this.fetchActivities();
     this.loaded = true;
   },
   methods: {
