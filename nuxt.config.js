@@ -222,6 +222,7 @@ module.exports = {
     sourceMapStyle: 'hidden-source-map',
     config: {
       release: process.env.SENTRY_RELEASE,
+      environment: process.env.SENTRY_ENVIRONMENT,
     },
   },
   toast: {
