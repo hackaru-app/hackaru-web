@@ -21,6 +21,7 @@ module.exports = {
         name: 'apple-mobile-web-app-capable',
         content: 'yes',
       },
+      { hid: 'robots', name: 'robots', content: 'none' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
