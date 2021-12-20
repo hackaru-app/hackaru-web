@@ -19,7 +19,7 @@
     "@nuxtjs/sentry": "^5.1.6",
     "axios-case-converter": "^0.9.0",
     "camelcase-keys": "^7.0.1",
-    "chart.js": "^2.9.3",
+    "chart.js": "^3.6.2",
     "color": "^3.2.1",
     "cookie-universal-nuxt": "^2.1.5",
     "date-fns": "^2.27.0",
