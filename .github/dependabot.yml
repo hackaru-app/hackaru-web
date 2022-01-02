@@ -8,6 +8,8 @@ updates:
     ignore:
       - dependency-name: 'color'
         versions: ['4.x']
+      - dependency-name: 'vue-plugin-load-script'
+        versions: ['2.x']
     open-pull-requests-limit: 10
     labels:
       - 'type: dependencies'
