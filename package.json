@@ -88,7 +88,7 @@
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-plugin-vue": "^8.2.0",
     "husky": "^7.0.4",
-    "jest": "^27.4.5",
+    "jest": "^27.4.7",
     "jest-canvas-mock": "^2.3.1",
     "jest-localstorage-mock": "^2.4.18",
     "jest-serializer-vue": "^2.0.2",
