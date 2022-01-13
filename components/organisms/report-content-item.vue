@@ -135,7 +135,7 @@ export default {
 
 .arrow-icon {
   flex-shrink: 0;
-  margin-right: 10px;
+  margin-right: 5px;
   transition: transform 0.1s ease;
 
   &.opened {
