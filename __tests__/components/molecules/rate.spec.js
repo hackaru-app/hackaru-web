@@ -23,7 +23,7 @@ describe('Rate', () => {
     });
 
     it('has percent is correctly', () => {
-      expect(wrapper.find(testId('percent')).text()).toEqual('50%');
+      expect(wrapper.find(testId('percent')).text()).toEqual('+50%');
     });
 
     it('has icon is correctly', () => {
@@ -109,7 +109,7 @@ describe('Rate', () => {
     });
 
     it('adds commas to a percent', () => {
-      expect(wrapper.find(testId('percent')).text()).toEqual('999,999,900%');
+      expect(wrapper.find(testId('percent')).text()).toEqual('+999,999,900%');
     });
   });
 });

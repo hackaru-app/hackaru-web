@@ -32,7 +32,8 @@ export default {
     },
     percent() {
       if (!isFinite(this.rate)) return '';
-      return `${round(this.rate, 1).toLocaleString()}%`;
+      const rounded = round(this.rate, 1);
+      return `${this.rate > 0 ? '+' : ''}${rounded.toLocaleString()}%`;
     },
     delta() {
       if (!isFinite(this.rate) || this.rate === 0) return 'even';
