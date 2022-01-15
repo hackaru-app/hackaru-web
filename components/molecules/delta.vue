@@ -10,8 +10,8 @@
 <script>
 import Icon from '~/components/atoms/icon';
 
-function round(value, precision) {
-  return Math.round(value * 10 ** precision) / 10 ** precision;
+function floor(value, precision) {
+  return Math.floor(value * 10 ** precision) / 10 ** precision;
 }
 
 const units = [
@@ -44,11 +44,11 @@ export default {
     },
     formattedDuration() {
       const sign = this.duration < 0 ? '-' : '+';
-      const rounded = round(
+      const floored = floor(
         this.duration / this.unit.seconds,
         this.unit.precision
       );
-      return `${sign}${Math.abs(rounded)}${this.unit.format}`;
+      return `${sign}${Math.abs(floored)}${this.unit.format}`;
     },
     direction() {
       if (this.duration === 0) return 'even';

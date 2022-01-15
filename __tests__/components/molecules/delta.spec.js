@@ -37,7 +37,7 @@ describe('Delta', () => {
     });
 
     it('shows a duration in minutes', () => {
-      expect(wrapper.find(testId('duration')).text()).toEqual('+60min');
+      expect(wrapper.find(testId('duration')).text()).toEqual('+59min');
     });
   });
 
@@ -73,12 +73,12 @@ describe('Delta', () => {
     beforeEach(() => {
       wrapper = factory();
       wrapper.setProps({
-        current: 5400,
+        current: 5600,
         previous: 0,
       });
     });
 
-    it('shows a rounded duration', () => {
+    it('shows a floored duration', () => {
       expect(wrapper.find(testId('duration')).text()).toEqual('+1.5h');
     });
   });
