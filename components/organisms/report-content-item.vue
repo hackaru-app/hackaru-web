@@ -13,7 +13,7 @@
         name="chevron-right-icon"
       />
       <project-name :name="project.name" :color="project.color" />
-      <rate class="rate" :current="total" :previous="previousTotal" />
+      <delta class="delta" :current="total" :previous="previousTotal" />
       <time :class="['duration', { zero: total === 0 }]">
         {{ fromS(total, 'hh:mm:ss') }}
       </time>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Rate from '~/components/molecules/rate';
+import Delta from '~/components/molecules/delta';
 import Icon from '~/components/atoms/icon';
 import ProjectName from '~/components/molecules/project-name';
 import ActivityName from '~/components/molecules/activity-name';
@@ -46,7 +46,7 @@ import { fromS } from 'hh-mm-ss';
 export default {
   components: {
     Icon,
-    Rate,
+    Delta,
     ProjectName,
     ActivityName,
   },
@@ -117,7 +117,7 @@ export default {
   padding-right: 25px;
 }
 
-.rate {
+.delta {
   flex: 1;
   justify-content: flex-end;
 }
