@@ -9,16 +9,15 @@
 
 <script>
 import Icon from '~/components/atoms/icon';
-import findLast from 'lodash.findlast';
 
 function round(value, precision) {
   return Math.round(value * 10 ** precision) / 10 ** precision;
 }
 
 const units = [
-  { format: 's', seconds: 1, precision: 0 },
-  { format: 'min', seconds: 60, precision: 0 },
   { format: 'h', seconds: 3600, precision: 1 },
+  { format: 'min', seconds: 60, precision: 0 },
+  { format: 's', seconds: 1, precision: 0 },
 ];
 
 export default {
@@ -41,7 +40,7 @@ export default {
     },
     unit() {
       const isBestUnit = (unit) => Math.abs(this.duration / unit.seconds) >= 1;
-      return findLast(units, isBestUnit) || units[0];
+      return units.find(isBestUnit) || units[units.length - 1];
     },
     formattedDuration() {
       const sign = this.duration < 0 ? '-' : '+';
