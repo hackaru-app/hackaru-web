@@ -5665,10 +5665,10 @@ header-case@^2.0.3:
     capital-case "^1.0.4"
     tslib "^2.0.3"
 
-helmet@^5.0.1:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/helmet/-/helmet-5.0.2.tgz#3264ec6bab96c82deaf65e3403c369424cb2366c"
-  integrity sha512-QWlwUZZ8BtlvwYVTSDTBChGf8EOcQ2LkGMnQJxSzD1mUu8CCjXJZq/BXP8eWw4kikRnzlhtYo3lCk0ucmYA3Vg==
+helmet@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/helmet/-/helmet-4.6.0.tgz#579971196ba93c5978eb019e4e8ec0e50076b4df"
+  integrity sha512-HVqALKZlR95ROkrnesdhbbZJFi/rIVSoNq6f3jA/9u6MIbTsPh3xZwihjeI5+DO/2sOV6HMHooXcEOuwskHpTg==
 
 hex-color-regex@^1.1.0:
   version "1.1.0"
@@ -8035,13 +8035,13 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt-helmet@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/nuxt-helmet/-/nuxt-helmet-2.1.0.tgz#6237d91a77feaf60b6fd4b713a0a055abfe2f27d"
-  integrity sha512-AX2vDNEoMlsyCmb5YtAonJYf+YbjpwHOGbWkDr0/DzdEimRk0ss/ic/p/T0e0yo2cb64DQxza2WIQkUtQrXkGw==
+nuxt-helmet@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/nuxt-helmet/-/nuxt-helmet-2.1.1.tgz#fbb86bc1bda6d7385602864f72f84e35ed0a947d"
+  integrity sha512-NexHXShgLMYGin4ovFoMEeRux+xQzKMyJnMPBMH5GdLxCL+pSqNrSQ13jCSbSrAsTAtWxxwvJH3afAD7ns6/zw==
   dependencies:
     consola "^2.11.3"
-    helmet "^5.0.1"
+    helmet "^4.6.0"
 
 nuxt-i18n@^6.28.1:
   version "6.28.1"
