@@ -75,7 +75,7 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.16.12",
+    "@babel/core": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/style-resources": "^1.2.1",
