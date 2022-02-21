@@ -33,7 +33,7 @@
     "lodash.without": "^4.4.0",
     "logrocket": "^2.2.0",
     "mezr": "^0.6.2",
-    "mixpanel-browser": "^2.43.0",
+    "mixpanel-browser": "^2.45.0",
     "normalizr": "^3.6.0",
     "nuxt": "^2.15.8",
     "nuxt-helmet": "^2.1.1",
