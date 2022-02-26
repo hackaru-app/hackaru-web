@@ -1,4 +1,4 @@
-name: publish
+name: publish-dockerhub
 on:
   release:
     types:
@@ -13,19 +13,21 @@ jobs:
       - name: Get tags
         id: get-tags
         run: |
+          IMAGE_NAME=${DOCKERHUB_REGISTRY}/${DOCKERHUB_REPO_NAME}
           VERSION=${GITHUB_REF/refs\/tags\//}
-          TAGS=${DOCKERHUB_REPO_NAME}:latest
-          TAGS=${TAGS},${DOCKERHUB_REPO_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1/')
-          TAGS=${TAGS},${DOCKERHUB_REPO_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2/')
-          TAGS=${TAGS},${DOCKERHUB_REPO_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2.\3/')
+          TAGS=${IMAGE_NAME}:latest
+          TAGS=${TAGS},${IMAGE_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1/')
+          TAGS=${TAGS},${IMAGE_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2/')
+          TAGS=${TAGS},${IMAGE_NAME}:$(echo "$VERSION" | sed -E 's/^v([0-9]+)\.([0-9]+)\.([0-9]+)$/\1.\2.\3/')
           echo ::set-output name=tags::${TAGS}
         env:
+          DOCKERHUB_REGISTRY: ${{ secrets.DOCKERHUB_REGISTRY }}
           DOCKERHUB_REPO_NAME: ${{ secrets.DOCKERHUB_REPO_NAME }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@c308fdd69d26ed66f4506ebd74b180abe5362145
 
-      - name: Set up Docker Buildx
+      - name: Set up Docker buildx
         uses: docker/setup-buildx-action@0d135e0c2fc0dba0729c1a47ecfcf5a3c7f8579e
 
       - name: Login to DockerHub
