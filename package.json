@@ -92,7 +92,7 @@
     "jest-canvas-mock": "^2.3.1",
     "jest-localstorage-mock": "^2.4.19",
     "jest-serializer-vue": "^2.0.2",
-    "lint-staged": "^12.3.7",
+    "lint-staged": "^12.3.8",
     "match-media-mock": "^0.1.1",
     "mockdate": "^3.0.5",
     "postcss": "^8.4.8",
