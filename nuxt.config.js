@@ -258,6 +258,7 @@ module.exports = {
           'https://*.lr-ingest.io',
           'https://*.logrocket.com',
           'https://*.lr-in.com',
+          'https://*.lr-in-prod.com',
           'https://api-js.mixpanel.com',
         ],
         'script-src': [
@@ -269,6 +270,7 @@ module.exports = {
           'https://cdn.logrocket.io',
           'https://cdn.lr-ingest.io',
           'https://cdn.lr-in.com',
+          'https://cdn.lr-in-prod.com',
           "'self'",
         ],
         'style-src': [
