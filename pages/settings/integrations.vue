@@ -2,6 +2,38 @@
 
 <template>
   <section>
+    <base-modal :shown.sync="shownModal">
+      <form @submit.prevent="deleteAccount">
+        <modal-header>
+          {{ $t('modal.title') }}
+        </modal-header>
+        <modal-item>
+          <div class="calendar-url">
+            <input
+              :value="calendarUrl"
+              data-test-id="calendar-url"
+              required
+              readonly
+            />
+          </div>
+        </modal-item>
+        <modal-item class="description is-vertical">
+          <p>{{ $t('modal.howTo') }}</p>
+          <br />
+          <highlight class="highlight">
+            {{ $t('modal.example')
+            }}<a
+              href="https://support.google.com/calendar/answer/37100"
+              target="_blank"
+              rel="noopener"
+              >{{ $t('modal.help') }}</a
+            >
+            {{ $t('modal.link') }}
+          </highlight>
+        </modal-item>
+      </form>
+    </base-modal>
+
     <setting-box>
       <template #heading>
         <icon name="calendar-icon" />
@@ -9,32 +41,14 @@
       </template>
       <template #description>{{ $t('description') }}</template>
 
-      <div class="calendar-buttons">
+      <div class="calendar-button">
         <base-button
           class="is-rounded is-marshmallow"
-          data-test-id="google-calendar-button"
+          data-test-id="other-calendar-button"
           type="button"
-          @click="addToGoogleCalendar"
+          @click="createAndOpenModal"
         >
-          {{ $t('googleCalendar') }}
-          <icon class="is-primary" name="external-link-icon" />
-        </base-button>
-        <base-button
-          class="is-rounded is-marshmallow"
-          data-test-id="apple-calendar-button"
-          type="button"
-          @click="addToAppleCalendar"
-        >
-          {{ $t('appleCalendar') }}
-          <icon class="is-primary" name="external-link-icon" />
-        </base-button>
-        <base-button
-          class="is-rounded is-marshmallow"
-          data-test-id="outlook-button"
-          type="button"
-          @click="addToOutlook"
-        >
-          {{ $t('outlook') }}
+          {{ $t('create') }}
           <icon class="is-primary" name="external-link-icon" />
         </base-button>
       </div>
@@ -46,6 +60,10 @@
 import Icon from '~/components/atoms/icon';
 import BaseButton from '~/components/atoms/base-button';
 import SettingBox from '~/components/molecules/setting-box';
+import BaseModal from '~/components/organisms/base-modal';
+import ModalItem from '~/components/molecules/modal-item';
+import ModalHeader from '~/components/molecules/modal-header';
+import Highlight from '~/components/atoms/highlight';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -53,64 +71,35 @@ export default {
     SettingBox,
     Icon,
     BaseButton,
+    BaseModal,
+    ModalItem,
+    ModalHeader,
+    Highlight,
+  },
+  data() {
+    return {
+      shownModal: false,
+    };
   },
   computed: {
     ...mapGetters({
-      googleCalendarUrl: 'activity-calendar/googleCalendarUrl',
-      webcalUrl: 'activity-calendar/webcalUrl',
+      calendarUrl: 'activity-calendar/calendarUrl',
     }),
   },
   methods: {
     async createUrl() {
-      return this.$store.dispatch('activity-calendar/createUrl');
+      return await this.$store.dispatch('activity-calendar/createUrl');
     },
-    async addToGoogleCalendar() {
-      this.$mixpanel.track('Add calendar integration', {
-        component: 'integrations',
-        type: 'google-calendar',
-      });
-      this.$ga.event({
-        eventCategory: 'GoogleCalendars',
-        eventAction: 'add',
-      });
-      const childWindow = window.open('about:blank');
-      if (!(await this.createUrl())) return;
-      if (!childWindow.closed) {
-        childWindow.location.assign(this.googleCalendarUrl);
-      }
-    },
-    async navigateWebcal() {
-      if (!(await this.createUrl())) return;
-      window.location.assign(this.webcalUrl);
-    },
-    addToAppleCalendar() {
-      this.$mixpanel.track('Add calendar integration', {
-        component: 'integrations',
-        type: 'apple-calendar',
-      });
-      this.$ga.event({
-        eventCategory: 'AppleCalendars',
-        eventAction: 'add',
-      });
-      this.navigateWebcal();
-    },
-    addToOutlook() {
-      this.$mixpanel.track('Add calendar integration', {
-        component: 'integrations',
-        type: 'outlook-calendar',
-      });
-      this.$ga.event({
-        eventCategory: 'OutlookCalendars',
-        eventAction: 'add',
-      });
-      this.navigateWebcal();
+    async createAndOpenModal() {
+      await this.createUrl();
+      this.shownModal = true;
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.calendar-buttons {
+.calendar-button {
   display: flex;
   flex-flow: wrap;
 
@@ -125,6 +114,17 @@ export default {
   .icon {
     margin-left: 10px;
   }
+}
+
+.description {
+  font-size: 14px;
+}
+
+.calendar-url {
+  border: 1px $border solid;
+  border-radius: 3px;
+  width: 100%;
+  padding: 10px;
 }
 
 @include mq(small) {

@@ -29,23 +29,17 @@ export const actions = {
 
 export const mutations = {
   [SET_TOKEN_AND_USER_ID](state, payload) {
-    const baseUrl = this.$config.axios.browserBaseURL;
-    state.baseUrl = baseUrl.replace(/^https?/, 'webcal');
+    state.baseUrl = this.$config.axios.browserBaseURL;
     state.token = payload.token;
     state.userId = payload.userId;
   },
 };
 
 export const getters = {
-  webcalUrl: (state) => {
+  calendarUrl: (state) => {
     return `${state.baseUrl}/v1/activity_calendar?${stringify({
       token: state.token,
       user_id: state.userId,
-    })}`;
-  },
-  googleCalendarUrl: (_state, getter) => {
-    return `https://www.google.com/calendar/render?${stringify({
-      cid: getter.webcalUrl,
     })}`;
   },
 };
