@@ -13,8 +13,7 @@ describe('Integrations', () => {
   const $mixpanel = { track: jest.fn() };
   const $store = new Store({
     getters: {
-      'activity-calendar/googleCalendarUrl': 'https://example.com',
-      'activity-calendar/webcalUrl': 'webcal://example.com',
+      'activity-calendar/calendarUrl': 'https://example.com',
     },
   });
 
@@ -31,121 +30,17 @@ describe('Integrations', () => {
     $store.reset();
   });
 
-  describe('when click google calendar button', () => {
-    const assign = jest.fn();
-
+  describe('when click calendar button', () => {
     beforeEach(() => {
       $store.dispatch.mockReturnValue(true);
-      window.open = () => ({ location: { assign }, closed: false });
       wrapper = factory();
-      wrapper.find(testId('google-calendar-button')).vm.$emit('click');
+      wrapper.find(testId('other-calendar-button')).vm.$emit('click');
     });
 
     it('dispatches activity-calendar/createUrl', () => {
       expect($store.dispatch).toHaveBeenCalledWith(
         'activity-calendar/createUrl'
       );
-    });
-
-    it('navigates to google calendar url', () => {
-      expect(assign).toHaveBeenCalledWith('https://example.com');
-    });
-
-    it('sends mixpanel event', () => {
-      expect($mixpanel.track).toHaveBeenCalledWith('Add calendar integration', {
-        component: 'integrations',
-        type: 'google-calendar',
-      });
-    });
-
-    it('sends ga event', () => {
-      expect($ga.event).toHaveBeenCalledWith({
-        eventCategory: 'GoogleCalendars',
-        eventAction: 'add',
-      });
-    });
-  });
-
-  describe('when click google calendar button but child window closed', () => {
-    const assign = jest.fn();
-
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue(true);
-      window.open = () => ({ location: { assign }, closed: true });
-      wrapper = factory();
-      wrapper.find(testId('google-calendar-button')).vm.$emit('click');
-    });
-
-    it('does not navigate', () => {
-      expect(window.location.assign).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('when click apple calendar button', () => {
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue(true);
-      wrapper = factory();
-      wrapper.find(testId('apple-calendar-button')).vm.$emit('click');
-    });
-
-    it('dispatches activity-calendar/createUrl', () => {
-      expect($store.dispatch).toHaveBeenCalledWith(
-        'activity-calendar/createUrl'
-      );
-    });
-
-    it('navigates to webcal url', () => {
-      expect(window.location.assign).toHaveBeenCalledWith(
-        'webcal://example.com'
-      );
-    });
-
-    it('sends mixpanel event', () => {
-      expect($mixpanel.track).toHaveBeenCalledWith('Add calendar integration', {
-        component: 'integrations',
-        type: 'apple-calendar',
-      });
-    });
-
-    it('sends ga event', () => {
-      expect($ga.event).toHaveBeenCalledWith({
-        eventCategory: 'AppleCalendars',
-        eventAction: 'add',
-      });
-    });
-  });
-
-  describe('when click outlook button', () => {
-    beforeEach(() => {
-      $store.dispatch.mockReturnValue(true);
-      wrapper = factory();
-      wrapper.find(testId('outlook-button')).vm.$emit('click');
-    });
-
-    it('dispatches activity-calendar/createUrl', () => {
-      expect($store.dispatch).toHaveBeenCalledWith(
-        'activity-calendar/createUrl'
-      );
-    });
-
-    it('navigates to webcal url', () => {
-      expect(window.location.assign).toHaveBeenCalledWith(
-        'webcal://example.com'
-      );
-    });
-
-    it('sends mixpanel event', () => {
-      expect($mixpanel.track).toHaveBeenCalledWith('Add calendar integration', {
-        component: 'integrations',
-        type: 'outlook-calendar',
-      });
-    });
-
-    it('sends ga event', () => {
-      expect($ga.event).toHaveBeenCalledWith({
-        eventCategory: 'OutlookCalendars',
-        eventAction: 'add',
-      });
     });
   });
 });

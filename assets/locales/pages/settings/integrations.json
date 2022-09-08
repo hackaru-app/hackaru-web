@@ -2,15 +2,25 @@
   "en": {
     "title": "Link with Calendar",
     "description": "You can check timers on your calendar.\nSynchronization can take up to a day.",
-    "googleCalendar": "Google Calendar",
-    "appleCalendar": "Apple Calendar",
-    "outlook": "Outlook"
+    "create": "Link with Google calendar or Other calendar",
+    "modal": {
+      "howTo": "Add the above URL to your calendar application. Please refer to the help of each calendar application for how to register. (Please be careful not to share the URL to other persons.)",
+      "title": "Link with calendar",
+      "example": "If you want to use Google calendar, Please open ",
+      "help": "Help page ",
+      "link": "and refer to \"Use a link to add a public calendar\" section."
+    }
   },
   "ja": {
     "title": "カレンダーと連携",
     "description": "計測した記録をお使いのカレンダー上に表示できます。同期まで最大1日ほど時間がかかる場合があります。",
-    "googleCalendar": "Google カレンダー",
-    "appleCalendar": "Apple カレンダー",
-    "outlook": "Outlook"
+    "create": "Googleカレンダー / 他のカレンダーと連携",
+    "modal": {
+      "howTo": "上記のURLをお使いのカレンダーにご登録ください。登録方法は各カレンダーアプリのヘルプ等を参照ください。（URLは他人に共有しないようご注意ください）",
+      "example": "例: Googleカレンダーの場合、",
+      "help": "ヘルプページ",
+      "link": "の「リンクを使用して一般公開のカレンダーを追加する」をご参考ください。",
+      "title": "カレンダーと連携"
+    }
   }
 }

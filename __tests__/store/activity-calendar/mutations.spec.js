@@ -29,7 +29,7 @@ describe('Mutations', () => {
     });
 
     it('sets baseUrl', () => {
-      expect(state.baseUrl).toBe('webcal://localhost');
+      expect(state.baseUrl).toBe('https://localhost');
     });
   });
 });
