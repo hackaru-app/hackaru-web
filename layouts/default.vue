@@ -5,6 +5,7 @@
     <login-guard />
     <section class="content">
       <nuxt keep-alive />
+      <eol-notification />
       <toast />
       <client-only>
         <pwa-popover />
@@ -20,6 +21,7 @@ import PwaPopover from '~/components/organisms/pwa-popover';
 import SideBar from '~/components/organisms/side-bar';
 import NavModal from '~/components/organisms/nav-modal';
 import ActivityEditor from '~/components/organisms/activity-editor';
+import EolNotification from '~/components/organisms/eol-notification';
 import { mapGetters } from 'vuex';
 import { fromS } from 'hh-mm-ss';
 import { differenceInSeconds, parseISO } from 'date-fns';
@@ -38,6 +40,7 @@ export default {
     NavModal,
     SideBar,
     PwaPopover,
+    EolNotification,
   },
   props: {
     showSideMenu: {
