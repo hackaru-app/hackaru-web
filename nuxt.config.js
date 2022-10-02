@@ -181,6 +181,7 @@ module.exports = {
   publicRuntimeConfig: {
     hackaruApiTimeout: process.env.HACKARU_API_TIMEOUT,
     hackaruTermsUrl: process.env.HACKARU_TOS_AND_PRIVACY_URL,
+    hackaruEolUrl: process.env.HACKARU_EOL_URL,
     sentryDsn: process.env.SENTRY_DSN,
     sentryProject: process.env.SENTRY_PROJECT,
     sentryRelease: process.env.SENTRY_RELEASE,
