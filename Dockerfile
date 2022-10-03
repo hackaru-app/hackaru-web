@@ -1,4 +1,4 @@
-FROM node:16.12.0-alpine as builder
+FROM node:18.10.0-alpine as builder
 ENV WEB_DIR /hackaru
 WORKDIR $WEB_DIR
 COPY package.json yarn.lock $WEB_DIR/
@@ -6,7 +6,7 @@ RUN apk add --update --no-cache python3 make g++ git && yarn install
 COPY . $WEB_DIR
 RUN yarn build
 
-FROM node:16.12.0-alpine
+FROM node:18.10.0-alpine
 ENV WEB_DIR /hackaru
 WORKDIR $WEB_DIR
 RUN addgroup hackaru \
