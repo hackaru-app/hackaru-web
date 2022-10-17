@@ -164,6 +164,10 @@ module.exports = {
             code: 'en',
             name: 'English',
           },
+          {
+            code: 'zh-CN',
+            name: '简体中文',
+          },
         ],
         defaultLocale: 'en',
         vueI18nLoader: true,

@@ -30,5 +30,21 @@
     "added": "プロジェクトを追加しました",
     "updated": "プロジェクトを更新しました",
     "deleted": "プロジェクトを削除しました"
+  },
+  "zh-CN": {
+    "titles": {
+      "update": "修改项目",
+      "add": "新增项目"
+    },
+    "name": "名字",
+    "color": "颜色",
+    "add": "新增",
+    "update": "修改",
+    "confirms": {
+      "delete": "你确定要删除项目吗？"
+    },
+    "added": "项目已创建",
+    "updated": "项目已更新",
+    "deleted": "项目已删除"
   }
 }

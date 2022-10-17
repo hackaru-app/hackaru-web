@@ -12,5 +12,12 @@
     "password": "現在のパスワードを入力",
     "update": "変更",
     "changed": "メールアドレスを変更しました"
+  },
+  "zh-CN": {
+    "title": "修改邮箱",
+    "email": "输入新邮箱",
+    "password": "输入密码",
+    "update": "更新",
+    "changed": "邮箱已修改"
   }
 }

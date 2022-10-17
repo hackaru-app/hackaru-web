@@ -12,5 +12,12 @@
     "passwordConfirmation": "新しいパスワードを再入力",
     "reset": "再設定",
     "success": "パスワードの再設定が完了しました"
+  },
+  "zh-CN": {
+    "title": "重置密码",
+    "password": "新密码",
+    "passwordConfirmation": "重复密码",
+    "reset": "重置",
+    "success": "密码重置成功"
   }
 }

@@ -25,5 +25,19 @@
     "confirms": {
       "delete": "計測を削除しますか？"
     }
+  },
+  "zh-CN": {
+    "title": "更新计时",
+    "project": "项目",
+    "startedAt": "开始于",
+    "stoppedAt": "结束于",
+    "update": "更新",
+    "start": "开始",
+    "saved": "计时已更新",
+    "started": "计时已开始",
+    "deleted": "计时已删除",
+    "confirms": {
+      "delete": "你确定要删除计时吗？"
+    }
   }
 }

@@ -20,5 +20,16 @@
     },
     "deleted": "削除しました",
     "empty": "認証済みのアプリはありません"
+  },
+  "zh-CN": {
+    "title": "应用",
+    "confirms": {
+      "delete": "你确定要该删除应用吗？"
+    },
+    "labels": {
+      "scopes": "该应用可以"
+    },
+    "deleted": "应用已删除",
+    "empty": "暂无应用。"
   }
 }

@@ -4,5 +4,8 @@
   },
   "ja": {
     "format": "yyyy/MM"
+  },
+  "zh-CN": {
+    "format": "yyyy/MM"
   }
 }

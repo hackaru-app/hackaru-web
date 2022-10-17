@@ -26,5 +26,19 @@
     "year": {
       "label": "年"
     }
+  },
+  "zh-CN": {
+    "day": {
+      "label": "日"
+    },
+    "week": {
+      "label": "周"
+    },
+    "month": {
+      "label": "月"
+    },
+    "year": {
+      "label": "年"
+    }
   }
 }

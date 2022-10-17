@@ -1,7 +1,7 @@
 {
   "en": {
     "title": "Reset your password",
-    "about": "We will send you mail to reset your password.",
+    "about": "We will send you a mail to reset your password.",
     "email": "Enter your email address",
     "send": "Send",
     "sent": "We sent you email to reset your password"
@@ -12,5 +12,12 @@
     "email": "登録時のメールアドレスを入力",
     "send": "送信",
     "sent": "再設定のためのメールを送信しました"
+  },
+  "zh-CN": {
+    "title": "重置密码",
+    "about": "我们会发送一封邮件来重置密码。",
+    "email": "输入邮箱",
+    "send": "发送",
+    "sent": "邮件已发送"
   }
 }

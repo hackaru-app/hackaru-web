@@ -28,5 +28,20 @@
       "format": "yyyy"
     },
     "moveToNextPage": "左右にスワイプで別の日付へ"
+  },
+  "zh-CN": {
+    "day": {
+      "format": "yyyy/MM/dd"
+    },
+    "week": {
+      "format": "yyyy/MM"
+    },
+    "month": {
+      "format": "yyyy/MM"
+    },
+    "year": {
+      "format": "yyyy"
+    },
+    "moveToNextPage": "左右滑动以调整日期"
   }
 }
