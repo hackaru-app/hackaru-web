@@ -4,5 +4,8 @@
   },
   "ja": {
     "description": "作業内容や補足を入力"
+  },
+  "zh-CN": {
+    "description": "描述"
   }
 }

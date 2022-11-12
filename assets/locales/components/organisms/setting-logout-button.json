@@ -6,5 +6,9 @@
   "ja": {
     "title": "ログアウト",
     "confirms": "ログアウトしますか？"
+  },
+  "zh-CN": {
+    "title": "登出",
+    "confirms": "登出?"
   }
 }

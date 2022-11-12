@@ -4,5 +4,8 @@
   },
   "ja": {
     "moveByLongPress": "長押しで移動"
+  },
+  "zh-CN": {
+    "moveByLongPress": "长按以移动"
   }
 }

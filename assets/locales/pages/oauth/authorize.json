@@ -5,7 +5,7 @@
     "decide": "Authorize {name} to use your account?",
     "empty-scope": "This application has no required controls.",
     "allow": "Accept",
-    "deny": "Cancel"
+    "deny": "Reject"
   },
   "ja": {
     "title": "{name} の許可",
@@ -14,5 +14,13 @@
     "empty-scope": "このアプリが必要としている操作はありません。",
     "allow": "許可",
     "deny": "拒否"
+  },
+  "zh-CN": {
+    "title": "授权 {name}",
+    "logged-in": "你的账号是 {email}.",
+    "decide": "授权 {name} 使用你的账号?",
+    "empty-scope": "该应用没有请求权限。",
+    "allow": "允许",
+    "deny": "拒绝"
   }
 }

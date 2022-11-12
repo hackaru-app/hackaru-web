@@ -10,5 +10,11 @@
     "notifications": "配信設定",
     "integrations": "連携機能",
     "applications": "認証済みアプリ"
+  },
+  "zh-CN": {
+    "account": "账号",
+    "notifications": "通知",
+    "integrations": "集成",
+    "applications": "授权应用"
   }
 }
