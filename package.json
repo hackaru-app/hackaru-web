@@ -97,7 +97,7 @@
     "mockdate": "^3.0.5",
     "postcss": "^8.4.13",
     "postcss-html": "^1.4.1",
-    "postcss-scss": "^4.0.4",
+    "postcss-scss": "^4.0.5",
     "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
     "stylelint-config-prettier": "^9.0.3",
